@@ -12,6 +12,9 @@
 #define kFavoritesPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] \
 stringByAppendingPathComponent:@"favorites.plist"]
 
+#define kStationsDictPath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] \
+stringByAppendingPathComponent:@"stationsDict.plist"]
+
 @interface RootViewController() <UISearchBarDelegate>
 @property (nonatomic,retain) NSArray * arrdtArray;
 @property (nonatomic,retain) NSMutableDictionary * stationsDictionary;
@@ -38,7 +41,9 @@ stringByAppendingPathComponent:@"favorites.plist"]
 - (void) awakeFromNib
 {
 	self.arrdtArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"velib-all" ofType:@"plist"]];
-	self.stationsDictionary = [NSMutableDictionary dictionary];
+	self.stationsDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:kStationsDictPath];
+	if(self.stationsDictionary==nil)
+		self.stationsDictionary = [NSMutableDictionary dictionary];
 	self.favoritesArray = [NSMutableArray arrayWithContentsOfFile:kFavoritesPath];
 	if(self.favoritesArray==nil)
 		self.favoritesArray = [NSMutableArray array];
@@ -62,7 +67,10 @@ stringByAppendingPathComponent:@"favorites.plist"]
 
 - (void) appWillTerminate:(NSNotification*) notif
 {
+	[self.stationsDictionary writeToFile:kStationsDictPath atomically:YES];
 	[self.favoritesArray writeToFile:kFavoritesPath atomically:YES];
+	[[NSUserDefaults standardUserDefaults] setFloat:self.tableView.contentOffset.y forKey:@"TableOffset"];
+	[[NSUserDefaults standardUserDefaults] setBool:onlyShowFavorites forKey:@"OnlyShowFavorites"];
 }
 
 #pragma mark -
@@ -87,6 +95,11 @@ stringByAppendingPathComponent:@"favorites.plist"]
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	CGPoint offset = CGPointZero;
+	offset.y = [[NSUserDefaults standardUserDefaults] floatForKey:@"TableOffset"];
+	self.tableView.contentOffset = offset;
+	onlyShowFavorites = [[NSUserDefaults standardUserDefaults] boolForKey:@"OnlyShowFavorites"];
+	self.favoritesButton.style = onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStylePlain;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -275,7 +288,10 @@ stringByAppendingPathComponent:@"favorites.plist"]
 
 	if([stationInfo objectForKey:@"date"])
 	{
-		[self.stationsDictionary setObject:stationInfo forKey:[stationInfo objectForKey:@"name"]];
+		NSMutableDictionary * dictWithoutIndexPath = [NSMutableDictionary dictionaryWithDictionary:stationInfo];
+		[dictWithoutIndexPath removeObjectForKey:@"indexPath"];
+		[dictWithoutIndexPath removeObjectForKey:@"name"];
+		[self.stationsDictionary setObject:dictWithoutIndexPath forKey:[stationInfo objectForKey:@"name"]];
 		if([[self.tableView indexPathsForVisibleRows] containsObject:[stationInfo objectForKey:@"indexPath"]])
 			[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[stationInfo objectForKey:@"indexPath"]]
 								  withRowAnimation:UITableViewRowAnimationRight];
