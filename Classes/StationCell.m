@@ -10,7 +10,7 @@
 
 
 @implementation StationCell
-@synthesize station, stationInfo;
+@synthesize station, stationInfo, isFavorite;
 
 static UIFont * bigFont = nil;
 static UIFont * smallFont = nil;
@@ -51,6 +51,8 @@ static UIFont * smallFont = nil;
 {
 	if(self.selected)
 		[[UIColor blueColor] set];
+	else if(self.isFavorite)
+		[[UIColor orangeColor] set];
 	else
 		[[UIColor whiteColor] set];
 	UIRectFill(rect);

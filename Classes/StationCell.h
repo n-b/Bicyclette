@@ -11,12 +11,14 @@
 #import "ABTableViewCell.h"
 
 @interface StationCell : ABTableViewCell {
-	NSDictionary * station;
-	NSDictionary * stationInfo;
+	NSDictionary *	station;
+	NSDictionary *	stationInfo;
+	BOOL			isFavorite;
 }
 
 + (id) reusableCellForTable:(UITableView*)table;
 
 @property (nonatomic,retain) NSDictionary * station;
 @property (nonatomic,retain) NSDictionary * stationInfo;
+@property (nonatomic) BOOL isFavorite;
 @end

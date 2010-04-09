@@ -13,8 +13,14 @@
 	NSMutableDictionary *	stationsDictionary;
 	NSMutableSet *			currentRequests;
 	NSMutableArray *		favoritesArray;
-	BOOL shouldCancel;
+	BOOL					shouldCancel;
+	
+	UIBarButtonItem *		favoritesButton;
+	BOOL					onlyShowFavorites;
 }
+
+@property (nonatomic,retain) IBOutlet UIBarButtonItem * favoritesButton;
+- (IBAction) toggleFavorites;
 
 - (IBAction) sendRequests;
 

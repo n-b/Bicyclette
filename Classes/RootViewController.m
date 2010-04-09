@@ -9,20 +9,61 @@
 #import "RootViewController.h"
 #import "StationCell.h"
 
+#define kFavoritesPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] \
+stringByAppendingPathComponent:@"favorites.plist"]
+
 @interface RootViewController() <UISearchBarDelegate>
 @property (nonatomic,retain) NSArray * arrdtArray;
 @property (nonatomic,retain) NSMutableDictionary * stationsDictionary;
 @property (nonatomic,retain) NSMutableSet * currentRequests;
 @property (nonatomic,retain) NSMutableArray * favoritesArray;
-@property (nonatomic,readonly) UITableView * tableView;
 
+@property (nonatomic,readonly) UITableView * tableView;
+@property BOOL	onlyShowFavorites;
+
+- (NSArray*)stationsForSection:(NSInteger)section;
+
+- (void) appWillTerminate:(NSNotification*) notif;
 - (void) requestInfo:(NSDictionary *) requestDict;
 - (void) setStationInfo:(NSDictionary *) dictionary;
 @end
 
+/****************************************************************************/
+#pragma mark -
 
 @implementation RootViewController
 @synthesize arrdtArray, stationsDictionary, currentRequests, favoritesArray;
+@synthesize favoritesButton, onlyShowFavorites;
+
+- (void) awakeFromNib
+{
+	self.arrdtArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"velib-all" ofType:@"plist"]];
+	self.stationsDictionary = [NSMutableDictionary dictionary];
+	self.favoritesArray = [NSMutableArray arrayWithContentsOfFile:kFavoritesPath];
+	if(self.favoritesArray==nil)
+		self.favoritesArray = [NSMutableArray array];
+	self.currentRequests = [NSMutableSet set];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:)
+												 name:UIApplicationWillTerminateNotification
+											   object:[UIApplication sharedApplication]];
+}
+
+- (void) dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	self.arrdtArray = nil;
+	self.stationsDictionary = nil;
+	self.currentRequests = nil;
+	self.favoritesArray = nil;
+	self.tableView = nil;
+	[super dealloc];
+}
+
+- (void) appWillTerminate:(NSNotification*) notif
+{
+	[self.favoritesArray writeToFile:kFavoritesPath atomically:YES];
+}
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -30,10 +71,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.arrdtArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"velib-all" ofType:@"plist"]];
-	self.stationsDictionary = [NSMutableDictionary dictionary];
-	self.currentRequests = [NSMutableSet set];
-	self.favoritesArray = [NSMutableArray array];
+}
+- (void) viewDidUnload
+{
+	self.tableView = nil;
+	[super viewDidUnload];
 }
 
 - (UITableView*) tableView
@@ -45,7 +87,6 @@
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	self.tableView.contentOffset = CGPointMake(0,44);
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -57,6 +98,13 @@
 #pragma mark -
 #pragma mark Table view data source
 
+- (IBAction) toggleFavorites
+{
+	onlyShowFavorites = !onlyShowFavorites;
+	self.favoritesButton.style = onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStylePlain;
+	[self.tableView reloadData];
+}
+
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [arrdtArray count];
@@ -64,18 +112,25 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+	if(onlyShowFavorites)
+		return nil;
 	return [[arrdtArray objectAtIndex:section] objectForKey:@"name"];
 }
 
 // helper
 - (NSArray*)stationsForSection:(NSInteger)section
 {
-	return [[arrdtArray objectAtIndex:section] objectForKey:@"stations"];
+	NSArray * arrdtStations = [[arrdtArray objectAtIndex:section] objectForKey:@"stations"];
+	if(onlyShowFavorites)
+		return [arrdtStations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name IN %@",self.favoritesArray]];
+	return arrdtStations;
 }
 
 // index
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
+	if(onlyShowFavorites)
+		return nil;
 	NSArray * names = [arrdtArray valueForKey:@"name"];
 	NSMutableArray * titles = [NSMutableArray arrayWithCapacity:[names count]];
 	for (NSString * name in names) {
@@ -104,9 +159,10 @@
     
 	StationCell * cell = [StationCell reusableCellForTable:tableView];
 	NSDictionary * station = [[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row];
+	NSString * stationName = [station objectForKey:@"name"];
 	cell.station = station;
-	cell.stationInfo = [stationsDictionary objectForKey:[station objectForKey:@"name"]];
-	
+	cell.stationInfo = [stationsDictionary objectForKey:stationName];
+	cell.isFavorite = [self.favoritesArray containsObject:stationName];
     return cell;
 }
 
@@ -116,12 +172,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self.favoritesArray addObject:[[[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"name"]];
-	[self performSelector:@selector(deselectRowAtIndexPath:) withObject:indexPath afterDelay:.5];
-}
-- (void) deselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+	NSString * stationName = [[[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"name"];
+	if([self.favoritesArray containsObject:stationName])
+		[self.favoritesArray removeObject:stationName];
+	else
+		[self.favoritesArray addObject:stationName];
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	if(onlyShowFavorites)
+		[self.tableView reloadData];
+	else
+		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+							  withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -215,8 +276,9 @@
 	if([stationInfo objectForKey:@"date"])
 	{
 		[self.stationsDictionary setObject:stationInfo forKey:[stationInfo objectForKey:@"name"]];
-		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[stationInfo objectForKey:@"indexPath"]]
-							  withRowAnimation:UITableViewRowAnimationRight];
+		if([[self.tableView indexPathsForVisibleRows] containsObject:[stationInfo objectForKey:@"indexPath"]])
+			[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[stationInfo objectForKey:@"indexPath"]]
+								  withRowAnimation:UITableViewRowAnimationRight];
 	}
 }
 
