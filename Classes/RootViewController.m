@@ -140,37 +140,38 @@
 		NSLog(@"Cancelling! %@",[requestDict objectForKey:@"name"]);
 	}
 	else
-	{
-		NSString * stationName = [requestDict objectForKey:@"name"];
-		
-		NSString * stationInfo = [NSString stringWithContentsOfURL:[NSURL URLWithString:[veliburl stringByAppendingString:stationName]] usedEncoding:NULL error:NULL];
-		NSScanner * scanner = [NSScanner scannerWithString:stationInfo];
-		int available, free, total, ticket;
-		[scanner scanUpToString:@"<available>" intoString:NULL];
-		[scanner scanString:@"<available>" intoString:NULL];
-		[scanner scanInt:&available];
-		[scanner scanUpToString:@"<free>" intoString:NULL];
-		[scanner scanString:@"<free>" intoString:NULL];
-		[scanner scanInt:&free];
-		[scanner scanUpToString:@"<total>" intoString:NULL];
-		[scanner scanString:@"<total>" intoString:NULL];
-		[scanner scanInt:&total];
-		[scanner scanUpToString:@"<ticket>" intoString:NULL];
-		[scanner scanString:@"<ticket>" intoString:NULL];
-		[scanner scanInt:&ticket];
-		
-		stationDict = [NSDictionary dictionaryWithObjectsAndKeys:
-					   [requestDict objectForKey:@"indexPath"],@"indexPath",
-					   stationName,@"name",
-					   [NSDate date],@"date",
-					   [NSNumber numberWithInt:available],@"available",
-					   [NSNumber numberWithInt:free],@"free",
-					   [NSNumber numberWithInt:total],@"total",
-					   [NSNumber numberWithInt:ticket],@"ticket",
-					   nil];
+	{		
+		NSString * stationInfo = [NSString stringWithContentsOfURL:[NSURL URLWithString:[veliburl stringByAppendingString:[requestDict objectForKey:@"name"]]] usedEncoding:NULL error:NULL];
+		if(stationInfo)
+		{
+			NSScanner * scanner = [NSScanner scannerWithString:stationInfo];
+			int available, free, total, ticket;
+			[scanner scanUpToString:@"<available>" intoString:NULL];
+			[scanner scanString:@"<available>" intoString:NULL];
+			[scanner scanInt:&available];
+			[scanner scanUpToString:@"<free>" intoString:NULL];
+			[scanner scanString:@"<free>" intoString:NULL];
+			[scanner scanInt:&free];
+			[scanner scanUpToString:@"<total>" intoString:NULL];
+			[scanner scanString:@"<total>" intoString:NULL];
+			[scanner scanInt:&total];
+			[scanner scanUpToString:@"<ticket>" intoString:NULL];
+			[scanner scanString:@"<ticket>" intoString:NULL];
+			[scanner scanInt:&ticket];
+			
+			stationDict = [NSDictionary dictionaryWithObjectsAndKeys:
+						   [NSDate date],@"date",
+						   [NSNumber numberWithInt:available],@"available",
+						   [NSNumber numberWithInt:free],@"free",
+						   [NSNumber numberWithInt:total],@"total",
+						   [NSNumber numberWithInt:ticket],@"ticket",
+						   nil];
+		}
 	}
+	NSMutableDictionary * mutableDict = [NSMutableDictionary dictionaryWithDictionary:requestDict];
+	[mutableDict addEntriesFromDictionary:stationDict],
 	[self performSelectorOnMainThread:@selector(setStationInfo:) 
-						   withObject:stationDict
+						   withObject:mutableDict
 						waitUntilDone:NO];
 	[pool release];
 }
@@ -181,7 +182,7 @@
 	if([self.currentRequests count]==0)
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
-	if(stationInfo)
+	if([stationInfo objectForKey:@"date"])
 	{
 		[self.stationsDictionary setObject:stationInfo forKey:[stationInfo objectForKey:@"name"]];
 		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[stationInfo objectForKey:@"indexPath"]]
