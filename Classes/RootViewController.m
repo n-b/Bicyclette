@@ -10,7 +10,7 @@
 #import "StationCell.h"
 
 @interface RootViewController() <UISearchBarDelegate>
-@property (nonatomic,retain) NSArray * stationsArray;
+@property (nonatomic,retain) NSArray * arrdtArray;
 @property (nonatomic,retain) NSMutableDictionary * stationsDictionary;
 @property (nonatomic,retain) NSMutableSet * currentRequests;
 @property (nonatomic,retain) NSMutableArray * favoritesArray;
@@ -22,7 +22,7 @@
 
 
 @implementation RootViewController
-@synthesize stationsArray, stationsDictionary, currentRequests, favoritesArray;
+@synthesize arrdtArray, stationsDictionary, currentRequests, favoritesArray;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.stationsArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"velib-all" ofType:@"plist"]];
+	self.arrdtArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"velib-all" ofType:@"plist"]];
 	self.stationsDictionary = [NSMutableDictionary dictionary];
 	self.currentRequests = [NSMutableSet set];
 	self.favoritesArray = [NSMutableArray array];
@@ -59,13 +59,43 @@
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [arrdtArray count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [[arrdtArray objectAtIndex:section] objectForKey:@"name"];
+}
+
+// helper
+- (NSArray*)stationsForSection:(NSInteger)section
+{
+	return [[arrdtArray objectAtIndex:section] objectForKey:@"stations"];
+}
+
+// index
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+	NSArray * names = [arrdtArray valueForKey:@"name"];
+	NSMutableArray * titles = [NSMutableArray arrayWithCapacity:[names count]];
+	for (NSString * name in names) {
+		int number = [name intValue];
+		if(number!=0)
+			[titles addObject:[NSString stringWithFormat:@"%d",number]];
+		else
+			[titles addObject:[name substringToIndex:1]];
+	}
+	return titles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+	return index;
+}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [stationsArray count];
+    return [[self stationsForSection:section] count];
 }
 
 
@@ -73,7 +103,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	StationCell * cell = [StationCell reusableCellForTable:tableView];
-	NSDictionary * station = [stationsArray objectAtIndex:[indexPath row]];
+	NSDictionary * station = [[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row];
 	cell.station = station;
 	cell.stationInfo = [stationsDictionary objectForKey:[station objectForKey:@"name"]];
 	
@@ -86,7 +116,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self.favoritesArray addObject:[[self.stationsArray objectAtIndex:[indexPath row]] objectForKey:@"name"]];
+	[self.favoritesArray addObject:[[[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"name"]];
 	[self performSelector:@selector(deselectRowAtIndexPath:) withObject:indexPath afterDelay:.5];
 }
 - (void) deselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,7 +136,7 @@
 	NSLog(@"send requests");
 	shouldCancel = NO;
 	for (NSIndexPath * indexPath in [self.tableView indexPathsForVisibleRows]) {
-		NSDictionary * station = [stationsArray objectAtIndex:[indexPath row]];
+		NSDictionary * station = [[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row];
 		NSString * stationName = [station objectForKey:@"name"];
 		if([self.currentRequests containsObject:stationName])
 		{

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UITableViewController {
-	NSArray *				stationsArray;
+	NSArray *				arrdtArray;
 	NSMutableDictionary *	stationsDictionary;
 	NSMutableSet *			currentRequests;
 	NSMutableArray *		favoritesArray;
