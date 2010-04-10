@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 #import "StationCell.h"
 
-#define kStalenessInterval 2
+#define kStalenessInterval 30
 
 #define kFavoritesPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] \
 stringByAppendingPathComponent:@"favorites.plist"]
@@ -207,18 +207,50 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	if(onlyShowFavorites)
+		return;
 	NSString * stationName = [[[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"name"];
 	if([self.favoritesArray containsObject:stationName])
 		[self.favoritesArray removeObject:stationName];
 	else
 		[self.favoritesArray addObject:stationName];
-	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-	if(onlyShowFavorites)
-		[self.tableView reloadData];
-	else
-		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 							  withRowAnimation:UITableViewRowAnimationFade];
 }
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(onlyShowFavorites)
+		return nil;
+	else
+		return indexPath;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(onlyShowFavorites)
+		return UITableViewCellEditingStyleDelete;
+	else
+		return UITableViewCellEditingStyleNone;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(onlyShowFavorites && editingStyle==UITableViewCellEditingStyleDelete)
+	{
+		NSString * stationName = [[[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"name"];
+		if([self.favoritesArray containsObject:stationName])
+			[self.favoritesArray removeObject:stationName];
+		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+							  withRowAnimation:UITableViewRowAnimationFade];
+	}
+}
+
+
+
+/****************************************************************************/
+#pragma mark Requests
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -245,7 +277,6 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 			NSLog(@"skipping (recent status) %@",stationName);
 			continue;
 		}
-		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 		[self.currentRequests addObject:stationName];
 		[self performSelectorInBackground:@selector(requestInfo:) 
 							   withObject:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -307,8 +338,6 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 - (void) setStationInfo:(NSDictionary *) stationInfo
 {
 	[self.currentRequests removeObject:[stationInfo objectForKey:@"name"]];
-	if([self.currentRequests count]==0)
-		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
 	if([stationInfo objectForKey:@"date"])
 	{

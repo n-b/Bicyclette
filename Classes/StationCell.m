@@ -102,7 +102,7 @@ static UIFont * smallFont = nil;
 		}
 		else
 			[textColor set];
-		[[NSString stringWithFormat:@"%d places",free] drawAtPoint:CGPointMake(200, 5) withFont:bigFont];
+		[[NSString stringWithFormat:@"%d places",free] drawAtPoint:CGPointMake(170, 5) withFont:bigFont];
 	
 		// bikes
 		int available = [[stationInfo objectForKey:@"available"] intValue];
@@ -117,7 +117,7 @@ static UIFont * smallFont = nil;
 		}
 		else
 			[textColor set];
-		[[NSString stringWithFormat:@"%d vélos",available] drawAtPoint:CGPointMake(110, 5) withFont:bigFont];
+		[[NSString stringWithFormat:@"%d vélos",available] drawAtPoint:CGPointMake(80, 5) withFont:bigFont];
 	}
 }
 
