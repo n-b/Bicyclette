@@ -9,6 +9,8 @@
 #import "RootViewController.h"
 #import "StationCell.h"
 
+#define kStalenessInterval 2
+
 #define kFavoritesPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] \
 stringByAppendingPathComponent:@"favorites.plist"]
 
@@ -194,7 +196,8 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 	NSString * stationName = [station objectForKey:@"name"];
 	cell.station = station;
 	cell.stationInfo = [stationsDictionary objectForKey:stationName];
-	cell.isFavorite = [self.favoritesArray containsObject:stationName];
+	cell.favorite = [self.favoritesArray containsObject:stationName];
+	cell.loading = [self.currentRequests containsObject:stationName];
     return cell;
 }
 
@@ -237,7 +240,7 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 			continue;
 		}
 		NSDictionary * stationInfo = [stationsDictionary objectForKey:stationName];
-		if(stationInfo && [[NSDate date] timeIntervalSinceDate:[stationInfo objectForKey:@"date"]] < 30)
+		if(stationInfo && [[NSDate date] timeIntervalSinceDate:[stationInfo objectForKey:@"date"]] < kStalenessInterval)
 		{
 			NSLog(@"skipping (recent status) %@",stationName);
 			continue;
@@ -250,6 +253,8 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 										   stationName,@"name",
 										   nil]];
 	}
+	[self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows]
+						  withRowAnimation:UITableViewRowAnimationNone];
 }
 
 

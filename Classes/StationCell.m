@@ -10,7 +10,7 @@
 
 
 @implementation StationCell
-@synthesize station, stationInfo, isFavorite;
+@synthesize station, stationInfo, favorite, loading;
 
 static UIFont * bigFont = nil;
 static UIFont * smallFont = nil;
@@ -49,14 +49,14 @@ static UIFont * smallFont = nil;
 
 - (void) drawContentView:(CGRect)rect
 {
-	if(self.selected || self.isFavorite)
+	if(self.selected || self.favorite)
 		[[UIColor lightGrayColor] set];
 	else
 		[[UIColor whiteColor] set];
 	UIRectFill(rect);
 	
 	UIColor * textColor;
-	if(self.selected || self.isFavorite)
+	if(self.selected || self.favorite)
 		textColor = [UIColor whiteColor];
 	else
 		textColor = [UIColor blackColor];
@@ -66,6 +66,19 @@ static UIFont * smallFont = nil;
 	NSString * address = [station objectForKey:@"address"];
 	[name drawAtPoint:CGPointMake(5, 5) withFont:bigFont];
 	[address drawAtPoint:CGPointMake(5, 25) withFont:smallFont];
+	
+	if(loading)
+	{
+		CGContextRef ctxt = UIGraphicsGetCurrentContext();
+		CGContextSetStrokeColorWithColor(ctxt, [UIColor darkGrayColor].CGColor);
+#define loadingRadius 6
+		CGContextStrokeEllipseInRect(ctxt, CGRectMake(60, 10, loadingRadius*2, loadingRadius*2));
+		CGContextSetFillColorWithColor(ctxt, [UIColor darkGrayColor].CGColor);
+		CGContextMoveToPoint(ctxt, 60+loadingRadius, 10+loadingRadius);
+		CGContextAddArc(ctxt, 60+loadingRadius, 10+loadingRadius, loadingRadius, -M_PI_2, .5*M_PI_2, NO);
+		CGContextClosePath(ctxt);
+		CGContextFillPath(ctxt);
+	}
 	
 	if(stationInfo)
 	{

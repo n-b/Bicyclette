@@ -13,12 +13,14 @@
 @interface StationCell : ABTableViewCell {
 	NSDictionary *	station;
 	NSDictionary *	stationInfo;
-	BOOL			isFavorite;
+	BOOL			favorite;
+	BOOL			loading;
 }
 
 + (id) reusableCellForTable:(UITableView*)table;
 
 @property (nonatomic,retain) NSDictionary * station;
 @property (nonatomic,retain) NSDictionary * stationInfo;
-@property (nonatomic) BOOL isFavorite;
+@property (nonatomic, getter=isFavorite) BOOL favorite;
+@property (nonatomic, getter=isLoading) BOOL loading;
 @end
