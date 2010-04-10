@@ -37,6 +37,7 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 @implementation RootViewController
 @synthesize arrdtArray, stationsDictionary, currentRequests, favoritesArray;
 @synthesize favoritesButton, onlyShowFavorites;
+@synthesize titleToggle;
 
 - (void) awakeFromNib
 {
@@ -62,6 +63,8 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 	self.currentRequests = nil;
 	self.favoritesArray = nil;
 	self.tableView = nil;
+	self.favoritesButton = nil;
+	self.titleToggle = nil;
 	[super dealloc];
 }
 
@@ -78,11 +81,14 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	self.navigationItem.titleView = self.titleToggle;
 }
+
 - (void) viewDidUnload
 {
 	self.tableView = nil;
+	self.favoritesButton = nil;
+	self.titleToggle = nil;
 	[super viewDidUnload];
 }
 
@@ -100,6 +106,7 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 	self.tableView.contentOffset = offset;
 	onlyShowFavorites = [[NSUserDefaults standardUserDefaults] boolForKey:@"OnlyShowFavorites"];
 	self.favoritesButton.style = onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStylePlain;
+	self.titleToggle.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] boolForKey:@"ParkingWanted"];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -108,8 +115,8 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 	[self performSelector:@selector(sendRequests) withObject:nil afterDelay:.5 inModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
 }
 
+/****************************************************************************/
 #pragma mark -
-#pragma mark Table view data source
 
 - (IBAction) toggleFavorites
 {
@@ -117,6 +124,18 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 	self.favoritesButton.style = onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStylePlain;
 	[self.tableView reloadData];
 }
+
+- (IBAction) toggleWanted
+{
+	[[NSUserDefaults standardUserDefaults] setBool:self.titleToggle.selectedSegmentIndex forKey:@"ParkingWanted"];
+	[self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows]
+						  withRowAnimation:UITableViewRowAnimationNone];
+}
+
+
+/****************************************************************************/
+#pragma mark Table view data source
+
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

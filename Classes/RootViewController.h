@@ -17,11 +17,16 @@
 	
 	UIBarButtonItem *		favoritesButton;
 	BOOL					onlyShowFavorites;
+	
+	UISegmentedControl *				titleToggle;
 }
 
-@property (nonatomic,retain) IBOutlet UIBarButtonItem * favoritesButton;
-- (IBAction) toggleFavorites;
-
 - (IBAction) sendRequests;
+
+- (IBAction) toggleFavorites;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem * favoritesButton;
+
+- (IBAction) toggleWanted;
+@property (nonatomic,retain) IBOutlet UISegmentedControl * titleToggle;
 
 @end

@@ -49,19 +49,19 @@ static UIFont * smallFont = nil;
 
 - (void) drawContentView:(CGRect)rect
 {
-	if(self.selected)
-		[[UIColor blueColor] set];
-	else if(self.isFavorite)
-		[[UIColor orangeColor] set];
+	if(self.selected || self.isFavorite)
+		[[UIColor lightGrayColor] set];
 	else
 		[[UIColor whiteColor] set];
 	UIRectFill(rect);
 	
-	if(self.selected)
-		[[UIColor whiteColor] set];
+	UIColor * textColor;
+	if(self.selected || self.isFavorite)
+		textColor = [UIColor whiteColor];
 	else
-		[[UIColor blackColor] set];
+		textColor = [UIColor blackColor];
 
+	[textColor set];
 	NSString * name = [station objectForKey:@"name"];
 	NSString * address = [station objectForKey:@"address"];
 	[name drawAtPoint:CGPointMake(5, 5) withFont:bigFont];
@@ -69,16 +69,42 @@ static UIFont * smallFont = nil;
 	
 	if(stationInfo)
 	{
-		int available = [[stationInfo objectForKey:@"available"] intValue];
-		int free = [[stationInfo objectForKey:@"free"] intValue];
+		//total
+		[textColor set];
 		int total = [[stationInfo objectForKey:@"total"] intValue];
 		int ticket = [[stationInfo objectForKey:@"ticket"] intValue];
-		[[UIColor redColor] set];
-		[[NSString stringWithFormat:@"A%d",available] drawAtPoint:CGPointMake(150, 5) withFont:bigFont];
-		[[UIColor greenColor] set];
-		[[NSString stringWithFormat:@"F%d",free] drawAtPoint:CGPointMake(200, 5) withFont:bigFont];
-		[[UIColor grayColor] set];
-		[[NSString stringWithFormat:@"(%d%s)",total,ticket?" +":""] drawAtPoint:CGPointMake(270, 5) withFont:smallFont];
+		[[NSString stringWithFormat:@"(%d%s)",total,ticket?" +":""] drawAtPoint:CGPointMake(5, 40) withFont:smallFont];
+
+		// parking
+		int free = [[stationInfo objectForKey:@"free"] intValue];
+		BOOL wantsParking = [[NSUserDefaults standardUserDefaults] boolForKey:@"ParkingWanted"];
+		if(wantsParking)
+		{
+			if(free==0)
+				[[UIColor redColor] set];
+			else if(free<5)
+				[[UIColor orangeColor] set];
+			else
+				[[UIColor greenColor] set];
+		}
+		else
+			[textColor set];
+		[[NSString stringWithFormat:@"%d places",free] drawAtPoint:CGPointMake(200, 5) withFont:bigFont];
+	
+		// bikes
+		int available = [[stationInfo objectForKey:@"available"] intValue];
+		if(!wantsParking)
+		{
+			if(available==0)
+				[[UIColor redColor] set];
+			else if(available<5)
+				[[UIColor orangeColor] set];
+			else
+				[[UIColor greenColor] set];
+		}
+		else
+			[textColor set];
+		[[NSString stringWithFormat:@"%d vélos",available] drawAtPoint:CGPointMake(110, 5) withFont:bigFont];
 	}
 }
 
