@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "StationCell.h"
+#import "BicycletteDefaults.h"
 
 #define kStalenessInterval 30
 
@@ -17,7 +18,7 @@ stringByAppendingPathComponent:@"favorites.plist"]
 #define kStationsDictPath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] \
 stringByAppendingPathComponent:@"stationsDict.plist"]
 
-@interface RootViewController() <UISearchBarDelegate>
+@interface RootViewController() <CLLocationManagerDelegate>
 @property (nonatomic,retain) NSArray * arrdtArray;
 @property (nonatomic,retain) NSMutableDictionary * stationsDictionary;
 @property (nonatomic,retain) NSMutableSet * currentRequests;
@@ -52,6 +53,9 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 		self.favoritesArray = [NSMutableArray array];
 	self.currentRequests = [NSMutableSet set];
 
+	locationManager = [CLLocationManager new];
+	locationManager.delegate = self;
+	[locationManager startUpdatingLocation];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:)
 												 name:UIApplicationWillTerminateNotification
 											   object:[UIApplication sharedApplication]];
@@ -60,6 +64,7 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[locationManager release];
 	self.arrdtArray = nil;
 	self.stationsDictionary = nil;
 	self.currentRequests = nil;
@@ -198,6 +203,21 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 	cell.stationInfo = [stationsDictionary objectForKey:stationName];
 	cell.favorite = [self.favoritesArray containsObject:stationName];
 	cell.loading = [self.currentRequests containsObject:stationName];
+	
+	CLLocation * currentLocation = [[NSUserDefaults standardUserDefaults] lastKnownLocation];
+	if(currentLocation)
+	{
+		NSScanner * coordsScanner = [NSScanner scannerWithString:[station objectForKey:@"coordinates"]];
+		CLLocationDegrees longitude, latitude;
+		[coordsScanner scanDouble:&longitude];
+		[coordsScanner scanString:@"," intoString:NULL];
+		[coordsScanner scanDouble:&latitude];
+		
+		CLLocation * stationLocation = [[[CLLocation alloc] initWithLatitude:latitude
+																   longitude:longitude] autorelease];
+		cell.distance = [stationLocation getDistanceFrom:[[NSUserDefaults standardUserDefaults] lastKnownLocation]];
+	}
+
     return cell;
 }
 
@@ -349,6 +369,18 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 			[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[stationInfo objectForKey:@"indexPath"]]
 								  withRowAnimation:UITableViewRowAnimationRight];
 	}
+}
+
+/****************************************************************************/
+#pragma mark GPS
+
+- (void)locationManager:(CLLocationManager *)manager
+	didUpdateToLocation:(CLLocation *)newLocation
+		   fromLocation:(CLLocation *)oldLocation
+{
+	[[NSUserDefaults standardUserDefaults] setLastKnownLocation:newLocation];
+	[self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows]
+						  withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

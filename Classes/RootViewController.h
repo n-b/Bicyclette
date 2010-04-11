@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import <CoreLocation/CoreLocation.h>
 @interface RootViewController : UITableViewController {
 	NSArray *				arrdtArray;
 	NSMutableDictionary *	stationsDictionary;
@@ -19,6 +20,8 @@
 	BOOL					onlyShowFavorites;
 	
 	UISegmentedControl *				titleToggle;
+	
+	CLLocationManager *		locationManager;
 }
 
 - (IBAction) sendRequests;

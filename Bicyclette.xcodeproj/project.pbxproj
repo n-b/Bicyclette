@@ -18,6 +18,8 @@
 		3705E24211668F77002B7AAE /* velib-all.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3705E24111668F77002B7AAE /* velib-all.plist */; };
 		3705E27B11669241002B7AAE /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705E27A11669241002B7AAE /* StationCell.m */; };
 		3705E43E1166B065002B7AAE /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705E43D1166B065002B7AAE /* ABTableViewCell.m */; };
+		37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D1882C1170A27A00950D52 /* BicycletteDefaults.m */; };
+		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,9 @@
 		3705E27A11669241002B7AAE /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
 		3705E43C1166B065002B7AAE /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
 		3705E43D1166B065002B7AAE /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
+		37D1882B1170A27A00950D52 /* BicycletteDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteDefaults.h; sourceTree = "<group>"; };
+		37D1882C1170A27A00950D52 /* BicycletteDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteDefaults.m; sourceTree = "<group>"; };
+		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Bicyclette-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bicyclette-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,6 +54,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +64,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3705E43C1166B065002B7AAE /* ABTableViewCell.h */,
-				3705E43D1166B065002B7AAE /* ABTableViewCell.m */,
+				37D188291170A25C00950D52 /* Extensions */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* BicycletteAppDelegate.h */,
@@ -113,11 +118,23 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37D188381170A5FA00950D52 /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37D188291170A25C00950D52 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3705E43C1166B065002B7AAE /* ABTableViewCell.h */,
+				3705E43D1166B065002B7AAE /* ABTableViewCell.m */,
+				37D1882B1170A27A00950D52 /* BicycletteDefaults.h */,
+				37D1882C1170A27A00950D52 /* BicycletteDefaults.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +204,7 @@
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				3705E27B11669241002B7AAE /* StationCell.m in Sources */,
 				3705E43E1166B065002B7AAE /* ABTableViewCell.m in Sources */,
+				37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

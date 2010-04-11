@@ -10,7 +10,7 @@
 
 
 @implementation StationCell
-@synthesize station, stationInfo, favorite, loading;
+@synthesize station, stationInfo, favorite, loading, distance;
 
 static UIFont * bigFont = nil;
 static UIFont * smallFont = nil;
@@ -33,6 +33,7 @@ static UIFont * smallFont = nil;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+		distance = -1;
     }
     return self;
 }
@@ -82,12 +83,6 @@ static UIFont * smallFont = nil;
 	
 	if(stationInfo)
 	{
-		//total
-		[textColor set];
-		int total = [[stationInfo objectForKey:@"total"] intValue];
-		int ticket = [[stationInfo objectForKey:@"ticket"] intValue];
-		[[NSString stringWithFormat:@"(%d%s)",total,ticket?" +":""] drawAtPoint:CGPointMake(5, 40) withFont:smallFont];
-
 		// parking
 		int free = [[stationInfo objectForKey:@"free"] intValue];
 		BOOL wantsParking = [[NSUserDefaults standardUserDefaults] boolForKey:@"ParkingWanted"];
@@ -118,6 +113,15 @@ static UIFont * smallFont = nil;
 		else
 			[textColor set];
 		[[NSString stringWithFormat:@"%d vélos",available] drawAtPoint:CGPointMake(80, 5) withFont:bigFont];
+	}
+	
+	if(distance!=-1)
+	{
+		[textColor set];
+		if(distance<1000)
+			[[NSString stringWithFormat:@"%.0f m",distance] drawAtPoint:CGPointMake(5, 40) withFont:smallFont];
+		else
+			[[NSString stringWithFormat:@"%.0f km",distance/1000] drawAtPoint:CGPointMake(5, 40) withFont:smallFont];
 	}
 }
 
