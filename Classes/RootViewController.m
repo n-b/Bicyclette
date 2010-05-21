@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "StationCell.h"
 #import "BicycletteDefaults.h"
+#import "CLLocation+Direction.h"
 
 #define kStalenessInterval 30
 
@@ -216,6 +217,7 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 		CLLocation * stationLocation = [[[CLLocation alloc] initWithLatitude:latitude
 																   longitude:longitude] autorelease];
 		cell.distance = [stationLocation getDistanceFrom:[[NSUserDefaults standardUserDefaults] lastKnownLocation]];
+		cell.direction = [stationLocation directionFrom:[[NSUserDefaults standardUserDefaults] lastKnownLocation]];
 	}
 
     return cell;

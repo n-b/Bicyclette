@@ -7,10 +7,10 @@
 //
 
 #import "StationCell.h"
-
+#import "CLLocation+Direction.h"
 
 @implementation StationCell
-@synthesize station, stationInfo, favorite, loading, distance;
+@synthesize station, stationInfo, favorite, loading, distance, direction;
 
 static UIFont * bigFont = nil;
 static UIFont * smallFont = nil;
@@ -118,10 +118,11 @@ static UIFont * smallFont = nil;
 	if(distance!=-1)
 	{
 		[textColor set];
-		if(distance<1000)
-			[[NSString stringWithFormat:@"%.0f m",distance] drawAtPoint:CGPointMake(5, 40) withFont:smallFont];
-		else
-			[[NSString stringWithFormat:@"%.0f km",distance/1000] drawAtPoint:CGPointMake(5, 40) withFont:smallFont];
+		NSString * text = [NSString stringWithFormat:@"%.0f %@ au %@",
+						   distance<1000?distance:distance/1000,
+						   distance<1000?@"m":@"km",
+						   [NSString directionDescription:self.direction]];
+			[text drawAtPoint:CGPointMake(5, 40) withFont:smallFont];
 	}
 }
 

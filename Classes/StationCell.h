@@ -17,7 +17,8 @@
 	NSDictionary *	stationInfo;
 	BOOL			favorite;
 	BOOL			loading;
-	CLLocationDistance distance;
+	CLLocationDistance		distance;
+	CLLocationDirection		direction;
 }
 
 + (id) reusableCellForTable:(UITableView*)table;
@@ -27,4 +28,5 @@
 @property (nonatomic, getter=isFavorite) BOOL favorite;
 @property (nonatomic, getter=isLoading) BOOL loading;
 @property (nonatomic) CLLocationDistance distance;
+@property (nonatomic) CLLocationDirection direction;
 @end
