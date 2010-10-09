@@ -18,24 +18,21 @@
 
 - (id) firstObjectWithValue:(id)value forKey:(NSString*)key
 {
-	NSEnumerator* objectEnum = [self objectEnumerator];
-	id object;
-	
-	while( (object = [objectEnum nextObject]) !=nil )
+	for (id object in self) {
 		if( [[object valueForKey:key] isEqual:value] )
 			return object;
+	}
 	return nil;
 }
 
 - (NSArray*) filteredArrayWithValue:(id)value forKey:(NSString*)key
 {
 	NSMutableArray * objects = [NSMutableArray arrayWithCapacity:[self count]];
-	NSEnumerator* objectEnum = [self objectEnumerator];
-	id object;
 	
-	while( (object = [objectEnum nextObject]) !=nil )
+	for (id object in self) {
 		if( [[object valueForKey:key] isEqual:value] )
 			[objects addObject:object];
+	}
 	
 	return [NSArray arrayWithArray:objects];
 }
@@ -43,10 +40,8 @@
 - (NSArray*) filteredArrayWithSelector:(SEL)aFilterSelector
 {
 	NSMutableArray * objects = [NSMutableArray arrayWithCapacity:[self count]];
-	NSEnumerator* objectEnum = [self objectEnumerator];
-	id object;
 	
-	while( (object = [objectEnum nextObject]) !=nil )
+	for (id object in self)
 	{
 		// we need to only evaluate a BOOL, not the 4-byte result of performSelector
 		// (see the literature on performSelector for details)
