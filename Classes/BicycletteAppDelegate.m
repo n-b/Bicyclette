@@ -3,7 +3,7 @@
 //  Bicyclette
 //
 //  Created by Nicolas on 02/04/10.
-//  Copyright Apple Inc 2010. All rights reserved.
+//  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
 #import "BicycletteAppDelegate.h"
