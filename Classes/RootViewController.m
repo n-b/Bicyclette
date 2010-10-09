@@ -216,7 +216,7 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 		
 		CLLocation * stationLocation = [[[CLLocation alloc] initWithLatitude:latitude
 																   longitude:longitude] autorelease];
-		cell.distance = [stationLocation getDistanceFrom:[[NSUserDefaults standardUserDefaults] lastKnownLocation]];
+		cell.distance = [stationLocation distanceFromLocation:[[NSUserDefaults standardUserDefaults] lastKnownLocation]];
 		cell.direction = [stationLocation directionFrom:[[NSUserDefaults standardUserDefaults] lastKnownLocation]];
 	}
 
