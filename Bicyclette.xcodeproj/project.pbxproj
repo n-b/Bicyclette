@@ -18,6 +18,7 @@
 		3705E24211668F77002B7AAE /* velib-all.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3705E24111668F77002B7AAE /* velib-all.plist */; };
 		3705E27B11669241002B7AAE /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705E27A11669241002B7AAE /* StationCell.m */; };
 		3705E43E1166B065002B7AAE /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705E43D1166B065002B7AAE /* ABTableViewCell.m */; };
+		37216B6E12610E2900A2695A /* KMLDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216B6D12610E2900A2695A /* KMLDataManager.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D1882C1170A27A00950D52 /* BicycletteDefaults.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
@@ -41,6 +42,8 @@
 		3705E27A11669241002B7AAE /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
 		3705E43C1166B065002B7AAE /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
 		3705E43D1166B065002B7AAE /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
+		37216B6C12610E2900A2695A /* KMLDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLDataManager.h; sourceTree = "<group>"; };
+		37216B6D12610E2900A2695A /* KMLDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLDataManager.m; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D1882B1170A27A00950D52 /* BicycletteDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteDefaults.h; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				37216A411261087300A2695A /* Model */,
 				37D188291170A25C00950D52 /* Extensions */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
@@ -127,6 +131,15 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37216A411261087300A2695A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37216B6C12610E2900A2695A /* KMLDataManager.h */,
+				37216B6D12610E2900A2695A /* KMLDataManager.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		37D188291170A25C00950D52 /* Extensions */ = {
@@ -211,6 +224,7 @@
 				3705E43E1166B065002B7AAE /* ABTableViewCell.m in Sources */,
 				37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */,
 				37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */,
+				37216B6E12610E2900A2695A /* KMLDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
