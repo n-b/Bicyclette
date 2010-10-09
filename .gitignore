@@ -1,2 +1,6 @@
 *.xcodeproj/*.perspectivev3
 *.xcodeproj/*.pbxuser
+VelibConvert/VelibConvert.xcodeproj/*.pbxuser
+VelibConvert/VelibConvert.xcodeproj/*.perspectivev3
+VelibConvert/build
+build
