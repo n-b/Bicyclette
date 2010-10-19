@@ -1,5 +1,5 @@
 //
-//  StationCell.h
+//  StationTextCell.h
 //  Bicyclette
 //
 //  Created by Nicolas on 02/04/10.
@@ -12,7 +12,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-@interface StationCell : ABTableViewCell {
+@interface StationTextCell : ABTableViewCell {
 	NSDictionary *	station;
 	NSDictionary *	stationInfo;
 	BOOL			favorite;

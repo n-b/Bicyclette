@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "StationCell.h"
+#import "StationTextCell.h"
 #import "BicycletteDefaults.h"
 #import "CLLocation+Direction.h"
 
@@ -197,7 +197,7 @@ stringByAppendingPathComponent:@"stationsDict.plist"]
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	StationCell * cell = [StationCell reusableCellForTable:tableView];
+	StationTextCell * cell = [StationTextCell reusableCellForTable:tableView];
 	NSDictionary * station = [[self stationsForSection:indexPath.section] objectAtIndex:indexPath.row];
 	NSString * stationName = [station objectForKey:@"name"];
 	cell.station = station;

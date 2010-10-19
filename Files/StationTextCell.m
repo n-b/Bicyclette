@@ -1,15 +1,15 @@
 //
-//  StationCell.m
+//  StationTextCell.m
 //  Bicyclette
 //
 //  Created by Nicolas on 02/04/10.
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "StationCell.h"
+#import "StationTextCell.h"
 #import "CLLocation+Direction.h"
 
-@implementation StationCell
+@implementation StationTextCell
 @synthesize station, stationInfo, favorite, loading, distance, direction;
 
 static UIFont * bigFont = nil;

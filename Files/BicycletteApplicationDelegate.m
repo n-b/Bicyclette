@@ -1,27 +1,26 @@
 //
-//  BicycletteAppDelegate.m
+//  BicycletteApplicationDelegate.m
 //  Bicyclette
 //
 //  Created by Nicolas on 02/04/10.
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteAppDelegate.h"
-#import "RootViewController.h"
+#import "BicycletteApplicationDelegate.h"
+#import "VelibDataManager.h"
 
-
-@implementation BicycletteAppDelegate
+@implementation BicycletteApplicationDelegate
 
 @synthesize window;
 @synthesize navigationController;
-
+@synthesize dataManager;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    // Override point for customization after app launch    
-	
+
+	self.dataManager = [[[VelibDataManager alloc] init] autorelease];
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 	return YES;
