@@ -26,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.tableView.rowHeight = 90;
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -33,11 +36,11 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stationUpdated:) name:@"StationUpdated" object:nil];
 }
 
-/*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	[self.tableView flashScrollIndicators];
 }
-*/
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"StationUpdated" object:nil];
@@ -66,6 +69,13 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [[BicycletteAppDelegate.dataManager.sections objectAtIndex:section] name];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
+	sectionTitle.text = [[BicycletteAppDelegate.dataManager.sections objectAtIndex:section] name];
+	return sectionTitle;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -23,3 +23,12 @@
 + (id) reusableCellForTable:(UITableView*)tableView;
 
 @end
+
+@interface UIView (EasyNibLoading)
+
+// loads a view from a same-named nib file.
++ (id) viewFromNib;
+
++ (id) viewFromNibNamed:(NSString*)nibName;
+
+@end

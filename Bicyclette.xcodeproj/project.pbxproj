@@ -22,6 +22,7 @@
 		37149C8612625AE5009CDE82 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149C8512625AE5009CDE82 /* StationCell.xib */; };
 		37149C8A12625B94009CDE82 /* UITableViewCell+EasyReuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */; };
 		37216BC712611C5400A2695A /* VelibDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibDataManager.m */; };
+		37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A34673128C42E6000A2540 /* SectionHeader.xib */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D1882C1170A27A00950D52 /* BicycletteDefaults.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
@@ -59,6 +60,7 @@
 		37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+EasyReuse.m"; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* VelibDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibDataManager.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibDataManager.m; sourceTree = "<group>"; };
+		37A34673128C42E6000A2540 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D1882B1170A27A00950D52 /* BicycletteDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteDefaults.h; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				37149C8212625AD7009CDE82 /* StationCell.h */,
 				37149C8312625AD7009CDE82 /* StationCell.m */,
 				37149C8512625AE5009CDE82 /* StationCell.xib */,
+				37A34673128C42E6000A2540 /* SectionHeader.xib */,
 			);
 			name = UI;
 			path = Files;
@@ -243,6 +246,7 @@
 				37149B03126243B6009CDE82 /* carto.xml in Resources */,
 				37149B71126248F5009CDE82 /* StationsListViewController.xib in Resources */,
 				37149C8612625AE5009CDE82 /* StationCell.xib in Resources */,
+				37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
