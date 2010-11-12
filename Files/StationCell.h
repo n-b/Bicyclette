@@ -11,6 +11,7 @@
 @class Station;
 @interface StationCell : UITableViewCell 
 
+// Outlets
 @property (nonatomic, assign) IBOutlet UILabel * nameLabel;
 @property (nonatomic, assign) IBOutlet UILabel * addressLabel;
 @property (nonatomic, assign) IBOutlet UILabel * availableCountLabel;
@@ -18,6 +19,11 @@
 @property (nonatomic, assign) IBOutlet UILabel * totalCountLabel;
 @property (nonatomic, assign) IBOutlet UILabel * refreshDateLabel;
 
+@property (nonatomic, assign) IBOutlet UIButton * favoriteButton;
+// Action
+- (IBAction) switchFavorite;
+
+// Data
 @property (nonatomic, retain) Station * station;
 
 @end

@@ -29,13 +29,6 @@
 
 
 
-@dynamic refresh_date;
-
-
-
-
-
-
 @dynamic fullAddress;
 
 
@@ -95,26 +88,26 @@
 
 
 
-@dynamic status_total;
+@dynamic favorite;
 
 
 
-- (short)status_totalValue {
-	NSNumber *result = [self status_total];
-	return [result shortValue];
+- (BOOL)favoriteValue {
+	NSNumber *result = [self favorite];
+	return [result boolValue];
 }
 
-- (void)setStatus_totalValue:(short)value_ {
-	[self setStatus_total:[NSNumber numberWithShort:value_]];
+- (void)setFavoriteValue:(BOOL)value_ {
+	[self setFavorite:[NSNumber numberWithBool:value_]];
 }
 
-- (short)primitiveStatus_totalValue {
-	NSNumber *result = [self primitiveStatus_total];
-	return [result shortValue];
+- (BOOL)primitiveFavoriteValue {
+	NSNumber *result = [self primitiveFavorite];
+	return [result boolValue];
 }
 
-- (void)setPrimitiveStatus_totalValue:(short)value_ {
-	[self setPrimitiveStatus_total:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveFavoriteValue:(BOOL)value_ {
+	[self setPrimitiveFavorite:[NSNumber numberWithBool:value_]];
 }
 
 
@@ -147,7 +140,33 @@
 
 
 
-@dynamic address;
+@dynamic status_total;
+
+
+
+- (short)status_totalValue {
+	NSNumber *result = [self status_total];
+	return [result shortValue];
+}
+
+- (void)setStatus_totalValue:(short)value_ {
+	[self setStatus_total:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveStatus_totalValue {
+	NSNumber *result = [self primitiveStatus_total];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStatus_totalValue:(short)value_ {
+	[self setPrimitiveStatus_total:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
+@dynamic status_date;
 
 
 
@@ -175,6 +194,13 @@
 - (void)setPrimitiveStatus_availableValue:(short)value_ {
 	[self setPrimitiveStatus_available:[NSNumber numberWithShort:value_]];
 }
+
+
+
+
+
+@dynamic address;
+
 
 
 

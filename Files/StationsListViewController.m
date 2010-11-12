@@ -14,6 +14,7 @@
 #import "Station.h"
 
 @interface StationsListViewController() <NSFetchedResultsControllerDelegate>
+- (void) updateVisibleStations;
 - (void) stationUpdated:(NSNotification*) notif;
 @property (nonatomic, retain) NSFetchedResultsController *frc;
 @end
@@ -29,20 +30,9 @@
 	[super dealloc];
 }
 
+/****************************************************************************/
 #pragma mark -
 #pragma mark View lifecycle
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,31 +46,21 @@
 				managedObjectContext:BicycletteAppDelegate.dataManager.moc
 				sectionNameKeyPath:@"code_postal"
 				cacheName:@"stations_cache"];
-	
+	self.frc.delegate = self;
 	[self.frc performFetch:NULL];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stationUpdated:) name:@"StationUpdated" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	[self.tableView flashScrollIndicators];
+	[self updateVisibleStations];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"StationUpdated" object:nil];
 }
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
 
+/****************************************************************************/
 #pragma mark -
 #pragma mark Table view data source
 
@@ -109,27 +89,43 @@
 	return sectionTitle;
 }
 
-//----
+/****************************************************************************/
+#pragma mark FRC Delegate
 
-- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-	for (NSIndexPath * indexPath in [self.tableView indexPathsForVisibleRows]) {
-		Station * station = [self.frc objectAtIndexPath:indexPath];
-		[station refresh];
-	}	
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+	if(!BicycletteAppDelegate.dataManager.updatingXML)
+		[self.tableView beginUpdates];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-	if(!decelerate)
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+	   atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+	  newIndexPath:(NSIndexPath *)newIndexPath {
+	
+	if(!BicycletteAppDelegate.dataManager.updatingXML && type==NSFetchedResultsChangeUpdate)
+		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+						 withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+ 	if(!BicycletteAppDelegate.dataManager.updatingXML)
+		[self.tableView endUpdates];
+	else
 	{
-		for (NSIndexPath * indexPath in [self.tableView indexPathsForVisibleRows]) {
-			Station * station = [self.frc objectAtIndexPath:indexPath];
-			[station refresh];
-		}
+		[self.tableView reloadData];
+		[self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:0.5];
 	}
 }
 
+
+/****************************************************************************/
+#pragma mark TableView delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -170,19 +166,26 @@
 }
 */
 
+/****************************************************************************/
+#pragma mark Scroll View delegate / Stations status update
 
-#pragma mark -
-#pragma mark Table view delegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	if(!decelerate)
+		[self updateVisibleStations];
+}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+	[self updateVisibleStations];
+}
+
+- (void) updateVisibleStations
+{
+	for (NSIndexPath * indexPath in [self.tableView indexPathsForVisibleRows]) {
+		Station * station = [self.frc objectAtIndexPath:indexPath];
+		[station refresh];
+	}	
 }
 
 - (void) stationUpdated:(NSNotification*) notif

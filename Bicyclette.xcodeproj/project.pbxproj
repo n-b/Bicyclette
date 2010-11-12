@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		37149B03126243B6009CDE82 /* carto.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37149B02126243B6009CDE82 /* carto.xml */; };
 		37149B70126248F5009CDE82 /* StationsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B6E126248F5009CDE82 /* StationsListViewController.m */; };
 		37149B71126248F5009CDE82 /* StationsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149B6F126248F5009CDE82 /* StationsListViewController.xib */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
@@ -25,8 +24,8 @@
 		37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A34673128C42E6000A2540 /* SectionHeader.xib */; };
 		37A346AF128C9B3F000A2540 /* Velib.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		37A348D1128DF7F8000A2540 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A348D0128DF7F7000A2540 /* Station.m */; };
-		37A348D4128DF7F9000A2540 /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A348D3128DF7F8000A2540 /* _Station.m */; };
+		37A3494A128DFE31000A2540 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A34949128DFE31000A2540 /* Station.m */; };
+		37A3494D128DFE33000A2540 /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A3494C128DFE32000A2540 /* _Station.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D1882C1170A27A00950D52 /* BicycletteDefaults.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
@@ -49,7 +48,6 @@
 		3705E27A11669241002B7AAE /* StationTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationTextCell.m; path = Files/StationTextCell.m; sourceTree = "<group>"; };
 		3705E43C1166B065002B7AAE /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABTableViewCell.h; path = Files/ABTableViewCell.h; sourceTree = "<group>"; };
 		3705E43D1166B065002B7AAE /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABTableViewCell.m; path = Files/ABTableViewCell.m; sourceTree = "<group>"; };
-		37149B02126243B6009CDE82 /* carto.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		37149B6D126248F5009CDE82 /* StationsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsListViewController.h; sourceTree = "<group>"; };
 		37149B6E126248F5009CDE82 /* StationsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsListViewController.m; sourceTree = "<group>"; };
 		37149B6F126248F5009CDE82 /* StationsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationsListViewController.xib; sourceTree = "<group>"; };
@@ -67,10 +65,10 @@
 		37A34673128C42E6000A2540 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */ = {isa = PBXFileReference; comments = xmod; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Velib.xcdatamodel; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		37A348D0128DF7F7000A2540 /* Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
-		37A348D2128DF7F8000A2540 /* Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		37A348D3128DF7F8000A2540 /* _Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
-		37A348D5128DF7F9000A2540 /* _Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
+		37A34949128DFE31000A2540 /* Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		37A3494B128DFE32000A2540 /* Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		37A3494C128DFE32000A2540 /* _Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
+		37A3494E128DFE33000A2540 /* _Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D1882B1170A27A00950D52 /* BicycletteDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteDefaults.h; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 		37216A411261087300A2695A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				37149B02126243B6009CDE82 /* carto.xml */,
 				37216BC512611C5400A2695A /* VelibDataManager.h */,
 				37216BC612611C5400A2695A /* VelibDataManager.m */,
 				37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */,
@@ -190,10 +187,10 @@
 		37A346B5128C9D68000A2540 /* Velib */ = {
 			isa = PBXGroup;
 			children = (
-				37A348D0128DF7F7000A2540 /* Station.m */,
-				37A348D2128DF7F8000A2540 /* Station.h */,
-				37A348D3128DF7F8000A2540 /* _Station.m */,
-				37A348D5128DF7F9000A2540 /* _Station.h */,
+				37A34949128DFE31000A2540 /* Station.m */,
+				37A3494B128DFE32000A2540 /* Station.h */,
+				37A3494C128DFE32000A2540 /* _Station.m */,
+				37A3494E128DFE33000A2540 /* _Station.h */,
 			);
 			path = Velib;
 			sourceTree = "<group>";
@@ -268,7 +265,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				37149B03126243B6009CDE82 /* carto.xml in Resources */,
 				37149B71126248F5009CDE82 /* StationsListViewController.xib in Resources */,
 				37149C8612625AE5009CDE82 /* StationCell.xib in Resources */,
 				37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */,
@@ -293,8 +289,8 @@
 				37149C8412625AD7009CDE82 /* StationCell.m in Sources */,
 				37149C8A12625B94009CDE82 /* UITableViewCell+EasyReuse.m in Sources */,
 				37A346AF128C9B3F000A2540 /* Velib.xcdatamodel in Sources */,
-				37A348D1128DF7F8000A2540 /* Station.m in Sources */,
-				37A348D4128DF7F9000A2540 /* _Station.m in Sources */,
+				37A3494A128DFE31000A2540 /* Station.m in Sources */,
+				37A3494D128DFE33000A2540 /* _Station.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

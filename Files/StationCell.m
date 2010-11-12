@@ -10,11 +10,15 @@
 #import "VelibDataManager.h"
 #import "Station.h"
 
+@interface StationCell()
+@end
+
 @implementation StationCell
 
 @synthesize nameLabel, addressLabel;
 @synthesize availableCountLabel, freeCountLabel, totalCountLabel;
 @synthesize refreshDateLabel;
+@synthesize favoriteButton;
 @synthesize station;
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -38,7 +42,15 @@
 	self.availableCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_availableValue];
 	self.freeCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_freeValue];
 	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
-	self.refreshDateLabel.text = [self.station.refresh_date description];
+	self.refreshDateLabel.text = [self.station.status_date description];
+	self.favoriteButton.backgroundColor = self.station.favoriteValue?[UIColor redColor]:[UIColor whiteColor];
 }
+
+- (IBAction) switchFavorite
+{
+	self.station.favoriteValue = !self.station.favoriteValue;
+	[self.station.managedObjectContext save:NULL];
+}
+
 
 @end

@@ -15,13 +15,13 @@
 @class Station;
 
 @interface VelibDataManager : NSObject
-- (id) init;
-- (id) initWithVelibXML:(NSData*)xml;
 
 @property (readonly, nonatomic, retain) NSManagedObjectModel *mom;
 @property (readonly, nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (readonly, nonatomic, retain) NSManagedObjectContext *moc;
 
 - (NSFetchRequest*) stations;
+
+@property (readonly) BOOL updatingXML;
 @end
 

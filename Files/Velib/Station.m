@@ -3,19 +3,6 @@
 
 /****************************************************************************/
 #pragma mark -
-@interface NSString (KVCBoolHandling)
-- (char) charValue; // Needed because KVC's handling of BOOLs in setValuesForKeysWithDictionary is flakey
-@end
-
-@implementation NSString (KVCBoolHandling)
-- (char) charValue
-{
-	return self.boolValue;
-}
-@end
-
-/****************************************************************************/
-#pragma mark -
 
 
 @interface Station () 
@@ -75,7 +62,7 @@
 		NSLog(@"requete déjà en cours %@",self.number);
 		return;
 	}
-	if([self.refresh_date timeIntervalSinceNow] < -5)
+	if(self.status_date && [self.status_date timeIntervalSinceNow] > -10)
 	{
 		NSLog(@"requete trop récente %@",self.number);
 		return;
@@ -124,11 +111,10 @@
 		[scanner scanString:@"<ticket>" intoString:NULL];
 		[scanner scanInt:&tmp];
 		self.status_ticketValue = tmp;
-		self.refresh_date = [NSDate date];
+		self.status_date = [NSDate date];
 	}
 	self.data = nil;
 	self.connection = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"StationUpdated" object:self];
 	
 	NSError * saveError = nil;
 	[self.managedObjectContext save:&saveError];

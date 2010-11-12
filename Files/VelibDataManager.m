@@ -20,8 +20,10 @@
 @property (nonatomic, retain) NSManagedObjectModel *mom;
 @property (nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (nonatomic, retain) NSManagedObjectContext *moc;
-@property (nonatomic, retain) NSDate *parseDate;
 
+@property BOOL updatingXML;
+@property (nonatomic, retain) NSDate *parseDate;
+- (void) updateXML;
 @end
 
 /****************************************************************************/
@@ -30,14 +32,9 @@
 @implementation VelibDataManager
 
 @synthesize mom, psc, moc;
-@synthesize parseDate;
+@synthesize updatingXML, parseDate;
 
 - (id) init
-{
-	return [self initWithVelibXML:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"carto" ofType:@"xml"]]];
-}
-
-- (id) initWithVelibXML:(NSData*)xml
 {
 	self = [super init];
 	if (self != nil) 
@@ -67,28 +64,14 @@
 		[moc setPersistentStoreCoordinator:self.psc];
 		[moc setUndoManager:nil];
 		
-		// Parse
-		NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:xml] autorelease];
-		parser.delegate = self;
-		self.parseDate = [NSDate date];
-		[parser parse];
-		
-		// Remove old stations
-		NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
-		[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
-		[oldStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"%K != %@",@"create_date",self.parseDate]];
-		NSError * requestError = nil;
-		NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
-		NSLog(@"Removing %d old stations",[oldStations count]);
-		for (Station * oldStation in oldStations) {
-			[self.moc deleteObject:oldStation];
-		}
-		
-		// Save
-		NSError * saveError = nil;
-		[self.moc save:&saveError];
-		if(saveError)
-			NSLog(@"Save error : %@ %@",[saveError localizedDescription], [saveError userInfo]);
+		// Find if I need to update
+		NSFetchRequest * createDateRequest = [NSFetchRequest new];
+		[createDateRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
+		[createDateRequest setFetchLimit:1];
+		NSDate * createDate = [[[self.moc executeFetchRequest:createDateRequest error:NULL] lastObject] create_date];
+		BOOL needUpdate = (nil==createDate || [createDate timeIntervalSinceNow] < -10.*24.*60);
+		if(needUpdate)
+			[self performSelectorInBackground:@selector(updateXML) withObject:nil];
 	}
 	return self;
 }
@@ -106,7 +89,44 @@
 /****************************************************************************/
 #pragma mark -
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+- (void) updateXML
+{
+	NSAutoreleasePool * pool = [NSAutoreleasePool new];
+	NSData * xml = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.velib.paris.fr/service/carto"]];
+	[self performSelectorOnMainThread:@selector(parseXML:) withObject:xml waitUntilDone:NO];
+	[pool release];
+}
+
+- (void) parseXML:(NSData*)xml
+{
+	self.updatingXML = YES;
+
+	// Parse
+	NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:xml] autorelease];
+	parser.delegate = self;
+	self.parseDate = [NSDate date];
+	[parser parse];
+	
+	// Remove old stations
+	NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
+	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
+	[oldStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"%K != %@",@"create_date",self.parseDate]];
+	NSError * requestError = nil;
+	NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
+	NSLog(@"Removing %d old stations",[oldStations count]);
+	for (Station * oldStation in oldStations) {
+		[self.moc deleteObject:oldStation];
+	}
+	
+	// Save
+	NSError * saveError = nil;
+	[self.moc save:&saveError];
+	if(saveError)
+		NSLog(@"Save error : %@ %@",[saveError localizedDescription], [saveError userInfo]);
+	self.updatingXML = NO;
+}
+
+- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
 	if([elementName isEqualToString:@"marker"])
 	{
