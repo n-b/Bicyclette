@@ -7,49 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
+#import <CoreData/CoreData.h>
 
 /****************************************************************************/
 #pragma mark -
+
+@class Section, Station;
 
 @interface VelibDataManager : NSObject
 - (id) init;
 - (id) initWithVelibXML:(NSData*)xml;
-@property (nonatomic, retain, readonly) NSArray * stations;
-@property (nonatomic, retain, readonly) NSArray * sections;
+
+@property (readonly, nonatomic, retain) NSManagedObjectModel *mom;
+@property (readonly, nonatomic, retain) NSPersistentStoreCoordinator *psc;
+@property (readonly, nonatomic, retain) NSManagedObjectContext *moc;
+
+- (Section*) sectionWithName:(NSString*)name;
+- (NSFetchRequest*) sections;
+- (NSFetchRequest*) stations;
 @end
 
-/****************************************************************************/
-#pragma mark -
-
-@interface Section : NSObject
-@property (nonatomic, retain, readonly) NSString * name;
-@property (nonatomic, retain, readonly) NSArray * stations;
-@end
-
-/****************************************************************************/
-#pragma mark -
-
-@interface Station : NSObject 
-// data
-@property (nonatomic, retain, readonly) NSString * name;
-@property (nonatomic, retain, readonly) NSString * number;
-@property (nonatomic, retain, readonly) NSString * address;
-@property (nonatomic, retain, readonly) NSString * fullAddress;
-@property (nonatomic, readonly) CLLocationDegrees lat;
-@property (nonatomic, readonly) CLLocationDegrees lng;
-@property (nonatomic, readonly) BOOL open;
-@property (nonatomic, readonly) BOOL bonus;
-
-@property (nonatomic, assign, readonly) Section * section;
-@property (nonatomic, retain, readonly) NSDate * refreshDate;
-// status
-
-- (void) refresh;
-
-@property unsigned int available;
-@property unsigned int free;
-@property unsigned int total;
-@property BOOL ticket;
-
-@end

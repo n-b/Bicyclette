@@ -11,17 +11,39 @@
 #import "VelibDataManager.h"
 #import "StationCell.h"
 #import "UITableViewCell+EasyReuse.h"
+#import "Station.h"
+#import "Section.h"
 
-@interface StationsListViewController()
+@interface StationsListViewController() <NSFetchedResultsControllerDelegate>
 - (void) stationUpdated:(NSNotification*) notif;
+@property (nonatomic, retain) NSFetchedResultsController *frc;
 @end
 
 
 @implementation StationsListViewController
 
+@synthesize frc;
+
+- (void) dealloc
+{
+	self.frc = nil;
+	[super dealloc];
+}
 
 #pragma mark -
 #pragma mark View lifecycle
+
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Relinquish ownership any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+    // For example: self.myOutlet = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,10 +51,19 @@
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+	self.frc = [[NSFetchedResultsController alloc]
+				initWithFetchRequest:BicycletteAppDelegate.dataManager.stations
+				managedObjectContext:BicycletteAppDelegate.dataManager.moc
+				sectionNameKeyPath:@"code_postal"
+				cacheName:@"stations_cache"];
+	
+	[self.frc performFetch:NULL];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stationUpdated:) name:@"StationUpdated" object:nil];
 }
 
@@ -50,51 +81,41 @@
     [super viewDidDisappear:animated];
 }
 */
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return BicycletteAppDelegate.dataManager.sections.count;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.frc.sections.count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return [[BicycletteAppDelegate.dataManager.sections objectAtIndex:section] name];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.frc.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	StationCell * cell = [StationCell reusableCellForTable:tableView];
+	cell.station = [self.frc objectAtIndexPath:indexPath];
+    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
-	sectionTitle.text = [[BicycletteAppDelegate.dataManager.sections objectAtIndex:section] name];
+	sectionTitle.text = [[self.frc.sections objectAtIndex:section] name];
 	return sectionTitle;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[BicycletteAppDelegate.dataManager.sections objectAtIndex:section] stations].count;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	StationCell * cell = [StationCell reusableCellForTable:tableView];
-	cell.station = [[[BicycletteAppDelegate.dataManager.sections objectAtIndex:indexPath.section] stations] objectAtIndex:indexPath.row];
-    return cell;
-}
+//----
 
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
 	for (NSIndexPath * indexPath in [self.tableView indexPathsForVisibleRows]) {
-		Station * station = [[[BicycletteAppDelegate.dataManager.sections objectAtIndex:indexPath.section] stations] objectAtIndex:indexPath.row];
+		Station * station = [self.frc objectAtIndexPath:indexPath];
 		[station refresh];
 	}	
 }
@@ -104,7 +125,7 @@
 	if(!decelerate)
 	{
 		for (NSIndexPath * indexPath in [self.tableView indexPathsForVisibleRows]) {
-			Station * station = [[[BicycletteAppDelegate.dataManager.sections objectAtIndex:indexPath.section] stations] objectAtIndex:indexPath.row];
+			Station * station = [self.frc objectAtIndexPath:indexPath];
 			[station refresh];
 		}
 	}
@@ -168,33 +189,10 @@
 - (void) stationUpdated:(NSNotification*) notif
 {
 	Station * station = [notif object];
-	NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[station.section.stations indexOfObject:station]
-												 inSection:[BicycletteAppDelegate.dataManager.sections indexOfObject:station.section]];
+	NSIndexPath * indexPath = [self.frc indexPathForObject:station];
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 						  withRowAnimation:UITableViewRowAnimationFade];
 }
-
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
-}
-
 
 @end
 

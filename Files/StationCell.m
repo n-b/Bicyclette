@@ -8,6 +8,7 @@
 
 #import "StationCell.h"
 #import "VelibDataManager.h"
+#import "Station.h"
 
 @implementation StationCell
 
@@ -34,10 +35,10 @@
 	station = [value retain];
 	self.nameLabel.text = self.station.name;
 	self.addressLabel.text = self.station.address;
-	self.availableCountLabel.text = [NSString stringWithFormat:@"%d",self.station.available];
-	self.freeCountLabel.text = [NSString stringWithFormat:@"%d",self.station.free];
-	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.total];
-	self.refreshDateLabel.text = [self.station.refreshDate description];
+	self.availableCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_availableValue];
+	self.freeCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_freeValue];
+	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
+	self.refreshDateLabel.text = [self.station.refresh_date description];
 }
 
 @end
