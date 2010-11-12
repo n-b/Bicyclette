@@ -12,7 +12,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@class Section, Station;
+@class Station;
 
 @interface VelibDataManager : NSObject
 - (id) init;
@@ -22,8 +22,6 @@
 @property (readonly, nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (readonly, nonatomic, retain) NSManagedObjectContext *moc;
 
-- (Section*) sectionWithName:(NSString*)name;
-- (NSFetchRequest*) sections;
 - (NSFetchRequest*) stations;
 @end
 

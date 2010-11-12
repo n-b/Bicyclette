@@ -29,7 +29,6 @@
 
 @implementation Station
 
-@synthesize section;
 @synthesize data,connection;
 
 - (NSString *) description
@@ -130,7 +129,12 @@
 	self.data = nil;
 	self.connection = nil;
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"StationUpdated" object:self];
-	[self.managedObjectContext save:NULL];
+	
+	NSError * saveError = nil;
+	[self.managedObjectContext save:&saveError];
+	if(saveError)
+		NSLog(@"Save error : %@ %@",[saveError localizedDescription], [saveError userInfo]);
+	
 }
 
 @end

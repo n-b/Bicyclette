@@ -43,32 +43,6 @@
 
 
 
-@dynamic sort_index;
-
-
-
-- (short)sort_indexValue {
-	NSNumber *result = [self sort_index];
-	return [result shortValue];
-}
-
-- (void)setSort_indexValue:(short)value_ {
-	[self setSort_index:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveSort_indexValue {
-	NSNumber *result = [self primitiveSort_index];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveSort_indexValue:(short)value_ {
-	[self setPrimitiveSort_index:[NSNumber numberWithShort:value_]];
-}
-
-
-
-
-
 @dynamic status_ticket;
 
 
@@ -173,6 +147,13 @@
 
 
 
+@dynamic address;
+
+
+
+
+
+
 @dynamic status_available;
 
 
@@ -194,13 +175,6 @@
 - (void)setPrimitiveStatus_availableValue:(short)value_ {
 	[self setPrimitiveStatus_available:[NSNumber numberWithShort:value_]];
 }
-
-
-
-
-
-@dynamic address;
-
 
 
 
@@ -258,6 +232,13 @@
 
 
 
+@dynamic create_date;
+
+
+
+
+
+
 @dynamic name;
 
 
@@ -305,16 +286,12 @@
 
 
 
-@dynamic section;
-
-	
 
 
 
-
-+ (NSArray*)fetchStations:(NSManagedObjectContext*)moc_ {
++ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ {
 	NSError *error = nil;
-	NSArray *result = [self fetchStations:moc_ error:&error];
+	NSArray *result = [self fetchStationWithNumber:moc_ number:number_ error:&error];
 	if (error) {
 #if TARGET_OS_IPHONE
 		NSLog(@"error: %@", error);
@@ -324,17 +301,21 @@
 	}
 	return result;
 }
-+ (NSArray*)fetchStations:(NSManagedObjectContext*)moc_ error:(NSError**)error_ {
++ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
 	
 	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
 	
-	NSDictionary *substitutionVariables = nil;
+	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
+														
+														number_, @"number",
+														
+														nil];
 										
-	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"stations"
+	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"stationWithNumber"
 													 substitutionVariables:substitutionVariables];
-	NSAssert(fetchRequest, @"Can't find fetch request named \"stations\".");
+	NSAssert(fetchRequest, @"Can't find fetch request named \"stationWithNumber\".");
 	
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;

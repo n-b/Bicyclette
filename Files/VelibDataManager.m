@@ -8,7 +8,6 @@
 
 #import "VelibDataManager.h"
 #import "Station.h"
-#import "Section.h"
 
 #import "NSArrayAdditions.h"
 
@@ -21,6 +20,8 @@
 @property (nonatomic, retain) NSManagedObjectModel *mom;
 @property (nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (nonatomic, retain) NSManagedObjectContext *moc;
+@property (nonatomic, retain) NSDate *parseDate;
+
 @end
 
 /****************************************************************************/
@@ -29,6 +30,7 @@
 @implementation VelibDataManager
 
 @synthesize mom, psc, moc;
+@synthesize parseDate;
 
 - (id) init
 {
@@ -68,9 +70,25 @@
 		// Parse
 		NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:xml] autorelease];
 		parser.delegate = self;
+		self.parseDate = [NSDate date];
 		[parser parse];
 		
-		[self.moc save:NULL];
+		// Remove old stations
+		NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
+		[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
+		[oldStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"%K != %@",@"create_date",self.parseDate]];
+		NSError * requestError = nil;
+		NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
+		NSLog(@"Removing %d old stations",[oldStations count]);
+		for (Station * oldStation in oldStations) {
+			[self.moc deleteObject:oldStation];
+		}
+		
+		// Save
+		NSError * saveError = nil;
+		[self.moc save:&saveError];
+		if(saveError)
+			NSLog(@"Save error : %@ %@",[saveError localizedDescription], [saveError userInfo]);
 	}
 	return self;
 }
@@ -81,6 +99,7 @@
 	self.mom = nil;
 	self.psc = nil;
 	self.moc = nil;
+	self.parseDate = nil;
 	[super dealloc];
 }
 
@@ -89,10 +108,11 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-	NSUInteger station_sort_index = 0;
 	if([elementName isEqualToString:@"marker"])
 	{
-		Station * station = [Station insertInManagedObjectContext:self.moc];
+		Station * station = [[Station fetchStationWithNumber:self.moc number:[attributeDict objectForKey:@"number"]] lastObject];
+		if(nil==station)
+			station = [Station insertInManagedObjectContext:self.moc];
 		station.address = [attributeDict objectForKey:@"address"];
 		station.bonusValue = [[attributeDict objectForKey:@"bonus"] boolValue];
 		station.fullAddress = [attributeDict objectForKey:@"fullAddress"];
@@ -101,58 +121,26 @@
 		station.name = [attributeDict objectForKey:@"name"];
 		station.number = [attributeDict objectForKey:@"number"];
 		station.openValue = [[attributeDict objectForKey:@"open"] boolValue];
-
+		station.create_date = self.parseDate;
 		[station setupCodePostal]; 
-		
-		station.sort_indexValue = station_sort_index++;
-				
-		Section * section = [self sectionWithName:station.code_postal];
-		if(nil==section)
-		{
-			section = [Section insertInManagedObjectContext:self.moc];
-			section.name = station.code_postal;
-		}
-		station.section = section;
 	}
 }
 
 /****************************************************************************/
 #pragma mark -
 
-- (Section*) sectionWithName:(NSString*)name
-{
-	return [[Section fetchSectionWithName:self.moc name:name] lastObject];
-}
-
-- (NSFetchRequest*) sections
-{
-	NSFetchRequest *fetchRequest = [self.mom fetchRequestFromTemplateWithName:@"sections"
-														substitutionVariables:[NSDictionary dictionary]];
-	static BOOL initializedSortDescriptor = NO;
-	if(!initializedSortDescriptor)
-	{
-		[fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]]];
-		initializedSortDescriptor = YES;
-	}
-	return fetchRequest;
-}
-
 - (NSFetchRequest*) stations
 {
-	NSFetchRequest *fetchRequest = [self.mom fetchRequestFromTemplateWithName:@"stations"
-														substitutionVariables:[NSDictionary dictionary]];
-	static BOOL initializedSortDescriptor = NO;
-	if(!initializedSortDescriptor)
-	{
-		NSArray * sortDescriptors =  [NSArray arrayWithObjects:
-									  [[[NSSortDescriptor alloc] initWithKey:@"code_postal" ascending:YES] autorelease],
-									  [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],
-									  nil];
-		
-		[fetchRequest setSortDescriptors:sortDescriptors];
-		initializedSortDescriptor = YES;
-	}
-	return fetchRequest;
+	NSFetchRequest * fetchRequest = [NSFetchRequest new];
+	[fetchRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
+	 
+	 NSArray * sortDescriptors =  [NSArray arrayWithObjects:
+								   [[[NSSortDescriptor alloc] initWithKey:@"code_postal" ascending:YES] autorelease],
+								   [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],
+								   nil];
+	 [fetchRequest setSortDescriptors:sortDescriptors];
+
+	 return [fetchRequest autorelease];
 }
 
 @end

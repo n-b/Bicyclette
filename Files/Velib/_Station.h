@@ -4,7 +4,6 @@
 #import <CoreData/CoreData.h>
 
 
-@class Section;
 
 
 
@@ -42,16 +41,6 @@
 @property (nonatomic, retain) NSString *fullAddress;
 
 //- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *sort_index;
-
-@property short sort_indexValue;
-- (short)sort_indexValue;
-- (void)setSort_indexValue:(short)value_;
-
-//- (BOOL)validateSort_index:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -95,6 +84,12 @@
 
 
 
+@property (nonatomic, retain) NSString *address;
+
+//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
+
+
+
 @property (nonatomic, retain) NSNumber *status_available;
 
 @property short status_availableValue;
@@ -102,12 +97,6 @@
 - (void)setStatus_availableValue:(short)value_;
 
 //- (BOOL)validateStatus_available:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSString *address;
-
-//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -128,6 +117,12 @@
 - (void)setLatValue:(double)value_;
 
 //- (BOOL)validateLat:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSDate *create_date;
+
+//- (BOOL)validateCreate_date:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -160,14 +155,9 @@
 
 
 
-@property (nonatomic, retain) Section* section;
-//- (BOOL)validateSection:(id*)value_ error:(NSError**)error_;
 
-
-
-
-+ (NSArray*)fetchStations:(NSManagedObjectContext*)moc_ ;
-+ (NSArray*)fetchStations:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
++ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ ;
++ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_;
 
 
 @end
@@ -184,13 +174,6 @@
 
 - (NSString*)primitiveFullAddress;
 - (void)setPrimitiveFullAddress:(NSString*)value;
-
-
-- (NSNumber*)primitiveSort_index;
-- (void)setPrimitiveSort_index:(NSNumber*)value;
-
-- (short)primitiveSort_indexValue;
-- (void)setPrimitiveSort_indexValue:(short)value_;
 
 
 - (NSNumber*)primitiveStatus_ticket;
@@ -221,15 +204,15 @@
 - (void)setPrimitiveBonusValue:(BOOL)value_;
 
 
+- (NSString*)primitiveAddress;
+- (void)setPrimitiveAddress:(NSString*)value;
+
+
 - (NSNumber*)primitiveStatus_available;
 - (void)setPrimitiveStatus_available:(NSNumber*)value;
 
 - (short)primitiveStatus_availableValue;
 - (void)setPrimitiveStatus_availableValue:(short)value_;
-
-
-- (NSString*)primitiveAddress;
-- (void)setPrimitiveAddress:(NSString*)value;
 
 
 - (NSNumber*)primitiveOpen;
@@ -244,6 +227,10 @@
 
 - (double)primitiveLatValue;
 - (void)setPrimitiveLatValue:(double)value_;
+
+
+- (NSDate*)primitiveCreate_date;
+- (void)setPrimitiveCreate_date:(NSDate*)value;
 
 
 - (NSString*)primitiveName;
@@ -264,11 +251,6 @@
 - (NSString*)primitiveNumber;
 - (void)setPrimitiveNumber:(NSString*)value;
 
-
-
-
-- (Section*)primitiveSection;
-- (void)setPrimitiveSection:(Section*)value;
 
 
 @end

@@ -12,7 +12,6 @@
 #import "StationCell.h"
 #import "UITableViewCell+EasyReuse.h"
 #import "Station.h"
-#import "Section.h"
 
 @interface StationsListViewController() <NSFetchedResultsControllerDelegate>
 - (void) stationUpdated:(NSNotification*) notif;
