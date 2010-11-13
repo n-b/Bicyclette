@@ -151,6 +151,13 @@
 		[self.tableView beginUpdates];
 }
 
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+		   atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+	if(self.onlyShowFavorites && type==NSFetchedResultsChangeDelete)
+		[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+					  withRowAnimation:UITableViewRowAnimationFade];
+}
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
 	   atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
@@ -159,6 +166,10 @@
 	if(!BicycletteAppDelegate.dataManager.updatingXML && type==NSFetchedResultsChangeUpdate)
 		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 						 withRowAnimation:UITableViewRowAnimationFade];
+	
+	else if(self.onlyShowFavorites && type==NSFetchedResultsChangeDelete)
+		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+							  withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
