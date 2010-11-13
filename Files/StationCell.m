@@ -11,6 +11,7 @@
 #import "Station.h"
 
 @interface StationCell()
+- (void) updateUI;
 @end
 
 @implementation StationCell
@@ -36,7 +37,16 @@
 - (void) setStation:(Station*)value
 {
 	[station autorelease];
+	[station removeObserver:self forKeyPath:@"status_date"];
+	[station removeObserver:self forKeyPath:@"favorite"];
 	station = [value retain];
+	[station addObserver:self forKeyPath:@"status_date" options:0 context:[StationCell class]];
+	[station addObserver:self forKeyPath:@"favorite" options:0 context:[StationCell class]];
+	[self updateUI];
+}
+
+- (void) updateUI
+{
 	self.nameLabel.text = self.station.name;
 	self.addressLabel.text = self.station.address;
 	self.availableCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_availableValue];
@@ -51,5 +61,15 @@
 	self.station.favorite = !self.station.favorite;
 }
 
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == [StationCell class])
+	{
+		[self updateUI];
+	}
+	else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
+}
 
 @end

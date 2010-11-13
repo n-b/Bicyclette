@@ -30,6 +30,17 @@
 	self.favorite = NO;
 }
 
+- (void) save
+{
+	NSError * error;
+	BOOL success = [self.managedObjectContext save:&error];
+	if(!success)
+		NSLog(@"save failed : %@ %@",error, [error userInfo]);
+}
+
+/****************************************************************************/
+#pragma mark -
+
 - (void) setupCodePostal
 {
 	NSAssert2([self.fullAddress hasPrefix:self.address],@"full address \"%@\" does not begin with address \"%@\"", self.fullAddress, self.address);
@@ -66,16 +77,16 @@
 {
 	if(self.connection!=nil)
 	{
-		NSLog(@"requete déjà en cours %@",self.number);
+		//NSLog(@"requete déjà en cours %@",self.number);
 		return;
 	}
-	if(self.status_date && [self.status_date timeIntervalSinceNow] > -10)
+	if(self.status_date && [self.status_date timeIntervalSinceNow] > -1)
 	{
-		NSLog(@"requete trop récente %@",self.number);
+		//NSLog(@"requete trop récente %@",self.number);
 		return;
 	}
 	
-	NSLog(@"start requete %@",self.number);
+	//NSLog(@"start requete %@",self.number);
 #define veliburl @"http://www.velib.paris.fr/service/stationdetails/"
 	NSURL * url = [NSURL URLWithString:[veliburl stringByAppendingString:self.number]];
 	self.connection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
@@ -96,7 +107,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	NSLog(@"DONE requete %@",self.number);
+	//NSLog(@"DONE requete %@",self.number);
 	NSString * stationInfo = [NSString stringWithData:self.data encoding:NSUTF8StringEncoding ];
 	if(stationInfo)
 	{
@@ -123,16 +134,11 @@
 	self.data = nil;
 	self.connection = nil;
 	
-	NSError * saveError = nil;
-	[self.managedObjectContext save:&saveError];
-	if(saveError)
-		NSLog(@"Save error : %@ %@",[saveError localizedDescription], [saveError userInfo]);
-	
+	[self save];
 }
 
 /****************************************************************************/
 #pragma mark -
-
 
 - (void) setFavorite:(BOOL) newValue
 {
@@ -142,7 +148,7 @@
 	else
 		self.favorite_indexValue = 0;
 	
-	[self.managedObjectContext save:NULL];
+	[self save];
 }
 
 - (BOOL) favorite

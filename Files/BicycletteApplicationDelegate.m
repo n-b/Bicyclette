@@ -18,9 +18,13 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
+- (void) awakeFromNib
+{
+	self.dataManager = [[[VelibDataManager alloc] init] autorelease];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 
-	self.dataManager = [[[VelibDataManager alloc] init] autorelease];
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 	return YES;

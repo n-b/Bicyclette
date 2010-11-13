@@ -116,16 +116,13 @@
 	[oldStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"%K != %@",@"create_date",self.parseDate]];
 	NSError * requestError = nil;
 	NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
-	NSLog(@"Removing %d old stations",[oldStations count]);
+	//NSLog(@"Removing %d old stations",[oldStations count]);
 	for (Station * oldStation in oldStations) {
 		[self.moc deleteObject:oldStation];
 	}
 	
 	// Save
-	NSError * saveError = nil;
-	[self.moc save:&saveError];
-	if(saveError)
-		NSLog(@"Save error : %@ %@",[saveError localizedDescription], [saveError userInfo]);
+	[self save];
 	self.updatingXML = NO;
 }
 
@@ -147,6 +144,14 @@
 		station.create_date = self.parseDate;
 		[station setupCodePostal];
 	}
+}
+
+- (void) save
+{
+	NSError * error;
+	BOOL success = [self.moc save:&error];
+	if(!success)
+		NSLog(@"save failed : %@ %@",error, [error userInfo]);
 }
 
 @end

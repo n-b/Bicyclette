@@ -21,5 +21,7 @@
 @property (readonly, nonatomic, retain) NSManagedObjectContext *moc;
 
 @property (readonly) BOOL updatingXML;
+
+- (void) save;
 @end
 
