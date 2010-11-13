@@ -132,14 +132,15 @@
 - (void) setOnlyShowFavorites:(BOOL)newValue
 {
 	onlyShowFavorites = newValue;
+
 	// Change buttons styles
 	self.favoritesButton.style = self.onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStyleBordered;	
 	self.editButtonItem.enabled = self.onlyShowFavorites;
 	if(!self.onlyShowFavorites && self.editing)
 		[self setEditing:NO animated:YES];
 
+	// Change data
 	[self refetch];
-	NSLog(@"reload data, big bad");
 	[self.tableView reloadData];
 }
 
@@ -191,42 +192,18 @@
 /****************************************************************************/
 #pragma mark FRC Delegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-//	if(controller!=self.currentFrc) return;
-//	if(!BicycletteAppDelegate.dataManager.updatingXML && !self.editing)
-//		[self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+- (void)controller:(NSFetchedResultsController *)frc didChangeObject:(id)anObject
 	   atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
 	  newIndexPath:(NSIndexPath *)newIndexPath
 {
-	if(controller!=self.currentFrc) return;
+	if(frc!=self.currentFrc) return;
 	
-	// Generic update
-	
-	switch (type) {
-		case NSFetchedResultsChangeUpdate:
-			NSLog(@"up %@",indexPath);
-//			if(!BicycletteAppDelegate.dataManager.updatingXML && !self.editing)
-//				[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-//									  withRowAnimation:UITableViewRowAnimationFade];
-			break;
-		case NSFetchedResultsChangeDelete:
-			NSAssert(self.onlyShowFavorites,@"wrong!");
-			NSLog(@"del %@",indexPath);
-			[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-								  withRowAnimation:UITableViewRowAnimationFade];
-			break;
-		case NSFetchedResultsChangeMove:
-			NSLog(@"from %@ to %@",indexPath,newIndexPath);
-            break;
-		case NSFetchedResultsChangeInsert:
-			NSLog(@"ins %@",indexPath);
-			break;
-		default:
-			break;
+	// Only used for deletion of favorites. The rest is automatic or via kvo in the cell.
+	if (type == NSFetchedResultsChangeDelete)
+	{
+		NSAssert(self.onlyShowFavorites,@"can't delete a row while not in favorites mode!");
+		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+							  withRowAnimation:UITableViewRowAnimationFade];
 	}
 }
 
@@ -260,6 +237,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	NSAssert(self.onlyShowFavorites,@"can't edit a row while not in favorites mode!");
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		Station * station = [self.currentFrc objectAtIndexPath:indexPath];
 		station.favorite = NO;
@@ -274,7 +252,7 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
 	self.reordering = YES;
-	NSAssert(self.onlyShowFavorites,@"wrong");
+	NSAssert(self.onlyShowFavorites,@"can't move a row while not in favorites mode");
 	NSLog(@"end move %@ to %@",fromIndexPath, toIndexPath);
 
 	NSMutableArray *favorites = [NSMutableArray arrayWithArray:[self.currentFrc fetchedObjects]];
@@ -290,7 +268,6 @@
 	}
 	self.reordering = NO;
 
-	//[self refetch];
 	[BicycletteAppDelegate.dataManager performSelector:@selector(save) withObject:nil afterDelay:0];
 }
 
