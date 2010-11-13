@@ -15,7 +15,9 @@
 
 @interface StationsListViewController() <NSFetchedResultsControllerDelegate>
 - (void) updateVisibleStations;
-- (void) stationUpdated:(NSNotification*) notif;
+
+- (void) appWillTerminate:(NSNotification*) notif;
+@property (nonatomic) BOOL	onlyShowFavorites;
 @property (nonatomic, retain) NSFetchedResultsController *frc;
 @end
 
@@ -23,9 +25,20 @@
 @implementation StationsListViewController
 
 @synthesize frc;
+@synthesize favoritesButton, onlyShowFavorites;
 
+- (void) awakeFromNib
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:)
+												 name:UIApplicationWillTerminateNotification
+											   object:[UIApplication sharedApplication]];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:)
+												 name:UIApplicationWillResignActiveNotification
+											   object:[UIApplication sharedApplication]];
+}
 - (void) dealloc
 {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.frc = nil;
 	[super dealloc];
 }
@@ -45,9 +58,20 @@
 				initWithFetchRequest:BicycletteAppDelegate.dataManager.stations
 				managedObjectContext:BicycletteAppDelegate.dataManager.moc
 				sectionNameKeyPath:@"code_postal"
-				cacheName:@"stations_cache"];
+				cacheName:NSStringFromClass([StationsListViewController class])];
 	self.frc.delegate = self;
-	[self.frc performFetch:NULL];
+
+	self.onlyShowFavorites = [[NSUserDefaults standardUserDefaults] boolForKey:@"OnlyShowFavorites"];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	CGPoint offset = self.tableView.contentOffset;
+	CGFloat newOffset = [[NSUserDefaults standardUserDefaults] floatForKey:@"TableOffset"];
+	if(newOffset)
+		offset.y = newOffset;
+	self.tableView.contentOffset = offset;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -58,6 +82,36 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+}
+
+- (void) appWillTerminate:(NSNotification*) notif
+{
+	[[NSUserDefaults standardUserDefaults] setFloat:self.tableView.contentOffset.y forKey:@"TableOffset"];
+	[[NSUserDefaults standardUserDefaults] setBool:self.onlyShowFavorites forKey:@"OnlyShowFavorites"];
+}
+
+/****************************************************************************/
+#pragma mark Actions
+- (IBAction) toggleFavorites
+{
+	self.onlyShowFavorites = !self.onlyShowFavorites;
+}
+
+- (void) setOnlyShowFavorites:(BOOL)newValue
+{
+	onlyShowFavorites = newValue;
+	self.favoritesButton.style = self.onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStylePlain;	
+
+	[NSFetchedResultsController deleteCacheWithName:NSStringFromClass([StationsListViewController class])];
+	if(self.onlyShowFavorites)
+		[self.frc.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"favorite == YES"]];
+	else
+		[self.frc.fetchRequest setPredicate:nil];
+	NSError * fetchError = nil;
+	[self.frc performFetch:&fetchError];
+	if(fetchError)
+		NSLog(@"fetchError : %@",fetchError);
+	[self.tableView reloadData];
 }
 
 /****************************************************************************/
@@ -186,14 +240,6 @@
 		Station * station = [self.frc objectAtIndexPath:indexPath];
 		[station refresh];
 	}	
-}
-
-- (void) stationUpdated:(NSNotification*) notif
-{
-	Station * station = [notif object];
-	NSIndexPath * indexPath = [self.frc indexPathForObject:station];
-	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-						  withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

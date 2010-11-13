@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@interface StationsListViewController : UITableViewController {
+@interface StationsListViewController : UITableViewController
 
-}
+@property (nonatomic, assign) IBOutlet UIBarButtonItem * favoritesButton;
+- (IBAction) toggleFavorites;
 
 @end
