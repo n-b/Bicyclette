@@ -59,13 +59,13 @@
 
 
 
-@property (nonatomic, retain) NSNumber *favorite;
+@property (nonatomic, retain) NSNumber *status_total;
 
-@property BOOL favoriteValue;
-- (BOOL)favoriteValue;
-- (void)setFavoriteValue:(BOOL)value_;
+@property short status_totalValue;
+- (short)status_totalValue;
+- (void)setStatus_totalValue:(short)value_;
 
-//- (BOOL)validateFavorite:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateStatus_total:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -79,19 +79,15 @@
 
 
 
-@property (nonatomic, retain) NSNumber *status_total;
-
-@property short status_totalValue;
-- (short)status_totalValue;
-- (void)setStatus_totalValue:(short)value_;
-
-//- (BOOL)validateStatus_total:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) NSDate *status_date;
 
 //- (BOOL)validateStatus_date:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *address;
+
+//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -102,12 +98,6 @@
 - (void)setStatus_availableValue:(short)value_;
 
 //- (BOOL)validateStatus_available:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSString *address;
-
-//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -137,9 +127,13 @@
 
 
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSNumber *favorite_index;
 
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+@property int favorite_indexValue;
+- (int)favorite_indexValue;
+- (void)setFavorite_indexValue:(int)value_;
+
+//- (BOOL)validateFavorite_index:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -150,6 +144,12 @@
 - (void)setLngValue:(double)value_;
 
 //- (BOOL)validateLng:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *name;
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -197,11 +197,11 @@
 - (void)setPrimitiveStatus_freeValue:(short)value_;
 
 
-- (NSNumber*)primitiveFavorite;
-- (void)setPrimitiveFavorite:(NSNumber*)value;
+- (NSNumber*)primitiveStatus_total;
+- (void)setPrimitiveStatus_total:(NSNumber*)value;
 
-- (BOOL)primitiveFavoriteValue;
-- (void)setPrimitiveFavoriteValue:(BOOL)value_;
+- (short)primitiveStatus_totalValue;
+- (void)setPrimitiveStatus_totalValue:(short)value_;
 
 
 - (NSNumber*)primitiveBonus;
@@ -211,15 +211,12 @@
 - (void)setPrimitiveBonusValue:(BOOL)value_;
 
 
-- (NSNumber*)primitiveStatus_total;
-- (void)setPrimitiveStatus_total:(NSNumber*)value;
-
-- (short)primitiveStatus_totalValue;
-- (void)setPrimitiveStatus_totalValue:(short)value_;
-
-
 - (NSDate*)primitiveStatus_date;
 - (void)setPrimitiveStatus_date:(NSDate*)value;
+
+
+- (NSString*)primitiveAddress;
+- (void)setPrimitiveAddress:(NSString*)value;
 
 
 - (NSNumber*)primitiveStatus_available;
@@ -227,10 +224,6 @@
 
 - (short)primitiveStatus_availableValue;
 - (void)setPrimitiveStatus_availableValue:(short)value_;
-
-
-- (NSString*)primitiveAddress;
-- (void)setPrimitiveAddress:(NSString*)value;
 
 
 - (NSNumber*)primitiveOpen;
@@ -251,8 +244,11 @@
 - (void)setPrimitiveCreate_date:(NSDate*)value;
 
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSNumber*)primitiveFavorite_index;
+- (void)setPrimitiveFavorite_index:(NSNumber*)value;
+
+- (int)primitiveFavorite_indexValue;
+- (void)setPrimitiveFavorite_indexValue:(int)value_;
 
 
 - (NSNumber*)primitiveLng;
@@ -260,6 +256,10 @@
 
 - (double)primitiveLngValue;
 - (void)setPrimitiveLngValue:(double)value_;
+
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
 
 
 - (NSString*)primitiveCode_postal;

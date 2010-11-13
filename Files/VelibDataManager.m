@@ -46,6 +46,9 @@
 		psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
 		NSError *error = nil;
 		NSURL *storeURL = [NSURL fileURLWithPath: [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"Velib.sqlite"]];
+	
+//		[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
+
 		if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
 		{
 			NSLog(@"Unresolved error when opening store %@, %@", error, [error userInfo]);
@@ -142,25 +145,8 @@
 		station.number = [attributeDict objectForKey:@"number"];
 		station.openValue = [[attributeDict objectForKey:@"open"] boolValue];
 		station.create_date = self.parseDate;
-		[station setupCodePostal]; 
+		[station setupCodePostal];
 	}
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (NSFetchRequest*) stations
-{
-	NSFetchRequest * fetchRequest = [NSFetchRequest new];
-	[fetchRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
-	 
-	 NSArray * sortDescriptors =  [NSArray arrayWithObjects:
-								   [[[NSSortDescriptor alloc] initWithKey:@"code_postal" ascending:YES] autorelease],
-								   [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],
-								   nil];
-	 [fetchRequest setSortDescriptors:sortDescriptors];
-
-	 return [fetchRequest autorelease];
 }
 
 @end

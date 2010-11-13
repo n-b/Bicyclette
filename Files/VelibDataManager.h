@@ -20,8 +20,6 @@
 @property (readonly, nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (readonly, nonatomic, retain) NSManagedObjectContext *moc;
 
-- (NSFetchRequest*) stations;
-
 @property (readonly) BOOL updatingXML;
 @end
 

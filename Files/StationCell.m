@@ -43,13 +43,12 @@
 	self.freeCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_freeValue];
 	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
 	self.refreshDateLabel.text = [self.station.status_date description];
-	self.favoriteButton.backgroundColor = self.station.favoriteValue?[UIColor redColor]:[UIColor whiteColor];
+	self.favoriteButton.backgroundColor = self.station.favorite?[UIColor redColor]:[UIColor whiteColor];
 }
 
 - (IBAction) switchFavorite
 {
-	self.station.favoriteValue = !self.station.favoriteValue;
-	[self.station.managedObjectContext save:NULL];
+	self.station.favorite = !self.station.favorite;
 }
 
 

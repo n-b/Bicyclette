@@ -3,4 +3,6 @@
 @interface Station : _Station {}
 - (void) refresh;
 - (void) setupCodePostal;
+
+@property (nonatomic) BOOL favorite;
 @end

@@ -88,26 +88,26 @@
 
 
 
-@dynamic favorite;
+@dynamic status_total;
 
 
 
-- (BOOL)favoriteValue {
-	NSNumber *result = [self favorite];
-	return [result boolValue];
+- (short)status_totalValue {
+	NSNumber *result = [self status_total];
+	return [result shortValue];
 }
 
-- (void)setFavoriteValue:(BOOL)value_ {
-	[self setFavorite:[NSNumber numberWithBool:value_]];
+- (void)setStatus_totalValue:(short)value_ {
+	[self setStatus_total:[NSNumber numberWithShort:value_]];
 }
 
-- (BOOL)primitiveFavoriteValue {
-	NSNumber *result = [self primitiveFavorite];
-	return [result boolValue];
+- (short)primitiveStatus_totalValue {
+	NSNumber *result = [self primitiveStatus_total];
+	return [result shortValue];
 }
 
-- (void)setPrimitiveFavoriteValue:(BOOL)value_ {
-	[self setPrimitiveFavorite:[NSNumber numberWithBool:value_]];
+- (void)setPrimitiveStatus_totalValue:(short)value_ {
+	[self setPrimitiveStatus_total:[NSNumber numberWithShort:value_]];
 }
 
 
@@ -140,33 +140,14 @@
 
 
 
-@dynamic status_total;
-
-
-
-- (short)status_totalValue {
-	NSNumber *result = [self status_total];
-	return [result shortValue];
-}
-
-- (void)setStatus_totalValue:(short)value_ {
-	[self setStatus_total:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveStatus_totalValue {
-	NSNumber *result = [self primitiveStatus_total];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveStatus_totalValue:(short)value_ {
-	[self setPrimitiveStatus_total:[NSNumber numberWithShort:value_]];
-}
-
-
-
-
-
 @dynamic status_date;
+
+
+
+
+
+
+@dynamic address;
 
 
 
@@ -194,13 +175,6 @@
 - (void)setPrimitiveStatus_availableValue:(short)value_ {
 	[self setPrimitiveStatus_available:[NSNumber numberWithShort:value_]];
 }
-
-
-
-
-
-@dynamic address;
-
 
 
 
@@ -265,8 +239,27 @@
 
 
 
-@dynamic name;
+@dynamic favorite_index;
 
+
+
+- (int)favorite_indexValue {
+	NSNumber *result = [self favorite_index];
+	return [result intValue];
+}
+
+- (void)setFavorite_indexValue:(int)value_ {
+	[self setFavorite_index:[NSNumber numberWithInt:value_]];
+}
+
+- (int)primitiveFavorite_indexValue {
+	NSNumber *result = [self primitiveFavorite_index];
+	return [result intValue];
+}
+
+- (void)setPrimitiveFavorite_indexValue:(int)value_ {
+	[self setPrimitiveFavorite_index:[NSNumber numberWithInt:value_]];
+}
 
 
 
@@ -293,6 +286,13 @@
 - (void)setPrimitiveLngValue:(double)value_ {
 	[self setPrimitiveLng:[NSNumber numberWithDouble:value_]];
 }
+
+
+
+
+
+@dynamic name;
+
 
 
 

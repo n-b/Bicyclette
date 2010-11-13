@@ -25,6 +25,11 @@
 			self.status_ticketValue?"+":"", self.status_availableValue, self.status_freeValue, self.status_totalValue];
 }
 
+- (void) awakeFromInsert
+{
+	self.favorite = NO;
+}
+
 - (void) setupCodePostal
 {
 	NSAssert2([self.fullAddress hasPrefix:self.address],@"full address \"%@\" does not begin with address \"%@\"", self.fullAddress, self.address);
@@ -54,6 +59,8 @@
 	self.code_postal = codePostal;	
 }
 
+/****************************************************************************/
+#pragma mark -
 
 - (void) refresh
 {
@@ -122,5 +129,26 @@
 		NSLog(@"Save error : %@ %@",[saveError localizedDescription], [saveError userInfo]);
 	
 }
+
+/****************************************************************************/
+#pragma mark -
+
+
+- (void) setFavorite:(BOOL) newValue
+{
+	if (newValue==NO) {
+		self.favorite_indexValue = -1;
+	}
+	else
+		self.favorite_indexValue = 0;
+	
+	[self.managedObjectContext save:NULL];
+}
+
+- (BOOL) favorite
+{
+	return self.favorite_indexValue != -1;
+}
+
 
 @end
