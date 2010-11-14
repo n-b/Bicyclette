@@ -13,7 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		37149B70126248F5009CDE82 /* StationsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B6E126248F5009CDE82 /* StationsListViewController.m */; };
+		37149B70126248F5009CDE82 /* StationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B6E126248F5009CDE82 /* StationsVC.m */; };
 		37149B71126248F5009CDE82 /* StationsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149B6F126248F5009CDE82 /* StationsListViewController.xib */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
@@ -48,8 +48,8 @@
 		3705E27A11669241002B7AAE /* StationTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationTextCell.m; path = Files/StationTextCell.m; sourceTree = "<group>"; };
 		3705E43C1166B065002B7AAE /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABTableViewCell.h; path = Files/ABTableViewCell.h; sourceTree = "<group>"; };
 		3705E43D1166B065002B7AAE /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABTableViewCell.m; path = Files/ABTableViewCell.m; sourceTree = "<group>"; };
-		37149B6D126248F5009CDE82 /* StationsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsListViewController.h; sourceTree = "<group>"; };
-		37149B6E126248F5009CDE82 /* StationsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsListViewController.m; sourceTree = "<group>"; };
+		37149B6D126248F5009CDE82 /* StationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsVC.h; sourceTree = "<group>"; };
+		37149B6E126248F5009CDE82 /* StationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsVC.m; sourceTree = "<group>"; };
 		37149B6F126248F5009CDE82 /* StationsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationsListViewController.xib; sourceTree = "<group>"; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
@@ -96,8 +96,8 @@
 		080E96DDFE201D6D7F000001 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				37149B6D126248F5009CDE82 /* StationsListViewController.h */,
-				37149B6E126248F5009CDE82 /* StationsListViewController.m */,
+				37149B6D126248F5009CDE82 /* StationsVC.h */,
+				37149B6E126248F5009CDE82 /* StationsVC.m */,
 				37149B6F126248F5009CDE82 /* StationsListViewController.xib */,
 				37149C8212625AD7009CDE82 /* StationCell.h */,
 				37149C8312625AD7009CDE82 /* StationCell.m */,
@@ -283,7 +283,7 @@
 				37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */,
 				37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */,
 				37216BC712611C5400A2695A /* VelibDataManager.m in Sources */,
-				37149B70126248F5009CDE82 /* StationsListViewController.m in Sources */,
+				37149B70126248F5009CDE82 /* StationsVC.m in Sources */,
 				37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */,
 				37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */,
 				37149C8412625AD7009CDE82 /* StationCell.m in Sources */,

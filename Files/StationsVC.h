@@ -1,5 +1,5 @@
 //
-//  StationsListViewController.h
+//  StationsVC.h
 //  Bicyclette
 //
 //  Created by Nicolas on 10/10/10.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface StationsListViewController : UITableViewController
+@interface StationsVC : UITableViewController
 
 @property (nonatomic, assign) IBOutlet UIBarButtonItem * favoritesButton;
 - (IBAction) toggleFavorites;

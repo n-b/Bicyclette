@@ -1,12 +1,12 @@
 //
-//  StationsListViewController.m
+//  StationsVC.m
 //  Bicyclette
 //
 //  Created by Nicolas on 10/10/10.
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "StationsListViewController.h"
+#import "StationsVC.h"
 #import "BicycletteApplicationDelegate.h"
 #import "VelibDataManager.h"
 #import "StationCell.h"
@@ -16,7 +16,7 @@
 /****************************************************************************/
 #pragma mark Private Methods
 
-@interface StationsListViewController() <NSFetchedResultsControllerDelegate>
+@interface StationsVC() <NSFetchedResultsControllerDelegate>
 - (void) updateVisibleStations;
 - (void) appWillTerminate:(NSNotification*) notif;
 @property (nonatomic) BOOL	onlyShowFavorites;
@@ -32,7 +32,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation StationsListViewController
+@implementation StationsVC
 
 @synthesize allFrc, favoritesFrc, onlyShowFavorites;
 @synthesize favoritesButton;
