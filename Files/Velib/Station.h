@@ -6,7 +6,7 @@
 - (void) setupCodePostal;
 - (void) save;
 
-@property (nonatomic) BOOL favorite;
-
+@property (nonatomic, getter=isFavorite) BOOL favorite;
+@property (nonatomic, readonly, getter=isLoading) BOOL loading;
 @property (nonatomic, retain, readonly) CLLocation * location;
 @end

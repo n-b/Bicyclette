@@ -54,11 +54,13 @@
 - (void) setStation:(Station*)value
 {
 	[station autorelease];
+	[station removeObserver:self forKeyPath:@"loading"];
 	[station removeObserver:self forKeyPath:@"status_date"];
 	[station removeObserver:self forKeyPath:@"favorite"];
 	station = [value retain];
-	[station addObserver:self forKeyPath:@"status_date" options:0 context:[StationCell class]];
 	[station addObserver:self forKeyPath:@"favorite" options:0 context:[StationCell class]];
+	[station addObserver:self forKeyPath:@"status_date" options:0 context:[StationCell class]];
+	[station addObserver:self forKeyPath:@"loading" options:0 context:[StationCell class]];
 	[self updateUI];
 }
 
@@ -73,6 +75,8 @@
 	self.favoriteButton.backgroundColor = self.station.favorite?[UIColor redColor]:[UIColor whiteColor];
 	
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location];
+	
+	self.backgroundView.backgroundColor = self.station.loading?[UIColor darkGrayColor]:[UIColor clearColor];
 }
 
 /****************************************************************************/

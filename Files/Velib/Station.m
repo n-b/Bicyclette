@@ -27,11 +27,6 @@
 			self.status_ticketValue?"+":"", self.status_availableValue, self.status_freeValue, self.status_totalValue];
 }
 
-- (void) awakeFromInsert
-{
-	self.favorite = NO;
-}
-
 - (void) save
 {
 	NSError * error;
@@ -88,7 +83,7 @@
 		//NSLog(@"requete déjà en cours %@",self.number);
 		return;
 	}
-	if(self.status_date && [self.status_date timeIntervalSinceNow] > -1)
+	if(self.status_date && [self.status_date timeIntervalSinceNow] > -15) // 15 seconds
 	{
 		//NSLog(@"requete trop récente %@",self.number);
 		return;
@@ -145,6 +140,16 @@
 	[self save];
 }
 
+- (BOOL) isLoading
+{
+	return nil!=self.connection;
+}
+
++ (NSSet*) keyPathsForValuesAffectingLoading
+{
+	return [NSSet setWithObject:@"connection"];
+}
+
 /****************************************************************************/
 #pragma mark Favorite
 
@@ -159,7 +164,7 @@
 	[self save];
 }
 
-- (BOOL) favorite
+- (BOOL) isFavorite
 {
 	return self.favorite_indexValue != -1;
 }
