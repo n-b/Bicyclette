@@ -7,12 +7,19 @@
 //
 
 #import "StationCell.h"
-#import "VelibDataManager.h"
 #import "Station.h"
+#import "BicycletteApplicationDelegate.h"
+
+/****************************************************************************/
+#pragma mark Private Methods
 
 @interface StationCell()
 - (void) updateUI;
+- (void) locationDidChange:(NSNotification*)notif;
 @end
+
+/****************************************************************************/
+#pragma mark -
 
 @implementation StationCell
 
@@ -22,17 +29,24 @@
 @synthesize favoriteButton;
 @synthesize station;
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+/****************************************************************************/
+#pragma mark Life Cycle
+
+- (void) awakeFromNib
 {
-    [super setSelected:selected animated:animated];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
+												 name:LocationDidChangeNotification object:nil];
 }
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.station = nil;
     [super dealloc];
 }
 
+/****************************************************************************/
+#pragma mark UI
 
 - (void) setStation:(Station*)value
 {
@@ -56,20 +70,28 @@
 	self.favoriteButton.backgroundColor = self.station.favorite?[UIColor redColor]:[UIColor whiteColor];
 }
 
+/****************************************************************************/
+#pragma mark Actions
+
 - (IBAction) switchFavorite
 {
 	self.station.favorite = !self.station.favorite;
 }
 
+/****************************************************************************/
+#pragma mark data changes
+
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == [StationCell class])
-	{
 		[self updateUI];
-	}
-	else {
+	else 
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-	}
+}
+
+- (void) locationDidChange:(NSNotification*)notif
+{
+	[self updateUI];
 }
 
 @end

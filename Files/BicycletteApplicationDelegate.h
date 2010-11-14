@@ -13,11 +13,7 @@
 
 @class VelibDataManager;
 
-@interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> {
-    
-    UIWindow *window;
-    UINavigationController *navigationController;
-}
+@interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
@@ -25,3 +21,4 @@
 @property (nonatomic, retain) VelibDataManager * dataManager;
 @end
 
+#define LocationDidChangeNotification @"LocationDidChangeNotification"
