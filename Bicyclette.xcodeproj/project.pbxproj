@@ -26,6 +26,7 @@
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37B699DF128EBB0A0053728D /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699DE128EBB0A0053728D /* Station.m */; };
 		37B699E2128EBB0B0053728D /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699E1128EBB0A0053728D /* _Station.m */; };
+		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D1882C1170A27A00950D52 /* BicycletteDefaults.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
@@ -69,6 +70,8 @@
 		37B699E0128EBB0A0053728D /* Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
 		37B699E1128EBB0A0053728D /* _Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
 		37B699E3128EBB0B0053728D /* _Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
+		37B69C28129034D90053728D /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
+		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D1882B1170A27A00950D52 /* BicycletteDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteDefaults.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 				37216BC612611C5400A2695A /* VelibDataManager.m */,
 				37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */,
 				37A346B5128C9D68000A2540 /* Velib */,
+				37B69C28129034D90053728D /* Locator.h */,
+				37B69C29129034D90053728D /* Locator.m */,
 			);
 			name = Model;
 			path = Files;
@@ -291,6 +296,7 @@
 				37A346AF128C9B3F000A2540 /* Velib.xcdatamodel in Sources */,
 				37B699DF128EBB0A0053728D /* Station.m in Sources */,
 				37B699E2128EBB0B0053728D /* _Station.m in Sources */,
+				37B69C2A129034D90053728D /* Locator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

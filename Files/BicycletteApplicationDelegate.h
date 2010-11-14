@@ -11,14 +11,15 @@
 
 #define BicycletteAppDelegate ((BicycletteApplicationDelegate*)[[UIApplication sharedApplication] delegate])
 
-@class VelibDataManager;
+@class VelibDataManager, Locator;
 
 @interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
-@property (nonatomic, retain) VelibDataManager * dataManager;
+@property (nonatomic, retain, readonly) VelibDataManager * dataManager;
+@property (nonatomic, retain, readonly) Locator * locator;
+
 @end
 
-#define LocationDidChangeNotification @"LocationDidChangeNotification"

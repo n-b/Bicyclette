@@ -8,6 +8,7 @@
 
 #import "StationCell.h"
 #import "Station.h"
+#import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
 
 /****************************************************************************/
@@ -35,7 +36,7 @@
 - (void) awakeFromNib
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
-												 name:LocationDidChangeNotification object:nil];
+												 name:LocationDidChangeNotification object:BicycletteAppDelegate.locator];
 }
 
 

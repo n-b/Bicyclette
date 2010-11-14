@@ -7,15 +7,16 @@
 //
 
 #import "BicycletteApplicationDelegate.h"
-#import <CoreLocation/CoreLocation.h>
 #import "VelibDataManager.h"
+#import "Locator.h"
 
 /****************************************************************************/
 #pragma mark Peivate Methods
 
-@interface BicycletteApplicationDelegate() <CLLocationManagerDelegate>
+@interface BicycletteApplicationDelegate()
 
-@property (nonatomic, retain) CLLocationManager * locationManager;
+@property (nonatomic, retain) VelibDataManager * dataManager;
+@property (nonatomic, retain) Locator * locator;
 
 @end
 
@@ -27,7 +28,7 @@
 @synthesize window;
 @synthesize navigationController;
 @synthesize dataManager;
-@synthesize locationManager;
+@synthesize locator;
 
 /****************************************************************************/
 #pragma mark Application lifecycle
@@ -35,17 +36,12 @@
 - (void) awakeFromNib
 {
 	self.dataManager = [[VelibDataManager new] autorelease];
-	self.locationManager = [[CLLocationManager new] autorelease];
-	self.locationManager.delegate = self;
+	self.locator = [[Locator new] autorelease];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[self.locationManager startUpdatingHeading];
-	[self.locationManager startUpdatingLocation];
-	[self.locationManager startMonitoringSignificantLocationChanges];
-	
-	
+	[self.locator start];
 	[self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
 	return YES;
@@ -55,26 +51,9 @@
 	self.window = nil;
 	self.navigationController = nil;
 	self.dataManager = nil;
-	self.locationManager = nil;
+	self.locator = nil;
 	[super dealloc];
 }
-
-/****************************************************************************/
-#pragma mark Location
-
-- (void)locationManager:(CLLocationManager *)manager
-	didUpdateToLocation:(CLLocation *)newLocation
-		   fromLocation:(CLLocation *)oldLocation
-{
-	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:manager];
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-       didUpdateHeading:(CLHeading *)newHeading __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_3_0)
-{
-	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:manager];
-}
-
 
 @end
 
