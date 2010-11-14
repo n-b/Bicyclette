@@ -27,6 +27,7 @@
 		37B699DF128EBB0A0053728D /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699DE128EBB0A0053728D /* Station.m */; };
 		37B699E2128EBB0B0053728D /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699E1128EBB0A0053728D /* _Station.m */; };
 		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
+		37B69D12129048BC0053728D /* NSDate+IntervalDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69D11129048BC0053728D /* NSDate+IntervalDescription.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,8 @@
 		37B699E3128EBB0B0053728D /* _Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
 		37B69C28129034D90053728D /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
+		37B69D10129048BC0053728D /* NSDate+IntervalDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IntervalDescription.h"; sourceTree = "<group>"; };
+		37B69D11129048BC0053728D /* NSDate+IntervalDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IntervalDescription.m"; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -206,6 +209,8 @@
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
 				37C8602D117205D300B8526B /* CLLocation+Direction.h */,
 				37C8602E117205D300B8526B /* CLLocation+Direction.m */,
+				37B69D10129048BC0053728D /* NSDate+IntervalDescription.h */,
+				37B69D11129048BC0053728D /* NSDate+IntervalDescription.m */,
 			);
 			name = Extensions;
 			path = Files;
@@ -291,6 +296,7 @@
 				37B699DF128EBB0A0053728D /* Station.m in Sources */,
 				37B699E2128EBB0B0053728D /* _Station.m in Sources */,
 				37B69C2A129034D90053728D /* Locator.m in Sources */,
+				37B69D12129048BC0053728D /* NSDate+IntervalDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

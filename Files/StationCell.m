@@ -11,6 +11,7 @@
 #import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
 #import "CLLocation+Direction.h"
+#import "NSDate+IntervalDescription.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -71,7 +72,7 @@
 	self.availableCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_availableValue];
 	self.freeCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_freeValue];
 	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
-	self.refreshDateLabel.text = [self.station.status_date description];
+	self.refreshDateLabel.text = [self.station.status_date intervalDescription];
 	self.favoriteButton.backgroundColor = self.station.favorite?[UIColor redColor]:[UIColor whiteColor];
 	
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location];
