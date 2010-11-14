@@ -72,12 +72,10 @@
 	self.availableCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_availableValue];
 	self.freeCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_freeValue];
 	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
-	self.refreshDateLabel.text = [self.station.status_date intervalDescription];
-	self.favoriteButton.backgroundColor = self.station.favorite?[UIColor redColor]:[UIColor whiteColor];
+	self.refreshDateLabel.text = self.station.loading?NSLocalizedString(@"en cours",@""):[self.station.status_date intervalDescription];
+	self.favoriteButton.backgroundColor = self.station.favorite?BicycletteBlue:[UIColor lightGrayColor];
 	
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location];
-	
-	self.backgroundView.backgroundColor = self.station.loading?[UIColor darkGrayColor]:[UIColor clearColor];
 }
 
 /****************************************************************************/

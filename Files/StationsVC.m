@@ -98,10 +98,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.tableView.rowHeight = 100;
-	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.tableView.rowHeight = StationCellHeight;
+	self.tableView.backgroundColor = [UIColor lightGrayColor];
+	self.tableView.separatorColor = [UIColor lightGrayColor];
 	
 	self.onlyShowFavorites = [[NSUserDefaults standardUserDefaults] boolForKey:@"OnlyShowFavorites"];
 }
@@ -133,11 +132,12 @@
 {
 	onlyShowFavorites = newValue;
 
-	// Change buttons styles
+	// Change UI
 	self.favoritesButton.style = self.onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStyleBordered;	
 	self.editButtonItem.enabled = self.onlyShowFavorites;
 	if(!self.onlyShowFavorites && self.editing)
 		[self setEditing:NO animated:YES];
+	self.title = self.onlyShowFavorites?NSLocalizedString(@"Favoris",@""):NSLocalizedString(@"Toutes les stations",@"");
 
 	// Change data
 	[self refetch];
