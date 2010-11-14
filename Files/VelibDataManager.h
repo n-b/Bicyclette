@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define kVelibStationsListURL		@"http://www.velib.paris.fr/service/carto"
+#define kVelibStationsStatusURL		@"http://www.velib.paris.fr/service/stationdetails/"
+
 /****************************************************************************/
 #pragma mark -
 

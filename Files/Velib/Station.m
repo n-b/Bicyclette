@@ -1,5 +1,6 @@
 #import "Station.h"
 #import "NSStringAdditions.h"
+#import "VelibDataManager.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -90,8 +91,7 @@
 	}
 	
 	//NSLog(@"start requete %@",self.number);
-#define veliburl @"http://www.velib.paris.fr/service/stationdetails/"
-	NSURL * url = [NSURL URLWithString:[veliburl stringByAppendingString:self.number]];
+	NSURL * url = [NSURL URLWithString:[kVelibStationsStatusURL stringByAppendingString:self.number]];
 	self.connection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
 	self.data = [NSMutableData data];
 }

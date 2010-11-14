@@ -95,7 +95,7 @@
 - (void) updateXML
 {
 	NSAutoreleasePool * pool = [NSAutoreleasePool new];
-	NSData * xml = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.velib.paris.fr/service/carto"]];
+	NSData * xml = [NSData dataWithContentsOfURL:[NSURL URLWithString:kVelibStationsListURL]];
 	[self performSelectorOnMainThread:@selector(parseXML:) withObject:xml waitUntilDone:NO];
 	[pool release];
 }
