@@ -11,10 +11,13 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface CLLocation(Direction)
-- (CLLocationDirection) directionTo:(CLLocation*)otherLocation;
-- (CLLocationDirection) directionFrom:(CLLocation*)otherLocation;
-@end
+- (CLLocationDirection) directionToLocation:(CLLocation*)otherLocation;
+- (CLLocationDirection) directionFromLocation:(CLLocation*)otherLocation;
 
+- (NSString*) routeDescriptionToLocation:(CLLocation*)otherLocation;
+- (NSString*) routeDescriptionFromLocation:(CLLocation*)otherLocation;
+
+@end
 
 @interface NSString (Direction)
 + (id) directionDescription:(CLLocationDirection)direction;

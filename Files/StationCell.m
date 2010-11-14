@@ -10,6 +10,7 @@
 #import "Station.h"
 #import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
+#import "CLLocation+Direction.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -24,7 +25,7 @@
 
 @implementation StationCell
 
-@synthesize nameLabel, addressLabel;
+@synthesize nameLabel, addressLabel, distanceLabel;
 @synthesize availableCountLabel, freeCountLabel, totalCountLabel;
 @synthesize refreshDateLabel;
 @synthesize favoriteButton;
@@ -37,6 +38,7 @@
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
 												 name:LocationDidChangeNotification object:BicycletteAppDelegate.locator];
+	NSAssert(self.bounds.size.height==100,@"wrong cell height");
 }
 
 
@@ -69,6 +71,8 @@
 	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
 	self.refreshDateLabel.text = [self.station.status_date description];
 	self.favoriteButton.backgroundColor = self.station.favorite?[UIColor redColor]:[UIColor whiteColor];
+	
+	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location];
 }
 
 /****************************************************************************/

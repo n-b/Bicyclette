@@ -8,6 +8,7 @@
 @interface Station () 
 @property (nonatomic, retain) NSURLConnection * connection;
 @property (nonatomic, retain) NSMutableData * data;
+@property (nonatomic, retain) CLLocation * location;
 @end
 
 
@@ -17,6 +18,7 @@
 @implementation Station
 
 @synthesize data,connection;
+@synthesize location;
 
 - (NSString *) description
 {
@@ -36,6 +38,12 @@
 	BOOL success = [self.managedObjectContext save:&error];
 	if(!success)
 		NSLog(@"save failed : %@ %@",error, [error userInfo]);
+}
+
+- (void) dealloc
+{
+	self.location = nil;
+	[super dealloc];
 }
 
 /****************************************************************************/
@@ -138,7 +146,7 @@
 }
 
 /****************************************************************************/
-#pragma mark -
+#pragma mark Favorite
 
 - (void) setFavorite:(BOOL) newValue
 {
@@ -154,6 +162,16 @@
 - (BOOL) favorite
 {
 	return self.favorite_indexValue != -1;
+}
+
+/****************************************************************************/
+#pragma mark Location
+
+- (CLLocation*) location
+{
+	if(nil==location)
+		location = [[CLLocation alloc] initWithLatitude:self.latValue longitude:self.lngValue];
+	return [[location retain] autorelease];
 }
 
 

@@ -14,7 +14,7 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		37149B70126248F5009CDE82 /* StationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B6E126248F5009CDE82 /* StationsVC.m */; };
-		37149B71126248F5009CDE82 /* StationsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149B6F126248F5009CDE82 /* StationsListViewController.xib */; };
+		37149B71126248F5009CDE82 /* StationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149B6F126248F5009CDE82 /* StationsVC.xib */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
 		37149C8412625AD7009CDE82 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8312625AD7009CDE82 /* StationCell.m */; };
@@ -28,7 +28,6 @@
 		37B699E2128EBB0B0053728D /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699E1128EBB0A0053728D /* _Station.m */; };
 		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
-		37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D1882C1170A27A00950D52 /* BicycletteDefaults.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,7 @@
 		3705E43D1166B065002B7AAE /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABTableViewCell.m; path = Files/ABTableViewCell.m; sourceTree = "<group>"; };
 		37149B6D126248F5009CDE82 /* StationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsVC.h; sourceTree = "<group>"; };
 		37149B6E126248F5009CDE82 /* StationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsVC.m; sourceTree = "<group>"; };
-		37149B6F126248F5009CDE82 /* StationsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationsListViewController.xib; sourceTree = "<group>"; };
+		37149B6F126248F5009CDE82 /* StationsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationsVC.xib; sourceTree = "<group>"; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		37149BBA126250D7009CDE82 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayAdditions.h; sourceTree = "<group>"; };
@@ -74,8 +73,6 @@
 		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
-		37D1882B1170A27A00950D52 /* BicycletteDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteDefaults.h; sourceTree = "<group>"; };
-		37D1882C1170A27A00950D52 /* BicycletteDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteDefaults.m; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Bicyclette-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bicyclette-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,7 +98,7 @@
 			children = (
 				37149B6D126248F5009CDE82 /* StationsVC.h */,
 				37149B6E126248F5009CDE82 /* StationsVC.m */,
-				37149B6F126248F5009CDE82 /* StationsListViewController.xib */,
+				37149B6F126248F5009CDE82 /* StationsVC.xib */,
 				37149C8212625AD7009CDE82 /* StationCell.h */,
 				37149C8312625AD7009CDE82 /* StationCell.m */,
 				37149C8512625AE5009CDE82 /* StationCell.xib */,
@@ -142,8 +139,6 @@
 				8D1107310486CEB800E47090 /* Bicyclette-Info.plist */,
 				1D3623240D0F684500981E51 /* BicycletteApplicationDelegate.h */,
 				1D3623250D0F684500981E51 /* BicycletteApplicationDelegate.m */,
-				37D1882B1170A27A00950D52 /* BicycletteDefaults.h */,
-				37D1882C1170A27A00950D52 /* BicycletteDefaults.m */,
 			);
 			name = App;
 			path = Files;
@@ -270,7 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				37149B71126248F5009CDE82 /* StationsListViewController.xib in Resources */,
+				37149B71126248F5009CDE82 /* StationsVC.xib in Resources */,
 				37149C8612625AE5009CDE82 /* StationCell.xib in Resources */,
 				37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */,
 			);
@@ -285,7 +280,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* BicycletteApplicationDelegate.m in Sources */,
-				37D1882D1170A27A00950D52 /* BicycletteDefaults.m in Sources */,
 				37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */,
 				37216BC712611C5400A2695A /* VelibDataManager.m in Sources */,
 				37149B70126248F5009CDE82 /* StationsVC.m in Sources */,

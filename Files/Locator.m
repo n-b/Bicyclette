@@ -16,6 +16,13 @@
 @end
 
 /****************************************************************************/
+#pragma mark Saving
+
+@interface NSUserDefaults(BicycletteDefaults)
+@property (readwrite,assign) CLLocation* lastKnownLocation;
+@end
+
+/****************************************************************************/
 #pragma mark -
 
 @implementation Locator
@@ -54,6 +61,7 @@
 	didUpdateToLocation:(CLLocation *)newLocation
 		   fromLocation:(CLLocation *)oldLocation
 {
+	[[NSUserDefaults standardUserDefaults] setLastKnownLocation:newLocation];
 	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:self];
 }
 
@@ -61,6 +69,32 @@
        didUpdateHeading:(CLHeading *)newHeading __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_3_0)
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:self];
+}
+
+- (CLLocation*) location
+{
+	return [[NSUserDefaults standardUserDefaults] lastKnownLocation];
+}
+
+@end
+
+/****************************************************************************/
+#pragma mark Saving
+
+@implementation NSUserDefaults(BicycletteDefaults)
+
+- (void) setLastKnownLocation:(CLLocation*) location
+{
+	[self setObject:[NSKeyedArchiver archivedDataWithRootObject:location] forKey:@"lastKnownLocation"];
+	[self setObject:[NSDate date] forKey:@"lastKnownLocationDate"];
+}
+
+- (CLLocation*) lastKnownLocation
+{
+	if([[NSDate date] timeIntervalSinceDate:[self objectForKey:@"lastKnownLocationDate"]] < 15*60)
+		return [NSKeyedUnarchiver unarchiveObjectWithData:[self objectForKey:@"lastKnownLocation"]];
+	else
+		return nil;
 }
 
 @end

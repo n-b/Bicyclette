@@ -11,6 +11,8 @@
 
 @interface Locator : NSObject 
 - (void) start;
+
+@property (nonatomic, readonly) CLLocation* location;
 @end
 
 #define LocationDidChangeNotification @"LocationDidChangeNotification"

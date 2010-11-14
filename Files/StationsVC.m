@@ -98,7 +98,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.tableView.rowHeight = 90;
+	self.tableView.rowHeight = 100;
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

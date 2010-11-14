@@ -11,7 +11,7 @@
 #import "Locator.h"
 
 /****************************************************************************/
-#pragma mark Peivate Methods
+#pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
 
@@ -56,4 +56,3 @@
 }
 
 @end
-
