@@ -7,11 +7,11 @@
 //
 
 #import "StationCell.h"
+#import "StationStatusView.h"
 #import "Station.h"
 #import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
 #import "CLLocation+Direction.h"
-#import "NSDate+IntervalDescription.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -27,8 +27,7 @@
 @implementation StationCell
 
 @synthesize nameLabel, addressLabel, distanceLabel;
-@synthesize availableCountLabel, freeCountLabel, totalCountLabel;
-@synthesize refreshDateLabel;
+@synthesize statusView;
 @synthesize favoriteButton;
 @synthesize station;
 
@@ -54,14 +53,15 @@
 
 - (void) setStation:(Station*)value
 {
+	[self.station removeObserver:self forKeyPath:@"loading"];
+	[self.station removeObserver:self forKeyPath:@"status_date"];
+	[self.station removeObserver:self forKeyPath:@"favorite"];
 	[station autorelease];
-	[station removeObserver:self forKeyPath:@"loading"];
-	[station removeObserver:self forKeyPath:@"status_date"];
-	[station removeObserver:self forKeyPath:@"favorite"];
 	station = [value retain];
-	[station addObserver:self forKeyPath:@"favorite" options:0 context:[StationCell class]];
-	[station addObserver:self forKeyPath:@"status_date" options:0 context:[StationCell class]];
-	[station addObserver:self forKeyPath:@"loading" options:0 context:[StationCell class]];
+	[self.station addObserver:self forKeyPath:@"favorite" options:0 context:[StationCell class]];
+	[self.station addObserver:self forKeyPath:@"status_date" options:0 context:[StationCell class]];
+	[self.station addObserver:self forKeyPath:@"loading" options:0 context:[StationCell class]];
+	self.statusView.station = self.station;
 	[self updateUI];
 }
 
@@ -69,10 +69,7 @@
 {
 	self.nameLabel.text = self.station.name;
 	self.addressLabel.text = self.station.address;
-	self.availableCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_availableValue];
-	self.freeCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_freeValue];
-	self.totalCountLabel.text = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
-	self.refreshDateLabel.text = self.station.loading?NSLocalizedString(@"en cours",@""):[self.station.status_date intervalDescription];
+	[self.statusView setNeedsDisplay];
 	self.favoriteButton.backgroundColor = self.station.favorite?BicycletteBlue:[UIColor lightGrayColor];
 	
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location];

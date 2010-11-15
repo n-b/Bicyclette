@@ -11,6 +11,7 @@
 
 #define StationCellHeight 100 
 @class Station;
+@class StationStatusView;
 @interface StationCell : UITableViewCell 
 
 // Outlets
@@ -18,10 +19,7 @@
 @property (nonatomic, assign) IBOutlet UILabel * addressLabel;
 @property (nonatomic, assign) IBOutlet UILabel * distanceLabel;
 
-@property (nonatomic, assign) IBOutlet UILabel * availableCountLabel;
-@property (nonatomic, assign) IBOutlet UILabel * freeCountLabel;
-@property (nonatomic, assign) IBOutlet UILabel * totalCountLabel;
-@property (nonatomic, assign) IBOutlet UILabel * refreshDateLabel;
+@property (nonatomic, assign) IBOutlet StationStatusView * statusView;
 
 @property (nonatomic, assign) IBOutlet UIButton * favoriteButton;
 // Action

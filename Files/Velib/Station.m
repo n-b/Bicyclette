@@ -84,7 +84,7 @@
 		//NSLog(@"requete dŽjˆ en cours %@",self.number);
 		return;
 	}
-	if(self.status_date && [self.status_date timeIntervalSinceNow] > -15) // 15 seconds
+	if(self.status_date && [[NSDate date] timeIntervalSinceDate:self.status_date] < 15) // 15 seconds
 	{
 		//NSLog(@"requete trop rŽcente %@",self.number);
 		return;
@@ -148,6 +148,32 @@
 + (NSSet*) keyPathsForValuesAffectingLoading
 {
 	return [NSSet setWithObject:@"connection"];
+}
+
+- (NSString *) statusDateDescription
+{
+	if(self.loading)
+		return NSLocalizedString(@"en cours",@"");
+	if(nil==self.status_date)
+		return NSLocalizedString(@"Aucune donnŽe",@"");
+
+	NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.status_date];
+	if(interval<15)
+		return NSLocalizedString(@"A l'instant",@"");
+	if(interval<60)
+		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f secondes",@""),interval];
+	int minutes = interval/60;
+	if(minutes<2)
+		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minute",@""),minutes];
+	if(minutes<60)
+		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minutes",@""),minutes];
+	else
+		return NSLocalizedString(@"Aucune donnŽe rŽcente",@"");
+}
+
++ (NSSet*) keyPathsForValuesAffectingStatusDateDescription
+{
+	return [NSSet setWithObject:@"status_date"];
 }
 
 /****************************************************************************/

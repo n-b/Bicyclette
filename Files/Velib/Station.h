@@ -9,4 +9,5 @@
 @property (nonatomic, getter=isFavorite) BOOL favorite;
 @property (nonatomic, readonly, getter=isLoading) BOOL loading;
 @property (nonatomic, retain, readonly) CLLocation * location;
+@property (nonatomic, readonly) NSString * statusDateDescription;
 @end
