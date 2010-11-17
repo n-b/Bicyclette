@@ -44,6 +44,7 @@
 - (void) start
 {
 	[self.locationManager startUpdatingHeading];
+	self.locationManager.headingFilter = 1.0f; // degrees
 	[self.locationManager startUpdatingLocation];
 	[self.locationManager startMonitoringSignificantLocationChanges];
 }

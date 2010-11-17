@@ -153,20 +153,17 @@
 - (NSString *) statusDateDescription
 {
 	if(self.loading)
-		return NSLocalizedString(@"en cours",@"");
+		return NSLocalizedString(@"Requête en cours",@"");
 	if(nil==self.status_date)
 		return NSLocalizedString(@"Aucune donnée",@"");
 
 	NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.status_date];
-	if(interval<15)
-		return NSLocalizedString(@"A l'instant",@"");
 	if(interval<60)
-		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f secondes",@""),interval];
-	int minutes = interval/60;
-	if(minutes<2)
-		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minute",@""),minutes];
-	if(minutes<60)
-		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minutes",@""),minutes];
+		return NSLocalizedString(@"",@"");
+	if(interval<90)
+		return [NSString stringWithFormat:NSLocalizedString(@"il y a 1 minute",@"")];
+	if(interval<60*60)
+		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minutes",@""),interval/60.0f];
 	else
 		return NSLocalizedString(@"Aucune donnée récente",@"");
 }
