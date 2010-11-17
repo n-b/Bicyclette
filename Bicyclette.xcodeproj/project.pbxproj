@@ -28,6 +28,10 @@
 		37B699E2128EBB0B0053728D /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699E1128EBB0A0053728D /* _Station.m */; };
 		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
 		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
+		37B69FA312947E660053728D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B69FA012947E660053728D /* Default.png */; };
+		37B69FA412947E660053728D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B69FA112947E660053728D /* Icon.png */; };
+		37B69FA512947E660053728D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B69FA212947E660053728D /* Icon@2x.png */; };
+		37B69FB212947F870053728D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B69FB112947F870053728D /* Default@2x.png */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +78,10 @@
 		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		37B69DB01290925B0053728D /* StationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationStatusView.h; sourceTree = "<group>"; };
 		37B69DB11290925B0053728D /* StationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationStatusView.m; sourceTree = "<group>"; };
+		37B69FA012947E660053728D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		37B69FA112947E660053728D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		37B69FA212947E660053728D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		37B69FB112947F870053728D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -144,6 +152,10 @@
 				8D1107310486CEB800E47090 /* Bicyclette-Info.plist */,
 				1D3623240D0F684500981E51 /* BicycletteApplicationDelegate.h */,
 				1D3623250D0F684500981E51 /* BicycletteApplicationDelegate.m */,
+				37B69FA012947E660053728D /* Default.png */,
+				37B69FB112947F870053728D /* Default@2x.png */,
+				37B69FA112947E660053728D /* Icon.png */,
+				37B69FA212947E660053728D /* Icon@2x.png */,
 			);
 			name = App;
 			path = Files;
@@ -273,6 +285,10 @@
 				37149B71126248F5009CDE82 /* StationsVC.xib in Resources */,
 				37149C8612625AE5009CDE82 /* StationCell.xib in Resources */,
 				37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */,
+				37B69FA312947E660053728D /* Default.png in Resources */,
+				37B69FA412947E660053728D /* Icon.png in Resources */,
+				37B69FA512947E660053728D /* Icon@2x.png in Resources */,
+				37B69FB212947F870053728D /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -43,7 +43,16 @@
 {
 	[self.locator start];
 	[self.window addSubview:self.navigationController.view];
-    [self.window makeKeyAndVisible];
+	[self.window makeKeyAndVisible];
+	
+	UIView * fadeView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]] autorelease];
+	[self.window addSubview:fadeView];
+	[UIView beginAnimations:nil context:NULL];
+	fadeView.alpha = 0;
+	fadeView.transform = CGAffineTransformMakeScale(2, 2);
+	[fadeView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
+	[UIView commitAnimations];
+	
 	return YES;
 }
 
