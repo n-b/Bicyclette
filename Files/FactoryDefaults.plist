@@ -4,5 +4,7 @@
 <dict>
 	<key>DatabaseReloadInterval</key>
 	<string>864000</string>
+	<key>DebugRemoveStore</key>
+	<false/>
 </dict>
 </plist>

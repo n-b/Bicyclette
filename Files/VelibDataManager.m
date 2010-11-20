@@ -47,7 +47,12 @@
 		NSError *error = nil;
 		NSURL *storeURL = [NSURL fileURLWithPath: [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"Velib.sqlite"]];
 	
-//		[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
+		if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
+		{
+			NSLog(@"Removing data store");
+			[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
+			[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DebugRemoveStore"];
+		}
 
 		if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
 		{
