@@ -35,6 +35,11 @@
 
 - (void) awakeFromNib
 {
+	// Load Factory Defaults
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithContentsOfFile:
+	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
+	
 	self.dataManager = [[VelibDataManager new] autorelease];
 	self.locator = [[Locator new] autorelease];
 }

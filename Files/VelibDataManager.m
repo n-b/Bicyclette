@@ -72,7 +72,8 @@
 		[createDateRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
 		[createDateRequest setFetchLimit:1];
 		NSDate * createDate = [[[self.moc executeFetchRequest:createDateRequest error:NULL] lastObject] create_date];
-		BOOL needUpdate = (nil==createDate || [createDate timeIntervalSinceNow] < -10.*24.*60.*60.);
+		
+		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"]);
 		if(needUpdate)
 			[self performSelectorInBackground:@selector(updateXML) withObject:nil];
 	}

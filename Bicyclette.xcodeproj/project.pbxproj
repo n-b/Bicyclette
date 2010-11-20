@@ -21,6 +21,7 @@
 		37149C8612625AE5009CDE82 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149C8512625AE5009CDE82 /* StationCell.xib */; };
 		37149C8A12625B94009CDE82 /* UITableViewCell+EasyReuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */; };
 		37216BC712611C5400A2695A /* VelibDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibDataManager.m */; };
+		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A34673128C42E6000A2540 /* SectionHeader.xib */; };
 		37A346AF128C9B3F000A2540 /* Velib.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
@@ -60,6 +61,7 @@
 		37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+EasyReuse.m"; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* VelibDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibDataManager.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibDataManager.m; sourceTree = "<group>"; };
+		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		37A34673128C42E6000A2540 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */ = {isa = PBXFileReference; comments = xmod; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Velib.xcdatamodel; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -71,14 +73,14 @@
 		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		37B69DB01290925B0053728D /* StationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationStatusView.h; sourceTree = "<group>"; };
 		37B69DB11290925B0053728D /* StationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationStatusView.m; sourceTree = "<group>"; };
-		37B69FA012947E660053728D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		37B69FA112947E660053728D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		37B69FA212947E660053728D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		37B69FB112947F870053728D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		37B69FA012947E660053728D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Files/Default.png; sourceTree = "<group>"; };
+		37B69FA112947E660053728D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Files/Icon.png; sourceTree = "<group>"; };
+		37B69FA212947E660053728D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Files/Icon@2x.png"; sourceTree = "<group>"; };
+		37B69FB112947F870053728D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Files/Default@2x.png"; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		8D1107310486CEB800E47090 /* Bicyclette-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bicyclette-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Bicyclette-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Bicyclette-Info.plist"; path = "Files/Bicyclette-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3756EA9B1297F52200113534 /* CoreResources */,
 				29B97315FDCFA39411CA2CEA /* App */,
 				37216A411261087300A2695A /* Model */,
 				080E96DDFE201D6D7F000001 /* UI */,
@@ -141,13 +144,8 @@
 				28A0AAE50D9B0CCF005BE974 /* Bicyclette_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* Bicyclette-Info.plist */,
 				1D3623240D0F684500981E51 /* BicycletteApplicationDelegate.h */,
 				1D3623250D0F684500981E51 /* BicycletteApplicationDelegate.m */,
-				37B69FA012947E660053728D /* Default.png */,
-				37B69FB112947F870053728D /* Default@2x.png */,
-				37B69FA112947E660053728D /* Icon.png */,
-				37B69FA212947E660053728D /* Icon@2x.png */,
 			);
 			name = App;
 			path = Files;
@@ -177,6 +175,19 @@
 			);
 			name = Model;
 			path = Files;
+			sourceTree = "<group>";
+		};
+		3756EA9B1297F52200113534 /* CoreResources */ = {
+			isa = PBXGroup;
+			children = (
+				37B69FA012947E660053728D /* Default.png */,
+				37B69FB112947F870053728D /* Default@2x.png */,
+				37B69FA112947E660053728D /* Icon.png */,
+				37B69FA212947E660053728D /* Icon@2x.png */,
+				8D1107310486CEB800E47090 /* Bicyclette-Info.plist */,
+				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
+			);
+			name = CoreResources;
 			sourceTree = "<group>";
 		};
 		37A346B5128C9D68000A2540 /* Velib */ = {
@@ -267,6 +278,7 @@
 				37B69FA412947E660053728D /* Icon.png in Resources */,
 				37B69FA512947E660053728D /* Icon@2x.png in Resources */,
 				37B69FB212947F870053728D /* Default@2x.png in Resources */,
+				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
