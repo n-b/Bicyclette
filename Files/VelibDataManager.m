@@ -68,7 +68,7 @@
 		[moc setUndoManager:nil];
 		
 		// Find if I need to update
-		NSFetchRequest * createDateRequest = [NSFetchRequest new];
+		NSFetchRequest * createDateRequest = [[NSFetchRequest new] autorelease];
 		[createDateRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
 		[createDateRequest setFetchLimit:1];
 		NSDate * createDate = [[[self.moc executeFetchRequest:createDateRequest error:NULL] lastObject] create_date];
@@ -112,7 +112,7 @@
 	[parser parse];
 	
 	// Remove old stations
-	NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
+	NSFetchRequest * oldStationsRequest = [[NSFetchRequest new] autorelease];
 	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
 	[oldStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"%K != %@",@"create_date",self.parseDate]];
 	NSError * requestError = nil;

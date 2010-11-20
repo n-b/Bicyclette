@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define BicycletteBlue			[UIColor colorWithHue:.61 saturation:.87 brightness:.8 alpha:1]
+#define BicycletteBlue			[UIColor colorWithHue:.61f saturation:.87f brightness:.8f alpha:1]
 #define BicycletteAppDelegate ((BicycletteApplicationDelegate*)[[UIApplication sharedApplication] delegate])
 
 @class VelibDataManager, Locator;

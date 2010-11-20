@@ -35,7 +35,7 @@
 		CGContextFillRect(ctxt, CGRectMake(bubbleWidth*i + 1, 1, bubbleWidth-2, bubbleHeight-2));
 	}
 	
-	CGContextSetFillColorWithColor(ctxt, [UIColor colorWithWhite:.8 alpha:1].CGColor);
+	CGContextSetFillColorWithColor(ctxt, [UIColor colorWithWhite:.8f alpha:1].CGColor);
 	for (int i = self.station.status_availableValue+self.station.status_freeValue; i < self.station.status_totalValue; i++) {
 		CGContextFillRect(ctxt, CGRectMake(bubbleWidth*i + 1, 1, bubbleWidth-2, bubbleHeight-2));
 	}

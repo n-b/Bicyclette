@@ -163,13 +163,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return self.currentFrc.sections.count;
+	return (NSInteger)self.currentFrc.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.currentFrc.sections objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.currentFrc.sections objectAtIndex:(NSUInteger)section];
+    return (NSInteger)[sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,7 +185,7 @@
 		return nil;
 	
 	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
-	sectionTitle.text = [[self.currentFrc.sections objectAtIndex:section] name];
+	sectionTitle.text = [[self.currentFrc.sections objectAtIndex:(NSUInteger)section] name];
 	return sectionTitle;
 }
 
@@ -260,11 +260,11 @@
 	[favorites removeObjectAtIndex:fromIndexPath.row];
 	[favorites insertObject:stationToMove atIndex:toIndexPath.row];
 	
-	for (int i=0; i<[favorites count]; i++)
+	for (NSUInteger i=0; i<[favorites count]; i++)
 	{
 		Station* station = [favorites objectAtIndex:i];
-		if(station.favorite_indexValue!=i+1)
-			station.favorite_indexValue = i+1;
+		if(station.favorite_indexValue!=(NSInteger)i+1)
+			station.favorite_indexValue = (NSInteger)i+1;
 	}
 	self.reordering = NO;
 

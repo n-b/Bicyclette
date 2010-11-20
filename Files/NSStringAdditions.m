@@ -85,10 +85,10 @@
  * Return : float giving password strength between 0.0 and 10.0
  */
 
-- (float)passwordStrength
+- (double)passwordStrength
 {
-	int nbCombinations;
-	float result;
+	unsigned int nbCombinations;
+	double result;
 	nbCombinations = 0;
 	NSCharacterSet * strCheck;
 	NSMutableArray * stringsToTest;

@@ -55,7 +55,7 @@
 		codePostal = [endOfAddress substringToIndex:5];
 	else
 	{
-		char firstChar = [self.number characterAtIndex:0];
+		unichar firstChar = [self.number characterAtIndex:0];
 		switch (firstChar) {
 			case '0': case '1':				// Paris
 				codePostal = [NSString stringWithFormat:@"750%@",[self.number substringToIndex:2]];
@@ -119,19 +119,19 @@
 		[scanner scanUpToString:@"<available>" intoString:NULL];
 		[scanner scanString:@"<available>" intoString:NULL];
 		[scanner scanInt:&tmp];
-		self.status_availableValue = tmp;
+		self.status_availableValue = (short)tmp;
 		[scanner scanUpToString:@"<free>" intoString:NULL];
 		[scanner scanString:@"<free>" intoString:NULL];
 		[scanner scanInt:&tmp];
-		self.status_freeValue = tmp;
+		self.status_freeValue = (short)tmp;
 		[scanner scanUpToString:@"<total>" intoString:NULL];
 		[scanner scanString:@"<total>" intoString:NULL];
 		[scanner scanInt:&tmp];
-		self.status_totalValue = tmp;
+		self.status_totalValue = (short)tmp;
 		[scanner scanUpToString:@"<ticket>" intoString:NULL];
 		[scanner scanString:@"<ticket>" intoString:NULL];
 		[scanner scanInt:&tmp];
-		self.status_ticketValue = tmp;
+		self.status_ticketValue = (BOOL)tmp;
 		self.status_date = [NSDate date];
 	}
 	self.data = nil;

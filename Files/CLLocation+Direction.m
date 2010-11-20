@@ -51,7 +51,7 @@
 
 + (id) directionDescription:(CLLocationDirection)direction
 {
-	int index = fmod(direction+22.5,360)*16/360;
+	NSUInteger index = (NSUInteger)fmod(direction+22.5,360)*16/360;
 	static NSArray * descriptions = nil;
 	if(nil==descriptions)
 		descriptions = [[NSArray alloc] initWithObjects:
@@ -64,7 +64,7 @@
 
 + (id) directionShortDescription:(CLLocationDirection)direction
 {
-	int index = fmod(direction+22.5,360)*16/360;
+	NSUInteger index = (NSUInteger)fmod(direction+22.5,360)*16/360;
 	static NSArray * descriptions = nil;
 	if(nil==descriptions)
 		descriptions = [[NSArray alloc] initWithObjects:

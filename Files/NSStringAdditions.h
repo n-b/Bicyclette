@@ -47,6 +47,6 @@
 /*!
 	@method passwordStrength:
 */
-- (float)passwordStrength;
+- (double)passwordStrength;
 
 @end
