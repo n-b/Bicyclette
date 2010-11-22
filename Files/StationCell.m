@@ -70,7 +70,7 @@
 	self.nameLabel.text = self.station.name;
 	self.addressLabel.text = self.station.address;
 	[self.statusView setNeedsDisplay];
-	self.favoriteButton.backgroundColor = self.station.favorite?BicycletteBlue:[UIColor lightGrayColor];
+	self.favoriteButton.selected = self.station.favorite;
 	
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location];
 }
