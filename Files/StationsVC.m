@@ -16,7 +16,7 @@
 /****************************************************************************/
 #pragma mark Private Methods
 
-@interface StationsVC() <NSFetchedResultsControllerDelegate>
+@interface StationsVC() <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 - (void) updateVisibleStations;
 - (void) appWillTerminate:(NSNotification*) notif;
 @property (nonatomic) BOOL	onlyShowFavorites;
@@ -33,7 +33,7 @@
 #pragma mark -
 
 @implementation StationsVC
-
+@synthesize tableView;
 @synthesize allFrc, favoritesFrc, onlyShowFavorites;
 @synthesize favoritesButton;
 @synthesize reordering;
@@ -102,6 +102,7 @@
 	self.tableView.backgroundColor = [UIColor lightGrayColor];
 	self.tableView.separatorColor = [UIColor lightGrayColor];
 	
+	
 	self.onlyShowFavorites = [[NSUserDefaults standardUserDefaults] boolForKey:@"OnlyShowFavorites"];
 }
 
@@ -137,11 +138,12 @@
 	self.editButtonItem.enabled = self.onlyShowFavorites;
 	if(!self.onlyShowFavorites && self.editing)
 		[self setEditing:NO animated:YES];
-	self.title = self.onlyShowFavorites?NSLocalizedString(@"Favoris",@""):NSLocalizedString(@"Toutes les stations",@"");
+	self.title = self.onlyShowFavorites?NSLocalizedString(@"Favoris",@""):NSLocalizedString(@"Vélib",@"");
 
 	// Change data
 	[self refetch];
 	[self.tableView reloadData];
+	self.tableView.hidden = self.onlyShowFavorites && self.currentFrc.fetchedObjects.count==0;
 }
 
 - (NSFetchedResultsController*) currentFrc
@@ -174,7 +176,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	StationCell * cell = [StationCell reusableCellForTable:tableView];
+	StationCell * cell = [StationCell reusableCellForTable:self.tableView];
 	cell.station = [self.currentFrc objectAtIndexPath:indexPath];
     return cell;
 }
@@ -255,7 +257,7 @@
 	NSAssert(self.onlyShowFavorites,@"can't move a row while not in favorites mode");
 	NSLog(@"end move %@ to %@",fromIndexPath, toIndexPath);
 
-	NSMutableArray *favorites = [NSMutableArray arrayWithArray:[self.currentFrc fetchedObjects]];
+	NSMutableArray *favorites = [NSMutableArray arrayWithArray:self.currentFrc.fetchedObjects];
 	Station* stationToMove = [favorites objectAtIndex:fromIndexPath.row];
 	[favorites removeObjectAtIndex:fromIndexPath.row];
 	[favorites insertObject:stationToMove atIndex:toIndexPath.row];
