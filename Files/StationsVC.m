@@ -199,11 +199,12 @@
 	  newIndexPath:(NSIndexPath *)newIndexPath
 {
 	if(frc!=self.currentFrc) return;
+	if(BicycletteAppDelegate.dataManager.updatingXML) return;
+	if(!self.onlyShowFavorites) return;
 	
 	// Only used for deletion of favorites. The rest is automatic or via kvo in the cell.
 	if (type == NSFetchedResultsChangeDelete)
 	{
-		NSAssert(self.onlyShowFavorites,@"can't delete a row while not in favorites mode!");
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 							  withRowAnimation:UITableViewRowAnimationFade];
 	}

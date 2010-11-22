@@ -115,7 +115,6 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
-	NSLog(@"download response %d %@",response.statusCode,[response allHeaderFields]);
 	if(response.statusCode==200)
 		self.updateData = [NSMutableData data];
 	else
@@ -140,7 +139,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	NSLog(@"download complete");
 	self.updateConnection = nil;
 	[self parseXML:self.updateData];
 	self.updateData = nil;	
@@ -160,21 +158,39 @@
 {
 	self.updatingXML = YES;
 
+	// Save old favorites
+	NSFetchRequest * favoritesRequest = [[NSFetchRequest new] autorelease];
+	[favoritesRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
+	[favoritesRequest setPredicate:[NSPredicate predicateWithFormat:@"favorite_index != -1"]];
+	[favoritesRequest setPropertiesToFetch:[NSArray arrayWithObjects:@"number",@"favorite_index",nil]];
+	[favoritesRequest setResultType:NSDictionaryResultType];
+	NSError * requestError = nil;
+	NSArray * oldFavorites = [self.moc executeFetchRequest:favoritesRequest error:&requestError];
+	NSLog(@"old favorites : %@",oldFavorites);
+	
+	// Remove old stations
+	NSFetchRequest * oldStationsRequest = [[NSFetchRequest new] autorelease];
+	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
+	NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
+	NSLog(@"Removing %d old stations",[oldStations count]);
+	for (Station * oldStation in oldStations) {
+		[self.moc deleteObject:oldStation];
+	}
+	
 	// Parse
 	NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:xml] autorelease];
 	parser.delegate = self;
 	self.parseDate = [NSDate date];
 	[parser parse];
 	
-	// Remove old stations
-	NSFetchRequest * oldStationsRequest = [[NSFetchRequest new] autorelease];
-	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
-	[oldStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"%K != %@",@"create_date",self.parseDate]];
-	NSError * requestError = nil;
-	NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
-	//NSLog(@"Removing %d old stations",[oldStations count]);
-	for (Station * oldStation in oldStations) {
-		[self.moc deleteObject:oldStation];
+	// Restore favorites
+	for (NSDictionary * favoriteEntry in oldFavorites) {
+		Station * station = [[Station fetchStationWithNumber:self.moc number:[favoriteEntry objectForKey:@"number"]] lastObject];
+		NSLog(@"restoring station %@",[favoriteEntry objectForKey:@"number"]);
+		if(nil==station)
+			NSLog(@"Previously favorite station %@ has disappeared",[favoriteEntry objectForKey:@"number"]);
+		else
+			station.favorite_index = [favoriteEntry objectForKey:@"favorite_index"];
 	}
 	
 	// Save
@@ -186,9 +202,7 @@
 {
 	if([elementName isEqualToString:@"marker"])
 	{
-		Station * station = [[Station fetchStationWithNumber:self.moc number:[attributeDict objectForKey:@"number"]] lastObject];
-		if(nil==station)
-			station = [Station insertInManagedObjectContext:self.moc];
+		Station * station = [Station insertInManagedObjectContext:self.moc];
 		station.address = [attributeDict objectForKey:@"address"];
 		station.bonusValue = [[attributeDict objectForKey:@"bonus"] boolValue];
 		station.fullAddress = [attributeDict objectForKey:@"fullAddress"];
