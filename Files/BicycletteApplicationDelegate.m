@@ -25,8 +25,7 @@
 
 @implementation BicycletteApplicationDelegate
 
-@synthesize window;
-@synthesize navigationController;
+@synthesize window, navigationController, notificationView;
 @synthesize dataManager;
 @synthesize locator;
 
@@ -41,6 +40,7 @@
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
 	
 	self.dataManager = [[VelibDataManager new] autorelease];
+	[self.dataManager addObserver:self forKeyPath:@"downloadingUpdate" options:0 context:[BicycletteApplicationDelegate class]];
 	self.locator = [[Locator new] autorelease];
 }
 
@@ -48,6 +48,12 @@
 {
 	[self.locator start];
 	[self.window addSubview:self.navigationController.view];
+
+	// notification view
+	self.notificationView.alpha = 0.f;
+	self.notificationView.layer.cornerRadius = 10;
+	[self.window addSubview:self.notificationView];
+	self.notificationView.center = self.window.center;
 	[self.window makeKeyAndVisible];
 	
 	UIView * fadeView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]] autorelease];
@@ -64,9 +70,24 @@
 - (void)dealloc {
 	self.window = nil;
 	self.navigationController = nil;
+	self.notificationView = nil;
+	[self.dataManager removeObserver:self forKeyPath:@"downloadingUpdate"];
 	self.dataManager = nil;
 	self.locator = nil;
 	[super dealloc];
+}
+
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == [BicycletteApplicationDelegate class]) {
+		[UIView beginAnimations:nil context:NULL];
+		self.notificationView.alpha = self.dataManager.downloadingUpdate?1.f:0.f;
+		[UIView commitAnimations];
+	}
+	else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
 }
 
 @end

@@ -23,6 +23,7 @@
 @property (readonly, nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (readonly, nonatomic, retain) NSManagedObjectContext *moc;
 
+@property (readonly) BOOL downloadingUpdate;
 @property (readonly) BOOL updatingXML;
 
 - (void) save;

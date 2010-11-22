@@ -17,6 +17,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UIView *notificationView;
 
 @property (nonatomic, retain, readonly) VelibDataManager * dataManager;
 @property (nonatomic, retain, readonly) Locator * locator;

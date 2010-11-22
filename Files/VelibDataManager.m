@@ -24,6 +24,10 @@
 @property BOOL updatingXML;
 @property (nonatomic, retain) NSDate *parseDate;
 - (void) updateXML;
+
+@property (nonatomic, retain) NSURLConnection * updateConnection;
+@property (nonatomic, retain) NSMutableData * updateData;
+- (void) parseXML:(NSData*)xml;
 @end
 
 /****************************************************************************/
@@ -32,7 +36,7 @@
 @implementation VelibDataManager
 
 @synthesize mom, psc, moc;
-@synthesize updatingXML, parseDate;
+@synthesize updatingXML, updateConnection, updateData, parseDate;
 
 - (id) init
 {
@@ -80,7 +84,7 @@
 		
 		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"]);
 		if(needUpdate)
-			[self performSelectorInBackground:@selector(updateXML) withObject:nil];
+			[self performSelector:@selector(updateXML) withObject:nil afterDelay:0];
 	}
 	return self;
 }
@@ -92,6 +96,10 @@
 	self.psc = nil;
 	self.moc = nil;
 	self.parseDate = nil;
+	
+	[self.updateConnection cancel];
+	self.updateConnection = nil;
+	self.updateData = nil;
 	[super dealloc];
 }
 
@@ -100,10 +108,52 @@
 
 - (void) updateXML
 {
-	NSAutoreleasePool * pool = [NSAutoreleasePool new];
-	NSData * xml = [NSData dataWithContentsOfURL:[NSURL URLWithString:kVelibStationsListURL]];
-	[self performSelectorOnMainThread:@selector(parseXML:) withObject:xml waitUntilDone:NO];
-	[pool release];
+	NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kVelibStationsListURL]];
+	self.updateConnection = [NSURLConnection connectionWithRequest:request
+														  delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
+{
+	NSLog(@"download response %d %@",response.statusCode,[response allHeaderFields]);
+	if(response.statusCode==200)
+		self.updateData = [NSMutableData data];
+	else
+	{
+		[self.updateConnection cancel];
+		self.updateConnection = nil;
+	}
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	[self.updateData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	NSLog(@"download failed %@",error);
+	[self.updateConnection cancel];
+	self.updateConnection = nil;
+	self.updateData = nil;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+	NSLog(@"download complete");
+	self.updateConnection = nil;
+	[self parseXML:self.updateData];
+	self.updateData = nil;	
+}
+
++ (NSSet*) keyPathsForValuesAffectingDownloadingUpdate
+{
+	return [NSSet setWithObject:@"updateConnection"];
+}
+
+- (BOOL) downloadingUpdate
+{
+	return self.updateConnection!=nil;
 }
 
 - (void) parseXML:(NSData*)xml
