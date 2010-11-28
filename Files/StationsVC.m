@@ -117,7 +117,7 @@
 {
     [super viewDidAppear:animated];
 	[self.tableView flashScrollIndicators];
-	[self updateVisibleStations];
+	[self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:0.5];
 }
 
 /****************************************************************************/
