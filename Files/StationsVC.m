@@ -233,6 +233,12 @@
 	return item;
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+	[super setEditing:editing animated:animated];
+	[self.tableView setEditing:editing animated:animated];
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return self.onlyShowFavorites;
