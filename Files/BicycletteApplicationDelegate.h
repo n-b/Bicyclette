@@ -16,11 +16,14 @@
 @interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) IBOutlet UIView *notificationView;
 
 @property (nonatomic, retain, readonly) VelibDataManager * dataManager;
 @property (nonatomic, retain, readonly) Locator * locator;
 
+- (IBAction) toolbarDidChange;
 @end
 

@@ -25,7 +25,7 @@
 
 @implementation BicycletteApplicationDelegate
 
-@synthesize window, navigationController, notificationView;
+@synthesize window, tabBarController, toolbar, segmentedControl, notificationView;
 @synthesize dataManager;
 @synthesize locator;
 
@@ -47,8 +47,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self.locator start];
-	[self.window addSubview:self.navigationController.view];
-
+	[self.window insertSubview:self.tabBarController.view belowSubview:self.toolbar];
+	
+	// Hide the tabbar, the toolbar's segmented control is used instead
+	self.tabBarController.tabBar.hidden = YES;
+	UIView * contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+	contentView.frame = [[UIScreen mainScreen] bounds];
+	
+	self.tabBarController.selectedIndex = self.segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedView"];
+	
 	// notification view
 	self.notificationView.alpha = 0.f;
 	self.notificationView.layer.cornerRadius = 10;
@@ -67,9 +74,15 @@
 	return YES;
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedView"];
+}
+
 - (void)dealloc {
 	self.window = nil;
-	self.navigationController = nil;
+	self.tabBarController = nil;
+	self.toolbar = nil;
 	self.notificationView = nil;
 	[self.dataManager removeObserver:self forKeyPath:@"downloadingUpdate"];
 	self.dataManager = nil;
@@ -77,6 +90,13 @@
 	[super dealloc];
 }
 
+- (IBAction) toolbarDidChange
+{
+	self.tabBarController.selectedIndex = (NSUInteger)self.segmentedControl.selectedSegmentIndex;
+}
+
+/****************************************************************************/
+#pragma mark -
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {

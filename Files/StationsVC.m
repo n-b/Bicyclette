@@ -35,7 +35,7 @@
 @implementation StationsVC
 @synthesize tableView;
 @synthesize allFrc, favoritesFrc, onlyShowFavorites;
-@synthesize favoritesButton;
+//@synthesize favoritesButton;
 @synthesize reordering;
 
 /****************************************************************************/
@@ -81,7 +81,6 @@
 - (void) appWillTerminate:(NSNotification*) notif
 {
 	[[NSUserDefaults standardUserDefaults] setFloat:self.tableView.contentOffset.y forKey:@"TableOffset"];
-	[[NSUserDefaults standardUserDefaults] setBool:self.onlyShowFavorites forKey:@"OnlyShowFavorites"];
 }
 
 - (void) dealloc
@@ -102,8 +101,8 @@
 	self.tableView.backgroundColor = [UIColor lightGrayColor];
 	self.tableView.separatorColor = [UIColor lightGrayColor];
 	
-	
-	self.onlyShowFavorites = [[NSUserDefaults standardUserDefaults] boolForKey:@"OnlyShowFavorites"];
+	self.onlyShowFavorites = NO;
+//	self.onlyShowFavorites = [[NSUserDefaults standardUserDefaults] boolForKey:@"OnlyShowFavorites"];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -123,18 +122,18 @@
 /****************************************************************************/
 #pragma mark Actions
 
-- (IBAction) toggleFavorites
-{
-	self.onlyShowFavorites = !self.onlyShowFavorites;
-	[self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:0.5];
-}
+//- (IBAction) toggleFavorites
+//{
+//	self.onlyShowFavorites = !self.onlyShowFavorites;
+//	[self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:0.5];
+//}
 
 - (void) setOnlyShowFavorites:(BOOL)newValue
 {
 	onlyShowFavorites = newValue;
 
 	// Change UI
-	self.favoritesButton.style = self.onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStyleBordered;	
+//	self.favoritesButton.style = self.onlyShowFavorites?UIBarButtonItemStyleDone:UIBarButtonItemStyleBordered;	
 	self.editButtonItem.enabled = self.onlyShowFavorites;
 	if(!self.onlyShowFavorites && self.editing)
 		[self setEditing:NO animated:YES];
@@ -304,3 +303,11 @@
 
 @end
 
+
+@implementation FavoriteStationsVC
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	self.onlyShowFavorites = YES;
+}
+@end

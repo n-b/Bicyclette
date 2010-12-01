@@ -70,7 +70,7 @@
 					<object class="IBUITableView" id="873029372">
 						<reference key="NSNextResponder" ref="373687530"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 480}</string>
+						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="373687530"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="20607075">
 							<int key="NSColorSpace">3</int>
@@ -87,13 +87,13 @@
 							<bool key="IBUIPrompted">NO</bool>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<double key="IBUIContentInset.top">64</double>
-						<double key="IBUIContentInset.bottom">0.0</double>
+						<double key="IBUIContentInset.top">20</double>
+						<double key="IBUIContentInset.bottom">44</double>
 						<double key="IBUIContentInset.left">0.0</double>
 						<double key="IBUIContentInset.right">0.0</double>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
-						<double key="IBUIScrollIndicatorInsets.top">64</double>
-						<double key="IBUIScrollIndicatorInsets.bottom">0.0</double>
+						<double key="IBUIScrollIndicatorInsets.top">20</double>
+						<double key="IBUIScrollIndicatorInsets.bottom">44</double>
 						<double key="IBUIScrollIndicatorInsets.left">0.0</double>
 						<double key="IBUIScrollIndicatorInsets.right">0.0</double>
 						<int key="IBUIIndicatorStyle">1</int>
@@ -105,15 +105,14 @@
 						<float key="IBUISectionFooterHeight">22</float>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 480}</string>
+				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="20607075"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">1</int>
 				</object>
-				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+				<object class="IBUISimulatedToolbarMetrics" key="IBUISimulatedBottomBarMetrics">
 					<int key="IBUIBarStyle">2</int>
-					<bool key="IBUIPrompted">NO</bool>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -223,7 +222,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAADAAAAAxDSAAA</bytes>
 					</object>
-					<string>{{378, 254}, {320, 480}}</string>
+					<string>{{457, 143}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
