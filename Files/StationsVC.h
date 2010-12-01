@@ -20,3 +20,11 @@
 
 @interface AllStationsVC : StationsVC
 @end
+
+@class Region;
+
+@interface RegionStationsVC : StationsVC
+@property (nonatomic, readonly, retain) Region * region;
++ (id) stationsVCWithRegion:(Region*)region;
+- (id) initWithRegion:(Region*)region;
+@end

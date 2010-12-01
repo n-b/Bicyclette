@@ -12,6 +12,7 @@
 #import "StationCell.h"
 #import "UITableViewCell+EasyReuse.h"
 #import "Station.h"
+#import "Region.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -20,6 +21,7 @@
 - (void) updateVisibleStations;
 - (void) applicationWillTerminate:(NSNotification*) notif;
 - (void) refetch;
+- (void) commonInit;
 @end
 
 /****************************************************************************/
@@ -32,7 +34,23 @@
 /****************************************************************************/
 #pragma mark Object Life Cycle
 
-- (void) awakeFromNib
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self != nil) 
+		[self commonInit];
+	return self;
+}
+
+- (id) initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self != nil) 
+		[self commonInit];
+	return self;
+}
+
+- (void) commonInit
 {
 	// Observe app termination
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
@@ -67,6 +85,8 @@
 	
 	NSNumber * offset = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"TableOffsetFor%@",[self class]]];
 	if(offset) self.tableView.contentOffset = CGPointMake(0, [offset floatValue]);
+
+	[self refetch];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -103,6 +123,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return self.frc.sections.count;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
+	sectionTitle.text = [[self.frc.sections objectAtIndex:(NSUInteger)section] name];
+	return sectionTitle;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
@@ -166,20 +193,20 @@
 @implementation FavoriteStationsVC
 @synthesize reordering;
 
-- (void) awakeFromNib
+- (void) commonInit
 {
-	[super awakeFromNib];
+	[super commonInit];
 	self.title = NSLocalizedString(@"Favoris",@"");
 
 	NSFetchRequest * favoritesRequest = [[NSFetchRequest new] autorelease];
 	[favoritesRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
 	[favoritesRequest setPredicate:[NSPredicate predicateWithFormat:@"favorite_index != -1"]];
 	[favoritesRequest setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"favorite_index" ascending:YES] autorelease]]];
-	self.frc = [[NSFetchedResultsController alloc]
-				initWithFetchRequest:favoritesRequest
-				managedObjectContext:BicycletteAppDelegate.dataManager.moc
-				sectionNameKeyPath:nil
-				cacheName:nil];
+	self.frc = [[[NSFetchedResultsController alloc]
+				 initWithFetchRequest:favoritesRequest
+				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+				 sectionNameKeyPath:nil
+				 cacheName:nil] autorelease];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -271,9 +298,9 @@
 /****************************************************************************/
 
 @implementation AllStationsVC : StationsVC
-- (void) awakeFromNib
+- (void) commonInit
 {
-	[super awakeFromNib];
+	[super commonInit];
 	self.title = NSLocalizedString(@"Vélib",@"");
 
 	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
@@ -282,23 +309,57 @@
 									[[[NSSortDescriptor alloc] initWithKey:@"region.name" ascending:YES] autorelease],
 									[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],
 									nil]];
-	self.frc = [[NSFetchedResultsController alloc]
-				initWithFetchRequest:allRequest
-				managedObjectContext:BicycletteAppDelegate.dataManager.moc
-				sectionNameKeyPath:@"region.name"
-				cacheName:@"velib_sections_cache"];
+	self.frc = [[[NSFetchedResultsController alloc]
+				 initWithFetchRequest:allRequest
+				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+				 sectionNameKeyPath:@"region.name"
+				 cacheName:@"velib_sections_cache"] autorelease];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+@end
+
+/****************************************************************************/
+#pragma mark RegionStationsVC
+/****************************************************************************/
+@interface RegionStationsVC()
+@property (nonatomic, retain) Region * region;
+@end
+
+@implementation RegionStationsVC : StationsVC
+@synthesize region;
++ (id) stationsVCWithRegion:(Region*)aregion
 {
-	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
-	sectionTitle.text = [[self.frc.sections objectAtIndex:(NSUInteger)section] name];
-	return sectionTitle;
+	return [[[self alloc] initWithRegion:aregion] autorelease];
 }
 
-- (void) viewDidLoad
+- (id) initWithRegion:(Region*)aregion
 {
-	[super viewDidLoad];
-	[self refetch];
+	self = [super initWithNibName:nil bundle:nil];
+	if (self != nil) 
+		self.region = aregion;
+	return self;
 }
+
+- (void) commonInit
+{
+	[super commonInit];
+	self.title = self.region.longName;
+	
+	NSFetchRequest * regionStationsRequest = [[NSFetchRequest new] autorelease];
+	[regionStationsRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	[regionStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"region == %@",self.region]];
+	[regionStationsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],nil]];
+	self.frc = [[[NSFetchedResultsController alloc]
+				 initWithFetchRequest:regionStationsRequest
+				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+				 sectionNameKeyPath:nil
+				 cacheName:nil] autorelease];
+}
+
+- (void) dealloc
+{
+	self.region = nil;
+	[super dealloc];
+}
+
 @end
