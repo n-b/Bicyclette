@@ -36,18 +36,15 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	self = [super initWithNibName:@"StationsVC" bundle:nibBundleOrNil];
 	if (self != nil) 
 		[self commonInit];
 	return self;
 }
 
-- (id) initWithCoder:(NSCoder *)aDecoder
+- (void) awakeFromNib
 {
-	self = [super initWithCoder:aDecoder];
-	if (self != nil) 
-		[self commonInit];
-	return self;
+	[self commonInit];
 }
 
 - (void) commonInit
@@ -55,6 +52,7 @@
 	// Observe app termination
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
+	self.wantsFullScreenLayout = YES;
 }
 
 - (void) applicationWillTerminate:(NSNotification*) notif
@@ -120,16 +118,9 @@
 /****************************************************************************/
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return self.frc.sections.count;
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
-	sectionTitle.text = [[self.frc.sections objectAtIndex:(NSUInteger)section] name];
-	return sectionTitle;
+	return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
@@ -207,11 +198,6 @@
 				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
 				 sectionNameKeyPath:nil
 				 cacheName:nil] autorelease];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-	return nil;
 }
 
 /****************************************************************************/
@@ -316,6 +302,18 @@
 				 cacheName:@"velib_sections_cache"] autorelease];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return self.frc.sections.count;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
+	sectionTitle.text = [[self.frc.sections objectAtIndex:(NSUInteger)section] name];
+	return sectionTitle;
+}
+
 @end
 
 /****************************************************************************/
@@ -336,24 +334,21 @@
 {
 	self = [super initWithNibName:nil bundle:nil];
 	if (self != nil) 
+	{
 		self.region = aregion;
+		self.title = self.region.longName;
+		
+		NSFetchRequest * regionStationsRequest = [[NSFetchRequest new] autorelease];
+		[regionStationsRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+		[regionStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"region == %@",self.region]];
+		[regionStationsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],nil]];
+		self.frc = [[[NSFetchedResultsController alloc]
+					 initWithFetchRequest:regionStationsRequest
+					 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+					 sectionNameKeyPath:nil
+					 cacheName:nil] autorelease];
+	}
 	return self;
-}
-
-- (void) commonInit
-{
-	[super commonInit];
-	self.title = self.region.longName;
-	
-	NSFetchRequest * regionStationsRequest = [[NSFetchRequest new] autorelease];
-	[regionStationsRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
-	[regionStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"region == %@",self.region]];
-	[regionStationsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],nil]];
-	self.frc = [[[NSFetchedResultsController alloc]
-				 initWithFetchRequest:regionStationsRequest
-				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
-				 sectionNameKeyPath:nil
-				 cacheName:nil] autorelease];
 }
 
 - (void) dealloc

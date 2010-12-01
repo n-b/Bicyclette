@@ -14,6 +14,11 @@
 @synthesize nameLabel, countLabel;
 @synthesize region;
 
+- (void) awakeFromNib
+{
+	self.countLabel.layer.cornerRadius = 10;
+}
+
 - (void)dealloc {
 	self.region = nil;
     [super dealloc];

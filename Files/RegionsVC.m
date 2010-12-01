@@ -51,6 +51,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.tableView.scrollIndicatorInsets = self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0); // Setting not honored in the xib
+	
 	NSError * fetchError = nil;
 	[self.frc performFetch:&fetchError];
 	if(fetchError)
