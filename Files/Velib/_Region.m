@@ -29,7 +29,14 @@
 
 
 
-@dynamic code_postal;
+@dynamic name;
+
+
+
+
+
+
+@dynamic longName;
 
 
 
@@ -52,9 +59,9 @@
 
 
 
-+ (NSArray*)fetchRegionWithCodePostal:(NSManagedObjectContext*)moc_ code_postal:(NSString*)code_postal_ {
++ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ {
 	NSError *error = nil;
-	NSArray *result = [self fetchRegionWithCodePostal:moc_ code_postal:code_postal_ error:&error];
+	NSArray *result = [self fetchRegionWithName:moc_ name:name_ error:&error];
 	if (error) {
 #if TARGET_OS_IPHONE
 		NSLog(@"error: %@", error);
@@ -64,7 +71,7 @@
 	}
 	return result;
 }
-+ (NSArray*)fetchRegionWithCodePostal:(NSManagedObjectContext*)moc_ code_postal:(NSString*)code_postal_ error:(NSError**)error_ {
++ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
 	
@@ -72,13 +79,13 @@
 	
 	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
 														
-														code_postal_, @"code_postal",
+														name_, @"name",
 														
 														nil];
 										
-	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"regionWithCodePostal"
+	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"regionWithName"
 													 substitutionVariables:substitutionVariables];
-	NSAssert(fetchRequest, @"Can't find fetch request named \"regionWithCodePostal\".");
+	NSAssert(fetchRequest, @"Can't find fetch request named \"regionWithName\".");
 	
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;

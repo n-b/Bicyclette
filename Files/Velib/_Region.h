@@ -8,6 +8,7 @@
 
 
 
+
 @interface RegionID : NSManagedObjectID {}
 @end
 
@@ -19,9 +20,15 @@
 
 
 
-@property (nonatomic, retain) NSString *code_postal;
+@property (nonatomic, retain) NSString *name;
 
-//- (BOOL)validateCode_postal:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *longName;
+
+//- (BOOL)validateLongName:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -32,8 +39,8 @@
 
 
 
-+ (NSArray*)fetchRegionWithCodePostal:(NSManagedObjectContext*)moc_ code_postal:(NSString*)code_postal_ ;
-+ (NSArray*)fetchRegionWithCodePostal:(NSManagedObjectContext*)moc_ code_postal:(NSString*)code_postal_ error:(NSError**)error_;
++ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ ;
++ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ error:(NSError**)error_;
 
 
 
@@ -50,8 +57,12 @@
 
 @interface _Region (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveCode_postal;
-- (void)setPrimitiveCode_postal:(NSString*)value;
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
+- (NSString*)primitiveLongName;
+- (void)setPrimitiveLongName:(NSString*)value;
 
 
 
