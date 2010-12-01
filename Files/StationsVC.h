@@ -7,19 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <CoreData/CoreData.h>
 
 @interface StationsVC : UIViewController
-
 @property (nonatomic, assign) IBOutlet UITableView * tableView;
-
+@property (nonatomic, retain) NSFetchedResultsController *frc;
 @end
 
 
 @interface FavoriteStationsVC : StationsVC
-
 @end
 
 @interface AllStationsVC : StationsVC
-
 @end
