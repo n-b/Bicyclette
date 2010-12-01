@@ -18,7 +18,7 @@
 
 @interface StationsVC() <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 - (void) updateVisibleStations;
-- (void) appWillTerminate:(NSNotification*) notif;
+- (void) applicationWillTerminate:(NSNotification*) notif;
 @property (nonatomic) BOOL	onlyShowFavorites;
 @property (nonatomic, retain) NSFetchedResultsController *allFrc;
 @property (nonatomic, retain) NSFetchedResultsController *favoritesFrc;
@@ -35,7 +35,6 @@
 @implementation StationsVC
 @synthesize tableView;
 @synthesize allFrc, favoritesFrc, onlyShowFavorites;
-//@synthesize favoritesButton;
 @synthesize reordering;
 
 /****************************************************************************/
@@ -69,18 +68,13 @@
 	self.favoritesFrc.delegate = self;		
 	
 	// Observe app termination
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:)
-												 name:UIApplicationWillTerminateNotification
-											   object:[UIApplication sharedApplication]];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:)
-												 name:UIApplicationWillResignActiveNotification
-											   object:[UIApplication sharedApplication]];
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
 }
 
-- (void) appWillTerminate:(NSNotification*) notif
+- (void) applicationWillTerminate:(NSNotification*) notif
 {
-	[[NSUserDefaults standardUserDefaults] setFloat:self.tableView.contentOffset.y forKey:@"TableOffset"];
+	[[NSUserDefaults standardUserDefaults] setFloat:self.tableView.contentOffset.y forKey:[NSString stringWithFormat:@"TableOffsetFor%@",[self class]]];
 }
 
 - (void) dealloc
@@ -108,7 +102,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	NSNumber * offset = [[NSUserDefaults standardUserDefaults] objectForKey:@"TableOffset"];
+	NSNumber * offset = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"TableOffsetFor%@",[self class]]];
 	if(offset) self.tableView.contentOffset = CGPointMake(0, [offset floatValue]);
 }
 

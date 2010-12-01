@@ -13,12 +13,13 @@
 
 @property (nonatomic, assign) IBOutlet UITableView * tableView;
 
-//@property (nonatomic, assign) IBOutlet UIBarButtonItem * favoritesButton;
-//- (IBAction) toggleFavorites;
-
 @end
 
 
 @interface FavoriteStationsVC : StationsVC
+
+@end
+
+@interface AllStationsVC : StationsVC
 
 @end

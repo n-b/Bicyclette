@@ -54,7 +54,7 @@
 	UIView * contentView = [self.tabBarController.view.subviews objectAtIndex:0];
 	contentView.frame = [[UIScreen mainScreen] bounds];
 	
-	self.tabBarController.selectedIndex = self.segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedView"];
+	self.tabBarController.selectedIndex = self.segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"OnlyShowFavorites"];
 	
 	// notification view
 	self.notificationView.alpha = 0.f;
@@ -76,7 +76,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedView"];
+	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"OnlyShowFavorites"];
 }
 
 - (void)dealloc {
