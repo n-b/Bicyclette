@@ -4,7 +4,7 @@
 #import <CoreData/CoreData.h>
 
 
-
+@class Region;
 
 
 
@@ -30,12 +30,6 @@
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (StationID*)objectID;
-
-
-
-@property (nonatomic, retain) NSString *fullAddress;
-
-//- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -153,9 +147,9 @@
 
 
 
-@property (nonatomic, retain) NSString *code_postal;
+@property (nonatomic, retain) NSString *fullAddress;
 
-//- (BOOL)validateCode_postal:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -166,9 +160,15 @@
 
 
 
+@property (nonatomic, retain) Region* region;
+//- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
+
+
+
 
 + (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ ;
 + (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_;
+
 
 
 @end
@@ -178,10 +178,6 @@
 @end
 
 @interface _Station (CoreDataGeneratedPrimitiveAccessors)
-
-- (NSString*)primitiveFullAddress;
-- (void)setPrimitiveFullAddress:(NSString*)value;
-
 
 - (NSNumber*)primitiveStatus_ticket;
 - (void)setPrimitiveStatus_ticket:(NSNumber*)value;
@@ -262,13 +258,18 @@
 - (void)setPrimitiveName:(NSString*)value;
 
 
-- (NSString*)primitiveCode_postal;
-- (void)setPrimitiveCode_postal:(NSString*)value;
+- (NSString*)primitiveFullAddress;
+- (void)setPrimitiveFullAddress:(NSString*)value;
 
 
 - (NSString*)primitiveNumber;
 - (void)setPrimitiveNumber:(NSString*)value;
 
+
+
+
+- (Region*)primitiveRegion;
+- (void)setPrimitiveRegion:(Region*)value;
 
 
 @end

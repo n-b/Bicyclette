@@ -40,6 +40,8 @@
 		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
+		37E37E9212A6F5D500D7AB57 /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37E9112A6F5D500D7AB57 /* _Region.m */; };
+		37E37E9512A6F5D500D7AB57 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37E9412A6F5D500D7AB57 /* Region.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +80,7 @@
 		3756EAE21298018A00113534 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		37A34673128C42E6000A2540 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
-		37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */ = {isa = PBXFileReference; comments = xmod; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Velib.xcdatamodel; sourceTree = "<group>"; };
+		37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */ = {isa = PBXFileReference; comments = "xmod\n--log-command\n"; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Velib.xcdatamodel; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37B699DE128EBB0A0053728D /* Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
 		37B699E0128EBB0A0053728D /* Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
@@ -91,6 +93,10 @@
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		37E37E9012A6F5D500D7AB57 /* _Region.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Region.h; sourceTree = "<group>"; };
+		37E37E9112A6F5D500D7AB57 /* _Region.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
+		37E37E9312A6F5D500D7AB57 /* Region.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
+		37E37E9412A6F5D500D7AB57 /* Region.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +228,10 @@
 				37B699E0128EBB0A0053728D /* Station.h */,
 				37B699E1128EBB0A0053728D /* _Station.m */,
 				37B699E3128EBB0B0053728D /* _Station.h */,
+				37E37E9012A6F5D500D7AB57 /* _Region.h */,
+				37E37E9112A6F5D500D7AB57 /* _Region.m */,
+				37E37E9312A6F5D500D7AB57 /* Region.h */,
+				37E37E9412A6F5D500D7AB57 /* Region.m */,
 			);
 			path = Velib;
 			sourceTree = "<group>";
@@ -333,6 +343,8 @@
 				37B699E2128EBB0B0053728D /* _Station.m in Sources */,
 				37B69C2A129034D90053728D /* Locator.m in Sources */,
 				37B69DB21290925B0053728D /* StationStatusView.m in Sources */,
+				37E37E9212A6F5D500D7AB57 /* _Region.m in Sources */,
+				37E37E9512A6F5D500D7AB57 /* Region.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

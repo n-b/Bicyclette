@@ -1,6 +1,7 @@
 #import "Station.h"
 #import "NSStringAdditions.h"
 #import "VelibDataManager.h"
+#import "Region.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -53,7 +54,7 @@
 	NSString * codePostal = nil;
 	if(endOfAddress.length>=5)
 		codePostal = [endOfAddress substringToIndex:5];
-	else
+	if(nil==codePostal || [codePostal isEqualToString:@"75000"])
 	{
 		unichar firstChar = [self.number characterAtIndex:0];
 		switch (firstChar) {
@@ -71,7 +72,14 @@
 		NSLog(@"endOfAddress \"%@\" trop court, %@, trouvé %@",endOfAddress, self.name, codePostal);
 	}
 	NSAssert1([codePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",codePostal);
-	self.code_postal = codePostal;	
+	
+	Region * region = [[Region fetchRegionWithCodePostal:self.managedObjectContext code_postal:codePostal] lastObject];
+	if(nil==region)
+	{
+		region = [Region insertInManagedObjectContext:self.managedObjectContext];
+		region.code_postal = codePostal;
+	}
+	self.region = region;
 }
 
 /****************************************************************************/

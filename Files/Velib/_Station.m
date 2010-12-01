@@ -29,13 +29,6 @@
 
 
 
-@dynamic fullAddress;
-
-
-
-
-
-
 @dynamic status_ticket;
 
 
@@ -298,7 +291,7 @@
 
 
 
-@dynamic code_postal;
+@dynamic fullAddress;
 
 
 
@@ -309,6 +302,12 @@
 
 
 
+
+
+
+@dynamic region;
+
+	
 
 
 

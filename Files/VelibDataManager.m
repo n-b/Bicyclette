@@ -55,7 +55,7 @@
 		{
 			NSLog(@"Removing data store");
 			[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-			[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DebugRemoveStore"];
+//			[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DebugRemoveStore"];
 		}
 
 		if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])

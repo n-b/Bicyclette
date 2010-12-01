@@ -279,13 +279,13 @@
 	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
 	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
 	[allRequest setSortDescriptors:[NSArray arrayWithObjects:
-									[[[NSSortDescriptor alloc] initWithKey:@"code_postal" ascending:YES] autorelease],
+									[[[NSSortDescriptor alloc] initWithKey:@"region.code_postal" ascending:YES] autorelease],
 									[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],
 									nil]];
 	self.frc = [[NSFetchedResultsController alloc]
 				initWithFetchRequest:allRequest
 				managedObjectContext:BicycletteAppDelegate.dataManager.moc
-				sectionNameKeyPath:@"code_postal"
+				sectionNameKeyPath:@"region.code_postal"
 				cacheName:@"velib_sections_cache"];
 }
 
