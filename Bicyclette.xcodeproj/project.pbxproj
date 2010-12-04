@@ -46,6 +46,9 @@
 		37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */; };
 		37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37F7812A7022F00D7AB57 /* RegionCell.m */; };
 		37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E37F7A12A7023E00D7AB57 /* RegionCell.xib */; };
+		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
+		37E9531812AA29FB00C1D21C /* MapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E9531612AA29FB00C1D21C /* MapVC.xib */; };
+		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +110,10 @@
 		37E37F7712A7022F00D7AB57 /* RegionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionCell.h; sourceTree = "<group>"; };
 		37E37F7812A7022F00D7AB57 /* RegionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionCell.m; sourceTree = "<group>"; };
 		37E37F7A12A7023E00D7AB57 /* RegionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCell.xib; sourceTree = "<group>"; };
+		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
+		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
+		37E9531612AA29FB00C1D21C /* MapVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVC.xib; sourceTree = "<group>"; };
+		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +126,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */,
 				37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */,
+				37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,12 +145,15 @@
 				37149B6D126248F5009CDE82 /* StationsVC.h */,
 				37149B6E126248F5009CDE82 /* StationsVC.m */,
 				37149B6F126248F5009CDE82 /* StationsVC.xib */,
+				37A34673128C42E6000A2540 /* SectionHeader.xib */,
 				37149C8212625AD7009CDE82 /* StationCell.h */,
 				37149C8312625AD7009CDE82 /* StationCell.m */,
 				37149C8512625AE5009CDE82 /* StationCell.xib */,
-				37A34673128C42E6000A2540 /* SectionHeader.xib */,
 				37B69DB01290925B0053728D /* StationStatusView.h */,
 				37B69DB11290925B0053728D /* StationStatusView.m */,
+				37E9531412AA29FB00C1D21C /* MapVC.h */,
+				37E9531512AA29FB00C1D21C /* MapVC.m */,
+				37E9531612AA29FB00C1D21C /* MapVC.xib */,
 			);
 			name = UI;
 			path = Files;
@@ -192,6 +203,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				37A3471B128CA48C000A2540 /* CoreData.framework */,
+				37E9532C12AA2BE000C1D21C /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -337,6 +349,7 @@
 				3756EB5C1298085B00113534 /* Settings.bundle in Resources */,
 				37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */,
 				37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */,
+				37E9531812AA29FB00C1D21C /* MapVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +378,7 @@
 				37E37E9512A6F5D500D7AB57 /* Region.m in Sources */,
 				37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */,
 				37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */,
+				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

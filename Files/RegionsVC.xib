@@ -44,7 +44,7 @@
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
+					<bytes key="NSWhite">MCAwAA</bytes>
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
@@ -137,7 +137,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>RegionsVC</string>
 					<string>UIResponder</string>
-					<string>{{328, 504}, {320, 480}}</string>
+					<string>{{55, 59}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
