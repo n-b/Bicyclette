@@ -20,6 +20,7 @@
 @interface StationsVC() <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 - (void) updateVisibleStations;
 - (void) applicationWillTerminate:(NSNotification*) notif;
+- (void) applicationDidBecomeActive:(NSNotification*) notif;
 - (void) refetch;
 - (void) commonInit;
 @end
@@ -51,13 +52,18 @@
 {
 	// Observe app termination
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
 	self.wantsFullScreenLayout = YES;
 }
 
 - (void) applicationWillTerminate:(NSNotification*) notif
 {
 	[[NSUserDefaults standardUserDefaults] setFloat:self.tableView.contentOffset.y forKey:[NSString stringWithFormat:@"TableOffsetFor%@",[self class]]];
+}
+
+- (void) applicationDidBecomeActive:(NSNotification*) notif
+{
+	[self updateVisibleStations];
 }
 
 - (void) dealloc
