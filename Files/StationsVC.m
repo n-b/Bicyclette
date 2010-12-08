@@ -30,6 +30,7 @@
 
 @implementation StationsVC
 @synthesize tableView;
+@synthesize noFavoriteLabel;
 @synthesize frc;
 
 /****************************************************************************/
@@ -183,11 +184,10 @@
 /****************************************************************************/
 
 @interface FavoriteStationsVC()
-@property BOOL reordering;
+- (void) refreshLabelAnimated:(BOOL)animated;
 @end
 
 @implementation FavoriteStationsVC
-@synthesize reordering;
 
 - (void) commonInit
 {
@@ -215,7 +215,25 @@
 	if(BicycletteAppDelegate.dataManager.updatingXML) return;
 	
 	if (type == NSFetchedResultsChangeDelete)
+	{
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[self refreshLabelAnimated:YES];
+	}
+}
+
+/****************************************************************************/
+#pragma mark No Favorite Label
+
+- (void) refreshLabelAnimated:(BOOL)animated
+{
+	self.noFavoriteLabel.hidden = NO;
+	if(animated)
+		[UIView beginAnimations:nil context:NULL];
+	BOOL hasNoFavorite = self.frc.fetchedObjects.count==0;
+	self.noFavoriteLabel.alpha = hasNoFavorite;
+	self.tableView.alpha = !hasNoFavorite;
+	if(animated)
+		[UIView commitAnimations];
 }
 
 /****************************************************************************/
@@ -224,17 +242,10 @@
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self setEditing:NO animated:NO];
+	[self setEditing:YES animated:YES];
 	[self refetch];
 	[self.tableView reloadData];
-	self.tableView.hidden = self.frc.fetchedObjects.count==0;
-}
-
-- (UINavigationItem *) navigationItem
-{
-	UINavigationItem * item = [super navigationItem];
-	item.rightBarButtonItem = self.editButtonItem;
-	return item;
+	[self refreshLabelAnimated:NO];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -243,17 +254,14 @@
 	[self.tableView setEditing:editing animated:animated];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return YES;
+	return UITableViewCellEditingStyleNone;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		Station * station = [self.frc objectAtIndexPath:indexPath];
-		station.favorite = NO;
-	}   
+	return NO;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -263,9 +271,6 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
-	self.reordering = YES;
-	NSLog(@"end move %@ to %@",fromIndexPath, toIndexPath);
-	
 	NSMutableArray *favorites = [NSMutableArray arrayWithArray:self.frc.fetchedObjects];
 	Station* stationToMove = [favorites objectAtIndex:fromIndexPath.row];
 	[favorites removeObjectAtIndex:fromIndexPath.row];
@@ -277,8 +282,7 @@
 		if(station.favorite_indexValue!=(NSInteger)i+1)
 			station.favorite_indexValue = (NSInteger)i+1;
 	}
-	self.reordering = NO;
-	
+
 	[BicycletteAppDelegate.dataManager performSelector:@selector(save) withObject:nil afterDelay:0];
 }
 

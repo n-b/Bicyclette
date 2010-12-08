@@ -12,6 +12,7 @@
 @interface StationsVC : UIViewController
 @property (nonatomic, assign) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) NSFetchedResultsController *frc;
+@property (nonatomic, assign) IBOutlet UILabel * noFavoriteLabel;
 @end
 
 
