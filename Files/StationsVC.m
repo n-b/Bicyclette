@@ -80,7 +80,6 @@
 {
     [super viewDidLoad];
 	self.tableView.rowHeight = StationCellHeight;
-	self.tableView.backgroundColor = [UIColor lightGrayColor];
 	self.tableView.separatorColor = [UIColor lightGrayColor];
 	
 	UIEdgeInsets insets = self.tableView.contentInset;

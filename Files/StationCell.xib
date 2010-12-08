@@ -99,7 +99,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{1, 1}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="134914308"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
+								<object class="NSColor" key="IBUIBackgroundColor" id="582788304">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
 								</object>
@@ -173,10 +173,7 @@
 						</object>
 						<string key="NSFrameSize">{320, 100}</string>
 						<reference key="NSSuperview" ref="56762073"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="582788304">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="582788304"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -317,15 +314,15 @@
 						<reference key="parent" ref="56762073"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">30</int>
+						<reference key="object" ref="523479392"/>
+						<reference key="parent" ref="56762073"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">28</int>
 						<reference key="object" ref="517198469"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Cell Background</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">30</int>
-						<reference key="object" ref="523479392"/>
-						<reference key="parent" ref="56762073"/>
 					</object>
 				</object>
 			</object>

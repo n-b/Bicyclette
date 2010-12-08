@@ -49,6 +49,12 @@
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9531812AA29FB00C1D21C /* MapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E9531612AA29FB00C1D21C /* MapVC.xib */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
+		37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */; };
+		37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537E12AA373000C1D21C /* MapTab@2x.png */; };
+		37E9538212AA373000C1D21C /* RegionsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537F12AA373000C1D21C /* RegionsTab@2x.png */; };
+		37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538312AA379B00C1D21C /* FavoritesTab.png */; };
+		37E9538712AA379B00C1D21C /* MapTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538412AA379B00C1D21C /* MapTab.png */; };
+		37E9538812AA379B00C1D21C /* RegionsTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538512AA379B00C1D21C /* RegionsTab.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +120,12 @@
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9531612AA29FB00C1D21C /* MapVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVC.xib; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FavoritesTab@2x.png"; sourceTree = "<group>"; };
+		37E9537E12AA373000C1D21C /* MapTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapTab@2x.png"; sourceTree = "<group>"; };
+		37E9537F12AA373000C1D21C /* RegionsTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegionsTab@2x.png"; sourceTree = "<group>"; };
+		37E9538312AA379B00C1D21C /* FavoritesTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoritesTab.png; sourceTree = "<group>"; };
+		37E9538412AA379B00C1D21C /* MapTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MapTab.png; sourceTree = "<group>"; };
+		37E9538512AA379B00C1D21C /* RegionsTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RegionsTab.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +256,12 @@
 				3756EAD71298017D00113534 /* Favorite_off@2x.png */,
 				3756EAD81298017D00113534 /* Favorite_on.png */,
 				3756EAD91298017D00113534 /* Favorite_on@2x.png */,
+				37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */,
+				37E9537E12AA373000C1D21C /* MapTab@2x.png */,
+				37E9537F12AA373000C1D21C /* RegionsTab@2x.png */,
+				37E9538312AA379B00C1D21C /* FavoritesTab.png */,
+				37E9538412AA379B00C1D21C /* MapTab.png */,
+				37E9538512AA379B00C1D21C /* RegionsTab.png */,
 			);
 			name = Resources;
 			path = Files;
@@ -350,6 +368,12 @@
 				37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */,
 				37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */,
 				37E9531812AA29FB00C1D21C /* MapVC.xib in Resources */,
+				37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */,
+				37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */,
+				37E9538212AA373000C1D21C /* RegionsTab@2x.png in Resources */,
+				37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */,
+				37E9538712AA379B00C1D21C /* MapTab.png in Resources */,
+				37E9538812AA379B00C1D21C /* RegionsTab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
