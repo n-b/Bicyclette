@@ -9,11 +9,12 @@
 #import "BicycletteApplicationDelegate.h"
 #import "VelibDataManager.h"
 #import "Locator.h"
+#import "BicycletteBar.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
-@interface BicycletteApplicationDelegate()
+@interface BicycletteApplicationDelegate() <BicycletteBarDelegate>
 
 @property (nonatomic, retain) VelibDataManager * dataManager;
 @property (nonatomic, retain) Locator * locator;
@@ -92,14 +93,18 @@
 	[super dealloc];
 }
 
-- (IBAction) selectTab:(UIBarButtonItem*)sender
+/****************************************************************************/
+#pragma mark Tab Selection
+
+- (void) bicycletteBar:(BicycletteBar*)bar didSelectIndex:(NSUInteger)index
 {
-	[self selectTabIndex:sender.tag];
+	[self selectTabIndex:index];
 }
 
 - (void) selectTabIndex:(NSUInteger)index
 {
 	self.tabBarController.selectedIndex = index;
+	self.toolbar.selectedIndex = index;
 }
 
 /****************************************************************************/

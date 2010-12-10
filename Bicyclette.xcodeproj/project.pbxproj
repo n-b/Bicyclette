@@ -20,6 +20,9 @@
 		37149C8412625AD7009CDE82 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8312625AD7009CDE82 /* StationCell.m */; };
 		37149C8612625AE5009CDE82 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149C8512625AE5009CDE82 /* StationCell.xib */; };
 		37149C8A12625B94009CDE82 /* UITableViewCell+EasyReuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */; };
+		37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201D7512B2DBFC0001A668 /* BicycletteBar.m */; };
+		37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201E6112B2EA640001A668 /* UIImage+Tinting.m */; };
+		37201E9712B2ED040001A668 /* RegionsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37201E9612B2ED040001A668 /* RegionsTab@2x.png */; };
 		37216BC712611C5400A2695A /* VelibDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibDataManager.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EADA1298017D00113534 /* Favorite_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAD61298017D00113534 /* Favorite_off.png */; };
@@ -51,10 +54,8 @@
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */; };
 		37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537E12AA373000C1D21C /* MapTab@2x.png */; };
-		37E9538212AA373000C1D21C /* RegionsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537F12AA373000C1D21C /* RegionsTab@2x.png */; };
 		37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538312AA379B00C1D21C /* FavoritesTab.png */; };
 		37E9538712AA379B00C1D21C /* MapTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538412AA379B00C1D21C /* MapTab.png */; };
-		37E9538812AA379B00C1D21C /* RegionsTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538512AA379B00C1D21C /* RegionsTab.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,11 @@
 		37149C8512625AE5009CDE82 /* StationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationCell.xib; sourceTree = "<group>"; };
 		37149C8812625B94009CDE82 /* UITableViewCell+EasyReuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+EasyReuse.h"; sourceTree = "<group>"; };
 		37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+EasyReuse.m"; sourceTree = "<group>"; };
+		37201D7412B2DBFC0001A668 /* BicycletteBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteBar.h; sourceTree = "<group>"; };
+		37201D7512B2DBFC0001A668 /* BicycletteBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteBar.m; sourceTree = "<group>"; };
+		37201E6012B2EA640001A668 /* UIImage+Tinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tinting.h"; sourceTree = "<group>"; };
+		37201E6112B2EA640001A668 /* UIImage+Tinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tinting.m"; sourceTree = "<group>"; };
+		37201E9612B2ED040001A668 /* RegionsTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegionsTab@2x.png"; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* VelibDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibDataManager.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibDataManager.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
@@ -122,10 +128,8 @@
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FavoritesTab@2x.png"; sourceTree = "<group>"; };
 		37E9537E12AA373000C1D21C /* MapTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapTab@2x.png"; sourceTree = "<group>"; };
-		37E9537F12AA373000C1D21C /* RegionsTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegionsTab@2x.png"; sourceTree = "<group>"; };
 		37E9538312AA379B00C1D21C /* FavoritesTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoritesTab.png; sourceTree = "<group>"; };
 		37E9538412AA379B00C1D21C /* MapTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MapTab.png; sourceTree = "<group>"; };
-		37E9538512AA379B00C1D21C /* RegionsTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RegionsTab.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,11 +261,10 @@
 				3756EAD81298017D00113534 /* Favorite_on.png */,
 				3756EAD91298017D00113534 /* Favorite_on@2x.png */,
 				37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */,
+				37201E9612B2ED040001A668 /* RegionsTab@2x.png */,
 				37E9537E12AA373000C1D21C /* MapTab@2x.png */,
-				37E9537F12AA373000C1D21C /* RegionsTab@2x.png */,
 				37E9538312AA379B00C1D21C /* FavoritesTab.png */,
 				37E9538412AA379B00C1D21C /* MapTab.png */,
-				37E9538512AA379B00C1D21C /* RegionsTab.png */,
 			);
 			name = Resources;
 			path = Files;
@@ -293,6 +296,10 @@
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
 				37C8602D117205D300B8526B /* CLLocation+Direction.h */,
 				37C8602E117205D300B8526B /* CLLocation+Direction.m */,
+				37201D7412B2DBFC0001A668 /* BicycletteBar.h */,
+				37201D7512B2DBFC0001A668 /* BicycletteBar.m */,
+				37201E6012B2EA640001A668 /* UIImage+Tinting.h */,
+				37201E6112B2EA640001A668 /* UIImage+Tinting.m */,
 			);
 			name = Extensions;
 			path = Files;
@@ -370,10 +377,9 @@
 				37E9531812AA29FB00C1D21C /* MapVC.xib in Resources */,
 				37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */,
 				37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */,
-				37E9538212AA373000C1D21C /* RegionsTab@2x.png in Resources */,
 				37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */,
 				37E9538712AA379B00C1D21C /* MapTab.png in Resources */,
-				37E9538812AA379B00C1D21C /* RegionsTab.png in Resources */,
+				37201E9712B2ED040001A668 /* RegionsTab@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +409,8 @@
 				37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */,
 				37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
+				37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */,
+				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
