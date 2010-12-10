@@ -18,6 +18,8 @@
 @property (nonatomic, retain) VelibDataManager * dataManager;
 @property (nonatomic, retain) Locator * locator;
 
+- (void) selectTabIndex:(NSUInteger)index;
+
 @end
 
 /****************************************************************************/
@@ -25,7 +27,7 @@
 
 @implementation BicycletteApplicationDelegate
 
-@synthesize window, tabBarController, toolbar, segmentedControl, notificationView;
+@synthesize window, tabBarController, toolbar, notificationView;
 @synthesize dataManager;
 @synthesize locator;
 
@@ -54,7 +56,7 @@
 	UIView * contentView = [self.tabBarController.view.subviews objectAtIndex:0];
 	contentView.frame = [[UIScreen mainScreen] bounds];
 	
-	self.tabBarController.selectedIndex = self.segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"OnlyShowFavorites"];
+	[self selectTabIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedTabIndex"]];
 	
 	// notification view
 	self.notificationView.alpha = 0.f;
@@ -76,7 +78,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"OnlyShowFavorites"];
+	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedTabIndex"];
 }
 
 - (void)dealloc {
@@ -90,9 +92,14 @@
 	[super dealloc];
 }
 
-- (IBAction) toolbarDidChange
+- (IBAction) selectTab:(UIBarButtonItem*)sender
 {
-	self.tabBarController.selectedIndex = (NSUInteger)self.segmentedControl.selectedSegmentIndex;
+	[self selectTabIndex:sender.tag];
+}
+
+- (void) selectTabIndex:(NSUInteger)index
+{
+	self.tabBarController.selectedIndex = index;
 }
 
 /****************************************************************************/
