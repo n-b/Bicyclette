@@ -7,25 +7,21 @@
 //
 
 #import "MapVC.h"
-
+#import "BicycletteApplicationDelegate.h"
+#import "VelibDataManager.h"
+#import "Station.h"
 
 @implementation MapVC
 
 @synthesize mapView;
 
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
+	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	
+	[self.mapView addAnnotations:[BicycletteAppDelegate.dataManager.moc executeFetchRequest:allRequest error:NULL]];
 }
 
 /*

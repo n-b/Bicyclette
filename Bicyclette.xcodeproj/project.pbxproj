@@ -23,6 +23,7 @@
 		37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201D7512B2DBFC0001A668 /* BicycletteBar.m */; };
 		37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201E6112B2EA640001A668 /* UIImage+Tinting.m */; };
 		37201E9712B2ED040001A668 /* RegionsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37201E9612B2ED040001A668 /* RegionsTab@2x.png */; };
+		372020C212B55C900001A668 /* Model+Mapkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 372020C112B55C900001A668 /* Model+Mapkit.m */; };
 		37216BC712611C5400A2695A /* VelibDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibDataManager.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EADA1298017D00113534 /* Favorite_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAD61298017D00113534 /* Favorite_off.png */; };
@@ -85,8 +86,11 @@
 		37201E6012B2EA640001A668 /* UIImage+Tinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tinting.h"; sourceTree = "<group>"; };
 		37201E6112B2EA640001A668 /* UIImage+Tinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tinting.m"; sourceTree = "<group>"; };
 		37201E9612B2ED040001A668 /* RegionsTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegionsTab@2x.png"; sourceTree = "<group>"; };
+		372020C012B55C900001A668 /* Model+Mapkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Model+Mapkit.h"; sourceTree = "<group>"; };
+		372020C112B55C900001A668 /* Model+Mapkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Model+Mapkit.m"; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* VelibDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibDataManager.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibDataManager.m; sourceTree = "<group>"; };
+		3726FFD912B55FA900516CF3 /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EAD61298017D00113534 /* Favorite_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favorite_off.png; sourceTree = "<group>"; };
 		3756EAD71298017D00113534 /* Favorite_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite_off@2x.png"; sourceTree = "<group>"; };
@@ -105,7 +109,6 @@
 		37B699E0128EBB0A0053728D /* Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
 		37B699E1128EBB0A0053728D /* _Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
 		37B699E3128EBB0B0053728D /* _Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
-		37B69C28129034D90053728D /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		37B69DB01290925B0053728D /* StationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationStatusView.h; sourceTree = "<group>"; };
 		37B69DB11290925B0053728D /* StationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationStatusView.m; sourceTree = "<group>"; };
@@ -231,8 +234,10 @@
 				37216BC612611C5400A2695A /* VelibDataManager.m */,
 				37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */,
 				37A346B5128C9D68000A2540 /* Velib */,
-				37B69C28129034D90053728D /* Locator.h */,
+				3726FFD912B55FA900516CF3 /* Locator.h */,
 				37B69C29129034D90053728D /* Locator.m */,
+				372020C012B55C900001A668 /* Model+Mapkit.h */,
+				372020C112B55C900001A668 /* Model+Mapkit.m */,
 			);
 			name = Model;
 			path = Files;
@@ -411,6 +416,7 @@
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */,
 				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
+				372020C212B55C900001A668 /* Model+Mapkit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
