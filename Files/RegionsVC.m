@@ -12,6 +12,7 @@
 #import "RegionCell.h"
 #import "UITableViewCell+EasyReuse.h"
 #import "Region.h"
+#import "Station.h"
 #import "StationsVC.h"
 
 /****************************************************************************/
@@ -37,6 +38,23 @@
 				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
 				 sectionNameKeyPath:nil
 				 cacheName:nil] autorelease];
+
+	// Add total stations count in the navbar
+	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
+	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	NSError * fetchError = nil;
+	NSUInteger count = [BicycletteAppDelegate.dataManager.moc countForFetchRequest:allRequest error:&fetchError];
+	if(fetchError)
+		NSLog(@"fetchError : %@",fetchError);
+	
+	UILabel * countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 21)] autorelease];
+	countLabel.text = [NSString stringWithFormat:@"%d",count];
+	countLabel.backgroundColor = [UIColor blackColor];
+	countLabel.textColor = [UIColor whiteColor];
+	countLabel.font = [UIFont systemFontOfSize:17];
+	countLabel.textAlignment = UITextAlignmentCenter;
+	countLabel.layer.cornerRadius = 10;
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:countLabel] autorelease];
 }
 
 - (void) dealloc
