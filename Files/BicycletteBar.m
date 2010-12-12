@@ -10,8 +10,11 @@
 #import "NSArrayAdditions.h"
 #import "UIImage+Tinting.h"
 
-@interface BicycletteBar ()
-- (void) selectButton:(id)sender;
+
+/****************************************************************************/
+#pragma mark Support classes
+
+@interface BicycletteBarArrow : UIView
 @end
 
 @interface BicycletteBarItem : UIBarButtonItem
@@ -19,9 +22,20 @@
 - (id)initWithImageName:(NSString *)imageName target:(id)target action:(SEL)action tag:(NSInteger)tag;
 @end
 
+/****************************************************************************/
+#pragma mark Private Methods
+
+@interface BicycletteBar ()
+@property (nonatomic, retain) BicycletteBarArrow * arrow;
+@property (nonatomic, readonly) NSArray* buttons;
+- (void) selectButton:(id)sender;
+@end
+
+/****************************************************************************/
+#pragma mark -
 
 @implementation BicycletteBar
-@synthesize selectedIndex, delegate;
+@synthesize selectedIndex, delegate, arrow;
 
 - (void) awakeFromNib
 {
@@ -53,10 +67,33 @@
 	
 	[items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease]];
 	self.items = items;
+	
+	CGFloat arrowWidth = self.bounds.size.width + ([[self.buttons lastObject] customView].center.x - [[self.buttons objectAtIndex:0] customView].center.x);
+
+	self.arrow = [[[BicycletteBarArrow alloc] initWithFrame:CGRectMake(0, 0, arrowWidth, 0)] autorelease];
+	[self addSubview:arrow];
+	self.clipsToBounds = NO;
 }
 
+- (void) dealloc
+{
+	self.arrow = nil;
+	[super dealloc];
+}
+
+/****************************************************************************/
+#pragma mark -
+
 - (void)drawRect:(CGRect)rect {
+	// remove two first lines
+	CGContextRef ctx = UIGraphicsGetCurrentContext();	
+	CGContextSaveGState(ctx);
+	CGRect area = rect;
+    area.origin.y+=2;
+	area.size.height-=2;
+    CGContextClipToRect(ctx, area);
 	[super drawRect:rect];
+	CGContextRestoreGState(ctx);
 }
 
 
@@ -73,9 +110,14 @@
 		[self.buttons setValue:[NSNumber numberWithBool:NO] forKey:@"selected"];
 		[[self.buttons objectAtIndex:value] setSelected:YES];
 		[self.delegate bicycletteBar:self didSelectIndex:self.selectedIndex];
+		
+		[UIView beginAnimations:nil context:NULL];
+		CGPoint arrowCenter = self.arrow.center;
+		arrowCenter.x = [[self.buttons objectAtIndex:value] customView].center.x;
+		self.arrow.center = arrowCenter;
+		[UIView commitAnimations];
 	}
 }
-
 
 - (void) selectButton:(id)sender
 {
@@ -84,7 +126,60 @@
 
 @end
 
+/****************************************************************************/
+#pragma mark -
 
+@implementation BicycletteBarArrow
+
+- (id) initWithFrame:(CGRect)frame
+{
+	frame.origin.y = - 5;
+	frame.size.height = 7;
+	self = [super initWithFrame:frame];
+	if (self != nil) {
+		self.backgroundColor = [UIColor clearColor];
+		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		self.tag = NSNotFound;
+	}
+	return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+	CGContextRef ctx = UIGraphicsGetCurrentContext();	
+	CGFloat xCenter = rect.size.width/2 + .5;
+	
+	CGPoint line [] = {{0,6.5}, {xCenter-5,6.5},
+		{xCenter-5,6.5}, {xCenter,1.5},
+		{xCenter,1.5}, {xCenter+5,6.5},
+		{xCenter+5,6.5}, {rect.size.width,6.5}};
+	
+	CGMutablePathRef path = CGPathCreateMutable();
+	CGPathMoveToPoint(path, NULL, line[2].x, line[2].y);
+	CGPathAddLineToPoint(path, NULL, line[4].x, line[4].y);
+	CGPathAddLineToPoint(path, NULL, line[6].x, line[6].y);
+	CGPathAddLineToPoint(path, NULL, line[2].x, line[2].y);
+	CGContextAddPath(ctx, path);
+	CGPathRelease(path);
+	
+	CGColorRef gray = [UIColor colorWithWhite:.5 alpha:.7].CGColor;
+	CGColorRef black = [UIColor colorWithWhite:.1 alpha:.9].CGColor;
+	
+	CGContextSetFillColorWithColor(ctx, gray);
+	CGContextSetStrokeColorWithColor(ctx, gray);
+	CGContextDrawPath(ctx, kCGPathFillStroke);
+	
+	CGContextSetStrokeColorWithColor(ctx, gray);
+	CGContextStrokeLineSegments(ctx, line, sizeof(line)/sizeof(CGPoint));
+	
+	CGContextSetStrokeColorWithColor(ctx, black);
+	for (unsigned int i = 0; i < sizeof(line)/sizeof(CGPoint); i++) line[i].y -= 1;
+	CGContextStrokeLineSegments(ctx, line, sizeof(line)/sizeof(CGPoint));
+}
+
+@end
+
+/****************************************************************************/
+#pragma mark -
 
 @implementation BicycletteBarItem
 
