@@ -28,6 +28,9 @@
 @property (nonatomic, retain) NSURLConnection * updateConnection;
 @property (nonatomic, retain) NSMutableData * updateData;
 - (void) parseXML:(NSData*)xml;
+
+@property (nonatomic, retain) NSDictionary * stationsHardcodedFixes;
+
 @end
 
 /****************************************************************************/
@@ -37,6 +40,7 @@
 
 @synthesize mom, psc, moc;
 @synthesize updatingXML, updateConnection, updateData, parseDate;
+@synthesize stationsHardcodedFixes;
 
 - (id) init
 {
@@ -96,6 +100,7 @@
 	self.psc = nil;
 	self.moc = nil;
 	self.parseDate = nil;
+	self.stationsHardcodedFixes = nil;
 	
 	[self.updateConnection cancel];
 	self.updateConnection = nil;
@@ -105,6 +110,19 @@
 
 /****************************************************************************/
 #pragma mark -
+
+- (NSDictionary*) stationsHardcodedFixes
+{
+	if(nil==stationsHardcodedFixes)
+	{
+		NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VelibHardcodedFixes" ofType:@"plist"]];
+		self.stationsHardcodedFixes = [dict objectForKey:@"stations"];
+	}
+	return [[stationsHardcodedFixes retain] autorelease];
+}
+
+/****************************************************************************/
+#pragma mark URL request 
 
 - (void) updateXML
 {
@@ -153,6 +171,9 @@
 {
 	return self.updateConnection!=nil;
 }
+
+/****************************************************************************/
+#pragma mark Parsing
 
 - (void) parseXML:(NSData*)xml
 {
@@ -203,9 +224,15 @@
 	if([elementName isEqualToString:@"marker"])
 	{
 		Station * station = [Station insertInManagedObjectContext:self.moc];
-		[station setValuesForKeysWithDictionary:attributeDict];
-		station.create_date = self.parseDate;
+		[station setValuesForKeysWithDictionary:attributeDict]; // Yay!
+		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
+		if(fixes)
+		{
+			NSLog(@"using hardcoded fixes for %@ : %@",station.number,fixes);
+			[station setValuesForKeysWithDictionary:fixes]; // Yay! again
+		}
 		[station setupCodePostal];
+		station.create_date = self.parseDate;
 	}
 }
 

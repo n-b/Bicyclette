@@ -11,6 +11,7 @@
 @property (nonatomic, retain) NSURLConnection * connection;
 @property (nonatomic, retain) NSMutableData * data;
 @property (nonatomic, retain) CLLocation * location;
+@property (nonatomic, retain) NSString * codePostal; // only used for hardcoded fixes
 @end
 
 
@@ -21,6 +22,7 @@
 
 @synthesize data,connection;
 @synthesize location;
+@synthesize codePostal;
 
 - (NSString *) description
 {
@@ -51,33 +53,36 @@
 	NSAssert2([self.fullAddress hasPrefix:self.address],@"full address \"%@\" does not begin with address \"%@\"", self.fullAddress, self.address);
 	NSString * endOfAddress = [self.fullAddress stringByDeletingPrefix:self.address];
 	endOfAddress = [endOfAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	NSString * codePostal = nil;
+	NSString * lCodePostal = nil;
 	if(endOfAddress.length>=5)
-		codePostal = [endOfAddress substringToIndex:5];
-	if(nil==codePostal || [codePostal isEqualToString:@"75000"])
+		lCodePostal = [endOfAddress substringToIndex:5];
+	if(nil==lCodePostal || [lCodePostal isEqualToString:@"75000"])
 	{
 		unichar firstChar = [self.number characterAtIndex:0];
 		switch (firstChar) {
 			case '0': case '1':				// Paris
-				codePostal = [NSString stringWithFormat:@"750%@",[self.number substringToIndex:2]];
+				lCodePostal = [NSString stringWithFormat:@"750%@",[self.number substringToIndex:2]];
 				break;
 			case '2': case '3': case '4':	// Banlieue
-				codePostal = [NSString stringWithFormat:@"9%@0",[self.number substringToIndex:3]];
+				lCodePostal = [NSString stringWithFormat:@"9%@0",[self.number substringToIndex:3]];
 				break;
 			default:						// Stations Mobiles et autres bugs
-				codePostal = @"75000";
+				if(self.codePostal)
+					lCodePostal = self.codePostal;
+				else
+					lCodePostal = @"75000";
 				break;
 		}
 		
-		NSLog(@"endOfAddress \"%@\" trop court, %@, trouvé %@",endOfAddress, self.name, codePostal);
+		NSLog(@"endOfAddress \"%@\" trop court, %@, trouvé %@",endOfAddress, self.name, lCodePostal);
 	}
-	NSAssert1([codePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",codePostal);
+	NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
 	
-	Region * region = [[Region fetchRegionWithName:self.managedObjectContext name:codePostal] lastObject];
+	Region * region = [[Region fetchRegionWithName:self.managedObjectContext name:lCodePostal] lastObject];
 	if(nil==region)
 	{
 		region = [Region insertInManagedObjectContext:self.managedObjectContext];
-		region.name = codePostal;
+		region.name = lCodePostal;
 		region.longName = endOfAddress;
 	}
 	self.region = region;
