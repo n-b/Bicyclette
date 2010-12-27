@@ -203,14 +203,7 @@
 	if([elementName isEqualToString:@"marker"])
 	{
 		Station * station = [Station insertInManagedObjectContext:self.moc];
-		station.address = [attributeDict objectForKey:@"address"];
-		station.bonusValue = [[attributeDict objectForKey:@"bonus"] boolValue];
-		station.fullAddress = [attributeDict objectForKey:@"fullAddress"];
-		station.latValue = [[attributeDict objectForKey:@"lat"] doubleValue];
-		station.lngValue = [[attributeDict objectForKey:@"lng"] doubleValue];
-		station.name = [attributeDict objectForKey:@"name"];
-		station.number = [attributeDict objectForKey:@"number"];
-		station.openValue = [[attributeDict objectForKey:@"open"] boolValue];
+		[station setValuesForKeysWithDictionary:attributeDict];
 		station.create_date = self.parseDate;
 		[station setupCodePostal];
 	}

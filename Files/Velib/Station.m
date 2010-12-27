@@ -211,5 +211,36 @@
 	return [[location retain] autorelease];
 }
 
+- (void) setBonus:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"bonus"];
+	else
+		[self setBonusValue:[value boolValue]];
+}
+
+- (void) setOpen:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"open"];
+	else
+		[self setOpenValue:[value boolValue]];
+}
+
+- (void) setLat:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"lat"];
+	else
+		[self setLatValue:[value doubleValue]];
+}
+
+- (void) setLng:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"lng"];
+	else
+		[self setLngValue:[value doubleValue]];
+}
 
 @end
