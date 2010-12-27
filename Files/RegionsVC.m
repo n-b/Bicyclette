@@ -18,8 +18,10 @@
 /****************************************************************************/
 #pragma mark Private Methods
 
-@interface RegionsVC()
+@interface RegionsVC() <NSFetchedResultsControllerDelegate>
 @property (nonatomic, retain) NSFetchedResultsController *frc;
+@property (nonatomic, assign) UILabel * countLabel;
+- (void) refreshCountLabel;
 @end
 
 /****************************************************************************/
@@ -27,6 +29,7 @@
 
 @implementation RegionsVC
 @synthesize frc;
+@synthesize countLabel;
 
 - (void) awakeFromNib
 {
@@ -38,23 +41,17 @@
 				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
 				 sectionNameKeyPath:nil
 				 cacheName:nil] autorelease];
+	self.frc.delegate = self;
 
 	// Add total stations count in the navbar
-	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
-	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
-	NSError * fetchError = nil;
-	NSUInteger count = [BicycletteAppDelegate.dataManager.moc countForFetchRequest:allRequest error:&fetchError];
-	if(fetchError)
-		NSLog(@"fetchError : %@",fetchError);
-	
-	UILabel * countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 21)] autorelease];
-	countLabel.text = [NSString stringWithFormat:@"%d",count];
-	countLabel.backgroundColor = [UIColor blackColor];
-	countLabel.textColor = [UIColor whiteColor];
-	countLabel.font = [UIFont systemFontOfSize:17];
-	countLabel.textAlignment = UITextAlignmentCenter;
-	countLabel.layer.cornerRadius = 10;
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:countLabel] autorelease];
+	self.countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 21)] autorelease];
+	self.countLabel.backgroundColor = [UIColor blackColor];
+	self.countLabel.textColor = [UIColor whiteColor];
+	self.countLabel.font = [UIFont systemFontOfSize:17];
+	self.countLabel.textAlignment = UITextAlignmentCenter;
+	self.countLabel.layer.cornerRadius = 10;
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.countLabel] autorelease];
+	[self refreshCountLabel];
 }
 
 - (void) dealloc
@@ -79,6 +76,22 @@
 		NSLog(@"fetchError : %@",fetchError);
 }
 
+- (void) viewDidUnload
+{
+	self.countLabel = nil;
+	[super viewDidUnload];
+}
+
+- (void) refreshCountLabel
+{
+	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
+	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	NSError * fetchError = nil;
+	NSUInteger count = [BicycletteAppDelegate.dataManager.moc countForFetchRequest:allRequest error:&fetchError];
+	if(fetchError)
+		NSLog(@"fetchError : %@",fetchError);
+	self.countLabel.text = [NSString stringWithFormat:@"%d",count];
+}
 
 /****************************************************************************/
 #pragma mark Table view data source
@@ -101,6 +114,14 @@
     return cell;
 }
 
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)afrc
+{
+ 	if(BicycletteAppDelegate.dataManager.updatingXML)
+	{
+		[self.tableView reloadData];
+		[self refreshCountLabel];
+	}
+}
 
 /****************************************************************************/
 #pragma mark Table view delegate
