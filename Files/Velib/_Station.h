@@ -21,7 +21,6 @@
 
 
 
-
 @interface StationID : NSManagedObjectID {}
 @end
 
@@ -112,12 +111,6 @@
 - (void)setLatValue:(double)value_;
 
 //- (BOOL)validateLat:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSDate *create_date;
-
-//- (BOOL)validateCreate_date:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -234,10 +227,6 @@
 
 - (double)primitiveLatValue;
 - (void)setPrimitiveLatValue:(double)value_;
-
-
-- (NSDate*)primitiveCreate_date;
-- (void)setPrimitiveCreate_date:(NSDate*)value;
 
 
 - (NSNumber*)primitiveFavorite_index;

@@ -225,13 +225,6 @@
 
 
 
-@dynamic create_date;
-
-
-
-
-
-
 @dynamic favorite_index;
 
 

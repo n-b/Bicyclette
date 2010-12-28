@@ -84,11 +84,7 @@
 		[moc setUndoManager:nil];
 		
 		// Find if I need to update
-		NSFetchRequest * createDateRequest = [[NSFetchRequest new] autorelease];
-		[createDateRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
-		[createDateRequest setFetchLimit:1];
-		NSDate * createDate = [[[self.moc executeFetchRequest:createDateRequest error:NULL] lastObject] create_date];
-		
+		NSDate * createDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
 		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"]);
 		if(needUpdate)
 			[self performSelector:@selector(updateXML) withObject:nil afterDelay:0];
@@ -233,6 +229,7 @@
 			
 	// Save
 	[self save];
+	[[NSUserDefaults standardUserDefaults] setObject:self.parseDate forKey:@"DatabaseCreateDate"];
 	self.updatingXML = NO;
 }
 
@@ -249,7 +246,6 @@
 			[station setValuesForKeysWithDictionary:fixes]; // Yay! again
 		}
 		[station setupCodePostal];
-		station.create_date = self.parseDate;
 	}
 }
 
