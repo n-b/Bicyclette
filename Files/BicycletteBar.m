@@ -188,7 +188,7 @@
 - (id)initWithImageName:(NSString *)aImageName target:(id)target action:(SEL)action tag:(NSInteger)tag
 {
 	UIImage * imgSelected = [UIImage imageNamed:aImageName];
-	UIImage * imgNotSelected = [imgSelected tintedImageWithColor:[UIColor grayColor]];
+	UIImage * imgNotSelected = [imgSelected tintedImageWithColor:[UIColor colorWithWhite:0.1 alpha:1]];
 	UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
 	button.showsTouchWhenHighlighted = YES;
 	button.adjustsImageWhenHighlighted = NO;
