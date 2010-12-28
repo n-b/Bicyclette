@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface RegionsVC : UITableViewController {
-
-}
+@interface RegionsVC : UITableViewController 
 
 @end

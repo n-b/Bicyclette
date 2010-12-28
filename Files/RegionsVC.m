@@ -42,16 +42,6 @@
 				 sectionNameKeyPath:nil
 				 cacheName:nil] autorelease];
 	self.frc.delegate = self;
-
-	// Add total stations count in the navbar
-	self.countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 21)] autorelease];
-	self.countLabel.backgroundColor = [UIColor blackColor];
-	self.countLabel.textColor = [UIColor whiteColor];
-	self.countLabel.font = [UIFont systemFontOfSize:17];
-	self.countLabel.textAlignment = UITextAlignmentCenter;
-	self.countLabel.layer.cornerRadius = 10;
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.countLabel] autorelease];
-	[self refreshCountLabel];
 }
 
 - (void) dealloc
@@ -74,6 +64,16 @@
 	[self.frc performFetch:&fetchError];
 	if(fetchError)
 		NSLog(@"fetchError : %@",fetchError);
+	
+	// Add total stations count in the navbar
+	self.countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 21)] autorelease];
+	self.countLabel.backgroundColor = [UIColor blackColor];
+	self.countLabel.textColor = [UIColor whiteColor];
+	self.countLabel.font = [UIFont systemFontOfSize:17];
+	self.countLabel.textAlignment = UITextAlignmentCenter;
+	self.countLabel.layer.cornerRadius = 10;
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.countLabel] autorelease];
+	[self refreshCountLabel];	
 }
 
 - (void) viewDidUnload
