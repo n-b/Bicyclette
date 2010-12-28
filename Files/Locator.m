@@ -36,40 +36,59 @@
 	self = [super init];
 	if (self != nil) {
 		self.locationManager = [[CLLocationManager new] autorelease];
+		self.locationManager.headingFilter = 1.0f; // degrees
 		self.locationManager.delegate = self;
 	}
 	return self;
 }
 
+- (void) dealloc
+{
+	[self stop];
+	self.locationManager = nil;
+	[super dealloc];
+}
+
 - (void) start
 {
 	[self.locationManager startUpdatingHeading];
-	self.locationManager.headingFilter = 1.0f; // degrees
 	[self.locationManager startUpdatingLocation];
 	[self.locationManager startMonitoringSignificantLocationChanges];
 }
 
-- (void) dealloc
+- (void) stop
 {
-	self.locationManager = nil;
-	[super dealloc];
+	[self.locationManager stopUpdatingHeading];
+	[self.locationManager stopUpdatingLocation];
+	[self.locationManager stopMonitoringSignificantLocationChanges];
 }
 
 /****************************************************************************/
 #pragma mark Location
 
-- (void)locationManager:(CLLocationManager *)manager
-	didUpdateToLocation:(CLLocation *)newLocation
-		   fromLocation:(CLLocation *)oldLocation
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
 	[[NSUserDefaults standardUserDefaults] setLastKnownLocation:newLocation];
 	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:self];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-       didUpdateHeading:(CLHeading *)newHeading __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_3_0)
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:self];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	if([error.domain isEqualToString:kCLErrorDomain] && error.code == kCLErrorDenied)
+		[self stop];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+	if(status == kCLAuthorizationStatusAuthorized)
+		[self start];
+	else
+		[self stop];
 }
 
 - (CLLocation*) location

@@ -11,6 +11,7 @@
 
 @interface Locator : NSObject 
 - (void) start;
+- (void) stop;
 
 @property (nonatomic, readonly) CLLocation* location;
 @end
