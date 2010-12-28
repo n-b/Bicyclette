@@ -8,6 +8,7 @@
 
 #import "VelibDataManager.h"
 #import "Station.h"
+#import "Region.h"
 
 #import "NSArrayAdditions.h"
 
@@ -20,17 +21,18 @@
 @property (nonatomic, retain) NSManagedObjectModel *mom;
 @property (nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (nonatomic, retain) NSManagedObjectContext *moc;
-
+// -
 @property BOOL updatingXML;
 @property (nonatomic, retain) NSDate *parseDate;
 - (void) updateXML;
-
+// -
 @property (nonatomic, retain) NSURLConnection * updateConnection;
 @property (nonatomic, retain) NSMutableData * updateData;
 - (void) parseXML:(NSData*)xml;
-
+// -
 @property (nonatomic, retain) NSDictionary * stationsHardcodedFixes;
-
+// -
+@property (readonly, nonatomic, readwrite) MKCoordinateRegion coordinateRegion;
 @end
 
 /****************************************************************************/
@@ -41,6 +43,7 @@
 @synthesize mom, psc, moc;
 @synthesize updatingXML, updateConnection, updateData, parseDate;
 @synthesize stationsHardcodedFixes;
+@synthesize coordinateRegion;
 
 - (id) init
 {
@@ -172,6 +175,14 @@
 	return self.updateConnection!=nil;
 }
 
+- (void) save
+{
+	NSError * error;
+	BOOL success = [self.moc save:&error];
+	if(!success)
+		NSLog(@"save failed : %@ %@",error, [error userInfo]);
+}
+
 /****************************************************************************/
 #pragma mark Parsing
 
@@ -214,6 +225,12 @@
 			station.favorite_index = [favoriteEntry objectForKey:@"favorite_index"];
 	}
 	
+	// Compute regions coordinates
+	NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
+	[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
+	NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
+	[regions makeObjectsPerformSelector:@selector(setupCoordinates)];
+			
 	// Save
 	[self save];
 	self.updatingXML = NO;
@@ -236,12 +253,32 @@
 	}
 }
 
-- (void) save
+- (MKCoordinateRegion) coordinateRegion
 {
-	NSError * error;
-	BOOL success = [self.moc save:&error];
-	if(!success)
-		NSLog(@"save failed : %@ %@",error, [error userInfo]);
+	if(coordinateRegion.center.latitude == 0 &&
+	   coordinateRegion.center.longitude == 0 &&
+	   coordinateRegion.span.latitudeDelta == 0 &&
+	   coordinateRegion.span.longitudeDelta == 0 )
+	{
+		NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
+		[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
+		NSError * requestError = nil;
+		NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
+
+		NSNumber * minLat = [regions valueForKeyPath:@"@min.minLat"];
+		NSNumber * maxLat = [regions valueForKeyPath:@"@max.maxLat"];
+		NSNumber * minLng = [regions valueForKeyPath:@"@min.minLng"];
+		NSNumber * maxLng = [regions valueForKeyPath:@"@max.maxLng"];
+		
+		CLLocationCoordinate2D center;
+		center.latitude = ([minLat doubleValue] + [maxLat doubleValue]) / 2.0f;
+		center.longitude = ([minLng doubleValue] + [maxLng doubleValue]) / 2.0f; // This is very wrong ! Do I really need a if?
+		MKCoordinateSpan span;
+		span.latitudeDelta = fabs([minLat doubleValue] - [maxLat doubleValue]);
+		span.longitudeDelta = fabs([minLng doubleValue] - [maxLng doubleValue]);
+		self.coordinateRegion = MKCoordinateRegionMake(center, span);
+	}
+	return coordinateRegion;
 }
 
 @end

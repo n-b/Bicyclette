@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <MapKit/MapKit.h>
 
 #define kVelibStationsListURL		@"http://www.velib.paris.fr/service/carto"
 #define kVelibStationsStatusURL		@"http://www.velib.paris.fr/service/stationdetails/"
@@ -27,5 +28,7 @@
 @property (readonly) BOOL updatingXML;
 
 - (void) save;
+
+@property (readonly, nonatomic) MKCoordinateRegion coordinateRegion;
 @end
 

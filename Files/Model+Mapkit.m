@@ -27,3 +27,22 @@
 }
 
 @end
+
+@implementation Region (Mapkit) 
+
+- (CLLocationCoordinate2D) coordinate
+{
+	return self.coordinateRegion.center;
+}
+
+- (NSString *)title
+{
+	return self.longName;
+}
+
+- (NSString *)subtitle
+{
+	return [NSString stringWithFormat:NSLocalizedString(@"%d stations",@""),self.stations.count];
+}
+
+@end

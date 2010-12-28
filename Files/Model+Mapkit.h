@@ -8,7 +8,13 @@
 
 #import <MapKit/MapKit.h>
 #import "Station.h"
+#import "Region.h"
 
 @interface Station (Mapkit) <MKAnnotation>
+
+@end
+
+
+@interface Region (Mapkit) <MKAnnotation>
 
 @end

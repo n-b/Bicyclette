@@ -36,6 +36,110 @@
 
 
 
+@dynamic minLng;
+
+
+
+- (double)minLngValue {
+	NSNumber *result = [self minLng];
+	return [result doubleValue];
+}
+
+- (void)setMinLngValue:(double)value_ {
+	[self setMinLng:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMinLngValue {
+	NSNumber *result = [self primitiveMinLng];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMinLngValue:(double)value_ {
+	[self setPrimitiveMinLng:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic minLat;
+
+
+
+- (double)minLatValue {
+	NSNumber *result = [self minLat];
+	return [result doubleValue];
+}
+
+- (void)setMinLatValue:(double)value_ {
+	[self setMinLat:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMinLatValue {
+	NSNumber *result = [self primitiveMinLat];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMinLatValue:(double)value_ {
+	[self setPrimitiveMinLat:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic maxLng;
+
+
+
+- (double)maxLngValue {
+	NSNumber *result = [self maxLng];
+	return [result doubleValue];
+}
+
+- (void)setMaxLngValue:(double)value_ {
+	[self setMaxLng:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMaxLngValue {
+	NSNumber *result = [self primitiveMaxLng];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMaxLngValue:(double)value_ {
+	[self setPrimitiveMaxLng:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic maxLat;
+
+
+
+- (double)maxLatValue {
+	NSNumber *result = [self maxLat];
+	return [result doubleValue];
+}
+
+- (void)setMaxLatValue:(double)value_ {
+	[self setMaxLat:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMaxLatValue {
+	NSNumber *result = [self primitiveMaxLat];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMaxLatValue:(double)value_ {
+	[self setPrimitiveMaxLat:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
 @dynamic longName;
 
 

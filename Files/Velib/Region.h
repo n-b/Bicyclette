@@ -1,5 +1,8 @@
 #import "_Region.h"
+#import <MapKit/MapKit.h>
 
 @interface Region : _Region {}
-// Custom logic goes here.
+- (void) setupCoordinates;
+
+@property (readonly, nonatomic) MKCoordinateRegion coordinateRegion;
 @end

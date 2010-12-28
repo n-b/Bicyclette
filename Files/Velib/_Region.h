@@ -9,6 +9,10 @@
 
 
 
+
+
+
+
 @interface RegionID : NSManagedObjectID {}
 @end
 
@@ -23,6 +27,46 @@
 @property (nonatomic, retain) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *minLng;
+
+@property double minLngValue;
+- (double)minLngValue;
+- (void)setMinLngValue:(double)value_;
+
+//- (BOOL)validateMinLng:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *minLat;
+
+@property double minLatValue;
+- (double)minLatValue;
+- (void)setMinLatValue:(double)value_;
+
+//- (BOOL)validateMinLat:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *maxLng;
+
+@property double maxLngValue;
+- (double)maxLngValue;
+- (void)setMaxLngValue:(double)value_;
+
+//- (BOOL)validateMaxLng:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *maxLat;
+
+@property double maxLatValue;
+- (double)maxLatValue;
+- (void)setMaxLatValue:(double)value_;
+
+//- (BOOL)validateMaxLat:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -59,6 +103,34 @@
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+- (NSNumber*)primitiveMinLng;
+- (void)setPrimitiveMinLng:(NSNumber*)value;
+
+- (double)primitiveMinLngValue;
+- (void)setPrimitiveMinLngValue:(double)value_;
+
+
+- (NSNumber*)primitiveMinLat;
+- (void)setPrimitiveMinLat:(NSNumber*)value;
+
+- (double)primitiveMinLatValue;
+- (void)setPrimitiveMinLatValue:(double)value_;
+
+
+- (NSNumber*)primitiveMaxLng;
+- (void)setPrimitiveMaxLng:(NSNumber*)value;
+
+- (double)primitiveMaxLngValue;
+- (void)setPrimitiveMaxLngValue:(double)value_;
+
+
+- (NSNumber*)primitiveMaxLat;
+- (void)setPrimitiveMaxLat:(NSNumber*)value;
+
+- (double)primitiveMaxLatValue;
+- (void)setPrimitiveMaxLatValue:(double)value_;
 
 
 - (NSString*)primitiveLongName;

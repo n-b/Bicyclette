@@ -10,45 +10,72 @@
 #import "BicycletteApplicationDelegate.h"
 #import "VelibDataManager.h"
 #import "Station.h"
+#import "Region.h"
 
-@implementation MapVC
+typedef enum {
+	MapModeNone = 0,
+	MapModeRegions,
+	MapModeStations
+}  MapMode;
+
+@interface MapVC() <MKMapViewDelegate>
+@property (nonatomic) MKCoordinateRegion referenceRegion;
+@property (nonatomic) MapMode mode;
+@end
+
+/****************************************************************************/
+#pragma mark -
+
+@implementation MapVC 
 
 @synthesize mapView;
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
-	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
-	
-	[self.mapView addAnnotations:[BicycletteAppDelegate.dataManager.moc executeFetchRequest:allRequest error:NULL]];
-}
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc. that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
+@synthesize referenceRegion, mode;
 
 - (void)dealloc {
     [super dealloc];
 }
 
+/****************************************************************************/
+#pragma mark -
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	
+	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.dataManager.coordinateRegion];
+	self.mapView.region = self.referenceRegion;
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+	CLLocationDegrees modelSpan = self.referenceRegion.span.latitudeDelta;
+	if(self.mapView.region.span.latitudeDelta>modelSpan*2.0f)
+		self.mode = MapModeNone;
+	else if(self.mapView.region.span.latitudeDelta>modelSpan/16.0f)
+		self.mode = MapModeRegions;
+	else
+		self.mode = MapModeStations;
+}
+
+- (void) setMode:(MapMode)value
+{
+	if(value!=self.mode)
+	{
+		mode = value;
+		[self.mapView removeAnnotations:self.mapView.annotations];
+		if(self.mode==MapModeNone)
+			return;
+		NSFetchRequest * request = [[NSFetchRequest new] autorelease];
+		Class class = self.mode==MapModeRegions?[Region class]:[Station class];
+		[request setEntity:[class entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+		[self.mapView addAnnotations:[BicycletteAppDelegate.dataManager.moc executeFetchRequest:request error:NULL]];
+	}
+}
 
 @end
