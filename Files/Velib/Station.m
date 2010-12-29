@@ -225,9 +225,9 @@
 }
 
 /****************************************************************************/
-#pragma mark Short Name
+#pragma mark Clean properties
 
-- (NSString *) shortName
+- (NSString *) cleanName
 {
 	NSRange range = [self.name rangeOfString:@"-"];
 	if(range.location==NSNotFound)
@@ -236,9 +236,23 @@
 		return [[self.name substringFromIndex:range.location+range.length] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
-+ (NSSet*) keyPathsForValuesAffectingShortName
++ (NSSet*) keyPathsForValuesAffectingCleanName
 {
 	return [NSSet setWithObjects:@"name",@"number",nil];
+}
+
+- (NSString *) cleanAddress
+{
+#if DEBUG
+	if(![self.address hasSuffix:@" -"])
+		NSLog(@"whoa ? %@ : %@",self.name, self.address);
+#endif
+	return [self.address stringByDeletingSuffix:@" -"];
+}
+
++ (NSSet*) keyPathsForValuesAffectingCleanAddress
+{
+	return [NSSet setWithObject:@"address"];
 }
 
 /****************************************************************************/

@@ -26,7 +26,7 @@
 
 @implementation StationCell
 
-@synthesize nameLabel, addressLabel, distanceLabel;
+@synthesize numberLabel, shortNameLabel, addressLabel, distanceLabel;
 @synthesize statusView;
 @synthesize favoriteButton;
 @synthesize station;
@@ -38,7 +38,7 @@
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
 												 name:LocationDidChangeNotification object:BicycletteAppDelegate.locator];
-	NSAssert(self.bounds.size.height==100,@"wrong cell height");
+	NSAssert(self.bounds.size.height==StationCellHeight,@"wrong cell height");
 }
 
 
@@ -67,12 +67,13 @@
 
 - (void) updateUI
 {
-	self.nameLabel.text = self.station.name;
-	self.addressLabel.text = self.station.address;
+	self.numberLabel.text = self.station.number;
+	self.shortNameLabel.text = self.station.cleanName;
+	self.addressLabel.text = self.station.cleanAddress;
 	[self.statusView setNeedsDisplay];
 	self.favoriteButton.selected = self.station.favorite;
 	
-	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location];
+	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location usingShortFormat:YES];
 }
 
 /****************************************************************************/

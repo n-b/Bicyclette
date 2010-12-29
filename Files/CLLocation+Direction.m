@@ -26,7 +26,8 @@
 	return [otherLocation directionToLocation:self];
 }
 
-- (NSString*) routeDescriptionToLocation:(CLLocation*)otherLocation
+
+- (NSString*) routeDescriptionToLocation:(CLLocation*)otherLocation usingShortFormat:(BOOL)shortFormat
 {
 	CLLocationDistance distance = [self distanceFromLocation:otherLocation];
 	CLLocationDirection direction = [self directionToLocation:otherLocation];
@@ -34,12 +35,22 @@
 	return [NSString stringWithFormat:@"%.0f %@ au %@",
 			distance<1000?distance:distance/1000,
 			distance<1000?@"m":@"km",
-			[NSString directionDescription:direction]];
+			shortFormat?[NSString directionShortDescription:direction]:[NSString directionDescription:direction]];
+}
+
+- (NSString*) routeDescriptionFromLocation:(CLLocation*)otherLocation usingShortFormat:(BOOL)shortFormat
+{
+	return [otherLocation routeDescriptionToLocation:self usingShortFormat:shortFormat];
+}
+
+- (NSString*) routeDescriptionToLocation:(CLLocation*)otherLocation
+{
+	return [self routeDescriptionToLocation:otherLocation usingShortFormat:NO];
 }
 
 - (NSString*) routeDescriptionFromLocation:(CLLocation*)otherLocation
 {
-	return [otherLocation routeDescriptionToLocation:self];
+	return [self routeDescriptionFromLocation:otherLocation usingShortFormat:NO];
 }
 
 @end

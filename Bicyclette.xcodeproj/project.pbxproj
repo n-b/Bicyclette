@@ -44,6 +44,7 @@
 		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
+		37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */; };
 		37E37E9212A6F5D500D7AB57 /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37E9112A6F5D500D7AB57 /* _Region.m */; };
 		37E37E9512A6F5D500D7AB57 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37E9412A6F5D500D7AB57 /* Region.m */; };
 		37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */; };
@@ -116,6 +117,8 @@
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		37D6AF8612CBF23700EEC835 /* VerticallyAlignedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticallyAlignedLabel.h; sourceTree = "<group>"; };
+		37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticallyAlignedLabel.m; sourceTree = "<group>"; };
 		37E37E9012A6F5D500D7AB57 /* _Region.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Region.h; sourceTree = "<group>"; };
 		37E37E9112A6F5D500D7AB57 /* _Region.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
 		37E37E9312A6F5D500D7AB57 /* Region.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				37201D7512B2DBFC0001A668 /* BicycletteBar.m */,
 				37201E6012B2EA640001A668 /* UIImage+Tinting.h */,
 				37201E6112B2EA640001A668 /* UIImage+Tinting.m */,
+				37D6AF8612CBF23700EEC835 /* VerticallyAlignedLabel.h */,
+				37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */,
 			);
 			name = Extensions;
 			path = Files;
@@ -421,6 +426,7 @@
 				37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */,
 				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
 				372020C212B55C900001A668 /* Model+Mapkit.m in Sources */,
+				37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

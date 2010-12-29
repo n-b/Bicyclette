@@ -17,6 +17,9 @@
 - (NSString*) routeDescriptionToLocation:(CLLocation*)otherLocation;
 - (NSString*) routeDescriptionFromLocation:(CLLocation*)otherLocation;
 
+- (NSString*) routeDescriptionToLocation:(CLLocation*)otherLocation usingShortFormat:(BOOL)shortFormat;
+- (NSString*) routeDescriptionFromLocation:(CLLocation*)otherLocation usingShortFormat:(BOOL)shortFormat;
+
 @end
 
 @interface NSString (Direction)
