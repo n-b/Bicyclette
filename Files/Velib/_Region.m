@@ -140,7 +140,7 @@
 
 
 
-@dynamic longName;
+@dynamic number;
 
 
 
@@ -163,9 +163,9 @@
 
 
 
-+ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ {
++ (NSArray*)fetchRegionWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ {
 	NSError *error = nil;
-	NSArray *result = [self fetchRegionWithName:moc_ name:name_ error:&error];
+	NSArray *result = [self fetchRegionWithNumber:moc_ number:number_ error:&error];
 	if (error) {
 #if TARGET_OS_IPHONE
 		NSLog(@"error: %@", error);
@@ -175,7 +175,7 @@
 	}
 	return result;
 }
-+ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ error:(NSError**)error_ {
++ (NSArray*)fetchRegionWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
 	
@@ -183,13 +183,13 @@
 	
 	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
 														
-														name_, @"name",
+														number_, @"number",
 														
 														nil];
 										
-	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"regionWithName"
+	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"regionWithNumber"
 													 substitutionVariables:substitutionVariables];
-	NSAssert(fetchRequest, @"Can't find fetch request named \"regionWithName\".");
+	NSAssert(fetchRequest, @"Can't find fetch request named \"regionWithNumber\".");
 	
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;

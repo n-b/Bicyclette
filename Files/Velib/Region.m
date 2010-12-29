@@ -26,7 +26,7 @@
 - (NSString *) description
 {
 	return [NSString stringWithFormat:@"Region %@ (%@) - %d stations - de {%f,%f} à {%f,%f}",
-			self.name, self.longName,
+			self.number, self.name,
 			self.stations.count,
 			self.minLatValue, self.minLngValue, self.maxLatValue, self.maxLngValue];
 }

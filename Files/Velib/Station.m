@@ -78,12 +78,12 @@
 	}
 	NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
 	
-	Region * region = [[Region fetchRegionWithName:self.managedObjectContext name:lCodePostal] lastObject];
+	Region * region = [[Region fetchRegionWithNumber:self.managedObjectContext number:lCodePostal] lastObject];
 	if(nil==region)
 	{
 		region = [Region insertInManagedObjectContext:self.managedObjectContext];
-		region.name = lCodePostal;
-		region.longName = endOfAddress;
+		region.number = lCodePostal;
+		region.name = endOfAddress;
 	}
 	self.region = region;
 }

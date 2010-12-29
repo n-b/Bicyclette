@@ -35,7 +35,7 @@
 {
 	NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
 	[regionsRequest setEntity:[Region entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
-	[regionsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],nil]];
+	[regionsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES] autorelease],nil]];
 	self.frc = [[[NSFetchedResultsController alloc]
 				 initWithFetchRequest:regionsRequest
 				 managedObjectContext:BicycletteAppDelegate.dataManager.moc

@@ -319,7 +319,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
-	sectionTitle.text = [[self.frc.sections objectAtIndex:(NSUInteger)section] name];
+	sectionTitle.text = [[self.frc.sections objectAtIndex:(NSUInteger)section] number];
 	return sectionTitle;
 }
 
@@ -345,7 +345,7 @@
 	if (self != nil) 
 	{
 		self.region = aregion;
-		self.title = self.region.longName;
+		self.title = self.region.name;
 		
 		NSFetchRequest * regionStationsRequest = [[NSFetchRequest new] autorelease];
 		[regionStationsRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];

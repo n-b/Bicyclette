@@ -37,7 +37,7 @@
 
 - (NSString *)title
 {
-	return self.longName;
+	return self.name;
 }
 
 - (NSString *)subtitle

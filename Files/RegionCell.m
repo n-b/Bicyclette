@@ -29,7 +29,7 @@
 {
 	[region autorelease];
 	region = [value retain];
-	self.nameLabel.text = self.region.longName;
+	self.nameLabel.text = self.region.name;
 	self.countLabel.text = [NSString stringWithFormat:@"%d",self.region.stations.count];
 }
 

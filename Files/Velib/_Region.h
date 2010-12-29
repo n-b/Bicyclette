@@ -70,9 +70,9 @@
 
 
 
-@property (nonatomic, retain) NSString *longName;
+@property (nonatomic, retain) NSString *number;
 
-//- (BOOL)validateLongName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -83,8 +83,8 @@
 
 
 
-+ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ ;
-+ (NSArray*)fetchRegionWithName:(NSManagedObjectContext*)moc_ name:(NSString*)name_ error:(NSError**)error_;
++ (NSArray*)fetchRegionWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ ;
++ (NSArray*)fetchRegionWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_;
 
 
 
@@ -133,8 +133,8 @@
 - (void)setPrimitiveMaxLatValue:(double)value_;
 
 
-- (NSString*)primitiveLongName;
-- (void)setPrimitiveLongName:(NSString*)value;
+- (NSString*)primitiveNumber;
+- (void)setPrimitiveNumber:(NSString*)value;
 
 
 
