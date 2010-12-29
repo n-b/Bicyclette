@@ -154,6 +154,9 @@
 	[self save];
 }
 
+/****************************************************************************/
+#pragma mark loading
+
 - (BOOL) isLoading
 {
 	return nil!=self.connection;
@@ -206,6 +209,11 @@
 	return self.favorite_indexValue != -1;
 }
 
++ (NSSet*) keyPathsForValuesAffectingFavorite
+{
+	return [NSSet setWithObject:@"favorite_indexValue"];
+}
+
 /****************************************************************************/
 #pragma mark Location
 
@@ -216,12 +224,32 @@
 	return [[location retain] autorelease];
 }
 
+/****************************************************************************/
+#pragma mark Short Name
+
+- (NSString *) shortName
+{
+	NSRange range = [self.name rangeOfString:@"-"];
+	if(range.location==NSNotFound)
+		return self.name;
+	else
+		return [[self.name substringFromIndex:range.location+range.length] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
++ (NSSet*) keyPathsForValuesAffectingShortName
+{
+	return [NSSet setWithObjects:@"name",@"number",nil];
+}
+
+/****************************************************************************/
+#pragma mark Specific setters to support type coercion
+
 - (void) setBonus:(id)value
 {
 	if([value isKindOfClass:[NSNumber class]])
 		[super setPrimitiveValue:value forKey:@"bonus"];
 	else
-		[self setBonusValue:[value boolValue]];
+		[self setPrimitiveBonusValue:[value boolValue]];
 }
 
 - (void) setOpen:(id)value
@@ -229,7 +257,7 @@
 	if([value isKindOfClass:[NSNumber class]])
 		[super setPrimitiveValue:value forKey:@"open"];
 	else
-		[self setOpenValue:[value boolValue]];
+		[self setPrimitiveOpenValue:[value boolValue]];
 }
 
 - (void) setLat:(id)value
@@ -237,7 +265,7 @@
 	if([value isKindOfClass:[NSNumber class]])
 		[super setPrimitiveValue:value forKey:@"lat"];
 	else
-		[self setLatValue:[value doubleValue]];
+		[self setPrimitiveLatValue:[value doubleValue]];
 }
 
 - (void) setLng:(id)value
@@ -245,7 +273,7 @@
 	if([value isKindOfClass:[NSNumber class]])
 		[super setPrimitiveValue:value forKey:@"lng"];
 	else
-		[self setLngValue:[value doubleValue]];
+		[self setPrimitiveLngValue:[value doubleValue]];
 }
 
 @end
