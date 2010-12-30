@@ -83,7 +83,13 @@
 	{
 		region = [Region insertInManagedObjectContext:self.managedObjectContext];
 		region.number = lCodePostal;
-		region.name = endOfAddress;
+		NSString * cityName = [[[endOfAddress stringByDeletingPrefix:region.number]
+							   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+							   capitalizedString];
+		if([lCodePostal hasPrefix:@"75"])
+			region.name = [NSString stringWithFormat:@"%@ %@",cityName,[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
+		else
+			region.name = cityName;
 	}
 	self.region = region;
 }

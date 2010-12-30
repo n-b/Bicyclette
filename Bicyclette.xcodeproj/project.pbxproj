@@ -280,8 +280,8 @@
 		37A346B5128C9D68000A2540 /* Velib */ = {
 			isa = PBXGroup;
 			children = (
-				37B699DE128EBB0A0053728D /* Station.m */,
 				37B699E0128EBB0A0053728D /* Station.h */,
+				37B699DE128EBB0A0053728D /* Station.m */,
 				37B699E1128EBB0A0053728D /* _Station.m */,
 				37B699E3128EBB0B0053728D /* _Station.h */,
 				37E37E9012A6F5D500D7AB57 /* _Region.h */,

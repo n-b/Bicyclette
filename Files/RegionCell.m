@@ -11,12 +11,12 @@
 
 @implementation RegionCell
 
-@synthesize nameLabel, countLabel;
+@synthesize nameLabel, numberLabel, countLabel;
 @synthesize region;
 
 - (void) awakeFromNib
 {
-	self.countLabel.layer.cornerRadius = 10;
+	NSAssert(self.bounds.size.height==RegionCellHeight,@"wrong cell height");
 }
 
 - (void)dealloc {
@@ -30,7 +30,8 @@
 	[region autorelease];
 	region = [value retain];
 	self.nameLabel.text = self.region.name;
-	self.countLabel.text = [NSString stringWithFormat:@"%d",self.region.stations.count];
+	self.numberLabel.text = self.region.number;
+	self.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d stations",@""),self.region.stations.count];
 }
 
 @end

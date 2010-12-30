@@ -59,19 +59,20 @@
 	
 	self.tableView.scrollIndicatorInsets = self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0); // Setting not honored in the xib
 	self.tableView.backgroundColor = [UIColor clearColor];
-	
+	self.tableView.rowHeight = RegionCellHeight;
+
 	NSError * fetchError = nil;
 	[self.frc performFetch:&fetchError];
 	if(fetchError)
 		NSLog(@"fetchError : %@",fetchError);
 	
 	// Add total stations count in the navbar
-	self.countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 21)] autorelease];
-	self.countLabel.backgroundColor = [UIColor blackColor];
+	self.countLabel = [[[UILabel alloc] init] autorelease];
+	self.countLabel.backgroundColor = [UIColor clearColor];
 	self.countLabel.textColor = [UIColor whiteColor];
-	self.countLabel.font = [UIFont systemFontOfSize:17];
-	self.countLabel.textAlignment = UITextAlignmentCenter;
-	self.countLabel.layer.cornerRadius = 10;
+	self.countLabel.font = [UIFont italicSystemFontOfSize:16];
+//	self.countLabel.textAlignment = UITextAlignmentCenter;
+//	self.countLabel.layer.cornerRadius = 10;
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.countLabel] autorelease];
 	[self refreshCountLabel];	
 }
@@ -90,7 +91,8 @@
 	NSUInteger count = [BicycletteAppDelegate.dataManager.moc countForFetchRequest:allRequest error:&fetchError];
 	if(fetchError)
 		NSLog(@"fetchError : %@",fetchError);
-	self.countLabel.text = [NSString stringWithFormat:@"%d",count];
+	self.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d stations",@""),count];
+	[self.countLabel sizeToFit];
 }
 
 /****************************************************************************/

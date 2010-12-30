@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+#define RegionCellHeight 66
 @class Region;
 @interface RegionCell : UITableViewCell 
 
 // Outlets
 @property (nonatomic, assign) IBOutlet UILabel * nameLabel;
+@property (nonatomic, assign) IBOutlet UILabel * numberLabel;
 @property (nonatomic, assign) IBOutlet UILabel * countLabel;
 
 // Data
