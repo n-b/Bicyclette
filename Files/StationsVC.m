@@ -212,6 +212,7 @@
 	   atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
 	  newIndexPath:(NSIndexPath *)newIndexPath
 {
+	if(self.view.window==nil) return;
 	if(BicycletteAppDelegate.dataManager.updatingXML) return;
 	
 	if (type == NSFetchedResultsChangeDelete)
