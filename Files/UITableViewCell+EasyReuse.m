@@ -17,6 +17,7 @@
 		NSAssert1([nibObjects count]>0,@"No object found in %@.nib",className);
 		cell = [nibObjects objectAtIndex:0];
 		NSAssert3([cell isKindOfClass:[self class]], @"Wrong class in object in nib file %@.nib. Should be %@, found %@.",className,className,NSStringFromClass([cell class]));
+		NSAssert3([[cell reuseIdentifier] isEqualToString:className], @"Wrong reuseIdentifier in object in nib file %@.nib. Should be %@, found %@.",className,className,[cell reuseIdentifier]);
 	}
 	return cell;
 }

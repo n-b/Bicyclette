@@ -187,7 +187,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">14</float>
 							</object>
-							<object class="IBUIActivityIndicatorView" id="483018905">
+							<object class="IBUIActivityIndicatorView" id="568400035">
 								<reference key="NSNextResponder" ref="134914308"/>
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{150, 37}, {20, 20}}</string>
@@ -216,6 +216,7 @@
 				<bool key="IBUIShowsReorderControl">YES</bool>
 				<reference key="IBUIContentView" ref="134914308"/>
 				<bool key="IBUIShouldIndentWhileEditing">NO</bool>
+				<string key="IBUIReuseIdentifier">StationCell</string>
 			</object>
 			<object class="IBUIView" id="517198469">
 				<nil key="NSNextResponder"/>
@@ -297,7 +298,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">loadingIndicator</string>
 						<reference key="source" ref="56762073"/>
-						<reference key="destination" ref="483018905"/>
+						<reference key="destination" ref="568400035"/>
 					</object>
 					<int key="connectionID">37</int>
 				</object>
@@ -333,7 +334,7 @@
 							<reference ref="736517348"/>
 							<reference ref="723746713"/>
 							<reference ref="792462032"/>
-							<reference ref="483018905"/>
+							<reference ref="568400035"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -378,7 +379,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
-						<reference key="object" ref="483018905"/>
+						<reference key="object" ref="568400035"/>
 						<reference key="parent" ref="56762073"/>
 					</object>
 				</object>
