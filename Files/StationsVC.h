@@ -19,7 +19,7 @@
 @interface FavoriteStationsVC : StationsVC
 @end
 
-@interface AllStationsVC : StationsVC
+@interface AllStationsVC : StationsVC // Currently unused
 @end
 
 @class Region;

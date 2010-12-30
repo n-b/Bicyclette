@@ -13,6 +13,7 @@
 #import "UITableViewCell+EasyReuse.h"
 #import "Station.h"
 #import "Region.h"
+#import "StationDetailVC.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -177,6 +178,15 @@
 	}	
 }
 
+/****************************************************************************/
+#pragma mark TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:[self.frc objectAtIndexPath:indexPath]] animated:YES];
+}
+
 @end
 
 /****************************************************************************/
@@ -243,7 +253,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self setEditing:YES animated:YES];
+	self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	[self refetch];
 	[self.tableView reloadData];
 	[self refreshLabelAnimated:NO];

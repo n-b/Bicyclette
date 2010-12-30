@@ -11,5 +11,10 @@
 @class Station;
 
 @interface StationStatusView : UIView 
+// Data
 @property (nonatomic, retain) Station* station;
+
+// Configuration
+@property BOOL displayOtherSpots;
+@property BOOL displayLegend;
 @end
