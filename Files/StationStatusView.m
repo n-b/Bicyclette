@@ -22,31 +22,60 @@
 {
 	CGContextRef ctxt = UIGraphicsGetCurrentContext();
 
-	CGFloat bubbleWidth = rect.size.width/self.station.status_totalValue;
-	CGFloat bubbleHeight = rect.size.height;
+	CGColorRef availableColor = [UIColor blackColor].CGColor;
+	CGColorRef freeColor = [UIColor grayColor].CGColor;
+	CGColorRef otherColor = [UIColor colorWithWhite:.8f alpha:1].CGColor;
 	
-	CGContextSetFillColorWithColor(ctxt, [UIColor blackColor].CGColor);
-	for (int i = 0; i < self.station.status_availableValue; i++) {
-		CGContextFillRect(ctxt, CGRectMake(bubbleWidth*i + 1, 1, bubbleWidth-2, bubbleHeight-2));
+	// -
+	CGPoint circleCenter = {CGRectGetMidX(rect), CGRectGetMidY(rect)};
+	CGFloat circlerOuterSize = rect.size.height/2.f;
+	CGFloat circleInnerSize = rect.size.height/3.1f;
+	
+	CGFloat spotAngle = 2.f * (float)M_PI / self.station.status_totalValue;
+	CGFloat zeroAngle = -M_PI;
+	
+	CGContextSetFillColorWithColor(ctxt,availableColor);
+	for (int i = 0; i < self.station.status_totalValue; i++) {
+		CGFloat angleStart = zeroAngle + (i+0.1f) * spotAngle;
+		CGFloat angleEnd = zeroAngle + (i+0.9f) * spotAngle;
+		CGPoint points [4];
+		points[0] = (CGPoint){circleCenter.x + circleInnerSize * cosf(angleStart), circleCenter.y + circleInnerSize * sinf(angleStart)};
+		points[1] = (CGPoint){circleCenter.x + circlerOuterSize * cosf(angleStart), circleCenter.y + circlerOuterSize * sinf(angleStart)};
+		points[2] = (CGPoint){circleCenter.x + circlerOuterSize * cosf(angleEnd), circleCenter.y + circlerOuterSize * sinf(angleEnd)};
+		points[3] = (CGPoint){circleCenter.x + circleInnerSize * cosf(angleEnd), circleCenter.y + circleInnerSize * sinf(angleEnd)};
+		CGMutablePathRef path = CGPathCreateMutable();
+		CGPathAddLines(path, NULL, points, sizeof(points)/sizeof(CGPoint));
+		CGContextAddPath(ctxt, path);
+		CGPathRelease(path);
+		
+		if(i==self.station.status_availableValue)
+			CGContextSetFillColorWithColor(ctxt,freeColor);
+		if(i==self.station.status_availableValue+self.station.status_freeValue)
+			CGContextSetFillColorWithColor(ctxt,otherColor);
+		CGContextFillPath(ctxt);
 	}
-
-	CGContextSetFillColorWithColor(ctxt, [UIColor grayColor].CGColor);
-	for (int i = self.station.status_availableValue; i < self.station.status_availableValue+self.station.status_freeValue; i++) {
-		CGContextFillRect(ctxt, CGRectMake(bubbleWidth*i + 1, 1, bubbleWidth-2, bubbleHeight-2));
+	
+	
+	// -
+	if( self.station.status_date && !self.station.loading)
+	{
+		UIFont * font = [UIFont boldSystemFontOfSize:18];
+		CGFloat textMargin = -1.f;
+		//	NSString * totalString = [NSString stringWithFormat:@"%d",self.station.status_totalValue];
+		
+		NSString * availableString = [NSString stringWithFormat:@"%d",self.station.status_availableValue];
+		NSString * freeString = [NSString stringWithFormat:@"%d",self.station.status_freeValue];
+		
+		CGContextSetFillColorWithColor(ctxt,availableColor);
+		CGSize availableStringSize = [availableString sizeWithFont:font];
+		CGRect availableStringRect = CGRectMake(circleCenter.x-availableStringSize.width/2, circleCenter.y-availableStringSize.height-textMargin, availableStringSize.width, availableStringSize.height);
+		[availableString drawInRect:availableStringRect withFont:font];
+		
+		CGContextSetFillColorWithColor(ctxt,freeColor);
+		CGSize freeStringSize = [freeString sizeWithFont:font];
+		CGRect freeStringRect = CGRectMake(circleCenter.x-freeStringSize.width/2, circleCenter.y+textMargin, freeStringSize.width, freeStringSize.height);
+		[freeString drawInRect:freeStringRect withFont:font];	
 	}
-	
-	CGContextSetFillColorWithColor(ctxt, [UIColor colorWithWhite:.8f alpha:1].CGColor);
-	for (int i = self.station.status_availableValue+self.station.status_freeValue; i < self.station.status_totalValue; i++) {
-		CGContextFillRect(ctxt, CGRectMake(bubbleWidth*i + 1, 1, bubbleWidth-2, bubbleHeight-2));
-	}
-	
-	
-	CGContextSetFillColorWithColor(ctxt, [UIColor colorWithWhite:1 alpha:1].CGColor);
-	CGContextSetShadowWithColor(ctxt, CGSizeMake(0,0), 2, [UIColor colorWithWhite:0 alpha:1].CGColor);
-	[self.station.statusDateDescription drawInRect:rect
-										  withFont:[UIFont boldSystemFontOfSize:16] 
-									 lineBreakMode:UILineBreakModeClip
-										 alignment:UITextAlignmentCenter];
 }
 
 @end

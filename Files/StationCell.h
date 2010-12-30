@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-#define StationCellHeight 94
+#define StationCellHeight 93
 @class Station;
 @class StationStatusView;
 @interface StationCell : UITableViewCell 
@@ -21,6 +21,7 @@
 @property (nonatomic, assign) IBOutlet UILabel * distanceLabel;
 
 @property (nonatomic, assign) IBOutlet StationStatusView * statusView;
+@property (nonatomic, assign) IBOutlet UIActivityIndicatorView * loadingIndicator;
 
 @property (nonatomic, assign) IBOutlet UIButton * favoriteButton;
 // Action

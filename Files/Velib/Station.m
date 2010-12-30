@@ -172,7 +172,7 @@
 	if(self.loading)
 		return NSLocalizedString(@"Requête en cours",@"");
 	if(nil==self.status_date)
-		return NSLocalizedString(@"Aucune donnée",@"");
+		return NSLocalizedString(@"Aucune info",@"");
 
 	NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.status_date];
 	if(interval<60)
@@ -182,7 +182,7 @@
 	if(interval<60*60)
 		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minutes",@""),interval/60.0f];
 	else
-		return NSLocalizedString(@"Aucune donnée récente",@"");
+		return NSLocalizedString(@"Aucune info récente",@"");
 }
 
 + (NSSet*) keyPathsForValuesAffectingStatusDateDescription
@@ -207,11 +207,6 @@
 - (BOOL) isFavorite
 {
 	return self.favorite_indexValue != -1;
-}
-
-+ (NSSet*) keyPathsForValuesAffectingFavorite
-{
-	return [NSSet setWithObject:@"favorite_indexValue"];
 }
 
 /****************************************************************************/

@@ -27,7 +27,7 @@
 @implementation StationCell
 
 @synthesize numberLabel, shortNameLabel, addressLabel, distanceLabel;
-@synthesize statusView;
+@synthesize statusView, loadingIndicator;
 @synthesize favoriteButton;
 @synthesize station;
 
@@ -54,12 +54,12 @@
 - (void) setStation:(Station*)value
 {
 	[self.station removeObserver:self forKeyPath:@"loading"];
-	[self.station removeObserver:self forKeyPath:@"status_date"];
+//	[self.station removeObserver:self forKeyPath:@"status_date"];
 	[self.station removeObserver:self forKeyPath:@"favorite"];
 	[station autorelease];
 	station = [value retain];
 	[self.station addObserver:self forKeyPath:@"favorite" options:0 context:[StationCell class]];
-	[self.station addObserver:self forKeyPath:@"status_date" options:0 context:[StationCell class]];
+//	[self.station addObserver:self forKeyPath:@"status_date" options:0 context:[StationCell class]];
 	[self.station addObserver:self forKeyPath:@"loading" options:0 context:[StationCell class]];
 	self.statusView.station = self.station;
 	[self updateUI];
@@ -71,6 +71,11 @@
 	self.shortNameLabel.text = self.station.cleanName;
 	self.addressLabel.text = self.station.cleanAddress;
 	[self.statusView setNeedsDisplay];
+	if(self.station.loading && ![self.loadingIndicator isAnimating])
+		[self.loadingIndicator startAnimating];
+	else
+		[self.loadingIndicator stopAnimating];
+		
 	self.favoriteButton.selected = self.station.favorite;
 	
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location usingShortFormat:YES];
