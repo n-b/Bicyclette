@@ -109,7 +109,6 @@
 		selectedIndex = value;
 		[self.buttons setValue:[NSNumber numberWithBool:NO] forKey:@"selected"];
 		[[self.buttons objectAtIndex:value] setSelected:YES];
-		[self.delegate bicycletteBar:self didSelectIndex:self.selectedIndex];
 		
 		[UIView beginAnimations:nil context:NULL];
 		CGPoint arrowCenter = self.arrow.center;
@@ -122,6 +121,7 @@
 - (void) selectButton:(id)sender
 {
 	self.selectedIndex = [sender tag];
+	[self.delegate bicycletteBar:self didSelectIndex:self.selectedIndex];
 }
 
 @end

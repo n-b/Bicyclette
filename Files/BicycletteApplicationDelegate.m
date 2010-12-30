@@ -98,7 +98,10 @@
 
 - (void) bicycletteBar:(BicycletteBar*)bar didSelectIndex:(NSUInteger)index
 {
+	BOOL shouldPop = self.tabBarController.selectedIndex==index;
 	[self selectTabIndex:index];
+	if(shouldPop)
+		[(UINavigationController*)self.tabBarController.selectedViewController popToRootViewControllerAnimated:YES];
 }
 
 - (void) selectTabIndex:(NSUInteger)index
