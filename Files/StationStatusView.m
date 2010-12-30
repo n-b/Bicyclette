@@ -30,7 +30,7 @@
 	int other = total-available-free;
 	
 	CGColorRef availableColor = [UIColor blackColor].CGColor;
-	CGColorRef freeColor = [UIColor colorWithWhite:.6f alpha:1.f].CGColor;
+	CGColorRef freeColor = [UIColor colorWithWhite:.5f alpha:1.f].CGColor;
 	CGColorRef otherColor = [UIColor colorWithHue:0.02f saturation:1.f brightness:.56f alpha:1.f].CGColor;
 	
 	// -
@@ -44,6 +44,17 @@
 	CGFloat zeroAngle = -M_PI;
 	
 	CGContextSetFillColorWithColor(ctxt,availableColor);
+	if(self.displayLegend)
+	{
+		CGContextSetStrokeColorWithColor(ctxt,availableColor);
+		CGContextSetLineWidth(ctxt, .5f);
+	}
+	else
+	{
+		CGContextSetStrokeColorWithColor(ctxt,[UIColor clearColor].CGColor);
+		CGContextSetLineWidth(ctxt, 0.f);		
+	}
+	
 	for (int i = 0; i < totalSpot; i++) {
 		CGFloat angleStart = zeroAngle + (i+0.1f) * spotAngle;
 		CGFloat angleEnd = zeroAngle + (i+0.9f) * spotAngle;
@@ -53,7 +64,11 @@
 		points[2] = (CGPoint){circleCenter.x + circlerOuterSize * cosf(angleEnd), circleCenter.y + circlerOuterSize * sinf(angleEnd)};
 		points[3] = (CGPoint){circleCenter.x + circleInnerSize * cosf(angleEnd), circleCenter.y + circleInnerSize * sinf(angleEnd)};
 		CGMutablePathRef path = CGPathCreateMutable();
-		CGPathAddLines(path, NULL, points, sizeof(points)/sizeof(CGPoint));
+		CGPathMoveToPoint(path, NULL, points[0].x, points[0].y);
+		CGPathAddLineToPoint(path, NULL, points[1].x, points[1].y);
+		CGPathAddArc(path, NULL, circleCenter.x, circleCenter.y, circlerOuterSize, angleStart, angleEnd, NO);
+		CGPathAddLineToPoint(path, NULL, points[3].x, points[3].y);
+		CGPathAddArc(path, NULL, circleCenter.x, circleCenter.y, circleInnerSize, angleEnd, angleStart, YES);
 		CGContextAddPath(ctxt, path);
 		CGPathRelease(path);
 		
@@ -61,7 +76,7 @@
 			CGContextSetFillColorWithColor(ctxt,freeColor);
 		if(i==available+free)
 			CGContextSetFillColorWithColor(ctxt,otherColor);
-		CGContextFillPath(ctxt);
+		CGContextDrawPath(ctxt,kCGPathFillStroke);
 	}
 	
 	
