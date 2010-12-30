@@ -184,7 +184,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:[self.frc objectAtIndexPath:indexPath]] animated:YES];
+	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:[self.frc objectAtIndexPath:indexPath] inArray:self.frc.fetchedObjects] animated:YES];
 }
 
 @end

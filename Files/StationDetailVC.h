@@ -12,8 +12,8 @@
 @class StationStatusView;
 @interface StationDetailVC : UIViewController 
 
-+ (id) detailVCWithStation:(Station*) station;
-- (id) initWithStation:(Station*) station;
++ (id) detailVCWithStation:(Station*) station inArray:(NSArray*)stations;
+- (id) initWithStation:(Station*) station inArray:(NSArray*)stations;
 
 // Outlets
 @property (nonatomic, assign) IBOutlet UILabel * numberLabel;
@@ -23,13 +23,20 @@
 
 @property (nonatomic, assign) IBOutlet StationStatusView * statusView;
 @property (nonatomic, assign) IBOutlet UIActivityIndicatorView * loadingIndicator;
+@property (nonatomic, assign) IBOutlet UILabel * statusDateLabel;
 
 @property (nonatomic, assign) IBOutlet UIButton * favoriteButton;
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem * previousNextBarItem; // retained
+@property (nonatomic, assign) IBOutlet UISegmentedControl * previousNextControl;
 
 // Action
 - (IBAction) switchFavorite;
 
+- (IBAction) changeToPreviousNext;
+
 // Data
 @property (nonatomic, retain) Station * station;
+@property (nonatomic, retain, readonly) NSArray * stations; // station must be in stations
 
 @end

@@ -176,7 +176,7 @@
 
 	NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.status_date];
 	if(interval<60)
-		return NSLocalizedString(@"",@"");
+		return NSLocalizedString(@"ˆ l'instant",@"");
 	if(interval<90)
 		return [NSString stringWithFormat:NSLocalizedString(@"il y a 1 minute",@"")];
 	if(interval<60*60)
