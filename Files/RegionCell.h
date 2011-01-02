@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-#define RegionCellHeight 66
+#define RegionCellHeight 62
 @class Region;
 @interface RegionCell : UITableViewCell 
 
