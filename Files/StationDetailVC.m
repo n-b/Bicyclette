@@ -13,11 +13,21 @@
 #import "BicycletteApplicationDelegate.h"
 #import "CLLocation+Direction.h"
 
+#define kBounceLimit 100
+
 /****************************************************************************/
 #pragma mark -
 
-@interface StationDetailVC ()
+@interface StationDetailVC () <UIScrollViewDelegate>
 @property (nonatomic, retain) NSArray * stations;
+
+- (BOOL) canShowPrevious;
+- (BOOL) canShowNext;
+- (void) showPreviousStation;
+- (void) showNextStation;
+
+- (void) stopBouncing;
+- (void) restoreBouncing;
 
 - (void) updateUI;
 - (void) locationDidChange:(NSNotification*)notif;
@@ -28,6 +38,7 @@
 
 @implementation StationDetailVC
 
+@synthesize scrollView, contentView;
 @synthesize numberLabel, shortNameLabel, addressLabel, distanceLabel;
 @synthesize statusView, loadingIndicator, statusDateLabel;
 @synthesize favoriteButton;
@@ -77,6 +88,8 @@
 	self.statusView.displayLegend = YES;
 	self.statusView.station = self.station;
 	self.navigationItem.rightBarButtonItem = self.previousNextBarItem;
+	
+	self.scrollView.contentSize = self.contentView.bounds.size;
 	[self updateUI];
 }
 
@@ -89,6 +102,28 @@
 
 /****************************************************************************/
 #pragma mark UI
+
+- (BOOL) canShowPrevious
+{
+	return [self.stations indexOfObject:self.station] > 0;
+}
+
+- (BOOL) canShowNext
+{
+	return [self.stations indexOfObject:self.station] < self.stations.count-1;
+}
+
+- (void) showPreviousStation
+{
+	NSAssert([self canShowPrevious],@"wrong index");
+	self.station = [self.stations objectAtIndex:[self.stations indexOfObject:self.station]-1];
+}
+
+- (void) showNextStation
+{
+	NSAssert([self canShowNext],@"wrong index");
+	self.station = [self.stations objectAtIndex:[self.stations indexOfObject:self.station]+1];
+}
 
 - (void) setStation:(Station*)value
 {
@@ -126,9 +161,42 @@
 	
 	self.favoriteButton.selected = self.station.favorite;
 	
-	NSUInteger index = [self.stations indexOfObject:self.station];
-	[self.previousNextControl setEnabled:index>0 forSegmentAtIndex:0];
-	[self.previousNextControl setEnabled:index<self.stations.count-1 forSegmentAtIndex:1];
+	[self.previousNextControl setEnabled:[self canShowPrevious] forSegmentAtIndex:0];
+	[self.previousNextControl setEnabled:[self canShowNext] forSegmentAtIndex:1];
+	
+}
+
+/****************************************************************************/
+#pragma mark Scroll View Delegate
+
+- (void)scrollViewDidScroll:(UIScrollView*) scrollView
+{
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	if(self.scrollView.contentOffset.y < -kBounceLimit && [self canShowPrevious])
+	{	
+		[self showPreviousStation];
+		[self stopBouncing];
+	}
+	else if(self.scrollView.contentOffset.y > kBounceLimit && [self canShowNext])
+	{
+		[self showNextStation];
+		[self stopBouncing];
+	}
+}
+
+- (void) stopBouncing
+{
+	self.scrollView.contentOffset = CGPointZero;
+	self.scrollView.bounces = NO;
+	[self performSelector:@selector(restoreBouncing) withObject:nil afterDelay:0.5];
+}
+
+- (void) restoreBouncing
+{
+	self.scrollView.bounces = YES;
 }
 
 /****************************************************************************/
@@ -141,12 +209,10 @@
 
 - (IBAction) changeToPreviousNext
 {
-	NSUInteger index = [self.stations indexOfObject:self.station];
 	if(self.previousNextControl.selectedSegmentIndex==0)
-		--index;
+		[self showPreviousStation];
 	else
-		++index;
-	self.station = [self.stations objectAtIndex:index];
+		[self showNextStation];
 }
 
 /****************************************************************************/
@@ -155,7 +221,10 @@
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == [StationDetailVC class])
-		[self updateUI];
+	{
+		if(object==self.station)
+			[self updateUI];			
+	}
 	else 
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }

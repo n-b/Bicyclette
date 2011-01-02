@@ -16,6 +16,9 @@
 - (id) initWithStation:(Station*) station inArray:(NSArray*)stations;
 
 // Outlets
+@property (nonatomic, assign) IBOutlet UIScrollView * scrollView;
+@property (nonatomic, assign) IBOutlet UIView * contentView;
+
 @property (nonatomic, assign) IBOutlet UILabel * numberLabel;
 @property (nonatomic, assign) IBOutlet UILabel * shortNameLabel;
 @property (nonatomic, assign) IBOutlet UILabel * addressLabel;
