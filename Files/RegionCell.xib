@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="8"/>
 			<integer value="3"/>
+			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -53,7 +53,10 @@
 								<int key="NSvFlags">298</int>
 								<string key="NSFrame">{{8, 7}, {284, 28}}</string>
 								<reference key="NSSuperview" ref="156602258"/>
-								<bool key="IBUIOpaque">NO</bool>
+								<object class="NSColor" key="IBUIBackgroundColor" id="1054976419">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -81,11 +84,7 @@
 								<int key="NSvFlags">297</int>
 								<string key="NSFrame">{{146, 36}, {146, 20}}</string>
 								<reference key="NSSuperview" ref="156602258"/>
-								<object class="NSColor" key="IBUIBackgroundColor" id="1054976419">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
+								<reference key="IBUIBackgroundColor" ref="1054976419"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -107,7 +106,7 @@
 								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{8, 36}, {45, 20}}</string>
 								<reference key="NSSuperview" ref="156602258"/>
-								<bool key="IBUIOpaque">NO</bool>
+								<reference key="IBUIBackgroundColor" ref="1054976419"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -143,6 +142,7 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
+				<int key="IBUISelectionStyle">2</int>
 				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="156602258"/>
 				<string key="IBUIReuseIdentifier">RegionCell</string>
@@ -217,9 +217,9 @@
 						<reference key="object" ref="355186827"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="793330105"/>
 							<reference ref="387164496"/>
 							<reference ref="903411415"/>
+							<reference ref="793330105"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -282,7 +282,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDGAAAwngAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDEgAAwlgAAA</bytes>
 					</object>
 					<string>{{283, 306}, {320, 62}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
