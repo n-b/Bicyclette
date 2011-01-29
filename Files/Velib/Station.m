@@ -74,9 +74,9 @@
 				break;
 		}
 		
-		NSLog(@"endOfAddress \"%@\" trop court, %@, trouvé %@",endOfAddress, self.name, lCodePostal);
+		NSLog(@"endOfAddress \"%@\" trop court, %@, trouv√© %@",endOfAddress, self.name, lCodePostal);
 	}
-	NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
+	NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caract√®res invalides",lCodePostal);
 	
 	Region * region = [[Region fetchRegionWithNumber:self.managedObjectContext number:lCodePostal] lastObject];
 	if(nil==region)
@@ -101,12 +101,12 @@
 {
 	if(self.connection!=nil)
 	{
-		//NSLog(@"requete déjà en cours %@",self.number);
+		//NSLog(@"requete d√©j√† en cours %@",self.number);
 		return;
 	}
 	if(self.status_date && [[NSDate date] timeIntervalSinceDate:self.status_date] < 15) // 15 seconds
 	{
-		//NSLog(@"requete trop récente %@",self.number);
+		//NSLog(@"requete trop r√©cente %@",self.number);
 		return;
 	}
 	
@@ -176,19 +176,19 @@
 - (NSString *) statusDateDescription
 {
 	if(self.loading)
-		return NSLocalizedString(@"Requête en cours",@"");
+		return NSLocalizedString(@"Requ√™te en cours",@"");
 	if(nil==self.status_date)
 		return NSLocalizedString(@"Aucune info",@"");
 
 	NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.status_date];
 	if(interval<60)
-		return NSLocalizedString(@"à l'instant",@"");
+		return NSLocalizedString(@"√† l'instant",@"");
 	if(interval<90)
 		return [NSString stringWithFormat:NSLocalizedString(@"il y a 1 minute",@"")];
 	if(interval<60*60)
 		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minutes",@""),interval/60.0f];
 	else
-		return NSLocalizedString(@"Aucune info récente",@"");
+		return NSLocalizedString(@"Aucune info r√©cente",@"");
 }
 
 + (NSSet*) keyPathsForValuesAffectingStatusDateDescription
