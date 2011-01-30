@@ -105,7 +105,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 		//NSLog(@"requete déjà en cours %@",self.number);
 		return;
 	}
-	if(self.status_date && [[NSDate date] timeIntervalSinceDate:self.status_date] < 15) // 15 seconds
+	if(self.status_date && [[NSDate date] timeIntervalSinceDate:self.status_date] < [[NSUserDefaults standardUserDefaults] doubleForKey:@"StationRefreshInterval"]) // 15 seconds
 	{
 		//NSLog(@"requete trop récente %@",self.number);
 		return;
