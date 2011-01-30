@@ -87,7 +87,8 @@
 	self.statusView.displayOtherSpots = YES;
 	self.statusView.displayLegend = YES;
 	self.statusView.station = self.station;
-	self.navigationItem.rightBarButtonItem = self.previousNextBarItem;
+	if(self.stations!=nil)
+		self.navigationItem.rightBarButtonItem = self.previousNextBarItem;
 	
 	self.scrollView.contentSize = self.contentView.bounds.size;
 	[self updateUI];
