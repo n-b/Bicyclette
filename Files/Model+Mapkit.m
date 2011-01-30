@@ -23,7 +23,7 @@
 
 - (NSString *)subtitle
 {
-	return self.address;
+	return self.statusDescription;
 }
 
 @end

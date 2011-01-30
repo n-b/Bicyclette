@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSString * cleanName;
 @property (nonatomic, readonly) NSString * cleanAddress;
 @property (nonatomic, getter=isFavorite) BOOL favorite;
+@property (nonatomic, readonly) NSString * statusDescription;
 @property (nonatomic, readonly) NSString * statusDateDescription;
 @property (nonatomic, retain, readonly) CLLocation * location;
 

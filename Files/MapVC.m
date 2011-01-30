@@ -98,6 +98,8 @@ typedef enum {
 		[self.mapView removeAnnotations:annotationsToRemove];
 		[self.mapView addAnnotations:annotationsToAdd];
 		
+		NSArray * visibleFavorites = [newAnnotations filteredArrayWithSelector:@selector(isFavorite)];
+		[visibleFavorites makeObjectsPerformSelector:@selector(refresh)];
 	}
 }
 

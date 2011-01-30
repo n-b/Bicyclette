@@ -21,7 +21,7 @@
 - (NSArray*) filteredArrayWithValue:(id)value forKey:(NSString*)key;
 
 /*
- * KVC related addition : find and return the objects who return a non-nil value when the passed selector is sent to them.
+ * KVC related addition : find and return the objects who return a YES value when the passed selector is sent to them.
  */
 - (NSArray*) filteredArrayWithSelector:(SEL)aFilterSelector;
 
