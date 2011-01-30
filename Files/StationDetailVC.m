@@ -117,12 +117,20 @@
 - (void) showPreviousStation
 {
 	NSAssert([self canShowPrevious],@"wrong index");
+	CATransition * animation = [CATransition animation];
+	animation.type = kCATransitionPush;
+	animation.subtype = kCATransitionFromBottom;
+	[self.scrollView.layer addAnimation:animation forKey:@"previous"];
 	self.station = [self.stations objectAtIndex:[self.stations indexOfObject:self.station]-1];
 }
 
 - (void) showNextStation
 {
 	NSAssert([self canShowNext],@"wrong index");
+	CATransition * animation = [CATransition animation];
+	animation.type = kCATransitionPush;
+	animation.subtype = kCATransitionFromTop;
+	[self.scrollView.layer addAnimation:animation forKey:@"next"];
 	self.station = [self.stations objectAtIndex:[self.stations indexOfObject:self.station]+1];
 }
 
