@@ -11,10 +11,6 @@
 
 /****************************************************************************/
 #pragma mark KVC-related Additions
-// Using enumerators is probably faster than using NSPredicates.
-// Moreover, predicates are 10.4+ only.
-//
-// In a 10.5 / Objective-C 2.0 World, we'd use fast enums.
 
 - (id) firstObjectWithValue:(id)value forKey:(NSString*)key
 {
@@ -53,6 +49,12 @@
 	return [NSArray arrayWithArray:objects];
 }
 
+- (NSArray*) arrayByRemovingObjectsInArray:(NSArray*)otherArray
+{
+	NSMutableArray * result = [[self mutableCopy] autorelease];
+	[result removeObjectsInArray:otherArray];
+	return result;
+}
 
 @end
 

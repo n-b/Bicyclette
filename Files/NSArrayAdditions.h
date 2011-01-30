@@ -25,6 +25,11 @@
  */
 - (NSArray*) filteredArrayWithSelector:(SEL)aFilterSelector;
 
+/*
+ * arrayByRemovingObjectsInArray
+ */
+- (NSArray*) arrayByRemovingObjectsInArray:(NSArray*)otherArray;
+
 @end
 
 

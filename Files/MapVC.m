@@ -13,6 +13,7 @@
 #import "Region.h"
 #import "StationDetailVC.h"
 #import "Model+Mapkit.h"
+#import "NSArrayAdditions.h"
 
 typedef enum {
 	MapModeNone = 0,
@@ -72,12 +73,32 @@ typedef enum {
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
 	CLLocationDegrees modelSpan = self.referenceRegion.span.latitudeDelta;
-	if(self.mapView.region.span.latitudeDelta>modelSpan*2.0f)
-		self.mode = MapModeNone;
-	else if(self.mapView.region.span.latitudeDelta>modelSpan/10.0f)
+	if(self.mapView.region.span.latitudeDelta>modelSpan/10.0f)
 		self.mode = MapModeRegions;
 	else
+	{
 		self.mode = MapModeStations;
+		
+		NSFetchRequest * request = [[NSFetchRequest new] autorelease];
+		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+		CLLocationDegrees minLat, maxLat, minLng, maxLng;
+		minLat = self.mapView.region.center.latitude - self.mapView.region.span.latitudeDelta;
+		maxLat = self.mapView.region.center.latitude + self.mapView.region.span.latitudeDelta;
+		minLng = self.mapView.region.center.longitude - self.mapView.region.span.longitudeDelta;
+		maxLng = self.mapView.region.center.longitude + self.mapView.region.span.longitudeDelta;
+		request.predicate = [NSPredicate predicateWithFormat:@"lat>%f AND lat<%f AND lng>%f AND lng<%f",
+							 minLat, maxLat, minLng, maxLng];
+
+		NSArray * oldAnnotations = self.mapView.annotations;
+		NSArray * newAnnotations = [BicycletteAppDelegate.dataManager.moc executeFetchRequest:request error:NULL];
+		
+		NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
+		NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
+		
+		[self.mapView removeAnnotations:annotationsToRemove];
+		[self.mapView addAnnotations:annotationsToAdd];
+		
+	}
 }
 
 
@@ -136,12 +157,12 @@ typedef enum {
 	{
 		mode = value;
 		[self.mapView removeAnnotations:self.mapView.annotations];
-		if(self.mode==MapModeNone)
-			return;
-		NSFetchRequest * request = [[NSFetchRequest new] autorelease];
-		Class class = self.mode==MapModeRegions?[Region class]:[Station class];
-		[request setEntity:[class entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
-		[self.mapView addAnnotations:[BicycletteAppDelegate.dataManager.moc executeFetchRequest:request error:NULL]];
+		if(self.mode==MapModeRegions)
+		{
+			NSFetchRequest * request = [[NSFetchRequest new] autorelease];
+			request.entity = [Region entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc];
+			[self.mapView addAnnotations:[BicycletteAppDelegate.dataManager.moc executeFetchRequest:request error:NULL]];
+		}			
 	}
 }
 
