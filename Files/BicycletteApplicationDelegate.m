@@ -49,7 +49,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[self.locator start];
 	[self.window insertSubview:self.tabBarController.view belowSubview:self.toolbar];
 	
 	// Hide the tabbar, the toolbar's segmented control is used instead
@@ -77,8 +76,19 @@
 	return YES;
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	[self.locator start];
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+	[self.locator stop];
+}
+
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+	[self.locator stop];
 	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedTabIndex"];
 }
 
