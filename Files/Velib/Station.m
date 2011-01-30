@@ -6,6 +6,7 @@
 /****************************************************************************/
 #pragma mark -
 
+NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChange";
 
 @interface Station () 
 @property (nonatomic, retain) NSURLConnection * connection;
@@ -207,6 +208,7 @@
 	else
 		self.favorite_indexValue = 0;
 	
+	[[NSNotificationCenter defaultCenter] postNotificationName:StationFavoriteDidChangeNotification object:self];
 	[self save];
 }
 

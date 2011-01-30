@@ -19,3 +19,8 @@
 @property (nonatomic, retain, readonly) CLLocation * location;
 
 @end
+
+
+// Notification
+
+extern NSString * const StationFavoriteDidChangeNotification;

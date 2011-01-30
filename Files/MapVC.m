@@ -12,6 +12,7 @@
 #import "Station.h"
 #import "Region.h"
 #import "StationDetailVC.h"
+#import "Model+Mapkit.h"
 
 typedef enum {
 	MapModeNone = 0,
@@ -24,6 +25,7 @@ typedef enum {
 @property (nonatomic) MapMode mode;
 - (void) showDetails:(MKAnnotationView*)sender;
 - (void) zoomIn:(Region*)region;
+- (void) favoriteDidChange:(NSNotification*)notif;
 @end
 
 /****************************************************************************/
@@ -34,7 +36,19 @@ typedef enum {
 @synthesize mapView;
 @synthesize referenceRegion, mode;
 
+
+- (id) initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self != nil) {
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) 
+													 name:StationFavoriteDidChangeNotification object:nil];
+	}
+	return self;
+}
+
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 
@@ -90,7 +104,6 @@ typedef enum {
 		if(nil==pinView)
 		{
 			pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
-			pinView.pinColor = MKPinAnnotationColorGreen;
 			pinView.canShowCallout = YES;
 			UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 			[rightButton addTarget:self
@@ -98,6 +111,8 @@ typedef enum {
 				  forControlEvents:UIControlEventTouchUpInside];
 			pinView.rightCalloutAccessoryView = rightButton;
 		}
+		pinView.pinColor = [(Station*)annotation isFavorite]?MKPinAnnotationColorRed:MKPinAnnotationColorGreen;
+		
 		return pinView;
 	}
 	return nil;
@@ -130,7 +145,6 @@ typedef enum {
 	}
 }
 
-
 - (void) showDetails:(UIButton*)sender
 {
 	Station * station = (Station*)[self.mapView.selectedAnnotations objectAtIndex:0];
@@ -141,6 +155,16 @@ typedef enum {
 - (void) zoomIn:(Region*)region
 {
 	[self.mapView setRegion:[self.mapView regionThatFits:region.coordinateRegion] animated:YES];
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) favoriteDidChange:(NSNotification*)notif
+{
+	Station * station = notif.object;
+	MKPinAnnotationView * pinView = (MKPinAnnotationView*)[self.mapView viewForAnnotation:station];
+	pinView.pinColor = [station isFavorite]?MKPinAnnotationColorRed:MKPinAnnotationColorGreen;
 }
 
 @end
