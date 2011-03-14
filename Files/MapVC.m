@@ -143,11 +143,10 @@ typedef enum {
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-	Region * region = (Region*)view.annotation;
-	if([region isKindOfClass:[Region class]])
-	{
-		[self zoomIn:region];
-	}
+	if([view.annotation isKindOfClass:[Region class]])
+		[self zoomIn:(Region*)view.annotation];
+    else if([view.annotation isKindOfClass:[Station class]])
+        [(Station*)view.annotation refresh];
 }
 
 /****************************************************************************/

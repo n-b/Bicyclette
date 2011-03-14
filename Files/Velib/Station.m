@@ -179,6 +179,11 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 	return [NSString stringWithFormat:NSLocalizedString(@"%d vélos, %d places.",@""),self.status_availableValue, self.status_freeValue];
 }
 
++ (NSSet*) keyPathsForValuesAffectingStatusDescription
+{
+	return [NSSet setWithObjects:@"status_availableValue",@"status_freeValue",nil];  
+}
+
 - (NSString *) statusDateDescription
 {
 	if(self.loading)
