@@ -26,6 +26,7 @@
 		37201E9712B2ED040001A668 /* RegionsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37201E9612B2ED040001A668 /* RegionsTab@2x.png */; };
 		372020C212B55C900001A668 /* Model+Mapkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 372020C112B55C900001A668 /* Model+Mapkit.m */; };
 		37216BC712611C5400A2695A /* VelibDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibDataManager.m */; };
+		372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EAE41298018A00113534 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EADF1298018A00113534 /* Default.png */; };
 		3756EAE51298018A00113534 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE01298018A00113534 /* Default@2x.png */; };
@@ -93,6 +94,8 @@
 		37216BC512611C5400A2695A /* VelibDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibDataManager.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibDataManager.m; sourceTree = "<group>"; };
 		3726FFD912B55FA900516CF3 /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
+		372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA1.h"; sourceTree = "<group>"; };
+		372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Bicyclette-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bicyclette-Info.plist"; sourceTree = "<group>"; };
 		3756EADF1298018A00113534 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 		37D188291170A25C00950D52 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
+				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
 				37201D7412B2DBFC0001A668 /* BicycletteBar.h */,
 				37201D7512B2DBFC0001A668 /* BicycletteBar.m */,
 				37149C8812625B94009CDE82 /* UITableViewCell+EasyReuse.h */,
@@ -425,6 +430,7 @@
 				372020C212B55C900001A668 /* Model+Mapkit.m in Sources */,
 				37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */,
 				37D6B10D12CCC93700EEC835 /* StationDetailVC.m in Sources */,
+				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
