@@ -59,6 +59,8 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+    self.mapView.showsUserLocation = YES;
+    
 	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.dataManager.coordinateRegion];
 	self.mapView.region = self.referenceRegion;
 }
