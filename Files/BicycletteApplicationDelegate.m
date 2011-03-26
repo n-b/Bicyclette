@@ -88,8 +88,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	[self.locator stop];
 	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedTabIndex"];
+	[self.locator stop];
+    usleep(500*1000);
 }
 
 - (void)dealloc {
