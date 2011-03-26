@@ -11,6 +11,7 @@
 #import "Region.h"
 
 #import "NSArrayAdditions.h"
+#import "NSData+SHA1.h"
 
 #import <CoreData/CoreData.h>
 
@@ -157,8 +158,19 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	self.updateConnection = nil;
-	[self parseXML:self.updateData];
-	self.updateData = nil;	
+    NSString * oldSha1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"Database_XML_SHA1"];
+    NSString * newSha1 = [self.updateData sha1DigestString];
+    if([oldSha1 isEqualToString:newSha1])
+    {
+        NSLog(@"No need to rebuild database, the data actually hasn't changed.");
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"DatabaseCreateDate"];
+    }
+    else
+    {
+		[self parseXML:self.updateData];
+        [[NSUserDefaults standardUserDefaults] setObject:newSha1 forKey:@"Database_XML_SHA1"];
+    }
+	self.updateData = nil;
 }
 
 + (NSSet*) keyPathsForValuesAffectingDownloadingUpdate
@@ -242,7 +254,7 @@
 		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
 		if(fixes)
 		{
-			NSLog(@"using hardcoded fixes for %@ : %@",station.number,fixes);
+			NSLog(@"using hardcoded fixes for %@.\n\tReceived Data : %@.\n\tFixes : %@",station.number, attributeDict, fixes);
 			[station setValuesForKeysWithDictionary:fixes]; // Yay! again
 		}
 		[station setupCodePostal];

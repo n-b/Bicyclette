@@ -18,12 +18,17 @@
 
 - (NSString *)title
 {
-	return self.name;
+	return self.statusDescription;
+}
+
++ (NSSet*) keyPathsForValuesAffectingTitle
+{
+    return [NSSet setWithObject:@"statusDescription"];
 }
 
 - (NSString *)subtitle
 {
-	return self.statusDescription;
+	return self.name;
 }
 
 @end
