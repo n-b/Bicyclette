@@ -24,7 +24,7 @@ typedef enum {
 @interface MapVC() <MKMapViewDelegate>
 @property (nonatomic) MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
-- (void) showDetails:(MKAnnotationView*)sender;
+- (void) showDetails:(UIButton*)sender;
 - (void) zoomIn:(Region*)region;
 - (void) favoriteDidChange:(NSNotification*)notif;
 @end
