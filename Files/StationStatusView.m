@@ -29,55 +29,91 @@
 	int total = self.station.status_totalValue;
 	int other = total-available-free;
 	
-	CGColorRef availableColor = [UIColor blackColor].CGColor;
+	CGColorRef availableColor = [UIColor redColor].CGColor;
 	CGColorRef freeColor = [UIColor colorWithWhite:.5f alpha:1.f].CGColor;
 	CGColorRef otherColor = [UIColor colorWithHue:0.02f saturation:1.f brightness:.56f alpha:1.f].CGColor;
 	
 	// -
 	int totalSpot = self.displayOtherSpots?total:available+free;
-	
-	CGPoint circleCenter = {CGRectGetMidX(rect), CGRectGetMidY(rect)};
-	CGFloat circlerOuterSize = rect.size.height/2.f;
-	CGFloat circleInnerSize = rect.size.height/3.1f;
-	
-	CGFloat spotAngle = 2.f * (float)M_PI / totalSpot;
-	CGFloat zeroAngle = -M_PI;
-	
-	CGContextSetFillColorWithColor(ctxt,availableColor);
-	if(self.displayLegend)
-	{
-		CGContextSetStrokeColorWithColor(ctxt,availableColor);
-		CGContextSetLineWidth(ctxt, .5f);
-	}
-	else
-	{
-		CGContextSetStrokeColorWithColor(ctxt,[UIColor clearColor].CGColor);
-		CGContextSetLineWidth(ctxt, 0.f);		
-	}
-	
-	for (int i = 0; i < totalSpot; i++) {
-		CGFloat angleStart = zeroAngle + (i+0.1f) * spotAngle;
-		CGFloat angleEnd = zeroAngle + (i+0.9f) * spotAngle;
-		CGPoint points [4];
-		points[0] = (CGPoint){circleCenter.x + circleInnerSize * cosf(angleStart), circleCenter.y + circleInnerSize * sinf(angleStart)};
-		points[1] = (CGPoint){circleCenter.x + circlerOuterSize * cosf(angleStart), circleCenter.y + circlerOuterSize * sinf(angleStart)};
-		points[2] = (CGPoint){circleCenter.x + circlerOuterSize * cosf(angleEnd), circleCenter.y + circlerOuterSize * sinf(angleEnd)};
-		points[3] = (CGPoint){circleCenter.x + circleInnerSize * cosf(angleEnd), circleCenter.y + circleInnerSize * sinf(angleEnd)};
-		CGMutablePathRef path = CGPathCreateMutable();
-		CGPathMoveToPoint(path, NULL, points[0].x, points[0].y);
-		CGPathAddLineToPoint(path, NULL, points[1].x, points[1].y);
-		CGPathAddArc(path, NULL, circleCenter.x, circleCenter.y, circlerOuterSize, angleStart, angleEnd, NO);
-		CGPathAddLineToPoint(path, NULL, points[3].x, points[3].y);
-		CGPathAddArc(path, NULL, circleCenter.x, circleCenter.y, circleInnerSize, angleEnd, angleStart, YES);
-		CGContextAddPath(ctxt, path);
-		CGPathRelease(path);
-		
-		if(i==available)
-			CGContextSetFillColorWithColor(ctxt,freeColor);
-		if(i==available+free)
-			CGContextSetFillColorWithColor(ctxt,otherColor);
-		CGContextDrawPath(ctxt,kCGPathFillStroke);
-	}
+
+    // 
+    int nbRows, nbCols; nbRows = nbCols = sqrtf(totalSpot);
+    if( nbRows*nbCols < totalSpot )
+        nbCols+=1;
+    if( nbRows*nbCols < totalSpot )
+        nbRows+=1;
+    
+    CGRect spotRect;
+    spotRect.size.width = (rect.size.width-1)  / nbCols;
+    spotRect.size.height = (rect.size.height-1) / nbRows;
+
+    CGContextSetFillColorWithColor(ctxt,availableColor);
+    CGContextSetStrokeColorWithColor(ctxt,[UIColor blackColor].CGColor);
+
+    CGRect intRect = CGRectZero;
+    intRect.origin.y = 0.5;
+    for (int row = 0; row<nbRows; row++) {
+        intRect.origin.x = 0.5;
+        for (int col = 0; col<nbCols && row*nbCols+col+1 <= totalSpot ; col++) {
+            
+            if(col+(row*nbCols)==available)
+                CGContextSetFillColorWithColor(ctxt,freeColor);
+
+            intRect.size.width = lroundf((col+1)*spotRect.size.width - intRect.origin.x);
+            intRect.size.height = lroundf((row+1)*spotRect.size.height - intRect.origin.y);
+            CGContextFillRect(ctxt, intRect);
+            CGContextStrokeRect(ctxt, intRect);
+            
+            intRect.origin.x += intRect.size.width;
+        }
+        intRect.origin.y += intRect.size.height;
+    }
+    
+    CGPoint circleCenter = {CGRectGetMidX(rect), CGRectGetMidY(rect)};
+    CGFloat circlerOuterSize = rect.size.height/2.f;
+    if(0)
+    {
+        CGFloat circleInnerSize = rect.size.height/3.1f;
+        
+        CGFloat spotAngle = 2.f * (float)M_PI / totalSpot;
+        CGFloat zeroAngle = -M_PI;
+        
+        CGContextSetFillColorWithColor(ctxt,availableColor);
+        if(self.displayLegend)
+        {
+            CGContextSetStrokeColorWithColor(ctxt,availableColor);
+            CGContextSetLineWidth(ctxt, .5f);
+        }
+        else
+        {
+            CGContextSetStrokeColorWithColor(ctxt,[UIColor clearColor].CGColor);
+            CGContextSetLineWidth(ctxt, 0.f);		
+        }
+        
+        for (int i = 0; i < totalSpot; i++) {
+            CGFloat angleStart = zeroAngle + (i+0.1f) * spotAngle;
+            CGFloat angleEnd = zeroAngle + (i+0.9f) * spotAngle;
+            CGPoint points [4];
+            points[0] = (CGPoint){circleCenter.x + circleInnerSize * cosf(angleStart), circleCenter.y + circleInnerSize * sinf(angleStart)};
+            points[1] = (CGPoint){circleCenter.x + circlerOuterSize * cosf(angleStart), circleCenter.y + circlerOuterSize * sinf(angleStart)};
+            points[2] = (CGPoint){circleCenter.x + circlerOuterSize * cosf(angleEnd), circleCenter.y + circlerOuterSize * sinf(angleEnd)};
+            points[3] = (CGPoint){circleCenter.x + circleInnerSize * cosf(angleEnd), circleCenter.y + circleInnerSize * sinf(angleEnd)};
+            CGMutablePathRef path = CGPathCreateMutable();
+            CGPathMoveToPoint(path, NULL, points[0].x, points[0].y);
+            CGPathAddLineToPoint(path, NULL, points[1].x, points[1].y);
+            CGPathAddArc(path, NULL, circleCenter.x, circleCenter.y, circlerOuterSize, angleStart, angleEnd, NO);
+            CGPathAddLineToPoint(path, NULL, points[3].x, points[3].y);
+            CGPathAddArc(path, NULL, circleCenter.x, circleCenter.y, circleInnerSize, angleEnd, angleStart, YES);
+            CGContextAddPath(ctxt, path);
+            CGPathRelease(path);
+            
+            if(i==available)
+                CGContextSetFillColorWithColor(ctxt,freeColor);
+            if(i==available+free)
+                CGContextSetFillColorWithColor(ctxt,otherColor);
+            CGContextDrawPath(ctxt,kCGPathFillStroke);
+        }
+    }
 	
 	
 	// -
@@ -120,7 +156,7 @@
 		if(self.displayOtherSpots && other)
 			yPos -= otherStringSize.height/2.0f;
 
-		CGContextSetFillColorWithColor(ctxt,availableColor);
+		CGContextSetFillColorWithColor(ctxt,[UIColor blackColor].CGColor);
 		CGRect availableStringRect = CGRectMake(circleCenter.x-availableStringSize.width/2, yPos, availableStringSize.width, availableStringSize.height);
 		[availableString drawInRect:availableStringRect withFont:font];
 		yPos += availableStringSize.height + textMargin;
@@ -133,7 +169,7 @@
 			yPos += otherStringSize.height + textMargin;
 		}
 		
-		CGContextSetFillColorWithColor(ctxt,freeColor);
+		CGContextSetFillColorWithColor(ctxt,[UIColor blackColor].CGColor);
 		CGRect freeStringRect = CGRectMake(circleCenter.x-freeStringSize.width/2, yPos, freeStringSize.width, freeStringSize.height);
 		[freeString drawInRect:freeStringRect withFont:font];	
 	}
