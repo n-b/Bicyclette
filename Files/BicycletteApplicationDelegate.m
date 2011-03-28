@@ -10,6 +10,7 @@
 #import "VelibDataManager.h"
 #import "Locator.h"
 #import "BicycletteBar.h"
+#include <unistd.h>
 
 /****************************************************************************/
 #pragma mark Private Methods
