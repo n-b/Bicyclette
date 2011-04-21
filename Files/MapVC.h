@@ -11,6 +11,10 @@
 
 @interface MapVC : UIViewController 
 
+// Outlets
 @property (nonatomic, assign) IBOutlet MKMapView * mapView;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem * centerMapButton;
 
+// Actions
+- (IBAction)changeGeolocMode;
 @end

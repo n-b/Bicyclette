@@ -9,6 +9,7 @@
 #import "MapVC.h"
 #import "BicycletteApplicationDelegate.h"
 #import "VelibDataManager.h"
+#import "Locator.h"
 #import "Station.h"
 #import "Region.h"
 #import "StationDetailVC.h"
@@ -34,7 +35,7 @@ typedef enum {
 
 @implementation MapVC 
 
-@synthesize mapView;
+@synthesize mapView, centerMapButton;
 @synthesize referenceRegion, mode;
 
 
@@ -59,7 +60,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    self.mapView.showsUserLocation = YES;
+    self.navigationItem.rightBarButtonItem = self.centerMapButton;
     
 	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.dataManager.coordinateRegion];
 	self.mapView.region = self.referenceRegion;
@@ -179,6 +180,12 @@ typedef enum {
 - (void) zoomIn:(Region*)region
 {
 	[self.mapView setRegion:[self.mapView regionThatFits:region.coordinateRegion] animated:YES];
+}
+
+- (IBAction)changeGeolocMode
+{
+    if(BicycletteAppDelegate.locator.location)
+        self.mapView.centerCoordinate = BicycletteAppDelegate.locator.location.coordinate;
 }
 
 /****************************************************************************/
