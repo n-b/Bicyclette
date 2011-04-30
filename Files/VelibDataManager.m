@@ -257,7 +257,12 @@
 			NSLog(@"using hardcoded fixes for %@.\n\tReceived Data : %@.\n\tFixes : %@",station.number, attributeDict, fixes);
 			[station setValuesForKeysWithDictionary:fixes]; // Yay! again
 		}
-		[station setupCodePostal];
+        BOOL valid = [station setupCodePostal];
+		if(!valid)
+        {
+            NSLog(@"Invalid data : %@",attributeDict);
+            [self.moc deleteObject:station];
+        }
 	}
 }
 

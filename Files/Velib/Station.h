@@ -4,7 +4,7 @@
 @interface Station : _Station {}
 
 // setup
-- (void) setupCodePostal;
+- (BOOL) setupCodePostal;
 - (void) save;
 
 // status

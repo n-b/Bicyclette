@@ -49,9 +49,13 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 /****************************************************************************/
 #pragma mark -
 
-- (void) setupCodePostal
+- (BOOL) setupCodePostal
 {
-	NSAssert2([self.fullAddress hasPrefix:self.address],@"full address \"%@\" does not begin with address \"%@\"", self.fullAddress, self.address);
+	if(![self.fullAddress hasPrefix:self.address])
+    {
+        NSLog(@"full address \"%@\" does not begin with address \"%@\"", self.fullAddress, self.address);
+        return NO;
+    }
 	NSString * endOfAddress = [self.fullAddress stringByDeletingPrefix:self.address];
 	endOfAddress = [endOfAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	NSString * lCodePostal = nil;
@@ -93,6 +97,8 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 			region.name = cityName;
 	}
 	self.region = region;
+    
+    return YES;
 }
 
 /****************************************************************************/
