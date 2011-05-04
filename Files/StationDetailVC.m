@@ -39,8 +39,8 @@
 @implementation StationDetailVC
 
 @synthesize scrollView, contentView;
-@synthesize numberLabel, shortNameLabel, addressLabel, distanceLabel;
-@synthesize statusView, loadingIndicator, statusDateLabel;
+@synthesize shortNameLabel, addressLabel, distanceLabel, availableCountLabel, freeCountLabel;
+@synthesize statusView, loadingIndicator;
 @synthesize favoriteButton;
 @synthesize previousNextBarItem, previousNextControl;
 @synthesize station, stations;
@@ -155,18 +155,17 @@
 - (void) updateUI
 {
 	self.title = [NSString stringWithFormat:NSLocalizedString(@"Station %@",@""),self.station.number];
-	self.numberLabel.text = self.station.name;
-//	self.shortNameLabel.text = self.station.cleanName;
+	self.shortNameLabel.text = self.station.cleanName;
 	self.addressLabel.text = self.station.fullAddress;
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location usingShortFormat:NO];
 
 	[self.statusView setNeedsDisplay];
-	if(self.station.loading)
-		[self.loadingIndicator startAnimating];
-	else
-		[self.loadingIndicator stopAnimating];
-	self.statusDateLabel.text = self.station.statusDateDescription;
-	
+	self.loadingIndicator.hidden = !self.station.loading;
+    self.availableCountLabel.hidden = self.freeCountLabel.hidden = self.station.loading;
+
+	self.availableCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Vélos", nil),self.station.status_availableValue];
+	self.freeCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Places", nil),self.station.status_freeValue];
+
 	self.favoriteButton.selected = self.station.favorite;
 	
 	[self.previousNextControl setEnabled:[self canShowPrevious] forSegmentAtIndex:0];

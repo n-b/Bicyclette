@@ -71,8 +71,9 @@
 
     self.loadingIndicator.hidden = !self.station.loading;
     self.availableCountLabel.hidden = self.freeCountLabel.hidden = self.station.loading;
-		
+    
 	self.favoriteButton.selected = self.station.favorite;
+    [self.statusView setNeedsDisplay];
 }
 
 /****************************************************************************/

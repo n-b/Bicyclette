@@ -47,26 +47,29 @@
     
     CGContextSetFillColorWithColor(ctxt,availableColor);
     CGContextSetStrokeColorWithColor(ctxt,[UIColor whiteColor].CGColor);
+    
+    CGContextTranslateCTM(ctxt, 0, rect.size.height);
+    CGContextScaleCTM(ctxt, 1, -1);
 
     CGRect intRect = CGRectZero;
-    intRect.origin.y = 0.5;
-    for (int row = 0; row<nbRows; row++) {
-        intRect.origin.x = 0.5;
-        for (int col = 0; col<nbCols && row*nbCols+col+1 <= totalSpots ; col++) {
+    intRect.origin.x = 0.5;
+    for (int col = 0; col<nbCols; col++) {
+        intRect.origin.y = 0.5;
+        for (int row = 0; row<nbRows && col*nbRows+row+1 <= totalSpots ; row++) {
             
-            if(col+(row*nbCols)==availableSpots)
+            if(row+(col*nbRows)==availableSpots)
                 CGContextSetFillColorWithColor(ctxt,freeColor);
-            if(col+(row*nbCols)==availableSpots+freeSpots)
+            if(row+(col*nbRows)==availableSpots+freeSpots)
                 CGContextSetFillColorWithColor(ctxt,otherColor);
 
-            intRect.size.width = lroundf((col+1)*spotRect.size.width - intRect.origin.x);
             intRect.size.height = lroundf((row+1)*spotRect.size.height - intRect.origin.y);
+            intRect.size.width = lroundf((col+1)*spotRect.size.width - intRect.origin.x);
             CGContextFillRect(ctxt, intRect);
             CGContextStrokeRect(ctxt, intRect);
             
-            intRect.origin.x += intRect.size.width;
+            intRect.origin.y += intRect.size.height;
         }
-        intRect.origin.y += intRect.size.height;
+        intRect.origin.x += intRect.size.width;
     }
 }
 
