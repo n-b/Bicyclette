@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-#define StationCellHeight 93
+#define StationCellHeight 100
 @class Station;
 @class StationStatusView;
 @interface StationCell : UITableViewCell 

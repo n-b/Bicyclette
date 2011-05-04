@@ -156,8 +156,8 @@
 - (void) updateUI
 {
 	self.title = [NSString stringWithFormat:NSLocalizedString(@"Station %@",@""),self.station.number];
-	self.numberLabel.text = self.station.number;
-	self.shortNameLabel.text = self.station.cleanName;
+	self.numberLabel.text = self.station.name;
+//	self.shortNameLabel.text = self.station.cleanName;
 	self.addressLabel.text = self.station.fullAddress;
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location usingShortFormat:NO];
 
