@@ -26,7 +26,7 @@
 
 @implementation StationCell
 
-@synthesize numberLabel, shortNameLabel, addressLabel, distanceLabel;
+@synthesize shortNameLabel, availableCountLabel, freeCountLabel;
 @synthesize statusView, loadingIndicator;
 @synthesize favoriteButton;
 @synthesize station;
@@ -65,18 +65,14 @@
 
 - (void) updateUI
 {
-	self.numberLabel.text = self.station.number;
 	self.shortNameLabel.text = self.station.cleanName;
-	self.addressLabel.text = self.station.cleanAddress;
-	[self.statusView setNeedsDisplay];
-	if(self.station.loading)
-		[self.loadingIndicator startAnimating];
-	else
-		[self.loadingIndicator stopAnimating];
+	self.availableCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Vélos", nil),self.station.status_availableValue];
+	self.freeCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Places", nil),self.station.status_freeValue];
+
+    self.loadingIndicator.hidden = !self.station.loading;
+    self.availableCountLabel.hidden = self.freeCountLabel.hidden = self.station.loading;
 		
 	self.favoriteButton.selected = self.station.favorite;
-	
-	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location usingShortFormat:YES];
 }
 
 /****************************************************************************/

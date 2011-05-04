@@ -85,7 +85,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.statusView.displayOtherSpots = YES;
-	self.statusView.displayLegend = YES;
 	self.statusView.station = self.station;
 	if(self.stations!=nil)
 		self.navigationItem.rightBarButtonItem = self.previousNextBarItem;

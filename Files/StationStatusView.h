@@ -16,5 +16,4 @@
 
 // Configuration
 @property BOOL displayOtherSpots;
-@property BOOL displayLegend;
 @end
