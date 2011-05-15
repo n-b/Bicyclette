@@ -38,7 +38,7 @@
 		3756EAE71298018A00113534 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE21298018A00113534 /* Icon@2x.png */; };
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
-		3793DE2213802E6100B50118 /* BicycletteDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* BicycletteDataManager.m */; };
+		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A34673128C42E6000A2540 /* SectionHeader.xib */; };
 		37A346AF128C9B3F000A2540 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
@@ -115,8 +115,8 @@
 		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
-		3793DE2013802E6100B50118 /* BicycletteDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
-		3793DE2113802E6100B50118 /* BicycletteDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
+		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
+		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		37A34673128C42E6000A2540 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */ = {isa = PBXFileReference; comments = "xmod\n--log-command\n"; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = VelibModel.xcdatamodel; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -272,8 +272,8 @@
 			children = (
 				3793DE1D1380295400B50118 /* CoreDataManager.h */,
 				3793DE1E1380295400B50118 /* CoreDataManager.m */,
-				3793DE2013802E6100B50118 /* BicycletteDataManager.h */,
-				3793DE2113802E6100B50118 /* BicycletteDataManager.m */,
+				3793DE2013802E6100B50118 /* DataUpdater.h */,
+				3793DE2113802E6100B50118 /* DataUpdater.m */,
 				37216BC512611C5400A2695A /* VelibModel.h */,
 				37216BC612611C5400A2695A /* VelibModel.m */,
 				37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */,
@@ -478,7 +478,7 @@
 				371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */,
 				371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */,
 				3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */,
-				3793DE2213802E6100B50118 /* BicycletteDataManager.m in Sources */,
+				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

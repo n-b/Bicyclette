@@ -34,11 +34,11 @@
 - (void) awakeFromNib
 {
 	NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
-	[regionsRequest setEntity:[Region entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	[regionsRequest setEntity:[Region entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 	[regionsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES] autorelease],nil]];
 	self.frc = [[[NSFetchedResultsController alloc]
 				 initWithFetchRequest:regionsRequest
-				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+				 managedObjectContext:BicycletteAppDelegate.model.moc
 				 sectionNameKeyPath:nil
 				 cacheName:nil] autorelease];
 	self.frc.delegate = self;
@@ -84,9 +84,9 @@
 - (void) refreshCountLabel
 {
 	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
-	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 	NSError * fetchError = nil;
-	NSUInteger count = [BicycletteAppDelegate.dataManager.moc countForFetchRequest:allRequest error:&fetchError];
+	NSUInteger count = [BicycletteAppDelegate.model.moc countForFetchRequest:allRequest error:&fetchError];
 	if(fetchError)
 		NSLog(@"fetchError : %@",fetchError);
 	self.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d stations",@""),count];
@@ -116,7 +116,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)afrc
 {
- 	if(BicycletteAppDelegate.dataManager.updatingXML)
+ 	if(BicycletteAppDelegate.model.updatingXML)
 	{
 		[self.tableView reloadData];
 		[self refreshCountLabel];

@@ -11,13 +11,14 @@
 #import "Locator.h"
 #import "BicycletteBar.h"
 #include <unistd.h>
+#import "DataUpdater.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate() <BicycletteBarDelegate>
 
-@property (nonatomic, retain) VelibModel * dataManager;
+@property (nonatomic, retain) VelibModel * model;
 @property (nonatomic, retain) Locator * locator;
 
 - (void) selectTabIndex:(NSUInteger)index;
@@ -30,7 +31,7 @@
 @implementation BicycletteApplicationDelegate
 
 @synthesize window, tabBarController, toolbar, notificationView;
-@synthesize dataManager;
+@synthesize model;
 @synthesize locator;
 
 /****************************************************************************/
@@ -43,8 +44,8 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
 	
-	self.dataManager = [[VelibModel new] autorelease];
-	[self.dataManager addObserver:self forKeyPath:@"downloadingUpdate" options:0 context:[BicycletteApplicationDelegate class]];
+	self.model = [[VelibModel new] autorelease];
+	[self.model.updater addObserver:self forKeyPath:@"downloadingUpdate" options:0 context:[BicycletteApplicationDelegate class]];
 	self.locator = [[Locator new] autorelease];
 }
 
@@ -99,8 +100,8 @@
 	self.tabBarController = nil;
 	self.toolbar = nil;
 	self.notificationView = nil;
-	[self.dataManager removeObserver:self forKeyPath:@"downloadingUpdate"];
-	self.dataManager = nil;
+	[self.model.updater removeObserver:self forKeyPath:@"downloadingUpdate"];
+	self.model = nil;
 	self.locator = nil;
 	[super dealloc];
 }
@@ -129,7 +130,7 @@
 {
     if (context == [BicycletteApplicationDelegate class]) {
 		[UIView beginAnimations:nil context:NULL];
-		self.notificationView.alpha = self.dataManager.downloadingUpdate?1.f:0.f;
+		self.notificationView.alpha = self.model.updater.downloadingUpdate?1.f:0.f;
 		[UIView commitAnimations];
 	}
 	else {

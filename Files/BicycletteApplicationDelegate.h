@@ -20,9 +20,8 @@
 @property (nonatomic, retain) IBOutlet BicycletteBar *toolbar;
 @property (nonatomic, retain) IBOutlet UIView *notificationView;
 
-@property (nonatomic, retain, readonly) VelibModel * dataManager;
+@property (nonatomic, retain, readonly) VelibModel * model;
 @property (nonatomic, retain, readonly) Locator * locator;
 
-//- (IBAction) selectTab:(UIBarButtonItem*)sender;
 @end
 

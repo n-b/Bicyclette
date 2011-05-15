@@ -9,15 +9,15 @@
 #import "VelibModel.h"
 #import "Station.h"
 #import "Region.h"
-
 #import "NSArrayAdditions.h"
 
-#import <CoreData/CoreData.h>
+#import "DataUpdater.h"
 
 /****************************************************************************/
 #pragma mark -
 
-@interface VelibModel () <NSXMLParserDelegate>
+@interface VelibModel () <DataUpdaterDelegate, NSXMLParserDelegate>
+@property (nonatomic, retain) DataUpdater * updater;
 @property BOOL updatingXML;
 // -
 @property (nonatomic, retain) NSDictionary * stationsHardcodedFixes;
@@ -30,12 +30,21 @@
 
 @implementation VelibModel
 
+@synthesize updater;
 @synthesize updatingXML;
 @synthesize stationsHardcodedFixes;
 @synthesize coordinateRegion;
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.updater = [DataUpdater updaterWithDelegate:self];
+    }
+    return self;
+}
 - (void) dealloc
 {
+    self.updater = nil;
 	self.stationsHardcodedFixes = nil;
 	[super dealloc];
 }
@@ -53,12 +62,15 @@
 	return [[stationsHardcodedFixes retain] autorelease];
 }
 
-
-
 /****************************************************************************/
 #pragma mark Parsing
 
-- (void) parseXML:(NSData*)xml
+- (NSURL*) urlForUpdater:(DataUpdater *)updater
+{
+    return [NSURL URLWithString:kVelibStationsListURL];    
+}
+
+- (void) updater:(DataUpdater*)updater finishedReceivingData:(NSData*)xml
 {
 	self.updatingXML = YES;
 

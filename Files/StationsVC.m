@@ -148,7 +148,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)afrc
 {
- 	if(BicycletteAppDelegate.dataManager.updatingXML)
+ 	if(BicycletteAppDelegate.model.updatingXML)
 	{
 		self.editing = NO;
 		[self.tableView reloadData];
@@ -205,12 +205,12 @@
 	self.title = NSLocalizedString(@"Favoris",@"");
 
 	NSFetchRequest * favoritesRequest = [[NSFetchRequest new] autorelease];
-	[favoritesRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	[favoritesRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 	[favoritesRequest setPredicate:[NSPredicate predicateWithFormat:@"favorite_index != -1"]];
 	[favoritesRequest setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"favorite_index" ascending:YES] autorelease]]];
 	self.frc = [[[NSFetchedResultsController alloc]
 				 initWithFetchRequest:favoritesRequest
-				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+				 managedObjectContext:BicycletteAppDelegate.model.moc
 				 sectionNameKeyPath:nil
 				 cacheName:nil] autorelease];
 }
@@ -223,7 +223,7 @@
 	  newIndexPath:(NSIndexPath *)newIndexPath
 {
 	if(self.view.window==nil) return;
-	if(BicycletteAppDelegate.dataManager.updatingXML) return;
+	if(BicycletteAppDelegate.model.updatingXML) return;
 	
 	if (type == NSFetchedResultsChangeDelete)
 	{
@@ -294,7 +294,7 @@
 			station.favorite_indexValue = (NSInteger)i+1;
 	}
 
-	[BicycletteAppDelegate.dataManager performSelector:@selector(save) withObject:nil afterDelay:0];
+	[BicycletteAppDelegate.model performSelector:@selector(save) withObject:nil afterDelay:0];
 }
 
 @end
@@ -310,14 +310,14 @@
 	self.title = NSLocalizedString(@"Vélib",@"");
 
 	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
-	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 	[allRequest setSortDescriptors:[NSArray arrayWithObjects:
 									[[[NSSortDescriptor alloc] initWithKey:@"region.name" ascending:YES] autorelease],
 									[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],
 									nil]];
 	self.frc = [[[NSFetchedResultsController alloc]
 				 initWithFetchRequest:allRequest
-				 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+				 managedObjectContext:BicycletteAppDelegate.model.moc
 				 sectionNameKeyPath:@"region.name"
 				 cacheName:@"velib_sections_cache"] autorelease];
 }
@@ -359,12 +359,12 @@
 		self.title = self.region.name;
 		
 		NSFetchRequest * regionStationsRequest = [[NSFetchRequest new] autorelease];
-		[regionStationsRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+		[regionStationsRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 		[regionStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"region == %@",self.region]];
 		[regionStationsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],nil]];
 		self.frc = [[[NSFetchedResultsController alloc]
 					 initWithFetchRequest:regionStationsRequest
-					 managedObjectContext:BicycletteAppDelegate.dataManager.moc
+					 managedObjectContext:BicycletteAppDelegate.model.moc
 					 sectionNameKeyPath:nil
 					 cacheName:nil] autorelease];
 	}

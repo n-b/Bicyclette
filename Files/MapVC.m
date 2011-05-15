@@ -62,7 +62,7 @@ typedef enum {
 	
     self.navigationItem.rightBarButtonItem = self.centerMapButton;
     
-	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.dataManager.coordinateRegion];
+	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.coordinateRegion];
 	self.mapView.region = self.referenceRegion;
 }
 
@@ -83,7 +83,7 @@ typedef enum {
 		self.mode = MapModeStations;
 		
 		NSFetchRequest * request = [[NSFetchRequest new] autorelease];
-		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc]];
+		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 		CLLocationDegrees minLat, maxLat, minLng, maxLng;
 		minLat = self.mapView.region.center.latitude - self.mapView.region.span.latitudeDelta;
 		maxLat = self.mapView.region.center.latitude + self.mapView.region.span.latitudeDelta;
@@ -93,7 +93,7 @@ typedef enum {
 							 minLat, maxLat, minLng, maxLng];
 
 		NSArray * oldAnnotations = self.mapView.annotations;
-		NSArray * newAnnotations = [BicycletteAppDelegate.dataManager.moc executeFetchRequest:request error:NULL];
+		NSArray * newAnnotations = [BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL];
 		
 		NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
 		NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
@@ -164,8 +164,8 @@ typedef enum {
 		if(self.mode==MapModeRegions)
 		{
 			NSFetchRequest * request = [[NSFetchRequest new] autorelease];
-			request.entity = [Region entityInManagedObjectContext:BicycletteAppDelegate.dataManager.moc];
-			[self.mapView addAnnotations:[BicycletteAppDelegate.dataManager.moc executeFetchRequest:request error:NULL]];
+			request.entity = [Region entityInManagedObjectContext:BicycletteAppDelegate.model.moc];
+			[self.mapView addAnnotations:[BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL]];
 		}			
 	}
 }

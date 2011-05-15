@@ -1,15 +1,15 @@
 //
-//  BicycletteDataManager.m
+//  DataUpdater.m
 //  
 //
 //  Created by Nicolas Bouilleaud on 15/05/11.
 //  Copyright 2011 Visuamobile. All rights reserved.
 //
 
-#import "BicycletteDataManager.h"
+#import "DataUpdater.h"
 #import "NSData+SHA1.h"
 
-@interface BicycletteDataManager()
+@interface DataUpdater()
 @property (nonatomic, retain) NSDate *parseDate;
 @property (nonatomic, retain) NSURLConnection * updateConnection;
 @property (nonatomic, retain) NSMutableData * updateData;
@@ -17,15 +17,28 @@
 
 @end
 
-@implementation BicycletteDataManager
+/****************************************************************************/
+#pragma mark -
+
+@implementation DataUpdater
 @synthesize updateConnection, updateData, parseDate;
+@synthesize delegate;
 
+/****************************************************************************/
+#pragma mark -
 
-- (id) init
++ (id) updaterWithDelegate:(id<DataUpdaterDelegate>) delegate_
+{
+    return [[[self alloc] initWithDelegate:delegate_] autorelease];
+}
+
+- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_
 {
 	self = [super init];
 	if (self != nil) 
 	{
+        self.delegate = delegate_;
+        
 		// Find if I need to update
 		NSDate * createDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
 		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"]);
@@ -49,7 +62,7 @@
 
 - (void) updateXML
 {
-	NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kVelibStationsListURL]];
+	NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
 	self.updateConnection = [NSURLConnection connectionWithRequest:request
 														  delegate:self];
 }
@@ -91,12 +104,15 @@
     else
     {
         self.parseDate = [NSDate date];
-		[self parseXML:self.updateData];
+		[self.delegate updater:self finishedReceivingData:self.updateData];
         [[NSUserDefaults standardUserDefaults] setObject:self.parseDate forKey:@"DatabaseCreateDate"];
         [[NSUserDefaults standardUserDefaults] setObject:newSha1 forKey:@"Database_XML_SHA1"];
     }
 	self.updateData = nil;
 }
+
+/****************************************************************************/
+#pragma mark status
 
 + (NSSet*) keyPathsForValuesAffectingDownloadingUpdate
 {
@@ -107,11 +123,5 @@
 {
 	return self.updateConnection!=nil;
 }
-
-- (void) parseXML:(NSData*)xml
-{
-    [self doesNotRecognizeSelector:_cmd];
-}
-
 
 @end
