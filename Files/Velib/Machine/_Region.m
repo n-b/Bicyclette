@@ -26,6 +26,29 @@
 	return (RegionID*)[super objectID];
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"minLngValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"minLng"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"minLatValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"minLat"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"maxLngValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"maxLng"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"maxLatValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"maxLat"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+
+	return keyPaths;
+}
+
 
 
 

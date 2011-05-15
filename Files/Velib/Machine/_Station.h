@@ -32,13 +32,9 @@
 
 
 
-@property (nonatomic, retain) NSNumber *status_ticket;
+@property (nonatomic, retain) NSString *fullAddress;
 
-@property BOOL status_ticketValue;
-- (BOOL)status_ticketValue;
-- (void)setStatus_ticketValue:(BOOL)value_;
-
-//- (BOOL)validateStatus_ticket:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -140,9 +136,13 @@
 
 
 
-@property (nonatomic, retain) NSString *fullAddress;
+@property (nonatomic, retain) NSNumber *status_ticket;
 
-//- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
+@property BOOL status_ticketValue;
+- (BOOL)status_ticketValue;
+- (void)setStatus_ticketValue:(BOOL)value_;
+
+//- (BOOL)validateStatus_ticket:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -172,11 +172,11 @@
 
 @interface _Station (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveStatus_ticket;
-- (void)setPrimitiveStatus_ticket:(NSNumber*)value;
 
-- (BOOL)primitiveStatus_ticketValue;
-- (void)setPrimitiveStatus_ticketValue:(BOOL)value_;
+- (NSString*)primitiveFullAddress;
+- (void)setPrimitiveFullAddress:(NSString*)value;
+
+
 
 
 - (NSNumber*)primitiveStatus_free;
@@ -186,11 +186,15 @@
 - (void)setPrimitiveStatus_freeValue:(short)value_;
 
 
+
+
 - (NSNumber*)primitiveStatus_total;
 - (void)setPrimitiveStatus_total:(NSNumber*)value;
 
 - (short)primitiveStatus_totalValue;
 - (void)setPrimitiveStatus_totalValue:(short)value_;
+
+
 
 
 - (NSNumber*)primitiveBonus;
@@ -200,12 +204,18 @@
 - (void)setPrimitiveBonusValue:(BOOL)value_;
 
 
+
+
 - (NSDate*)primitiveStatus_date;
 - (void)setPrimitiveStatus_date:(NSDate*)value;
 
 
+
+
 - (NSString*)primitiveAddress;
 - (void)setPrimitiveAddress:(NSString*)value;
+
+
 
 
 - (NSNumber*)primitiveStatus_available;
@@ -215,11 +225,15 @@
 - (void)setPrimitiveStatus_availableValue:(short)value_;
 
 
+
+
 - (NSNumber*)primitiveOpen;
 - (void)setPrimitiveOpen:(NSNumber*)value;
 
 - (BOOL)primitiveOpenValue;
 - (void)setPrimitiveOpenValue:(BOOL)value_;
+
+
 
 
 - (NSNumber*)primitiveLat;
@@ -229,11 +243,15 @@
 - (void)setPrimitiveLatValue:(double)value_;
 
 
+
+
 - (NSNumber*)primitiveFavorite_index;
 - (void)setPrimitiveFavorite_index:(NSNumber*)value;
 
 - (int)primitiveFavorite_indexValue;
 - (void)setPrimitiveFavorite_indexValue:(int)value_;
+
+
 
 
 - (NSNumber*)primitiveLng;
@@ -243,16 +261,26 @@
 - (void)setPrimitiveLngValue:(double)value_;
 
 
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
 
-- (NSString*)primitiveFullAddress;
-- (void)setPrimitiveFullAddress:(NSString*)value;
+
+
+- (NSNumber*)primitiveStatus_ticket;
+- (void)setPrimitiveStatus_ticket:(NSNumber*)value;
+
+- (BOOL)primitiveStatus_ticketValue;
+- (void)setPrimitiveStatus_ticketValue:(BOOL)value_;
+
+
 
 
 - (NSString*)primitiveNumber;
 - (void)setPrimitiveNumber:(NSString*)value;
+
 
 
 

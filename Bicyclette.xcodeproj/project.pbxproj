@@ -21,6 +21,10 @@
 		37149C8412625AD7009CDE82 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8312625AD7009CDE82 /* StationCell.m */; };
 		37149C8612625AE5009CDE82 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149C8512625AE5009CDE82 /* StationCell.xib */; };
 		37149C8A12625B94009CDE82 /* UITableViewCell+EasyReuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */; };
+		371E1BF3137FCF7C007EFBFF /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
+		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
+		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
+		371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
 		37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201D7512B2DBFC0001A668 /* BicycletteBar.m */; };
 		37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201E6112B2EA640001A668 /* UIImage+Tinting.m */; };
 		37201E9712B2ED040001A668 /* RegionsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37201E9612B2ED040001A668 /* RegionsTab@2x.png */; };
@@ -36,8 +40,6 @@
 		37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A34673128C42E6000A2540 /* SectionHeader.xib */; };
 		37A346AF128C9B3F000A2540 /* Velib.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		37B699DF128EBB0A0053728D /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699DE128EBB0A0053728D /* Station.m */; };
-		37B699E2128EBB0B0053728D /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B699E1128EBB0A0053728D /* _Station.m */; };
 		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
 		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
@@ -45,8 +47,6 @@
 		37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */; };
 		37D6B10D12CCC93700EEC835 /* StationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6B10B12CCC93700EEC835 /* StationDetailVC.m */; };
 		37D6B10E12CCC93700EEC835 /* StationDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */; };
-		37E37E9212A6F5D500D7AB57 /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37E9112A6F5D500D7AB57 /* _Region.m */; };
-		37E37E9512A6F5D500D7AB57 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37E9412A6F5D500D7AB57 /* Region.m */; };
 		37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */; };
 		37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */; };
 		37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37F7812A7022F00D7AB57 /* RegionCell.m */; };
@@ -84,6 +84,14 @@
 		37149C8512625AE5009CDE82 /* StationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationCell.xib; sourceTree = "<group>"; };
 		37149C8812625B94009CDE82 /* UITableViewCell+EasyReuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+EasyReuse.h"; sourceTree = "<group>"; };
 		37149C8912625B94009CDE82 /* UITableViewCell+EasyReuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+EasyReuse.m"; sourceTree = "<group>"; };
+		371E1BEA137FCF7C007EFBFF /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
+		371E1BEB137FCF7C007EFBFF /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
+		371E1BEC137FCF7C007EFBFF /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		371E1BED137FCF7C007EFBFF /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		371E1BEF137FCF7C007EFBFF /* _Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Region.h; sourceTree = "<group>"; };
+		371E1BF0137FCF7C007EFBFF /* _Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
+		371E1BF1137FCF7C007EFBFF /* _Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
+		371E1BF2137FCF7C007EFBFF /* _Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
 		37201D7412B2DBFC0001A668 /* BicycletteBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteBar.h; sourceTree = "<group>"; };
 		37201D7512B2DBFC0001A668 /* BicycletteBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteBar.m; sourceTree = "<group>"; };
 		37201E6012B2EA640001A668 /* UIImage+Tinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tinting.h"; sourceTree = "<group>"; };
@@ -106,10 +114,6 @@
 		37A34673128C42E6000A2540 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		37A346AE128C9B3F000A2540 /* Velib.xcdatamodel */ = {isa = PBXFileReference; comments = "xmod\n--log-command\n"; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Velib.xcdatamodel; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		37B699DE128EBB0A0053728D /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
-		37B699E0128EBB0A0053728D /* Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		37B699E1128EBB0A0053728D /* _Station.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
-		37B699E3128EBB0B0053728D /* _Station.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
 		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		37B69DB01290925B0053728D /* StationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationStatusView.h; sourceTree = "<group>"; };
 		37B69DB11290925B0053728D /* StationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationStatusView.m; sourceTree = "<group>"; };
@@ -121,10 +125,6 @@
 		37D6B10A12CCC93700EEC835 /* StationDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDetailVC.h; sourceTree = "<group>"; };
 		37D6B10B12CCC93700EEC835 /* StationDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDetailVC.m; sourceTree = "<group>"; };
 		37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDetailVC.xib; sourceTree = "<group>"; };
-		37E37E9012A6F5D500D7AB57 /* _Region.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _Region.h; sourceTree = "<group>"; };
-		37E37E9112A6F5D500D7AB57 /* _Region.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
-		37E37E9312A6F5D500D7AB57 /* Region.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
-		37E37E9412A6F5D500D7AB57 /* Region.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 		37E37F6E12A6FDE800D7AB57 /* RegionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionsVC.h; sourceTree = "<group>"; };
 		37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionsVC.m; sourceTree = "<group>"; };
 		37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionsVC.xib; sourceTree = "<group>"; };
@@ -239,6 +239,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		371E1BE9137FCF7C007EFBFF /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				371E1BEA137FCF7C007EFBFF /* Region.h */,
+				371E1BEB137FCF7C007EFBFF /* Region.m */,
+				371E1BEC137FCF7C007EFBFF /* Station.h */,
+				371E1BED137FCF7C007EFBFF /* Station.m */,
+			);
+			path = Human;
+			sourceTree = "<group>";
+		};
+		371E1BEE137FCF7C007EFBFF /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				371E1BEF137FCF7C007EFBFF /* _Region.h */,
+				371E1BF0137FCF7C007EFBFF /* _Region.m */,
+				371E1BF1137FCF7C007EFBFF /* _Station.h */,
+				371E1BF2137FCF7C007EFBFF /* _Station.m */,
+			);
+			path = Machine;
+			sourceTree = "<group>";
+		};
 		37216A411261087300A2695A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,14 +309,8 @@
 		37A346B5128C9D68000A2540 /* Velib */ = {
 			isa = PBXGroup;
 			children = (
-				37B699E0128EBB0A0053728D /* Station.h */,
-				37B699DE128EBB0A0053728D /* Station.m */,
-				37B699E1128EBB0A0053728D /* _Station.m */,
-				37B699E3128EBB0B0053728D /* _Station.h */,
-				37E37E9012A6F5D500D7AB57 /* _Region.h */,
-				37E37E9112A6F5D500D7AB57 /* _Region.m */,
-				37E37E9312A6F5D500D7AB57 /* Region.h */,
-				37E37E9412A6F5D500D7AB57 /* Region.m */,
+				371E1BE9137FCF7C007EFBFF /* Human */,
+				371E1BEE137FCF7C007EFBFF /* Machine */,
 			);
 			path = Velib;
 			sourceTree = "<group>";
@@ -330,6 +346,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Bicyclette" */;
 			buildPhases = (
+				371E1BF8137FD03C007EFBFF /* Mogenerator */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -402,6 +419,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		371E1BF8137FD03C007EFBFF /* Mogenerator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Mogenerator;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mogenerator --model Files/Velib.xcdatamodel --machine-dir Files/Velib/Machine --human-dir Files/Velib/Human";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -417,12 +452,8 @@
 				37149C8412625AD7009CDE82 /* StationCell.m in Sources */,
 				37149C8A12625B94009CDE82 /* UITableViewCell+EasyReuse.m in Sources */,
 				37A346AF128C9B3F000A2540 /* Velib.xcdatamodel in Sources */,
-				37B699DF128EBB0A0053728D /* Station.m in Sources */,
-				37B699E2128EBB0B0053728D /* _Station.m in Sources */,
 				37B69C2A129034D90053728D /* Locator.m in Sources */,
 				37B69DB21290925B0053728D /* StationStatusView.m in Sources */,
-				37E37E9212A6F5D500D7AB57 /* _Region.m in Sources */,
-				37E37E9512A6F5D500D7AB57 /* Region.m in Sources */,
 				37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */,
 				37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
@@ -432,6 +463,10 @@
 				37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */,
 				37D6B10D12CCC93700EEC835 /* StationDetailVC.m in Sources */,
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
+				371E1BF3137FCF7C007EFBFF /* Region.m in Sources */,
+				371E1BF4137FCF7C007EFBFF /* Station.m in Sources */,
+				371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */,
+				371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

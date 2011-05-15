@@ -101,8 +101,11 @@
 
 @interface _Region (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
 
 
 - (NSNumber*)primitiveMinLng;
@@ -112,11 +115,15 @@
 - (void)setPrimitiveMinLngValue:(double)value_;
 
 
+
+
 - (NSNumber*)primitiveMinLat;
 - (void)setPrimitiveMinLat:(NSNumber*)value;
 
 - (double)primitiveMinLatValue;
 - (void)setPrimitiveMinLatValue:(double)value_;
+
+
 
 
 - (NSNumber*)primitiveMaxLng;
@@ -126,6 +133,8 @@
 - (void)setPrimitiveMaxLngValue:(double)value_;
 
 
+
+
 - (NSNumber*)primitiveMaxLat;
 - (void)setPrimitiveMaxLat:(NSNumber*)value;
 
@@ -133,8 +142,11 @@
 - (void)setPrimitiveMaxLatValue:(double)value_;
 
 
+
+
 - (NSString*)primitiveNumber;
 - (void)setPrimitiveNumber:(NSString*)value;
+
 
 
 

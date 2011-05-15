@@ -26,30 +26,54 @@
 	return (StationID*)[super objectID];
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"status_freeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status_free"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"status_totalValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status_total"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"bonusValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"bonus"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"status_availableValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status_available"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"openValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"open"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"latValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"lat"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"favorite_indexValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"favorite_index"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"lngValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"lng"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"status_ticketValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status_ticket"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
 
-
-
-@dynamic status_ticket;
-
-
-
-- (BOOL)status_ticketValue {
-	NSNumber *result = [self status_ticket];
-	return [result boolValue];
+	return keyPaths;
 }
 
-- (void)setStatus_ticketValue:(BOOL)value_ {
-	[self setStatus_ticket:[NSNumber numberWithBool:value_]];
-}
 
-- (BOOL)primitiveStatus_ticketValue {
-	NSNumber *result = [self primitiveStatus_ticket];
-	return [result boolValue];
-}
 
-- (void)setPrimitiveStatus_ticketValue:(BOOL)value_ {
-	[self setPrimitiveStatus_ticket:[NSNumber numberWithBool:value_]];
-}
+
+@dynamic fullAddress;
+
 
 
 
@@ -284,8 +308,27 @@
 
 
 
-@dynamic fullAddress;
+@dynamic status_ticket;
 
+
+
+- (BOOL)status_ticketValue {
+	NSNumber *result = [self status_ticket];
+	return [result boolValue];
+}
+
+- (void)setStatus_ticketValue:(BOOL)value_ {
+	[self setStatus_ticket:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveStatus_ticketValue {
+	NSNumber *result = [self primitiveStatus_ticket];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveStatus_ticketValue:(BOOL)value_ {
+	[self setPrimitiveStatus_ticket:[NSNumber numberWithBool:value_]];
+}
 
 
 
