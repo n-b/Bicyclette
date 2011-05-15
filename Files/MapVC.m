@@ -15,6 +15,7 @@
 #import "StationDetailVC.h"
 #import "Model+Mapkit.h"
 #import "NSArrayAdditions.h"
+#import "VelibModel+Favorites.h"
 
 typedef enum {
 	MapModeNone = 0,

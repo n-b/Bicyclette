@@ -12,6 +12,7 @@
 #import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
 #import "CLLocation+Direction.h"
+#import "VelibModel+Favorites.h"
 
 #define kBounceLimit 100
 

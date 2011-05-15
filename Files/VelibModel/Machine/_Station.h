@@ -20,7 +20,6 @@
 
 
 
-
 @interface StationID : NSManagedObjectID {}
 @end
 
@@ -110,13 +109,9 @@
 
 
 
-@property (nonatomic, retain) NSNumber *favorite_index;
+@property (nonatomic, retain) NSString *name;
 
-@property int favorite_indexValue;
-- (int)favorite_indexValue;
-- (void)setFavorite_indexValue:(int)value_;
-
-//- (BOOL)validateFavorite_index:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -127,12 +122,6 @@
 - (void)setLngValue:(double)value_;
 
 //- (BOOL)validateLng:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSString *name;
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -156,11 +145,6 @@
 @property (nonatomic, retain) Region* region;
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
 
-
-
-
-+ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ ;
-+ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_;
 
 
 
@@ -245,11 +229,8 @@
 
 
 
-- (NSNumber*)primitiveFavorite_index;
-- (void)setPrimitiveFavorite_index:(NSNumber*)value;
-
-- (int)primitiveFavorite_indexValue;
-- (void)setPrimitiveFavorite_indexValue:(int)value_;
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
 
 
 
@@ -259,12 +240,6 @@
 
 - (double)primitiveLngValue;
 - (void)setPrimitiveLngValue:(double)value_;
-
-
-
-
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
 
 
 

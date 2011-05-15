@@ -14,6 +14,8 @@
 #import "Station.h"
 #import "Region.h"
 #import "StationDetailVC.h"
+#import "VelibModel+Favorites.h"
+
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -22,8 +24,9 @@
 - (void) updateVisibleStations;
 - (void) applicationWillTerminate:(NSNotification*) notif;
 - (void) applicationDidBecomeActive:(NSNotification*) notif;
-- (void) refetch;
 - (void) commonInit;
+
+@property (nonatomic, retain) NSArray * stations;
 @end
 
 /****************************************************************************/
@@ -32,7 +35,7 @@
 @implementation StationsVC
 @synthesize tableView;
 @synthesize noFavoriteLabel;
-@synthesize frc;
+@synthesize stations;
 
 /****************************************************************************/
 #pragma mark Object Life Cycle
@@ -55,6 +58,7 @@
 	// Observe app termination
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
+    
 	self.wantsFullScreenLayout = YES;
 }
 
@@ -71,7 +75,7 @@
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	self.frc = nil;
+	self.stations = nil;
 	[super dealloc];
 }
 
@@ -90,8 +94,6 @@
 	
 	NSNumber * offset = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"TableOffsetFor%@",[self class]]];
 	if(offset) self.tableView.contentOffset = CGPointMake(0, [offset floatValue]);
-
-	[self refetch];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -100,60 +102,19 @@
 	[self.tableView flashScrollIndicators];
 	[self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:0.5];
 }
-
-/****************************************************************************/
-#pragma mark frc
-
-- (void) setFrc:(NSFetchedResultsController*)newValue
-{
-	if(![frc isEqual:newValue])
-	{
-		[frc autorelease];
-		frc = [newValue retain];
-		self.frc.delegate = self;		
-	}
-}
-
-- (void) refetch
-{
-	NSError * fetchError = nil;
-	[self.frc performFetch:&fetchError];
-	if(fetchError)
-		NSLog(@"fetchError : %@",fetchError);
-}
-
 /****************************************************************************/
 #pragma mark Table view data source
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-	return nil;
-}
-
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.frc.sections objectAtIndex:(NSUInteger)section];
-    return (NSInteger)[sectionInfo numberOfObjects];
+    return self.stations.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	StationCell * cell = [StationCell reusableCellForTable:self.tableView];
-	cell.station = [self.frc objectAtIndexPath:indexPath];
+	cell.station = [self.stations objectAtIndex:indexPath.row];
     return cell;
-}
-
-/****************************************************************************/
-#pragma mark frc Delegate
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)afrc
-{
- 	if(BicycletteAppDelegate.model.updatingXML)
-	{
-		self.editing = NO;
-		[self.tableView reloadData];
-		[self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:0.5];
-	}
 }
 
 /****************************************************************************/
@@ -173,7 +134,7 @@
 - (void) updateVisibleStations
 {
 	for (NSIndexPath * indexPath in [self.tableView indexPathsForVisibleRows]) {
-		Station * station = [self.frc objectAtIndexPath:indexPath];
+		Station * station = [self.stations objectAtIndex:indexPath.row];
 		[station refresh];
 	}	
 }
@@ -184,7 +145,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:[self.frc objectAtIndexPath:indexPath] inArray:self.frc.fetchedObjects] animated:YES];
+	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:[self.stations objectAtIndex:indexPath.row] inArray:self.stations] animated:YES];
 }
 
 @end
@@ -195,6 +156,7 @@
 
 @interface FavoriteStationsVC()
 - (void) refreshLabelAnimated:(BOOL)animated;
+- (void) favoriteDidChange:(NSNotification*) notif;
 @end
 
 @implementation FavoriteStationsVC
@@ -203,33 +165,30 @@
 {
 	[super commonInit];
 	self.title = NSLocalizedString(@"Favoris",@"");
+    
+    // Observe favorites changes
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) name:StationFavoriteDidChangeNotification object:nil];
 
-	NSFetchRequest * favoritesRequest = [[NSFetchRequest new] autorelease];
-	[favoritesRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
-	[favoritesRequest setPredicate:[NSPredicate predicateWithFormat:@"favorite_index != -1"]];
-	[favoritesRequest setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"favorite_index" ascending:YES] autorelease]]];
-	self.frc = [[[NSFetchedResultsController alloc]
-				 initWithFetchRequest:favoritesRequest
-				 managedObjectContext:BicycletteAppDelegate.model.moc
-				 sectionNameKeyPath:nil
-				 cacheName:nil] autorelease];
+    self.stations = BicycletteAppDelegate.model.favorites;
 }
 
-/****************************************************************************/
-#pragma mark frc Delegate
 
-- (void)controller:(NSFetchedResultsController *)frc didChangeObject:(id)anObject
-	   atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-	  newIndexPath:(NSIndexPath *)newIndexPath
+- (void) favoriteDidChange:(NSNotification*) notif
 {
-	if(self.view.window==nil) return;
-	if(BicycletteAppDelegate.model.updatingXML) return;
-	
-	if (type == NSFetchedResultsChangeDelete)
+    NSArray * oldStations = [[self.stations retain] autorelease];
+    self.stations = BicycletteAppDelegate.model.favorites;
+	if ([notif.object isFavorite])
 	{
-		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		[self refreshLabelAnimated:YES];
+		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[self.stations indexOfObject:notif.object] inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationFade];
 	}
+    else
+    {
+		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[oldStations indexOfObject:notif.object] inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+    [self refreshLabelAnimated:YES];
 }
 
 /****************************************************************************/
@@ -240,7 +199,7 @@
 	self.noFavoriteLabel.hidden = NO;
 	if(animated)
 		[UIView beginAnimations:nil context:NULL];
-	BOOL hasNoFavorite = self.frc.fetchedObjects.count==0;
+	BOOL hasNoFavorite = self.stations.count==0;
 	self.noFavoriteLabel.alpha = hasNoFavorite;
 	self.tableView.alpha = !hasNoFavorite;
 	if(animated)
@@ -254,7 +213,6 @@
 {
 	[super viewWillAppear:animated];
 	self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	[self refetch];
 	[self.tableView reloadData];
 	[self refreshLabelAnimated:NO];
 }
@@ -282,56 +240,12 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
-	NSMutableArray *favorites = [NSMutableArray arrayWithArray:self.frc.fetchedObjects];
+	NSMutableArray *favorites = [NSMutableArray arrayWithArray:self.stations];
 	Station* stationToMove = [favorites objectAtIndex:fromIndexPath.row];
 	[favorites removeObjectAtIndex:fromIndexPath.row];
 	[favorites insertObject:stationToMove atIndex:toIndexPath.row];
-	
-	for (NSUInteger i=0; i<[favorites count]; i++)
-	{
-		Station* station = [favorites objectAtIndex:i];
-		if(station.favorite_indexValue!=(NSInteger)i+1)
-			station.favorite_indexValue = (NSInteger)i+1;
-	}
 
-	[BicycletteAppDelegate.model performSelector:@selector(save) withObject:nil afterDelay:0];
-}
-
-@end
-
-/****************************************************************************/
-#pragma mark AllStationsVC
-/****************************************************************************/
-
-@implementation AllStationsVC : StationsVC
-- (void) commonInit
-{
-	[super commonInit];
-	self.title = NSLocalizedString(@"Vélib",@"");
-
-	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
-	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
-	[allRequest setSortDescriptors:[NSArray arrayWithObjects:
-									[[[NSSortDescriptor alloc] initWithKey:@"region.name" ascending:YES] autorelease],
-									[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],
-									nil]];
-	self.frc = [[[NSFetchedResultsController alloc]
-				 initWithFetchRequest:allRequest
-				 managedObjectContext:BicycletteAppDelegate.model.moc
-				 sectionNameKeyPath:@"region.name"
-				 cacheName:@"velib_sections_cache"] autorelease];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return self.frc.sections.count;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-	UILabel * sectionTitle = [UILabel viewFromNibNamed:@"SectionHeader"];
-	sectionTitle.text = [[self.frc.sections objectAtIndex:(NSUInteger)section] number];
-	return sectionTitle;
+	BicycletteAppDelegate.model.favorites = favorites;
 }
 
 @end
@@ -358,15 +272,7 @@
 		self.region = aregion;
 		self.title = self.region.name;
 		
-		NSFetchRequest * regionStationsRequest = [[NSFetchRequest new] autorelease];
-		[regionStationsRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
-		[regionStationsRequest setPredicate:[NSPredicate predicateWithFormat:@"region == %@",self.region]];
-		[regionStationsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease],nil]];
-		self.frc = [[[NSFetchedResultsController alloc]
-					 initWithFetchRequest:regionStationsRequest
-					 managedObjectContext:BicycletteAppDelegate.model.moc
-					 sectionNameKeyPath:nil
-					 cacheName:nil] autorelease];
+        self.stations = self.region.sortedStations;
 	}
 	return self;
 }

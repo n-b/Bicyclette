@@ -74,15 +74,7 @@
 {
 	self.updatingXML = YES;
 
-	// Save old favorites
-	NSFetchRequest * favoritesRequest = [[NSFetchRequest new] autorelease];
-	[favoritesRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
-	[favoritesRequest setPredicate:[NSPredicate predicateWithFormat:@"favorite_index != -1"]];
-	[favoritesRequest setPropertiesToFetch:[NSArray arrayWithObjects:@"number",@"favorite_index",nil]];
-	[favoritesRequest setResultType:NSDictionaryResultType];
 	NSError * requestError = nil;
-	NSArray * oldFavorites = [self.moc executeFetchRequest:favoritesRequest error:&requestError];
-	NSLog(@"old favorites : %@",oldFavorites);
 	
 	// Remove old stations
 	NSFetchRequest * oldStationsRequest = [[NSFetchRequest new] autorelease];
@@ -97,17 +89,7 @@
 	NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:xml] autorelease];
 	parser.delegate = self;
 	[parser parse];
-	
-	// Restore favorites
-	for (NSDictionary * favoriteEntry in oldFavorites) {
-		Station * station = [[Station fetchStationWithNumber:self.moc number:[favoriteEntry objectForKey:@"number"]] lastObject];
-		NSLog(@"restoring station %@",[favoriteEntry objectForKey:@"number"]);
-		if(nil==station)
-			NSLog(@"Previously favorite station %@ has disappeared",[favoriteEntry objectForKey:@"number"]);
-		else
-			station.favorite_index = [favoriteEntry objectForKey:@"favorite_index"];
-	}
-	
+		
 	// Compute regions coordinates
 	NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
 	[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];

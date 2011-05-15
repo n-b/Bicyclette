@@ -214,26 +214,6 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 }
 
 /****************************************************************************/
-#pragma mark Favorite
-
-- (void) setFavorite:(BOOL) newValue
-{
-	if (newValue==NO) {
-		self.favorite_indexValue = -1;
-	}
-	else
-		self.favorite_indexValue = 0;
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:StationFavoriteDidChangeNotification object:self];
-	[self save];
-}
-
-- (BOOL) isFavorite
-{
-	return self.favorite_indexValue != -1;
-}
-
-/****************************************************************************/
 #pragma mark Location
 
 - (CLLocation*) location

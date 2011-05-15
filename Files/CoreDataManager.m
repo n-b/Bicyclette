@@ -7,6 +7,8 @@
 //
 
 #import "CoreDataManager.h"
+#import "NSFileManager+StandardPaths.h"
+
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -42,7 +44,7 @@
         // Create psc
 		psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
 		NSError *error = nil;
-		NSURL *storeURL = [NSURL fileURLWithPath: [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
+		NSURL *storeURL = [NSURL fileURLWithPath: [[NSFileManager documentsDirectory] stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
         
 		if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
         {

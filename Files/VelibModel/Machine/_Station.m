@@ -53,10 +53,6 @@
 		NSSet *affectingKey = [NSSet setWithObject:@"lat"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"favorite_indexValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"favorite_index"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-	}
 	if ([key isEqualToString:@"lngValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lng"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -249,27 +245,8 @@
 
 
 
-@dynamic favorite_index;
+@dynamic name;
 
-
-
-- (int)favorite_indexValue {
-	NSNumber *result = [self favorite_index];
-	return [result intValue];
-}
-
-- (void)setFavorite_indexValue:(int)value_ {
-	[self setFavorite_index:[NSNumber numberWithInt:value_]];
-}
-
-- (int)primitiveFavorite_indexValue {
-	NSNumber *result = [self primitiveFavorite_index];
-	return [result intValue];
-}
-
-- (void)setPrimitiveFavorite_indexValue:(int)value_ {
-	[self setPrimitiveFavorite_index:[NSNumber numberWithInt:value_]];
-}
 
 
 
@@ -296,13 +273,6 @@
 - (void)setPrimitiveLngValue:(double)value_ {
 	[self setPrimitiveLng:[NSNumber numberWithDouble:value_]];
 }
-
-
-
-
-
-@dynamic name;
-
 
 
 
@@ -347,41 +317,6 @@
 
 
 
-
-
-
-+ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ {
-	NSError *error = nil;
-	NSArray *result = [self fetchStationWithNumber:moc_ number:number_ error:&error];
-	if (error) {
-#if TARGET_OS_IPHONE
-		NSLog(@"error: %@", error);
-#else
-		[NSApp presentError:error];
-#endif
-	}
-	return result;
-}
-+ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_ {
-	NSParameterAssert(moc_);
-	NSError *error = nil;
-	
-	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
-	
-	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
-														
-														number_, @"number",
-														
-														nil];
-										
-	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"stationWithNumber"
-													 substitutionVariables:substitutionVariables];
-	NSAssert(fetchRequest, @"Can't find fetch request named \"stationWithNumber\".");
-	
-	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
-	if (error_) *error_ = error;
-	return result;
-}
 
 
 @end

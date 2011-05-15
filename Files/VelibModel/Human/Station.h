@@ -18,9 +18,6 @@
 @property (nonatomic, readonly) NSString * statusDateDescription;
 @property (nonatomic, retain, readonly) CLLocation * location;
 
-// Favorite
-@property (nonatomic, getter=isFavorite) BOOL favorite;
-
 @end
 
 

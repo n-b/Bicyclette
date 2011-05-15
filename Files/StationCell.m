@@ -12,6 +12,8 @@
 #import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
 #import "CLLocation+Direction.h"
+#import "VelibModel+Favorites.h"
+
 
 /****************************************************************************/
 #pragma mark Private Methods

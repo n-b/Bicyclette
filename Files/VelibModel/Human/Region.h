@@ -5,4 +5,7 @@
 - (void) setupCoordinates;
 
 @property (readonly, nonatomic) MKCoordinateRegion coordinateRegion;
+
+@property (nonatomic, readonly) NSArray * sortedStations;
+
 @end

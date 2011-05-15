@@ -37,6 +37,8 @@
 		3756EAE61298018A00113534 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE11298018A00113534 /* Icon.png */; };
 		3756EAE71298018A00113534 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE21298018A00113534 /* Icon@2x.png */; };
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
+		37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7B1380446A009D8334 /* VelibModel+Favorites.m */; };
+		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A34673128C42E6000A2540 /* SectionHeader.xib */; };
@@ -113,6 +115,10 @@
 		3756EAE11298018A00113534 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3756EAE21298018A00113534 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		37822B7A1380446A009D8334 /* VelibModel+Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VelibModel+Favorites.h"; sourceTree = "<group>"; };
+		37822B7B1380446A009D8334 /* VelibModel+Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VelibModel+Favorites.m"; sourceTree = "<group>"; };
+		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
+		37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+StandardPaths.m"; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -276,6 +282,8 @@
 				3793DE2113802E6100B50118 /* DataUpdater.m */,
 				37216BC512611C5400A2695A /* VelibModel.h */,
 				37216BC612611C5400A2695A /* VelibModel.m */,
+				37822B7A1380446A009D8334 /* VelibModel+Favorites.h */,
+				37822B7B1380446A009D8334 /* VelibModel+Favorites.m */,
 				37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */,
 				37A346B5128C9D68000A2540 /* VelibModel */,
 				3726FFD912B55FA900516CF3 /* Locator.h */,
@@ -344,6 +352,8 @@
 				37201E6112B2EA640001A668 /* UIImage+Tinting.m */,
 				37D6AF8612CBF23700EEC835 /* VerticallyAlignedLabel.h */,
 				37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */,
+				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
+				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
 			);
 			name = Extensions;
 			path = Files;
@@ -479,6 +489,8 @@
 				371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */,
 				3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
+				37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */,
+				37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
