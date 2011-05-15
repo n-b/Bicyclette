@@ -6,11 +6,10 @@
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "CoreDataManager.h"
+#import "BicycletteDataManager.h"
 
 #import <MapKit/MapKit.h>
 
-#define kVelibStationsListURL		@"http://www.velib.paris.fr/service/carto"
 #define kVelibStationsStatusURL		@"http://www.velib.paris.fr/service/stationdetails/"
 
 /****************************************************************************/
@@ -18,10 +17,8 @@
 
 @class Station;
 
+@interface VelibModel : BicycletteDataManager
 
-@interface VelibModel : CoreDataManager
-
-@property (readonly) BOOL downloadingUpdate;
 @property (readonly) BOOL updatingXML;
 
 
