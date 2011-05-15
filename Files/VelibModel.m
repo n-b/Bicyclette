@@ -1,12 +1,12 @@
 //
-//  VelibDataManager.m
+//  VelibModel.m
 //  Bicyclette
 //
 //  Created by Nicolas on 09/10/10.
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "VelibDataManager.h"
+#import "VelibModel.h"
 #import "Station.h"
 #import "Region.h"
 
@@ -18,11 +18,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@interface VelibDataManager () <NSXMLParserDelegate>
-@property (nonatomic, retain) NSManagedObjectModel *mom;
-@property (nonatomic, retain) NSPersistentStoreCoordinator *psc;
-@property (nonatomic, retain) NSManagedObjectContext *moc;
-// -
+@interface VelibModel () <NSXMLParserDelegate>
 @property BOOL updatingXML;
 @property (nonatomic, retain) NSDate *parseDate;
 - (void) updateXML;
@@ -39,9 +35,8 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation VelibDataManager
+@implementation VelibModel
 
-@synthesize mom, psc, moc;
 @synthesize updatingXML, updateConnection, updateData, parseDate;
 @synthesize stationsHardcodedFixes;
 @synthesize coordinateRegion;
@@ -51,39 +46,6 @@
 	self = [super init];
 	if (self != nil) 
 	{
-		// Create mom
-		mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Velib" ofType:@"mom"]]]; 
-
-		// Create psc
-		psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
-		NSError *error = nil;
-		NSURL *storeURL = [NSURL fileURLWithPath: [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"Velib.sqlite"]];
-	
-		if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
-		{
-			NSLog(@"Removing data store");
-			[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-//			[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DebugRemoveStore"];
-		}
-
-		if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
-		{
-			NSLog(@"Unresolved error when opening store %@, %@", error, [error userInfo]);
-			if( error.code == NSPersistentStoreIncompatibleVersionHashError )
-			{
-				NSLog(@"trying to remove the existing db");
-				[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-				[psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];	
-			}
-			else
-				abort();
-		}
-		
-		// Create moc
-		moc = [[NSManagedObjectContext alloc] init];
-		[moc setPersistentStoreCoordinator:self.psc];
-		[moc setUndoManager:nil];
-		
 		// Find if I need to update
 		NSDate * createDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
 		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"]);
@@ -96,9 +58,6 @@
 
 - (void) dealloc
 {
-	self.mom = nil;
-	self.psc = nil;
-	self.moc = nil;
 	self.parseDate = nil;
 	self.stationsHardcodedFixes = nil;
 	
@@ -109,7 +68,7 @@
 }
 
 /****************************************************************************/
-#pragma mark -
+#pragma mark Hardcoded Fixes
 
 - (NSDictionary*) stationsHardcodedFixes
 {
@@ -183,13 +142,6 @@
 	return self.updateConnection!=nil;
 }
 
-- (void) save
-{
-	NSError * error;
-	BOOL success = [self.moc save:&error];
-	if(!success)
-		NSLog(@"save failed : %@ %@",error, [error userInfo]);
-}
 
 /****************************************************************************/
 #pragma mark Parsing
@@ -265,6 +217,9 @@
         }
 	}
 }
+
+/****************************************************************************/
+#pragma mark Coordinates
 
 - (MKCoordinateRegion) coordinateRegion
 {

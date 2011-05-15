@@ -8,7 +8,7 @@
 
 #import "StationsVC.h"
 #import "BicycletteApplicationDelegate.h"
-#import "VelibDataManager.h"
+#import "VelibModel.h"
 #import "StationCell.h"
 #import "UITableViewCell+EasyReuse.h"
 #import "Station.h"

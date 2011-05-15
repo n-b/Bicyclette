@@ -1,6 +1,6 @@
 #import "Station.h"
 #import "NSStringAdditions.h"
-#import "VelibDataManager.h"
+#import "VelibModel.h"
 #import "Region.h"
 
 /****************************************************************************/

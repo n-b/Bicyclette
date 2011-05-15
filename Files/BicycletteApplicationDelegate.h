@@ -11,7 +11,7 @@
 #define BicycletteBlue			[UIColor colorWithHue:.61f saturation:.87f brightness:.8f alpha:1]
 #define BicycletteAppDelegate ((BicycletteApplicationDelegate*)[[UIApplication sharedApplication] delegate])
 
-@class VelibDataManager, Locator, BicycletteBar;
+@class VelibModel, Locator, BicycletteBar;
 
 @interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
@@ -20,7 +20,7 @@
 @property (nonatomic, retain) IBOutlet BicycletteBar *toolbar;
 @property (nonatomic, retain) IBOutlet UIView *notificationView;
 
-@property (nonatomic, retain, readonly) VelibDataManager * dataManager;
+@property (nonatomic, retain, readonly) VelibModel * dataManager;
 @property (nonatomic, retain, readonly) Locator * locator;
 
 //- (IBAction) selectTab:(UIBarButtonItem*)sender;

@@ -8,7 +8,7 @@
 
 #import "MapVC.h"
 #import "BicycletteApplicationDelegate.h"
-#import "VelibDataManager.h"
+#import "VelibModel.h"
 #import "Locator.h"
 #import "Station.h"
 #import "Region.h"

@@ -8,7 +8,7 @@
 
 #import "RegionsVC.h"
 #import "BicycletteApplicationDelegate.h"
-#import "VelibDataManager.h"
+#import "VelibModel.h"
 #import "RegionCell.h"
 #import "UITableViewCell+EasyReuse.h"
 #import "Region.h"
@@ -71,8 +71,6 @@
 	self.countLabel.backgroundColor = [UIColor clearColor];
 	self.countLabel.textColor = [UIColor whiteColor];
 	self.countLabel.font = [UIFont italicSystemFontOfSize:16];
-//	self.countLabel.textAlignment = UITextAlignmentCenter;
-//	self.countLabel.layer.cornerRadius = 10;
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.countLabel] autorelease];
 	[self refreshCountLabel];	
 }

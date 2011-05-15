@@ -7,7 +7,7 @@
 //
 
 #import "BicycletteApplicationDelegate.h"
-#import "VelibDataManager.h"
+#import "VelibModel.h"
 #import "Locator.h"
 #import "BicycletteBar.h"
 #include <unistd.h>
@@ -17,7 +17,7 @@
 
 @interface BicycletteApplicationDelegate() <BicycletteBarDelegate>
 
-@property (nonatomic, retain) VelibDataManager * dataManager;
+@property (nonatomic, retain) VelibModel * dataManager;
 @property (nonatomic, retain) Locator * locator;
 
 - (void) selectTabIndex:(NSUInteger)index;
@@ -43,7 +43,7 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
 	
-	self.dataManager = [[VelibDataManager new] autorelease];
+	self.dataManager = [[VelibModel new] autorelease];
 	[self.dataManager addObserver:self forKeyPath:@"downloadingUpdate" options:0 context:[BicycletteApplicationDelegate class]];
 	self.locator = [[Locator new] autorelease];
 }
