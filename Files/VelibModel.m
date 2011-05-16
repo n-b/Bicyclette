@@ -10,6 +10,7 @@
 #import "Station.h"
 #import "Region.h"
 #import "NSArrayAdditions.h"
+#import "NSStringAdditions.h"
 
 #import "DataUpdater.h"
 
@@ -73,7 +74,7 @@
 - (void) updater:(DataUpdater*)updater finishedReceivingData:(NSData*)xml
 {
 	self.updatingXML = YES;
-
+    
 	NSError * requestError = nil;
 	
 	// Remove old stations
@@ -89,13 +90,13 @@
 	NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:xml] autorelease];
 	parser.delegate = self;
 	[parser parse];
-		
+    
 	// Compute regions coordinates
 	NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
 	[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
 	NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
 	[regions makeObjectsPerformSelector:@selector(setupCoordinates)];
-			
+    
 	// Save
 	[self save];
 	self.updatingXML = NO;
@@ -113,13 +114,58 @@
 			NSLog(@"using hardcoded fixes for %@.\n\tReceived Data : %@.\n\tFixes : %@",station.number, attributeDict, fixes);
 			[station setValuesForKeysWithDictionary:fixes]; // Yay! again
 		}
-        BOOL valid = [station setupCodePostal];
-		if(!valid)
+        
+        // Setup region
+        if([station.fullAddress hasPrefix:station.address])
         {
+            NSString * endOfAddress = [station.fullAddress stringByDeletingPrefix:station.address];
+            endOfAddress = [endOfAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            NSString * lCodePostal = nil;
+            if(endOfAddress.length>=5)
+                lCodePostal = [endOfAddress substringToIndex:5];
+            if(nil==lCodePostal || [lCodePostal isEqualToString:@"75000"])
+            {
+                unichar firstChar = [station.number characterAtIndex:0];
+                switch (firstChar) {
+                    case '0': case '1':				// Paris
+                        lCodePostal = [NSString stringWithFormat:@"750%@",[station.number substringToIndex:2]];
+                        break;
+                    case '2': case '3': case '4':	// Banlieue
+                        lCodePostal = [NSString stringWithFormat:@"9%@0",[station.number substringToIndex:3]];
+                        break;
+                    default:						// Stations Mobiles et autres bugs
+                        lCodePostal = [fixes objectForKey:@"codePostal"];
+                        if(nil==lCodePostal)		// Dernier recours
+                            lCodePostal = @"75000";
+                        break;
+                }
+                
+                NSLog(@"endOfAddress \"%@\" trop court, %@, trouvé %@",endOfAddress, station.name, lCodePostal);
+            }
+            NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
+            
+            Region * region = [[Region fetchRegionWithNumber:self.moc number:lCodePostal] lastObject];
+            if(nil==region)
+            {
+                region = [Region insertInManagedObjectContext:self.moc];
+                region.number = lCodePostal;
+                NSString * cityName = [[[endOfAddress stringByDeletingPrefix:region.number]
+                                        stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                                       capitalizedString];
+                if([lCodePostal hasPrefix:@"75"])
+                    region.name = [NSString stringWithFormat:@"%@ %@",cityName,[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
+                else
+                    region.name = cityName;
+            }
+            station.region = region;
+        }
+        else
+        {
+            NSLog(@"full address \"%@\" does not begin with address \"%@\"", station.fullAddress, station.address);
             NSLog(@"Invalid data : %@",attributeDict);
             [self.moc deleteObject:station];
         }
-	}
+    }
 }
 
 /****************************************************************************/
@@ -136,7 +182,7 @@
 		[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
 		NSError * requestError = nil;
 		NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
-
+        
 		NSNumber * minLat = [regions valueForKeyPath:@"@min.minLat"];
 		NSNumber * maxLat = [regions valueForKeyPath:@"@max.maxLat"];
 		NSNumber * minLng = [regions valueForKeyPath:@"@min.minLng"];

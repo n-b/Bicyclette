@@ -1,7 +1,7 @@
 #import "Station.h"
-#import "NSStringAdditions.h"
 #import "VelibModel.h"
 #import "Region.h"
+#import "NSStringAdditions.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -12,7 +12,6 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 @property (nonatomic, retain) NSURLConnection * connection;
 @property (nonatomic, retain) NSMutableData * data;
 @property (nonatomic, retain) CLLocation * location;
-@property (nonatomic, retain) NSString * codePostal; // only used for hardcoded fixes
 @end
 
 
@@ -23,7 +22,6 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 @synthesize data,connection;
 @synthesize location;
-@synthesize codePostal;
 
 - (NSString *) description
 {
@@ -32,73 +30,10 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 			self.status_ticketValue?"+":"", self.status_availableValue, self.status_freeValue, self.status_totalValue];
 }
 
-- (void) save
-{
-	NSError * error;
-	BOOL success = [self.managedObjectContext save:&error];
-	if(!success)
-		NSLog(@"save failed : %@ %@",error, [error userInfo]);
-}
-
 - (void) dealloc
 {
 	self.location = nil;
 	[super dealloc];
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (BOOL) setupCodePostal
-{
-	if(![self.fullAddress hasPrefix:self.address])
-    {
-        NSLog(@"full address \"%@\" does not begin with address \"%@\"", self.fullAddress, self.address);
-        return NO;
-    }
-	NSString * endOfAddress = [self.fullAddress stringByDeletingPrefix:self.address];
-	endOfAddress = [endOfAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	NSString * lCodePostal = nil;
-	if(endOfAddress.length>=5)
-		lCodePostal = [endOfAddress substringToIndex:5];
-	if(nil==lCodePostal || [lCodePostal isEqualToString:@"75000"])
-	{
-		unichar firstChar = [self.number characterAtIndex:0];
-		switch (firstChar) {
-			case '0': case '1':				// Paris
-				lCodePostal = [NSString stringWithFormat:@"750%@",[self.number substringToIndex:2]];
-				break;
-			case '2': case '3': case '4':	// Banlieue
-				lCodePostal = [NSString stringWithFormat:@"9%@0",[self.number substringToIndex:3]];
-				break;
-			default:						// Stations Mobiles et autres bugs
-				if(self.codePostal)
-					lCodePostal = self.codePostal;
-				else
-					lCodePostal = @"75000";
-				break;
-		}
-		
-		NSLog(@"endOfAddress \"%@\" trop court, %@, trouvé %@",endOfAddress, self.name, lCodePostal);
-	}
-	NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
-	
-	Region * region = [[Region fetchRegionWithNumber:self.managedObjectContext number:lCodePostal] lastObject];
-	if(nil==region)
-	{
-		region = [Region insertInManagedObjectContext:self.managedObjectContext];
-		region.number = lCodePostal;
-		NSString * cityName = [[[endOfAddress stringByDeletingPrefix:region.number]
-							   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
-							   capitalizedString];
-		if([lCodePostal hasPrefix:@"75"])
-			region.name = [NSString stringWithFormat:@"%@ %@",cityName,[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
-		else
-			region.name = cityName;
-	}
-	self.region = region;
-    
-    return YES;
 }
 
 /****************************************************************************/
@@ -164,7 +99,10 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 	self.data = nil;
 	self.connection = nil;
 	
-	[self save];
+	NSError * error;
+	BOOL success = [self.managedObjectContext save:&error];
+	if(!success)
+		NSLog(@"save failed : %@ %@",error, [error userInfo]);
 }
 
 /****************************************************************************/

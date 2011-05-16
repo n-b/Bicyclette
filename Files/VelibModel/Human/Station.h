@@ -3,10 +3,6 @@
 
 @interface Station : _Station {}
 
-// setup
-- (BOOL) setupCodePostal;
-- (void) save;
-
 // status
 - (void) refresh;
 @property (nonatomic, readonly, getter=isLoading) BOOL loading;
