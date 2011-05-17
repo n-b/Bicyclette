@@ -10,10 +10,14 @@
 #import "NSData+SHA1.h"
 
 @interface DataUpdater()
-@property (nonatomic, retain) NSDate *parseDate;
 @property (nonatomic, retain) NSURLConnection * updateConnection;
 @property (nonatomic, retain) NSMutableData * updateData;
 - (void) updateXML;
+
+@property (nonatomic, copy) NSString* knownDataSHA1;
+@property (nonatomic, copy) NSDate* dataDate;
+
+- (NSTimeInterval) refreshInterval;
 
 @end
 
@@ -21,7 +25,7 @@
 #pragma mark -
 
 @implementation DataUpdater
-@synthesize updateConnection, updateData, parseDate;
+@synthesize updateConnection, updateData;
 @synthesize delegate;
 
 /****************************************************************************/
@@ -40,8 +44,8 @@
         self.delegate = delegate_;
         
 		// Find if I need to update
-		NSDate * createDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
-		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"]);
+		NSDate * createDate = self.dataDate;
+		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > self.refreshInterval);
 		if(needUpdate)
 			[self performSelector:@selector(updateXML) withObject:nil afterDelay:0];
 	}
@@ -50,7 +54,6 @@
 
 - (void) dealloc
 {
-	self.parseDate = nil;
 	[self.updateConnection cancel];
 	self.updateConnection = nil;
 	self.updateData = nil;
@@ -94,21 +97,51 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	self.updateConnection = nil;
-    NSString * oldSha1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"Database_XML_SHA1"];
+    NSString * oldSha1 = self.knownDataSHA1;
     NSString * newSha1 = [self.updateData sha1DigestString];
     if([oldSha1 isEqualToString:newSha1])
     {
         NSLog(@"No need to rebuild database, the data actually hasn't changed.");
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"DatabaseCreateDate"];
     }
     else
     {
-        self.parseDate = [NSDate date];
 		[self.delegate updater:self finishedReceivingData:self.updateData];
-        [[NSUserDefaults standardUserDefaults] setObject:self.parseDate forKey:@"DatabaseCreateDate"];
-        [[NSUserDefaults standardUserDefaults] setObject:newSha1 forKey:@"Database_XML_SHA1"];
+        self.knownDataSHA1 = newSha1;
     }
+    self.dataDate = [NSDate date];
 	self.updateData = nil;
+}
+
+/****************************************************************************/
+#pragma mark Preference Keys
+
+- (NSTimeInterval) refreshInterval
+{
+    if ([self.delegate respondsToSelector:@selector(refreshIntervalForUpdater:)]) {
+        return [self.delegate refreshIntervalForUpdater:self];
+    }
+    else
+        return [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"];
+}
+
+- (NSString *) knownDataSHA1
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"Database_XML_SHA1"];
+}
+
+- (void) setKnownDataSHA1:(NSString*)newSha1
+{
+    [[NSUserDefaults standardUserDefaults] setObject:newSha1 forKey:@"Database_XML_SHA1"];
+}
+
+- (NSString *) dataDate
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
+}
+
+- (void) setDataDate:(NSDate*) date
+{
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"DatabaseCreateDate"];
 }
 
 /****************************************************************************/

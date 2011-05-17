@@ -31,4 +31,6 @@
 @protocol DataUpdaterDelegate <NSObject>
 - (NSURL*) urlForUpdater:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater finishedReceivingData:(NSData*)data;
+@optional
+- (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater*)updater;
 @end
