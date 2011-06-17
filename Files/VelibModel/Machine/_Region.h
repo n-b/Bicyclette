@@ -30,49 +30,49 @@
 
 
 
-@property (nonatomic, retain) NSNumber *minLng;
+@property (nonatomic, retain) NSNumber *maxLatitude;
 
-@property double minLngValue;
-- (double)minLngValue;
-- (void)setMinLngValue:(double)value_;
+@property double maxLatitudeValue;
+- (double)maxLatitudeValue;
+- (void)setMaxLatitudeValue:(double)value_;
 
-//- (BOOL)validateMinLng:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *minLat;
-
-@property double minLatValue;
-- (double)minLatValue;
-- (void)setMinLatValue:(double)value_;
-
-//- (BOOL)validateMinLat:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateMaxLatitude:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) NSNumber *maxLng;
+@property (nonatomic, retain) NSNumber *minLongitude;
 
-@property double maxLngValue;
-- (double)maxLngValue;
-- (void)setMaxLngValue:(double)value_;
+@property double minLongitudeValue;
+- (double)minLongitudeValue;
+- (void)setMinLongitudeValue:(double)value_;
 
-//- (BOOL)validateMaxLng:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *maxLat;
-
-@property double maxLatValue;
-- (double)maxLatValue;
-- (void)setMaxLatValue:(double)value_;
-
-//- (BOOL)validateMaxLat:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateMinLongitude:(id*)value_ error:(NSError**)error_;
 
 
 
 @property (nonatomic, retain) NSString *number;
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *minLatitude;
+
+@property double minLatitudeValue;
+- (double)minLatitudeValue;
+- (void)setMinLatitudeValue:(double)value_;
+
+//- (BOOL)validateMinLatitude:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *maxLongitude;
+
+@property double maxLongitudeValue;
+- (double)maxLongitudeValue;
+- (void)setMaxLongitudeValue:(double)value_;
+
+//- (BOOL)validateMaxLongitude:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -108,44 +108,44 @@
 
 
 
-- (NSNumber*)primitiveMinLng;
-- (void)setPrimitiveMinLng:(NSNumber*)value;
+- (NSNumber*)primitiveMaxLatitude;
+- (void)setPrimitiveMaxLatitude:(NSNumber*)value;
 
-- (double)primitiveMinLngValue;
-- (void)setPrimitiveMinLngValue:(double)value_;
-
-
-
-
-- (NSNumber*)primitiveMinLat;
-- (void)setPrimitiveMinLat:(NSNumber*)value;
-
-- (double)primitiveMinLatValue;
-- (void)setPrimitiveMinLatValue:(double)value_;
+- (double)primitiveMaxLatitudeValue;
+- (void)setPrimitiveMaxLatitudeValue:(double)value_;
 
 
 
 
-- (NSNumber*)primitiveMaxLng;
-- (void)setPrimitiveMaxLng:(NSNumber*)value;
+- (NSNumber*)primitiveMinLongitude;
+- (void)setPrimitiveMinLongitude:(NSNumber*)value;
 
-- (double)primitiveMaxLngValue;
-- (void)setPrimitiveMaxLngValue:(double)value_;
-
-
-
-
-- (NSNumber*)primitiveMaxLat;
-- (void)setPrimitiveMaxLat:(NSNumber*)value;
-
-- (double)primitiveMaxLatValue;
-- (void)setPrimitiveMaxLatValue:(double)value_;
+- (double)primitiveMinLongitudeValue;
+- (void)setPrimitiveMinLongitudeValue:(double)value_;
 
 
 
 
 - (NSString*)primitiveNumber;
 - (void)setPrimitiveNumber:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveMinLatitude;
+- (void)setPrimitiveMinLatitude:(NSNumber*)value;
+
+- (double)primitiveMinLatitudeValue;
+- (void)setPrimitiveMinLatitudeValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveMaxLongitude;
+- (void)setPrimitiveMaxLongitude:(NSNumber*)value;
+
+- (double)primitiveMaxLongitudeValue;
+- (void)setPrimitiveMaxLongitudeValue:(double)value_;
 
 
 

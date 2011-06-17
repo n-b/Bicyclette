@@ -73,19 +73,19 @@
 
 
 
+@property (nonatomic, retain) NSNumber *longitude;
+
+@property double longitudeValue;
+- (double)longitudeValue;
+- (void)setLongitudeValue:(double)value_;
+
+//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
+
+
+
 @property (nonatomic, retain) NSString *address;
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *status_available;
-
-@property short status_availableValue;
-- (short)status_availableValue;
-- (void)setStatus_availableValue:(short)value_;
-
-//- (BOOL)validateStatus_available:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -99,29 +99,29 @@
 
 
 
-@property (nonatomic, retain) NSNumber *lat;
+@property (nonatomic, retain) NSNumber *status_available;
 
-@property double latValue;
-- (double)latValue;
-- (void)setLatValue:(double)value_;
+@property short status_availableValue;
+- (short)status_availableValue;
+- (void)setStatus_availableValue:(short)value_;
 
-//- (BOOL)validateLat:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateStatus_available:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *latitude;
+
+@property double latitudeValue;
+- (double)latitudeValue;
+- (void)setLatitudeValue:(double)value_;
+
+//- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
 
 
 
 @property (nonatomic, retain) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *lng;
-
-@property double lngValue;
-- (double)lngValue;
-- (void)setLngValue:(double)value_;
-
-//- (BOOL)validateLng:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -196,17 +196,17 @@
 
 
 
+- (NSNumber*)primitiveLongitude;
+- (void)setPrimitiveLongitude:(NSNumber*)value;
+
+- (double)primitiveLongitudeValue;
+- (void)setPrimitiveLongitudeValue:(double)value_;
+
+
+
+
 - (NSString*)primitiveAddress;
 - (void)setPrimitiveAddress:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveStatus_available;
-- (void)setPrimitiveStatus_available:(NSNumber*)value;
-
-- (short)primitiveStatus_availableValue;
-- (void)setPrimitiveStatus_availableValue:(short)value_;
 
 
 
@@ -220,26 +220,26 @@
 
 
 
-- (NSNumber*)primitiveLat;
-- (void)setPrimitiveLat:(NSNumber*)value;
+- (NSNumber*)primitiveStatus_available;
+- (void)setPrimitiveStatus_available:(NSNumber*)value;
 
-- (double)primitiveLatValue;
-- (void)setPrimitiveLatValue:(double)value_;
+- (short)primitiveStatus_availableValue;
+- (void)setPrimitiveStatus_availableValue:(short)value_;
+
+
+
+
+- (NSNumber*)primitiveLatitude;
+- (void)setPrimitiveLatitude:(NSNumber*)value;
+
+- (double)primitiveLatitudeValue;
+- (void)setPrimitiveLatitudeValue:(double)value_;
 
 
 
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveLng;
-- (void)setPrimitiveLng:(NSNumber*)value;
-
-- (double)primitiveLngValue;
-- (void)setPrimitiveLngValue:(double)value_;
 
 
 

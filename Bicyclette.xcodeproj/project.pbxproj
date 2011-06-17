@@ -62,6 +62,7 @@
 		37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537E12AA373000C1D21C /* MapTab@2x.png */; };
 		37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538312AA379B00C1D21C /* FavoritesTab.png */; };
 		37E9538712AA379B00C1D21C /* MapTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538412AA379B00C1D21C /* MapTab.png */; };
+		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +152,8 @@
 		37E9537E12AA373000C1D21C /* MapTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapTab@2x.png"; sourceTree = "<group>"; };
 		37E9538312AA379B00C1D21C /* FavoritesTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoritesTab.png; sourceTree = "<group>"; };
 		37E9538412AA379B00C1D21C /* MapTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MapTab.png; sourceTree = "<group>"; };
+		37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCMapping.h"; sourceTree = "<group>"; };
+		37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping.m"; sourceTree = "<group>"; };
 		37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedFixes.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,6 +288,7 @@
 				37822B7A1380446A009D8334 /* VelibModel+Favorites.h */,
 				37822B7B1380446A009D8334 /* VelibModel+Favorites.m */,
 				37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */,
+				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 				37A346B5128C9D68000A2540 /* VelibModel */,
 				3726FFD912B55FA900516CF3 /* Locator.h */,
 				37B69C29129034D90053728D /* Locator.m */,
@@ -318,7 +322,6 @@
 				37E9537E12AA373000C1D21C /* MapTab@2x.png */,
 				37E9538312AA379B00C1D21C /* FavoritesTab.png */,
 				37E9538412AA379B00C1D21C /* MapTab.png */,
-				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 			);
 			name = Resources;
 			path = Files;
@@ -354,6 +357,8 @@
 				37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */,
 				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
 				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
+				37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */,
+				37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */,
 			);
 			name = Extensions;
 			path = Files;
@@ -491,6 +496,7 @@
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
 				37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */,
 				37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */,
+				37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

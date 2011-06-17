@@ -22,13 +22,41 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 @implementation Station
 
+/****************************************************************************/
+#pragma mark -
+
++ (NSDictionary*) kvcMapping
+{
+    static NSDictionary * s_mapping = nil;
+    if(nil==s_mapping)
+        s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
+                     @"address",@"address",
+                     @"bonus",@"bonus",
+                     @"fullAddress",@"fullAddress",
+                     @"latitude",@"lat",
+                     @"longitude",@"lng",
+                     @"name",@"name",
+                     @"number",@"number",
+                     @"open",@"open",
+                     
+                     @"available",@"status_available",
+                     @"free",@"status_free",
+                     @"ticket",@"status_ticket",
+                     @"total",@"status_total",
+                     nil];
+        
+    return s_mapping;
+}
+/****************************************************************************/
+#pragma mark -
+
 @synthesize updater, currentParsedString;
 @synthesize location;
 
 - (NSString *) description
 {
 	return [NSString stringWithFormat:@"Station %@ (%@): %@ (%f,%f) %s %s\n\t%s\t%02d/%02d/%02d",
-			self.name, self.number, self.address, self.latValue, self.lngValue, self.openValue?"O":"F", self.bonusValue?"+":"",
+			self.name, self.number, self.address, self.latitudeValue, self.longitudeValue, self.openValue?"O":"F", self.bonusValue?"+":"",
 			self.status_ticketValue?"+":"", self.status_availableValue, self.status_freeValue, self.status_totalValue];
 }
 
@@ -161,7 +189,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 - (CLLocation*) location
 {
 	if(nil==location)
-		location = [[CLLocation alloc] initWithLatitude:self.latValue longitude:self.lngValue];
+		location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
 	return [[location retain] autorelease];
 }
 
@@ -215,20 +243,20 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 		[self setPrimitiveOpenValue:[value boolValue]];
 }
 
-- (void) setLat:(id)value
+- (void) setLatitude:(id)value
 {
 	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"lat"];
+		[super setPrimitiveValue:value forKey:@"latitude"];
 	else
-		[self setPrimitiveLatValue:[value doubleValue]];
+		[self setPrimitiveLatitudeValue:[value doubleValue]];
 }
 
-- (void) setLng:(id)value
+- (void) setLongitude:(id)value
 {
 	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"lng"];
+		[super setPrimitiveValue:value forKey:@"longitude"];
 	else
-		[self setPrimitiveLngValue:[value doubleValue]];
+		[self setPrimitiveLongitudeValue:[value doubleValue]];
 }
 
 @end

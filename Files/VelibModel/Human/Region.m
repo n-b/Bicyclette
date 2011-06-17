@@ -16,19 +16,18 @@
 
 - (void) setupCoordinates
 {
-	self.minLat = [self.stations valueForKeyPath:@"@min.lat"];
-	self.maxLat = [self.stations valueForKeyPath:@"@max.lat"];
-	self.minLng = [self.stations valueForKeyPath:@"@min.lng"];
-	self.maxLng = [self.stations valueForKeyPath:@"@max.lng"];
+	self.minLatitude = [self.stations valueForKeyPath:@"@min.latitude"];
+	self.maxLatitude = [self.stations valueForKeyPath:@"@max.latitude"];
+	self.minLongitude = [self.stations valueForKeyPath:@"@min.longitude"];
+	self.maxLongitude = [self.stations valueForKeyPath:@"@max.longitude"];
 }
-
 
 - (NSString *) description
 {
 	return [NSString stringWithFormat:@"Region %@ (%@) - %d stations - de {%f,%f} à {%f,%f}",
 			self.number, self.name,
 			self.stations.count,
-			self.minLatValue, self.minLngValue, self.maxLatValue, self.maxLngValue];
+			self.minLatitudeValue, self.minLongitudeValue, self.maxLatitudeValue, self.maxLongitudeValue];
 }
 
 - (MKCoordinateRegion) coordinateRegion
@@ -39,11 +38,11 @@
 	   coordinateRegion.span.longitudeDelta == 0 )
 	{
 		CLLocationCoordinate2D center;
-		center.latitude = ([self.minLat doubleValue] + [self.maxLat doubleValue]) / 2.0f;
-		center.longitude = ([self.minLng doubleValue] + [self.maxLng doubleValue]) / 2.0f; // This is very wrong ! Do I really need a if?
+		center.latitude = (self.minLatitudeValue + self.maxLatitudeValue) / 2.0f;
+		center.longitude = (self.minLongitudeValue + self.maxLongitudeValue) / 2.0f; // This is very wrong ! Do I really need a if?
 		MKCoordinateSpan span;
-		span.latitudeDelta = fabs([self.minLat doubleValue] - [self.maxLat doubleValue]);
-		span.longitudeDelta = fabs([self.minLng doubleValue] - [self.maxLng doubleValue]);
+		span.latitudeDelta = fabs(self.minLatitudeValue - self.maxLatitudeValue);
+		span.longitudeDelta = fabs(self.minLongitudeValue - self.maxLongitudeValue);
 		self.coordinateRegion = MKCoordinateRegionMake(center, span);
 	}
 	return coordinateRegion;

@@ -11,6 +11,7 @@
 #import "Region.h"
 #import "NSArrayAdditions.h"
 #import "NSStringAdditions.h"
+#import "NSObject+KVCMapping.h"
 
 #import "DataUpdater.h"
 
@@ -136,12 +137,12 @@
 	if([elementName isEqualToString:@"marker"])
 	{
 		Station * station = [Station insertInManagedObjectContext:self.moc];
-		[station setValuesForKeysWithDictionary:attributeDict]; // Yay! Security !
+		[station setMappedValuesForKeysWithDictionary:attributeDict]; // Yay!
 		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
 		if(fixes)
 		{
 			NSLog(@"using hardcoded fixes for %@.\n\tReceived Data : %@.\n\tFixes : %@",station.number, attributeDict, fixes);
-			[station setValuesForKeysWithDictionary:fixes]; // Yay! again
+			[station setMappedValuesForKeysWithDictionary:fixes]; // Yay! again
 		}
         
         // Setup region
@@ -212,10 +213,10 @@
 		NSError * requestError = nil;
 		NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
         
-		NSNumber * minLat = [regions valueForKeyPath:@"@min.minLat"];
-		NSNumber * maxLat = [regions valueForKeyPath:@"@max.maxLat"];
-		NSNumber * minLng = [regions valueForKeyPath:@"@min.minLng"];
-		NSNumber * maxLng = [regions valueForKeyPath:@"@max.maxLng"];
+		NSNumber * minLat = [regions valueForKeyPath:@"@min.minLatitude"];
+		NSNumber * maxLat = [regions valueForKeyPath:@"@max.maxLatitude"];
+		NSNumber * minLng = [regions valueForKeyPath:@"@min.minLongitude"];
+		NSNumber * maxLng = [regions valueForKeyPath:@"@max.maxLongitude"];
 		
 		CLLocationCoordinate2D center;
 		center.latitude = ([minLat doubleValue] + [maxLat doubleValue]) / 2.0f;

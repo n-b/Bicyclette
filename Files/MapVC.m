@@ -90,7 +90,7 @@ typedef enum {
 		maxLat = self.mapView.region.center.latitude + self.mapView.region.span.latitudeDelta;
 		minLng = self.mapView.region.center.longitude - self.mapView.region.span.longitudeDelta;
 		maxLng = self.mapView.region.center.longitude + self.mapView.region.span.longitudeDelta;
-		request.predicate = [NSPredicate predicateWithFormat:@"lat>%f AND lat<%f AND lng>%f AND lng<%f",
+		request.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
 							 minLat, maxLat, minLng, maxLng];
 
 		NSArray * oldAnnotations = self.mapView.annotations;

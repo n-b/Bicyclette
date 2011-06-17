@@ -41,20 +41,20 @@
 		NSSet *affectingKey = [NSSet setWithObject:@"bonus"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"status_availableValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"status_available"];
+	if ([key isEqualToString:@"longitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 	if ([key isEqualToString:@"openValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"open"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"latValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"lat"];
+	if ([key isEqualToString:@"status_availableValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status_available"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"lngValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"lng"];
+	if ([key isEqualToString:@"latitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 	if ([key isEqualToString:@"status_ticketValue"]) {
@@ -160,34 +160,34 @@
 
 
 
+@dynamic longitude;
+
+
+
+- (double)longitudeValue {
+	NSNumber *result = [self longitude];
+	return [result doubleValue];
+}
+
+- (void)setLongitudeValue:(double)value_ {
+	[self setLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveLongitudeValue {
+	NSNumber *result = [self primitiveLongitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveLongitudeValue:(double)value_ {
+	[self setPrimitiveLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
 @dynamic address;
 
-
-
-
-
-
-@dynamic status_available;
-
-
-
-- (short)status_availableValue {
-	NSNumber *result = [self status_available];
-	return [result shortValue];
-}
-
-- (void)setStatus_availableValue:(short)value_ {
-	[self setStatus_available:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveStatus_availableValue {
-	NSNumber *result = [self primitiveStatus_available];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveStatus_availableValue:(short)value_ {
-	[self setPrimitiveStatus_available:[NSNumber numberWithShort:value_]];
-}
 
 
 
@@ -219,26 +219,52 @@
 
 
 
-@dynamic lat;
+@dynamic status_available;
 
 
 
-- (double)latValue {
-	NSNumber *result = [self lat];
+- (short)status_availableValue {
+	NSNumber *result = [self status_available];
+	return [result shortValue];
+}
+
+- (void)setStatus_availableValue:(short)value_ {
+	[self setStatus_available:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveStatus_availableValue {
+	NSNumber *result = [self primitiveStatus_available];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStatus_availableValue:(short)value_ {
+	[self setPrimitiveStatus_available:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
+@dynamic latitude;
+
+
+
+- (double)latitudeValue {
+	NSNumber *result = [self latitude];
 	return [result doubleValue];
 }
 
-- (void)setLatValue:(double)value_ {
-	[self setLat:[NSNumber numberWithDouble:value_]];
+- (void)setLatitudeValue:(double)value_ {
+	[self setLatitude:[NSNumber numberWithDouble:value_]];
 }
 
-- (double)primitiveLatValue {
-	NSNumber *result = [self primitiveLat];
+- (double)primitiveLatitudeValue {
+	NSNumber *result = [self primitiveLatitude];
 	return [result doubleValue];
 }
 
-- (void)setPrimitiveLatValue:(double)value_ {
-	[self setPrimitiveLat:[NSNumber numberWithDouble:value_]];
+- (void)setPrimitiveLatitudeValue:(double)value_ {
+	[self setPrimitiveLatitude:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -247,32 +273,6 @@
 
 @dynamic name;
 
-
-
-
-
-
-@dynamic lng;
-
-
-
-- (double)lngValue {
-	NSNumber *result = [self lng];
-	return [result doubleValue];
-}
-
-- (void)setLngValue:(double)value_ {
-	[self setLng:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveLngValue {
-	NSNumber *result = [self primitiveLng];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveLngValue:(double)value_ {
-	[self setPrimitiveLng:[NSNumber numberWithDouble:value_]];
-}
 
 
 

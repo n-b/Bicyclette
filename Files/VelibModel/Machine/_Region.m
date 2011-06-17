@@ -29,20 +29,20 @@
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"minLngValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"minLng"];
+	if ([key isEqualToString:@"maxLatitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"maxLatitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"minLatValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"minLat"];
+	if ([key isEqualToString:@"minLongitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"minLongitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"maxLngValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"maxLng"];
+	if ([key isEqualToString:@"minLatitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"minLatitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"maxLatValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"maxLat"];
+	if ([key isEqualToString:@"maxLongitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"maxLongitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 
@@ -59,104 +59,52 @@
 
 
 
-@dynamic minLng;
+@dynamic maxLatitude;
 
 
 
-- (double)minLngValue {
-	NSNumber *result = [self minLng];
+- (double)maxLatitudeValue {
+	NSNumber *result = [self maxLatitude];
 	return [result doubleValue];
 }
 
-- (void)setMinLngValue:(double)value_ {
-	[self setMinLng:[NSNumber numberWithDouble:value_]];
+- (void)setMaxLatitudeValue:(double)value_ {
+	[self setMaxLatitude:[NSNumber numberWithDouble:value_]];
 }
 
-- (double)primitiveMinLngValue {
-	NSNumber *result = [self primitiveMinLng];
+- (double)primitiveMaxLatitudeValue {
+	NSNumber *result = [self primitiveMaxLatitude];
 	return [result doubleValue];
 }
 
-- (void)setPrimitiveMinLngValue:(double)value_ {
-	[self setPrimitiveMinLng:[NSNumber numberWithDouble:value_]];
+- (void)setPrimitiveMaxLatitudeValue:(double)value_ {
+	[self setPrimitiveMaxLatitude:[NSNumber numberWithDouble:value_]];
 }
 
 
 
 
 
-@dynamic minLat;
+@dynamic minLongitude;
 
 
 
-- (double)minLatValue {
-	NSNumber *result = [self minLat];
+- (double)minLongitudeValue {
+	NSNumber *result = [self minLongitude];
 	return [result doubleValue];
 }
 
-- (void)setMinLatValue:(double)value_ {
-	[self setMinLat:[NSNumber numberWithDouble:value_]];
+- (void)setMinLongitudeValue:(double)value_ {
+	[self setMinLongitude:[NSNumber numberWithDouble:value_]];
 }
 
-- (double)primitiveMinLatValue {
-	NSNumber *result = [self primitiveMinLat];
+- (double)primitiveMinLongitudeValue {
+	NSNumber *result = [self primitiveMinLongitude];
 	return [result doubleValue];
 }
 
-- (void)setPrimitiveMinLatValue:(double)value_ {
-	[self setPrimitiveMinLat:[NSNumber numberWithDouble:value_]];
-}
-
-
-
-
-
-@dynamic maxLng;
-
-
-
-- (double)maxLngValue {
-	NSNumber *result = [self maxLng];
-	return [result doubleValue];
-}
-
-- (void)setMaxLngValue:(double)value_ {
-	[self setMaxLng:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveMaxLngValue {
-	NSNumber *result = [self primitiveMaxLng];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveMaxLngValue:(double)value_ {
-	[self setPrimitiveMaxLng:[NSNumber numberWithDouble:value_]];
-}
-
-
-
-
-
-@dynamic maxLat;
-
-
-
-- (double)maxLatValue {
-	NSNumber *result = [self maxLat];
-	return [result doubleValue];
-}
-
-- (void)setMaxLatValue:(double)value_ {
-	[self setMaxLat:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveMaxLatValue {
-	NSNumber *result = [self primitiveMaxLat];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveMaxLatValue:(double)value_ {
-	[self setPrimitiveMaxLat:[NSNumber numberWithDouble:value_]];
+- (void)setPrimitiveMinLongitudeValue:(double)value_ {
+	[self setPrimitiveMinLongitude:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -165,6 +113,58 @@
 
 @dynamic number;
 
+
+
+
+
+
+@dynamic minLatitude;
+
+
+
+- (double)minLatitudeValue {
+	NSNumber *result = [self minLatitude];
+	return [result doubleValue];
+}
+
+- (void)setMinLatitudeValue:(double)value_ {
+	[self setMinLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMinLatitudeValue {
+	NSNumber *result = [self primitiveMinLatitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMinLatitudeValue:(double)value_ {
+	[self setPrimitiveMinLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic maxLongitude;
+
+
+
+- (double)maxLongitudeValue {
+	NSNumber *result = [self maxLongitude];
+	return [result doubleValue];
+}
+
+- (void)setMaxLongitudeValue:(double)value_ {
+	[self setMaxLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMaxLongitudeValue {
+	NSNumber *result = [self primitiveMaxLongitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMaxLongitudeValue:(double)value_ {
+	[self setPrimitiveMaxLongitude:[NSNumber numberWithDouble:value_]];
+}
 
 
 
