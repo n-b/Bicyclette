@@ -2,15 +2,17 @@
 #import "VelibModel.h"
 #import "Region.h"
 #import "NSStringAdditions.h"
+#import "DataUpdater.h"
+
 
 /****************************************************************************/
 #pragma mark -
 
 NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChange";
 
-@interface Station () 
-@property (nonatomic, retain) NSURLConnection * connection;
-@property (nonatomic, retain) NSMutableData * data;
+@interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
+@property (nonatomic, retain) DataUpdater * updater;
+@property (nonatomic, retain) NSMutableString * currentParsedString;
 @property (nonatomic, retain) CLLocation * location;
 @end
 
@@ -20,7 +22,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 @implementation Station
 
-@synthesize data,connection;
+@synthesize updater, currentParsedString;
 @synthesize location;
 
 - (NSString *) description
@@ -32,6 +34,9 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 - (void) dealloc
 {
+    self.updater.delegate = nil;
+    self.updater = nil;
+    self.currentParsedString = nil;
 	self.location = nil;
 	[super dealloc];
 }
@@ -41,68 +46,67 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 - (void) refresh
 {
-	if(self.connection!=nil)
-	{
-		//NSLog(@"requete déjà en cours %@",self.number);
+	if(self.updater!=nil)
 		return;
-	}
-	if(self.status_date && [[NSDate date] timeIntervalSinceDate:self.status_date] < [[NSUserDefaults standardUserDefaults] doubleForKey:@"StationRefreshInterval"]) // 15 seconds
-	{
-		//NSLog(@"requete trop récente %@",self.number);
-		return;
-	}
-	
-	//NSLog(@"start requete %@",self.number);
-	NSURL * url = [NSURL URLWithString:[kVelibStationsStatusURL stringByAppendingString:self.number]];
-	self.connection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
-	self.data = [NSMutableData data];
+    self.updater = [DataUpdater updaterWithDelegate:self];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater *)updater
 {
-	NSLog(@"FAIL requete %@",self.number);
-	self.data = nil;	
-	self.connection = nil;
+    return [[NSUserDefaults standardUserDefaults] doubleForKey:@"StationRefreshInterval"];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)moredata
+- (NSURL*) urlForUpdater:(DataUpdater*)updater
 {
-	[self.data appendData:moredata];
+    return [NSURL URLWithString:[kVelibStationsStatusURL stringByAppendingString:self.number]];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (NSDate*) dataDateForUpdater:(DataUpdater*)updater
 {
-	//NSLog(@"DONE requete %@",self.number);
-	NSString * stationInfo = [NSString stringWithData:self.data encoding:NSUTF8StringEncoding ];
-	if(stationInfo)
-	{
-		NSScanner * scanner = [NSScanner scannerWithString:stationInfo];
-		int tmp;
-		[scanner scanUpToString:@"<available>" intoString:NULL];
-		[scanner scanString:@"<available>" intoString:NULL];
-		[scanner scanInt:&tmp];
-		self.status_availableValue = (short)tmp;
-		[scanner scanUpToString:@"<free>" intoString:NULL];
-		[scanner scanString:@"<free>" intoString:NULL];
-		[scanner scanInt:&tmp];
-		self.status_freeValue = (short)tmp;
-		[scanner scanUpToString:@"<total>" intoString:NULL];
-		[scanner scanString:@"<total>" intoString:NULL];
-		[scanner scanInt:&tmp];
-		self.status_totalValue = (short)tmp;
-		[scanner scanUpToString:@"<ticket>" intoString:NULL];
-		[scanner scanString:@"<ticket>" intoString:NULL];
-		[scanner scanInt:&tmp];
-		self.status_ticketValue = (BOOL)tmp;
-		self.status_date = [NSDate date];
-	}
-	self.data = nil;
-	self.connection = nil;
-	
+    return self.status_date;
+}
+
+- (void) setUpdater:(DataUpdater*)updater dataDate:(NSDate*)date
+{
+    self.status_date = date;
+}
+
+- (void) updaterDidFinish:(DataUpdater*)updater
+{
+    self.updater = nil;
+}
+
+- (void) updater:(DataUpdater *)updater receivedUpdatedData:(NSData *)data
+{
+    NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+	parser.delegate = self;
+    self.currentParsedString = [NSMutableString string];
+	[parser parse];
+    self.currentParsedString = nil;
+
 	NSError * error;
 	BOOL success = [self.managedObjectContext save:&error];
 	if(!success)
 		NSLog(@"save failed : %@ %@",error, [error userInfo]);
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    [self.currentParsedString appendString:string];
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    NSString * string = [self.currentParsedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.currentParsedString = [NSMutableString string];
+    if ([elementName isEqualToString:@"available"])
+        self.status_availableValue = [string intValue];
+    else if ([elementName isEqualToString:@"free"])
+        self.status_freeValue = [string intValue];
+    else if ([elementName isEqualToString:@"total"])
+        self.status_totalValue = [string intValue];
+    else if ([elementName isEqualToString:@"ticket"])
+        self.status_ticketValue = [string boolValue];
 }
 
 /****************************************************************************/
@@ -110,12 +114,12 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 - (BOOL) isLoading
 {
-	return nil!=self.connection;
+	return nil!=self.updater;
 }
 
 + (NSSet*) keyPathsForValuesAffectingLoading
 {
-	return [NSSet setWithObject:@"connection"];
+	return [NSSet setWithObject:@"updater"];
 }
 
 - (NSString *) statusDescription

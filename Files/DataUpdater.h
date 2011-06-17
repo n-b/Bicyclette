@@ -30,7 +30,12 @@
 
 @protocol DataUpdaterDelegate <NSObject>
 - (NSURL*) urlForUpdater:(DataUpdater*)updater;
-- (void) updater:(DataUpdater*)updater finishedReceivingData:(NSData*)data;
+- (void) updater:(DataUpdater*)updater receivedUpdatedData:(NSData*)data;
+- (void) updaterDidFinish:(DataUpdater*)updater;
 @optional
 - (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater*)updater;
+- (NSDate*) dataDateForUpdater:(DataUpdater*)updater;
+- (void) setUpdater:(DataUpdater*)updater dataDate:(NSDate*)date;
+- (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater;
+- (void) setUpdater:(DataUpdater*)updater knownDataSha1:(NSString*)sha1;
 @end

@@ -12,12 +12,9 @@
 @interface DataUpdater()
 @property (nonatomic, retain) NSURLConnection * updateConnection;
 @property (nonatomic, retain) NSMutableData * updateData;
-- (void) updateXML;
 
-@property (nonatomic, copy) NSString* knownDataSHA1;
-@property (nonatomic, copy) NSDate* dataDate;
-
-- (NSTimeInterval) refreshInterval;
+//@property (nonatomic, copy) NSString* knownDataSHA1;
+//@property (nonatomic, copy) NSDate* dataDate;
 
 @end
 
@@ -42,12 +39,25 @@
 	if (self != nil) 
 	{
         self.delegate = delegate_;
-        
+        BOOL needUpdate = YES;
 		// Find if I need to update
-		NSDate * createDate = self.dataDate;
-		BOOL needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > self.refreshInterval);
+        if([self.delegate respondsToSelector:@selector(dataDateForUpdater:)] && [self.delegate respondsToSelector:@selector(refreshIntervalForUpdater:)])
+        {
+            NSDate * createDate = [self.delegate dataDateForUpdater:self];
+            needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [self.delegate refreshIntervalForUpdater:self]);
+        }
+        
 		if(needUpdate)
-			[self performSelector:@selector(updateXML) withObject:nil afterDelay:0];
+        {
+            NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
+            self.updateConnection = [NSURLConnection connectionWithRequest:request
+                                                                  delegate:self];
+        }
+        else
+        {
+            [self release];
+            return nil;
+        }
 	}
 	return self;
 }
@@ -62,13 +72,6 @@
 
 /****************************************************************************/
 #pragma mark URL request 
-
-- (void) updateXML
-{
-	NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
-	self.updateConnection = [NSURLConnection connectionWithRequest:request
-														  delegate:self];
-}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
@@ -92,56 +95,35 @@
 	[self.updateConnection cancel];
 	self.updateConnection = nil;
 	self.updateData = nil;
+    [self.delegate updaterDidFinish:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	self.updateConnection = nil;
-    NSString * oldSha1 = self.knownDataSHA1;
-    NSString * newSha1 = [self.updateData sha1DigestString];
-    if([oldSha1 isEqualToString:newSha1])
+    BOOL notifyDelegate = YES;
+    if([self.delegate respondsToSelector:@selector(knownDataSha1ForUpdater:)])
     {
-        NSLog(@"No need to rebuild database, the data actually hasn't changed.");
+        NSString * oldSha1 = [self.delegate knownDataSha1ForUpdater:self];
+        NSString * newSha1 = [self.updateData sha1DigestString];
+        if([oldSha1 isEqualToString:newSha1])
+        {
+            notifyDelegate = NO;
+            NSLog(@"No need to rebuild database, the data actually hasn't changed.");
+        }
+        else if([self.delegate respondsToSelector:@selector(setUpdater:knownDataSha1:)])
+            [self.delegate setUpdater:self knownDataSha1:newSha1];
     }
-    else
-    {
-		[self.delegate updater:self finishedReceivingData:self.updateData];
-        self.knownDataSHA1 = newSha1;
-    }
-    self.dataDate = [NSDate date];
+
+    if(notifyDelegate)
+		[self.delegate updater:self receivedUpdatedData:self.updateData];
+
+    if([self.delegate respondsToSelector:@selector(setUpdater:dataDate:)])
+        [self.delegate setUpdater:self dataDate:[NSDate date]];
+    
+    [self.delegate updaterDidFinish:self];
+
 	self.updateData = nil;
-}
-
-/****************************************************************************/
-#pragma mark Preference Keys
-
-- (NSTimeInterval) refreshInterval
-{
-    if ([self.delegate respondsToSelector:@selector(refreshIntervalForUpdater:)]) {
-        return [self.delegate refreshIntervalForUpdater:self];
-    }
-    else
-        return [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"];
-}
-
-- (NSString *) knownDataSHA1
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"Database_XML_SHA1"];
-}
-
-- (void) setKnownDataSHA1:(NSString*)newSha1
-{
-    [[NSUserDefaults standardUserDefaults] setObject:newSha1 forKey:@"Database_XML_SHA1"];
-}
-
-- (NSString *) dataDate
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
-}
-
-- (void) setDataDate:(NSDate*) date
-{
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"DatabaseCreateDate"];
 }
 
 /****************************************************************************/

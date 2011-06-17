@@ -66,12 +66,41 @@
 /****************************************************************************/
 #pragma mark Parsing
 
+- (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater *)updater
+{
+    return [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"];
+}
+
 - (NSURL*) urlForUpdater:(DataUpdater *)updater
 {
     return [NSURL URLWithString:kVelibStationsListURL];    
 }
+- (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"Database_XML_SHA1"];
+}
 
-- (void) updater:(DataUpdater*)updater finishedReceivingData:(NSData*)xml
+- (void) setUpdater:(DataUpdater*)updater knownDataSha1:(NSString*)sha1
+{
+    [[NSUserDefaults standardUserDefaults] setObject:sha1 forKey:@"Database_XML_SHA1"];
+}
+
+- (NSDate*) dataDateForUpdater:(DataUpdater*)updater
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
+}
+
+- (void) setUpdater:(DataUpdater*)updater dataDate:(NSDate*)date
+{
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"DatabaseCreateDate"];
+}
+
+- (void) updaterDidFinish:(DataUpdater*)updater
+{
+    self.updater = nil;
+}
+
+- (void) updater:(DataUpdater*)updater receivedUpdatedData:(NSData*)xml
 {
 	self.updatingXML = YES;
     
@@ -107,7 +136,7 @@
 	if([elementName isEqualToString:@"marker"])
 	{
 		Station * station = [Station insertInManagedObjectContext:self.moc];
-		[station setValuesForKeysWithDictionary:attributeDict]; // Yay!
+		[station setValuesForKeysWithDictionary:attributeDict]; // Yay! Security !
 		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
 		if(fixes)
 		{
