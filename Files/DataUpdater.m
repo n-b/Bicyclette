@@ -13,9 +13,6 @@
 @property (nonatomic, retain) NSURLConnection * updateConnection;
 @property (nonatomic, retain) NSMutableData * updateData;
 
-//@property (nonatomic, copy) NSString* knownDataSHA1;
-//@property (nonatomic, copy) NSDate* dataDate;
-
 @end
 
 /****************************************************************************/

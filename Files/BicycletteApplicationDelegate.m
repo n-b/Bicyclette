@@ -43,9 +43,9 @@
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
-	
-	self.model = [[VelibModel new] autorelease];
-	[self.model.updater addObserver:self forKeyPath:@"downloadingUpdate" options:0 context:[BicycletteApplicationDelegate class]];
+
+    // Create model
+    self.model = [[VelibModel new] autorelease];
 	self.locator = [[Locator new] autorelease];
 }
 
@@ -61,12 +61,14 @@
 	[self selectTabIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedTabIndex"]];
 	
 	// notification view
-	self.notificationView.alpha = 0.f;
 	self.notificationView.layer.cornerRadius = 10;
 	[self.window addSubview:self.notificationView];
 	self.notificationView.center = self.window.center;
+    [self.model addObserver:self forKeyPath:@"updater.downloadingUpdate" options:NSKeyValueObservingOptionInitial context:[BicycletteApplicationDelegate class]];
+
 	[self.window makeKeyAndVisible];
-	
+
+    // Fade animation
 	UIView * fadeView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]] autorelease];
 	[self.window addSubview:fadeView];
 	[UIView beginAnimations:nil context:NULL];
@@ -74,7 +76,7 @@
 	fadeView.transform = CGAffineTransformMakeScale(2, 2);
 	[fadeView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
 	[UIView commitAnimations];
-	
+
 	return YES;
 }
 
@@ -100,7 +102,7 @@
 	self.tabBarController = nil;
 	self.toolbar = nil;
 	self.notificationView = nil;
-	[self.model.updater removeObserver:self forKeyPath:@"downloadingUpdate"];
+	[self.model removeObserver:self forKeyPath:@"updater.downloadingUpdate"];
 	self.model = nil;
 	self.locator = nil;
 	[super dealloc];
