@@ -10,18 +10,32 @@
 
 
 @implementation NSObject (NSObject_KVCMapping)
-- (void) setMappedValuesForKeysWithDictionary:(NSDictionary *)keyedValues
+
+- (void) setValue:(id)value forMappedKey:(NSString*)wantedKey
+{
+    NSDictionary * mapping = [[self class] performSelector:@selector(kvcMapping)];
+    NSString * mappedKey = [mapping objectForKey:wantedKey];
+    if([mappedKey length])
+        [self setValue:value forKey:mappedKey];
+#if DEBUG
+    else
+        NSLog(@"ignored key : %@ for class %@",wantedKey, [self class]);
+#endif
+}
+
+- (void) setValuesForMappedKeysWithDictionary:(NSDictionary *)keyedValues
 {
     NSDictionary * mapping = [[self class] performSelector:@selector(kvcMapping)];
     for (NSString * wantedKey in [keyedValues allKeys]) 
     {
-        NSString * foundKey = [mapping objectForKey:wantedKey];
-        if([foundKey length])
-            [self setValue:[keyedValues objectForKey:wantedKey] forKey:foundKey];
+        NSString * mappedKey = [mapping objectForKey:wantedKey];
+        if([mappedKey length])
+            [self setValue:[keyedValues objectForKey:wantedKey] forKey:mappedKey];
 #if DEBUG
         else
             NSLog(@"ignored key : %@ for class %@",wantedKey, [self class]);
 #endif
     }
 }
+
 @end

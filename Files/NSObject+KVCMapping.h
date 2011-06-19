@@ -15,7 +15,8 @@
 #endif
 
 @interface NSObject (NSObject_KVCMapping)
-- (void) setMappedValuesForKeysWithDictionary:(NSDictionary *)keyedValues;
+- (void) setValue:(id)value forMappedKey:(NSString*)wantedKey;
+- (void) setValuesForMappedKeysWithDictionary:(NSDictionary *)keyedValues;
 @end
 
 

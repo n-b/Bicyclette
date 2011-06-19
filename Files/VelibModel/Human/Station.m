@@ -3,6 +3,7 @@
 #import "Region.h"
 #import "NSStringAdditions.h"
 #import "DataUpdater.h"
+#import "NSObject+KVCMapping.h"
 
 
 /****************************************************************************/
@@ -39,10 +40,10 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
                      @"number",@"number",
                      @"open",@"open",
                      
-                     @"available",@"status_available",
-                     @"free",@"status_free",
-                     @"ticket",@"status_ticket",
-                     @"total",@"status_total",
+                     @"status_available",@"available",
+                     @"status_free",@"free",
+                     @"status_ticket",@"ticket",
+                     @"status_total",@"total",
                      nil];
         
     return s_mapping;
@@ -125,16 +126,10 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    NSString * string = [self.currentParsedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString * value = [self.currentParsedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.currentParsedString = [NSMutableString string];
-    if ([elementName isEqualToString:@"available"])
-        self.status_availableValue = [string intValue];
-    else if ([elementName isEqualToString:@"free"])
-        self.status_freeValue = [string intValue];
-    else if ([elementName isEqualToString:@"total"])
-        self.status_totalValue = [string intValue];
-    else if ([elementName isEqualToString:@"ticket"])
-        self.status_ticketValue = [string boolValue];
+    if([value length])
+    [self setValue:value forMappedKey:elementName];
 }
 
 /****************************************************************************/
@@ -259,4 +254,52 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 		[self setPrimitiveLongitudeValue:[value doubleValue]];
 }
 
+- (void) setStatus_available:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"status_available"];
+	else
+		[self setPrimitiveStatus_availableValue:[value intValue]];
+}
+
+- (void) setStatus_free:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"status_free"];
+	else
+		[self setPrimitiveStatus_freeValue:[value intValue]];
+}
+
+- (void) setStatus_total:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"status_total"];
+	else
+		[self setPrimitiveStatus_totalValue:[value intValue]];
+}
+
+- (void) setStatus_ticket:(id)value
+{
+	if([value isKindOfClass:[NSNumber class]])
+		[super setPrimitiveValue:value forKey:@"status_ticket"];
+	else
+		[self setPrimitiveStatus_ticketValue:[value boolValue]];
+}
+
+/****************************************************************************/
+#pragma mark Validation
+
+- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_
+{
+    if([*value_ doubleValue]<48 || [*value_ doubleValue]>50)
+        NSLog(@"the latitude  is probably wrong %@",self);
+    return YES;
+}
+
+- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_
+{
+    if([*value_ doubleValue]<2 || [*value_ doubleValue]>3)
+        NSLog(@"the longitude  is probably wrong %@",self);
+    return YES;
+}
 @end
