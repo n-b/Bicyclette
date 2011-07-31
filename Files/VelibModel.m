@@ -137,12 +137,12 @@
 	if([elementName isEqualToString:@"marker"])
 	{
 		Station * station = [Station insertInManagedObjectContext:self.moc];
-		[station setMappedValuesForKeysWithDictionary:attributeDict]; // Yay!
+		[station setValuesForMappedKeysWithDictionary:attributeDict]; // Yay!
 		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
 		if(fixes)
 		{
 			NSLog(@"using hardcoded fixes for %@.\n\tReceived Data : %@.\n\tFixes : %@",station.number, attributeDict, fixes);
-			[station setMappedValuesForKeysWithDictionary:fixes]; // Yay! again
+			[station setValuesForMappedKeysWithDictionary:fixes]; // Yay! again
 		}
         
         // Setup region
