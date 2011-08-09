@@ -28,17 +28,16 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 + (NSDictionary*) kvcMapping
 {
+    /*
+     KVC mapping dictionary. 
+     Since this is an NSManagedObject, the KVC mapping methods will also check properties for existence before using kvc.
+     Hence, there's no need to specify identical keys here.
+     */
     static NSDictionary * s_mapping = nil;
     if(nil==s_mapping)
         s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
-                     @"address",@"address",
-                     @"bonus",@"bonus",
-                     @"fullAddress",@"fullAddress",
                      @"latitude",@"lat",
                      @"longitude",@"lng",
-                     @"name",@"name",
-                     @"number",@"number",
-                     @"open",@"open",
                      
                      @"status_available",@"available",
                      @"status_free",@"free",
@@ -217,73 +216,6 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 + (NSSet*) keyPathsForValuesAffectingCleanAddress
 {
 	return [NSSet setWithObject:@"address"];
-}
-
-/****************************************************************************/
-#pragma mark Specific setters to support type coercion
-
-- (void) setBonus:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"bonus"];
-	else
-		[self setPrimitiveBonusValue:[value boolValue]];
-}
-
-- (void) setOpen:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"open"];
-	else
-		[self setPrimitiveOpenValue:[value boolValue]];
-}
-
-- (void) setLatitude:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"latitude"];
-	else
-		[self setPrimitiveLatitudeValue:[value doubleValue]];
-}
-
-- (void) setLongitude:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"longitude"];
-	else
-		[self setPrimitiveLongitudeValue:[value doubleValue]];
-}
-
-- (void) setStatus_available:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"status_available"];
-	else
-		[self setPrimitiveStatus_availableValue:[value intValue]];
-}
-
-- (void) setStatus_free:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"status_free"];
-	else
-		[self setPrimitiveStatus_freeValue:[value intValue]];
-}
-
-- (void) setStatus_total:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"status_total"];
-	else
-		[self setPrimitiveStatus_totalValue:[value intValue]];
-}
-
-- (void) setStatus_ticket:(id)value
-{
-	if([value isKindOfClass:[NSNumber class]])
-		[super setPrimitiveValue:value forKey:@"status_ticket"];
-	else
-		[self setPrimitiveStatus_ticketValue:[value boolValue]];
 }
 
 /****************************************************************************/
