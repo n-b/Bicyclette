@@ -24,7 +24,7 @@
 @property (nonatomic, retain, readonly) DataUpdater * updater;
 @property (readonly) BOOL updatingXML;
 
-@property (readonly, nonatomic) MKCoordinateRegion coordinateRegion;
+@property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
 @end
 
 

@@ -24,7 +24,7 @@
 // -
 @property (nonatomic, retain) NSDictionary * stationsHardcodedFixes;
 // -
-@property (readonly, nonatomic, readwrite) MKCoordinateRegion coordinateRegion;
+@property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 @end
 
 /****************************************************************************/
@@ -35,7 +35,7 @@
 @synthesize updater;
 @synthesize updatingXML;
 @synthesize stationsHardcodedFixes;
-@synthesize coordinateRegion;
+@synthesize regionContainingData;
 
 - (id)init {
     self = [super init];
@@ -201,12 +201,12 @@
 /****************************************************************************/
 #pragma mark Coordinates
 
-- (MKCoordinateRegion) coordinateRegion
+- (MKCoordinateRegion) regionContainingData
 {
-	if(coordinateRegion.center.latitude == 0 &&
-	   coordinateRegion.center.longitude == 0 &&
-	   coordinateRegion.span.latitudeDelta == 0 &&
-	   coordinateRegion.span.longitudeDelta == 0 )
+	if(regionContainingData.center.latitude == 0 &&
+	   regionContainingData.center.longitude == 0 &&
+	   regionContainingData.span.latitudeDelta == 0 &&
+	   regionContainingData.span.longitudeDelta == 0 )
 	{
 		NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
 		[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
@@ -224,9 +224,9 @@
 		MKCoordinateSpan span;
 		span.latitudeDelta = fabs([minLat doubleValue] - [maxLat doubleValue]);
 		span.longitudeDelta = fabs([minLng doubleValue] - [maxLng doubleValue]);
-		self.coordinateRegion = MKCoordinateRegionMake(center, span);
+		self.regionContainingData = MKCoordinateRegionMake(center, span);
 	}
-	return coordinateRegion;
+	return regionContainingData;
 }
 
 @end

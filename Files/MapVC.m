@@ -63,7 +63,7 @@ typedef enum {
 	
     self.navigationItem.rightBarButtonItem = self.centerMapButton;
     
-	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.coordinateRegion];
+	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
 	self.mapView.region = self.referenceRegion;
 }
 
