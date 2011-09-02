@@ -20,3 +20,9 @@
 - (void) save;
 
 @end
+
+
+// reverse link to obtain the CoreDataManager from a moc, for example in the objects implementation.
+@interface NSManagedObjectContext (AssociatedManager)
+@property (nonatomic, retain, readonly) CoreDataManager * coreDataManager;
+@end

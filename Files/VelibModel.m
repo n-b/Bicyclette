@@ -231,3 +231,12 @@
 
 @end
 
+/****************************************************************************/
+#pragma mark -
+
+@implementation  NSManagedObjectContext (AssociatedModel)
+- (VelibModel *) model
+{
+    return (VelibModel*) self.coreDataManager;
+}
+@end

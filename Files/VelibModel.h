@@ -27,3 +27,8 @@
 @property (readonly, nonatomic) MKCoordinateRegion coordinateRegion;
 @end
 
+
+// reverse link to obtain the CoreDataManager from a moc, for example in the objects implementation.
+@interface NSManagedObjectContext (AssociatedModel)
+@property (nonatomic, retain, readonly) VelibModel * model;
+@end

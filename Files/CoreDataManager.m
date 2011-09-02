@@ -8,6 +8,8 @@
 
 #import "CoreDataManager.h"
 #import "NSFileManager+StandardPaths.h"
+#import <objc/runtime.h>
+
 
 
 /****************************************************************************/
@@ -17,6 +19,10 @@
 @property (nonatomic, retain) NSManagedObjectModel *mom;
 @property (nonatomic, retain) NSPersistentStoreCoordinator *psc;
 @property (nonatomic, retain) NSManagedObjectContext *moc;
+@end
+
+@interface NSManagedObjectContext (AssociatedManager_Private)
+@property (nonatomic, retain, readwrite) CoreDataManager * coreDataManager;
 @end
 
 /****************************************************************************/
@@ -71,6 +77,7 @@
 		self.moc.persistentStoreCoordinator = self.psc;
 		self.moc.undoManager = nil;
         
+        self.moc.coreDataManager = self;
     }
     return self;
 }
@@ -93,4 +100,21 @@
 		NSLog(@"save failed : %@ %@",error, [error userInfo]);
 }
 
+@end
+
+/****************************************************************************/
+#pragma mark -
+
+@implementation NSManagedObjectContext (AssociatedManager)
+static char kCoreDataManager_associatedManagerKey;
+
+- (void) setCoreDataManager:(CoreDataManager*)coreDataManager
+{
+    objc_setAssociatedObject(self, &kCoreDataManager_associatedManagerKey, coreDataManager, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (CoreDataManager*)coreDataManager
+{
+    return objc_getAssociatedObject(self, &kCoreDataManager_associatedManagerKey);
+}
 @end
