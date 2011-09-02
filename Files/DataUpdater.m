@@ -38,7 +38,8 @@
         self.delegate = delegate_;
         BOOL needUpdate = YES;
 		// Find if I need to update
-        if([self.delegate respondsToSelector:@selector(dataDateForUpdater:)] && [self.delegate respondsToSelector:@selector(refreshIntervalForUpdater:)])
+        if (([self.delegate respondsToSelector:@selector(dataDateForUpdater:)] && [self.delegate respondsToSelector:@selector(refreshIntervalForUpdater:)]) 
+            || [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
         {
             NSDate * createDate = [self.delegate dataDateForUpdater:self];
             needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [self.delegate refreshIntervalForUpdater:self]);
@@ -103,7 +104,7 @@
     {
         NSString * oldSha1 = [self.delegate knownDataSha1ForUpdater:self];
         NSString * newSha1 = [self.updateData sha1DigestString];
-        if([oldSha1 isEqualToString:newSha1])
+        if([oldSha1 isEqualToString:newSha1] && ! [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
         {
             notifyDelegate = NO;
             NSLog(@"No need to rebuild database, the data actually hasn't changed.");
