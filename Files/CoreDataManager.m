@@ -39,10 +39,10 @@
     if (self) {
         
         // Create mom
-		mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:modelName ofType:@"mom"]]]; 
+		self.mom = [[[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:modelName ofType:@"mom"]]] autorelease]; 
         
         // Create psc
-		psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
+		self.psc = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom] autorelease];
 		NSError *error = nil;
 		NSURL *storeURL = [NSURL fileURLWithPath: [[NSFileManager documentsDirectory] stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
         
@@ -53,23 +53,23 @@
             //			[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DebugRemoveStore"];
         }
         
-		if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+		if (![self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
         {
 			NSLog(@"Unresolved error when opening store %@, %@", error, [error userInfo]);
 			if( error.code == NSPersistentStoreIncompatibleVersionHashError )
             {
 				NSLog(@"trying to remove the existing db");
 				[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-				[psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];	
+				[self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];	
             }
 			else
 				abort();
         }
 		
         // Create moc
-		moc = [NSManagedObjectContext new];
-		[moc setPersistentStoreCoordinator:self.psc];
-		[moc setUndoManager:nil];
+        self.moc = [[NSManagedObjectContext new] autorelease];
+		self.moc.persistentStoreCoordinator = self.psc;
+		self.moc.undoManager = nil;
         
     }
     return self;
