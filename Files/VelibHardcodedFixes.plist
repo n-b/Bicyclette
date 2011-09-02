@@ -29,5 +29,14 @@
 			<real>2.34968</real>
 		</dict>
 	</dict>
+	<key>limits</key>
+	<dict>
+		<key>latitude</key>
+		<real>48.856667</real>
+		<key>longitude</key>
+		<real>2.350833</real>
+		<key>distance</key>
+		<integer>10000</integer>
+	</dict>
 </dict>
 </plist>

@@ -23,6 +23,7 @@
 @property BOOL updatingXML;
 // -
 @property (nonatomic, retain) NSDictionary * stationsHardcodedFixes;
+@property (readwrite, nonatomic, retain) CLRegion * hardcodedLimits;
 // -
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 @end
@@ -35,6 +36,7 @@
 @synthesize updater;
 @synthesize updatingXML;
 @synthesize stationsHardcodedFixes;
+@synthesize hardcodedLimits;
 @synthesize regionContainingData;
 
 - (id)init {
@@ -54,14 +56,30 @@
 /****************************************************************************/
 #pragma mark Hardcoded Fixes
 
+- (NSDictionary*) hardcodedFixes
+{
+    return [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VelibHardcodedFixes" ofType:@"plist"]];
+}
+
 - (NSDictionary*) stationsHardcodedFixes
 {
 	if(nil==stationsHardcodedFixes)
 	{
-		NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VelibHardcodedFixes" ofType:@"plist"]];
-		self.stationsHardcodedFixes = [dict objectForKey:@"stations"];
+		self.stationsHardcodedFixes = [self.hardcodedFixes objectForKey:@"stations"];
 	}
 	return [[stationsHardcodedFixes retain] autorelease];
+}
+
+- (CLRegion*) hardcodedLimits
+{
+	if( nil==hardcodedLimits )
+	{
+        NSDictionary * dict = [self.hardcodedFixes objectForKey:@"limits"];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[dict objectForKey:@"latitude"] doubleValue], [[dict objectForKey:@"longitude"] doubleValue]);
+        CLLocationDistance distance = [[dict objectForKey:@"distance"] doubleValue];
+        self.hardcodedLimits = [[[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:NSStringFromClass([self class])] autorelease];
+	}
+	return [[hardcodedLimits retain] autorelease];
 }
 
 /****************************************************************************/

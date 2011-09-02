@@ -15,6 +15,8 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 @property (nonatomic, retain) DataUpdater * updater;
 @property (nonatomic, retain) NSMutableString * currentParsedString;
 @property (nonatomic, retain) CLLocation * location;
+- (BOOL)validateConsistency:(NSError **)error;
+- (NSError *)errorFromOriginalError:(NSError *)originalError error:(NSError *)secondError;
 @end
 
 
@@ -221,17 +223,66 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 /****************************************************************************/
 #pragma mark Validation
 
-- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_
+- (BOOL)validateForInsert:(NSError **)error
 {
-    if([*value_ doubleValue]<48 || [*value_ doubleValue]>50)
-        NSLog(@"the latitude  is probably wrong %@",self);
-    return YES;
+    BOOL propertiesValid = [super validateForInsert:error];
+    // could stop here if invalid
+    BOOL consistencyValid = [self validateConsistency:error];
+    return (propertiesValid && consistencyValid);
 }
 
-- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_
+- (BOOL)validateForUpdate:(NSError **)error
 {
-    if([*value_ doubleValue]<2 || [*value_ doubleValue]>3)
-        NSLog(@"the longitude  is probably wrong %@",self);
-    return YES;
+    BOOL propertiesValid = [super validateForUpdate:error];
+    // could stop here if invalid
+    BOOL consistencyValid = [self validateConsistency:error];
+    return (propertiesValid && consistencyValid);
 }
+
+- (BOOL)validateConsistency:(NSError **)error
+{
+    if([self.managedObjectContext.model.hardcodedLimits containsCoordinate:self.location.coordinate])
+        return YES;
+
+    if (error != NULL) {
+        NSError * limitsError = [NSError errorWithDomain:@"Station"
+                                                    code:NSManagedObjectValidationError
+                                                userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          NSLocalizedString(@"Stations not within limits", 0), NSLocalizedFailureReasonErrorKey,
+                                                          self, NSValidationObjectErrorKey,
+                                                          nil]];
+        
+        // if there was no previous error, return the new error
+        if (*error == nil) {
+            *error = limitsError;
+        }
+        // if there was a previous error, combine it with the existing one
+        else {
+            *error = [self errorFromOriginalError:*error error:limitsError];
+        }
+    }
+    return NO;
+}
+
+- (NSError *)errorFromOriginalError:(NSError *)originalError error:(NSError *)secondError
+{
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    NSMutableArray *errors = [NSMutableArray arrayWithObject:secondError];
+    
+    if ([originalError code] == NSValidationMultipleErrorsError) {
+        
+        [userInfo addEntriesFromDictionary:[originalError userInfo]];
+        [errors addObjectsFromArray:[userInfo objectForKey:NSDetailedErrorsKey]];
+    }
+    else {
+        [errors addObject:originalError];
+    }
+    
+    [userInfo setObject:errors forKey:NSDetailedErrorsKey];
+    
+    return [NSError errorWithDomain:NSCocoaErrorDomain
+                               code:NSValidationMultipleErrorsError
+                           userInfo:userInfo];
+}
+
 @end

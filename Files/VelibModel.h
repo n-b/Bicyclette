@@ -25,6 +25,8 @@
 @property (readonly) BOOL updatingXML;
 
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
+
+@property (readonly, nonatomic, retain) CLRegion * hardcodedLimits;
 @end
 
 
