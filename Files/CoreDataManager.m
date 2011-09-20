@@ -31,7 +31,7 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 #pragma mark -
 
 @implementation CoreDataManager
-@synthesize mom, psc, moc;
+@synthesize mom, psc, moc, delegate;
 
 /****************************************************************************/
 #pragma mark Init
@@ -98,7 +98,7 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 {
 	NSError * saveError = nil;
 	BOOL success = [self.moc save:&saveError];
-    __unused NSMutableArray * errors = [NSMutableArray array];
+    NSMutableArray * errors = [NSMutableArray array];
 	if(!success)
     {
         // Attempt to delete the faulty objects ...
@@ -117,8 +117,10 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
             errors = [NSMutableArray arrayWithArray:[saveError underlyingErrors]];
         }
     }
-    
-    
+    if([self.delegate respondsToSelector:@selector(coreDataManager:didSave:withErrors:)])
+    {
+        [self.delegate coreDataManager:self didSave:success withErrors:errors];
+    }
 }
 
 @end

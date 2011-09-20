@@ -113,10 +113,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 	[parser parse];
     self.currentParsedString = nil;
 
-	NSError * error;
-	BOOL success = [self.managedObjectContext save:&error];
-	if(!success)
-		NSLog(@"save failed : %@ %@",error, [error userInfo]);
+    [self.managedObjectContext.model save];
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -250,8 +247,8 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
                                                           self, NSValidationObjectErrorKey,
                                                           NAMEDPROP(location), NSValidationKeyErrorKey,
                                                           self.location, NSValidationValueErrorKey,
-                                                          [NSString stringWithFormat:NSLocalizedString(@"Station %@ invalide", 0),self.name],NSLocalizedDescriptionKey,
-                                                          [NSString stringWithFormat:NSLocalizedString(@"Stations coordinates %@ not within limits %@", 0),self.location, self.managedObjectContext.model.hardcodedLimits], NSLocalizedFailureReasonErrorKey,
+                                                          [NSString stringWithFormat:NSLocalizedString(@"Station %@", 0),self.name],NSLocalizedDescriptionKey,
+                                                          [NSString stringWithFormat:NSLocalizedString(@"Invalid coordinates (%f,%f)", 0),self.location.coordinate.latitude, self.location.coordinate.longitude], NSLocalizedFailureReasonErrorKey,
                                                           nil]];
         *error = [NSError errorFromOriginalError:*error error:limitsError];
     }

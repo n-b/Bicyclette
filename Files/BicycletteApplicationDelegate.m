@@ -16,7 +16,7 @@
 /****************************************************************************/
 #pragma mark Private Methods
 
-@interface BicycletteApplicationDelegate() <BicycletteBarDelegate>
+@interface BicycletteApplicationDelegate() <BicycletteBarDelegate, CoreDataManagerDelegate>
 
 @property (nonatomic, retain) VelibModel * model;
 @property (nonatomic, retain) Locator * locator;
@@ -46,6 +46,7 @@
 
     // Create model
     self.model = [[VelibModel new] autorelease];
+    self.model.delegate = self;
 	self.locator = [[Locator new] autorelease];
 }
 
@@ -123,6 +124,23 @@
 {
 	self.tabBarController.selectedIndex = index;
 	self.toolbar.selectedIndex = index;
+}
+
+/****************************************************************************/
+#pragma mark CoreDataManager delegate
+
+- (void) coreDataManager:(CoreDataManager*)manager didSave:(BOOL)success withErrors:(NSArray*)errors
+{
+    if(errors)
+    {
+        NSString * title = success ? NSLocalizedString(@"Some invalid data could not be saved.", 0) : NSLocalizedString(@"Invalid data prevented data to be saved.", 0);
+        NSMutableString * message = [NSMutableString string];
+        for (NSError * error in errors) {
+            [message appendFormat:@"%@ : %@\n",error.localizedDescription,error.localizedFailureReason];
+        }
+        UIAlertView * alert = [[[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", 0) otherButtonTitles:nil] autorelease];
+        [alert show];
+    }
 }
 
 /****************************************************************************/
