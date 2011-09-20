@@ -54,7 +54,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 @synthesize updater, currentParsedString;
 @synthesize location;
 
-- (NSString *) description
+- (NSString *) debugDescription
 {
 	return [NSString stringWithFormat:@"Station %@ (%@): %@ (%f,%f) %s %s\n\t%s\t%02d/%02d/%02d",
 			self.name, self.number, self.address, self.latitudeValue, self.longitudeValue, self.openValue?"O":"F", self.bonusValue?"+":"",

@@ -22,7 +22,7 @@
 	self.maxLongitude = [self.stations valueForKeyPath:@"@max.longitude"];
 }
 
-- (NSString *) description
+- (NSString *) debugDescription
 {
 	return [NSString stringWithFormat:@"Region %@ (%@) - %d stations - de {%f,%f} à {%f,%f}",
 			self.number, self.name,

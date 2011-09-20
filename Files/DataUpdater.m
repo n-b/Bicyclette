@@ -39,7 +39,7 @@
         BOOL needUpdate = YES;
 		// Find if I need to update
         if (([self.delegate respondsToSelector:@selector(dataDateForUpdater:)] && [self.delegate respondsToSelector:@selector(refreshIntervalForUpdater:)]) 
-            || [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
+            && ! [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
         {
             NSDate * createDate = [self.delegate dataDateForUpdater:self];
             needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [self.delegate refreshIntervalForUpdater:self]);
