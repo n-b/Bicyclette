@@ -131,7 +131,7 @@
 
 - (void) coreDataManager:(CoreDataManager*)manager didSave:(BOOL)success withErrors:(NSArray*)errors
 {
-    if(errors)
+    if(errors.count)
     {
         NSString * title = success ? NSLocalizedString(@"Some invalid data could not be saved.", 0) : NSLocalizedString(@"Invalid data prevented data to be saved.", 0);
         NSMutableString * message = [NSMutableString string];
