@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+KVCMapping.h"
+#define DEBUG_KV_MAPPING 0
 
 @implementation NSObject (NSObject_KVCMapping)
 
@@ -113,7 +114,7 @@
                     correctValue = value;
                     break;
             }
-#if DEBUG
+#if DEBUG && DEBUG_KV_MAPPING
             if(correctValue)
                 NSLog(@"fixed %@(%@) to %@(%@) for key %@(%@) of class %@",
                       value, [value class], correctValue, [correctValue class], realKey, wantedKey, [self class]);
