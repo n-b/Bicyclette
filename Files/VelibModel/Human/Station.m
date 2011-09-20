@@ -4,7 +4,7 @@
 #import "NSStringAdditions.h"
 #import "DataUpdater.h"
 #import "NSObject+KVCMapping.h"
-
+#import "NSError+MultipleErrorsCombined.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -16,7 +16,6 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 @property (nonatomic, retain) NSMutableString * currentParsedString;
 @property (nonatomic, retain) CLLocation * location;
 - (BOOL)validateConsistency:(NSError **)error;
-- (NSError *)errorFromOriginalError:(NSError *)originalError error:(NSError *)secondError;
 @end
 
 
@@ -251,38 +250,9 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
                                                           NSLocalizedString(@"Stations not within limits", 0), NSLocalizedFailureReasonErrorKey,
                                                           self, NSValidationObjectErrorKey,
                                                           nil]];
-        
-        // if there was no previous error, return the new error
-        if (*error == nil) {
-            *error = limitsError;
-        }
-        // if there was a previous error, combine it with the existing one
-        else {
-            *error = [self errorFromOriginalError:*error error:limitsError];
-        }
+        *error = [NSError errorFromOriginalError:*error error:limitsError];
     }
     return NO;
-}
-
-- (NSError *)errorFromOriginalError:(NSError *)originalError error:(NSError *)secondError
-{
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-    NSMutableArray *errors = [NSMutableArray arrayWithObject:secondError];
-    
-    if ([originalError code] == NSValidationMultipleErrorsError) {
-        
-        [userInfo addEntriesFromDictionary:[originalError userInfo]];
-        [errors addObjectsFromArray:[userInfo objectForKey:NSDetailedErrorsKey]];
-    }
-    else {
-        [errors addObject:originalError];
-    }
-    
-    [userInfo setObject:errors forKey:NSDetailedErrorsKey];
-    
-    return [NSError errorWithDomain:NSCocoaErrorDomain
-                               code:NSValidationMultipleErrorsError
-                           userInfo:userInfo];
 }
 
 @end
