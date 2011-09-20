@@ -139,8 +139,9 @@
 	[self.station removeObserver:self forKeyPath:@"loading"];
 	[self.station removeObserver:self forKeyPath:@"status_date"];
 	[self.station removeObserver:self forKeyPath:@"favorite"];
-	[station autorelease];
-	station = [value retain];
+    [value retain];
+	[station release];
+	station = value;
 	if(self.station)
 	{
 		NSAssert1([self.stations indexOfObject:self.station]!=NSNotFound,@"invalid station %@",self.station);

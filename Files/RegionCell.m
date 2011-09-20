@@ -27,8 +27,9 @@
 
 - (void) setRegion:(Region*)value
 {
-	[region autorelease];
-	region = [value retain];
+    [value retain];
+	[region release];
+	region = value;
 	self.nameLabel.text = self.region.name;
 	self.numberLabel.text = self.region.number;
 	self.countLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d stations",@""),self.region.stations.count];

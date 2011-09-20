@@ -57,8 +57,9 @@
 {
 	[self.station removeObserver:self forKeyPath:@"loading"];
 	[self.station removeObserver:self forKeyPath:@"favorite"];
-	[station autorelease];
-	station = [value retain];
+    [value retain];
+	[station release];
+	station = value;
 	[self.station addObserver:self forKeyPath:@"favorite" options:0 context:[StationCell class]];
 	[self.station addObserver:self forKeyPath:@"loading" options:0 context:[StationCell class]];
 	self.statusView.station = self.station;
