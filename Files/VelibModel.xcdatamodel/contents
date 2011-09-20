@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="Velib.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="851" systemVersion="11B26" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Region" representedClassName="Region">
+        <attribute name="maxLatitude" attributeType="Double" defaultValueString="0"/>
+        <attribute name="maxLongitude" attributeType="Double" defaultValueString="0"/>
+        <attribute name="minLatitude" attributeType="Double" defaultValueString="0"/>
+        <attribute name="minLongitude" attributeType="Double" defaultValueString="0"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="number" attributeType="String" indexed="YES"/>
+        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Station" inverseName="region" inverseEntity="Station" indexed="YES"/>
+    </entity>
+    <entity name="Station" representedClassName="Station">
+        <attribute name="address" attributeType="String" defaultValueString="-1"/>
+        <attribute name="bonus" attributeType="Boolean"/>
+        <attribute name="fullAddress" attributeType="String"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0" indexed="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0" indexed="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES"/>
+        <attribute name="number" attributeType="String" indexed="YES"/>
+        <attribute name="open" attributeType="Boolean"/>
+        <attribute name="status_available" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="status_date" optional="YES" attributeType="Date"/>
+        <attribute name="status_free" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="status_ticket" optional="YES" attributeType="Boolean"/>
+        <attribute name="status_total" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <relationship name="region" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Region" inverseName="stations" inverseEntity="Region" indexed="YES"/>
+    </entity>
+    <fetchRequest name="regionWithNumber" entity="Region" predicateString="number == $number"/>
+    <elements>
+        <element name="Station" positionX="261" positionY="36" width="128" height="255"/>
+        <element name="Region" positionX="556" positionY="135" width="128" height="150"/>
+    </elements>
+</model>
