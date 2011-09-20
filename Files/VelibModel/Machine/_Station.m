@@ -29,16 +29,12 @@
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"status_freeValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"status_free"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-	}
-	if ([key isEqualToString:@"status_totalValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"status_total"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-	}
 	if ([key isEqualToString:@"bonusValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"bonus"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"latitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
@@ -53,12 +49,16 @@
 		NSSet *affectingKey = [NSSet setWithObject:@"status_available"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"latitudeValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
+	if ([key isEqualToString:@"status_freeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status_free"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 	if ([key isEqualToString:@"status_ticketValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"status_ticket"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"status_totalValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"status_total"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 
@@ -68,60 +68,8 @@
 
 
 
-@dynamic fullAddress;
+@dynamic address;
 
-
-
-
-
-
-@dynamic status_free;
-
-
-
-- (short)status_freeValue {
-	NSNumber *result = [self status_free];
-	return [result shortValue];
-}
-
-- (void)setStatus_freeValue:(short)value_ {
-	[self setStatus_free:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveStatus_freeValue {
-	NSNumber *result = [self primitiveStatus_free];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveStatus_freeValue:(short)value_ {
-	[self setPrimitiveStatus_free:[NSNumber numberWithShort:value_]];
-}
-
-
-
-
-
-@dynamic status_total;
-
-
-
-- (short)status_totalValue {
-	NSNumber *result = [self status_total];
-	return [result shortValue];
-}
-
-- (void)setStatus_totalValue:(short)value_ {
-	[self setStatus_total:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveStatus_totalValue {
-	NSNumber *result = [self primitiveStatus_total];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveStatus_totalValue:(short)value_ {
-	[self setPrimitiveStatus_total:[NSNumber numberWithShort:value_]];
-}
 
 
 
@@ -153,8 +101,34 @@
 
 
 
-@dynamic status_date;
+@dynamic fullAddress;
 
+
+
+
+
+
+@dynamic latitude;
+
+
+
+- (double)latitudeValue {
+	NSNumber *result = [self latitude];
+	return [result doubleValue];
+}
+
+- (void)setLatitudeValue:(double)value_ {
+	[self setLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveLatitudeValue {
+	NSNumber *result = [self primitiveLatitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveLatitudeValue:(double)value_ {
+	[self setPrimitiveLatitude:[NSNumber numberWithDouble:value_]];
+}
 
 
 
@@ -186,7 +160,14 @@
 
 
 
-@dynamic address;
+@dynamic name;
+
+
+
+
+
+
+@dynamic number;
 
 
 
@@ -245,34 +226,34 @@
 
 
 
-@dynamic latitude;
+@dynamic status_date;
 
 
 
-- (double)latitudeValue {
-	NSNumber *result = [self latitude];
-	return [result doubleValue];
+
+
+
+@dynamic status_free;
+
+
+
+- (short)status_freeValue {
+	NSNumber *result = [self status_free];
+	return [result shortValue];
 }
 
-- (void)setLatitudeValue:(double)value_ {
-	[self setLatitude:[NSNumber numberWithDouble:value_]];
+- (void)setStatus_freeValue:(short)value_ {
+	[self setStatus_free:[NSNumber numberWithShort:value_]];
 }
 
-- (double)primitiveLatitudeValue {
-	NSNumber *result = [self primitiveLatitude];
-	return [result doubleValue];
+- (short)primitiveStatus_freeValue {
+	NSNumber *result = [self primitiveStatus_free];
+	return [result shortValue];
 }
 
-- (void)setPrimitiveLatitudeValue:(double)value_ {
-	[self setPrimitiveLatitude:[NSNumber numberWithDouble:value_]];
+- (void)setPrimitiveStatus_freeValue:(short)value_ {
+	[self setPrimitiveStatus_free:[NSNumber numberWithShort:value_]];
 }
-
-
-
-
-
-@dynamic name;
-
 
 
 
@@ -304,8 +285,27 @@
 
 
 
-@dynamic number;
+@dynamic status_total;
 
+
+
+- (short)status_totalValue {
+	NSNumber *result = [self status_total];
+	return [result shortValue];
+}
+
+- (void)setStatus_totalValue:(short)value_ {
+	[self setStatus_total:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveStatus_totalValue {
+	NSNumber *result = [self primitiveStatus_total];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStatus_totalValue:(short)value_ {
+	[self setPrimitiveStatus_total:[NSNumber numberWithShort:value_]];
+}
 
 
 

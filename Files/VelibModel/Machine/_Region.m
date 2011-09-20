@@ -33,28 +33,21 @@
 		NSSet *affectingKey = [NSSet setWithObject:@"maxLatitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"minLongitudeValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"minLongitude"];
+	if ([key isEqualToString:@"maxLongitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"maxLongitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 	if ([key isEqualToString:@"minLatitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"minLatitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
-	if ([key isEqualToString:@"maxLongitudeValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"maxLongitude"];
+	if ([key isEqualToString:@"minLongitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"minLongitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 
 	return keyPaths;
 }
-
-
-
-
-@dynamic name;
-
-
 
 
 
@@ -79,65 +72,6 @@
 
 - (void)setPrimitiveMaxLatitudeValue:(double)value_ {
 	[self setPrimitiveMaxLatitude:[NSNumber numberWithDouble:value_]];
-}
-
-
-
-
-
-@dynamic minLongitude;
-
-
-
-- (double)minLongitudeValue {
-	NSNumber *result = [self minLongitude];
-	return [result doubleValue];
-}
-
-- (void)setMinLongitudeValue:(double)value_ {
-	[self setMinLongitude:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveMinLongitudeValue {
-	NSNumber *result = [self primitiveMinLongitude];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveMinLongitudeValue:(double)value_ {
-	[self setPrimitiveMinLongitude:[NSNumber numberWithDouble:value_]];
-}
-
-
-
-
-
-@dynamic number;
-
-
-
-
-
-
-@dynamic minLatitude;
-
-
-
-- (double)minLatitudeValue {
-	NSNumber *result = [self minLatitude];
-	return [result doubleValue];
-}
-
-- (void)setMinLatitudeValue:(double)value_ {
-	[self setMinLatitude:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveMinLatitudeValue {
-	NSNumber *result = [self primitiveMinLatitude];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveMinLatitudeValue:(double)value_ {
-	[self setPrimitiveMinLatitude:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -170,12 +104,78 @@
 
 
 
+@dynamic minLatitude;
+
+
+
+- (double)minLatitudeValue {
+	NSNumber *result = [self minLatitude];
+	return [result doubleValue];
+}
+
+- (void)setMinLatitudeValue:(double)value_ {
+	[self setMinLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMinLatitudeValue {
+	NSNumber *result = [self primitiveMinLatitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMinLatitudeValue:(double)value_ {
+	[self setPrimitiveMinLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic minLongitude;
+
+
+
+- (double)minLongitudeValue {
+	NSNumber *result = [self minLongitude];
+	return [result doubleValue];
+}
+
+- (void)setMinLongitudeValue:(double)value_ {
+	[self setMinLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMinLongitudeValue {
+	NSNumber *result = [self primitiveMinLongitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMinLongitudeValue:(double)value_ {
+	[self setPrimitiveMinLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic name;
+
+
+
+
+
+
+@dynamic number;
+
+
+
+
+
+
 @dynamic stations;
 
 	
 - (NSMutableSet*)stationsSet {
 	[self willAccessValueForKey:@"stations"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stations"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stations"];
 	[self didAccessValueForKey:@"stations"];
 	return result;
 }

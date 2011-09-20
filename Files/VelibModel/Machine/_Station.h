@@ -31,33 +31,17 @@
 
 
 
-@property (nonatomic, retain) NSString *fullAddress;
 
-//- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
-
+@property (nonatomic, retain) NSString *address;
 
 
-@property (nonatomic, retain) NSNumber *status_free;
+//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
 
-@property short status_freeValue;
-- (short)status_freeValue;
-- (void)setStatus_freeValue:(short)value_;
-
-//- (BOOL)validateStatus_free:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *status_total;
-
-@property short status_totalValue;
-- (short)status_totalValue;
-- (void)setStatus_totalValue:(short)value_;
-
-//- (BOOL)validateStatus_total:(id*)value_ error:(NSError**)error_;
 
 
 
 @property (nonatomic, retain) NSNumber *bonus;
+
 
 @property BOOL bonusValue;
 - (BOOL)bonusValue;
@@ -67,49 +51,17 @@
 
 
 
-@property (nonatomic, retain) NSDate *status_date;
 
-//- (BOOL)validateStatus_date:(id*)value_ error:(NSError**)error_;
-
+@property (nonatomic, retain) NSString *fullAddress;
 
 
-@property (nonatomic, retain) NSNumber *longitude;
+//- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
 
-@property double longitudeValue;
-- (double)longitudeValue;
-- (void)setLongitudeValue:(double)value_;
-
-//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSString *address;
-
-//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *open;
-
-@property BOOL openValue;
-- (BOOL)openValue;
-- (void)setOpenValue:(BOOL)value_;
-
-//- (BOOL)validateOpen:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *status_available;
-
-@property short status_availableValue;
-- (short)status_availableValue;
-- (void)setStatus_availableValue:(short)value_;
-
-//- (BOOL)validateStatus_available:(id*)value_ error:(NSError**)error_;
 
 
 
 @property (nonatomic, retain) NSNumber *latitude;
+
 
 @property double latitudeValue;
 - (double)latitudeValue;
@@ -119,13 +71,81 @@
 
 
 
+
+@property (nonatomic, retain) NSNumber *longitude;
+
+
+@property double longitudeValue;
+- (double)longitudeValue;
+- (void)setLongitudeValue:(double)value_;
+
+//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, retain) NSString *name;
+
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 
 
+
+@property (nonatomic, retain) NSString *number;
+
+
+//- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) NSNumber *open;
+
+
+@property BOOL openValue;
+- (BOOL)openValue;
+- (void)setOpenValue:(BOOL)value_;
+
+//- (BOOL)validateOpen:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) NSNumber *status_available;
+
+
+@property short status_availableValue;
+- (short)status_availableValue;
+- (void)setStatus_availableValue:(short)value_;
+
+//- (BOOL)validateStatus_available:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) NSDate *status_date;
+
+
+//- (BOOL)validateStatus_date:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) NSNumber *status_free;
+
+
+@property short status_freeValue;
+- (short)status_freeValue;
+- (void)setStatus_freeValue:(short)value_;
+
+//- (BOOL)validateStatus_free:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, retain) NSNumber *status_ticket;
+
 
 @property BOOL status_ticketValue;
 - (BOOL)status_ticketValue;
@@ -135,14 +155,22 @@
 
 
 
-@property (nonatomic, retain) NSString *number;
 
-//- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSNumber *status_total;
+
+
+@property short status_totalValue;
+- (short)status_totalValue;
+- (void)setStatus_totalValue:(short)value_;
+
+//- (BOOL)validateStatus_total:(id*)value_ error:(NSError**)error_;
+
 
 
 
 
 @property (nonatomic, retain) Region* region;
+
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
 
 
@@ -157,26 +185,8 @@
 @interface _Station (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSString*)primitiveFullAddress;
-- (void)setPrimitiveFullAddress:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveStatus_free;
-- (void)setPrimitiveStatus_free:(NSNumber*)value;
-
-- (short)primitiveStatus_freeValue;
-- (void)setPrimitiveStatus_freeValue:(short)value_;
-
-
-
-
-- (NSNumber*)primitiveStatus_total;
-- (void)setPrimitiveStatus_total:(NSNumber*)value;
-
-- (short)primitiveStatus_totalValue;
-- (void)setPrimitiveStatus_totalValue:(short)value_;
+- (NSString*)primitiveAddress;
+- (void)setPrimitiveAddress:(NSString*)value;
 
 
 
@@ -190,8 +200,17 @@
 
 
 
-- (NSDate*)primitiveStatus_date;
-- (void)setPrimitiveStatus_date:(NSDate*)value;
+- (NSString*)primitiveFullAddress;
+- (void)setPrimitiveFullAddress:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveLatitude;
+- (void)setPrimitiveLatitude:(NSNumber*)value;
+
+- (double)primitiveLatitudeValue;
+- (void)setPrimitiveLatitudeValue:(double)value_;
 
 
 
@@ -205,8 +224,14 @@
 
 
 
-- (NSString*)primitiveAddress;
-- (void)setPrimitiveAddress:(NSString*)value;
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveNumber;
+- (void)setPrimitiveNumber:(NSString*)value;
 
 
 
@@ -229,17 +254,17 @@
 
 
 
-- (NSNumber*)primitiveLatitude;
-- (void)setPrimitiveLatitude:(NSNumber*)value;
-
-- (double)primitiveLatitudeValue;
-- (void)setPrimitiveLatitudeValue:(double)value_;
+- (NSDate*)primitiveStatus_date;
+- (void)setPrimitiveStatus_date:(NSDate*)value;
 
 
 
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSNumber*)primitiveStatus_free;
+- (void)setPrimitiveStatus_free:(NSNumber*)value;
+
+- (short)primitiveStatus_freeValue;
+- (void)setPrimitiveStatus_freeValue:(short)value_;
 
 
 
@@ -253,8 +278,11 @@
 
 
 
-- (NSString*)primitiveNumber;
-- (void)setPrimitiveNumber:(NSString*)value;
+- (NSNumber*)primitiveStatus_total;
+- (void)setPrimitiveStatus_total:(NSNumber*)value;
+
+- (short)primitiveStatus_totalValue;
+- (void)setPrimitiveStatus_totalValue:(short)value_;
 
 
 
