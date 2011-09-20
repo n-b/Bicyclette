@@ -8,12 +8,14 @@
 
 #import "CoreDataManager.h"
 #import "NSFileManager+StandardPaths.h"
+#import "NSError+MultipleErrorsCombined.h"
 #import <objc/runtime.h>
-
 
 
 /****************************************************************************/
 #pragma mark Private Methods
+
+NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 
 @interface CoreDataManager ()
 @property (nonatomic, retain) NSManagedObjectModel *mom;
@@ -94,10 +96,29 @@
 
 - (void) save
 {
-	NSError * error;
-	BOOL success = [self.moc save:&error];
+	NSError * saveError = nil;
+	BOOL success = [self.moc save:&saveError];
+    __unused NSMutableArray * errors = [NSMutableArray array];
 	if(!success)
-		NSLog(@"save failed : %@ %@",error, [error userInfo]);
+    {
+        // Attempt to delete the faulty objects ...
+        for (NSError * error in [saveError underlyingErrors]) {
+            if ([error.domain isEqualToString:BicycletteErrorDomain] && error.code==NSManagedObjectValidationError) {
+                NSManagedObject * object = [error.userInfo objectForKey:NSValidationObjectErrorKey];
+                [self.moc deleteObject:object];
+                [errors addObject:error];
+            }
+        }
+        // ... retry to save
+        saveError = nil;
+        success = [self.moc save:&saveError];
+        if(!success)
+        {
+            errors = [NSMutableArray arrayWithArray:[saveError underlyingErrors]];
+        }
+    }
+    
+    
 }
 
 @end

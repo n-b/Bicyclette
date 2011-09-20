@@ -244,11 +244,14 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
         return YES;
 
     if (error != NULL) {
-        NSError * limitsError = [NSError errorWithDomain:@"Station"
+        NSError * limitsError = [NSError errorWithDomain:BicycletteErrorDomain
                                                     code:NSManagedObjectValidationError
                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                          NSLocalizedString(@"Stations not within limits", 0), NSLocalizedFailureReasonErrorKey,
                                                           self, NSValidationObjectErrorKey,
+                                                          NAMEDPROP(location), NSValidationKeyErrorKey,
+                                                          self.location, NSValidationValueErrorKey,
+                                                          [NSString stringWithFormat:NSLocalizedString(@"Station %@ invalide", 0),self.name],NSLocalizedDescriptionKey,
+                                                          [NSString stringWithFormat:NSLocalizedString(@"Stations coordinates %@ not within limits %@", 0),self.location, self.managedObjectContext.model.hardcodedLimits], NSLocalizedFailureReasonErrorKey,
                                                           nil]];
         *error = [NSError errorFromOriginalError:*error error:limitsError];
     }
