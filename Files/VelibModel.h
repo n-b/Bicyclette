@@ -11,7 +11,7 @@
 #import <MapKit/MapKit.h>
 
 #define kVelibStationsListURL		@"http://www.velib.paris.fr/service/carto"
-#define kVelibStationsStatusURL		@"http://www.velib.paris.fr/service/stationdetails/"
+#define kVelibStationsStatusURL		@"http://www.velib.paris.fr/service/stationdetails/paris/"
 
 /****************************************************************************/
 #pragma mark -
