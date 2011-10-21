@@ -13,7 +13,7 @@
 
 - (UIImage *)tintedImageWithColor:(UIColor *)color
 {
-    UIGraphicsBeginImageContext(self.size);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect area = {CGPointZero, self.size};
