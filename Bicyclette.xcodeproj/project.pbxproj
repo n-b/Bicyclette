@@ -519,7 +519,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Files/Bicyclette_Prefix.pch;
 				INFOPLIST_FILE = "Files/Bicyclette-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = Bicyclette;
 			};
 			name = Debug;
@@ -532,7 +532,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Files/Bicyclette_Prefix.pch;
 				INFOPLIST_FILE = "Files/Bicyclette-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = Bicyclette;
 				VALIDATE_PRODUCT = YES;
 			};
