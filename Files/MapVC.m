@@ -52,7 +52,6 @@ typedef enum {
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 /****************************************************************************/
@@ -83,7 +82,7 @@ typedef enum {
 	{
 		self.mode = MapModeStations;
 		
-		NSFetchRequest * request = [[NSFetchRequest new] autorelease];
+		NSFetchRequest * request = [NSFetchRequest new];
 		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 		CLLocationDegrees minLat, maxLat, minLng, maxLng;
 		minLat = self.mapView.region.center.latitude - self.mapView.region.span.latitudeDelta;
@@ -118,7 +117,7 @@ typedef enum {
 		MKPinAnnotationView * pinView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
 		if(nil==pinView)
 		{
-			pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+			pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 			pinView.pinColor = MKPinAnnotationColorPurple;
 			pinView.canShowCallout = NO;
 		}
@@ -130,7 +129,7 @@ typedef enum {
 		MKPinAnnotationView * pinView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
 		if(nil==pinView)
 		{
-			pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+			pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 			pinView.canShowCallout = YES;
 			UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 			[rightButton addTarget:self
@@ -164,7 +163,7 @@ typedef enum {
 		[self.mapView removeAnnotations:self.mapView.annotations];
 		if(self.mode==MapModeRegions)
 		{
-			NSFetchRequest * request = [[NSFetchRequest new] autorelease];
+			NSFetchRequest * request = [NSFetchRequest new];
 			request.entity = [Region entityInManagedObjectContext:BicycletteAppDelegate.model.moc];
 			[self.mapView addAnnotations:[BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL]];
 		}			

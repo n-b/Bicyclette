@@ -19,7 +19,7 @@
 + (id) updaterWithDelegate:(id<DataUpdaterDelegate>) delegate;
 - (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate;
 
-@property (nonatomic, assign) id<DataUpdaterDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<DataUpdaterDelegate> delegate;
 
 @property (readonly) BOOL downloadingUpdate;
 

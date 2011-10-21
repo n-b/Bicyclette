@@ -18,8 +18,8 @@
 
 @interface BicycletteApplicationDelegate() <BicycletteBarDelegate, CoreDataManagerDelegate>
 
-@property (nonatomic, retain) VelibModel * model;
-@property (nonatomic, retain) Locator * locator;
+@property (nonatomic, strong) VelibModel * model;
+@property (nonatomic, strong) Locator * locator;
 
 - (void) selectTabIndex:(NSUInteger)index;
 
@@ -45,9 +45,9 @@
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
 
     // Create model
-    self.model = [[VelibModel new] autorelease];
+    self.model = [VelibModel new];
     self.model.delegate = self;
-	self.locator = [[Locator new] autorelease];
+	self.locator = [Locator new];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -65,12 +65,12 @@
 	self.notificationView.layer.cornerRadius = 10;
 	[self.window addSubview:self.notificationView];
 	self.notificationView.center = self.window.center;
-    [self.model addObserver:self forKeyPath:@"updater.downloadingUpdate" options:NSKeyValueObservingOptionInitial context:[BicycletteApplicationDelegate class]];
+    [self.model addObserver:self forKeyPath:@"updater.downloadingUpdate" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([BicycletteApplicationDelegate class])];
 
 	[self.window makeKeyAndVisible];
 
     // Fade animation
-	UIView * fadeView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]] autorelease];
+	UIView * fadeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]];
 	[self.window addSubview:fadeView];
 	[UIView beginAnimations:nil context:NULL];
 	fadeView.alpha = 0;
@@ -99,14 +99,7 @@
 }
 
 - (void)dealloc {
-	self.window = nil;
-	self.tabBarController = nil;
-	self.toolbar = nil;
-	self.notificationView = nil;
 	[self.model removeObserver:self forKeyPath:@"updater.downloadingUpdate"];
-	self.model = nil;
-	self.locator = nil;
-	[super dealloc];
 }
 
 /****************************************************************************/
@@ -138,7 +131,7 @@
         for (NSError * error in errors) {
             [message appendFormat:@"%@ : %@\n",error.localizedDescription,error.localizedFailureReason];
         }
-        UIAlertView * alert = [[[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", 0) otherButtonTitles:nil] autorelease];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", 0) otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -148,7 +141,7 @@
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == [BicycletteApplicationDelegate class]) {
+    if (context == (__bridge void *)([BicycletteApplicationDelegate class])) {
 		[UIView beginAnimations:nil context:NULL];
 		self.notificationView.alpha = self.model.updater.downloadingUpdate?1.f:0.f;
 		[UIView commitAnimations];

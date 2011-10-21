@@ -12,7 +12,7 @@
 
 @interface StationStatusView : UIView 
 // Data
-@property (nonatomic, retain) Station* station;
+@property (nonatomic, strong) Station* station;
 
 // Configuration
 @property BOOL displayOtherSpots;

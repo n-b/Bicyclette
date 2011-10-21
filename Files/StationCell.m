@@ -47,7 +47,6 @@
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.station = nil;
-    [super dealloc];
 }
 
 /****************************************************************************/
@@ -57,11 +56,9 @@
 {
 	[self.station removeObserver:self forKeyPath:@"loading"];
 	[self.station removeObserver:self forKeyPath:@"favorite"];
-    [value retain];
-	[station release];
 	station = value;
-	[self.station addObserver:self forKeyPath:@"favorite" options:0 context:[StationCell class]];
-	[self.station addObserver:self forKeyPath:@"loading" options:0 context:[StationCell class]];
+	[self.station addObserver:self forKeyPath:@"favorite" options:0 context:(__bridge void *)([StationCell class])];
+	[self.station addObserver:self forKeyPath:@"loading" options:0 context:(__bridge void *)([StationCell class])];
 	self.statusView.station = self.station;
 	[self updateUI];
 }
@@ -92,7 +89,7 @@
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == [StationCell class])
+    if (context == (__bridge void *)([StationCell class]))
 		[self updateUI];
 	else 
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

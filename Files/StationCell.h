@@ -15,18 +15,18 @@
 @interface StationCell : UITableViewCell 
 
 // Outlets
-@property (nonatomic, assign) IBOutlet UILabel * shortNameLabel;
-@property (nonatomic, assign) IBOutlet UILabel * availableCountLabel;
-@property (nonatomic, assign) IBOutlet UILabel * freeCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel * shortNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * availableCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel * freeCountLabel;
 
-@property (nonatomic, assign) IBOutlet StationStatusView * statusView;
-@property (nonatomic, assign) IBOutlet UIView * loadingIndicator;
+@property (nonatomic, weak) IBOutlet StationStatusView * statusView;
+@property (nonatomic, weak) IBOutlet UIView * loadingIndicator;
 
-@property (nonatomic, assign) IBOutlet UIButton * favoriteButton;
+@property (nonatomic, weak) IBOutlet UIButton * favoriteButton;
 // Action
 - (IBAction) switchFavorite;
 
 // Data
-@property (nonatomic, retain) Station * station;
+@property (nonatomic, strong) Station * station;
 
 @end

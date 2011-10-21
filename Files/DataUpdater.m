@@ -10,8 +10,8 @@
 #import "NSData+SHA1.h"
 
 @interface DataUpdater()
-@property (nonatomic, retain) NSURLConnection * updateConnection;
-@property (nonatomic, retain) NSMutableData * updateData;
+@property (nonatomic, strong) NSURLConnection * updateConnection;
+@property (nonatomic, strong) NSMutableData * updateData;
 
 @end
 
@@ -27,7 +27,7 @@
 
 + (id) updaterWithDelegate:(id<DataUpdaterDelegate>) delegate_
 {
-    return [[[self alloc] initWithDelegate:delegate_] autorelease];
+    return [[self alloc] initWithDelegate:delegate_];
 }
 
 - (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_
@@ -53,7 +53,6 @@
         }
         else
         {
-            [self release];
             return nil;
         }
 	}
@@ -63,9 +62,6 @@
 - (void) dealloc
 {
 	[self.updateConnection cancel];
-	self.updateConnection = nil;
-	self.updateData = nil;
-	[super dealloc];
 }
 
 /****************************************************************************/

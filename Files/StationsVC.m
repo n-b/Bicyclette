@@ -26,7 +26,7 @@
 - (void) applicationDidBecomeActive:(NSNotification*) notif;
 - (void) commonInit;
 
-@property (nonatomic, retain) NSArray * stations;
+@property (nonatomic, strong) NSArray * stations;
 @end
 
 /****************************************************************************/
@@ -75,8 +75,6 @@
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	self.stations = nil;
-	[super dealloc];
 }
 
 /****************************************************************************/
@@ -175,7 +173,7 @@
 
 - (void) favoriteDidChange:(NSNotification*) notif
 {
-    NSArray * oldStations = [[self.stations retain] autorelease];
+    NSArray * oldStations = self.stations;
     self.stations = BicycletteAppDelegate.model.favorites;
 	if ([notif.object isFavorite])
 	{
@@ -254,14 +252,14 @@
 #pragma mark RegionStationsVC
 /****************************************************************************/
 @interface RegionStationsVC()
-@property (nonatomic, retain) Region * region;
+@property (nonatomic, strong) Region * region;
 @end
 
 @implementation RegionStationsVC : StationsVC
 @synthesize region;
 + (id) stationsVCWithRegion:(Region*)aregion
 {
-	return [[[self alloc] initWithRegion:aregion] autorelease];
+	return [[self alloc] initWithRegion:aregion];
 }
 
 - (id) initWithRegion:(Region*)aregion
@@ -277,10 +275,5 @@
 	return self;
 }
 
-- (void) dealloc
-{
-	self.region = nil;
-	[super dealloc];
-}
 
 @end

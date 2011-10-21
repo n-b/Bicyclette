@@ -14,11 +14,11 @@
 @interface RegionCell : UITableViewCell 
 
 // Outlets
-@property (nonatomic, assign) IBOutlet UILabel * nameLabel;
-@property (nonatomic, assign) IBOutlet UILabel * numberLabel;
-@property (nonatomic, assign) IBOutlet UILabel * countLabel;
+@property (nonatomic, weak) IBOutlet UILabel * nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * numberLabel;
+@property (nonatomic, weak) IBOutlet UILabel * countLabel;
 
 // Data
-@property (nonatomic, retain) Region * region;
+@property (nonatomic, strong) Region * region;
 
 @end

@@ -18,9 +18,9 @@
 NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 
 @interface CoreDataManager ()
-@property (nonatomic, retain) NSManagedObjectModel *mom;
-@property (nonatomic, retain) NSPersistentStoreCoordinator *psc;
-@property (nonatomic, retain) NSManagedObjectContext *moc;
+@property (nonatomic, strong) NSManagedObjectModel *mom;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *psc;
+@property (nonatomic, strong) NSManagedObjectContext *moc;
 @end
 
 @interface NSManagedObjectContext (AssociatedManager_Private)
@@ -47,10 +47,10 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
     if (self) {
         
         // Create mom
-		self.mom = [[[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:modelName ofType:@"mom"]]] autorelease]; 
+		self.mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:modelName ofType:@"mom"]]]; 
         
         // Create psc
-		self.psc = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom] autorelease];
+		self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
 		NSError *error = nil;
 		NSURL *storeURL = [NSURL fileURLWithPath: [[NSFileManager documentsDirectory] stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
         
@@ -75,7 +75,7 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
         }
 		
         // Create moc
-        self.moc = [[NSManagedObjectContext new] autorelease];
+        self.moc = [NSManagedObjectContext new];
 		self.moc.persistentStoreCoordinator = self.psc;
 		self.moc.undoManager = nil;
         
@@ -84,12 +84,6 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
     return self;
 }
 
-- (void)dealloc {
-    self.mom = nil;
-	self.psc = nil;
-	self.moc = nil;
-    [super dealloc];
-}
 
 /****************************************************************************/
 #pragma mark -

@@ -13,11 +13,6 @@
 @synthesize station;
 @synthesize displayOtherSpots;
 
-- (void)dealloc
-{
-	self.station = nil;
-    [super dealloc];
-}
 
 - (void)drawRect:(CGRect)rect
 {

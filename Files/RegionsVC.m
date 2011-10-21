@@ -19,8 +19,8 @@
 #pragma mark Private Methods
 
 @interface RegionsVC() <NSFetchedResultsControllerDelegate>
-@property (nonatomic, retain) NSFetchedResultsController *frc;
-@property (nonatomic, assign) UILabel * countLabel;
+@property (nonatomic, strong) NSFetchedResultsController *frc;
+@property (nonatomic, weak) UILabel * countLabel;
 - (void) refreshCountLabel;
 @end
 
@@ -33,22 +33,17 @@
 
 - (void) awakeFromNib
 {
-	NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
+	NSFetchRequest * regionsRequest = [NSFetchRequest new];
 	[regionsRequest setEntity:[Region entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
-	[regionsRequest setSortDescriptors:[NSArray arrayWithObjects:[[[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES] autorelease],nil]];
-	self.frc = [[[NSFetchedResultsController alloc]
+	[regionsRequest setSortDescriptors:[NSArray arrayWithObjects:[[NSSortDescriptor alloc] initWithKey:@"number" ascending:YES],nil]];
+	self.frc = [[NSFetchedResultsController alloc]
 				 initWithFetchRequest:regionsRequest
 				 managedObjectContext:BicycletteAppDelegate.model.moc
 				 sectionNameKeyPath:nil
-				 cacheName:nil] autorelease];
+				 cacheName:nil];
 	self.frc.delegate = self;
 }
 
-- (void) dealloc
-{
-	self.frc = nil;
-	[super dealloc];
-}
 
 
 /****************************************************************************/
@@ -67,11 +62,11 @@
 		NSLog(@"fetchError : %@",fetchError);
 	
 	// Add total stations count in the navbar
-	self.countLabel = [[[UILabel alloc] init] autorelease];
+	self.countLabel = [[UILabel alloc] init];
 	self.countLabel.backgroundColor = [UIColor clearColor];
 	self.countLabel.textColor = [UIColor whiteColor];
 	self.countLabel.font = [UIFont italicSystemFontOfSize:16];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.countLabel] autorelease];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.countLabel];
 	[self refreshCountLabel];	
 }
 
@@ -83,7 +78,7 @@
 
 - (void) refreshCountLabel
 {
-	NSFetchRequest * allRequest = [[NSFetchRequest new] autorelease];
+	NSFetchRequest * allRequest = [NSFetchRequest new];
 	[allRequest setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
 	NSError * fetchError = nil;
 	NSUInteger count = [BicycletteAppDelegate.model.moc countForFetchRequest:allRequest error:&fetchError];

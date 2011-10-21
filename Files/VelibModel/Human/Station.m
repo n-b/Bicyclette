@@ -12,9 +12,9 @@
 NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChange";
 
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
-@property (nonatomic, retain) DataUpdater * updater;
-@property (nonatomic, retain) NSMutableString * currentParsedString;
-@property (nonatomic, retain) CLLocation * location;
+@property (nonatomic, strong) DataUpdater * updater;
+@property (nonatomic, strong) NSMutableString * currentParsedString;
+@property (nonatomic, strong) CLLocation * location;
 - (BOOL)validateConsistency:(NSError **)error;
 @end
 
@@ -64,10 +64,6 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 - (void) dealloc
 {
     self.updater.delegate = nil;
-    self.updater = nil;
-    self.currentParsedString = nil;
-	self.location = nil;
-	[super dealloc];
 }
 
 /****************************************************************************/
@@ -107,7 +103,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 - (void) updater:(DataUpdater *)updater receivedUpdatedData:(NSData *)data
 {
-    NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+    NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
 	parser.delegate = self;
     self.currentParsedString = [NSMutableString string];
 	[parser parse];
@@ -182,7 +178,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 {
 	if(nil==location)
 		location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-	return [[location retain] autorelease];
+	return location;
 }
 
 /****************************************************************************/

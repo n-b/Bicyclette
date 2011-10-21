@@ -10,8 +10,8 @@
 #import <CoreData/CoreData.h>
 
 @interface StationsVC : UIViewController
-@property (nonatomic, assign) IBOutlet UITableView * tableView;
-@property (nonatomic, assign) IBOutlet UILabel * noFavoriteLabel;
+@property (nonatomic, weak) IBOutlet UITableView * tableView;
+@property (nonatomic, weak) IBOutlet UILabel * noFavoriteLabel;
 @end
 
 
@@ -21,7 +21,7 @@
 @class Region;
 
 @interface RegionStationsVC : StationsVC
-@property (nonatomic, readonly, retain) Region * region;
+@property (nonatomic, readonly, strong) Region * region;
 + (id) stationsVCWithRegion:(Region*)region;
 - (id) initWithRegion:(Region*)region;
 @end

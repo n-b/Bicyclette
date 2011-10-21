@@ -19,11 +19,11 @@
 #pragma mark -
 
 @interface VelibModel () <DataUpdaterDelegate, NSXMLParserDelegate>
-@property (nonatomic, retain) DataUpdater * updater;
+@property (nonatomic, strong) DataUpdater * updater;
 @property BOOL updatingXML;
 // -
-@property (nonatomic, retain) NSDictionary * stationsHardcodedFixes;
-@property (readwrite, nonatomic, retain) CLRegion * hardcodedLimits;
+@property (nonatomic, strong) NSDictionary * stationsHardcodedFixes;
+@property (readwrite, nonatomic, strong) CLRegion * hardcodedLimits;
 // -
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 @end
@@ -46,12 +46,6 @@
     }
     return self;
 }
-- (void) dealloc
-{
-    self.updater = nil;
-	self.stationsHardcodedFixes = nil;
-	[super dealloc];
-}
 
 /****************************************************************************/
 #pragma mark Hardcoded Fixes
@@ -67,7 +61,7 @@
 	{
 		self.stationsHardcodedFixes = [self.hardcodedFixes objectForKey:@"stations"];
 	}
-	return [[stationsHardcodedFixes retain] autorelease];
+	return stationsHardcodedFixes;
 }
 
 - (CLRegion*) hardcodedLimits
@@ -77,9 +71,9 @@
         NSDictionary * dict = [self.hardcodedFixes objectForKey:@"limits"];
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[dict objectForKey:@"latitude"] doubleValue], [[dict objectForKey:@"longitude"] doubleValue]);
         CLLocationDistance distance = [[dict objectForKey:@"distance"] doubleValue];
-        self.hardcodedLimits = [[[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:NSStringFromClass([self class])] autorelease];
+        self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:NSStringFromClass([self class])];
 	}
-	return [[hardcodedLimits retain] autorelease];
+	return hardcodedLimits;
 }
 
 /****************************************************************************/
@@ -126,7 +120,7 @@
 	NSError * requestError = nil;
 	
 	// Remove old stations
-	NSFetchRequest * oldStationsRequest = [[NSFetchRequest new] autorelease];
+	NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
 	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
 	NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
 	NSLog(@"Removing %d old stations",[oldStations count]);
@@ -135,12 +129,12 @@
 	}
 	
 	// Parse
-	NSXMLParser * parser = [[[NSXMLParser alloc] initWithData:xml] autorelease];
+	NSXMLParser * parser = [[NSXMLParser alloc] initWithData:xml];
 	parser.delegate = self;
 	[parser parse];
     
 	// Compute regions coordinates
-	NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
+	NSFetchRequest * regionsRequest = [NSFetchRequest new];
 	[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
 	NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
 	[regions makeObjectsPerformSelector:@selector(setupCoordinates)];
@@ -226,7 +220,7 @@
 	   regionContainingData.span.latitudeDelta == 0 &&
 	   regionContainingData.span.longitudeDelta == 0 )
 	{
-		NSFetchRequest * regionsRequest = [[NSFetchRequest new] autorelease];
+		NSFetchRequest * regionsRequest = [NSFetchRequest new];
 		[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
 		NSError * requestError = nil;
 		NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];

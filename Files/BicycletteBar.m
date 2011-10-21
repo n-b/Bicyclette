@@ -26,8 +26,8 @@
 #pragma mark Private Methods
 
 @interface BicycletteBar ()
-@property (nonatomic, retain) BicycletteBarArrow * arrow;
-@property (nonatomic, readonly) NSArray* buttons;
+@property (nonatomic, strong) BicycletteBarArrow * arrow;
+@property (weak, nonatomic, readonly) NSArray* buttons;
 - (void) selectButton:(id)sender;
 @end
 
@@ -45,41 +45,36 @@
 	
 	UIBarButtonItem * item = nil;
 	NSMutableArray * items = [NSMutableArray array];
-	[items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease]];
+	[items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL]];
 
-	item = [[[BicycletteBarItem alloc] initWithImageName:@"RegionsTab.png" target:self action:@selector(selectButton:) tag:0] autorelease];
+	item = [[BicycletteBarItem alloc] initWithImageName:@"RegionsTab.png" target:self action:@selector(selectButton:) tag:0];
 	item.enabled = YES;
 	[items addObject:item];
 
-	item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:NULL] autorelease];
+	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:NULL];
 	item.width = 21;
 	[items addObject:item];
 
-	item = [[[BicycletteBarItem alloc] initWithImageName:@"FavoritesTab.png" target:self action:@selector(selectButton:) tag:1] autorelease];
+	item = [[BicycletteBarItem alloc] initWithImageName:@"FavoritesTab.png" target:self action:@selector(selectButton:) tag:1];
 	[items addObject:item];
 
-	item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:NULL] autorelease];
+	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:NULL];
 	item.width = 21;
 	[items addObject:item];
 
-	item = [[[BicycletteBarItem alloc] initWithImageName:@"MapTab.png" target:self action:@selector(selectButton:) tag:2] autorelease];
+	item = [[BicycletteBarItem alloc] initWithImageName:@"MapTab.png" target:self action:@selector(selectButton:) tag:2];
 	[items addObject:item];
 	
-	[items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease]];
+	[items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL]];
 	self.items = items;
 	
 	CGFloat arrowWidth = self.bounds.size.width + ([[self.buttons lastObject] customView].center.x - [[self.buttons objectAtIndex:0] customView].center.x);
 
-	self.arrow = [[[BicycletteBarArrow alloc] initWithFrame:CGRectMake(0, 0, arrowWidth, 0)] autorelease];
+	self.arrow = [[BicycletteBarArrow alloc] initWithFrame:CGRectMake(0, 0, arrowWidth, 0)];
 	[self addSubview:arrow];
 	self.clipsToBounds = NO;
 }
 
-- (void) dealloc
-{
-	self.arrow = nil;
-	[super dealloc];
-}
 
 /****************************************************************************/
 #pragma mark -

@@ -15,13 +15,13 @@
 
 @interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) IBOutlet BicycletteBar *toolbar;
-@property (nonatomic, retain) IBOutlet UIView *notificationView;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, strong) IBOutlet BicycletteBar *toolbar;
+@property (nonatomic, strong) IBOutlet UIView *notificationView;
 
-@property (nonatomic, retain, readonly) VelibModel * model;
-@property (nonatomic, retain, readonly) Locator * locator;
+@property (nonatomic, strong, readonly) VelibModel * model;
+@property (nonatomic, strong, readonly) Locator * locator;
 
 @end
 

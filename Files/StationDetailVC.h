@@ -16,23 +16,23 @@
 - (id) initWithStation:(Station*) station inArray:(NSArray*)stations;
 
 // Outlets
-@property (nonatomic, assign) IBOutlet UIScrollView * scrollView;
-@property (nonatomic, assign) IBOutlet UIView * contentView;
+@property (nonatomic, weak) IBOutlet UIScrollView * scrollView;
+@property (nonatomic, weak) IBOutlet UIView * contentView;
 
-@property (nonatomic, assign) IBOutlet UILabel * shortNameLabel;
-@property (nonatomic, assign) IBOutlet UILabel * addressLabel;
-@property (nonatomic, assign) IBOutlet UILabel * distanceLabel;
+@property (nonatomic, weak) IBOutlet UILabel * shortNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * addressLabel;
+@property (nonatomic, weak) IBOutlet UILabel * distanceLabel;
 
-@property (nonatomic, assign) IBOutlet UILabel * availableCountLabel;
-@property (nonatomic, assign) IBOutlet UILabel * freeCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel * availableCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel * freeCountLabel;
 
-@property (nonatomic, assign) IBOutlet StationStatusView * statusView;
-@property (nonatomic, assign) IBOutlet UIView * loadingIndicator;
+@property (nonatomic, weak) IBOutlet StationStatusView * statusView;
+@property (nonatomic, weak) IBOutlet UIView * loadingIndicator;
 
-@property (nonatomic, assign) IBOutlet UIButton * favoriteButton;
+@property (nonatomic, weak) IBOutlet UIButton * favoriteButton;
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem * previousNextBarItem; // retained
-@property (nonatomic, assign) IBOutlet UISegmentedControl * previousNextControl;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem * previousNextBarItem; // retained
+@property (nonatomic, weak) IBOutlet UISegmentedControl * previousNextControl;
 
 // Action
 - (IBAction) switchFavorite;
@@ -40,7 +40,7 @@
 - (IBAction) changeToPreviousNext;
 
 // Data
-@property (nonatomic, retain) Station * station;
-@property (nonatomic, retain, readonly) NSArray * stations; // station must be in stations
+@property (nonatomic, strong) Station * station;
+@property (nonatomic, strong, readonly) NSArray * stations; // station must be in stations
 
 @end

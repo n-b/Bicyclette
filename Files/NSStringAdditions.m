@@ -52,12 +52,12 @@
 
 + (NSString *)stringWithData:(NSData *)data encoding:(NSStringEncoding)encoding
 {
-    return [[[self alloc] initWithData:data encoding:encoding] autorelease];
+    return [[self alloc] initWithData:data encoding:encoding];
 }
 
 + (NSString *)stringWithBytes:(const void *)bytes length:(unsigned)length encoding:(NSStringEncoding)encoding
 {
-	return [[[self alloc] initWithBytes:bytes length:length encoding:encoding] autorelease];
+	return [[self alloc] initWithBytes:bytes length:length encoding:encoding];
 }
 
 #pragma mark -
@@ -110,7 +110,6 @@
 	if (([self length] != 0 )&&(result < 0.5)) {
 		result = 0.5;
 	}
-	[stringsToTest release];
 	NSLog(@"Float? : %f", result);
 	return result;
 }

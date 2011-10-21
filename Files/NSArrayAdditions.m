@@ -56,7 +56,7 @@
 
 - (NSArray*) arrayByRemovingObjectsInArray:(NSArray*)otherArray
 {
-	NSMutableArray * result = [[self mutableCopy] autorelease];
+	NSMutableArray * result = [self mutableCopy];
 	[result removeObjectsInArray:otherArray];
 	return result;
 }
@@ -68,7 +68,7 @@
 
 - (void) sortWithProperty:(NSString *) property
 {
-	[self sortUsingDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:property ascending:YES] autorelease]]];
+	[self sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:property ascending:YES]]];
 }
 
 @end

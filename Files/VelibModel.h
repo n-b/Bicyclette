@@ -21,12 +21,12 @@
 
 @interface VelibModel : CoreDataManager
 
-@property (nonatomic, retain, readonly) DataUpdater * updater;
+@property (nonatomic, strong, readonly) DataUpdater * updater;
 @property (readonly) BOOL updatingXML;
 
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
 
-@property (readonly, nonatomic, retain) CLRegion * hardcodedLimits;
+@property (readonly, nonatomic, strong) CLRegion * hardcodedLimits;
 @end
 
 

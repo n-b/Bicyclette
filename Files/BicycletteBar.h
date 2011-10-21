@@ -12,7 +12,7 @@
 
 @interface BicycletteBar : UIToolbar
 @property (nonatomic) NSUInteger selectedIndex;
-@property (nonatomic, assign) IBOutlet id<BicycletteBarDelegate> delegate;
+@property (nonatomic, unsafe_unretained) IBOutlet id<BicycletteBarDelegate> delegate;
 @end
 
 

@@ -13,7 +13,7 @@
 - (void) start;
 - (void) stop;
 
-@property (nonatomic, readonly) CLLocation* location;
+@property (weak, nonatomic, readonly) CLLocation* location;
 @end
 
 #define LocationDidChangeNotification @"LocationDidChangeNotification"

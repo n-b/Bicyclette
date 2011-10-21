@@ -12,7 +12,7 @@
 #pragma mark Private Methods
 
 @interface Locator() <CLLocationManagerDelegate>
-@property (nonatomic, retain) CLLocationManager * locationManager;
+@property (nonatomic, strong) CLLocationManager * locationManager;
 @end
 
 /****************************************************************************/
@@ -35,7 +35,7 @@
 {
 	self = [super init];
 	if (self != nil) {
-		self.locationManager = [[CLLocationManager new] autorelease];
+		self.locationManager = [CLLocationManager new];
 		self.locationManager.headingFilter = 1.0f; // degrees
 		self.locationManager.delegate = self;
 	}
@@ -45,8 +45,6 @@
 - (void) dealloc
 {
 	[self stop];
-	self.locationManager = nil;
-	[super dealloc];
 }
 
 - (void) start

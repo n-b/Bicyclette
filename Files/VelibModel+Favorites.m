@@ -24,7 +24,7 @@
 - (NSArray *) favorites
 {
     NSArray * identifiers = self.favoritesIdentifiers;
-    NSFetchRequest * request = [[NSFetchRequest new] autorelease];
+    NSFetchRequest * request = [NSFetchRequest new];
     request.entity = [Station entityInManagedObjectContext:self.moc];
     request.predicate = [NSPredicate predicateWithFormat:@"number IN %@", identifiers];
     

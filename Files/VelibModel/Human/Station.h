@@ -8,11 +8,11 @@
 @property (nonatomic, readonly, getter=isLoading) BOOL loading;
 
 // Computed properties
-@property (nonatomic, readonly) NSString * cleanName;
-@property (nonatomic, readonly) NSString * cleanAddress;
-@property (nonatomic, readonly) NSString * statusDescription;
-@property (nonatomic, readonly) NSString * statusDateDescription;
-@property (nonatomic, retain, readonly) CLLocation * location;
+@property (weak, nonatomic, readonly) NSString * cleanName;
+@property (weak, nonatomic, readonly) NSString * cleanAddress;
+@property (weak, nonatomic, readonly) NSString * statusDescription;
+@property (weak, nonatomic, readonly) NSString * statusDateDescription;
+@property (nonatomic, strong, readonly) CLLocation * location;
 
 @end
 

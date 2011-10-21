@@ -21,14 +21,11 @@
 
 - (void)dealloc {
 	self.region = nil;
-    [super dealloc];
 }
 
 
 - (void) setRegion:(Region*)value
 {
-    [value retain];
-	[region release];
 	region = value;
 	self.nameLabel.text = self.region.name;
 	self.numberLabel.text = self.region.number;

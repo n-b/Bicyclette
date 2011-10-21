@@ -20,7 +20,7 @@
 #pragma mark -
 
 @interface StationDetailVC () <UIScrollViewDelegate>
-@property (nonatomic, retain) NSArray * stations;
+@property (nonatomic, strong) NSArray * stations;
 
 - (BOOL) canShowPrevious;
 - (BOOL) canShowNext;
@@ -51,7 +51,7 @@
 
 + (id) detailVCWithStation:(Station*) aStation inArray:(NSArray*)aStations
 {
-	return [[[self alloc] initWithStation:aStation inArray:aStations] autorelease];
+	return [[self alloc] initWithStation:aStation inArray:aStations];
 }
 
 - (id) initWithStation:(Station*) aStation inArray:(NSArray*)aStations
@@ -75,9 +75,6 @@
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.station = nil;
-	self.stations = nil;
-	self.previousNextBarItem = nil;
-    [super dealloc];
 }
 
 /****************************************************************************/
@@ -139,15 +136,13 @@
 	[self.station removeObserver:self forKeyPath:@"loading"];
 	[self.station removeObserver:self forKeyPath:@"status_date"];
 	[self.station removeObserver:self forKeyPath:@"favorite"];
-    [value retain];
-	[station release];
 	station = value;
 	if(self.station)
 	{
 		NSAssert1([self.stations indexOfObject:self.station]!=NSNotFound,@"invalid station %@",self.station);
-		[self.station addObserver:self forKeyPath:@"favorite" options:0 context:[StationDetailVC class]];
-		[self.station addObserver:self forKeyPath:@"status_date" options:0 context:[StationDetailVC class]];
-		[self.station addObserver:self forKeyPath:@"loading" options:0 context:[StationDetailVC class]];
+		[self.station addObserver:self forKeyPath:@"favorite" options:0 context:(__bridge void *)([StationDetailVC class])];
+		[self.station addObserver:self forKeyPath:@"status_date" options:0 context:(__bridge void *)([StationDetailVC class])];
+		[self.station addObserver:self forKeyPath:@"loading" options:0 context:(__bridge void *)([StationDetailVC class])];
 		self.statusView.station = self.station;
 		[self.station refresh];
 		[self updateUI];
@@ -229,7 +224,7 @@
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == [StationDetailVC class])
+    if (context == (__bridge void *)([StationDetailVC class]))
 	{
 		if(object==self.station)
 			[self updateUI];			
