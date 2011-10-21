@@ -79,40 +79,4 @@
 	return cleanString;
 }
 
-#pragma mark -
-#pragma mark passwordChecker
-/**
- * Return : float giving password strength between 0.0 and 10.0
- */
-
-- (double)passwordStrength
-{
-	unsigned int nbCombinations;
-	double result;
-	nbCombinations = 0;
-	NSCharacterSet * strCheck;
-	NSMutableArray * stringsToTest;
-	stringsToTest = [[NSMutableArray alloc] init];
-	[stringsToTest addObject:@"0123456789"];
-	[stringsToTest addObject:@"abcdefghijklmnopqrstuvwxyz"];
-	[stringsToTest addObject:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-	[stringsToTest addObject:@";:-_=+\\|/?^&!.@$£#*()%~<>{}[]éëè«øàùÙîïÎÏÔôÖöÂâÄäY°>{}[]"]; // Doubles are here to add weight to special caracters Keep them all even if some are not used
-	for (unsigned int i = 0; i < [stringsToTest count]; i++) {
-		NSString * testString = [stringsToTest objectAtIndex:i];
-		strCheck = [NSCharacterSet characterSetWithCharactersInString:testString];
-		if ( [self rangeOfCharacterFromSet:strCheck].location != NSNotFound ) {
-			nbCombinations += [testString length];
-		}
-		
-	}
-	result = (nbCombinations * [self length]) / 100.0;
-
-	if (([self length] != 0 )&&(result < 0.5)) {
-		result = 0.5;
-	}
-	NSLog(@"Float? : %f", result);
-	return result;
-}
-
-
 @end

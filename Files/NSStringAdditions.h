@@ -44,9 +44,4 @@
  */
 - (NSString *)stringByRemovingCharactersInSet:(NSCharacterSet*)characterSet;
 
-/*!
-	@method passwordStrength:
-*/
-- (double)passwordStrength;
-
 @end
