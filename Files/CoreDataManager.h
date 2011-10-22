@@ -19,7 +19,7 @@ extern NSString * const BicycletteErrorDomain;
 - (id) initWithModelName:(NSString*)modelName;
 
 @property (readonly, nonatomic, strong) NSManagedObjectContext *moc;
-@property (nonatomic, unsafe_unretained) id<CoreDataManagerDelegate> delegate; 
+@property (nonatomic, weak) id<CoreDataManagerDelegate> delegate; 
 
 - (void) save;
 
