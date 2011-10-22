@@ -6,3 +6,4 @@ VelibConvert/build
 build
 Bicyclette.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad
 Bicyclette.xcodeproj/xcuserdata/*.xcuserdatad
+.DS_Store
