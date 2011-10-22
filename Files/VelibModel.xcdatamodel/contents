@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Velib.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="851" systemVersion="11B26" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Region" representedClassName="Region">
         <attribute name="maxLatitude" attributeType="Double" defaultValueString="0"/>
         <attribute name="maxLongitude" attributeType="Double" defaultValueString="0"/>
@@ -27,7 +27,7 @@
     </entity>
     <fetchRequest name="regionWithNumber" entity="Region" predicateString="number == $number"/>
     <elements>
-        <element name="Station" positionX="261" positionY="36" width="128" height="255"/>
         <element name="Region" positionX="556" positionY="135" width="128" height="150"/>
+        <element name="Station" positionX="261" positionY="36" width="128" height="255"/>
     </elements>
 </model>
