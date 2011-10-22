@@ -15,25 +15,6 @@
 + (id) detailVCWithStation:(Station*) station inArray:(NSArray*)stations;
 - (id) initWithStation:(Station*) station inArray:(NSArray*)stations;
 
-// Outlets
-@property (nonatomic, weak) IBOutlet UIScrollView * scrollView;
-@property (nonatomic, weak) IBOutlet UIView * contentView;
-
-@property (nonatomic, weak) IBOutlet UILabel * shortNameLabel;
-@property (nonatomic, weak) IBOutlet UILabel * addressLabel;
-@property (nonatomic, weak) IBOutlet UILabel * distanceLabel;
-
-@property (nonatomic, weak) IBOutlet UILabel * availableCountLabel;
-@property (nonatomic, weak) IBOutlet UILabel * freeCountLabel;
-
-@property (nonatomic, weak) IBOutlet StationStatusView * statusView;
-@property (nonatomic, weak) IBOutlet UIView * loadingIndicator;
-
-@property (nonatomic, weak) IBOutlet UIButton * favoriteButton;
-
-@property (nonatomic, strong) IBOutlet UIBarButtonItem * previousNextBarItem; // retained
-@property (nonatomic, weak) IBOutlet UISegmentedControl * previousNextControl;
-
 // Action
 - (IBAction) switchFavorite;
 

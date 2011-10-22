@@ -18,6 +18,10 @@
 
 @interface BicycletteApplicationDelegate() <BicycletteBarDelegate, CoreDataManagerDelegate>
 
+@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, strong) IBOutlet BicycletteBar *toolbar;
+@property (nonatomic, strong) IBOutlet UIView *notificationView;
+
 @property (nonatomic, strong) VelibModel * model;
 @property (nonatomic, strong) Locator * locator;
 

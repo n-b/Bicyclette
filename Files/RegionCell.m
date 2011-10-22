@@ -9,6 +9,13 @@
 #import "RegionCell.h"
 #import "Region.h"
 
+@interface RegionCell()
+// Outlets
+@property (nonatomic, weak) IBOutlet UILabel * nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * numberLabel;
+@property (nonatomic, weak) IBOutlet UILabel * countLabel;
+@end
+
 @implementation RegionCell
 
 @synthesize nameLabel, numberLabel, countLabel;

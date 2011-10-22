@@ -14,15 +14,6 @@
 @class StationStatusView;
 @interface StationCell : UITableViewCell 
 
-// Outlets
-@property (nonatomic, weak) IBOutlet UILabel * shortNameLabel;
-@property (nonatomic, weak) IBOutlet UILabel * availableCountLabel;
-@property (nonatomic, weak) IBOutlet UILabel * freeCountLabel;
-
-@property (nonatomic, weak) IBOutlet StationStatusView * statusView;
-@property (nonatomic, weak) IBOutlet UIView * loadingIndicator;
-
-@property (nonatomic, weak) IBOutlet UIButton * favoriteButton;
 // Action
 - (IBAction) switchFavorite;
 

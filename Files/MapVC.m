@@ -24,6 +24,11 @@ typedef enum {
 }  MapMode;
 
 @interface MapVC() <MKMapViewDelegate>
+
+// Outlets
+@property (nonatomic, weak) IBOutlet MKMapView * mapView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem * centerMapButton;
+
 @property (nonatomic) MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
 - (void) showDetails:(UIButton*)sender;

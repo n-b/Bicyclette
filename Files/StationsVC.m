@@ -21,6 +21,9 @@
 #pragma mark Private Methods
 
 @interface StationsVC() <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@property (nonatomic, weak) IBOutlet UITableView * tableView;
+@property (nonatomic, weak) IBOutlet UILabel * noFavoriteLabel;
+
 - (void) updateVisibleStations;
 - (void) applicationWillTerminate:(NSNotification*) notif;
 - (void) applicationDidBecomeActive:(NSNotification*) notif;

@@ -15,10 +15,7 @@
 
 @interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet BicycletteBar *toolbar;
-@property (nonatomic, strong) IBOutlet UIView *notificationView;
+@property (nonatomic, retain) IBOutlet UIWindow *window; // redeclare property of parent class to make it an outlet
 
 @property (nonatomic, strong, readonly) VelibModel * model;
 @property (nonatomic, strong, readonly) Locator * locator;
