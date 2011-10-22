@@ -22,9 +22,9 @@
 	int freeSpots = self.station.status_freeValue;
 	int totalSpots = self.displayOtherSpots ? self.station.status_totalValue : availableSpots+freeSpots;
 	
-	CGColorRef availableColor = [UIColor colorWithWhite:.1f alpha:1.f].CGColor;
-	CGColorRef freeColor = [UIColor colorWithWhite:.5f alpha:1.f].CGColor;
-	CGColorRef otherColor = [UIColor colorWithHue:0.02f saturation:1.f brightness:.56f alpha:1.f].CGColor;
+	UIColor * availableColor = [UIColor colorWithWhite:.1f alpha:1.f];
+	UIColor * freeColor = [UIColor colorWithWhite:.5f alpha:1.f];
+	UIColor * otherColor = [UIColor colorWithHue:0.02f saturation:1.f brightness:.56f alpha:1.f];
 	
     // Find the best row/columns repartition
     CGFloat ratio = rect.size.width/rect.size.height;
@@ -40,7 +40,7 @@
     spotRect.size.width = (rect.size.width-1)  / nbCols;
     spotRect.size.height = (rect.size.height-1)  / nbRows;
     
-    CGContextSetFillColorWithColor(ctxt,availableColor);
+    CGContextSetFillColorWithColor(ctxt,availableColor.CGColor);
     CGContextSetStrokeColorWithColor(ctxt,[UIColor whiteColor].CGColor);
     
     CGContextTranslateCTM(ctxt, 0, rect.size.height);
@@ -53,9 +53,9 @@
         for (int row = 0; row<nbRows && col*nbRows+row+1 <= totalSpots ; row++) {
             
             if(row+(col*nbRows)==availableSpots)
-                CGContextSetFillColorWithColor(ctxt,freeColor);
+                CGContextSetFillColorWithColor(ctxt,freeColor.CGColor);
             if(row+(col*nbRows)==availableSpots+freeSpots)
-                CGContextSetFillColorWithColor(ctxt,otherColor);
+                CGContextSetFillColorWithColor(ctxt,otherColor.CGColor);
 
             intRect.size.height = lroundf((row+1)*spotRect.size.height - intRect.origin.y);
             intRect.size.width = lroundf((col+1)*spotRect.size.width - intRect.origin.x);

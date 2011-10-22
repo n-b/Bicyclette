@@ -156,17 +156,17 @@
 	CGContextAddPath(ctx, path);
 	CGPathRelease(path);
 	
-	CGColorRef gray = [UIColor colorWithWhite:.5 alpha:.7].CGColor;
-	CGColorRef black = [UIColor colorWithWhite:.1 alpha:.9].CGColor;
+    UIColor * gray = [UIColor colorWithWhite:.5 alpha:.7];
+	UIColor * black = [UIColor colorWithWhite:.1 alpha:.9];
 	
-	CGContextSetFillColorWithColor(ctx, gray);
-	CGContextSetStrokeColorWithColor(ctx, gray);
+	CGContextSetFillColorWithColor(ctx, gray.CGColor);
+	CGContextSetStrokeColorWithColor(ctx, gray.CGColor);
 	CGContextDrawPath(ctx, kCGPathFillStroke);
 	
-	CGContextSetStrokeColorWithColor(ctx, gray);
+	CGContextSetStrokeColorWithColor(ctx, gray.CGColor);
 	CGContextStrokeLineSegments(ctx, line, sizeof(line)/sizeof(CGPoint));
 	
-	CGContextSetStrokeColorWithColor(ctx, black);
+	CGContextSetStrokeColorWithColor(ctx, black.CGColor);
 	for (unsigned int i = 0; i < sizeof(line)/sizeof(CGPoint); i++) line[i].y -= 1;
 	CGContextStrokeLineSegments(ctx, line, sizeof(line)/sizeof(CGPoint));
 }
