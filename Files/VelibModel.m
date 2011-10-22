@@ -26,6 +26,8 @@
 @property (readwrite, nonatomic, strong) CLRegion * hardcodedLimits;
 // -
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
+// - 
+@property (nonatomic, strong) NSMutableDictionary * parsing_regionsByCodePostal;
 @end
 
 /****************************************************************************/
@@ -38,6 +40,7 @@
 @synthesize stationsHardcodedFixes;
 @synthesize hardcodedLimits;
 @synthesize regionContainingData;
+@synthesize parsing_regionsByCodePostal;
 
 - (id)init {
     self = [super init];
@@ -119,26 +122,24 @@
     
 	NSError * requestError = nil;
 	
-	// Remove old stations
+	// Remove old stations and regions
 	NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
 	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
 	NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
-	NSLog(@"Removing %d old stations",[oldStations count]);
 	for (Station * oldStation in oldStations) {
 		[self.moc deleteObject:oldStation];
 	}
 	
 	// Parse
+    self.parsing_regionsByCodePostal = [NSMutableDictionary dictionary];
 	NSXMLParser * parser = [[NSXMLParser alloc] initWithData:xml];
 	parser.delegate = self;
 	[parser parse];
     
 	// Compute regions coordinates
-	NSFetchRequest * regionsRequest = [NSFetchRequest new];
-	[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
-	NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
-	[regions makeObjectsPerformSelector:@selector(setupCoordinates)];
-    
+    [[self.parsing_regionsByCodePostal allValues] makeObjectsPerformSelector:@selector(setupCoordinates)];
+    self.parsing_regionsByCodePostal = nil;
+
 	// Save
 	[self save];
 	self.updatingXML = NO;
@@ -186,10 +187,12 @@
             }
             NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
             
-            Region * region = [[Region fetchRegionWithNumber:self.moc number:lCodePostal] lastObject];
+            
+            Region * region = [self.parsing_regionsByCodePostal objectForKey:lCodePostal];
             if(nil==region)
             {
                 region = [Region insertInManagedObjectContext:self.moc];
+                [self.parsing_regionsByCodePostal setObject:region forKey:lCodePostal];
                 region.number = lCodePostal;
                 NSString * cityName = [[[endOfAddress stringByDeletingPrefix:region.number]
                                         stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
