@@ -23,7 +23,7 @@
         <attribute name="status_free" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
         <attribute name="status_ticket" optional="YES" attributeType="Boolean"/>
         <attribute name="status_total" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
-        <relationship name="region" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Region" inverseName="stations" inverseEntity="Region" indexed="YES"/>
+        <relationship name="region" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Region" inverseName="stations" inverseEntity="Region" indexed="YES"/>
     </entity>
     <fetchRequest name="regionWithNumber" entity="Region" predicateString="number == $number"/>
     <elements>
