@@ -15,19 +15,16 @@
 #endif
 
 @interface NSObject (NSObject_KVCMapping)
-- (void) setValue:(id)value forMappedKey:(NSString*)wantedKey;
-- (void) setValuesForMappedKeysWithDictionary:(NSDictionary *)keyedValues;
-@end
-
-
-@interface NSObject (NSObject_KVCMapping_Support)
 /* 
- * Must be implemented by subclasses wishing to use KVC mapping.
- * The values of the returned dictionary must be actual properties keys of the object.
+ * KVC Mapping
  * 
- * For non-NSManagedObject subclasses, any key not present in the mapping will be ignored.
- * For NSManagedObjects, keys not presents will be used without translation, only if the NSManagedObject has such properties.
+ * The passed mapping dictionary is used to translate the wantedKey (the key name in the external representation,
+ * like a webservice) to the real object property.
+ * The NSDictionary keys and values should only be NSStrings.
  * 
+ * For NSManagedObjects, setValue:forKey:withMappingDictionary also does automatic type coercion from string to numbers.
  */
-+ (NSDictionary*)kvcMapping;
+- (void) setValue:(id)value forKey:(NSString*)wantedKey withMappingDictionary:(NSDictionary*)kvcMappingDictionnary;
+- (void) setValuesForKeysWithDictionary:(NSDictionary *)keyedValues withMappingDictionary:(NSDictionary*)kvcMappingDictionnary;
 @end
+

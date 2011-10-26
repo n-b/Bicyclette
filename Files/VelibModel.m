@@ -145,17 +145,37 @@
 	self.updatingXML = NO;
 }
 
+- (NSDictionary*) stationKVCMapping
+{
+    static NSDictionary * s_mapping = nil;
+    if(nil==s_mapping)
+        s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
+                     @"address",@"address",
+                     @"bonus",@"bonus",
+                     @"fullAddress",@"fullAddress",
+                     @"name",@"name",
+                     @"number",@"number",
+                     @"open",@"open",
+
+                     @"latitude",@"lat",
+                     @"longitude",@"lng",
+                     nil];
+    
+    return s_mapping;
+}
+
+
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
 	if([elementName isEqualToString:@"marker"])
 	{
 		Station * station = [Station insertInManagedObjectContext:self.moc];
-		[station setValuesForMappedKeysWithDictionary:attributeDict]; // Yay!
+		[station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:self.stationKVCMapping]; // Yay!
 		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
 		if(fixes)
 		{
 			NSLog(@"using hardcoded fixes for %@.\n\tReceived Data : %@.\n\tFixes : %@",station.number, attributeDict, fixes);
-			[station setValuesForMappedKeysWithDictionary:fixes]; // Yay! again
+			[station setValuesForKeysWithDictionary:fixes withMappingDictionary:self.stationKVCMapping]; // Yay! again
 		}
         
         // Setup region
@@ -187,7 +207,7 @@
             }
             NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
             
-            
+            // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
             Region * region = [self.parsing_regionsByCodePostal objectForKey:lCodePostal];
             if(nil==region)
             {

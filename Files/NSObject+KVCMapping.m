@@ -11,9 +11,9 @@
 
 @implementation NSObject (NSObject_KVCMapping)
 
-- (void) setValue:(id)value forMappedKey:(NSString*)wantedKey withMappingDictionary:(NSDictionary*)mapping
+- (void) setValue:(id)value forKey:(NSString*)wantedKey withMappingDictionary:(NSDictionary*)kvcMappingDictionnary
 {
-    NSString * realKey = [mapping objectForKey:wantedKey];
+    NSString * realKey = [kvcMappingDictionnary objectForKey:wantedKey];
     if([realKey length])
         [self setValue:value forKey:realKey];
 #if DEBUG
@@ -22,17 +22,10 @@
 #endif
 }
 
-- (void) setValue:(id)value forMappedKey:(NSString*)wantedKey
+- (void) setValuesForKeysWithDictionary:(NSDictionary *)keyedValues withMappingDictionary:(NSDictionary*)kvcMappingDictionnary
 {
-    NSDictionary * mapping = [[self class] performSelector:@selector(kvcMapping)];
-    [self setValue:value forMappedKey:wantedKey withMappingDictionary:mapping];
-}
-
-- (void) setValuesForMappedKeysWithDictionary:(NSDictionary *)keyedValues
-{
-    NSDictionary * mapping = [[self class] performSelector:@selector(kvcMapping)];
     for (NSString * wantedKey in [keyedValues allKeys]) 
-        [self setValue:[keyedValues objectForKey:wantedKey] forMappedKey:wantedKey withMappingDictionary:mapping];
+        [self setValue:[keyedValues objectForKey:wantedKey] forKey:wantedKey withMappingDictionary:kvcMappingDictionnary];
 }
 
 @end
@@ -45,8 +38,6 @@
 - (void) setValue:(id)value forMappedKey:(NSString*)wantedKey withMappingDictionary:(NSDictionary*)mapping
 {
     NSString * realKey = [mapping objectForKey:wantedKey];
-    if(![realKey length])
-        realKey = wantedKey;
     
     NSAttributeDescription * attributeDesc = [[[(NSManagedObject*)self entity] attributesByName] objectForKey:realKey];
     if(attributeDesc)

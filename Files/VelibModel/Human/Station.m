@@ -27,19 +27,11 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 /****************************************************************************/
 #pragma mark -
 
-+ (NSDictionary*) kvcMapping
+- (NSDictionary*) stationStatusKVCMapping
 {
-    /*
-     KVC mapping dictionary. 
-     Since this is an NSManagedObject, the KVC mapping methods will also check properties for existence before using kvc.
-     Hence, there's no need to specify identical keys here.
-     */
     static NSDictionary * s_mapping = nil;
     if(nil==s_mapping)
         s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
-                     @"latitude",@"lat",
-                     @"longitude",@"lng",
-                     
                      @"status_available",@"available",
                      @"status_free",@"free",
                      @"status_ticket",@"ticket",
@@ -122,7 +114,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
     NSString * value = [self.currentParsedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.currentParsedString = [NSMutableString string];
     if([value length])
-    [self setValue:value forMappedKey:elementName];
+        [self setValue:value forKey:elementName withMappingDictionary:self.stationStatusKVCMapping];
 }
 
 /****************************************************************************/
