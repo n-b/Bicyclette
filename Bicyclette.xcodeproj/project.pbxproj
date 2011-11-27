@@ -41,7 +41,6 @@
 		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
-		37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A34673128C42E6000A2540 /* SectionHeader.xib */; };
 		37A346AF128C9B3F000A2540 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
@@ -125,7 +124,6 @@
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
-		37A34673128C42E6000A2540 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */ = {isa = PBXFileReference; comments = "xmod\n--log-command\n"; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = VelibModel.xcdatamodel; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				37149B6D126248F5009CDE82 /* StationsVC.h */,
 				37149B6E126248F5009CDE82 /* StationsVC.m */,
 				37149B6F126248F5009CDE82 /* StationsVC.xib */,
-				37A34673128C42E6000A2540 /* SectionHeader.xib */,
 				37149C8212625AD7009CDE82 /* StationCell.h */,
 				37149C8312625AD7009CDE82 /* StationCell.m */,
 				37149C8512625AE5009CDE82 /* StationCell.xib */,
@@ -427,7 +424,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				37149B71126248F5009CDE82 /* StationsVC.xib in Resources */,
 				37149C8612625AE5009CDE82 /* StationCell.xib in Resources */,
-				37A34674128C42E6000A2540 /* SectionHeader.xib in Resources */,
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
 				3756EAE41298018A00113534 /* Default.png in Resources */,
 				3756EAE51298018A00113534 /* Default@2x.png in Resources */,
