@@ -1,5 +1,5 @@
 //
-//  UITableViewCell+EasyReuse.h
+//  UITableViewCell+NibLoaded.h
 //
 
 #import <UIKit/UIKit.h>
@@ -7,7 +7,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@interface UITableViewCell (EasyReuse)
+@interface UITableViewCell (NibLoaded)
 
 // Cell Factory : will either dequeue a cell from the tableview or load a new one from the nib.
 //
@@ -24,11 +24,3 @@
 
 @end
 
-@interface UIView (EasyNibLoading)
-
-// loads a view from a same-named nib file.
-+ (id) viewFromNib;
-
-+ (id) viewFromNibNamed:(NSString*)nibName;
-
-@end

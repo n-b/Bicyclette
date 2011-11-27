@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSString (LCNSStringAdditions)
+@interface NSString (NSStringAdditions)
 
 /*!
 	@method containsString:

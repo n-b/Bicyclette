@@ -10,7 +10,7 @@
 #import "BicycletteApplicationDelegate.h"
 #import "VelibModel.h"
 #import "StationCell.h"
-#import "UITableViewCell+EasyReuse.h"
+#import "UITableViewCell+NibLoaded.h"
 #import "Station.h"
 #import "Region.h"
 #import "StationDetailVC.h"
