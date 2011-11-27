@@ -10,7 +10,6 @@
 #import "VelibModel.h"
 #import "Locator.h"
 #import "BicycletteBar.h"
-#include <unistd.h>
 #import "DataUpdater.h"
 
 /****************************************************************************/
@@ -99,7 +98,6 @@
 {
 	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedTabIndex"];
 	[self.locator stop];
-    usleep(500*1000);
 }
 
 - (void)dealloc {
