@@ -9,10 +9,10 @@
 
 #import "NSError+MultipleErrorsCombined.h"
 
-@interface NSErrorMultipleErrorsCombinedTests : SenTestCase
+@interface NSError_MultipleErrorsCombined_Tests : SenTestCase
 @end
 
-@implementation NSErrorMultipleErrorsCombinedTests
+@implementation NSError_MultipleErrorsCombined_Tests
 {
     NSError * error1, * error2, * error3, * error4, * error12, * error34;
 }
