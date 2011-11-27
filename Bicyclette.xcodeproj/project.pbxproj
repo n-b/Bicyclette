@@ -21,6 +21,8 @@
 		37149C8412625AD7009CDE82 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8312625AD7009CDE82 /* StationCell.m */; };
 		37149C8612625AE5009CDE82 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149C8512625AE5009CDE82 /* StationCell.xib */; };
 		37149C8A12625B94009CDE82 /* UITableViewCell+NibLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */; };
+		371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
+		371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */; };
 		371E1BF3137FCF7C007EFBFF /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
 		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
 		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
@@ -72,6 +74,16 @@
 		37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		371D4FB71482F66700A6DF77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteInfo = Bicyclette;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* BicycletteApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteApplicationDelegate.h; sourceTree = "<group>"; };
@@ -95,6 +107,7 @@
 		37149C8512625AE5009CDE82 /* StationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationCell.xib; sourceTree = "<group>"; };
 		37149C8812625B94009CDE82 /* UITableViewCell+NibLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+NibLoaded.h"; sourceTree = "<group>"; };
 		37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+NibLoaded.m"; sourceTree = "<group>"; };
+		371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping_Tests.m"; sourceTree = "<group>"; };
 		371E1BEA137FCF7C007EFBFF /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		371E1BEB137FCF7C007EFBFF /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 		371E1BEC137FCF7C007EFBFF /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
@@ -356,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */,
+				371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */,
 				3786E4E214825A7700814C10 /* Supporting Files */,
 			);
 			path = LogicTests;
@@ -442,6 +456,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				371D4FB81482F66700A6DF77 /* PBXTargetDependency */,
 			);
 			name = BicycletteLogicTests;
 			productName = BicycletteLogicTests;
@@ -590,10 +605,20 @@
 			files = (
 				3786E4E914825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m in Sources */,
 				3786E4EE1482EAC000814C10 /* NSError+MultipleErrorsCombined.m in Sources */,
+				371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */,
+				371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		371D4FB81482F66700A6DF77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* Bicyclette */;
+			targetProxy = 371D4FB71482F66700A6DF77 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -747,6 +772,7 @@
 				3786E4EC14825A7700814C10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Bicyclette" */ = {
 			isa = XCConfigurationList;

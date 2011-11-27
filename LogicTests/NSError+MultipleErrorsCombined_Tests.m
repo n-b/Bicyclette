@@ -5,8 +5,6 @@
 //  Created by Nicolas Bouilleaud on 27/11/11.
 //  Copyright (c) 2011 Visuamobile. All rights reserved.
 //
-#import <SenTestingKit/SenTestingKit.h>
-
 #import "NSError+MultipleErrorsCombined.h"
 
 @interface NSError_MultipleErrorsCombined_Tests : SenTestCase
