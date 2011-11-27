@@ -39,6 +39,10 @@
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
 		37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7B1380446A009D8334 /* VelibModel+Favorites.m */; };
 		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
+		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
+		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		3786E4E914825A7700814C10 /* BicycletteLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3786E4E814825A7700814C10 /* BicycletteLogicTests.m */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A346AF128C9B3F000A2540 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */; };
@@ -73,7 +77,7 @@
 		1D6058910D05DD3D006BFB54 /* Bicyclette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bicyclette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28A0AAE50D9B0CCF005BE974 /* Bicyclette_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bicyclette_Prefix.pch; sourceTree = "<group>"; };
+		28A0AAE50D9B0CCF005BE974 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -87,7 +91,7 @@
 		37149C8212625AD7009CDE82 /* StationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCell.h; sourceTree = "<group>"; };
 		37149C8312625AD7009CDE82 /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
 		37149C8512625AE5009CDE82 /* StationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationCell.xib; sourceTree = "<group>"; };
-		37149C8812625B94009CDE82 /* UITableViewCell+NibLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "UITableViewCell+NibLoaded.h"; sourceTree = "<group>"; };
+		37149C8812625B94009CDE82 /* UITableViewCell+NibLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+NibLoaded.h"; sourceTree = "<group>"; };
 		37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+NibLoaded.m"; sourceTree = "<group>"; };
 		371E1BEA137FCF7C007EFBFF /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		371E1BEB137FCF7C007EFBFF /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
@@ -110,7 +114,7 @@
 		372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA1.h"; sourceTree = "<group>"; };
 		372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
-		3756EADE1298018A00113534 /* Bicyclette-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bicyclette-Info.plist"; sourceTree = "<group>"; };
+		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3756EADF1298018A00113534 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3756EAE01298018A00113534 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3756EAE11298018A00113534 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -120,6 +124,12 @@
 		37822B7B1380446A009D8334 /* VelibModel+Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VelibModel+Favorites.m"; sourceTree = "<group>"; };
 		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
 		37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+StandardPaths.m"; sourceTree = "<group>"; };
+		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3786E4E714825A7700814C10 /* BicycletteLogicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BicycletteLogicTests.h; sourceTree = "<group>"; };
+		3786E4E814825A7700814C10 /* BicycletteLogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BicycletteLogicTests.m; sourceTree = "<group>"; };
+		3786E4EA14825A7700814C10 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -173,6 +183,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3786E4D814825A7700814C10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */,
+				3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */,
+				3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -208,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Bicyclette.app */,
+				3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,6 +242,7 @@
 				37216A411261087300A2695A /* Model */,
 				080E96DDFE201D6D7F000001 /* UI */,
 				37D188291170A25C00950D52 /* Extensions */,
+				3786E4E114825A7700814C10 /* BicycletteLogicTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -230,7 +252,7 @@
 		29B97315FDCFA39411CA2CEA /* App */ = {
 			isa = PBXGroup;
 			children = (
-				28A0AAE50D9B0CCF005BE974 /* Bicyclette_Prefix.pch */,
+				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				1D3623240D0F684500981E51 /* BicycletteApplicationDelegate.h */,
@@ -250,6 +272,7 @@
 				37A3471B128CA48C000A2540 /* CoreData.framework */,
 				37E9532C12AA2BE000C1D21C /* MapKit.framework */,
 				370F7DF912F60C2700F5FC45 /* QuartzCore.framework */,
+				3786E4DD14825A7700814C10 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -302,7 +325,7 @@
 		3756EA9B1297F52200113534 /* CoreResources */ = {
 			isa = PBXGroup;
 			children = (
-				3756EADE1298018A00113534 /* Bicyclette-Info.plist */,
+				3756EADE1298018A00113534 /* Info.plist */,
 				3756EADF1298018A00113534 /* Default.png */,
 				3756EAE01298018A00113534 /* Default@2x.png */,
 				3756EAE11298018A00113534 /* Icon.png */,
@@ -325,6 +348,26 @@
 			);
 			name = Resources;
 			path = Files;
+			sourceTree = "<group>";
+		};
+		3786E4E114825A7700814C10 /* BicycletteLogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				3786E4E714825A7700814C10 /* BicycletteLogicTests.h */,
+				3786E4E814825A7700814C10 /* BicycletteLogicTests.m */,
+				3786E4E214825A7700814C10 /* Supporting Files */,
+			);
+			name = BicycletteLogicTests;
+			path = LogicTests;
+			sourceTree = "<group>";
+		};
+		3786E4E214825A7700814C10 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3786E4E314825A7700814C10 /* Info.plist */,
+				3786E4EA14825A7700814C10 /* Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		37A346B5128C9D68000A2540 /* VelibModel */ = {
@@ -387,6 +430,24 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Bicyclette.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3786E4DB14825A7700814C10 /* BicycletteLogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3786E4ED14825A7700814C10 /* Build configuration list for PBXNativeTarget "BicycletteLogicTests" */;
+			buildPhases = (
+				3786E4D714825A7700814C10 /* Sources */,
+				3786E4D814825A7700814C10 /* Frameworks */,
+				3786E4D914825A7700814C10 /* Resources */,
+				3786E4DA14825A7700814C10 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BicycletteLogicTests;
+			productName = BicycletteLogicTests;
+			productReference = 3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -412,6 +473,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Bicyclette */,
+				3786E4DB14825A7700814C10 /* BicycletteLogicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -443,6 +505,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3786E4D914825A7700814C10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -460,6 +529,19 @@
 			shellPath = /bin/sh;
 			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/VelibModel.xcdatamodel --machine-dir Files/VelibModel/Machine --human-dir Files/VelibModel/Human";
 			showEnvVarsInLog = 0;
+		};
+		3786E4DA14825A7700814C10 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -502,21 +584,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3786E4D714825A7700814C10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3786E4E914825A7700814C10 /* BicycletteLogicTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Files/Bicyclette_Prefix.pch;
-				INFOPLIST_FILE = "Files/Bicyclette-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = Files/Prefix.pch;
+				INFOPLIST_FILE = Files/Info.plist;
 				PRODUCT_NAME = Bicyclette;
 			};
 			name = Debug;
@@ -524,15 +607,37 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Files/Bicyclette_Prefix.pch;
-				INFOPLIST_FILE = "Files/Bicyclette-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = Files/Prefix.pch;
+				INFOPLIST_FILE = Files/Info.plist;
 				PRODUCT_NAME = Bicyclette;
-				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3786E4EB14825A7700814C10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREFIX_HEADER = LogicTests/Prefix.pch;
+				INFOPLIST_FILE = LogicTests/Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3786E4EC14825A7700814C10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREFIX_HEADER = LogicTests/Prefix.pch;
+				INFOPLIST_FILE = LogicTests/Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -541,9 +646,15 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -553,10 +664,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
@@ -569,7 +678,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREPROCESS = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DDEBUG=1";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -581,9 +689,13 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "NS_BLOCK_ASSERTIONS=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -593,10 +705,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
@@ -606,12 +716,10 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREPROCESS = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -630,6 +738,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3786E4ED14825A7700814C10 /* Build configuration list for PBXNativeTarget "BicycletteLogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3786E4EB14825A7700814C10 /* Debug */,
+				3786E4EC14825A7700814C10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Bicyclette" */ = {
 			isa = XCConfigurationList;
