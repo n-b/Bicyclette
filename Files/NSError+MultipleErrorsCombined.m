@@ -16,23 +16,14 @@
         return secondError;
     if (secondError==nil)
         return originalError;
+
     
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-    NSMutableArray *errors = [NSMutableArray arrayWithObject:secondError];
+    NSArray *errors = [[originalError underlyingErrors] arrayByAddingObjectsFromArray:[secondError underlyingErrors]];
     
-    if ([originalError code] == NSValidationMultipleErrorsError) {
-        // If the original error was already a compound, get the underlying errors
-        [userInfo addEntriesFromDictionary:[originalError userInfo]];
-        [errors addObjectsFromArray:[userInfo objectForKey:NSDetailedErrorsKey]];
-    }
-    else {
-        // Otherwise just add it. 
-        [errors addObject:originalError];
-    }
     
-    [userInfo setObject:errors forKey:NSDetailedErrorsKey];
-    
-    return [self errorWithDomain:NSCocoaErrorDomain code:NSValidationMultipleErrorsError userInfo:userInfo];
+    return [self errorWithDomain:NSCocoaErrorDomain 
+                            code:NSValidationMultipleErrorsError 
+                        userInfo:[NSDictionary dictionaryWithObject:errors forKey:NSDetailedErrorsKey]];
 }
 
 - (NSArray *) underlyingErrors

@@ -42,7 +42,9 @@
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		3786E4E914825A7700814C10 /* BicycletteLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3786E4E814825A7700814C10 /* BicycletteLogicTests.m */; };
+		3786E4E914825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */; };
+		3786E4EE1482EAC000814C10 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
+		3786E4F21482EB2E00814C10 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A346AF128C9B3F000A2540 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37A346AE128C9B3F000A2540 /* VelibModel.xcdatamodel */; };
@@ -127,8 +129,7 @@
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3786E4E714825A7700814C10 /* BicycletteLogicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BicycletteLogicTests.h; sourceTree = "<group>"; };
-		3786E4E814825A7700814C10 /* BicycletteLogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BicycletteLogicTests.m; sourceTree = "<group>"; };
+		3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined_Tests.m"; sourceTree = "<group>"; };
 		3786E4EA14825A7700814C10 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -190,6 +191,7 @@
 				3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */,
 				3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */,
 				3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */,
+				3786E4F21482EB2E00814C10 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +244,7 @@
 				37216A411261087300A2695A /* Model */,
 				080E96DDFE201D6D7F000001 /* UI */,
 				37D188291170A25C00950D52 /* Extensions */,
-				3786E4E114825A7700814C10 /* BicycletteLogicTests */,
+				3786E4E114825A7700814C10 /* LogicTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -350,14 +352,12 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
-		3786E4E114825A7700814C10 /* BicycletteLogicTests */ = {
+		3786E4E114825A7700814C10 /* LogicTests */ = {
 			isa = PBXGroup;
 			children = (
-				3786E4E714825A7700814C10 /* BicycletteLogicTests.h */,
-				3786E4E814825A7700814C10 /* BicycletteLogicTests.m */,
+				3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */,
 				3786E4E214825A7700814C10 /* Supporting Files */,
 			);
-			name = BicycletteLogicTests;
 			path = LogicTests;
 			sourceTree = "<group>";
 		};
@@ -588,7 +588,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3786E4E914825A7700814C10 /* BicycletteLogicTests.m in Sources */,
+				3786E4E914825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m in Sources */,
+				3786E4EE1482EAC000814C10 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

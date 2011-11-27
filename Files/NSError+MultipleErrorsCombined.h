@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (MultipleErrorsCombined)
+@interface NSError (MultipleErrorsCombined)
 // Helper method to create CoreData NSValidationMultipleErrorsError.
 // Either parameter can be nil.
 // If the originalError is already a NSValidationMultipleErrorsError, the secondError is combined.
