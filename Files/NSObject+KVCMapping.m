@@ -35,9 +35,9 @@
 
 @implementation NSManagedObject (NSObject_KVCMapping)
 
-- (void) setValue:(id)value forMappedKey:(NSString*)wantedKey withMappingDictionary:(NSDictionary*)mapping
+- (void) setValue:(id)value forKey:(NSString*)wantedKey withMappingDictionary:(NSDictionary*)kvcMappingDictionnary
 {
-    NSString * realKey = [mapping objectForKey:wantedKey];
+    NSString * realKey = [kvcMappingDictionnary objectForKey:wantedKey];
     
     NSAttributeDescription * attributeDesc = [[[(NSManagedObject*)self entity] attributesByName] objectForKey:realKey];
     if(attributeDesc)
