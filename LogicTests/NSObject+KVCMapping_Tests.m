@@ -38,14 +38,21 @@
 
 @implementation NSManagedObject_KVCMapping_Tests
 {
-    NSDictionary * mapping;
-    NSDictionary * dataset;
     NSManagedObjectContext * moc;
+    NSDictionary * mapping;
+    NSDictionary * goodDataset, * badDataSet;
 }
 
 - (void) setUp
 {
     [super setUp];
+
+    moc = [NSManagedObjectContext new];
+    moc.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:
+                                      [[NSManagedObjectModel alloc] initWithContentsOfURL:
+                                       [[NSBundle bundleForClass:[self class]] URLForResource:@"NSObject+KVCMapping_Tests" 
+                                                                                withExtension:@"momd"]]];
+
     mapping = [NSDictionary dictionaryWithObjectsAndKeys:
                @"actualBoolean", @"usedBoolean",
                @"actualData", @"usedData",
@@ -59,24 +66,33 @@
                @"actualString", @"usedString",
                nil];
     
-    dataset = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSDate * date = [NSDate date];
+    
+    goodDataset = [NSDictionary dictionaryWithObjectsAndKeys:
                [NSNumber numberWithBool:YES], @"usedBoolean",
-               [@"test" dataUsingEncoding:NSUTF8StringEncoding], @"usedData",
-               [NSDate date], @"usedDate",
-               [NSDecimalNumber numberWithInt:100], @"usedDecimal",
-               [NSNumber numberWithDouble:100], @"usedDouble",
-               [NSNumber numberWithFloat:100], @"usedFloat",
                [NSNumber numberWithShort:100], @"usedInt16",
                [NSNumber numberWithInt:100], @"usedInt32",
                [NSNumber numberWithLongLong:100], @"usedInt64",
-               @"string", @"usedString",
+               [NSDecimalNumber numberWithInt:100], @"usedDecimal",
+               [NSNumber numberWithFloat:100], @"usedFloat",
+               [NSNumber numberWithDouble:100], @"usedDouble",
+               @"100", @"usedString",
+               [@"test" dataUsingEncoding:NSUTF8StringEncoding], @"usedData",
+               date, @"usedDate",
                nil];
-    
-    moc = [NSManagedObjectContext new];
-    moc.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:
-                                      [[NSManagedObjectModel alloc] initWithContentsOfURL:
-                                       [[NSBundle bundleForClass:[self class]] URLForResource:@"NSObject+KVCMapping_Tests" 
-                                                                                withExtension:@"momd"]]];
+
+    badDataSet = [NSDictionary dictionaryWithObjectsAndKeys:
+                @"YES", @"usedBoolean",
+                @"100", @"usedInt16",
+                @"100", @"usedInt32",
+                @"100", @"usedInt64",
+                @"100", @"usedDecimal",
+                @"100", @"usedFloat",
+                @"100", @"usedDouble",
+                [NSNumber numberWithInt:100], @"usedString",
+                [@"test" dataUsingEncoding:NSUTF8StringEncoding], @"usedData",
+                date, @"usedDate",
+               nil];
 }
 
 - (void) testBasic
@@ -87,13 +103,28 @@
     STAssertEqualObjects([test valueForKey:@"actualString"], @"testValue", nil);
 }
 
-- (void) testDataSet1
+- (void) testGoodDataset
 {
     NSManagedObject * test = [NSEntityDescription insertNewObjectForEntityForName:@"TestEntity" inManagedObjectContext:moc];
-    [test setValuesForKeysWithDictionary:dataset withMappingDictionary:mapping];
-    STAssertEqualObjects([test valueForKey:@"actualString"], @"string", nil);
-    STAssertEqualObjects([test valueForKey:@"actualBoolean"], [NSNumber numberWithBool:YES], nil);
-    STAssertEqualObjects([test valueForKey:@"actualDate"], [dataset objectForKey:@"usedDate"], nil);
+    [test setValuesForKeysWithDictionary:goodDataset withMappingDictionary:mapping];
+    
+    for (NSString * wantedKey in goodDataset) {
+        id value = [goodDataset objectForKey:wantedKey];
+        NSString * realKey = [mapping objectForKey:wantedKey];
+        STAssertEqualObjects([test valueForKey:realKey], value, nil);
+    }
+}
+
+- (void) testBadDataset
+{
+    NSManagedObject * test = [NSEntityDescription insertNewObjectForEntityForName:@"TestEntity" inManagedObjectContext:moc];
+    [test setValuesForKeysWithDictionary:badDataSet withMappingDictionary:mapping];
+    
+    for (NSString * wantedKey in goodDataset) {
+        id value = [goodDataset objectForKey:wantedKey];
+        NSString * realKey = [mapping objectForKey:wantedKey];
+        STAssertEqualObjects([test valueForKey:realKey], value, nil);
+    }
 }
 
 @end
