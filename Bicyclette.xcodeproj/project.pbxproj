@@ -24,6 +24,8 @@
 		371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */; };
 		371D4FC51483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */; };
+		371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
+		371D4FC91484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
 		371E1BF3137FCF7C007EFBFF /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
 		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
 		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
@@ -111,6 +113,8 @@
 		37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+NibLoaded.m"; sourceTree = "<group>"; };
 		371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping_Tests.m"; sourceTree = "<group>"; };
 		371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NSObject+KVCMapping_Tests.xcdatamodel"; sourceTree = "<group>"; };
+		371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FormattedStringToDateValueTransformer.h; sourceTree = "<group>"; };
+		371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattedStringToDateValueTransformer.m; sourceTree = "<group>"; };
 		371E1BEA137FCF7C007EFBFF /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		371E1BEB137FCF7C007EFBFF /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 		371E1BEC137FCF7C007EFBFF /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
@@ -420,10 +424,12 @@
 				37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */,
 				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
 				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
-				37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */,
-				37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */,
 				37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */,
 				37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */,
+				37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */,
+				37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */,
+				371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */,
+				371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */,
 			);
 			name = Extensions;
 			path = Files;
@@ -603,6 +609,7 @@
 				37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */,
 				37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */,
 				37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */,
+				371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +622,7 @@
 				371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */,
 				371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */,
 				371D4FC51483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld in Sources */,
+				371D4FC91484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
