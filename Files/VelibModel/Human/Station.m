@@ -13,6 +13,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property (nonatomic, strong) DataUpdater * updater;
+@property (nonatomic, strong) NSError * updateError;
 @property (nonatomic, strong) NSMutableString * currentParsedString;
 @property (nonatomic, strong) CLLocation * location;
 - (BOOL)validateConsistency:(NSError **)error;
@@ -27,23 +28,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 /****************************************************************************/
 #pragma mark -
 
-- (NSDictionary*) stationStatusKVCMapping
-{
-    static NSDictionary * s_mapping = nil;
-    if(nil==s_mapping)
-        s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
-                     @"status_available",@"available",
-                     @"status_free",@"free",
-                     @"status_ticket",@"ticket",
-                     @"status_total",@"total",
-                     nil];
-        
-    return s_mapping;
-}
-/****************************************************************************/
-#pragma mark -
-
-@synthesize updater, currentParsedString;
+@synthesize updater, updateError, currentParsedString;
 @synthesize location;
 
 - (NSString *) debugDescription
@@ -59,12 +44,13 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 }
 
 /****************************************************************************/
-#pragma mark -
+#pragma mark updating
 
 - (void) refresh
 {
 	if(self.updater!=nil)
 		return;
+    self.updateError = nil;
     self.updater = [DataUpdater updaterWithDelegate:self];
 }
 
@@ -93,6 +79,12 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
     self.updater = nil;
 }
 
+- (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
+{
+    self.updateError = error;
+    self.updater = nil;
+}
+
 - (void) updater:(DataUpdater *)updater receivedUpdatedData:(NSData *)data
 {
     NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
@@ -104,9 +96,26 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
     [self.managedObjectContext.model save];
 }
 
+/****************************************************************************/
+#pragma mark parsing
+
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     [self.currentParsedString appendString:string];
+}
+
+- (NSDictionary*) stationStatusKVCMapping
+{
+    static NSDictionary * s_mapping = nil;
+    if(nil==s_mapping)
+        s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
+                     @"status_available",@"available",
+                     @"status_free",@"free",
+                     @"status_ticket",@"ticket",
+                     @"status_total",@"total",
+                     nil];
+    
+    return s_mapping;
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
@@ -118,7 +127,7 @@ NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChan
 }
 
 /****************************************************************************/
-#pragma mark loading
+#pragma mark status
 
 - (BOOL) isLoading
 {

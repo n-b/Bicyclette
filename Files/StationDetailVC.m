@@ -33,6 +33,7 @@
 
 @property (nonatomic, weak) IBOutlet StationStatusView * statusView;
 @property (nonatomic, weak) IBOutlet UIView * loadingIndicator;
+@property (nonatomic, weak) IBOutlet UIImageView * errorImageView;
 
 @property (nonatomic, weak) IBOutlet UIButton * favoriteButton;
 
@@ -60,7 +61,7 @@
 
 @synthesize scrollView, contentView;
 @synthesize shortNameLabel, addressLabel, distanceLabel, availableCountLabel, freeCountLabel;
-@synthesize statusView, loadingIndicator;
+@synthesize statusView, loadingIndicator, errorImageView;
 @synthesize favoriteButton;
 @synthesize previousNextBarItem, previousNextControl;
 @synthesize station, stations;
@@ -176,8 +177,9 @@
 	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location usingShortFormat:NO];
 
 	[self.statusView setNeedsDisplay];
-	self.loadingIndicator.hidden = !self.station.loading;
-    self.availableCountLabel.hidden = self.freeCountLabel.hidden = self.station.loading;
+	self.loadingIndicator.hidden = !self.station.loading || self.station.updateError;
+    self.availableCountLabel.hidden = self.freeCountLabel.hidden = self.station.loading || self.station.updateError;
+    self.errorImageView.hidden = (self.station.updateError==nil);
 
 	self.availableCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Vélos", nil),self.station.status_availableValue];
 	self.freeCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Places", nil),self.station.status_freeValue];

@@ -32,6 +32,7 @@
 - (NSURL*) urlForUpdater:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater receivedUpdatedData:(NSData*)data;
 - (void) updaterDidFinish:(DataUpdater*)updater;
+- (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 @optional
 - (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater*)updater;
 - (NSDate*) dataDateForUpdater:(DataUpdater*)updater;

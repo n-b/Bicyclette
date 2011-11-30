@@ -89,7 +89,7 @@
 	[self.updateConnection cancel];
 	self.updateConnection = nil;
 	self.updateData = nil;
-    [self.delegate updaterDidFinish:self];
+    [self.delegate updater:self didFailWithError:error];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection

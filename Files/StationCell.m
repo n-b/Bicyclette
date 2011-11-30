@@ -26,6 +26,7 @@
 
 @property (nonatomic, weak) IBOutlet StationStatusView * statusView;
 @property (nonatomic, weak) IBOutlet UIView * loadingIndicator;
+@property (nonatomic, weak) IBOutlet UIImageView * errorImageView;
 
 @property (nonatomic, weak) IBOutlet UIButton * favoriteButton;
 - (void) updateUI;
@@ -38,7 +39,7 @@
 @implementation StationCell
 
 @synthesize shortNameLabel, availableCountLabel, freeCountLabel;
-@synthesize statusView, loadingIndicator;
+@synthesize statusView, loadingIndicator, errorImageView;
 @synthesize favoriteButton;
 @synthesize station;
 
@@ -78,8 +79,9 @@
 	self.availableCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Vélos", nil),self.station.status_availableValue];
 	self.freeCountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Places", nil),self.station.status_freeValue];
 
-    self.loadingIndicator.hidden = !self.station.loading;
-    self.availableCountLabel.hidden = self.freeCountLabel.hidden = self.station.loading;
+	self.loadingIndicator.hidden = !self.station.loading || self.station.updateError;
+    self.availableCountLabel.hidden = self.freeCountLabel.hidden = self.station.loading || self.station.updateError;
+    self.errorImageView.hidden = (self.station.updateError==nil);
     
 	self.favoriteButton.selected = self.station.favorite;
     [self.statusView setNeedsDisplay];

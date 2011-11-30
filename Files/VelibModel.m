@@ -116,6 +116,12 @@
     self.updater = nil;
 }
 
+- (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
+{
+    // No specific error handling
+    self.updater = nil;
+}
+
 - (void) updater:(DataUpdater*)updater receivedUpdatedData:(NSData*)xml
 {
 	self.updatingXML = YES;

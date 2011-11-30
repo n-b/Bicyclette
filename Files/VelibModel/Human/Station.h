@@ -6,6 +6,7 @@
 // status
 - (void) refresh;
 @property (nonatomic, readonly, getter=isLoading) BOOL loading;
+@property (nonatomic, readonly, strong) NSError * updateError;
 
 // Computed properties
 @property (weak, nonatomic, readonly) NSString * cleanName;

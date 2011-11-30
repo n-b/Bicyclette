@@ -57,6 +57,7 @@
 		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
 		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
 		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
+		37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C189ED14861BE800F64F5B /* WarningIcon.png */; };
 		37C79907147ED06400B285BA /* RegionsTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C79906147ED06400B285BA /* RegionsTab.png */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
@@ -113,7 +114,7 @@
 		37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+NibLoaded.m"; sourceTree = "<group>"; };
 		371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping_Tests.m"; sourceTree = "<group>"; };
 		371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NSObject+KVCMapping_Tests.xcdatamodel"; sourceTree = "<group>"; };
-		371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FormattedStringToDateValueTransformer.h; sourceTree = "<group>"; };
+		371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattedStringToDateValueTransformer.h; sourceTree = "<group>"; };
 		371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattedStringToDateValueTransformer.m; sourceTree = "<group>"; };
 		371E1BEA137FCF7C007EFBFF /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		371E1BEB137FCF7C007EFBFF /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		37B69DB11290925B0053728D /* StationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationStatusView.m; sourceTree = "<group>"; };
 		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
+		37C189ED14861BE800F64F5B /* WarningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WarningIcon.png; sourceTree = "<group>"; };
 		37C79906147ED06400B285BA /* RegionsTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RegionsTab.png; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		3756EACB129800B600113534 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37C189ED14861BE800F64F5B /* WarningIcon.png */,
 				37E9538312AA379B00C1D21C /* FavoritesTab.png */,
 				37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */,
 				37C79906147ED06400B285BA /* RegionsTab.png */,
@@ -530,6 +533,7 @@
 				37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */,
 				37D6B10E12CCC93700EEC835 /* StationDetailVC.xib in Resources */,
 				37C79907147ED06400B285BA /* RegionsTab.png in Resources */,
+				37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
