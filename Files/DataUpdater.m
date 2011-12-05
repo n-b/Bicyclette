@@ -48,6 +48,7 @@
 		if(needUpdate)
         {
             NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
+            [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
             self.updateConnection = [NSURLConnection connectionWithRequest:request
                                                                   delegate:self];
         }
