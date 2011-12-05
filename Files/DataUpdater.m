@@ -86,7 +86,6 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	NSLog(@"download failed %@",error);
 	[self.updateConnection cancel];
 	self.updateConnection = nil;
 	self.updateData = nil;
