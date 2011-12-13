@@ -3,6 +3,22 @@
 
 #import "_Region.h"
 
+const struct RegionAttributes RegionAttributes = {
+	.maxLatitude = @"maxLatitude",
+	.maxLongitude = @"maxLongitude",
+	.minLatitude = @"minLatitude",
+	.minLongitude = @"minLongitude",
+	.name = @"name",
+	.number = @"number",
+};
+
+const struct RegionRelationships RegionRelationships = {
+	.stations = @"stations",
+};
+
+const struct RegionFetchedProperties RegionFetchedProperties = {
+};
+
 @implementation RegionID
 @end
 
@@ -175,7 +191,9 @@
 	
 - (NSMutableOrderedSet*)stationsSet {
 	[self willAccessValueForKey:@"stations"];
-	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableSetValueForKey:@"stations"];
+  
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"stations"];
+  
 	[self didAccessValueForKey:@"stations"];
 	return result;
 }

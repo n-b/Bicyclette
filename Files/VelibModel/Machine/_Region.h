@@ -4,6 +4,22 @@
 #import <CoreData/CoreData.h>
 
 
+extern const struct RegionAttributes {
+	__unsafe_unretained NSString *maxLatitude;
+	__unsafe_unretained NSString *maxLongitude;
+	__unsafe_unretained NSString *minLatitude;
+	__unsafe_unretained NSString *minLongitude;
+	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *number;
+} RegionAttributes;
+
+extern const struct RegionRelationships {
+	__unsafe_unretained NSString *stations;
+} RegionRelationships;
+
+extern const struct RegionFetchedProperties {
+} RegionFetchedProperties;
+
 @class Station;
 
 
@@ -25,7 +41,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *maxLatitude;
+@property (nonatomic, strong) NSNumber *maxLatitude;
 
 
 @property double maxLatitudeValue;
@@ -37,7 +53,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *maxLongitude;
+@property (nonatomic, strong) NSNumber *maxLongitude;
 
 
 @property double maxLongitudeValue;
@@ -49,7 +65,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *minLatitude;
+@property (nonatomic, strong) NSNumber *minLatitude;
 
 
 @property double minLatitudeValue;
@@ -61,7 +77,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *minLongitude;
+@property (nonatomic, strong) NSNumber *minLongitude;
 
 
 @property double minLongitudeValue;
@@ -73,7 +89,7 @@
 
 
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, strong) NSString *name;
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -81,7 +97,7 @@
 
 
 
-@property (nonatomic, retain) NSString *number;
+@property (nonatomic, strong) NSString *number;
 
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
@@ -90,7 +106,7 @@
 
 
 
-@property (nonatomic, retain) NSOrderedSet* stations;
+@property (nonatomic, strong) NSOrderedSet* stations;
 
 - (NSMutableOrderedSet*)stationsSet;
 

@@ -4,6 +4,29 @@
 #import <CoreData/CoreData.h>
 
 
+extern const struct StationAttributes {
+	__unsafe_unretained NSString *address;
+	__unsafe_unretained NSString *bonus;
+	__unsafe_unretained NSString *fullAddress;
+	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *longitude;
+	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *number;
+	__unsafe_unretained NSString *open;
+	__unsafe_unretained NSString *status_available;
+	__unsafe_unretained NSString *status_date;
+	__unsafe_unretained NSString *status_free;
+	__unsafe_unretained NSString *status_ticket;
+	__unsafe_unretained NSString *status_total;
+} StationAttributes;
+
+extern const struct StationRelationships {
+	__unsafe_unretained NSString *region;
+} StationRelationships;
+
+extern const struct StationFetchedProperties {
+} StationFetchedProperties;
+
 @class Region;
 
 
@@ -32,7 +55,7 @@
 
 
 
-@property (nonatomic, retain) NSString *address;
+@property (nonatomic, strong) NSString *address;
 
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
@@ -40,7 +63,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *bonus;
+@property (nonatomic, strong) NSNumber *bonus;
 
 
 @property BOOL bonusValue;
@@ -52,7 +75,7 @@
 
 
 
-@property (nonatomic, retain) NSString *fullAddress;
+@property (nonatomic, strong) NSString *fullAddress;
 
 
 //- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
@@ -60,7 +83,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *latitude;
+@property (nonatomic, strong) NSNumber *latitude;
 
 
 @property double latitudeValue;
@@ -72,7 +95,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *longitude;
+@property (nonatomic, strong) NSNumber *longitude;
 
 
 @property double longitudeValue;
@@ -84,7 +107,7 @@
 
 
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, strong) NSString *name;
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -92,7 +115,7 @@
 
 
 
-@property (nonatomic, retain) NSString *number;
+@property (nonatomic, strong) NSString *number;
 
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
@@ -100,7 +123,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *open;
+@property (nonatomic, strong) NSNumber *open;
 
 
 @property BOOL openValue;
@@ -112,7 +135,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *status_available;
+@property (nonatomic, strong) NSNumber *status_available;
 
 
 @property short status_availableValue;
@@ -124,7 +147,7 @@
 
 
 
-@property (nonatomic, retain) NSDate *status_date;
+@property (nonatomic, strong) NSDate *status_date;
 
 
 //- (BOOL)validateStatus_date:(id*)value_ error:(NSError**)error_;
@@ -132,7 +155,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *status_free;
+@property (nonatomic, strong) NSNumber *status_free;
 
 
 @property short status_freeValue;
@@ -144,7 +167,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *status_ticket;
+@property (nonatomic, strong) NSNumber *status_ticket;
 
 
 @property BOOL status_ticketValue;
@@ -156,7 +179,7 @@
 
 
 
-@property (nonatomic, retain) NSNumber *status_total;
+@property (nonatomic, strong) NSNumber *status_total;
 
 
 @property short status_totalValue;
@@ -169,7 +192,7 @@
 
 
 
-@property (nonatomic, retain) Region* region;
+@property (nonatomic, strong) Region* region;
 
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
 

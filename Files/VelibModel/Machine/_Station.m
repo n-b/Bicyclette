@@ -3,6 +3,29 @@
 
 #import "_Station.h"
 
+const struct StationAttributes StationAttributes = {
+	.address = @"address",
+	.bonus = @"bonus",
+	.fullAddress = @"fullAddress",
+	.latitude = @"latitude",
+	.longitude = @"longitude",
+	.name = @"name",
+	.number = @"number",
+	.open = @"open",
+	.status_available = @"status_available",
+	.status_date = @"status_date",
+	.status_free = @"status_free",
+	.status_ticket = @"status_ticket",
+	.status_total = @"status_total",
+};
+
+const struct StationRelationships StationRelationships = {
+	.region = @"region",
+};
+
+const struct StationFetchedProperties StationFetchedProperties = {
+};
+
 @implementation StationID
 @end
 
