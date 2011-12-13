@@ -53,7 +53,7 @@
 
 - (NSArray *) sortedStations
 {
-    return [self.stations sortedArrayUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+    return [self.stationsSet array];
 }
 
 @end

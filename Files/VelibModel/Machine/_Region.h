@@ -90,9 +90,9 @@
 
 
 
-@property (nonatomic, retain) NSSet* stations;
+@property (nonatomic, retain) NSOrderedSet* stations;
 
-- (NSMutableSet*)stationsSet;
+- (NSMutableOrderedSet*)stationsSet;
 
 
 
@@ -106,8 +106,8 @@
 
 @interface _Region (CoreDataGeneratedAccessors)
 
-- (void)addStations:(NSSet*)value_;
-- (void)removeStations:(NSSet*)value_;
+- (void)addStations:(NSOrderedSet*)value_;
+- (void)removeStations:(NSOrderedSet*)value_;
 - (void)addStationsObject:(Station*)value_;
 - (void)removeStationsObject:(Station*)value_;
 
@@ -165,8 +165,8 @@
 
 
 
-- (NSMutableSet*)primitiveStations;
-- (void)setPrimitiveStations:(NSMutableSet*)value;
+- (NSMutableOrderedSet*)primitiveStations;
+- (void)setPrimitiveStations:(NSMutableOrderedSet*)value;
 
 
 @end

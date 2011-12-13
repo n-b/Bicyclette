@@ -173,9 +173,9 @@
 @dynamic stations;
 
 	
-- (NSMutableSet*)stationsSet {
+- (NSMutableOrderedSet*)stationsSet {
 	[self willAccessValueForKey:@"stations"];
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stations"];
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableSetValueForKey:@"stations"];
 	[self didAccessValueForKey:@"stations"];
 	return result;
 }

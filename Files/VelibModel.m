@@ -136,14 +136,21 @@
 		[self.moc deleteObject:oldStation];
 	}
 	
-	// Parse
+	// Parsing
     self.parsing_regionsByCodePostal = [NSMutableDictionary dictionary];
 	NSXMLParser * parser = [[NSXMLParser alloc] initWithData:xml];
 	parser.delegate = self;
 	[parser parse];
     
+    // Post processing :
 	// Compute regions coordinates
-    [[self.parsing_regionsByCodePostal allValues] makeObjectsPerformSelector:@selector(setupCoordinates)];
+    // and reorder stations in regions
+    for (Region * region in [self.parsing_regionsByCodePostal allValues]) {
+        [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
+            return [obj1.name compare:obj2.name];
+        }];
+        [region setupCoordinates];
+    }
     self.parsing_regionsByCodePostal = nil;
 
 	// Save
