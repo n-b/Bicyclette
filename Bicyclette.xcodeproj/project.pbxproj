@@ -563,7 +563,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/VelibModel.xcdatamodel --machine-dir Files/VelibModel/Machine --human-dir Files/VelibModel/Human";
+			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/VelibModel.xcdatamodel --template-var arc=true --machine-dir Files/VelibModel/Machine --human-dir Files/VelibModel/Human";
 			showEnvVarsInLog = 0;
 		};
 		3786E4DA14825A7700814C10 /* ShellScript */ = {
