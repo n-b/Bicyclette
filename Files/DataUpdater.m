@@ -48,6 +48,7 @@
 		if(needUpdate)
         {
             NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
+            [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
             self.updateConnection = [NSURLConnection connectionWithRequest:request
                                                                   delegate:self];
         }
@@ -85,7 +86,6 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	NSLog(@"download failed %@",error);
 	[self.updateConnection cancel];
 	self.updateConnection = nil;
 	self.updateData = nil;
