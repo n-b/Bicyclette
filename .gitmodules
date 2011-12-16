@@ -1,0 +1,3 @@
+[submodule "submodules/KVOBlock"]
+	path = submodules/KVOBlock
+	url = https://github.com/schwa/KVO-Notification-Manager.git

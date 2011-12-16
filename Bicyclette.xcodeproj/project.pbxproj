@@ -48,6 +48,7 @@
 		37800A26149A68F000957014 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 37800A25149A68F000957014 /* List.m */; };
 		37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7B1380446A009D8334 /* VelibModel+Favorites.m */; };
 		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
+		37861B6A149BFBB10023B4CB /* NSObject_KVOBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 37861B58149BFBB10023B4CB /* NSObject_KVOBlock.m */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -160,6 +161,8 @@
 		37822B7B1380446A009D8334 /* VelibModel+Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VelibModel+Favorites.m"; sourceTree = "<group>"; };
 		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
 		37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+StandardPaths.m"; sourceTree = "<group>"; };
+		37861B57149BFBB10023B4CB /* NSObject_KVOBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_KVOBlock.h; sourceTree = "<group>"; };
+		37861B58149BFBB10023B4CB /* NSObject_KVOBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObject_KVOBlock.m; sourceTree = "<group>"; };
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 				37D188291170A25C00950D52 /* Extensions */,
 				3786E4E114825A7700814C10 /* LogicTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				37861B55149BFBB10023B4CB /* submodules */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
@@ -398,6 +402,23 @@
 			);
 			name = Resources;
 			path = Files;
+			sourceTree = "<group>";
+		};
+		37861B55149BFBB10023B4CB /* submodules */ = {
+			isa = PBXGroup;
+			children = (
+				37861B56149BFBB10023B4CB /* KVOBlock */,
+			);
+			path = submodules;
+			sourceTree = "<group>";
+		};
+		37861B56149BFBB10023B4CB /* KVOBlock */ = {
+			isa = PBXGroup;
+			children = (
+				37861B57149BFBB10023B4CB /* NSObject_KVOBlock.h */,
+				37861B58149BFBB10023B4CB /* NSObject_KVOBlock.m */,
+			);
+			path = KVOBlock;
 			sourceTree = "<group>";
 		};
 		3786E4E114825A7700814C10 /* LogicTests */ = {
@@ -642,6 +663,7 @@
 				3757EC9D149890DE0007FD0B /* Bookmark.m in Sources */,
 				37800A23149A68E700957014 /* _List.m in Sources */,
 				37800A26149A68F000957014 /* List.m in Sources */,
+				37861B6A149BFBB10023B4CB /* NSObject_KVOBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,7 +764,6 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
@@ -784,7 +805,6 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;

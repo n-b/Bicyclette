@@ -4,10 +4,11 @@
 #import <Availability.h>
 
 #ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import <UIKit/UIKit.h>
-	#import <QuartzCore/QuartzCore.h>
-	#import <CoreData/CoreData.h>
-	#import <CoreLocation/CoreLocation.h>
-	#import <MapKit/MapKit.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import "NSObject_KVOBlock.h"
 #endif
