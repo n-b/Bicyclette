@@ -28,6 +28,7 @@
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 // - 
 @property (nonatomic, strong) NSMutableDictionary * parsing_regionsByCodePostal;
+@property (nonatomic, strong) NSMutableArray * parsing_oldStations;
 @end
 
 /****************************************************************************/
@@ -41,6 +42,7 @@
 @synthesize hardcodedLimits;
 @synthesize regionContainingData;
 @synthesize parsing_regionsByCodePostal;
+@synthesize parsing_oldStations;
 
 - (id)init {
     self = [super init];
@@ -128,13 +130,10 @@
     
 	NSError * requestError = nil;
 	
-	// Remove old stations and regions
+	// Get Old Stations Names
 	NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
 	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
-	NSArray * oldStations = [self.moc executeFetchRequest:oldStationsRequest error:&requestError];
-	for (Station * oldStation in oldStations) {
-		[self.moc deleteObject:oldStation];
-	}
+    self.parsing_oldStations =  [[self.moc executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
 	
 	// Parsing
     self.parsing_regionsByCodePostal = [NSMutableDictionary dictionary];
@@ -153,6 +152,12 @@
     }
     self.parsing_regionsByCodePostal = nil;
 
+    // Delete Old Stations
+	for (Station * oldStation in self.parsing_oldStations) {
+		[self.moc deleteObject:oldStation];
+	}
+    self.parsing_oldStations = nil;
+    
 	// Save
 	[self save];
 	self.updatingXML = NO;
@@ -182,7 +187,21 @@
 {
 	if([elementName isEqualToString:@"marker"])
 	{
-		Station * station = [Station insertInManagedObjectContext:self.moc];
+        // Find Existing Stations
+        Station * station = [self.parsing_oldStations firstObjectWithValue:[attributeDict objectForKey:@"number"] forKey:StationAttributes.number];
+        if(station)
+        {
+            // found existing
+            [self.parsing_oldStations removeObject:station];
+        }
+        else
+        {
+            if(self.parsing_oldStations.count)
+                NSLog(@"Created new station (%@)",[attributeDict objectForKey:@"number"]);
+            station = [Station insertInManagedObjectContext:self.moc];
+        }
+
+        // Set Values and hardcoded fixes
 		[station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:self.stationKVCMapping]; // Yay!
 		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
 		if(fixes)

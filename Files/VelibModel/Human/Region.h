@@ -6,6 +6,4 @@
 
 @property (readonly, nonatomic) MKCoordinateRegion coordinateRegion;
 
-@property (weak, nonatomic, readonly) NSArray * sortedStations;
-
 @end

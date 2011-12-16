@@ -10,59 +10,37 @@
 #import "NSFileManager+StandardPaths.h"
 #import "Station.h"
 #import "BicycletteApplicationDelegate.h"
+#import "List.h"
+#import "Bookmark.h"
 
-
-
-@interface VelibModel (FavoritesPrivate)
-@property (nonatomic, copy) NSArray * favoritesIdentifiers;
-@property (nonatomic, readonly) NSString * favoritesFilePath;
-
-@end
+const struct VelibModelNotifications VelibModelNotifications = {
+	.favoriteChanged = @"VelibModelNotificationsFavoriteChanged",
+};
 
 @implementation VelibModel (Favorites)
 
-- (NSArray *) favorites
+- (List*) mainBookmarksList
 {
-    NSArray * identifiers = self.favoritesIdentifiers;
     NSFetchRequest * request = [NSFetchRequest new];
-    request.entity = [Station entityInManagedObjectContext:self.moc];
-    request.predicate = [NSPredicate predicateWithFormat:@"number IN %@", identifiers];
-    
+    request.entity = [List entityInManagedObjectContext:self.moc];
     NSError * error = nil;
     NSArray * result = [self.moc executeFetchRequest:request error:&error];
-    result = [result sortedArrayUsingComparator:^( id a, id b ) {
-        NSUInteger indexA = [identifiers indexOfObject:a];
-        NSUInteger indexB = [identifiers indexOfObject:b];
-        return indexA<indexB?NSOrderedAscending:indexA>indexB?NSOrderedDescending:NSOrderedSame;
-    }];
-    
-    return result;
-}
-
-- (void) setFavorites:(NSArray *)favorites
-{
-    self.favoritesIdentifiers = [favorites valueForKey:@"number"];
-}
-
-- (NSArray *) favoritesIdentifiers
-{
-    NSArray * favs = [NSArray arrayWithContentsOfFile:self.favoritesFilePath];
-    if(nil==favs)
+    List * list;
+    if(result.count == 0)
     {
-        favs = [NSArray array];
-        self.favoritesIdentifiers = favs;
+        list = [List insertInManagedObjectContext:self.moc];
+        list.name = @"_favorites_";
     }
-    return favs;
+    else {
+        NSAssert(result.count==1,@"There must be only one list.");
+        list = [result objectAtIndex:0];
+    }
+    return list;
 }
 
-- (void) setFavoritesIdentifiers:(NSArray*)identifiers
+- (NSOrderedSet *) favoriteStations
 {
-    [identifiers writeToFile:self.favoritesFilePath atomically:YES];
-}
-
-- (NSString*) favoritesFilePath
-{
-    return [[NSFileManager documentsDirectory] stringByAppendingPathComponent:@"favorites.plist"];
+    return [self.mainBookmarksList.bookmarks valueForKey:BookmarkRelationships.station];
 }
 
 @end
@@ -73,23 +51,46 @@
 /****************************************************************************/
 #pragma mark Favorite
 
-- (void) setFavorite:(BOOL) newValue
+- (Bookmark*) favoriteBookmark
 {
-    if(self.favorite!=newValue)
-    {
-        NSMutableArray * favs = [NSMutableArray arrayWithArray:BicycletteAppDelegate.model.favoritesIdentifiers];
-        if(newValue)
-            [favs addObject:self.number];
-        else
-            [favs removeObject:self.number];
-        BicycletteAppDelegate.model.favoritesIdentifiers = favs;
-        [[NSNotificationCenter defaultCenter] postNotificationName:StationFavoriteDidChangeNotification object:self];
-    }
+    if(self.bookmarks.count==0)
+        return nil;
+    NSMutableSet * bookmarks = [self.bookmarks mutableCopy];
+    [bookmarks intersectSet:[self.managedObjectContext.model.mainBookmarksList.bookmarks set]];
+    NSAssert(bookmarks.count==1,@"There should be 1 favorite bookmark");
+    return [bookmarks anyObject];
 }
 
 - (BOOL) isFavorite
 {
-	return [BicycletteAppDelegate.model.favoritesIdentifiers containsObject:self.number];
+    return [self.managedObjectContext.model.favoriteStations containsObject:self];
+}
+
+- (void) setFavorite:(BOOL) newValue
+{
+    if(self.favorite!=newValue)
+    {
+        if(newValue)
+        {
+            Bookmark * bookmark = [Bookmark insertInManagedObjectContext:self.managedObjectContext];
+            bookmark.list = self.managedObjectContext.model.mainBookmarksList;
+            bookmark.station = self;
+            [self addBookmarksObject:bookmark];  // This should not be necessary (inverse relationship of the previous line)
+        }
+        else
+        {
+            Bookmark * bookmark = self.favoriteBookmark;
+            [self.managedObjectContext deleteObject:bookmark];
+            [self removeBookmarksObject:bookmark]; // This should not be necessary (delete rule nullifies)
+        }
+        [self.managedObjectContext.model save];
+        [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.favoriteChanged object:self];
+    }
+}
+
+- (UIColor*) favoriteColor
+{
+    return self.favoriteBookmark.color;
 }
 
 

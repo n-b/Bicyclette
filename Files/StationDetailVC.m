@@ -40,7 +40,7 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem * previousNextBarItem; // retained
 @property (nonatomic, weak) IBOutlet UISegmentedControl * previousNextControl;
 
-@property (nonatomic, strong) NSArray * stations;
+@property (nonatomic, strong) NSOrderedSet * stations;
 
 - (BOOL) canShowPrevious;
 - (BOOL) canShowNext;
@@ -69,12 +69,12 @@
 /****************************************************************************/
 #pragma mark Life Cycle
 
-+ (id) detailVCWithStation:(Station*) aStation inArray:(NSArray*)aStations
++ (id) detailVCWithStation:(Station*) aStation inOrderedSet:(NSOrderedSet*)aStations
 {
-	return [[self alloc] initWithStation:aStation inArray:aStations];
+	return [[self alloc] initWithStation:aStation inOrderedSet:aStations];
 }
 
-- (id) initWithStation:(Station*) aStation inArray:(NSArray*)aStations
+- (id) initWithStation:(Station*) aStation inOrderedSet:(NSOrderedSet*)aStations
 {
 	self = [super initWithNibName:nil bundle:nil];
     if (self) {

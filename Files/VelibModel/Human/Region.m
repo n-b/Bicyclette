@@ -48,12 +48,4 @@
 	return coordinateRegion;
 }
 
-/****************************************************************************/
-#pragma mark 
-
-- (NSArray *) sortedStations
-{
-    return [self.stationsSet array];
-}
-
 @end

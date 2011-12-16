@@ -42,6 +42,10 @@
 		3756EAE61298018A00113534 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE11298018A00113534 /* Icon.png */; };
 		3756EAE71298018A00113534 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE21298018A00113534 /* Icon@2x.png */; };
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
+		3757EC9A149890D30007FD0B /* _Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3757EC99149890D30007FD0B /* _Bookmark.m */; };
+		3757EC9D149890DE0007FD0B /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3757EC9C149890DE0007FD0B /* Bookmark.m */; };
+		37800A23149A68E700957014 /* _List.m in Sources */ = {isa = PBXBuildFile; fileRef = 37800A22149A68E700957014 /* _List.m */; };
+		37800A26149A68F000957014 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 37800A25149A68F000957014 /* List.m */; };
 		37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7B1380446A009D8334 /* VelibModel+Favorites.m */; };
 		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
@@ -144,6 +148,14 @@
 		3756EAE11298018A00113534 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3756EAE21298018A00113534 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		3757EC98149890D30007FD0B /* _Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Bookmark.h; sourceTree = "<group>"; };
+		3757EC99149890D30007FD0B /* _Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Bookmark.m; sourceTree = "<group>"; };
+		3757EC9B149890DE0007FD0B /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
+		3757EC9C149890DE0007FD0B /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
+		37800A21149A68E700957014 /* _List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _List.h; sourceTree = "<group>"; };
+		37800A22149A68E700957014 /* _List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _List.m; sourceTree = "<group>"; };
+		37800A24149A68F000957014 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		37800A25149A68F000957014 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 		37822B7A1380446A009D8334 /* VelibModel+Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VelibModel+Favorites.h"; sourceTree = "<group>"; };
 		37822B7B1380446A009D8334 /* VelibModel+Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VelibModel+Favorites.m"; sourceTree = "<group>"; };
 		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
@@ -311,6 +323,10 @@
 				371E1BEB137FCF7C007EFBFF /* Region.m */,
 				371E1BEC137FCF7C007EFBFF /* Station.h */,
 				371E1BED137FCF7C007EFBFF /* Station.m */,
+				3757EC9B149890DE0007FD0B /* Bookmark.h */,
+				3757EC9C149890DE0007FD0B /* Bookmark.m */,
+				37800A24149A68F000957014 /* List.h */,
+				37800A25149A68F000957014 /* List.m */,
 			);
 			path = Human;
 			sourceTree = "<group>";
@@ -322,6 +338,10 @@
 				371E1BF0137FCF7C007EFBFF /* _Region.m */,
 				371E1BF1137FCF7C007EFBFF /* _Station.h */,
 				371E1BF2137FCF7C007EFBFF /* _Station.m */,
+				3757EC98149890D30007FD0B /* _Bookmark.h */,
+				3757EC99149890D30007FD0B /* _Bookmark.m */,
+				37800A21149A68E700957014 /* _List.h */,
+				37800A22149A68E700957014 /* _List.m */,
 			);
 			path = Machine;
 			sourceTree = "<group>";
@@ -487,7 +507,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Nicolas Bouilleaud";
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Bicyclette" */;
@@ -618,6 +638,10 @@
 				37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */,
 				37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */,
 				371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
+				3757EC9A149890D30007FD0B /* _Bookmark.m in Sources */,
+				3757EC9D149890DE0007FD0B /* Bookmark.m in Sources */,
+				37800A23149A68E700957014 /* _List.m in Sources */,
+				37800A26149A68F000957014 /* List.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

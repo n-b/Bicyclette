@@ -21,12 +21,14 @@ extern const struct StationAttributes {
 } StationAttributes;
 
 extern const struct StationRelationships {
+	__unsafe_unretained NSString *bookmarks;
 	__unsafe_unretained NSString *region;
 } StationRelationships;
 
 extern const struct StationFetchedProperties {
 } StationFetchedProperties;
 
+@class Bookmark;
 @class Region;
 
 
@@ -192,6 +194,13 @@ extern const struct StationFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet* bookmarks;
+
+- (NSMutableSet*)bookmarksSet;
+
+
+
+
 @property (nonatomic, strong) Region* region;
 
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
@@ -202,6 +211,11 @@ extern const struct StationFetchedProperties {
 @end
 
 @interface _Station (CoreDataGeneratedAccessors)
+
+- (void)addBookmarks:(NSSet*)value_;
+- (void)removeBookmarks:(NSSet*)value_;
+- (void)addBookmarksObject:(Bookmark*)value_;
+- (void)removeBookmarksObject:(Bookmark*)value_;
 
 @end
 
@@ -308,6 +322,11 @@ extern const struct StationFetchedProperties {
 - (void)setPrimitiveStatus_totalValue:(short)value_;
 
 
+
+
+
+- (NSMutableSet*)primitiveBookmarks;
+- (void)setPrimitiveBookmarks:(NSMutableSet*)value;
 
 
 

@@ -9,11 +9,20 @@
 #import "VelibModel.h"
 #import "Station.h"
 
+@class List;
+
 @interface VelibModel (Favorites)
-@property (nonatomic, assign) NSArray * favorites;
+- (List*) mainBookmarksList;
+- (NSOrderedSet *) favoriteStations;
 @end
 
 @interface Station (Favorites)
 // Favorite
 @property (nonatomic, getter=isFavorite) BOOL favorite;
 @end
+
+// Notification
+
+extern const struct VelibModelNotifications {
+	__unsafe_unretained NSString *favoriteChanged;
+} VelibModelNotifications;

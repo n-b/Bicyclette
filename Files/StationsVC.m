@@ -15,6 +15,7 @@
 #import "Region.h"
 #import "StationDetailVC.h"
 #import "VelibModel+Favorites.h"
+#import "List.h"
 
 
 /****************************************************************************/
@@ -29,7 +30,7 @@
 - (void) applicationDidBecomeActive:(NSNotification*) notif;
 - (void) commonInit;
 
-@property (nonatomic, strong) NSArray * stations;
+@property (nonatomic, strong) NSOrderedSet * stations;
 @end
 
 /****************************************************************************/
@@ -146,7 +147,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:[self.stations objectAtIndex:indexPath.row] inArray:self.stations] animated:YES];
+	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:[self.stations objectAtIndex:indexPath.row] inOrderedSet:self.stations] animated:YES];
 }
 
 @end
@@ -168,16 +169,16 @@
 	self.title = NSLocalizedString(@"Favoris",@"");
     
     // Observe favorites changes
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) name:StationFavoriteDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) name:VelibModelNotifications.favoriteChanged object:nil];
 
-    self.stations = BicycletteAppDelegate.model.favorites;
+    self.stations = BicycletteAppDelegate.model.favoriteStations;
 }
 
 
 - (void) favoriteDidChange:(NSNotification*) notif
 {
-    NSArray * oldStations = self.stations;
-    self.stations = BicycletteAppDelegate.model.favorites;
+    NSOrderedSet * oldStations = self.stations;
+    self.stations = BicycletteAppDelegate.model.favoriteStations;
 	if ([notif.object isFavorite])
 	{
 		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[self.stations indexOfObject:notif.object] inSection:0]]
@@ -241,12 +242,8 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
-	NSMutableArray *favorites = [NSMutableArray arrayWithArray:self.stations];
-	Station* stationToMove = [favorites objectAtIndex:fromIndexPath.row];
-	[favorites removeObjectAtIndex:fromIndexPath.row];
-	[favorites insertObject:stationToMove atIndex:toIndexPath.row];
-
-	BicycletteAppDelegate.model.favorites = favorites;
+    [BicycletteAppDelegate.model.mainBookmarksList.bookmarksSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndexPath.row]
+                                                                             toIndex:toIndexPath.row];
 }
 
 @end
@@ -273,7 +270,7 @@
 		self.region = aregion;
 		self.title = self.region.name;
 		
-        self.stations = self.region.sortedStations;
+        self.stations = self.region.stations;
 	}
 	return self;
 }

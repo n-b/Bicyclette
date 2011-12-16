@@ -20,6 +20,7 @@ const struct StationAttributes StationAttributes = {
 };
 
 const struct StationRelationships StationRelationships = {
+	.bookmarks = @"bookmarks",
 	.region = @"region",
 };
 
@@ -333,6 +334,19 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
+
+@dynamic bookmarks;
+
+	
+- (NSMutableSet*)bookmarksSet {
+	[self willAccessValueForKey:@"bookmarks"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"bookmarks"];
+  
+	[self didAccessValueForKey:@"bookmarks"];
+	return result;
+}
+	
 
 @dynamic region;
 

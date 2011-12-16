@@ -12,8 +12,8 @@
 @class StationStatusView;
 @interface StationDetailVC : UIViewController 
 
-+ (id) detailVCWithStation:(Station*) station inArray:(NSArray*)stations;
-- (id) initWithStation:(Station*) station inArray:(NSArray*)stations;
++ (id) detailVCWithStation:(Station*) station inOrderedSet:(NSOrderedSet*)stations;
+- (id) initWithStation:(Station*) station inOrderedSet:(NSOrderedSet*)stations;
 
 // Action
 - (IBAction) switchFavorite;
@@ -22,6 +22,6 @@
 
 // Data
 @property (nonatomic, strong) Station * station;
-@property (nonatomic, strong, readonly) NSArray * stations; // station must be in stations
+@property (nonatomic, strong, readonly) NSOrderedSet * stations; // station must be in stations
 
 @end

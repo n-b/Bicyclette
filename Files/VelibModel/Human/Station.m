@@ -9,8 +9,6 @@
 /****************************************************************************/
 #pragma mark -
 
-NSString * const StationFavoriteDidChangeNotification = @"StationFavoriteDidChange";
-
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property (nonatomic, strong) DataUpdater * updater;
 @property (nonatomic, strong) NSError * updateError;

@@ -50,7 +50,7 @@ typedef enum {
 	self = [super initWithCoder:aDecoder];
 	if (self != nil) {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) 
-													 name:StationFavoriteDidChangeNotification object:nil];
+													 name:VelibModelNotifications.favoriteChanged object:nil];
 	}
 	return self;
 }
@@ -179,7 +179,7 @@ typedef enum {
 {
 	Station * station = (Station*)[self.mapView.selectedAnnotations objectAtIndex:0];
 	
-	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:station inArray:nil] animated:YES];
+	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:station inOrderedSet:nil] animated:YES];
 }
 
 - (void) zoomIn:(Region*)region
