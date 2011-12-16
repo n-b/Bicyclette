@@ -12,17 +12,14 @@
 @class List;
 
 @interface VelibModel (Favorites)
-- (List*) mainBookmarksList;
-- (NSOrderedSet *) favoriteStations;
+@property (nonatomic, readonly) List* mainBookmarksList;
 @end
 
 @interface Station (Favorites)
-// Favorite
 @property (nonatomic, getter=isFavorite) BOOL favorite;
 @end
 
 // Notification
-
 extern const struct VelibModelNotifications {
 	__unsafe_unretained NSString *favoriteChanged;
 } VelibModelNotifications;

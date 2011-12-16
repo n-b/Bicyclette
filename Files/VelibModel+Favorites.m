@@ -38,11 +38,6 @@ const struct VelibModelNotifications VelibModelNotifications = {
     return list;
 }
 
-- (NSOrderedSet *) favoriteStations
-{
-    return [self.mainBookmarksList.bookmarks valueForKey:BookmarkRelationships.station];
-}
-
 @end
 
 
@@ -63,7 +58,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (BOOL) isFavorite
 {
-    return [self.managedObjectContext.model.favoriteStations containsObject:self];
+    return [BicycletteAppDelegate.model.mainBookmarksList.stations containsObject:self];
 }
 
 - (void) setFavorite:(BOOL) newValue

@@ -171,14 +171,14 @@
     // Observe favorites changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) name:VelibModelNotifications.favoriteChanged object:nil];
 
-    self.stations = BicycletteAppDelegate.model.favoriteStations;
+    self.stations = BicycletteAppDelegate.model.mainBookmarksList.stations;
 }
 
 
 - (void) favoriteDidChange:(NSNotification*) notif
 {
     NSOrderedSet * oldStations = self.stations;
-    self.stations = BicycletteAppDelegate.model.favoriteStations;
+    self.stations = BicycletteAppDelegate.model.mainBookmarksList.stations;
 	if ([notif.object isFavorite])
 	{
 		[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[self.stations indexOfObject:notif.object] inSection:0]]
