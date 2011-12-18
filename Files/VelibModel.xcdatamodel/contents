@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1130" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Bookmark" representedClassName="Bookmark">
-        <attribute name="color" optional="YES" attributeType="Transformable">
-            <userInfo>
-                <entry key="attributeValueClassName" value="UIColor"/>
-            </userInfo>
-        </attribute>
-        <relationship name="list" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="bookmarks" inverseEntity="List"/>
-        <relationship name="station" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="bookmarks" inverseEntity="Station"/>
-    </entity>
-    <entity name="List" representedClassName="List">
-        <attribute name="name" attributeType="String"/>
-        <relationship name="bookmarks" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Bookmark" inverseName="list" inverseEntity="Bookmark"/>
-    </entity>
-    <entity name="Region" representedClassName="Region">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="875" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Region" representedClassName="Region" parentEntity="StationList">
         <attribute name="maxLatitude" attributeType="Double" defaultValueString="0"/>
         <attribute name="maxLongitude" attributeType="Double" defaultValueString="0"/>
         <attribute name="minLatitude" attributeType="Double" defaultValueString="0"/>
         <attribute name="minLongitude" attributeType="Double" defaultValueString="0"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="number" attributeType="String" indexed="YES"/>
-        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Station" inverseName="region" inverseEntity="Station" indexed="YES"/>
     </entity>
     <entity name="Station" representedClassName="Station">
         <attribute name="address" attributeType="String" defaultValueString="-1"/>
         <attribute name="bonus" attributeType="Boolean"/>
+        <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES">
+            <userInfo>
+                <entry key="attributeValueClassName" value="UIColor"/>
+            </userInfo>
+        </attribute>
         <attribute name="fullAddress" attributeType="String"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0" indexed="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0" indexed="YES"/>
@@ -36,14 +27,15 @@
         <attribute name="status_free" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
         <attribute name="status_ticket" optional="YES" attributeType="Boolean"/>
         <attribute name="status_total" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
-        <relationship name="bookmarks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Bookmark" inverseName="station" inverseEntity="Bookmark"/>
-        <relationship name="region" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Region" inverseName="stations" inverseEntity="Region" indexed="YES"/>
+        <relationship name="region" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="StationList" inverseName="stations" inverseEntity="StationList" indexed="YES"/>
+    </entity>
+    <entity name="StationList" representedClassName="StationList">
+        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Station" inverseName="region" inverseEntity="Station"/>
     </entity>
     <fetchRequest name="regionWithNumber" entity="Region" predicateString="number == $number"/>
     <elements>
-        <element name="Bookmark" positionX="394" positionY="204" width="128" height="90"/>
-        <element name="List" positionX="567" positionY="204" width="128" height="75"/>
-        <element name="Region" positionX="7" positionY="129" width="128" height="150"/>
-        <element name="Station" positionX="189" positionY="36" width="128" height="270"/>
+        <element name="Region" positionX="45" positionY="-63" width="144" height="135"/>
+        <element name="Station" positionX="360" positionY="-234" width="144" height="270"/>
+        <element name="StationList" positionX="54" positionY="-162" width="128" height="60"/>
     </elements>
 </model>

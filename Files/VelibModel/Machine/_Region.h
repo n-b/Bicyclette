@@ -2,7 +2,7 @@
 // Make changes to Region.h instead.
 
 #import <CoreData/CoreData.h>
-
+#import "StationList.h"
 
 extern const struct RegionAttributes {
 	__unsafe_unretained NSString *maxLatitude;
@@ -14,13 +14,11 @@ extern const struct RegionAttributes {
 } RegionAttributes;
 
 extern const struct RegionRelationships {
-	__unsafe_unretained NSString *stations;
 } RegionRelationships;
 
 extern const struct RegionFetchedProperties {
 } RegionFetchedProperties;
 
-@class Station;
 
 
 
@@ -32,7 +30,7 @@ extern const struct RegionFetchedProperties {
 @interface RegionID : NSManagedObjectID {}
 @end
 
-@interface _Region : NSManagedObject {}
+@interface _Region : StationList {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
@@ -106,13 +104,6 @@ extern const struct RegionFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSOrderedSet* stations;
-
-- (NSMutableOrderedSet*)stationsSet;
-
-
-
-
 + (NSArray*)fetchRegionWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ ;
 + (NSArray*)fetchRegionWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_;
 
@@ -121,11 +112,6 @@ extern const struct RegionFetchedProperties {
 @end
 
 @interface _Region (CoreDataGeneratedAccessors)
-
-- (void)addStations:(NSOrderedSet*)value_;
-- (void)removeStations:(NSOrderedSet*)value_;
-- (void)addStationsObject:(Station*)value_;
-- (void)removeStationsObject:(Station*)value_;
 
 @end
 
@@ -178,11 +164,6 @@ extern const struct RegionFetchedProperties {
 - (void)setPrimitiveNumber:(NSString*)value;
 
 
-
-
-
-- (NSMutableOrderedSet*)primitiveStations;
-- (void)setPrimitiveStations:(NSMutableOrderedSet*)value;
 
 
 @end

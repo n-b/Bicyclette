@@ -15,7 +15,7 @@
 #import "Region.h"
 #import "StationDetailVC.h"
 #import "VelibModel+Favorites.h"
-#import "List.h"
+#import "StationList.h"
 
 
 /****************************************************************************/
@@ -242,8 +242,8 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
-    [BicycletteAppDelegate.model.mainBookmarksList.bookmarksSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndexPath.row]
-                                                                             toIndex:toIndexPath.row];
+    [BicycletteAppDelegate.model.mainBookmarksList.stationsSet moveObjectsAtIndexes:[NSIndexSet indexSetWithIndex:fromIndexPath.row]
+                                                                            toIndex:toIndexPath.row];
 }
 
 @end

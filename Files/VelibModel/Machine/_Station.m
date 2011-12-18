@@ -6,6 +6,7 @@
 const struct StationAttributes StationAttributes = {
 	.address = @"address",
 	.bonus = @"bonus",
+	.color = @"color",
 	.fullAddress = @"fullAddress",
 	.latitude = @"latitude",
 	.longitude = @"longitude",
@@ -20,7 +21,6 @@ const struct StationAttributes StationAttributes = {
 };
 
 const struct StationRelationships StationRelationships = {
-	.bookmarks = @"bookmarks",
 	.region = @"region",
 };
 
@@ -120,6 +120,13 @@ const struct StationFetchedProperties StationFetchedProperties = {
 - (void)setPrimitiveBonusValue:(BOOL)value_ {
 	[self setPrimitiveBonus:[NSNumber numberWithBool:value_]];
 }
+
+
+
+
+
+@dynamic color;
+
 
 
 
@@ -334,19 +341,6 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
-
-@dynamic bookmarks;
-
-	
-- (NSMutableSet*)bookmarksSet {
-	[self willAccessValueForKey:@"bookmarks"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"bookmarks"];
-  
-	[self didAccessValueForKey:@"bookmarks"];
-	return result;
-}
-	
 
 @dynamic region;
 

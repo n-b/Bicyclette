@@ -12,7 +12,7 @@
 @class List;
 
 @interface VelibModel (Favorites)
-@property (nonatomic, readonly) List* mainBookmarksList;
+@property (nonatomic, readonly) StationList* mainBookmarksList;
 @end
 
 @interface Station (Favorites)

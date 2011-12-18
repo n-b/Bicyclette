@@ -7,6 +7,7 @@
 extern const struct StationAttributes {
 	__unsafe_unretained NSString *address;
 	__unsafe_unretained NSString *bonus;
+	__unsafe_unretained NSString *color;
 	__unsafe_unretained NSString *fullAddress;
 	__unsafe_unretained NSString *latitude;
 	__unsafe_unretained NSString *longitude;
@@ -21,18 +22,17 @@ extern const struct StationAttributes {
 } StationAttributes;
 
 extern const struct StationRelationships {
-	__unsafe_unretained NSString *bookmarks;
 	__unsafe_unretained NSString *region;
 } StationRelationships;
 
 extern const struct StationFetchedProperties {
 } StationFetchedProperties;
 
-@class Bookmark;
-@class Region;
+@class StationList;
 
 
 
+@class UIColor;
 
 
 
@@ -73,6 +73,14 @@ extern const struct StationFetchedProperties {
 - (void)setBonusValue:(BOOL)value_;
 
 //- (BOOL)validateBonus:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) UIColor *color;
+
+
+//- (BOOL)validateColor:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -194,14 +202,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet* bookmarks;
-
-- (NSMutableSet*)bookmarksSet;
-
-
-
-
-@property (nonatomic, strong) Region* region;
+@property (nonatomic, strong) StationList* region;
 
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
 
@@ -211,11 +212,6 @@ extern const struct StationFetchedProperties {
 @end
 
 @interface _Station (CoreDataGeneratedAccessors)
-
-- (void)addBookmarks:(NSSet*)value_;
-- (void)removeBookmarks:(NSSet*)value_;
-- (void)addBookmarksObject:(Bookmark*)value_;
-- (void)removeBookmarksObject:(Bookmark*)value_;
 
 @end
 
@@ -233,6 +229,12 @@ extern const struct StationFetchedProperties {
 
 - (BOOL)primitiveBonusValue;
 - (void)setPrimitiveBonusValue:(BOOL)value_;
+
+
+
+
+- (UIColor*)primitiveColor;
+- (void)setPrimitiveColor:(UIColor*)value;
 
 
 
@@ -325,13 +327,8 @@ extern const struct StationFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveBookmarks;
-- (void)setPrimitiveBookmarks:(NSMutableSet*)value;
-
-
-
-- (Region*)primitiveRegion;
-- (void)setPrimitiveRegion:(Region*)value;
+- (StationList*)primitiveRegion;
+- (void)setPrimitiveRegion:(StationList*)value;
 
 
 @end
