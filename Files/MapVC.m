@@ -71,10 +71,6 @@ typedef enum {
 	self.mapView.region = self.referenceRegion;
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
 /****************************************************************************/
 #pragma mark MapView Delegate
 
@@ -89,18 +85,19 @@ typedef enum {
 		
 		NSFetchRequest * request = [NSFetchRequest new];
 		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
-		CLLocationDegrees minLat, maxLat, minLng, maxLng;
-		minLat = self.mapView.region.center.latitude - self.mapView.region.span.latitudeDelta;
-		maxLat = self.mapView.region.center.latitude + self.mapView.region.span.latitudeDelta;
-		minLng = self.mapView.region.center.longitude - self.mapView.region.span.longitudeDelta;
-		maxLng = self.mapView.region.center.longitude + self.mapView.region.span.longitudeDelta;
+        MKCoordinateRegion mapRegion = self.mapView.region;
 		request.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
-							 minLat, maxLat, minLng, maxLng];
+							 mapRegion.center.latitude - mapRegion.span.latitudeDelta, 
+                             mapRegion.center.latitude + mapRegion.span.latitudeDelta,
+                             mapRegion.center.longitude - mapRegion.span.longitudeDelta, 
+                             mapRegion.center.longitude + mapRegion.span.longitudeDelta];
 
 		NSArray * oldAnnotations = self.mapView.annotations;
 		NSArray * newAnnotations = [BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL];
 		
-		NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
+		NSMutableArray * annotationsToRemove = [oldAnnotations mutableCopy];
+        [annotationsToRemove removeObjectsInArray:newAnnotations];
+        [annotationsToRemove removeObject:self.mapView.userLocation];
 		NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
 		
 		[self.mapView removeAnnotations:annotationsToRemove];
@@ -112,9 +109,9 @@ typedef enum {
 }
 
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+- (MKAnnotationView *)mapView:(MKMapView *)mapView_ viewForAnnotation:(id <MKAnnotation>)annotation
 {
-	if([annotation isKindOfClass:[MKUserLocation class]])
+	if(annotation == self.mapView.userLocation)
 		return nil;
 	else if([annotation isKindOfClass:[Region class]])
 	{
@@ -165,7 +162,9 @@ typedef enum {
 	if(value!=self.mode)
 	{
 		mode = value;
-		[self.mapView removeAnnotations:self.mapView.annotations];
+        NSMutableArray * annotationsToRemove = [self.mapView.annotations mutableCopy];
+        [annotationsToRemove removeObject:self.mapView.userLocation];
+		[self.mapView removeAnnotations:annotationsToRemove];
 		if(self.mode==MapModeRegions)
 		{
 			NSFetchRequest * request = [NSFetchRequest new];
