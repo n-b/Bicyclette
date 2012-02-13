@@ -154,6 +154,7 @@
 
     // Delete Old Stations
 	for (Station * oldStation in self.parsing_oldStations) {
+        NSLog(@"Note : old station deleted after update : %@", oldStation);
 		[self.moc deleteObject:oldStation];
 	}
     self.parsing_oldStations = nil;
@@ -187,6 +188,13 @@
 {
 	if([elementName isEqualToString:@"marker"])
 	{
+        // Filter out closed stations
+        if( ! [[attributeDict objectForKey:@"open"] boolValue] )
+        {
+            NSLog(@"Note : Ignored closed station : %@", attributeDict);
+            return;
+        }
+        
         // Find Existing Stations
         Station * station = [self.parsing_oldStations firstObjectWithValue:[attributeDict objectForKey:@"number"] forKey:StationAttributes.number];
         if(station)
@@ -197,7 +205,7 @@
         else
         {
             if(self.parsing_oldStations.count)
-                NSLog(@"Created new station (%@)",[attributeDict objectForKey:@"number"]);
+                NSLog(@"Note : new station found after update : %@", attributeDict);
             station = [Station insertInManagedObjectContext:self.moc];
         }
 
@@ -206,7 +214,7 @@
 		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
 		if(fixes)
 		{
-			NSLog(@"using hardcoded fixes for %@.\n\tReceived Data : %@.\n\tFixes : %@",station.number, attributeDict, fixes);
+			NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, fixes);
 			[station setValuesForKeysWithDictionary:fixes withMappingDictionary:self.stationKVCMapping]; // Yay! again
 		}
         
@@ -235,7 +243,7 @@
                         break;
                 }
                 
-                NSLog(@"endOfAddress \"%@\" trop court, %@, trouvé %@",endOfAddress, station.name, lCodePostal);
+                NSLog(@"Note : Used heuristics to find region for %@. Found : %@. ",attributeDict, lCodePostal);
             }
             NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
             
@@ -258,8 +266,7 @@
         }
         else
         {
-            NSLog(@"full address \"%@\" does not begin with address \"%@\"", station.fullAddress, station.address);
-            NSLog(@"Invalid data : %@",attributeDict);
+            NSLog(@"Invalid data ('fulladdress' should begin with 'address'): %@",attributeDict);
             [self.moc deleteObject:station];
         }
     }
