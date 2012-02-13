@@ -232,6 +232,8 @@
 		080E96DDFE201D6D7F000001 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				37201D7412B2DBFC0001A668 /* BicycletteBar.h */,
+				37201D7512B2DBFC0001A668 /* BicycletteBar.m */,
 				37E37F6E12A6FDE800D7AB57 /* RegionsVC.h */,
 				37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */,
 				37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */,
@@ -424,8 +426,6 @@
 			children = (
 				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
 				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
-				37201D7412B2DBFC0001A668 /* BicycletteBar.h */,
-				37201D7512B2DBFC0001A668 /* BicycletteBar.m */,
 				37149C8812625B94009CDE82 /* UITableViewCell+NibLoaded.h */,
 				37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */,
 				37149BBA126250D7009CDE82 /* NSArrayAdditions.h */,
