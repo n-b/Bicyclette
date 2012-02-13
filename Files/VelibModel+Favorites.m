@@ -22,6 +22,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 {
     NSFetchRequest * request = [NSFetchRequest new];
     request.entity = [StationList entityInManagedObjectContext:self.moc];
+    request.includesSubentities = NO;
     NSError * error = nil;
     NSArray * result = [self.moc executeFetchRequest:request error:&error];
     StationList * list;
