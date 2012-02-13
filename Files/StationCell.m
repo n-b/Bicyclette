@@ -49,7 +49,7 @@
 - (void) awakeFromNib
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
-												 name:LocationDidChangeNotification object:BicycletteAppDelegate.locator];
+												 name:LocatorNotifications.locationChanged object:BicycletteAppDelegate.locator];
 	NSAssert(self.bounds.size.height==StationCellHeight,@"wrong cell height");
 }
 

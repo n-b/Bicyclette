@@ -8,6 +8,10 @@
 
 #import "Locator.h"
 
+const struct LocatorNotifications LocatorNotifications = {
+	.locationChanged = @"LocatorNotificationsLocationChanged",
+};
+
 /****************************************************************************/
 #pragma mark Private Methods
 
@@ -67,12 +71,12 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
 	[[NSUserDefaults standardUserDefaults] setLastKnownLocation:newLocation];
-	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:self];
+	[[NSNotificationCenter defaultCenter] postNotificationName:LocatorNotifications.locationChanged object:self];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:LocationDidChangeNotification object:self];
+	[[NSNotificationCenter defaultCenter] postNotificationName:LocatorNotifications.locationChanged object:self];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

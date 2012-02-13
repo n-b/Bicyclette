@@ -81,7 +81,7 @@
 		self.stations = aStations;
 		self.station = aStation;
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
-													 name:LocationDidChangeNotification object:BicycletteAppDelegate.locator];
+													 name:LocatorNotifications.locationChanged object:BicycletteAppDelegate.locator];
 		self.wantsFullScreenLayout = YES;
     }
     return self;	

@@ -151,6 +151,8 @@
 		3756EAE11298018A00113534 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3756EAE21298018A00113534 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
+		3770B22E14E976C20003BBA8 /* Paris.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Paris.gpx; sourceTree = "<group>"; };
 		37822B7A1380446A009D8334 /* VelibModel+Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VelibModel+Favorites.h"; sourceTree = "<group>"; };
 		37822B7B1380446A009D8334 /* VelibModel+Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VelibModel+Favorites.m"; sourceTree = "<group>"; };
 		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				080E96DDFE201D6D7F000001 /* UI */,
 				37D188291170A25C00950D52 /* Extensions */,
 				3786E4E114825A7700814C10 /* LogicTests */,
+				3770B22C14E976590003BBA8 /* TestData */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -390,6 +393,15 @@
 			);
 			name = Resources;
 			path = Files;
+			sourceTree = "<group>";
+		};
+		3770B22C14E976590003BBA8 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				3770B22D14E9765A0003BBA8 /* carto.xml */,
+				3770B22E14E976C20003BBA8 /* Paris.gpx */,
+			);
+			path = TestData;
 			sourceTree = "<group>";
 		};
 		3786E4E114825A7700814C10 /* LogicTests */ = {

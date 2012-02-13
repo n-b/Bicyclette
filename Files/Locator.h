@@ -16,4 +16,8 @@
 @property (weak, nonatomic, readonly) CLLocation* location;
 @end
 
-#define LocationDidChangeNotification @"LocationDidChangeNotification"
+
+// Notification
+extern const struct LocatorNotifications {
+	__unsafe_unretained NSString *locationChanged;
+} LocatorNotifications;
