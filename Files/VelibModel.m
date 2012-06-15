@@ -254,13 +254,16 @@
                 region = [Region insertInManagedObjectContext:self.moc];
                 [self.parsing_regionsByCodePostal setObject:region forKey:lCodePostal];
                 region.number = lCodePostal;
-                NSString * cityName = [[[endOfAddress stringByDeletingPrefix:region.number]
-                                        stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
-                                       capitalizedString];
                 if([lCodePostal hasPrefix:@"75"])
-                    region.name = [NSString stringWithFormat:@"%@ %@",cityName,[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
+                    region.name = [NSString stringWithFormat:@"Paris %@",[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
                 else
+                {
+                    NSString * cityName = [[[endOfAddress stringByDeletingPrefix:region.number]
+                                            stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                                           capitalizedString];
                     region.name = cityName;
+                }
+                NSLog(@"Created region %@",region.name);
             }
             station.region = region;
         }
