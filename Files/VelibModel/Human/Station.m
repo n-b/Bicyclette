@@ -250,4 +250,16 @@
     return NO;
 }
 
+/****************************************************************************/
+#pragma mark Delete rules
+
+- (void) prepareForDeletion
+{
+    [super prepareForDeletion];
+    if (self.region!=nil &&
+        self.region.stations.count &&
+        [self.region.stations firstObject] == self) {
+        [self.managedObjectContext deleteObject:self.region];
+    }
+}
 @end
