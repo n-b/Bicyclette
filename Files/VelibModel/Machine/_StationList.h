@@ -37,6 +37,7 @@ extern const struct StationListFetchedProperties {
 
 
 
+
 @end
 
 @interface _StationList (CoreDataGeneratedAccessors)

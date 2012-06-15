@@ -57,7 +57,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString* address;
 
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
@@ -65,7 +65,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber *bonus;
+@property (nonatomic, strong) NSNumber* bonus;
 
 
 @property BOOL bonusValue;
@@ -77,7 +77,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) UIColor* color;
 
 
 //- (BOOL)validateColor:(id*)value_ error:(NSError**)error_;
@@ -85,7 +85,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString *fullAddress;
+@property (nonatomic, strong) NSString* fullAddress;
 
 
 //- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
@@ -93,7 +93,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber *latitude;
+@property (nonatomic, strong) NSNumber* latitude;
 
 
 @property double latitudeValue;
@@ -105,7 +105,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber *longitude;
+@property (nonatomic, strong) NSNumber* longitude;
 
 
 @property double longitudeValue;
@@ -117,7 +117,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString* name;
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -125,7 +125,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString *number;
+@property (nonatomic, strong) NSString* number;
 
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
@@ -133,7 +133,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber *open;
+@property (nonatomic, strong) NSNumber* open;
 
 
 @property BOOL openValue;
@@ -145,19 +145,19 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber *status_available;
+@property (nonatomic, strong) NSNumber* status_available;
 
 
-@property short status_availableValue;
-- (short)status_availableValue;
-- (void)setStatus_availableValue:(short)value_;
+@property int16_t status_availableValue;
+- (int16_t)status_availableValue;
+- (void)setStatus_availableValue:(int16_t)value_;
 
 //- (BOOL)validateStatus_available:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSDate *status_date;
+@property (nonatomic, strong) NSDate* status_date;
 
 
 //- (BOOL)validateStatus_date:(id*)value_ error:(NSError**)error_;
@@ -165,19 +165,19 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber *status_free;
+@property (nonatomic, strong) NSNumber* status_free;
 
 
-@property short status_freeValue;
-- (short)status_freeValue;
-- (void)setStatus_freeValue:(short)value_;
+@property int16_t status_freeValue;
+- (int16_t)status_freeValue;
+- (void)setStatus_freeValue:(int16_t)value_;
 
 //- (BOOL)validateStatus_free:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSNumber *status_ticket;
+@property (nonatomic, strong) NSNumber* status_ticket;
 
 
 @property BOOL status_ticketValue;
@@ -189,12 +189,12 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber *status_total;
+@property (nonatomic, strong) NSNumber* status_total;
 
 
-@property short status_totalValue;
-- (short)status_totalValue;
-- (void)setStatus_totalValue:(short)value_;
+@property int16_t status_totalValue;
+- (int16_t)status_totalValue;
+- (void)setStatus_totalValue:(int16_t)value_;
 
 //- (BOOL)validateStatus_total:(id*)value_ error:(NSError**)error_;
 
@@ -205,6 +205,7 @@ extern const struct StationFetchedProperties {
 @property (nonatomic, strong) StationList* region;
 
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
+
 
 
 
@@ -287,8 +288,8 @@ extern const struct StationFetchedProperties {
 - (NSNumber*)primitiveStatus_available;
 - (void)setPrimitiveStatus_available:(NSNumber*)value;
 
-- (short)primitiveStatus_availableValue;
-- (void)setPrimitiveStatus_availableValue:(short)value_;
+- (int16_t)primitiveStatus_availableValue;
+- (void)setPrimitiveStatus_availableValue:(int16_t)value_;
 
 
 
@@ -302,8 +303,8 @@ extern const struct StationFetchedProperties {
 - (NSNumber*)primitiveStatus_free;
 - (void)setPrimitiveStatus_free:(NSNumber*)value;
 
-- (short)primitiveStatus_freeValue;
-- (void)setPrimitiveStatus_freeValue:(short)value_;
+- (int16_t)primitiveStatus_freeValue;
+- (void)setPrimitiveStatus_freeValue:(int16_t)value_;
 
 
 
@@ -320,8 +321,8 @@ extern const struct StationFetchedProperties {
 - (NSNumber*)primitiveStatus_total;
 - (void)setPrimitiveStatus_total:(NSNumber*)value;
 
-- (short)primitiveStatus_totalValue;
-- (void)setPrimitiveStatus_totalValue:(short)value_;
+- (int16_t)primitiveStatus_totalValue;
+- (void)setPrimitiveStatus_totalValue:(int16_t)value_;
 
 
 

@@ -235,21 +235,21 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
-- (short)status_availableValue {
+- (int16_t)status_availableValue {
 	NSNumber *result = [self status_available];
 	return [result shortValue];
 }
 
-- (void)setStatus_availableValue:(short)value_ {
+- (void)setStatus_availableValue:(int16_t)value_ {
 	[self setStatus_available:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveStatus_availableValue {
+- (int16_t)primitiveStatus_availableValue {
 	NSNumber *result = [self primitiveStatus_available];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveStatus_availableValue:(short)value_ {
+- (void)setPrimitiveStatus_availableValue:(int16_t)value_ {
 	[self setPrimitiveStatus_available:[NSNumber numberWithShort:value_]];
 }
 
@@ -268,21 +268,21 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
-- (short)status_freeValue {
+- (int16_t)status_freeValue {
 	NSNumber *result = [self status_free];
 	return [result shortValue];
 }
 
-- (void)setStatus_freeValue:(short)value_ {
+- (void)setStatus_freeValue:(int16_t)value_ {
 	[self setStatus_free:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveStatus_freeValue {
+- (int16_t)primitiveStatus_freeValue {
 	NSNumber *result = [self primitiveStatus_free];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveStatus_freeValue:(short)value_ {
+- (void)setPrimitiveStatus_freeValue:(int16_t)value_ {
 	[self setPrimitiveStatus_free:[NSNumber numberWithShort:value_]];
 }
 
@@ -320,21 +320,21 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
-- (short)status_totalValue {
+- (int16_t)status_totalValue {
 	NSNumber *result = [self status_total];
 	return [result shortValue];
 }
 
-- (void)setStatus_totalValue:(short)value_ {
+- (void)setStatus_totalValue:(int16_t)value_ {
 	[self setStatus_total:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveStatus_totalValue {
+- (int16_t)primitiveStatus_totalValue {
 	NSNumber *result = [self primitiveStatus_total];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveStatus_totalValue:(short)value_ {
+- (void)setPrimitiveStatus_totalValue:(int16_t)value_ {
 	[self setPrimitiveStatus_total:[NSNumber numberWithShort:value_]];
 }
 
@@ -345,6 +345,7 @@ const struct StationFetchedProperties StationFetchedProperties = {
 @dynamic region;
 
 	
+
 
 
 
