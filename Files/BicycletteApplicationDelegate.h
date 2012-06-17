@@ -11,14 +11,13 @@
 #define BicycletteBlue			[UIColor colorWithHue:.61f saturation:.87f brightness:.8f alpha:1]
 #define BicycletteAppDelegate ((BicycletteApplicationDelegate*)[[UIApplication sharedApplication] delegate])
 
-@class VelibModel, Locator, BicycletteBar;
+@class VelibModel/*, Locator*/, BicycletteBar;
 
 @interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window; // redeclare property of parent class to make it an outlet
 
 @property (nonatomic, strong, readonly) VelibModel * model;
-@property (nonatomic, strong, readonly) Locator * locator;
 
 @end
 

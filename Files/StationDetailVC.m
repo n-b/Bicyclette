@@ -9,7 +9,7 @@
 #import "StationDetailVC.h"
 #import "Station.h"
 #import "StationStatusView.h"
-#import "Locator.h"
+//#import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
 #import "CLLocation+Direction.h"
 #import "VelibModel+Favorites.h"
@@ -51,7 +51,6 @@
 - (void) restoreBouncing;
 
 - (void) updateUI;
-- (void) locationDidChange:(NSNotification*)notif;
 @end
 
 /****************************************************************************/
@@ -80,8 +79,6 @@
     if (self) {
 		self.stations = aStations;
 		self.station = aStation;
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
-													 name:LocatorNotifications.locationChanged object:BicycletteAppDelegate.locator];
 		self.wantsFullScreenLayout = YES;
     }
     return self;	
@@ -174,7 +171,6 @@
 	self.title = [NSString stringWithFormat:NSLocalizedString(@"Station %@",@""),self.station.number];
 	self.shortNameLabel.text = self.station.cleanName;
 	self.addressLabel.text = self.station.fullAddress;
-	self.distanceLabel.text = [self.station.location routeDescriptionFromLocation:BicycletteAppDelegate.locator.location usingShortFormat:NO];
 
 	[self.statusView setNeedsDisplay];
 	self.loadingIndicator.hidden = !self.station.loading || self.station.updateError;
@@ -252,11 +248,6 @@
 	}
 	else 
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-- (void) locationDidChange:(NSNotification*)notif
-{
-	[self updateUI];
 }
 
 @end

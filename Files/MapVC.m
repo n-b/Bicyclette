@@ -9,7 +9,6 @@
 #import "MapVC.h"
 #import "BicycletteApplicationDelegate.h"
 #import "VelibModel.h"
-#import "Locator.h"
 #import "Station.h"
 #import "Region.h"
 #import "StationDetailVC.h"
@@ -26,14 +25,12 @@ typedef enum {
 @interface MapVC() <MKMapViewDelegate>
 
 // Outlets
-@property (nonatomic, weak) IBOutlet MKMapView * mapView;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem * centerMapButton;
+@property MKMapView * mapView;
+@property MKUserTrackingBarButtonItem * userTrackingButton;
 
-@property (nonatomic) MKCoordinateRegion referenceRegion;
+@property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
-- (void) showDetails:(UIButton*)sender;
-- (void) zoomIn:(Region*)region;
-- (void) favoriteDidChange:(NSNotification*)notif;
+
 @end
 
 /****************************************************************************/
@@ -41,7 +38,7 @@ typedef enum {
 
 @implementation MapVC 
 
-@synthesize mapView, centerMapButton;
+@synthesize mapView, userTrackingButton;
 @synthesize referenceRegion, mode;
 
 
@@ -62,15 +59,30 @@ typedef enum {
 /****************************************************************************/
 #pragma mark -
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-    self.navigationItem.rightBarButtonItem = self.centerMapButton;
+- (void) loadView
+{
+    self.mapView = [MKMapView new];
+    self.view = self.mapView;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.zoomEnabled = YES;
+    self.mapView.scrollEnabled = YES;
+    self.mapView.delegate = self;
+    
+    self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    self.navigationItem.rightBarButtonItem = self.userTrackingButton;
     
 	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
 	self.mapView.region = self.referenceRegion;
 }
 
+
+- (void) viewDidUnload
+{
+    self.userTrackingButton = nil;
+    self.navigationItem.rightBarButtonItem = nil;
+    self.mapView = nil;
+    [super viewDidUnload];
+}
 /****************************************************************************/
 #pragma mark MapView Delegate
 
@@ -99,7 +111,8 @@ typedef enum {
         [annotationsToRemove removeObjectsInArray:newAnnotations];
         [annotationsToRemove removeObject:self.mapView.userLocation];
 		NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
-		
+
+        NSLog(@"removing %d annotations, adding %d",[annotationsToRemove count], [annotationsToAdd count]);
 		[self.mapView removeAnnotations:annotationsToRemove];
 		[self.mapView addAnnotations:annotationsToAdd];
 		
@@ -154,6 +167,11 @@ typedef enum {
         [(Station*)view.annotation refresh];
 }
 
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    
+}
+
 /****************************************************************************/
 #pragma mark Actions
 
@@ -188,8 +206,22 @@ typedef enum {
 
 - (IBAction)changeGeolocMode
 {
-    if(BicycletteAppDelegate.locator.location)
-        self.mapView.centerCoordinate = BicycletteAppDelegate.locator.location.coordinate;
+//    switch (self.mapView.userTrackingMode) {
+//        case MKUserTrackingModeNone:
+//            self.mapView.userTrackingMode = MKUserTrackingModeFollow;
+//            self.centerMapButton.title = @"1";
+//            break;
+//        case MKUserTrackingModeFollow:
+//            self.mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
+//            self.centerMapButton.title = @"2";
+//            break;
+//        case MKUserTrackingModeFollowWithHeading:
+//            self.mapView.userTrackingMode = MKUserTrackingModeNone;
+//            self.centerMapButton.title = @"0";
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 /****************************************************************************/

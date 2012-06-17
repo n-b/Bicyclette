@@ -9,7 +9,6 @@
 #import "StationCell.h"
 #import "StationStatusView.h"
 #import "Station.h"
-#import "Locator.h"
 #import "BicycletteApplicationDelegate.h"
 #import "CLLocation+Direction.h"
 #import "VelibModel+Favorites.h"
@@ -30,7 +29,6 @@
 
 @property (nonatomic, weak) IBOutlet UIButton * favoriteButton;
 - (void) updateUI;
-- (void) locationDidChange:(NSNotification*)notif;
 @end
 
 /****************************************************************************/
@@ -48,8 +46,6 @@
 
 - (void) awakeFromNib
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:)
-												 name:LocatorNotifications.locationChanged object:BicycletteAppDelegate.locator];
 	NSAssert(self.bounds.size.height==StationCellHeight,@"wrong cell height");
 }
 
@@ -104,11 +100,6 @@
 		[self updateUI];
 	else 
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-- (void) locationDidChange:(NSNotification*)notif
-{
-	[self updateUI];
 }
 
 @end

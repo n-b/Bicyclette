@@ -56,7 +56,6 @@
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		37B69C2A129034D90053728D /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69C29129034D90053728D /* Locator.m */; };
 		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
 		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
 		37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C189ED14861BE800F64F5B /* WarningIcon.png */; };
@@ -72,7 +71,6 @@
 		37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37F7812A7022F00D7AB57 /* RegionCell.m */; };
 		37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E37F7A12A7023E00D7AB57 /* RegionCell.xib */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
-		37E9531812AA29FB00C1D21C /* MapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E9531612AA29FB00C1D21C /* MapVC.xib */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */; };
 		37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537E12AA373000C1D21C /* MapTab@2x.png */; };
@@ -137,7 +135,6 @@
 		37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VelibModel.xcdatamodel; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* VelibModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibModel.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibModel.m; sourceTree = "<group>"; };
-		3726FFD912B55FA900516CF3 /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA1.h"; sourceTree = "<group>"; };
 		372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
 		374785A1149EAAC9009186CE /* _StationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _StationList.h; sourceTree = "<group>"; };
@@ -167,7 +164,6 @@
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		37B69C29129034D90053728D /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		37B69DB01290925B0053728D /* StationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationStatusView.h; sourceTree = "<group>"; };
 		37B69DB11290925B0053728D /* StationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationStatusView.m; sourceTree = "<group>"; };
 		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
@@ -191,7 +187,6 @@
 		37E37F7A12A7023E00D7AB57 /* RegionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCell.xib; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
-		37E9531612AA29FB00C1D21C /* MapVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapVC.xib; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FavoritesTab@2x.png"; sourceTree = "<group>"; };
 		37E9537E12AA373000C1D21C /* MapTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapTab@2x.png"; sourceTree = "<group>"; };
@@ -255,7 +250,6 @@
 				37B69DB11290925B0053728D /* StationStatusView.m */,
 				37E9531412AA29FB00C1D21C /* MapVC.h */,
 				37E9531512AA29FB00C1D21C /* MapVC.m */,
-				37E9531612AA29FB00C1D21C /* MapVC.xib */,
 			);
 			name = UI;
 			path = Files;
@@ -355,8 +349,6 @@
 				37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */,
 				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 				37A346B5128C9D68000A2540 /* VelibModel */,
-				3726FFD912B55FA900516CF3 /* Locator.h */,
-				37B69C29129034D90053728D /* Locator.m */,
 				372020C012B55C900001A668 /* Model+Mapkit.h */,
 				372020C112B55C900001A668 /* Model+Mapkit.m */,
 			);
@@ -549,7 +541,6 @@
 				3756EB5C1298085B00113534 /* Settings.bundle in Resources */,
 				37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */,
 				37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */,
-				37E9531812AA29FB00C1D21C /* MapVC.xib in Resources */,
 				37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */,
 				37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */,
 				37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */,
@@ -618,7 +609,6 @@
 				37149C8412625AD7009CDE82 /* StationCell.m in Sources */,
 				37149C8A12625B94009CDE82 /* UITableViewCell+NibLoaded.m in Sources */,
 				37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */,
-				37B69C2A129034D90053728D /* Locator.m in Sources */,
 				37B69DB21290925B0053728D /* StationStatusView.m in Sources */,
 				37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */,
 				37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */,

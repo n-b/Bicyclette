@@ -8,7 +8,7 @@
 
 #import "BicycletteApplicationDelegate.h"
 #import "VelibModel.h"
-#import "Locator.h"
+//#import "Locator.h"
 #import "BicycletteBar.h"
 #import "DataUpdater.h"
 
@@ -22,7 +22,6 @@
 @property (nonatomic, strong) IBOutlet UIView *notificationView;
 
 @property (nonatomic, strong) VelibModel * model;
-@property (nonatomic, strong) Locator * locator;
 
 - (void) selectTabIndex:(NSUInteger)index;
 
@@ -35,7 +34,6 @@
 
 @synthesize window, tabBarController, toolbar, notificationView;
 @synthesize model;
-@synthesize locator;
 
 /****************************************************************************/
 #pragma mark Application lifecycle
@@ -50,7 +48,6 @@
     // Create model
     self.model = [VelibModel new];
     self.model.delegate = self;
-	self.locator = [Locator new];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -84,20 +81,9 @@
 	return YES;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-	[self.locator start];
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-	[self.locator stop];
-}
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedTabIndex"];
-	[self.locator stop];
 }
 
 - (void)dealloc {
