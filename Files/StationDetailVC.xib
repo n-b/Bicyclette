@@ -131,7 +131,7 @@
 									<object class="IBUILabel" id="201770965">
 										<reference key="NSNextResponder" ref="1066483039"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{20, 128}, {280, 21}}</string>
+										<string key="NSFrame">{{20, 172}, {280, 21}}</string>
 										<reference key="NSSuperview" ref="1066483039"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="554066472"/>
@@ -164,7 +164,7 @@
 									<object class="IBUIActivityIndicatorView" id="270868725">
 										<reference key="NSNextResponder" ref="1066483039"/>
 										<int key="NSvFlags">301</int>
-										<string key="NSFrame">{{280, 332}, {20, 20}}</string>
+										<string key="NSFrame">{{280, 373}, {20, 20}}</string>
 										<reference key="NSSuperview" ref="1066483039"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="619881511"/>
@@ -191,7 +191,7 @@
 									<object class="IBUILabel" id="1023296308">
 										<reference key="NSNextResponder" ref="1066483039"/>
 										<int key="NSvFlags">268</int>
-										<string key="NSFrame">{{58, 20}, {242, 52}}</string>
+										<string key="NSFrame">{{58, 19}, {242, 52}}</string>
 										<reference key="NSSuperview" ref="1066483039"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="282320561"/>
@@ -266,7 +266,7 @@
 										<int key="IBUIAutoshrinkMode">0</int>
 									</object>
 								</object>
-								<string key="NSFrameSize">{320, 372}</string>
+								<string key="NSFrameSize">{320, 416}</string>
 								<reference key="NSSuperview" ref="154386362"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="227630632"/>
@@ -280,7 +280,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{0, 64}, {320, 372}}</string>
+						<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1066483039"/>
@@ -304,9 +304,6 @@
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
 					<int key="IBUIBarStyle">2</int>
 					<bool key="IBUIPrompted">NO</bool>
-				</object>
-				<object class="IBUISimulatedToolbarMetrics" key="IBUISimulatedBottomBarMetrics">
-					<int key="IBUIBarStyle">2</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>

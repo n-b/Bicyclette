@@ -61,7 +61,7 @@ typedef enum {
 
 - (void) loadView
 {
-    self.mapView = [MKMapView new];
+    self.mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view = self.mapView;
     self.mapView.showsUserLocation = YES;
     self.mapView.zoomEnabled = YES;
@@ -69,7 +69,7 @@ typedef enum {
     self.mapView.delegate = self;
     
     self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    self.navigationItem.rightBarButtonItem = self.userTrackingButton;
+    self.navigationItem.leftBarButtonItem = self.userTrackingButton;
     
 	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
 	self.mapView.region = self.referenceRegion;
@@ -79,7 +79,7 @@ typedef enum {
 - (void) viewDidUnload
 {
     self.userTrackingButton = nil;
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem = nil;
     self.mapView = nil;
     [super viewDidUnload];
 }

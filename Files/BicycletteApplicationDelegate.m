@@ -8,22 +8,16 @@
 
 #import "BicycletteApplicationDelegate.h"
 #import "VelibModel.h"
-//#import "Locator.h"
-#import "BicycletteBar.h"
 #import "DataUpdater.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
-@interface BicycletteApplicationDelegate() <BicycletteBarDelegate, CoreDataManagerDelegate>
+@interface BicycletteApplicationDelegate() <CoreDataManagerDelegate>
 
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet BicycletteBar *toolbar;
 @property (nonatomic, strong) IBOutlet UIView *notificationView;
 
 @property (nonatomic, strong) VelibModel * model;
-
-- (void) selectTabIndex:(NSUInteger)index;
 
 @end
 
@@ -32,7 +26,7 @@
 
 @implementation BicycletteApplicationDelegate
 
-@synthesize window, tabBarController, toolbar, notificationView;
+@synthesize window, notificationView;
 @synthesize model;
 
 /****************************************************************************/
@@ -52,15 +46,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[self.window insertSubview:self.tabBarController.view belowSubview:self.toolbar];
-	
-	// Hide the tabbar, the toolbar's segmented control is used instead
-	self.tabBarController.tabBar.hidden = YES;
-	UIView * contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-	contentView.frame = [[UIScreen mainScreen] bounds];
-	
-	[self selectTabIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedTabIndex"]];
-	
 	// notification view
 	self.notificationView.layer.cornerRadius = 10;
 	[self.window addSubview:self.notificationView];
@@ -81,30 +66,8 @@
 	return YES;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)self.tabBarController.selectedIndex forKey:@"SelectedTabIndex"];
-}
-
 - (void)dealloc {
 	[self.model removeObserver:self forKeyPath:@"updater.downloadingUpdate"];
-}
-
-/****************************************************************************/
-#pragma mark Tab Selection
-
-- (void) bicycletteBar:(BicycletteBar*)bar didSelectIndex:(NSUInteger)index
-{
-	BOOL shouldPop = self.tabBarController.selectedIndex==index;
-	[self selectTabIndex:index];
-	if(shouldPop)
-		[(UINavigationController*)self.tabBarController.selectedViewController popToRootViewControllerAnimated:YES];
-}
-
-- (void) selectTabIndex:(NSUInteger)index
-{
-	self.tabBarController.selectedIndex = index;
-	self.toolbar.selectedIndex = index;
 }
 
 /****************************************************************************/

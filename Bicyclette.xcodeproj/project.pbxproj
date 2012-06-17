@@ -30,9 +30,7 @@
 		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
 		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
 		371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
-		37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201D7512B2DBFC0001A668 /* BicycletteBar.m */; };
 		37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201E6112B2EA640001A668 /* UIImage+Tinting.m */; };
-		37201E9712B2ED040001A668 /* RegionsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37201E9612B2ED040001A668 /* RegionsTab@2x.png */; };
 		372020C212B55C900001A668 /* Model+Mapkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 372020C112B55C900001A668 /* Model+Mapkit.m */; };
 		37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */; };
 		37216BC712611C5400A2695A /* VelibModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibModel.m */; };
@@ -59,7 +57,6 @@
 		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
 		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
 		37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C189ED14861BE800F64F5B /* WarningIcon.png */; };
-		37C79907147ED06400B285BA /* RegionsTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C79906147ED06400B285BA /* RegionsTab.png */; };
 		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */; };
@@ -72,10 +69,6 @@
 		37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E37F7A12A7023E00D7AB57 /* RegionCell.xib */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
-		37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */; };
-		37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9537E12AA373000C1D21C /* MapTab@2x.png */; };
-		37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538312AA379B00C1D21C /* FavoritesTab.png */; };
-		37E9538712AA379B00C1D21C /* MapTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E9538412AA379B00C1D21C /* MapTab.png */; };
 		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */; };
 /* End PBXBuildFile section */
@@ -125,11 +118,8 @@
 		371E1BF0137FCF7C007EFBFF /* _Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
 		371E1BF1137FCF7C007EFBFF /* _Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
 		371E1BF2137FCF7C007EFBFF /* _Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
-		37201D7412B2DBFC0001A668 /* BicycletteBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteBar.h; sourceTree = "<group>"; };
-		37201D7512B2DBFC0001A668 /* BicycletteBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteBar.m; sourceTree = "<group>"; };
 		37201E6012B2EA640001A668 /* UIImage+Tinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tinting.h"; sourceTree = "<group>"; };
 		37201E6112B2EA640001A668 /* UIImage+Tinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tinting.m"; sourceTree = "<group>"; };
-		37201E9612B2ED040001A668 /* RegionsTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegionsTab@2x.png"; sourceTree = "<group>"; };
 		372020C012B55C900001A668 /* Model+Mapkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Model+Mapkit.h"; sourceTree = "<group>"; };
 		372020C112B55C900001A668 /* Model+Mapkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Model+Mapkit.m"; sourceTree = "<group>"; };
 		37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VelibModel.xcdatamodel; sourceTree = "<group>"; };
@@ -169,7 +159,6 @@
 		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
 		37C189ED14861BE800F64F5B /* WarningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WarningIcon.png; sourceTree = "<group>"; };
-		37C79906147ED06400B285BA /* RegionsTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RegionsTab.png; sourceTree = "<group>"; };
 		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
 		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -188,10 +177,6 @@
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FavoritesTab@2x.png"; sourceTree = "<group>"; };
-		37E9537E12AA373000C1D21C /* MapTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapTab@2x.png"; sourceTree = "<group>"; };
-		37E9538312AA379B00C1D21C /* FavoritesTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoritesTab.png; sourceTree = "<group>"; };
-		37E9538412AA379B00C1D21C /* MapTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MapTab.png; sourceTree = "<group>"; };
 		37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCMapping.h"; sourceTree = "<group>"; };
 		37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping.m"; sourceTree = "<group>"; };
 		37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedFixes.plist; sourceTree = "<group>"; };
@@ -229,8 +214,6 @@
 		080E96DDFE201D6D7F000001 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				37201D7412B2DBFC0001A668 /* BicycletteBar.h */,
-				37201D7512B2DBFC0001A668 /* BicycletteBar.m */,
 				37E37F6E12A6FDE800D7AB57 /* RegionsVC.h */,
 				37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */,
 				37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */,
@@ -376,12 +359,6 @@
 			children = (
 				37C189ED14861BE800F64F5B /* WarningIcon.png */,
 				37DA7EAD148D8B8D004EB098 /* WarningIcon@2x.png */,
-				37E9538312AA379B00C1D21C /* FavoritesTab.png */,
-				37E9537D12AA373000C1D21C /* FavoritesTab@2x.png */,
-				37C79906147ED06400B285BA /* RegionsTab.png */,
-				37201E9612B2ED040001A668 /* RegionsTab@2x.png */,
-				37E9538412AA379B00C1D21C /* MapTab.png */,
-				37E9537E12AA373000C1D21C /* MapTab@2x.png */,
 			);
 			name = Resources;
 			path = Files;
@@ -541,14 +518,8 @@
 				3756EB5C1298085B00113534 /* Settings.bundle in Resources */,
 				37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */,
 				37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */,
-				37E9538012AA373000C1D21C /* FavoritesTab@2x.png in Resources */,
-				37E9538112AA373000C1D21C /* MapTab@2x.png in Resources */,
-				37E9538612AA379B00C1D21C /* FavoritesTab.png in Resources */,
-				37E9538712AA379B00C1D21C /* MapTab.png in Resources */,
-				37201E9712B2ED040001A668 /* RegionsTab@2x.png in Resources */,
 				37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */,
 				37D6B10E12CCC93700EEC835 /* StationDetailVC.xib in Resources */,
-				37C79907147ED06400B285BA /* RegionsTab.png in Resources */,
 				37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */,
 				37DA7EAE148D8B8D004EB098 /* WarningIcon@2x.png in Resources */,
 			);
@@ -613,7 +584,6 @@
 				37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */,
 				37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
-				37201D7612B2DBFC0001A668 /* BicycletteBar.m in Sources */,
 				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
 				372020C212B55C900001A668 /* Model+Mapkit.m in Sources */,
 				37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */,

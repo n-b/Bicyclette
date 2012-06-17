@@ -11,7 +11,7 @@
 #define BicycletteBlue			[UIColor colorWithHue:.61f saturation:.87f brightness:.8f alpha:1]
 #define BicycletteAppDelegate ((BicycletteApplicationDelegate*)[[UIApplication sharedApplication] delegate])
 
-@class VelibModel/*, Locator*/, BicycletteBar;
+@class VelibModel, BicycletteBar;
 
 @interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
 
