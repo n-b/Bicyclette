@@ -20,7 +20,6 @@
 
 @interface VelibModel () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property (nonatomic, strong) DataUpdater * updater;
-@property BOOL updatingXML;
 // -
 @property (nonatomic, strong) NSDictionary * stationsHardcodedFixes;
 @property (readwrite, nonatomic, strong) CLRegion * hardcodedLimits;
@@ -37,7 +36,6 @@
 @implementation VelibModel
 
 @synthesize updater;
-@synthesize updatingXML;
 @synthesize stationsHardcodedFixes;
 @synthesize hardcodedLimits;
 @synthesize regionContainingData;
@@ -126,8 +124,6 @@
 
 - (void) updater:(DataUpdater*)updater receivedUpdatedData:(NSData*)xml
 {
-	self.updatingXML = YES;
-    
 	NSError * requestError = nil;
 	
 	// Get Old Stations Names
@@ -161,7 +157,6 @@
     
 	// Save
 	[self save];
-	self.updatingXML = NO;
 }
 
 - (NSDictionary*) stationKVCMapping

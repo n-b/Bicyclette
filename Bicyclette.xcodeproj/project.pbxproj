@@ -14,12 +14,8 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
-		37149B70126248F5009CDE82 /* StationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B6E126248F5009CDE82 /* StationsVC.m */; };
-		37149B71126248F5009CDE82 /* StationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149B6F126248F5009CDE82 /* StationsVC.xib */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
-		37149C8412625AD7009CDE82 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8312625AD7009CDE82 /* StationCell.m */; };
-		37149C8612625AE5009CDE82 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37149C8512625AE5009CDE82 /* StationCell.xib */; };
 		37149C8A12625B94009CDE82 /* UITableViewCell+NibLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */; };
 		371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */; };
@@ -63,10 +59,6 @@
 		37D6B10D12CCC93700EEC835 /* StationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6B10B12CCC93700EEC835 /* StationDetailVC.m */; };
 		37D6B10E12CCC93700EEC835 /* StationDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */; };
 		37DA7EAE148D8B8D004EB098 /* WarningIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DA7EAD148D8B8D004EB098 /* WarningIcon@2x.png */; };
-		37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */; };
-		37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */; };
-		37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E37F7812A7022F00D7AB57 /* RegionCell.m */; };
-		37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E37F7A12A7023E00D7AB57 /* RegionCell.xib */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
@@ -94,16 +86,10 @@
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		37149B6D126248F5009CDE82 /* StationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsVC.h; sourceTree = "<group>"; };
-		37149B6E126248F5009CDE82 /* StationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsVC.m; sourceTree = "<group>"; };
-		37149B6F126248F5009CDE82 /* StationsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationsVC.xib; sourceTree = "<group>"; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		37149BBA126250D7009CDE82 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayAdditions.h; sourceTree = "<group>"; };
 		37149BBB126250D7009CDE82 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
-		37149C8212625AD7009CDE82 /* StationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCell.h; sourceTree = "<group>"; };
-		37149C8312625AD7009CDE82 /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
-		37149C8512625AE5009CDE82 /* StationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationCell.xib; sourceTree = "<group>"; };
 		37149C8812625B94009CDE82 /* UITableViewCell+NibLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+NibLoaded.h"; sourceTree = "<group>"; };
 		37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+NibLoaded.m"; sourceTree = "<group>"; };
 		371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping_Tests.m"; sourceTree = "<group>"; };
@@ -168,12 +154,6 @@
 		37D6B10B12CCC93700EEC835 /* StationDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDetailVC.m; sourceTree = "<group>"; };
 		37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDetailVC.xib; sourceTree = "<group>"; };
 		37DA7EAD148D8B8D004EB098 /* WarningIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WarningIcon@2x.png"; sourceTree = "<group>"; };
-		37E37F6E12A6FDE800D7AB57 /* RegionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionsVC.h; sourceTree = "<group>"; };
-		37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionsVC.m; sourceTree = "<group>"; };
-		37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionsVC.xib; sourceTree = "<group>"; };
-		37E37F7712A7022F00D7AB57 /* RegionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionCell.h; sourceTree = "<group>"; };
-		37E37F7812A7022F00D7AB57 /* RegionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionCell.m; sourceTree = "<group>"; };
-		37E37F7A12A7023E00D7AB57 /* RegionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCell.xib; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -214,25 +194,13 @@
 		080E96DDFE201D6D7F000001 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				37E37F6E12A6FDE800D7AB57 /* RegionsVC.h */,
-				37E37F6F12A6FDE800D7AB57 /* RegionsVC.m */,
-				37E37F7012A6FDE800D7AB57 /* RegionsVC.xib */,
-				37E37F7712A7022F00D7AB57 /* RegionCell.h */,
-				37E37F7812A7022F00D7AB57 /* RegionCell.m */,
-				37E37F7A12A7023E00D7AB57 /* RegionCell.xib */,
-				37149B6D126248F5009CDE82 /* StationsVC.h */,
-				37149B6E126248F5009CDE82 /* StationsVC.m */,
-				37149B6F126248F5009CDE82 /* StationsVC.xib */,
-				37149C8212625AD7009CDE82 /* StationCell.h */,
-				37149C8312625AD7009CDE82 /* StationCell.m */,
-				37149C8512625AE5009CDE82 /* StationCell.xib */,
+				37E9531412AA29FB00C1D21C /* MapVC.h */,
+				37E9531512AA29FB00C1D21C /* MapVC.m */,
 				37D6B10A12CCC93700EEC835 /* StationDetailVC.h */,
 				37D6B10B12CCC93700EEC835 /* StationDetailVC.m */,
 				37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */,
 				37B69DB01290925B0053728D /* StationStatusView.h */,
 				37B69DB11290925B0053728D /* StationStatusView.m */,
-				37E9531412AA29FB00C1D21C /* MapVC.h */,
-				37E9531512AA29FB00C1D21C /* MapVC.m */,
 			);
 			name = UI;
 			path = Files;
@@ -508,16 +476,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				37149B71126248F5009CDE82 /* StationsVC.xib in Resources */,
-				37149C8612625AE5009CDE82 /* StationCell.xib in Resources */,
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
 				3756EAE41298018A00113534 /* Default.png in Resources */,
 				3756EAE51298018A00113534 /* Default@2x.png in Resources */,
 				3756EAE61298018A00113534 /* Icon.png in Resources */,
 				3756EAE71298018A00113534 /* Icon@2x.png in Resources */,
 				3756EB5C1298085B00113534 /* Settings.bundle in Resources */,
-				37E37F7212A6FDE800D7AB57 /* RegionsVC.xib in Resources */,
-				37E37F7B12A7023E00D7AB57 /* RegionCell.xib in Resources */,
 				37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */,
 				37D6B10E12CCC93700EEC835 /* StationDetailVC.xib in Resources */,
 				37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */,
@@ -574,15 +538,11 @@
 				1D3623260D0F684500981E51 /* BicycletteApplicationDelegate.m in Sources */,
 				37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */,
 				37216BC712611C5400A2695A /* VelibModel.m in Sources */,
-				37149B70126248F5009CDE82 /* StationsVC.m in Sources */,
 				37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */,
 				37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */,
-				37149C8412625AD7009CDE82 /* StationCell.m in Sources */,
 				37149C8A12625B94009CDE82 /* UITableViewCell+NibLoaded.m in Sources */,
 				37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */,
 				37B69DB21290925B0053728D /* StationStatusView.m in Sources */,
-				37E37F7112A6FDE800D7AB57 /* RegionsVC.m in Sources */,
-				37E37F7912A7022F00D7AB57 /* RegionCell.m in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
 				372020C212B55C900001A668 /* Model+Mapkit.m in Sources */,

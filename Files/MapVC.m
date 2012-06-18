@@ -83,6 +83,7 @@ typedef enum {
     self.mapView = nil;
     [super viewDidUnload];
 }
+
 /****************************************************************************/
 #pragma mark MapView Delegate
 
@@ -202,26 +203,6 @@ typedef enum {
 - (void) zoomIn:(Region*)region
 {
 	[self.mapView setRegion:[self.mapView regionThatFits:region.coordinateRegion] animated:YES];
-}
-
-- (IBAction)changeGeolocMode
-{
-//    switch (self.mapView.userTrackingMode) {
-//        case MKUserTrackingModeNone:
-//            self.mapView.userTrackingMode = MKUserTrackingModeFollow;
-//            self.centerMapButton.title = @"1";
-//            break;
-//        case MKUserTrackingModeFollow:
-//            self.mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
-//            self.centerMapButton.title = @"2";
-//            break;
-//        case MKUserTrackingModeFollowWithHeading:
-//            self.mapView.userTrackingMode = MKUserTrackingModeNone;
-//            self.centerMapButton.title = @"0";
-//            break;
-//        default:
-//            break;
-//    }
 }
 
 /****************************************************************************/

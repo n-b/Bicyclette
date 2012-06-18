@@ -11,6 +11,4 @@
 
 @interface MapVC : UIViewController 
 
-// Actions
-- (IBAction)changeGeolocMode;
 @end
