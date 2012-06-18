@@ -88,7 +88,7 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 /****************************************************************************/
 #pragma mark -
 
-- (void) save
+- (BOOL) save:(NSArray**)saveErrors
 {
 	NSError * saveError = nil;
 	BOOL success = [self.moc save:&saveError];
@@ -111,10 +111,10 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
             errors = [NSMutableArray arrayWithArray:[saveError underlyingErrors]];
         }
     }
-    if([self.delegate respondsToSelector:@selector(coreDataManager:didSave:withErrors:)])
-    {
-        [self.delegate coreDataManager:self didSave:success withErrors:errors];
-    }
+    
+    if(saveErrors && errors.count)
+        *saveErrors = errors;
+    return success;
 }
 
 @end

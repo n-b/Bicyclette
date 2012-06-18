@@ -19,7 +19,3 @@
 @property (nonatomic, getter=isFavorite) BOOL favorite;
 @end
 
-// Notification
-extern const struct VelibModelNotifications {
-	__unsafe_unretained NSString *favoriteChanged;
-} VelibModelNotifications;

@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>DatabaseReloadInterval</key>
-	<integer>864000</integer>
+	<integer>1</integer>
 	<key>StationRefreshInterval</key>
 	<integer>10</integer>
 	<key>DebugRemoveStore</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

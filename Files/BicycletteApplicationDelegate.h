@@ -17,7 +17,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window; // redeclare property of parent class to make it an outlet
 
-@property (nonatomic, strong, readonly) VelibModel * model;
+@property (strong, readonly) VelibModel * model;
 
 @end
 

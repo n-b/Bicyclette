@@ -72,9 +72,8 @@
     self.status_date = date;
 }
 
-- (void) updaterDidFinish:(DataUpdater*)updater
+- (void) updaterDidBegin:(DataUpdater *)updater
 {
-    self.updater = nil;
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
@@ -83,7 +82,12 @@
     self.updater = nil;
 }
 
-- (void) updater:(DataUpdater *)updater receivedUpdatedData:(NSData *)data
+- (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
+{
+    self.updater = nil;
+}
+
+- (void) updater:(DataUpdater *)updater finishedWithNewData:(NSData *)data
 {
     NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
 	parser.delegate = self;
@@ -91,7 +95,8 @@
 	[parser parse];
     self.currentParsedString = nil;
 
-    [self.managedObjectContext.model save];
+    [self.managedObjectContext.model save:nil];
+    self.updater = nil;
 }
 
 /****************************************************************************/

@@ -12,10 +12,6 @@
 #import "BicycletteApplicationDelegate.h"
 #import "StationList.h"
 
-const struct VelibModelNotifications VelibModelNotifications = {
-	.favoriteChanged = @"VelibModelNotificationsFavoriteChanged",
-};
-
 @implementation VelibModel (Favorites)
 
 - (StationList*) mainBookmarksList
@@ -59,7 +55,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
         else
             [self.managedObjectContext.model.mainBookmarksList.stationsSet removeObject:self];
 
-        [self.managedObjectContext.model save];
+        [self.managedObjectContext.model save:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.favoriteChanged object:self];
     }
 }

@@ -21,18 +21,11 @@ extern NSString * const BicycletteErrorDomain;
 @property (readonly, nonatomic, strong) NSManagedObjectContext *moc;
 @property (nonatomic, weak) id<CoreDataManagerDelegate> delegate; 
 
-- (void) save;
+- (BOOL) save:(NSArray**)saveErrors; // returns an array of errors
 
 @end
 
 // reverse link to obtain the CoreDataManager from a moc, for example in the objects implementation.
 @interface NSManagedObjectContext (AssociatedManager)
 @property (nonatomic, retain, readonly) CoreDataManager * coreDataManager;
-@end
-
-
-// delegate
-@protocol CoreDataManagerDelegate <NSObject>
-@optional
-- (void) coreDataManager:(CoreDataManager*)manager didSave:(BOOL)success withErrors:(NSArray*)errors;
 @end

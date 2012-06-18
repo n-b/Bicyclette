@@ -47,6 +47,7 @@
         
 		if(needUpdate)
         {
+            [self.delegate updaterDidBegin:self];
             NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
             [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
             self.updateConnection = [NSURLConnection connectionWithRequest:request
@@ -54,6 +55,7 @@
         }
         else
         {
+            // Do not even start
             return nil;
         }
 	}
@@ -109,28 +111,15 @@
             [self.delegate setUpdater:self knownDataSha1:newSha1];
     }
 
-    if(notifyDelegate)
-		[self.delegate updater:self receivedUpdatedData:self.updateData];
-
     if([self.delegate respondsToSelector:@selector(setUpdater:dataDate:)])
         [self.delegate setUpdater:self dataDate:[NSDate date]];
-    
-    [self.delegate updaterDidFinish:self];
+
+    if(notifyDelegate)
+		[self.delegate updater:self finishedWithNewData:self.updateData];
+    else
+        [self.delegate updaterDidFinishWithNoNewData:self];
 
 	self.updateData = nil;
-}
-
-/****************************************************************************/
-#pragma mark status
-
-+ (NSSet*) keyPathsForValuesAffectingDownloadingUpdate
-{
-	return [NSSet setWithObject:@"updateConnection"];
-}
-
-- (BOOL) downloadingUpdate
-{
-	return self.updateConnection!=nil;
 }
 
 @end

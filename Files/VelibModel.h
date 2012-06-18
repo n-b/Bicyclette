@@ -21,7 +21,7 @@
 
 @interface VelibModel : CoreDataManager
 
-@property (nonatomic, strong, readonly) DataUpdater * updater;
+- (void) updateIfNeeded;
 
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
 
@@ -33,3 +33,19 @@
 @interface NSManagedObjectContext (AssociatedModel)
 @property (nonatomic, retain, readonly) VelibModel * model;
 @end
+
+
+extern const struct VelibModelNotifications {
+	__unsafe_unretained NSString * updateBegan;
+	__unsafe_unretained NSString * updateGotNewData;
+	__unsafe_unretained NSString * updateSucceeded;
+	__unsafe_unretained NSString * updateFailed;
+	__unsafe_unretained NSString * favoriteChanged;
+    struct
+    {
+        __unsafe_unretained NSString * dataChanged;
+        __unsafe_unretained NSString * saveErrors;
+        __unsafe_unretained NSString * failureReason;
+        __unsafe_unretained NSString * station; // favoriteChanged
+    } keys;
+} VelibModelNotifications;

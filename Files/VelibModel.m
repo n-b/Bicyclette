@@ -16,6 +16,24 @@
 #import "DataUpdater.h"
 
 /****************************************************************************/
+#pragma mark Constants
+
+const struct VelibModelNotifications VelibModelNotifications = {
+	.favoriteChanged = @"VelibModelNotifications.favoriteChanged",
+    .updateBegan = @"VelibModelNotifications.updateBegan",
+    .updateGotNewData = @"VelibModelNotifications.updateGotNewData",
+    .updateSucceeded = @"VelibModelNotifications.updateSucceded",
+    .updateFailed = @"VelibModelNotifications.updateFailed",
+    .keys = {
+        .dataChanged = @"VelibModelNotifications.keys.dataChanged",
+        .failureReason = @"VelibModelNotifications.keys.failureReason",
+        .saveErrors = @"VelibModelNotifications.keys.saveErrors",
+        .station = @"VelibModelNotifications.keys.station",
+    }
+};
+
+
+/****************************************************************************/
 #pragma mark -
 
 @interface VelibModel () <DataUpdaterDelegate, NSXMLParserDelegate>
@@ -41,14 +59,6 @@
 @synthesize regionContainingData;
 @synthesize parsing_regionsByCodePostal;
 @synthesize parsing_oldStations;
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.updater = [DataUpdater updaterWithDelegate:self];
-    }
-    return self;
-}
 
 /****************************************************************************/
 #pragma mark Hardcoded Fixes
@@ -80,7 +90,18 @@
 }
 
 /****************************************************************************/
-#pragma mark Parsing
+#pragma mark Update
+
+- (void) updateIfNeeded
+{
+    if(self.updater==nil)
+    {
+        self.updater = [DataUpdater updaterWithDelegate:self];
+    }
+}
+
+/****************************************************************************/
+#pragma mark Updater Delegate
 
 - (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater *)updater
 {
@@ -111,19 +132,21 @@
     [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"DatabaseCreateDate"];
 }
 
-- (void) updaterDidFinish:(DataUpdater*)updater
+- (void) updaterDidBegin:(DataUpdater*)updater
 {
-    self.updater = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateBegan object:self];
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
-    // No specific error handling
+    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self userInfo:@{VelibModelNotifications.keys.failureReason : error}];
     self.updater = nil;
 }
 
-- (void) updater:(DataUpdater*)updater receivedUpdatedData:(NSData*)xml
+- (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)xml
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateGotNewData object:self];
+    
 	NSError * requestError = nil;
 	
 	// Get Old Stations Names
@@ -156,8 +179,32 @@
     self.parsing_oldStations = nil;
     
 	// Save
-	[self save];
+    NSArray * errors;
+    if ([self save:&errors])
+    {
+        NSMutableDictionary * userInfo = [@{VelibModelNotifications.keys.dataChanged : @YES} mutableCopy];
+        if (errors)
+            [userInfo setObject:errors forKey:VelibModelNotifications.keys.saveErrors];
+        [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self
+                                                          userInfo:userInfo];
+    }
+    else
+        [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self
+                                                          userInfo:
+         @{VelibModelNotifications.keys.failureReason : errors}];
+
+    self.updater = nil;
 }
+
+- (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self userInfo:@{VelibModelNotifications.keys.dataChanged : @NO}];
+    self.updater = nil;
+}
+
+
+/****************************************************************************/
+#pragma mark Parser delegate
 
 - (NSDictionary*) stationKVCMapping
 {
@@ -170,14 +217,13 @@
                      @"name",@"name",
                      @"number",@"number",
                      @"open",@"open",
-
+                     
                      @"latitude",@"lat",
                      @"longitude",@"lng",
                      nil];
     
     return s_mapping;
 }
-
 
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {

@@ -13,11 +13,12 @@
 /****************************************************************************/
 #pragma mark Private Methods
 
-@interface BicycletteApplicationDelegate() <CoreDataManagerDelegate>
+@interface BicycletteApplicationDelegate()
 
-@property (nonatomic, strong) IBOutlet UIView *notificationView;
-
-@property (nonatomic, strong) VelibModel * model;
+@property (strong) IBOutlet UIView *notificationView;
+@property (strong) IBOutlet UILabel *notificationLabel;
+@property (strong) IBOutlet UIButton *notificationButton;
+@property (strong) VelibModel * model;
 
 @end
 
@@ -26,7 +27,7 @@
 
 @implementation BicycletteApplicationDelegate
 
-@synthesize window, notificationView;
+@synthesize window, notificationView, notificationLabel, notificationButton;
 @synthesize model;
 
 /****************************************************************************/
@@ -38,10 +39,14 @@
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateBegan object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateGotNewData object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateSucceeded object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateFailed object:self.model];
 
     // Create model
     self.model = [VelibModel new];
-    self.model.delegate = self;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -50,7 +55,6 @@
 	self.notificationView.layer.cornerRadius = 10;
 	[self.window addSubview:self.notificationView];
 	self.notificationView.center = self.window.center;
-    [self.model addObserver:self forKeyPath:@"updater.downloadingUpdate" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([BicycletteApplicationDelegate class])];
 
 	[self.window makeKeyAndVisible];
 
@@ -66,40 +70,55 @@
 	return YES;
 }
 
-- (void)dealloc {
-	[self.model removeObserver:self forKeyPath:@"updater.downloadingUpdate"];
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    self.notificationView.alpha = 0;
+    [self.model updateIfNeeded];
 }
 
 /****************************************************************************/
 #pragma mark CoreDataManager delegate
 
-- (void) coreDataManager:(CoreDataManager*)manager didSave:(BOOL)success withErrors:(NSArray*)errors
+- (void) modelUpdated:(NSNotification*)note
 {
-    if(errors.count)
+    [UIView beginAnimations:nil context:NULL];
+    self.notificationView.alpha = 1;
+    if([note.name isEqualToString:VelibModelNotifications.updateBegan])
     {
-        NSString * title = success ? NSLocalizedString(@"Some invalid data could not be saved.", 0) : NSLocalizedString(@"Invalid data prevented data to be saved.", 0);
-        NSMutableString * message = [NSMutableString string];
-        for (NSError * error in errors) {
-            [message appendFormat:@"%@ : %@\n",error.localizedDescription,error.localizedFailureReason];
-        }
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", 0) otherButtonTitles:nil];
-        [alert show];
+        self.notificationButton.userInteractionEnabled = NO;
+        self.notificationLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
     }
+    else if([note.name isEqualToString:VelibModelNotifications.updateGotNewData])
+    {
+        self.notificationButton.userInteractionEnabled = NO;
+        self.notificationLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
+    }
+    else if([note.name isEqualToString:VelibModelNotifications.updateSucceeded])
+    {
+        self.notificationButton.userInteractionEnabled = YES;
+        BOOL newData = [note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue];
+        NSArray * saveErrors = note.userInfo[VelibModelNotifications.keys.saveErrors];
+        if(saveErrors)
+            self.notificationLabel.text = NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil);
+        else if(newData)
+            self.notificationLabel.text = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+        else
+            self.notificationLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
+        [self performSelector:@selector(hideNotification:) withObject:self afterDelay:2];
+    }
+    else if([note.name isEqualToString:VelibModelNotifications.updateFailed])
+    {
+        self.notificationButton.userInteractionEnabled = YES;
+        self.notificationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"UPDATING : FAILED %@", nil),
+                                       note.userInfo[VelibModelNotifications.keys.failureReason]];
+    }
+    [UIView commitAnimations];
 }
 
-/****************************************************************************/
-#pragma mark -
-
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == (__bridge void *)([BicycletteApplicationDelegate class])) {
-		[UIView beginAnimations:nil context:NULL];
-		self.notificationView.alpha = self.model.updater.downloadingUpdate?1.f:0.f;
-		[UIView commitAnimations];
-	}
-	else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-	}
+- (IBAction)hideNotification:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    self.notificationView.alpha = 0;
+    [UIView commitAnimations];
 }
 
 @end

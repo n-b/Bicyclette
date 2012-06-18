@@ -21,22 +21,26 @@
 
 @property (nonatomic, weak) id<DataUpdaterDelegate> delegate;
 
-@property (readonly) BOOL downloadingUpdate;
-
 @end
 
 /****************************************************************************/
 #pragma mark -
 
 @protocol DataUpdaterDelegate <NSObject>
-- (NSURL*) urlForUpdater:(DataUpdater*)updater;
-- (void) updater:(DataUpdater*)updater receivedUpdatedData:(NSData*)data;
-- (void) updaterDidFinish:(DataUpdater*)updater;
+- (void) updaterDidBegin:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
+- (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;
+- (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)data;
+
+// Data for updater
+- (NSURL*) urlForUpdater:(DataUpdater*)updater;
 @optional
+// Refresh Interval
 - (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater*)updater;
+// Date
 - (NSDate*) dataDateForUpdater:(DataUpdater*)updater;
 - (void) setUpdater:(DataUpdater*)updater dataDate:(NSDate*)date;
+// SHA-1
 - (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater;
 - (void) setUpdater:(DataUpdater*)updater knownDataSha1:(NSString*)sha1;
 @end

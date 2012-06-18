@@ -48,6 +48,8 @@ typedef enum {
 	if (self != nil) {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) 
 													 name:VelibModelNotifications.favoriteChanged object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
+                                                     name:VelibModelNotifications.updateSucceeded object:nil];
 	}
 	return self;
 }
@@ -70,9 +72,8 @@ typedef enum {
     
     self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     self.navigationItem.leftBarButtonItem = self.userTrackingButton;
-    
-	self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
-	self.mapView.region = self.referenceRegion;
+
+    [self reloadData];
 }
 
 
@@ -84,6 +85,14 @@ typedef enum {
     [super viewDidUnload];
 }
 
+- (void) reloadData
+{
+    self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
+	self.mapView.region = self.referenceRegion;
+
+    [self updateAnnotations];
+}
+
 /****************************************************************************/
 #pragma mark MapView Delegate
 
@@ -93,33 +102,9 @@ typedef enum {
 	if(self.mapView.region.span.latitudeDelta>modelSpan/10.0f)
 		self.mode = MapModeRegions;
 	else
-	{
 		self.mode = MapModeStations;
-		
-		NSFetchRequest * request = [NSFetchRequest new];
-		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
-        MKCoordinateRegion mapRegion = self.mapView.region;
-		request.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
-							 mapRegion.center.latitude - mapRegion.span.latitudeDelta, 
-                             mapRegion.center.latitude + mapRegion.span.latitudeDelta,
-                             mapRegion.center.longitude - mapRegion.span.longitudeDelta, 
-                             mapRegion.center.longitude + mapRegion.span.longitudeDelta];
 
-		NSArray * oldAnnotations = self.mapView.annotations;
-		NSArray * newAnnotations = [BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL];
-		
-		NSMutableArray * annotationsToRemove = [oldAnnotations mutableCopy];
-        [annotationsToRemove removeObjectsInArray:newAnnotations];
-        [annotationsToRemove removeObject:self.mapView.userLocation];
-		NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
-
-        NSLog(@"removing %d annotations, adding %d",[annotationsToRemove count], [annotationsToAdd count]);
-		[self.mapView removeAnnotations:annotationsToRemove];
-		[self.mapView addAnnotations:annotationsToAdd];
-		
-		NSArray * visibleFavorites = [newAnnotations filteredArrayWithSelector:@selector(isFavorite)];
-		[visibleFavorites makeObjectsPerformSelector:@selector(refresh)];
-	}
+    [self updateAnnotations];
 }
 
 
@@ -173,25 +158,40 @@ typedef enum {
     
 }
 
+- (void) updateAnnotations
+{
+    NSArray * oldAnnotations = self.mapView.annotations;
+    NSFetchRequest * request = [NSFetchRequest new];
+
+    if (self.mode == MapModeRegions)
+    {
+        request.entity = [Region entityInManagedObjectContext:BicycletteAppDelegate.model.moc];
+    }
+    else
+    {
+		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
+        MKCoordinateRegion mapRegion = self.mapView.region;
+		request.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
+							 mapRegion.center.latitude - mapRegion.span.latitudeDelta, 
+                             mapRegion.center.latitude + mapRegion.span.latitudeDelta,
+                             mapRegion.center.longitude - mapRegion.span.longitudeDelta, 
+                             mapRegion.center.longitude + mapRegion.span.longitudeDelta];
+    }
+
+    NSArray * newAnnotations = [BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL];
+
+    NSMutableArray * annotationsToRemove = [oldAnnotations mutableCopy];
+    [annotationsToRemove removeObjectsInArray:newAnnotations];
+    [annotationsToRemove removeObject:self.mapView.userLocation];
+    NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
+    
+    NSLog(@"removing %d annotations, adding %d",[annotationsToRemove count], [annotationsToAdd count]);
+    [self.mapView removeAnnotations:annotationsToRemove];
+    [self.mapView addAnnotations:annotationsToAdd];
+}
+
 /****************************************************************************/
 #pragma mark Actions
-
-- (void) setMode:(MapMode)value
-{
-	if(value!=self.mode)
-	{
-		mode = value;
-        NSMutableArray * annotationsToRemove = [self.mapView.annotations mutableCopy];
-        [annotationsToRemove removeObject:self.mapView.userLocation];
-		[self.mapView removeAnnotations:annotationsToRemove];
-		if(self.mode==MapModeRegions)
-		{
-			NSFetchRequest * request = [NSFetchRequest new];
-			request.entity = [Region entityInManagedObjectContext:BicycletteAppDelegate.model.moc];
-			[self.mapView addAnnotations:[BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL]];
-		}			
-	}
-}
 
 - (void) showDetails:(UIButton*)sender
 {
@@ -208,11 +208,16 @@ typedef enum {
 /****************************************************************************/
 #pragma mark -
 
-- (void) favoriteDidChange:(NSNotification*)notif
+- (void) favoriteDidChange:(NSNotification*)note
 {
-	Station * station = notif.object;
+	Station * station = note.object;
 	MKPinAnnotationView * pinView = (MKPinAnnotationView*)[self.mapView viewForAnnotation:station];
 	pinView.pinColor = [station isFavorite]?MKPinAnnotationColorRed:MKPinAnnotationColorGreen;
+}
+
+- (void) modelUpdated:(NSNotification*) note
+{
+    [self reloadData];
 }
 
 @end
