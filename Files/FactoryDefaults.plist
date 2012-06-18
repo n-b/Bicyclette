@@ -7,6 +7,6 @@
 	<key>StationRefreshInterval</key>
 	<integer>10</integer>
 	<key>DebugRemoveStore</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

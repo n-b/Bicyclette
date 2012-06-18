@@ -230,7 +230,8 @@ typedef enum {
 
 - (void) modelUpdated:(NSNotification*) note
 {
-    [self reloadData];
+    if(note.userInfo[[VelibModelNotifications.keys.dataChanged boolValue]])
+        [self reloadData];
 }
 
 @end

@@ -15,9 +15,7 @@
 
 @interface BicycletteApplicationDelegate()
 
-@property (strong) IBOutlet UIView *notificationView;
 @property (strong) IBOutlet UILabel *notificationLabel;
-@property (strong) IBOutlet UIButton *notificationButton;
 @property (strong) VelibModel * model;
 
 @end
@@ -27,7 +25,7 @@
 
 @implementation BicycletteApplicationDelegate
 
-@synthesize window, notificationView, notificationLabel, notificationButton;
+@synthesize window, notificationLabel;
 @synthesize model;
 
 /****************************************************************************/
@@ -52,9 +50,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// notification view
-	self.notificationView.layer.cornerRadius = 10;
-	[self.window addSubview:self.notificationView];
-	self.notificationView.center = self.window.center;
+    CGRect frame = [[UIApplication sharedApplication] statusBarFrame];
+    frame.origin.y = frame.size.height;
+    self.notificationLabel = [[UILabel alloc] initWithFrame:frame];
+    self.notificationLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:.83];
+    self.notificationLabel.textColor = [UIColor colorWithWhite:.83 alpha:1];
+    self.notificationLabel.shadowColor = [UIColor colorWithWhite:.0 alpha:.5];
+    self.notificationLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.notificationLabel.font = [UIFont boldSystemFontOfSize:13];
+	[self.window addSubview:self.notificationLabel];
 
 	[self.window makeKeyAndVisible];
 
@@ -72,7 +77,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    self.notificationView.alpha = 0;
+    self.notificationLabel.hidden = YES;
     [self.model updateIfNeeded];
 }
 
@@ -81,21 +86,17 @@
 
 - (void) modelUpdated:(NSNotification*)note
 {
-    [UIView beginAnimations:nil context:NULL];
-    self.notificationView.alpha = 1;
+    self.notificationLabel.hidden = NO;
     if([note.name isEqualToString:VelibModelNotifications.updateBegan])
     {
-        self.notificationButton.userInteractionEnabled = NO;
         self.notificationLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
     }
     else if([note.name isEqualToString:VelibModelNotifications.updateGotNewData])
     {
-        self.notificationButton.userInteractionEnabled = NO;
         self.notificationLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
     }
     else if([note.name isEqualToString:VelibModelNotifications.updateSucceeded])
     {
-        self.notificationButton.userInteractionEnabled = YES;
         BOOL newData = [note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue];
         NSArray * saveErrors = note.userInfo[VelibModelNotifications.keys.saveErrors];
         if(saveErrors)
@@ -108,7 +109,6 @@
     }
     else if([note.name isEqualToString:VelibModelNotifications.updateFailed])
     {
-        self.notificationButton.userInteractionEnabled = YES;
         self.notificationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"UPDATING : FAILED %@", nil),
                                        note.userInfo[VelibModelNotifications.keys.failureReason]];
     }
@@ -116,9 +116,7 @@
 }
 
 - (IBAction)hideNotification:(id)sender {
-    [UIView beginAnimations:nil context:NULL];
-    self.notificationView.alpha = 0;
-    [UIView commitAnimations];
+    self.notificationLabel.hidden = YES;
 }
 
 @end
