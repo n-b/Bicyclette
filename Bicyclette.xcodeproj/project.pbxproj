@@ -22,6 +22,7 @@
 		371D4FC51483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */; };
 		371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
 		371D4FC91484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
+		371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D90C9158FE19900E509E6 /* TransparentToolbar.m */; };
 		371E1BF3137FCF7C007EFBFF /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
 		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
 		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
@@ -96,6 +97,8 @@
 		371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NSObject+KVCMapping_Tests.xcdatamodel"; sourceTree = "<group>"; };
 		371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattedStringToDateValueTransformer.h; sourceTree = "<group>"; };
 		371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattedStringToDateValueTransformer.m; sourceTree = "<group>"; };
+		371D90C8158FE19900E509E6 /* TransparentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentToolbar.h; sourceTree = "<group>"; };
+		371D90C9158FE19900E509E6 /* TransparentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentToolbar.m; sourceTree = "<group>"; };
 		371E1BEA137FCF7C007EFBFF /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		371E1BEB137FCF7C007EFBFF /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 		371E1BEC137FCF7C007EFBFF /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */,
 				371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */,
 				371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */,
+				371D90C8158FE19900E509E6 /* TransparentToolbar.h */,
+				371D90C9158FE19900E509E6 /* TransparentToolbar.m */,
 			);
 			name = Extensions;
 			path = Files;
@@ -562,6 +567,7 @@
 				371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
 				374785A3149EAAC9009186CE /* _StationList.m in Sources */,
 				374785A6149EAACF009186CE /* StationList.m in Sources */,
+				371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

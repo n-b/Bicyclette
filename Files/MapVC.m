@@ -27,6 +27,7 @@ typedef enum {
 // Outlets
 @property MKMapView * mapView;
 @property MKUserTrackingBarButtonItem * userTrackingButton;
+@property UIButton * infoButton;
 
 @property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
@@ -50,6 +51,16 @@ typedef enum {
 													 name:VelibModelNotifications.favoriteChanged object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
                                                      name:VelibModelNotifications.updateSucceeded object:nil];
+
+        self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:nil];
+        
+        self.infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        
+        [self.infoButton addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.toolbarItems = @[self.userTrackingButton,
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+        [[UIBarButtonItem alloc] initWithCustomView:self.infoButton]];
 	}
 	return self;
 }
@@ -70,8 +81,7 @@ typedef enum {
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
     
-    self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    self.navigationItem.leftBarButtonItem = self.userTrackingButton;
+    self.userTrackingButton.mapView = self.mapView;
 
     [self reloadData];
 }
@@ -79,8 +89,6 @@ typedef enum {
 
 - (void) viewDidUnload
 {
-    self.userTrackingButton = nil;
-    self.navigationItem.leftBarButtonItem = nil;
     self.mapView = nil;
     [super viewDidUnload];
 }
@@ -203,6 +211,11 @@ typedef enum {
 - (void) zoomIn:(Region*)region
 {
 	[self.mapView setRegion:[self.mapView regionThatFits:region.coordinateRegion] animated:YES];
+}
+
+- (void) showInfo:(UIButton*)sender
+{
+    
 }
 
 /****************************************************************************/
