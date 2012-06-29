@@ -28,7 +28,6 @@
 		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
 		371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
 		37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201E6112B2EA640001A668 /* UIImage+Tinting.m */; };
-		372020C212B55C900001A668 /* Model+Mapkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 372020C112B55C900001A668 /* Model+Mapkit.m */; };
 		37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */; };
 		37216BC712611C5400A2695A /* VelibModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibModel.m */; };
 		372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
@@ -109,8 +108,6 @@
 		371E1BF2137FCF7C007EFBFF /* _Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
 		37201E6012B2EA640001A668 /* UIImage+Tinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tinting.h"; sourceTree = "<group>"; };
 		37201E6112B2EA640001A668 /* UIImage+Tinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tinting.m"; sourceTree = "<group>"; };
-		372020C012B55C900001A668 /* Model+Mapkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Model+Mapkit.h"; sourceTree = "<group>"; };
-		372020C112B55C900001A668 /* Model+Mapkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Model+Mapkit.m"; sourceTree = "<group>"; };
 		37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VelibModel.xcdatamodel; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* VelibModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibModel.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibModel.m; sourceTree = "<group>"; };
@@ -303,8 +300,6 @@
 				37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */,
 				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 				37A346B5128C9D68000A2540 /* VelibModel */,
-				372020C012B55C900001A668 /* Model+Mapkit.h */,
-				372020C112B55C900001A668 /* Model+Mapkit.m */,
 			);
 			name = Model;
 			path = Files;
@@ -550,7 +545,6 @@
 				37B69DB21290925B0053728D /* StationStatusView.m in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
-				372020C212B55C900001A668 /* Model+Mapkit.m in Sources */,
 				37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */,
 				37D6B10D12CCC93700EEC835 /* StationDetailVC.m in Sources */,
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,

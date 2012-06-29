@@ -142,39 +142,6 @@
 	return [NSSet setWithObject:@"updater"];
 }
 
-- (NSString *) statusDescription
-{
-	return [NSString stringWithFormat:NSLocalizedString(@"%d vélos, %d places.",@""),self.status_availableValue, self.status_freeValue];
-}
-
-+ (NSSet*) keyPathsForValuesAffectingStatusDescription
-{
-	return [NSSet setWithObjects:@"status_availableValue",@"status_freeValue",nil];  
-}
-
-- (NSString *) statusDateDescription
-{
-	if(self.loading)
-		return NSLocalizedString(@"Requête en cours",@"");
-	if(nil==self.status_date)
-		return NSLocalizedString(@"Aucune info",@"");
-
-	NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.status_date];
-	if(interval<60)
-		return NSLocalizedString(@"à l'instant",@"");
-	if(interval<90)
-		return [NSString stringWithFormat:NSLocalizedString(@"il y a 1 minute",@"")];
-	if(interval<60*60)
-		return [NSString stringWithFormat:NSLocalizedString(@"il y a %.0f minutes",@""),interval/60.0f];
-	else
-		return NSLocalizedString(@"Aucune info récente",@"");
-}
-
-+ (NSSet*) keyPathsForValuesAffectingStatusDateDescription
-{
-	return [NSSet setWithObject:@"status_date"];
-}
-
 /****************************************************************************/
 #pragma mark Location
 
@@ -200,20 +167,6 @@
 + (NSSet*) keyPathsForValuesAffectingCleanName
 {
 	return [NSSet setWithObjects:@"name",@"number",nil];
-}
-
-- (NSString *) cleanAddress
-{
-#if DEBUG
-	if(![self.address hasSuffix:@" -"])
-		NSLog(@"whoa ? %@ : %@",self.name, self.address);
-#endif
-	return [self.address stringByDeletingSuffix:@" -"];
-}
-
-+ (NSSet*) keyPathsForValuesAffectingCleanAddress
-{
-	return [NSSet setWithObject:@"address"];
 }
 
 /****************************************************************************/
