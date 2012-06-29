@@ -45,6 +45,7 @@ typedef enum {
 @implementation MapVC 
 {
     LayerCache * _layerCache;
+    
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder
@@ -132,7 +133,7 @@ typedef enum {
 		self.mode = MapModeStations;
 
     self.displayControl.enabled = (self.mode==MapModeStations);
-
+        
     [self updateAnnotations];
 }
 
@@ -204,6 +205,12 @@ typedef enum {
     NSLog(@"removing %d annotations, adding %d",[annotationsToRemove count], [annotationsToAdd count]);
     [self.mapView removeAnnotations:annotationsToRemove];
     [self.mapView addAnnotations:annotationsToAdd];
+    
+    if(self.mode==MapModeStations)
+    {
+        NSSet * visibleAnnotations = [self.mapView annotationsInMapRect:self.mapView.visibleMapRect];
+        [visibleAnnotations makeObjectsPerformSelector:@selector(refresh)];
+    }
 }
 
 /****************************************************************************/

@@ -121,7 +121,7 @@
 		372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
 		3730161615977E1900347C9F /* LayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerCache.h; sourceTree = "<group>"; };
 		3730161715977E1900347C9F /* LayerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerCache.m; sourceTree = "<group>"; };
-		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
+		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
 		374785A1149EAAC9009186CE /* _StationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _StationList.h; sourceTree = "<group>"; };
 		374785A2149EAAC9009186CE /* _StationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _StationList.m; sourceTree = "<group>"; };
@@ -208,17 +208,13 @@
 			children = (
 				37E9531412AA29FB00C1D21C /* MapVC.h */,
 				37E9531512AA29FB00C1D21C /* MapVC.m */,
-				37D6B10A12CCC93700EEC835 /* StationDetailVC.h */,
-				37D6B10B12CCC93700EEC835 /* StationDetailVC.m */,
-				37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */,
-				37B69DB01290925B0053728D /* StationStatusView.h */,
-				37B69DB11290925B0053728D /* StationStatusView.m */,
 				3700F8511594A806007CF99E /* RegionAnnotationView.h */,
 				3700F8521594A806007CF99E /* RegionAnnotationView.m */,
 				378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */,
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
 				3730161615977E1900347C9F /* LayerCache.h */,
 				3730161715977E1900347C9F /* LayerCache.m */,
+				37605791159DE8290094A2D3 /* Detail */,
 			);
 			name = UI;
 			path = Files;
@@ -346,6 +342,18 @@
 			);
 			name = Resources;
 			path = Files;
+			sourceTree = "<group>";
+		};
+		37605791159DE8290094A2D3 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				37D6B10A12CCC93700EEC835 /* StationDetailVC.h */,
+				37D6B10B12CCC93700EEC835 /* StationDetailVC.m */,
+				37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */,
+				37B69DB01290925B0053728D /* StationStatusView.h */,
+				37B69DB11290925B0053728D /* StationStatusView.m */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		3770B22C14E976590003BBA8 /* TestData */ = {
@@ -725,7 +733,6 @@
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

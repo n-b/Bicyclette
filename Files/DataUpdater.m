@@ -30,6 +30,36 @@
     return [[self alloc] initWithDelegate:delegate_];
 }
 
++ (void) startUpdater:(DataUpdater*)updater;
+{
+    static NSMutableArray * s_queued, *s_active;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ s_queued = [NSMutableArray new]; s_active = [NSMutableArray new]; });
+        
+    @synchronized(self)
+    {
+        NSAssert(![s_queued containsObject:updater],@"the same updater can't be reused");
+        
+        if([s_active containsObject:updater])
+            [s_active removeObject:updater];
+        else
+            [s_queued addObject:updater];
+        
+        while([s_queued count] && [s_active count]<20)
+        {
+            DataUpdater * updaterStarted = [s_queued objectAtIndex:0];
+            [s_active addObject:updaterStarted];
+            [s_queued removeObjectAtIndex:0];
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^(void){
+                [updaterStarted startRequest];
+            });
+        }
+        
+        NSLog(@"%d updaters active, %d queued",[s_active count],[s_queued count]);
+    }
+}
+
 - (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_
 {
 	self = [super init];
@@ -48,10 +78,7 @@
 		if(needUpdate)
         {
             [self.delegate updaterDidBegin:self];
-            NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
-            [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
-            self.updateConnection = [NSURLConnection connectionWithRequest:request
-                                                                  delegate:self];
+            [[self class] startUpdater:self];
         }
         else
         {
@@ -60,6 +87,14 @@
         }
 	}
 	return self;
+}
+
+- (void) startRequest
+{
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
+    [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
+    self.updateConnection = [NSURLConnection connectionWithRequest:request
+                                                          delegate:self];
 }
 
 - (void) dealloc
@@ -78,6 +113,8 @@
 	{
 		[self.updateConnection cancel];
 		self.updateConnection = nil;
+
+        [[self class] startUpdater:self];
 	}
 }
 
@@ -92,6 +129,8 @@
 	self.updateConnection = nil;
 	self.updateData = nil;
     [self.delegate updater:self didFailWithError:error];
+
+    [[self class] startUpdater:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -120,6 +159,8 @@
         [self.delegate updaterDidFinishWithNoNewData:self];
 
 	self.updateData = nil;
+
+    [[self class] startUpdater:self];
 }
 
 @end
