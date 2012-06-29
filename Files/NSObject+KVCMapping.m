@@ -30,7 +30,7 @@
     
     if([realKey length])
         [self setTransformedValue:value forRealKey:realKey];
-#if DEBUG
+#if DEBUG && DEBUG_KV_MAPPING
     else
         NSLog(@"ignored key : %@ for class %@",wantedKey, [self class]);
 #endif
