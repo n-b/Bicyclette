@@ -14,6 +14,10 @@
 #import "StationDetailVC.h"
 #import "NSArrayAdditions.h"
 #import "VelibModel+Favorites.h"
+#import "RegionAnnotationView.h"
+#import "StationAnnotationView.h"
+#import "LayerCache.h"
+
 
 typedef enum {
 	MapModeNone = 0,
@@ -26,10 +30,12 @@ typedef enum {
 // Outlets
 @property MKMapView * mapView;
 @property MKUserTrackingBarButtonItem * userTrackingButton;
+@property UISegmentedControl * displayControl;
 @property UIButton * infoButton;
 
 @property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
+@property (nonatomic) MapDisplay display;
 
 @end
 
@@ -37,10 +43,9 @@ typedef enum {
 #pragma mark -
 
 @implementation MapVC 
-
-@synthesize mapView, userTrackingButton;
-@synthesize referenceRegion, mode;
-
+{
+    LayerCache * _layerCache;
+}
 
 - (id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -51,15 +56,25 @@ typedef enum {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
                                                      name:VelibModelNotifications.updateSucceeded object:nil];
 
+
         self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:nil];
         
-        self.infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-        
-        [self.infoButton addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+        _displayControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKES", nil), NSLocalizedString(@"PARKING", nil) ]];
+        _displayControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        [_displayControl addTarget:self action:@selector(switchDisplay:) forControlEvents:UIControlEventValueChanged];
+        _displayControl.selectedSegmentIndex = self.display;
+
+        _infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        [_infoButton addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+        _infoButton.showsTouchWhenHighlighted = NO;
         
         self.toolbarItems = @[self.userTrackingButton,
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-        [[UIBarButtonItem alloc] initWithCustomView:self.infoButton]];
+        [[UIBarButtonItem alloc] initWithCustomView:_displayControl],
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+        [[UIBarButtonItem alloc] initWithCustomView:_infoButton]];
+
+        _layerCache = [LayerCache new];
 	}
 	return self;
 }
@@ -70,6 +85,11 @@ typedef enum {
 
 /****************************************************************************/
 #pragma mark -
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
 
 - (void) loadView
 {
@@ -111,6 +131,8 @@ typedef enum {
 	else
 		self.mode = MapModeStations;
 
+    self.displayControl.enabled = (self.mode==MapModeStations);
+
     [self updateAnnotations];
 }
 
@@ -121,33 +143,20 @@ typedef enum {
 		return nil;
 	else if([annotation isKindOfClass:[Region class]])
 	{
-		NSString* identifier = NSStringFromClass([Region class]);
-		MKPinAnnotationView * pinView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-		if(nil==pinView)
-		{
-			pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-			pinView.pinColor = MKPinAnnotationColorPurple;
-			pinView.canShowCallout = NO;
-		}
-		return pinView;
+		RegionAnnotationView * regionAV = (RegionAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RegionAnnotationView reuseIdentifier]];
+		if(nil==regionAV)
+			regionAV = [[RegionAnnotationView alloc] initWithRegion:annotation layerCache:_layerCache];
+
+        return regionAV;
 	}
 	else if([annotation isKindOfClass:[Station class]])
 	{
-		NSString* identifier = NSStringFromClass([Station class]);
-		MKPinAnnotationView * pinView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-		if(nil==pinView)
-		{
-			pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-			pinView.canShowCallout = YES;
-			UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-			[rightButton addTarget:self
-							action:@selector(showDetails:)
-				  forControlEvents:UIControlEventTouchUpInside];
-			pinView.rightCalloutAccessoryView = rightButton;
-		}
-		pinView.pinColor = [(Station*)annotation isFavorite]?MKPinAnnotationColorRed:MKPinAnnotationColorGreen;
-		
-		return pinView;
+		StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[StationAnnotationView reuseIdentifier]];
+		if(nil==stationAV)
+			stationAV = [[StationAnnotationView alloc] initWithStation:annotation layerCache:_layerCache];
+
+        stationAV.display = self.display;
+		return stationAV;
 	}
 	return nil;
 }
@@ -157,7 +166,7 @@ typedef enum {
 	if([view.annotation isKindOfClass:[Region class]])
 		[self zoomIn:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
-        [(Station*)view.annotation refresh];
+        [self showDetails:(Station*)view.annotation];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -200,10 +209,8 @@ typedef enum {
 /****************************************************************************/
 #pragma mark Actions
 
-- (void) showDetails:(UIButton*)sender
+- (void) showDetails:(Station*)station
 {
-	Station * station = (Station*)[self.mapView.selectedAnnotations objectAtIndex:0];
-	
 	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:station inOrderedSet:nil] animated:YES];
 }
 
@@ -215,6 +222,19 @@ typedef enum {
 - (void) showInfo:(UIButton*)sender
 {
     
+}
+
+- (void) switchDisplay:(UISegmentedControl*)sender
+{
+    self.display = sender.selectedSegmentIndex;
+
+    if(self.mode==MapModeStations)
+    {
+        for (id<MKAnnotation> annotation in self.mapView.annotations) {
+            StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
+            stationAV.display = self.display;
+        }
+    }
 }
 
 /****************************************************************************/
@@ -229,7 +249,7 @@ typedef enum {
 
 - (void) modelUpdated:(NSNotification*) note
 {
-    if(note.userInfo[[VelibModelNotifications.keys.dataChanged boolValue]])
+    if([note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue])
         [self reloadData];
 }
 

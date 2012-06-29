@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+typedef enum {
+	MapDisplayBikes,
+	MapDisplayParking,
+}  MapDisplay;
+
 @interface MapVC : UIViewController 
 
 @end
