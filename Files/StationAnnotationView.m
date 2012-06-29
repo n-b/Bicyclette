@@ -91,7 +91,7 @@
     
     CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
-                                                                                    shape:BackgroundShapeRoundedRects
+                                                                                    shape:_display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                              borderColor1:kAnnotationFrame1Color
                                                                              borderColor2:kAnnotationFrame2Color
                                                                              borderColor3:kAnnotationFrame3Color

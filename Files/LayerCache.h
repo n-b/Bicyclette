@@ -12,9 +12,10 @@
 typedef enum
 {
     BackgroundShapeRectangle,
-    BackgroundShapeRoundedRects,
+    BackgroundShapeRoundedRect,
     BackgroundShapeOval,
 }BackgroundShape;
+
 - (CGLayerRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
                                                     scale:(CGFloat)scale
                                                     shape:(BackgroundShape)shape

@@ -75,7 +75,7 @@
 
     CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
-                                                                                    shape:BackgroundShapeOval
+                                                                                    shape:BackgroundShapeRectangle
                                                                              borderColor1:kAnnotationFrame1Color
                                                                              borderColor2:kAnnotationFrame2Color
                                                                              borderColor3:kAnnotationFrame3Color
