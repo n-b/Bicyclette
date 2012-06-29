@@ -171,6 +171,7 @@
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCMapping.h"; sourceTree = "<group>"; };
 		37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping.m"; sourceTree = "<group>"; };
+		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
 		37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedFixes.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +207,7 @@
 		080E96DDFE201D6D7F000001 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				37EFCF3A159E495F007B2E41 /* Style.h */,
 				37E9531412AA29FB00C1D21C /* MapVC.h */,
 				37E9531512AA29FB00C1D21C /* MapVC.m */,
 				3700F8511594A806007CF99E /* RegionAnnotationView.h */,

@@ -7,6 +7,8 @@
 //
 
 #import "LayerCache.h"
+#import "Style.h"
+
 #import "UIColor+hsb.h"
 
 
@@ -39,16 +41,11 @@ typedef enum {
 - (CGLayerRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
                                                     scale:(CGFloat)scale
                                                     shape:(BackgroundShape)shape
-                                             borderColor1:(UIColor*)borderColor1
-                                             borderColor2:(UIColor*)borderColor2
-                                             borderColor3:(UIColor*)borderColor3
-                                           gradientColor1:(UIColor*)gradientColor1
-                                           gradientColor2:(UIColor*)gradientColor2
+                                                baseColor:(UIColor*)baseColor
 {
-    NSString * key = [NSString stringWithFormat:@"background%d%d%f%d%@%@%@%@%@",
+    NSString * key = [NSString stringWithFormat:@"background%d%d%f%d%@",
                       (int)size.width, (int)size.height, (float)scale, (int)shape,
-                      [borderColor1 hsbString], [borderColor2 hsbString], [borderColor2 hsbString],
-                      [gradientColor1 hsbString], [gradientColor2 hsbString]];
+                      [baseColor hsbString]];
 
     CGLayerRef result = (__bridge CGLayerRef)[_cache objectForKey:key];
     if(result) return result;
@@ -71,14 +68,14 @@ typedef enum {
                 [self clipWithPath:[self shape:shape inRect:CGRectInset(rect, clipMargin, clipMargin)] inContext:c];
 
                 [self drawSimpleGradientFromPoint1:CGPointZero toPoint2:CGPointMake(0, rect.size.height)
-                                            color1:gradientColor1 color2:gradientColor2 inContext:c];
+                                            color1:baseColor color2:[baseColor colorByAddingBrightness:-.2] inContext:c];
             }
             CGContextRestoreGState(c);
 
             CGContextSetLineWidth(c, 1/scale);
-            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)] withColor:borderColor1 inContext:c];
-            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)] withColor:borderColor2 inContext:c];
-            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)] withColor:borderColor3 inContext:c];
+            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)] withColor:kAnnotationFrame1Color inContext:c];
+            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)] withColor:kAnnotationFrame2Color inContext:c];
+            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)] withColor:kAnnotationFrame3Color inContext:c];
 
             [_cache setObject:CFBridgingRelease(tempLayer) forKey:key];
         }

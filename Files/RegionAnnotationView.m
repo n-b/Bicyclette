@@ -8,24 +8,11 @@
 
 #import "RegionAnnotationView.h"
 #import "LayerCache.h"
+#import "Style.h"
+
 
 /****************************************************************************/
 #pragma mark -
-
-#define kAnnotationViewSize 30
-
-#define kAnnotationFrame1Color [UIColor colorWithHue:0 saturation:.02 brightness:.82 alpha:1]
-#define kAnnotationFrame2Color [UIColor colorWithHue:0 saturation:.02 brightness:.07 alpha:1]
-#define kAnnotationFrame3Color [UIColor colorWithHue:0 saturation:.02 brightness:.98 alpha:1]
-#define kAnnotationBackgoundColor1 [UIColor colorWithHue:0 saturation:.02 brightness:.98 alpha:1]
-#define kAnnotationBackgoundColor2 [UIColor colorWithHue:0 saturation:.02 brightness:.80 alpha:1]
-
-#define kAnnotationLine1TextColor [UIColor colorWithHue:0 saturation:.02 brightness:.07 alpha:1]
-#define kAnnotationLine1TextShadowColor [UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
-#define kAnnotationLine1Font [UIFont fontWithName:@"GillSans-Bold" size:10]
-#define kAnnotationLine2TextColor [UIColor colorWithHue:0 saturation:.02 brightness:.07 alpha:1]
-#define kAnnotationLine2TextShadowColor [UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
-#define kAnnotationLine2Font [UIFont fontWithName:@"GillSans" size:10]
 
 @implementation RegionAnnotationView
 {
@@ -76,11 +63,7 @@
     CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:BackgroundShapeRectangle
-                                                                             borderColor1:kAnnotationFrame1Color
-                                                                             borderColor2:kAnnotationFrame2Color
-                                                                             borderColor3:kAnnotationFrame3Color
-                                                                           gradientColor1:kAnnotationBackgoundColor1
-                                                                           gradientColor2:kAnnotationBackgoundColor2];
+                                                                                baseColor:kRegionColor];
 
     
     CGContextDrawLayerInRect(c, rect, backgroundLayer);
@@ -93,13 +76,13 @@
         CGRect rect1, rect2;
         CGRectDivide(CGRectInset(rect, 0, 4), &rect1, &rect2, 10, CGRectMinYEdge);
 
-        [kAnnotationLine1TextColor setFill];
-        CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationLine1TextShadowColor CGColor]);
-        [line1 drawInRect:rect1 withFont:kAnnotationLine1Font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+        [kAnnotationTitleTextColor setFill];
+        CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationTitleShadowColor CGColor]);
+        [line1 drawInRect:rect1 withFont:kAnnotationTitleFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
 
-        [kAnnotationLine2TextColor setFill];
-        CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationLine2TextShadowColor CGColor]);
-        [line2 drawInRect:rect2 withFont:kAnnotationLine2Font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+        [kAnnotationDetailTextColor setFill];
+        CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationDetailShadowColor CGColor]);
+        [line2 drawInRect:rect2 withFont:kAnnotationDetailFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
 }
 

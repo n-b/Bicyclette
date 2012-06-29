@@ -30,31 +30,89 @@
 
 - (CGFloat) hue
 {
-    CGFloat hue;
-    if([self getHue:&hue saturation:NULL brightness:NULL alpha:NULL])
-        return hue;
+    CGFloat h;
+    if([self getHue:&h saturation:NULL brightness:NULL alpha:NULL])
+        return h;
     return 0;
 }
 - (CGFloat) saturation
 {
-    CGFloat saturation;
-    if([self getHue:NULL saturation:&saturation brightness:NULL alpha:NULL])
-        return saturation;
+    CGFloat s;
+    if([self getHue:NULL saturation:&s brightness:NULL alpha:NULL])
+        return s;
     return 0;
 }
 - (CGFloat) brightness
 {
-    CGFloat brightness;
-    if([self getHue:NULL saturation:NULL brightness:&brightness alpha:NULL])
-        return brightness;
+    CGFloat b;
+    if([self getHue:NULL saturation:NULL brightness:&b alpha:NULL])
+        return b;
     return 0;
 }
 - (CGFloat) alpha
 {
-    CGFloat alpha;
-    if([self getHue:NULL saturation:NULL brightness:NULL alpha:&alpha])
-        return alpha;
+    CGFloat a;
+    if([self getHue:NULL saturation:NULL brightness:NULL alpha:&a])
+        return a;
     return 0;
+}
+
+- (UIColor*) colorWithHue:(CGFloat)h_
+{
+    CGFloat s, b, a;
+    if([self getHue:NULL saturation:&s brightness:&b alpha:&a])
+        return [[self class] colorWithHue:h_ saturation:s brightness:b alpha:a];
+    return nil;
+}
+- (UIColor*) colorWithSaturation:(CGFloat)s_
+{
+    CGFloat h, b, a;
+    if([self getHue:&h saturation:NULL brightness:&b alpha:&a])
+        return [[self class] colorWithHue:h saturation:s_ brightness:b alpha:a];
+    return nil;
+}
+- (UIColor*) colorWithBrightness:(CGFloat)b_
+{
+    CGFloat h, s, a;
+    if([self getHue:&h saturation:&s brightness:NULL alpha:&a])
+        return [[self class] colorWithHue:h saturation:s brightness:b_ alpha:a];
+    return nil;
+}
+- (UIColor*) colorWithAlpha:(CGFloat)a_
+{
+    CGFloat h, s, b;
+    if([self getHue:&h saturation:&s brightness:&b alpha:NULL])
+        return [[self class] colorWithHue:h saturation:s brightness:b alpha:a_];
+    return nil;
+}
+
+- (UIColor*) colorByAddingHue:(CGFloat)h_
+{
+    CGFloat h, s, b, a;
+    if([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [[self class] colorWithHue:h+h_ saturation:s brightness:b alpha:a];
+    return nil;
+}
+- (UIColor*) colorByAddingSaturation:(CGFloat)s_
+{
+    CGFloat h, s, b, a;
+    if([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [[self class] colorWithHue:h saturation:s+s_ brightness:b alpha:a];
+    return nil;
+}
+- (UIColor*) colorByAddingBrightness:(CGFloat)b_
+{
+    CGFloat h, s, b, a;
+    if([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [[self class] colorWithHue:h saturation:s brightness:b+b_ alpha:a];
+    return nil;
+}
+- (UIColor*) colorByAddingAlpha:(CGFloat)a_
+{
+    CGFloat h, s, b, a;
+    if([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [[self class] colorWithHue:h saturation:s brightness:b alpha:a+a_];
+    return nil;
 }
 
 @end

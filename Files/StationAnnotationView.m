@@ -8,23 +8,7 @@
 
 #import "StationAnnotationView.h"
 #import "LayerCache.h"
-
-#define kAnnotationViewSize 30
-
-#define kAnnotationFrame1Color [UIColor colorWithHue:0 saturation:.02 brightness:.82 alpha:1]
-#define kAnnotationFrame2Color [UIColor colorWithHue:0 saturation:.02 brightness:.07 alpha:1]
-#define kAnnotationFrame3Color [UIColor colorWithHue:0 saturation:.02 brightness:.98 alpha:1]
-
-#define kAnnotationBackgoundColor1Bikes [UIColor colorWithHue:0.13 saturation:.62 brightness:.98 alpha:1]
-#define kAnnotationBackgoundColor2Bikes [UIColor colorWithHue:0.13 saturation:.62 brightness:.80 alpha:1]
-
-#define kAnnotationBackgoundColor1Parking [UIColor colorWithHue:0.26 saturation:.62 brightness:.98 alpha:1]
-#define kAnnotationBackgoundColor2Parking [UIColor colorWithHue:0.26 saturation:.62 brightness:.80 alpha:1]
-
-#define kAnnotationLine1TextColor [UIColor colorWithHue:0 saturation:.02 brightness:.07 alpha:1]
-#define kAnnotationLine1TextShadowColor [UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
-#define kAnnotationLine1Font [UIFont fontWithName:@"GillSans-Bold" size:20]
-
+#import "Style.h"
 
 @implementation StationAnnotationView
 {
@@ -88,15 +72,22 @@
 - (void) drawRect:(CGRect)rect
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
-    
+
+    UIColor * color;
+    int16_t value;
+    if(_display==MapDisplayBikes)
+        value = [self station].status_availableValue;
+    else
+        value = [self station].status_freeValue;
+
+    if(value==0) color = kCriticalValueColor;
+    else if(value<5) color = kWarningValueColor;
+    else color = kGoodValueColor;
+
     CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:_display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                                             borderColor1:kAnnotationFrame1Color
-                                                                             borderColor2:kAnnotationFrame2Color
-                                                                             borderColor3:kAnnotationFrame3Color
-                                                                           gradientColor1:_display==MapDisplayBikes? kAnnotationBackgoundColor1Bikes : kAnnotationBackgoundColor1Parking
-                                                                           gradientColor2:_display==MapDisplayBikes? kAnnotationBackgoundColor2Bikes : kAnnotationBackgoundColor2Parking];
+                                                                                baseColor:color];
     CGContextDrawLayerInRect(c, rect, backgroundLayer);
     
     {
@@ -106,9 +97,11 @@
         else
             text = [NSString stringWithFormat:@"%d",[[self station] status_freeValue]];
 
-        [kAnnotationLine1TextColor setFill];
-        CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationLine1TextShadowColor CGColor]);
-        [text drawInRect:rect withFont:kAnnotationLine1Font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+        [kAnnotationValueTextColor setFill];
+        CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationValueShadowColor CGColor]);
+        CGSize textSize = [text sizeWithFont:kAnnotationValueFont];
+		CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
+        [text drawAtPoint:point withFont:kAnnotationValueFont];
     }
 }
 

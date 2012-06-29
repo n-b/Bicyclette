@@ -237,9 +237,12 @@ typedef enum {
 
     if(self.mode==MapModeStations)
     {
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"contents"];
+        animation.duration = 0.2;
         for (id<MKAnnotation> annotation in self.mapView.annotations) {
             StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
             stationAV.display = self.display;
+            [stationAV.layer addAnimation:animation forKey:@"contents"];
         }
     }
 }

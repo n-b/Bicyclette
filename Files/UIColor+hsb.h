@@ -18,4 +18,14 @@
 - (CGFloat) brightness;
 - (CGFloat) alpha;
 
+- (UIColor*) colorWithHue:(CGFloat)h_;
+- (UIColor*) colorWithSaturation:(CGFloat)s_;
+- (UIColor*) colorWithBrightness:(CGFloat)b_;
+- (UIColor*) colorWithAlpha:(CGFloat)a_;
+
+- (UIColor*) colorByAddingHue:(CGFloat)h_;
+- (UIColor*) colorByAddingSaturation:(CGFloat)s_;
+- (UIColor*) colorByAddingBrightness:(CGFloat)b_;
+- (UIColor*) colorByAddingAlpha:(CGFloat)a_;
+
 @end
