@@ -45,18 +45,18 @@
         else
             [s_queued addObject:updater];
         
-        while([s_queued count] && [s_active count]<20)
+        while([s_queued count] && [s_active count]<2)
         {
             DataUpdater * updaterStarted = [s_queued objectAtIndex:0];
             [s_active addObject:updaterStarted];
             [s_queued removeObjectAtIndex:0];
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^(void){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .2 * NSEC_PER_SEC), dispatch_get_current_queue(), ^(void){
                 [updaterStarted startRequest];
             });
         }
         
-        NSLog(@"%d updaters active, %d queued",[s_active count],[s_queued count]);
+//        NSLog(@"%d updaters active, %d queued",[s_active count],[s_queued count]);
     }
 }
 

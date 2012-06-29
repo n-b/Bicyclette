@@ -13,6 +13,7 @@
 @implementation StationAnnotationView
 {
     LayerCache * _layerCache;
+    BOOL _pulses;
 }
 
 - (id) initWithStation:(Station*)station layerCache:(LayerCache*)layerCache
@@ -42,7 +43,8 @@
     [self setNeedsDisplay];
 
     for (NSString * property in [[self class] stationObservedProperties])
-        [self.station addObserver:self forKeyPath:property options:0 context:(__bridge void *)([StationAnnotationView class])];
+        [self.station addObserver:self forKeyPath:property options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:(__bridge void *)([StationAnnotationView class])];
+    [self setPulses:[self station].loading];
 }
 
 - (void) setDisplay:(MapDisplay)display_
@@ -71,25 +73,29 @@
 
 - (void) drawRect:(CGRect)rect
 {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"contents"];
+    animation.duration = 0.2;
+    [self.layer addAnimation:animation forKey:@"contents"];
+
     CGContextRef c = UIGraphicsGetCurrentContext();
 
-    UIColor * color;
+    UIColor * baseColor;
     int16_t value;
     if(_display==MapDisplayBikes)
         value = [self station].status_availableValue;
     else
         value = [self station].status_freeValue;
 
-    if(value==0) color = kCriticalValueColor;
-    else if(value<5) color = kWarningValueColor;
-    else color = kGoodValueColor;
+    if(value==0) baseColor = kCriticalValueColor;
+    else if(value<5) baseColor = kWarningValueColor;
+    else baseColor = kGoodValueColor;
 
     CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:_display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                                                baseColor:color];
+                                                                                baseColor:baseColor];
     CGContextDrawLayerInRect(c, rect, backgroundLayer);
-    
+
     {
         NSString * text;
         if (self.display==MapDisplayBikes)
@@ -105,10 +111,37 @@
     }
 }
 
+- (void) setPulses:(BOOL)pulses
+{
+    _pulses = pulses;
+	if(_pulses) [self pulse];
+}
+
+- (void) pulse
+{
+    [UIView animateWithDuration:.3
+                     animations:^{ self.transform = CGAffineTransformMakeScale(1.1, 1.1); }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:.1
+                                          animations:^{ self.transform = CGAffineTransformIdentity; }
+                                          completion:^(BOOL f) {
+                                              if(_pulses) [self pulse];
+                                          }];
+                     }];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([StationAnnotationView class])) {
-        [self setNeedsDisplay];
+        if([keyPath isEqual:@"loading"])
+        {
+			[self setPulses:[self station].loading];
+        }
+        else
+        {
+            if( ! [[change objectForKey:NSKeyValueChangeNewKey] isEqual:[change objectForKey:NSKeyValueChangeOldKey]])
+                [self setNeedsDisplay];
+        }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -119,7 +152,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation Station (Mapkit) 
+@implementation Station (Mapkit)
 
 - (CLLocationCoordinate2D) coordinate
 {

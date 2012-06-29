@@ -202,15 +202,27 @@ typedef enum {
     [annotationsToRemove removeObject:self.mapView.userLocation];
     NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
     
-    NSLog(@"removing %d annotations, adding %d",[annotationsToRemove count], [annotationsToAdd count]);
     [self.mapView removeAnnotations:annotationsToRemove];
     [self.mapView addAnnotations:annotationsToAdd];
     
     if(self.mode==MapModeStations)
     {
-        NSSet * visibleAnnotations = [self.mapView annotationsInMapRect:self.mapView.visibleMapRect];
-        [visibleAnnotations makeObjectsPerformSelector:@selector(refresh)];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateVisibleStations) object:nil];
+        [self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:.5];
     }
+}
+
+- (void) updateVisibleStations
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+    MKMapRect rect = self.mapView.visibleMapRect;
+    rect.size.width /= 2;
+    rect.size.height /= 2;
+    rect.origin.x += rect.size.width / 2;
+    rect.origin.y += rect.size.height / 2;
+
+    NSSet * visibleAnnotations = [self.mapView annotationsInMapRect:rect];
+    [visibleAnnotations makeObjectsPerformSelector:@selector(refresh)];
 }
 
 /****************************************************************************/
@@ -218,7 +230,6 @@ typedef enum {
 
 - (void) showDetails:(Station*)station
 {
-	[self.navigationController pushViewController:[StationDetailVC detailVCWithStation:station inOrderedSet:nil] animated:YES];
 }
 
 - (void) zoomIn:(Region*)region
@@ -237,12 +248,9 @@ typedef enum {
 
     if(self.mode==MapModeStations)
     {
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"contents"];
-        animation.duration = 0.2;
         for (id<MKAnnotation> annotation in self.mapView.annotations) {
             StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
             stationAV.display = self.display;
-            [stationAV.layer addAnimation:animation forKey:@"contents"];
         }
     }
 }
