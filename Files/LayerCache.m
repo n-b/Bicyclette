@@ -65,7 +65,9 @@ typedef enum {
             CGContextSaveGState(c);
             {
                 CGFloat clipMargin = 2.5/scale;
-                [self clipWithPath:[self shape:shape inRect:CGRectInset(rect, clipMargin, clipMargin)] inContext:c];
+                CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, clipMargin, clipMargin)];
+                [self clipWithPath:path inContext:c];
+                CGPathRelease(path);
 
                 [self drawSimpleGradientFromPoint1:CGPointZero toPoint2:CGPointMake(0, rect.size.height)
                                             color1:baseColor color2:[baseColor colorByAddingBrightness:-.2] inContext:c];
@@ -73,9 +75,15 @@ typedef enum {
             CGContextRestoreGState(c);
 
             CGContextSetLineWidth(c, 1/scale);
-            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)] withColor:kAnnotationFrame1Color inContext:c];
-            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)] withColor:kAnnotationFrame2Color inContext:c];
-            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)] withColor:kAnnotationFrame3Color inContext:c];
+            CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)];
+            [self strokePath:path withColor:kAnnotationFrame1Color inContext:c];
+            CGPathRelease(path);
+            path = [self newShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)];
+            [self strokePath:path withColor:kAnnotationFrame2Color inContext:c];
+            CGPathRelease(path);
+            path = [self newShape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)];
+            [self strokePath:path withColor:kAnnotationFrame3Color inContext:c];
+            CGPathRelease(path);
 
             [_cache setObject:CFBridgingRelease(tempLayer) forKey:key];
         }
@@ -108,7 +116,7 @@ typedef enum {
     CGColorSpaceRelease(colorSpace);
 }
 
-- (CGPathRef) shape:(BackgroundShape)shape inRect:(CGRect)rect
+- (CGPathRef) newShape:(BackgroundShape)shape inRect:(CGRect)rect
 {
 	CGPathRef path;
     switch (shape) {
@@ -116,7 +124,7 @@ typedef enum {
         case BackgroundShapeRoundedRect: path = [self newPath:rect roundedCorners:RoundedCornerAll cornerRadius:4]; break;
         case BackgroundShapeOval: path = CGPathCreateWithEllipseInRect(rect, &CGAffineTransformIdentity); break;
     }
-    return (__bridge CGPathRef)(id)CFBridgingRelease(path); // essentially, i'm hoping that ARC will correctly autorelease my CFType
+    return path;
 }
 
 - (CGPathRef) newPath:(CGRect)rect roundedCorners:(RoundedCorners)corners cornerRadius:(CGFloat)cornerRadius
