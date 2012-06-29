@@ -61,19 +61,24 @@ typedef enum {
             CGLayerRef tempLayer = CGLayerCreateWithContext(parentContext, CGSizeMake(size.width*scale, size.height*scale), NULL);
             CGContextRef c = CGLayerGetContext(tempLayer);
             CGContextScaleCTM(c, scale, scale);
-            
+
             CGRect rect = (CGRect){CGPointZero, size};
+
+
+            CGContextSaveGState(c);
             {
-                [self clipWithPath:[self shape:shape inRect:CGRectInset(rect, 1, 1)] inContext:c];
+                CGFloat clipMargin = 2.5/scale;
+                [self clipWithPath:[self shape:shape inRect:CGRectInset(rect, clipMargin, clipMargin)] inContext:c];
 
                 [self drawSimpleGradientFromPoint1:CGPointZero toPoint2:CGPointMake(0, rect.size.height)
                                             color1:gradientColor1 color2:gradientColor2 inContext:c];
-
-                CGContextSetLineWidth(c, .5);
-                [self strokePath:[self shape:shape inRect:CGRectInset(rect, 1, 1)] withColor:borderColor1 inContext:c];
-                [self strokePath:[self shape:shape inRect:CGRectInset(rect, 1.5, 1.5)] withColor:borderColor2 inContext:c];
-                [self strokePath:[self shape:shape inRect:CGRectInset(rect, 2, 2)] withColor:borderColor3 inContext:c];
             }
+            CGContextRestoreGState(c);
+
+            CGContextSetLineWidth(c, 1/scale);
+            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)] withColor:borderColor1 inContext:c];
+            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)] withColor:borderColor2 inContext:c];
+            [self strokePath:[self shape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)] withColor:borderColor3 inContext:c];
 
             [_cache setObject:CFBridgingRelease(tempLayer) forKey:key];
         }
