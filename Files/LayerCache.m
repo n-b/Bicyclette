@@ -42,11 +42,14 @@ typedef enum {
                                                     scale:(CGFloat)scale
                                                     shape:(BackgroundShape)shape
                                                 baseColor:(UIColor*)baseColor
+                                                    value:(NSString *)text
 {
-    NSString * key = [NSString stringWithFormat:@"background%d%d%f%d%@",
+    NSString * key = [NSString stringWithFormat:@"background%d%d%f%d%@%@",
                       (int)size.width, (int)size.height, (float)scale, (int)shape,
-                      [baseColor hsbString]];
+                      [baseColor hsbString],text];
 
+    NSLog(@"%d cached layers",(int)[_cache count]);
+    
     CGLayerRef result = (__bridge CGLayerRef)[_cache objectForKey:key];
     if(result) return result;
     @synchronized(self)
@@ -61,7 +64,7 @@ typedef enum {
 
             CGRect rect = (CGRect){CGPointZero, size};
 
-
+            // Draw gradient
             CGContextSaveGState(c);
             {
                 CGFloat clipMargin = 2.5/scale;
@@ -74,17 +77,32 @@ typedef enum {
             }
             CGContextRestoreGState(c);
 
-            CGContextSetLineWidth(c, 1/scale);
-            CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)];
-            [self strokePath:path withColor:kAnnotationFrame1Color inContext:c];
-            CGPathRelease(path);
-            path = [self newShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)];
-            [self strokePath:path withColor:kAnnotationFrame2Color inContext:c];
-            CGPathRelease(path);
-            path = [self newShape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)];
-            [self strokePath:path withColor:kAnnotationFrame3Color inContext:c];
-            CGPathRelease(path);
+            // Draw border
+            {
+                CGContextSetLineWidth(c, 1/scale);
+                CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)];
+                [self strokePath:path withColor:kAnnotationFrame1Color inContext:c];
+                CGPathRelease(path);
+                path = [self newShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)];
+                [self strokePath:path withColor:kAnnotationFrame2Color inContext:c];
+                CGPathRelease(path);
+                path = [self newShape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)];
+                [self strokePath:path withColor:kAnnotationFrame3Color inContext:c];
+                CGPathRelease(path);
+            }
 
+            // Draw text
+            UIGraphicsPushContext(c);
+            {
+                 // Make c the current GraphicsContext
+                [kAnnotationValueTextColor setFill];
+                CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationValueShadowColor CGColor]);
+                CGSize textSize = [text sizeWithFont:kAnnotationValueFont];
+                CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
+                [text drawAtPoint:point withFont:kAnnotationValueFont];
+            }
+            UIGraphicsPopContext();
+            
             [_cache setObject:CFBridgingRelease(tempLayer) forKey:key];
         }
         return (__bridge CGLayerRef)[_cache objectForKey:key];

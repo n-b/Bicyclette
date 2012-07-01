@@ -13,7 +13,7 @@
 @implementation StationAnnotationView
 {
     LayerCache * _layerCache;
-    BOOL _pulses;
+    CALayer * _loadingLayer;
 }
 
 - (id) initWithStation:(Station*)station layerCache:(LayerCache*)layerCache
@@ -21,6 +21,19 @@
     self = [super initWithAnnotation:station reuseIdentifier:[[self class] reuseIdentifier]];
     _layerCache = layerCache;
     self.frame = (CGRect){CGPointZero,{kAnnotationViewSize,kAnnotationViewSize}};
+    _loadingLayer = [CALayer new];
+    _loadingLayer.backgroundColor = [UIColor blueColor].CGColor;
+    _loadingLayer.frame = self.bounds;
+    _loadingLayer.zPosition = -1;
+    [self.layer addSublayer:_loadingLayer];
+    
+    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    animation.fromValue = @0;
+    animation.toValue = @(2*M_PI);
+    animation.duration = 3.0f;
+    animation.repeatCount = HUGE_VAL;
+    [_loadingLayer addAnimation:animation forKey:@"LoadingRotation"];
+
     return self;
 }
 
@@ -43,8 +56,7 @@
     [self setNeedsDisplay];
 
     for (NSString * property in [[self class] stationObservedProperties])
-        [self.station addObserver:self forKeyPath:property options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:(__bridge void *)([StationAnnotationView class])];
-    [self setPulses:[self station].loading];
+        [self.station addObserver:self forKeyPath:property options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:(__bridge void *)([StationAnnotationView class])];
 }
 
 - (void) setDisplay:(MapDisplay)display_
@@ -73,48 +85,24 @@
 
 - (void) drawRect:(CGRect)rect
 {
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"contents"];
-    animation.duration = 0.2;
-    [self.layer addAnimation:animation forKey:@"contents"];
-
-    CGContextRef c = UIGraphicsGetCurrentContext();
-
-    UIColor * baseColor;
+    // Prepare Value
     int16_t value;
     if(_display==MapDisplayBikes)
         value = [self station].status_availableValue;
     else
         value = [self station].status_freeValue;
 
+    UIColor * baseColor;
     if(value==0) baseColor = kCriticalValueColor;
-    else if(value<5) baseColor = kWarningValueColor;
+    else if(value<4) baseColor = kWarningValueColor;
     else baseColor = kGoodValueColor;
 
-    CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGLayerRef cachedLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:_display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                                                baseColor:baseColor];
-    CGContextDrawLayerInRect(c, rect, backgroundLayer);
-
-    {
-        NSString * text;
-        if (self.display==MapDisplayBikes)
-            text = [NSString stringWithFormat:@"%d",[[self station] status_availableValue]];
-        else
-            text = [NSString stringWithFormat:@"%d",[[self station] status_freeValue]];
-
-        [kAnnotationValueTextColor setFill];
-        CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationValueShadowColor CGColor]);
-        CGSize textSize = [text sizeWithFont:kAnnotationValueFont];
-		CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
-        [text drawAtPoint:point withFont:kAnnotationValueFont];
-    }
-}
-
-- (void) setPulses:(BOOL)pulses
-{
-    _pulses = pulses;
-	if(_pulses) [self pulse];
+                                                                                baseColor:baseColor
+                                                                                    value:[NSString stringWithFormat:@"%d",value]];
+    CGContextDrawLayerInRect(UIGraphicsGetCurrentContext(), rect, cachedLayer);
 }
 
 - (void) pulse
@@ -122,11 +110,9 @@
     [UIView animateWithDuration:.3
                      animations:^{ self.transform = CGAffineTransformMakeScale(1.1, 1.1); }
                      completion:^(BOOL finished) {
-                         [UIView animateWithDuration:.1
+                         [UIView animateWithDuration:.3
                                           animations:^{ self.transform = CGAffineTransformIdentity; }
-                                          completion:^(BOOL f) {
-                                              if(_pulses) [self pulse];
-                                          }];
+                                          completion:nil];
                      }];
 }
 
@@ -135,12 +121,15 @@
     if (context == (__bridge void *)([StationAnnotationView class])) {
         if([keyPath isEqual:@"loading"])
         {
-			[self setPulses:[self station].loading];
+            _loadingLayer.opacity = [self station].loading ? 1.0 : 0.0;
         }
         else
         {
             if( ! [[change objectForKey:NSKeyValueChangeNewKey] isEqual:[change objectForKey:NSKeyValueChangeOldKey]])
+            {
                 [self setNeedsDisplay];
+                [self pulse];
+            }
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

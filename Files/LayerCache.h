@@ -19,5 +19,6 @@ typedef enum
 - (CGLayerRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
                                                     scale:(CGFloat)scale
                                                     shape:(BackgroundShape)shape
-                                                baseColor:(UIColor*)baseColor;
+                                                baseColor:(UIColor*)baseColor
+                                                    value:(NSString*)text;
 @end
