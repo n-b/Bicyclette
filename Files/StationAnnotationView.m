@@ -151,8 +151,8 @@
 - (void) willMoveToWindow:(UIWindow *)newWindow
 {
     [super willMoveToWindow:newWindow];
-    _mainLayer.contentsScale = newWindow.layer.contentsScale;
-    _loadingLayer.contentsScale = newWindow.layer.contentsScale;
+    _mainLayer.contentsScale = newWindow.screen.scale;
+    _loadingLayer.contentsScale = newWindow.screen.scale;
 }
 
 @end
