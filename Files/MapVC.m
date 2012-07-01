@@ -87,11 +87,6 @@ typedef enum {
 /****************************************************************************/
 #pragma mark -
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
-
 - (void) loadView
 {
     self.mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] applicationFrame]];
