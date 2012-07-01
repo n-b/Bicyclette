@@ -9,16 +9,24 @@
 #import <Foundation/Foundation.h>
 
 @interface LayerCache : NSObject
-typedef enum
-{
+
+typedef enum{
     BackgroundShapeRectangle,
     BackgroundShapeRoundedRect,
     BackgroundShapeOval,
 }BackgroundShape;
 
+typedef enum {
+    BorderModeNone,
+    BorderModeSolid,
+    BorderModeDashes
+} BorderMode;
+
+
 - (CGLayerRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
                                                     scale:(CGFloat)scale
                                                     shape:(BackgroundShape)shape
+                                               borderMode:(BorderMode)border
                                                 baseColor:(UIColor*)baseColor
                                                     value:(NSString*)text;
 @end

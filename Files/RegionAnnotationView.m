@@ -63,6 +63,7 @@
     CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:BackgroundShapeRectangle
+                                                                               borderMode:BorderModeSolid
                                                                                 baseColor:kRegionColor
                                                                                     value:@""];
 
