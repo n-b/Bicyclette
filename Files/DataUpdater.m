@@ -55,8 +55,7 @@
                 [updaterStarted startRequest];
             });
         }
-        
-//        NSLog(@"%d updaters active, %d queued",[s_active count],[s_queued count]);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = [s_active count]>0;
     }
 }
 
