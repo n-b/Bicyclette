@@ -221,7 +221,20 @@ typedef enum {
     rect.origin.x += rect.size.width / 2;
     rect.origin.y += rect.size.height / 2;
 
-    NSSet * visibleAnnotations = [self.mapView annotationsInMapRect:rect];
+    NSArray * visibleAnnotations = [[self.mapView annotationsInMapRect:rect] allObjects];
+    CLLocation * referenceLocation;
+    if(self.mapView.userLocationVisible)
+        referenceLocation = self.mapView.userLocation.location;
+    else
+    {
+        CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
+        referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    }
+    visibleAnnotations = [visibleAnnotations sortedArrayUsingComparator:^NSComparisonResult(Station * station1, Station * station2) {
+        CLLocationDistance d1 = [referenceLocation distanceFromLocation:station1.location];
+        CLLocationDistance d2 = [referenceLocation distanceFromLocation:station2.location];
+        return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
+    }];
     [visibleAnnotations makeObjectsPerformSelector:@selector(refresh)];
 }
 
