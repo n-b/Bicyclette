@@ -77,10 +77,6 @@
     
     _mainDrawer.station = annotation;
     _loadingDrawer.station = annotation;
-//    [_mainLayer setNeedsDisplay];
-//    [_loadingLayer setNeedsDisplay];
-    
-    //    [self setNeedsDisplay];
     
     for (NSString * property in [[self class] stationObservedProperties])
         [self.station addObserver:self forKeyPath:property options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:(__bridge void *)([StationAnnotationView class])];
@@ -91,7 +87,8 @@
     _display = display_;
     _mainDrawer.display = self.display;
     _loadingDrawer.display = self.display;
-    //    [self setNeedsDisplay];
+    [_mainLayer setNeedsDisplay];
+    [_loadingLayer setNeedsDisplay];
 }
 
 - (void) prepareForReuse
@@ -99,11 +96,6 @@
     [super prepareForReuse];
     for (NSString * property in [[self class] stationObservedProperties])
         [self.station removeObserver:self forKeyPath:property];
-}
-
-- (BOOL) isOpaque
-{
-    return NO;
 }
 
 + (NSArray*) stationObservedProperties

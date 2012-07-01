@@ -71,11 +71,12 @@ typedef enum {
                     
                     CGFloat clipMargin = 2.5/scale;
                     CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, clipMargin, clipMargin)];
-                    [self clipWithPath:path inContext:c];
+                    CGContextAddPath(c, path);
+                    CGContextClip(c);
                     CGPathRelease(path);
                     
                     [self drawSimpleGradientFromPoint1:CGPointZero toPoint2:CGPointMake(0, rect.size.height)
-                                                color1:baseColor color2:[baseColor colorByAddingBrightness:-.2] inContext:c];
+                                                color1:baseColor color2:[baseColor colorByAddingBrightness:-.2]];
                     
                     CGContextRestoreGState(c);
                 }
@@ -91,26 +92,15 @@ typedef enum {
                         CGContextSetLineDash(c, 0, lengths, sizeof(lengths)/sizeof(CGFloat));
                         CGContextSetLineWidth(c, 3/scale);
                         
-                        CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)];
-                        [self strokePath:path withColor:kAnnotationFrame2Color inContext:c];
-                        CGPathRelease(path);
+                        [self drawShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale) withStrokeColor:kAnnotationFrame2Color];
                     }
                     else
                     {
                         CGContextSetLineWidth(c, 1/scale);
 
-                        CGPathRef path1 = [self newShape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale)];
-                        [self strokePath:path1 withColor:kAnnotationFrame1Color inContext:c];
-                        
-                        CGPathRef path2 = [self newShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale)];
-                        [self strokePath:path2 withColor:kAnnotationFrame2Color inContext:c];
-                        
-                        CGPathRef path3 = [self newShape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale)];
-                        [self strokePath:path3 withColor:kAnnotationFrame3Color inContext:c];
-
-                        CGPathRelease(path1);
-                        CGPathRelease(path2);
-                        CGPathRelease(path3);
+                        [self drawShape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale) withStrokeColor:kAnnotationFrame1Color];
+                        [self drawShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale) withStrokeColor:kAnnotationFrame2Color];
+                        [self drawShape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale) withStrokeColor:kAnnotationFrame3Color];
                     }
                     
                     CGContextRestoreGState(c);
@@ -138,28 +128,26 @@ typedef enum {
 }
 
 // Utilities
-- (void) clipWithPath:(CGPathRef) path inContext:(CGContextRef)c
+- (void) drawShape:(BackgroundShape)shape inRect:(CGRect)rect withStrokeColor:(UIColor*)color
 {
-    CGContextAddPath(c, path);
-    CGContextClip(c);
-}
-
-- (void) strokePath:(CGPathRef)path withColor:(UIColor*)color inContext:(CGContextRef)c
-{
-    CGContextSetStrokeColorWithColor(c, color.CGColor);
+    [color setStroke];
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    CGPathRef path = [self newShape:shape inRect:rect];
     CGContextAddPath(c, path);
     CGContextStrokePath(c);
+    CGPathRelease(path);
 }
 
-// Draw basic linear gradient
-- (void) drawSimpleGradientFromPoint1:(CGPoint)point1 toPoint2:(CGPoint)point2 color1:(UIColor*)color1 color2:(UIColor*)color2 inContext:(CGContextRef)c
+- (void) drawSimpleGradientFromPoint1:(CGPoint)point1 toPoint2:(CGPoint)point2 color1:(UIColor*)color1 color2:(UIColor*)color2
 {
     CGFloat locations[2] = {0,1};
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace,
                                                         (__bridge CFArrayRef)(@[(id)[color1 CGColor],
                                                                               (id)[color2 CGColor]]), locations);
-    CGContextDrawLinearGradient(c, gradient, point1, point2, 0);
+
+    CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), gradient, point1, point2, 0);
+
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
 }
