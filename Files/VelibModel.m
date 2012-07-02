@@ -137,6 +137,10 @@ const struct VelibModelNotifications VelibModelNotifications = {
     [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateBegan object:self];
 }
 
+- (void) updaterDidStartRequest:(DataUpdater *)updater
+{
+}
+
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self userInfo:@{VelibModelNotifications.keys.failureReason : error}];

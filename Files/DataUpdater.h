@@ -21,6 +21,8 @@
 
 @property (nonatomic, weak) id<DataUpdaterDelegate> delegate;
 
+- (void) cancel;
+
 @end
 
 /****************************************************************************/
@@ -28,6 +30,7 @@
 
 @protocol DataUpdaterDelegate <NSObject>
 - (void) updaterDidBegin:(DataUpdater*)updater;
+- (void) updaterDidStartRequest:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)data;

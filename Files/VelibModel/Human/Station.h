@@ -5,7 +5,9 @@
 
 // status
 - (void) refresh;
-@property (nonatomic, readonly, getter=isLoading) BOOL loading;
+- (void) cancel;
+@property (nonatomic, readonly) BOOL refreshing;
+@property (nonatomic, readonly) BOOL loading;
 @property (nonatomic, readonly, strong) NSError * updateError;
 
 // Computed properties

@@ -11,6 +11,8 @@
 
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property (nonatomic, strong) DataUpdater * updater;
+@property (nonatomic) BOOL refreshing;
+@property (nonatomic) BOOL loading;
 @property (nonatomic, strong) NSError * updateError;
 @property (nonatomic, strong) NSMutableString * currentParsedString;
 @property (nonatomic, strong) CLLocation * location;
@@ -27,6 +29,7 @@
 #pragma mark -
 
 @synthesize updater, updateError, currentParsedString;
+@synthesize refreshing, loading;
 @synthesize location;
 
 - (NSString *) debugDescription
@@ -52,6 +55,14 @@
     self.updater = [DataUpdater updaterWithDelegate:self];
 }
 
+- (void) cancel
+{
+    [self.updater cancel];
+    self.updater = nil;
+    self.loading = NO;
+    self.refreshing = NO;
+}
+
 - (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater *)updater
 {
     return [[NSUserDefaults standardUserDefaults] doubleForKey:@"StationRefreshInterval"];
@@ -74,17 +85,27 @@
 
 - (void) updaterDidBegin:(DataUpdater *)updater
 {
+    self.refreshing = YES;
+}
+
+- (void) updaterDidStartRequest:(DataUpdater *)updater
+{
+    self.loading = YES;
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
     self.updateError = error;
     self.updater = nil;
+    self.refreshing = NO;
+    self.loading = NO;
 }
 
 - (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
 {
     self.updater = nil;
+    self.refreshing = NO;
+    self.loading = NO;
 }
 
 - (void) updater:(DataUpdater *)updater finishedWithNewData:(NSData *)data
@@ -97,6 +118,8 @@
 
     [self.managedObjectContext.model save:nil];
     self.updater = nil;
+    self.refreshing = NO;
+    self.loading = NO;
 }
 
 /****************************************************************************/
@@ -132,7 +155,7 @@
 /****************************************************************************/
 #pragma mark status
 
-- (BOOL) isLoading
+- (BOOL) isRefreshing
 {
 	return nil!=self.updater;
 }

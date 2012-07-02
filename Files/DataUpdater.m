@@ -30,32 +30,51 @@
     return [[self alloc] initWithDelegate:delegate_];
 }
 
-+ (void) startUpdater:(DataUpdater*)updater;
++ (NSMutableArray*) queuedUpdaters
 {
-    static NSMutableArray * s_queued, *s_active;
+    static NSMutableArray * s_queued;
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ s_queued = [NSMutableArray new]; s_active = [NSMutableArray new]; });
-        
+    dispatch_once(&onceToken, ^{ s_queued = [NSMutableArray new]; });
+    return s_queued;
+}
+
++ (NSMutableArray*) activeUpdaters
+{
+    static NSMutableArray *s_active;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ s_active = [NSMutableArray new]; });
+    return s_active;
+}
+
++ (void) startUpdater:(DataUpdater*)updater
+{
     @synchronized(self)
     {
-        NSAssert(![s_queued containsObject:updater],@"the same updater can't be reused");
+        NSAssert(![[self queuedUpdaters] containsObject:updater],@"the same updater can't be reused");
         
-        if([s_active containsObject:updater])
-            [s_active removeObject:updater];
+        if([[self activeUpdaters] containsObject:updater])
+            [[self activeUpdaters] removeObject:updater];
         else
-            [s_queued addObject:updater];
+            [[self queuedUpdaters] addObject:updater];
         
-        while([s_queued count] && [s_active count]<2)
+        while([[self queuedUpdaters] count] && [[self activeUpdaters] count]<2)
         {
-            DataUpdater * updaterStarted = [s_queued objectAtIndex:0];
-            [s_active addObject:updaterStarted];
-            [s_queued removeObjectAtIndex:0];
+            DataUpdater * updaterStarted = [[self queuedUpdaters] objectAtIndex:0];
+            [[self activeUpdaters] addObject:updaterStarted];
+            [[self queuedUpdaters] removeObjectAtIndex:0];
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .2 * NSEC_PER_SEC), dispatch_get_current_queue(), ^(void){
-                [updaterStarted startRequest];
-            });
+            [updaterStarted startRequest];
         }
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = [s_active count]>0;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = [[self activeUpdaters] count]>0;
+    }
+}
+
++ (void) cancelUpdater:(DataUpdater*)updater
+{
+    @synchronized(self)
+    {
+        NSAssert([[self queuedUpdaters] containsObject:updater], @"trying to remove an updater that was not queued");
+        [[self queuedUpdaters] removeObject:updater];
     }
 }
 
@@ -94,6 +113,18 @@
     [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
     self.updateConnection = [NSURLConnection connectionWithRequest:request
                                                           delegate:self];
+    [self.delegate updaterDidStartRequest:self];
+}
+
+- (void) cancel
+{
+    if(self.updateConnection)
+    {
+        [self.updateConnection cancel];
+        [[self class] startUpdater:self];
+    }
+    else
+        [[self class] cancelUpdater:self];
 }
 
 - (void) dealloc
@@ -159,7 +190,9 @@
 
 	self.updateData = nil;
 
-    [[self class] startUpdater:self];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^(void){
+        [[self class] startUpdater:self];
+    });
 }
 
 @end
