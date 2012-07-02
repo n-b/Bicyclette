@@ -184,10 +184,10 @@ typedef enum {
 		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
         MKCoordinateRegion mapRegion = self.mapView.region;
 		request.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
-							 mapRegion.center.latitude - mapRegion.span.latitudeDelta, 
-                             mapRegion.center.latitude + mapRegion.span.latitudeDelta,
-                             mapRegion.center.longitude - mapRegion.span.longitudeDelta, 
-                             mapRegion.center.longitude + mapRegion.span.longitudeDelta];
+							 mapRegion.center.latitude - mapRegion.span.latitudeDelta/2,
+                             mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
+                             mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
+                             mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
     }
 
     NSArray * newAnnotations = [BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL];

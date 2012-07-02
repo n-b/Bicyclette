@@ -140,7 +140,8 @@
             if( ! [[change objectForKey:NSKeyValueChangeNewKey] isEqual:[change objectForKey:NSKeyValueChangeOldKey]])
             {
                 [_mainLayer setNeedsDisplay];
-                [self pulse];
+                if([change objectForKey:NSKeyValueChangeOldKey])
+                    [self pulse];
             }
         }
     } else {
@@ -151,8 +152,8 @@
 - (void) willMoveToWindow:(UIWindow *)newWindow
 {
     [super willMoveToWindow:newWindow];
-    _mainLayer.contentsScale = newWindow.screen.scale;
-    _loadingLayer.contentsScale = newWindow.screen.scale;
+    if(newWindow && _mainLayer.contentsScale!=newWindow.screen.scale)
+        _loadingLayer.contentsScale = _mainLayer.contentsScale = newWindow.screen.scale;
 }
 
 @end
@@ -176,7 +177,7 @@
 @end
 
 @implementation StationMainDrawer
-- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
+- (void)displayLayer:(CALayer *)layer
 {
     // Prepare Value
     int16_t value;
@@ -190,26 +191,28 @@
     else if(value<4) baseColor = kWarningValueColor;
     else baseColor = kGoodValueColor;
     
-    CGLayerRef cachedLayer = [self.layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGImageRef image = [self.layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:layer.contentsScale
                                                                                     shape:self.display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                                borderMode:BorderModeNone
                                                                                 baseColor:baseColor
-                                                                                    value:[NSString stringWithFormat:@"%d",value]];
-    CGContextDrawLayerInRect(ctx, layer.frame, cachedLayer);
+                                                                                    value:[NSString stringWithFormat:@"%d",value]
+                                                                                    phase:0];
+    layer.contents = (__bridge id)(image);
 }
 @end
 
 @implementation StationLoadingDrawer
-- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
+- (void)displayLayer:(CALayer *)layer
 {
-    CGLayerRef cachedLayer = [self.layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGImageRef image = [self.layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:layer.contentsScale
                                                                                     shape:self.display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                                borderMode:self.station.loading ? BorderModeDashes : BorderModeSolid
                                                                                 baseColor:nil
-                                                                                    value:@""];
-    CGContextDrawLayerInRect(ctx, layer.frame, cachedLayer);
+                                                                                    value:@""
+                                                                                    phase:0];
+    layer.contents = (__bridge id)(image);
 }
 @end
 

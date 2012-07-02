@@ -23,10 +23,12 @@ typedef enum {
 } BorderMode;
 
 
-- (CGLayerRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
+- (CGImageRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
                                                     scale:(CGFloat)scale
                                                     shape:(BackgroundShape)shape
                                                borderMode:(BorderMode)border
                                                 baseColor:(UIColor*)baseColor
-                                                    value:(NSString*)text;
+                                                    value:(NSString*)text
+                                                    phase:(CGFloat)phase;
+
 @end

@@ -36,27 +36,30 @@ typedef enum {
     return self;
 }
 
-- (CGLayerRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
+- (CGImageRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
                                                     scale:(CGFloat)scale
                                                     shape:(BackgroundShape)shape
                                                borderMode:(BorderMode)border
                                                 baseColor:(UIColor*)baseColor
                                                     value:(NSString *)text
+                                                    phase:(CGFloat)phase
 {
-    NSString * key = [NSString stringWithFormat:@"layer%d_%d_%f_%d_%d_%@_%@",
+    NSString * key = [NSString stringWithFormat:@"layer%d_%d_%f_%d_%d_%@_%@_%f",
                       (int)size.width, (int)size.height, (float)scale, (int)shape, (int)border,
-                      [baseColor hsbString],text];
+                      [baseColor hsbString],text, phase];
     
-    CGLayerRef result = (__bridge CGLayerRef)[_cache objectForKey:key];
+    CGImageRef result = (__bridge CGImageRef)[_cache objectForKey:key];
     if(result) return result;
     @synchronized(self)
     {
         if ([_cache objectForKey:key]==nil)
         {
-            CGContextRef parentContext = UIGraphicsGetCurrentContext();
+            CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+            CGContextRef c = CGBitmapContextCreate(NULL, size.width*scale, size.height*scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast);
+            CGColorSpaceRelease(colorSpace);
             
-            CGLayerRef tempLayer = CGLayerCreateWithContext(parentContext, CGSizeMake(size.width*scale, size.height*scale), NULL);
-            CGContextRef c = CGLayerGetContext(tempLayer);
+            CGContextTranslateCTM(c, 0, size.height*scale);
+            CGContextScaleCTM(c, 1.0, -1.0);
 
             UIGraphicsPushContext(c); // Make c the current drawing context
             {
@@ -112,7 +115,7 @@ typedef enum {
                     
                     // Make c the current GraphicsContext
                     [kAnnotationValueTextColor setFill];
-                    CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationValueShadowColor CGColor]);
+                    CGContextSetShadowWithColor(c, CGSizeMake(0, -1/scale), 0, [kAnnotationValueShadowColor CGColor]);
                     CGSize textSize = [text sizeWithFont:kAnnotationValueFont];
                     CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
                     [text drawAtPoint:point withFont:kAnnotationValueFont];
@@ -121,9 +124,11 @@ typedef enum {
             }
             UIGraphicsPopContext();
             
-            [_cache setObject:CFBridgingRelease(tempLayer) forKey:key];
+            CGImageRef image = CGBitmapContextCreateImage(c);
+            [_cache setObject:CFBridgingRelease(image) forKey:key];
+            CGContextRelease(c);
         }
-        return (__bridge CGLayerRef)[_cache objectForKey:key];
+        return (__bridge CGImageRef)[_cache objectForKey:key];
     }
 }
 

@@ -60,15 +60,16 @@
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
 
-    CGLayerRef backgroundLayer = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGImageRef background = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:BackgroundShapeRectangle
                                                                                borderMode:BorderModeSolid
                                                                                 baseColor:kRegionColor
-                                                                                    value:@""];
+                                                                                    value:@""
+                                                                                    phase:0];
 
     
-    CGContextDrawLayerInRect(c, rect, backgroundLayer);
+    CGContextDrawImage(c, rect, background);
 
     {
         NSString * text = [[self region] number];
