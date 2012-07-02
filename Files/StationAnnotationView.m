@@ -139,23 +139,34 @@
 - (void) displayMainLayer
 {
     // Prepare Value
-    int16_t value;
-    if(self.display==MapDisplayBikes)
-        value = [self station].status_availableValue;
-    else
-        value = [self station].status_freeValue;
-
     UIColor * baseColor;
-    if(value==0) baseColor = kCriticalValueColor;
-    else if(value<4) baseColor = kWarningValueColor;
-    else baseColor = kGoodValueColor;
+    NSString * text;
+    if([self station].status_date)
+    {
+        int16_t value;
+        if(self.display==MapDisplayBikes)
+            value = [self station].status_availableValue;
+        else
+            value = [self station].status_freeValue;
+
+        if(value==0) baseColor = kCriticalValueColor;
+        else if(value<4) baseColor = kWarningValueColor;
+        else baseColor = kGoodValueColor;
+
+        text = [NSString stringWithFormat:@"%d",value];
+    }
+    else
+    {
+        baseColor = kUnknownValueColor;
+        text = @"-";
+    }
 
     CGImageRef image = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                               scale:_mainLayer.contentsScale
                                                                               shape:self.display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                          borderMode:BorderModeSolid
                                                                           baseColor:baseColor
-                                                                              value:[NSString stringWithFormat:@"%d",value]
+                                                                              value:text
                                                                               phase:0];
     _mainLayer.contents = (__bridge id)(image);
 }

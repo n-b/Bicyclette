@@ -24,6 +24,8 @@
 #define kWarningValueColor				[UIColor colorWithHue:0.09 saturation:1 brightness:1 alpha:1]
 #define kCriticalValueColor				[UIColor colorWithHue:0.03 saturation:1 brightness:1 alpha:1]
 
+#define kUnknownValueColor				[UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
+
 #define kAnnotationTextColor			[UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
 
 #define kAnnotationTitleTextColor		[kAnnotationTextColor colorWithBrightness:.07]
