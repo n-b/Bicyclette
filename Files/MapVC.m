@@ -110,7 +110,11 @@ typedef enum {
 
 - (void) reloadData
 {
-    self.referenceRegion = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
+    MKCoordinateRegion region = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
+    region.span.latitudeDelta /= 2;
+    region.span.longitudeDelta /= 2;
+    self.referenceRegion = region;
+
 	self.mapView.region = self.referenceRegion;
 
     [self updateAnnotations];
@@ -252,7 +256,9 @@ typedef enum {
 
 - (void) zoomIn:(Region*)region
 {
-	[self.mapView setRegion:[self.mapView regionThatFits:region.coordinateRegion] animated:YES];
+    MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
+    cregion = MKCoordinateRegionMakeWithDistance(cregion.center, 1000, 1000);
+	[self.mapView setRegion:cregion animated:YES];
 }
 
 - (void) showInfo:(UIButton*)sender
