@@ -8,5 +8,7 @@
 	<integer>10</integer>
 	<key>DebugRemoveStore</key>
 	<false/>
+	<key>RadarDistance</key>
+	<integer>400</integer>
 </dict>
 </plist>

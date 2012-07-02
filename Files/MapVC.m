@@ -210,13 +210,8 @@ typedef enum {
 - (void) updateVisibleStations
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
-    MKMapRect rect = self.mapView.visibleMapRect;
-    rect.size.width /= 2;
-    rect.size.height /= 2;
-    rect.origin.x += rect.size.width / 2;
-    rect.origin.y += rect.size.height / 2;
 
-    NSArray * visibleAnnotations = [[self.mapView annotationsInMapRect:rect] allObjects];
+    NSArray * visibleAnnotations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
     CLLocation * referenceLocation;
     if(self.mapView.userLocationVisible)
         referenceLocation = self.mapView.userLocation.location;
@@ -225,11 +220,21 @@ typedef enum {
         CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
         referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
     }
-    visibleAnnotations = [visibleAnnotations sortedArrayUsingComparator:^NSComparisonResult(Station * station1, Station * station2) {
-        CLLocationDistance d1 = [referenceLocation distanceFromLocation:station1.location];
-        CLLocationDistance d2 = [referenceLocation distanceFromLocation:station2.location];
-        return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
-    }];
+
+    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+
+    visibleAnnotations = [visibleAnnotations filteredArrayUsingPredicate:
+                          [NSPredicate predicateWithBlock:
+                           ^BOOL(Station * station, NSDictionary *bindings){
+                               CLLocationDistance d = [referenceLocation distanceFromLocation:station.location];
+                               return d<radarDistance;
+                           }]];
+    visibleAnnotations = [visibleAnnotations sortedArrayUsingComparator:
+                          ^NSComparisonResult(Station * station1, Station * station2) {
+                              CLLocationDistance d1 = [referenceLocation distanceFromLocation:station1.location];
+                              CLLocationDistance d2 = [referenceLocation distanceFromLocation:station2.location];
+                              return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
+                          }];
 
     NSArray * annotationsNotToRefreshAnymore = [_refreshedAnnotations arrayByRemovingObjectsInArray:visibleAnnotations];
     [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
