@@ -91,11 +91,24 @@ typedef enum {
                     
                     if(border==BorderModeDashes)
                     {
-                        CGFloat lengths[] = {2,2};
-                        CGContextSetLineDash(c, 0, lengths, sizeof(lengths)/sizeof(CGFloat));
-                        CGContextSetLineWidth(c, 3/scale);
-                        
-                        [self drawShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale) withStrokeColor:kAnnotationFrame2Color];
+                        CGFloat lineWidth = 3;
+                        CGFloat perimeter = (rect.size.width-lineWidth/2/scale) * M_PI;
+                        CGFloat dash = perimeter/24;
+                        CGFloat lengths[] = {dash,dash};
+                        CGContextSetLineWidth(c, lineWidth/scale);
+                        CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, (lineWidth/2)/scale, (lineWidth/2)/scale)];
+
+                        CGContextSetLineDash(c, -phase*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
+                        [kAnnotationFrame2Color setStroke];
+                        CGContextAddPath(c, path);
+                        CGContextStrokePath(c);
+
+                        CGContextSetLineDash(c, -(phase+.5)*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
+                        [[kAnnotationFrame1Color colorWithAlpha:1] setStroke];
+                        CGContextAddPath(c, path);
+                        CGContextStrokePath(c);
+
+                        CGPathRelease(path);
                     }
                     else
                     {
