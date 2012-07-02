@@ -247,6 +247,7 @@ typedef enum {
 
 - (void) showDetails:(Station*)station
 {
+    [station refresh];
 }
 
 - (void) zoomIn:(Region*)region
@@ -267,7 +268,8 @@ typedef enum {
     {
         for (id<MKAnnotation> annotation in self.mapView.annotations) {
             StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
-            stationAV.display = self.display;
+            if([stationAV isKindOfClass:[StationAnnotationView class]])
+                stationAV.display = self.display;
         }
     }
 }
