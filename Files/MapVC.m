@@ -45,7 +45,7 @@ typedef enum {
 @implementation MapVC 
 {
     LayerCache * _layerCache;
-    
+    NSArray * _refreshedAnnotations;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder
@@ -230,7 +230,11 @@ typedef enum {
         CLLocationDistance d2 = [referenceLocation distanceFromLocation:station2.location];
         return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
     }];
+
+    NSArray * annotationsNotToRefreshAnymore = [_refreshedAnnotations arrayByRemovingObjectsInArray:visibleAnnotations];
+    [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
     [visibleAnnotations makeObjectsPerformSelector:@selector(refresh)];
+    _refreshedAnnotations = visibleAnnotations;
 }
 
 /****************************************************************************/
