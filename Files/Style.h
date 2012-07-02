@@ -30,12 +30,12 @@
 
 #define kAnnotationTitleTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationTitleShadowColor		[kAnnotationTextColor colorWithBrightness:1]
-#define kAnnotationTitleFont			[UIFont fontWithName:@"GillSans-Bold" size:10]
+#define kAnnotationTitleFont			[UIFont fontWithName:@"GillSans-Bold" size:13]
 
 #define kAnnotationDetailTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationDetailShadowColor	[kAnnotationTextColor colorWithBrightness:1]
-#define kAnnotationDetailFont			[UIFont fontWithName:@"GillSans" size:10]
+#define kAnnotationDetailFont			[UIFont fontWithName:@"GillSans" size:11]
 
 #define kAnnotationValueTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationValueShadowColor		[kAnnotationTextColor colorWithBrightness:1]
-#define kAnnotationValueFont			[UIFont fontWithName:@"GillSans" size:20]
+#define kAnnotationValueFont			[UIFont fontWithName:@"Futura-Medium" size:19]
