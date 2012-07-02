@@ -43,7 +43,7 @@
 
 - (BOOL) isFavorite
 {
-    return [self.managedObjectContext.model.mainBookmarksList.stations containsObject:self];
+    return NO;
 }
 
 - (void) setFavorite:(BOOL) newValue
