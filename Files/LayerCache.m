@@ -99,12 +99,12 @@ typedef enum {
                         CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, (lineWidth/2)/scale, (lineWidth/2)/scale)];
 
                         CGContextSetLineDash(c, -phase*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
-                        [kAnnotationFrame2Color setStroke];
+                        [kAnnotationDash1Color setStroke];
                         CGContextAddPath(c, path);
                         CGContextStrokePath(c);
 
                         CGContextSetLineDash(c, -(phase+.5)*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
-                        [[kAnnotationFrame1Color colorWithAlpha:1] setStroke];
+                        [kAnnotationDash2Color setStroke];
                         CGContextAddPath(c, path);
                         CGContextStrokePath(c);
 

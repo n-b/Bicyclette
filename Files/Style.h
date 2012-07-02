@@ -15,6 +15,9 @@
 #define kAnnotationFrame2Color			[UIColor colorWithWhite:.1 alpha:1]
 #define kAnnotationFrame3Color			[UIColor colorWithWhite:.7 alpha:.7]
 
+#define kAnnotationDash1Color			[UIColor colorWithWhite:.95 alpha:1]
+#define kAnnotationDash2Color			[UIColor colorWithWhite:.1 alpha:1]
+
 #define kRegionColor					[UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
 
 #define kGoodValueColor					[UIColor colorWithHue:0.31 saturation:.8 brightness:.8 alpha:1]
