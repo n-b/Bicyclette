@@ -13,11 +13,12 @@
 #import "Region.h"
 #import "NSArrayAdditions.h"
 #import "VelibModel+Favorites.h"
-#import "NSArray+Stations.h"
+#import "NSMutableArray+Stations.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
 #import "DrawingCache.h"
-
+#import "Radar.h"
+#import "RadarAnnotationView.h"
 
 typedef enum {
 	MapModeNone = 0,
@@ -37,8 +38,17 @@ typedef enum {
 @property (nonatomic) MapMode mode;
 @property (nonatomic) MapDisplay display;
 
+@property Radar * radar;
 @property (nonatomic) NSArray * refreshedStations;
 @end
+
+static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
+{
+    CGFloat dx = point2.x - point1.x;
+    CGFloat dy = point2.y - point1.y;
+    return sqrt(dx*dx + dy*dy );
+};
+
 
 /****************************************************************************/
 #pragma mark -
@@ -76,6 +86,8 @@ typedef enum {
         [[UIBarButtonItem alloc] initWithCustomView:_infoButton]];
 
         _drawingCache = [DrawingCache new];
+        
+        _radar = [Radar new];
 	}
 	return self;
 }
@@ -151,6 +163,14 @@ typedef enum {
         stationAV.display = self.display;
 		return stationAV;
 	}
+    else if([annotation isKindOfClass:[Radar class]])
+    {
+        RadarAnnotationView * radarAV = (RadarAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RadarAnnotationView reuseIdentifier]];
+		if(nil==radarAV)
+			return [[RadarAnnotationView alloc] initWithRadar:self.radar];
+        radarAV.annotation = annotation;
+        return radarAV;
+    }
 	return nil;
 }
 
@@ -192,6 +212,7 @@ typedef enum {
     NSMutableArray * annotationsToRemove = [oldAnnotations mutableCopy];
     [annotationsToRemove removeObjectsInArray:newAnnotations];
     [annotationsToRemove removeObject:self.mapView.userLocation];
+    [annotationsToRemove removeObject:self.radar];
     NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
     
     [self.mapView removeAnnotations:annotationsToRemove];
@@ -210,10 +231,14 @@ typedef enum {
 - (void) refreshVisibleStations
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
-    NSArray * visibleStations;
+
     if(self.mode==MapModeStations)
     {
-        visibleStations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
+        NSMutableArray * visibleStations = [[[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects] mutableCopy];
+        
+        [visibleStations removeObject:self.radar];
+        [visibleStations removeObject:self.mapView.userLocation];
+        
         CLLocation * referenceLocation;
         if(self.mapView.userLocationVisible)
             referenceLocation = self.mapView.userLocation.location;
@@ -225,14 +250,22 @@ typedef enum {
         
         CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
         
-        visibleStations = [visibleStations stationsWithDistance:radarDistance toLocation:referenceLocation];
-        visibleStations = [visibleStations sortedStationsNearestFirstFromLocation:referenceLocation];
+        [visibleStations filterStationsWithinDistance:radarDistance fromLocation:referenceLocation];
+        [visibleStations sortStationsNearestFirstFromLocation:referenceLocation];
 
         NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
         [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
         [visibleStations makeObjectsPerformSelector:@selector(refresh)];
+
+        self.radar.coordinate = referenceLocation.coordinate;
+        [self.mapView addAnnotation:self.radar];
+        self.refreshedStations = visibleStations;
     }
-    self.refreshedStations = visibleStations;
+    else
+    {
+        [self.mapView removeAnnotation:self.radar];
+        self.refreshedStations = nil;
+    }
 }
 
 - (void) setRefreshedStations:(NSArray *)refreshedStations_
@@ -246,8 +279,27 @@ typedef enum {
 
 - (void) stationRefreshChanged
 {
-    NSArray * stationsInTheQueue = [self.refreshedStations filteredArrayWithValue:@YES forKey:@"refreshing"];
-    NSLog(@"refresh %d", [stationsInTheQueue count]);
+    NSMutableArray * stationsStillRefreshing = [[self.refreshedStations filteredArrayWithValue:@YES forKey:@"refreshing"] mutableCopy];
+    if([stationsStillRefreshing count])
+    {
+        [stationsStillRefreshing sortStationsNearestFirstFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.coordinate.latitude longitude:self.radar.coordinate.longitude]];
+        
+        Station * nearestRefreshing = [stationsStillRefreshing objectAtIndex:0];
+        Station * fartherRefreshing = [stationsStillRefreshing lastObject];
+        
+        CGPoint nearPoint = [self.mapView convertCoordinate:nearestRefreshing.coordinate toPointToView:self.mapView];
+        CGPoint farPoint = [self.mapView convertCoordinate:fartherRefreshing.coordinate toPointToView:self.mapView];
+        
+        CGPoint referencePoint = [self.mapView convertCoordinate:self.radar.coordinate toPointToView:self.mapView];
+        
+        self.radar.nearRadius = DistanceBetweenCGPoints(nearPoint, referencePoint);
+        self.radar.farRadius = DistanceBetweenCGPoints(farPoint, referencePoint);
+    }
+    else
+    {
+        self.radar.nearRadius = 0;
+        self.radar.farRadius = 0;
+    }
 }
 
 /****************************************************************************/

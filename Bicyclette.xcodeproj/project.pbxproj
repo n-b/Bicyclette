@@ -14,7 +14,9 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
-		370D2ABB15A3A2270019F36E /* NSArray+Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSArray+Stations.m */; };
+		370D2ABB15A3A2270019F36E /* NSMutableArray+Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */; };
+		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
+		370D2AC115A3A4700019F36E /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2AC015A3A4700019F36E /* Radar.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
@@ -84,8 +86,12 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3700F8511594A806007CF99E /* RegionAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
-		370D2AB915A3A2270019F36E /* NSArray+Stations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Stations.h"; sourceTree = "<group>"; };
-		370D2ABA15A3A2270019F36E /* NSArray+Stations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Stations.m"; sourceTree = "<group>"; };
+		370D2AB915A3A2270019F36E /* NSMutableArray+Stations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stations.h"; sourceTree = "<group>"; };
+		370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stations.m"; sourceTree = "<group>"; };
+		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
+		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
+		370D2ABF15A3A4700019F36E /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
+		370D2AC015A3A4700019F36E /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
@@ -198,8 +204,12 @@
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
-				370D2AB915A3A2270019F36E /* NSArray+Stations.h */,
-				370D2ABA15A3A2270019F36E /* NSArray+Stations.m */,
+				370D2AB915A3A2270019F36E /* NSMutableArray+Stations.h */,
+				370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */,
+				370D2ABF15A3A4700019F36E /* Radar.h */,
+				370D2AC015A3A4700019F36E /* Radar.m */,
+				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
+				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
 			);
 			name = UI;
 			path = Files;
@@ -542,7 +552,9 @@
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
 				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
-				370D2ABB15A3A2270019F36E /* NSArray+Stations.m in Sources */,
+				370D2ABB15A3A2270019F36E /* NSMutableArray+Stations.m in Sources */,
+				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
+				370D2AC115A3A4700019F36E /* Radar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
