@@ -214,6 +214,7 @@ typedef enum {
 - (void) updateVisibleStations
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+    if(self.mode!=MapModeStations) return;
 
     NSArray * visibleAnnotations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
     CLLocation * referenceLocation;
