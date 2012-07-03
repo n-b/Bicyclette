@@ -13,6 +13,7 @@
 #import "Region.h"
 #import "NSArrayAdditions.h"
 #import "VelibModel+Favorites.h"
+#import "NSArray+Stations.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
 #import "DrawingCache.h"
@@ -36,6 +37,7 @@ typedef enum {
 @property (nonatomic) MapMode mode;
 @property (nonatomic) MapDisplay display;
 
+@property (nonatomic) NSArray * refreshedStations;
 @end
 
 /****************************************************************************/
@@ -44,7 +46,6 @@ typedef enum {
 @implementation MapVC 
 {
     DrawingCache * _drawingCache;
-    NSArray * _refreshedAnnotations;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder
@@ -84,7 +85,7 @@ typedef enum {
 }
 
 /****************************************************************************/
-#pragma mark -
+#pragma mark Loading
 
 - (void) loadView
 {
@@ -203,40 +204,50 @@ typedef enum {
     }
 }
 
+/****************************************************************************/
+#pragma mark Refresh
+
 - (void) refreshVisibleStations
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
-    if(self.mode!=MapModeStations) return;
-
-    NSArray * visibleAnnotations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
-    CLLocation * referenceLocation;
-    if(self.mapView.userLocationVisible)
-        referenceLocation = self.mapView.userLocation.location;
-    else
+    NSArray * visibleStations;
+    if(self.mode==MapModeStations)
     {
-        CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
-        referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+        visibleStations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
+        CLLocation * referenceLocation;
+        if(self.mapView.userLocationVisible)
+            referenceLocation = self.mapView.userLocation.location;
+        else
+        {
+            CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
+            referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+        }
+        
+        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+        
+        visibleStations = [visibleStations stationsWithDistance:radarDistance toLocation:referenceLocation];
+        visibleStations = [visibleStations sortedStationsNearestFirstFromLocation:referenceLocation];
+
+        NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
+        [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
+        [visibleStations makeObjectsPerformSelector:@selector(refresh)];
     }
+    self.refreshedStations = visibleStations;
+}
 
-    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+- (void) setRefreshedStations:(NSArray *)refreshedStations_
+{
+    for (Station* station in _refreshedStations)
+        [station removeObserver:self forKeyPath:@"refreshing" context:(__bridge void *)([MapVC class])];
+    _refreshedStations = refreshedStations_;
+    for (Station* station in _refreshedStations)
+        [station addObserver:self forKeyPath:@"refreshing" options:0 context:(__bridge void *)([MapVC class])];
+}
 
-    visibleAnnotations = [visibleAnnotations filteredArrayUsingPredicate:
-                          [NSPredicate predicateWithBlock:
-                           ^BOOL(Station * station, NSDictionary *bindings){
-                               CLLocationDistance d = [referenceLocation distanceFromLocation:station.location];
-                               return d<radarDistance;
-                           }]];
-    visibleAnnotations = [visibleAnnotations sortedArrayUsingComparator:
-                          ^NSComparisonResult(Station * station1, Station * station2) {
-                              CLLocationDistance d1 = [referenceLocation distanceFromLocation:station1.location];
-                              CLLocationDistance d2 = [referenceLocation distanceFromLocation:station2.location];
-                              return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
-                          }];
-
-    NSArray * annotationsNotToRefreshAnymore = [_refreshedAnnotations arrayByRemovingObjectsInArray:visibleAnnotations];
-    [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
-    [visibleAnnotations makeObjectsPerformSelector:@selector(refresh)];
-    _refreshedAnnotations = visibleAnnotations;
+- (void) stationRefreshChanged
+{
+    NSArray * stationsInTheQueue = [self.refreshedStations filteredArrayWithValue:@YES forKey:@"refreshing"];
+    NSLog(@"refresh %d", [stationsInTheQueue count]);
 }
 
 /****************************************************************************/
@@ -288,5 +299,19 @@ typedef enum {
     if([note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue])
         [self reloadData];
 }
+
+/****************************************************************************/
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == (__bridge void *)([MapVC class]))
+    {
+        if([keyPath isEqualToString:@"refreshing"]) [self stationRefreshChanged];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 
 @end
