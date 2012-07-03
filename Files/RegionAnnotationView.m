@@ -39,16 +39,17 @@
 
 - (void) setAnnotation:(id<MKAnnotation>)annotation
 {
-    [self.region removeObserver:self forKeyPath:@"number"];
+    
+    [self.region removeObserver:self forKeyPath:RegionAttributes.number];
     [super setAnnotation:annotation];
     [self setNeedsDisplay];
-    [self.region addObserver:self forKeyPath:@"number" options:0 context:(__bridge void *)([RegionAnnotationView class])];
+    [self.region addObserver:self forKeyPath:RegionAttributes.number options:0 context:(__bridge void *)([RegionAnnotationView class])];
 }
 
 - (void) prepareForReuse
 {
     [super prepareForReuse];
-    [self.region removeObserver:self forKeyPath:@"number"];
+    [self.region removeObserver:self forKeyPath:RegionAttributes.number];
 }
 
 - (BOOL) isOpaque
@@ -108,16 +109,6 @@
 - (CLLocationCoordinate2D) coordinate
 {
 	return self.coordinateRegion.center;
-}
-
-- (NSString *)title
-{
-	return self.name;
-}
-
-- (NSString *)subtitle
-{
-	return [NSString stringWithFormat:NSLocalizedString(@"%d stations",@""),self.stations.count];
 }
 
 @end

@@ -73,7 +73,7 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ @"status_availableValue", @"status_freeValue", @"refreshing", @"loading", @"favorite" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, @"refreshing", @"loading", @"favorite" ];
 }
 
 /****************************************************************************/
@@ -231,7 +231,6 @@
 
 /****************************************************************************/
 #pragma mark -
-
 
 @implementation StationLayerDisplayBounce
 - (void) displayLayer:(CALayer *)layer
