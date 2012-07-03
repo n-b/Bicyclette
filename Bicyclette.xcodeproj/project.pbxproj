@@ -628,7 +628,9 @@
 			buildSettings = {
 				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				INFOPLIST_FILE = Files/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Bicyclette;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -637,7 +639,9 @@
 			buildSettings = {
 				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				INFOPLIST_FILE = Files/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Bicyclette;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

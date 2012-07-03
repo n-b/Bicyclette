@@ -101,13 +101,6 @@ typedef enum {
     [self reloadData];
 }
 
-
-- (void) viewDidUnload
-{
-    self.mapView = nil;
-    [super viewDidUnload];
-}
-
 - (void) reloadData
 {
     MKCoordinateRegion region = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
@@ -206,12 +199,12 @@ typedef enum {
     
     if(self.mode==MapModeStations)
     {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateVisibleStations) object:nil];
-        [self performSelector:@selector(updateVisibleStations) withObject:nil afterDelay:.5];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refreshVisibleStations) object:nil];
+        [self performSelector:@selector(refreshVisibleStations) withObject:nil afterDelay:.5];
     }
 }
 
-- (void) updateVisibleStations
+- (void) refreshVisibleStations
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     if(self.mode!=MapModeStations) return;

@@ -108,13 +108,6 @@
 	[self updateUI];
 }
 
-- (void) viewDidUnload
-{
-	[super viewDidUnload];
-	self.previousNextBarItem = nil;
-}
-
-
 /****************************************************************************/
 #pragma mark UI
 
