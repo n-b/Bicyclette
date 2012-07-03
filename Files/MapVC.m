@@ -15,7 +15,7 @@
 #import "VelibModel+Favorites.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
-#import "LayerCache.h"
+#import "DrawingCache.h"
 
 
 typedef enum {
@@ -43,7 +43,7 @@ typedef enum {
 
 @implementation MapVC 
 {
-    LayerCache * _layerCache;
+    DrawingCache * _drawingCache;
     NSArray * _refreshedAnnotations;
 }
 
@@ -74,7 +74,7 @@ typedef enum {
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
         [[UIBarButtonItem alloc] initWithCustomView:_infoButton]];
 
-        _layerCache = [LayerCache new];
+        _drawingCache = [DrawingCache new];
 	}
 	return self;
 }
@@ -137,7 +137,7 @@ typedef enum {
 	{
 		RegionAnnotationView * regionAV = (RegionAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RegionAnnotationView reuseIdentifier]];
 		if(nil==regionAV)
-			regionAV = [[RegionAnnotationView alloc] initWithRegion:annotation layerCache:_layerCache];
+			regionAV = [[RegionAnnotationView alloc] initWithRegion:annotation drawingCache:_drawingCache];
 
         return regionAV;
 	}
@@ -145,7 +145,7 @@ typedef enum {
 	{
 		StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[StationAnnotationView reuseIdentifier]];
 		if(nil==stationAV)
-			stationAV = [[StationAnnotationView alloc] initWithStation:annotation layerCache:_layerCache];
+			stationAV = [[StationAnnotationView alloc] initWithStation:annotation drawingCache:_drawingCache];
 
         stationAV.display = self.display;
 		return stationAV;

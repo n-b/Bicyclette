@@ -1,5 +1,5 @@
 //
-//  LayerCache.h
+//  DrawingCache.h
 //  Bicyclette
 //
 //  Created by Nicolas Bouilleaud on 24/06/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LayerCache : NSObject
+@interface DrawingCache : NSObject
 
 typedef enum{
     BackgroundShapeRectangle,

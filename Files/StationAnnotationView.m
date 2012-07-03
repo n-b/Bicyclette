@@ -7,7 +7,7 @@
 //
 
 #import "StationAnnotationView.h"
-#import "LayerCache.h"
+#import "DrawingCache.h"
 #import "Style.h"
 
 @interface StationLayerDisplayBounce : NSObject
@@ -23,15 +23,15 @@
 @implementation StationAnnotationView
 {
     StationLayerDisplayBounce* _bounce;
-    LayerCache * _layerCache;
+    DrawingCache * _drawingCache;
     CALayer * _loadingLayer;
     CALayer * _mainLayer;
 }
 
-- (id) initWithStation:(Station*)station layerCache:(LayerCache*)layerCache
+- (id) initWithStation:(Station*)station drawingCache:(DrawingCache*)layerCache
 {
     self = [super initWithAnnotation:station reuseIdentifier:[[self class] reuseIdentifier]];
-    _layerCache = layerCache;
+    _drawingCache = layerCache;
 
     CGRect rect = {{0,0},{kAnnotationViewSize,kAnnotationViewSize}};
     self.frame = rect;
@@ -161,7 +161,7 @@
         text = @"-";
     }
 
-    CGImageRef image = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGImageRef image = [_drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                               scale:_mainLayer.contentsScale
                                                                               shape:self.display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                          borderMode:BorderModeSolid
@@ -185,7 +185,7 @@
             phase = floorf(phase*10)/10;
             [self performSelector:_cmd withObject:nil afterDelay:.1];
         }
-        CGImageRef image = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+        CGImageRef image = [_drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                               scale:_loadingLayer.contentsScale
                                                                               shape:self.display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                          borderMode:BorderModeDashes

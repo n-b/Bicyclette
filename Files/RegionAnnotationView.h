@@ -7,10 +7,10 @@
 //
 
 #import "Region.h"
-@class LayerCache;
+@class DrawingCache;
 
 @interface RegionAnnotationView : MKAnnotationView
-- (id) initWithRegion:(Region*)region layerCache:(LayerCache*)layerCache;
+- (id) initWithRegion:(Region*)region drawingCache:(DrawingCache*)layerCache;
 + (NSString*) reuseIdentifier;
 @end
 

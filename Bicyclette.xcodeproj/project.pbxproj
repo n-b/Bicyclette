@@ -31,7 +31,7 @@
 		37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */; };
 		37216BC712611C5400A2695A /* VelibModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibModel.m */; };
 		372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
-		3730161815977E1900347C9F /* LayerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* LayerCache.m */; };
+		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
 		374785A3149EAAC9009186CE /* _StationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 374785A2149EAAC9009186CE /* _StationList.m */; };
 		374785A6149EAACF009186CE /* StationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 374785A5149EAACF009186CE /* StationList.m */; };
@@ -109,8 +109,8 @@
 		37216BC612611C5400A2695A /* VelibModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibModel.m; sourceTree = "<group>"; };
 		372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA1.h"; sourceTree = "<group>"; };
 		372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
-		3730161615977E1900347C9F /* LayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerCache.h; sourceTree = "<group>"; };
-		3730161715977E1900347C9F /* LayerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerCache.m; sourceTree = "<group>"; };
+		3730161615977E1900347C9F /* DrawingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCache.h; sourceTree = "<group>"; };
+		3730161715977E1900347C9F /* DrawingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCache.m; sourceTree = "<group>"; };
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
 		374785A1149EAAC9009186CE /* _StationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _StationList.h; sourceTree = "<group>"; };
@@ -193,8 +193,8 @@
 				3700F8521594A806007CF99E /* RegionAnnotationView.m */,
 				378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */,
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
-				3730161615977E1900347C9F /* LayerCache.h */,
-				3730161715977E1900347C9F /* LayerCache.m */,
+				3730161615977E1900347C9F /* DrawingCache.h */,
+				3730161715977E1900347C9F /* DrawingCache.m */,
 			);
 			name = UI;
 			path = Files;
@@ -535,7 +535,7 @@
 				371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */,
 				3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */,
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
-				3730161815977E1900347C9F /* LayerCache.m in Sources */,
+				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,12 +1,12 @@
 //
-//  LayerCache.m
+//  DrawingCache.m
 //  Bicyclette
 //
 //  Created by Nicolas Bouilleaud on 24/06/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "LayerCache.h"
+#import "DrawingCache.h"
 #import "Style.h"
 
 #import "UIColor+hsb.h"
@@ -22,7 +22,7 @@ typedef enum {
     RoundedCornerAll = RoundedCornerTop | RoundedCornerBottom,
 } RoundedCorners;
 
-@implementation LayerCache
+@implementation DrawingCache
 {
     NSMutableDictionary * _cache;
 }

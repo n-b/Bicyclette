@@ -7,7 +7,7 @@
 //
 
 #import "RegionAnnotationView.h"
-#import "LayerCache.h"
+#import "DrawingCache.h"
 #import "Style.h"
 
 
@@ -16,13 +16,13 @@
 
 @implementation RegionAnnotationView
 {
-    LayerCache * _layerCache;
+    DrawingCache * _drawingCache;
 }
 
-- (id) initWithRegion:(Region*)region layerCache:(LayerCache*)layerCache
+- (id) initWithRegion:(Region*)region drawingCache:(DrawingCache*)drawingCache
 {
     self = [super initWithAnnotation:region reuseIdentifier:[[self class] reuseIdentifier]];
-    _layerCache = layerCache;
+    _drawingCache = drawingCache;
     self.frame = (CGRect){CGPointZero,{kAnnotationViewSize,kAnnotationViewSize}};
     return self;
 }
@@ -60,7 +60,7 @@
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
 
-    CGImageRef background = [_layerCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGImageRef background = [_drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:BackgroundShapeRectangle
                                                                                borderMode:BorderModeSolid

@@ -9,11 +9,11 @@
 #import "MapVC.h"
 #import "Station.h"
 
-@class LayerCache;
+@class DrawingCache;
 
 @interface StationAnnotationView : MKAnnotationView
 
-- (id) initWithStation:(Station*)station layerCache:(LayerCache*)layerCache;
+- (id) initWithStation:(Station*)station drawingCache:(DrawingCache*)layerCache;
 + (NSString*) reuseIdentifier;
 
 @property (nonatomic) MapDisplay display;
