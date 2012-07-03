@@ -17,7 +17,6 @@
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
-		37149C8A12625B94009CDE82 /* UITableViewCell+NibLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */; };
 		371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */; };
 		371D4FC51483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */; };
@@ -54,15 +53,8 @@
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		37B69DB21290925B0053728D /* StationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B69DB11290925B0053728D /* StationStatusView.m */; };
 		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
-		37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C189ED14861BE800F64F5B /* WarningIcon.png */; };
-		37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8602E117205D300B8526B /* CLLocation+Direction.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
-		37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */; };
-		37D6B10D12CCC93700EEC835 /* StationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D6B10B12CCC93700EEC835 /* StationDetailVC.m */; };
-		37D6B10E12CCC93700EEC835 /* StationDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */; };
-		37DA7EAE148D8B8D004EB098 /* WarningIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DA7EAD148D8B8D004EB098 /* WarningIcon@2x.png */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
@@ -96,8 +88,6 @@
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		37149BBA126250D7009CDE82 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayAdditions.h; sourceTree = "<group>"; };
 		37149BBB126250D7009CDE82 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
-		37149C8812625B94009CDE82 /* UITableViewCell+NibLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+NibLoaded.h"; sourceTree = "<group>"; };
-		37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+NibLoaded.m"; sourceTree = "<group>"; };
 		371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping_Tests.m"; sourceTree = "<group>"; };
 		371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NSObject+KVCMapping_Tests.xcdatamodel"; sourceTree = "<group>"; };
 		371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattedStringToDateValueTransformer.h; sourceTree = "<group>"; };
@@ -152,20 +142,9 @@
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		37B69DB01290925B0053728D /* StationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationStatusView.h; sourceTree = "<group>"; };
-		37B69DB11290925B0053728D /* StationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationStatusView.m; sourceTree = "<group>"; };
 		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
-		37C189ED14861BE800F64F5B /* WarningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WarningIcon.png; sourceTree = "<group>"; };
-		37C8602D117205D300B8526B /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
-		37C8602E117205D300B8526B /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		37D6AF8612CBF23700EEC835 /* VerticallyAlignedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticallyAlignedLabel.h; sourceTree = "<group>"; };
-		37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticallyAlignedLabel.m; sourceTree = "<group>"; };
-		37D6B10A12CCC93700EEC835 /* StationDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDetailVC.h; sourceTree = "<group>"; };
-		37D6B10B12CCC93700EEC835 /* StationDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDetailVC.m; sourceTree = "<group>"; };
-		37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDetailVC.xib; sourceTree = "<group>"; };
-		37DA7EAD148D8B8D004EB098 /* WarningIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WarningIcon@2x.png"; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -216,7 +195,6 @@
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
 				3730161615977E1900347C9F /* LayerCache.h */,
 				3730161715977E1900347C9F /* LayerCache.m */,
-				37605791159DE8290094A2D3 /* Detail */,
 			);
 			name = UI;
 			path = Files;
@@ -234,7 +212,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3756EACB129800B600113534 /* Resources */,
 				3756EA9B1297F52200113534 /* CoreResources */,
 				29B97315FDCFA39411CA2CEA /* App */,
 				37216A411261087300A2695A /* Model */,
@@ -336,28 +313,6 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
-		3756EACB129800B600113534 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				37C189ED14861BE800F64F5B /* WarningIcon.png */,
-				37DA7EAD148D8B8D004EB098 /* WarningIcon@2x.png */,
-			);
-			name = Resources;
-			path = Files;
-			sourceTree = "<group>";
-		};
-		37605791159DE8290094A2D3 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				37D6B10A12CCC93700EEC835 /* StationDetailVC.h */,
-				37D6B10B12CCC93700EEC835 /* StationDetailVC.m */,
-				37D6B10C12CCC93700EEC835 /* StationDetailVC.xib */,
-				37B69DB01290925B0053728D /* StationStatusView.h */,
-				37B69DB11290925B0053728D /* StationStatusView.m */,
-			);
-			name = Detail;
-			sourceTree = "<group>";
-		};
 		3770B22C14E976590003BBA8 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,18 +356,12 @@
 			children = (
 				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
 				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
-				37149C8812625B94009CDE82 /* UITableViewCell+NibLoaded.h */,
-				37149C8912625B94009CDE82 /* UITableViewCell+NibLoaded.m */,
 				37149BBA126250D7009CDE82 /* NSArrayAdditions.h */,
 				37149BBB126250D7009CDE82 /* NSArrayAdditions.m */,
 				37149B9312624C15009CDE82 /* NSStringAdditions.h */,
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
-				37C8602D117205D300B8526B /* CLLocation+Direction.h */,
-				37C8602E117205D300B8526B /* CLLocation+Direction.m */,
 				37201E6012B2EA640001A668 /* UIImage+Tinting.h */,
 				37201E6112B2EA640001A668 /* UIImage+Tinting.m */,
-				37D6AF8612CBF23700EEC835 /* VerticallyAlignedLabel.h */,
-				37D6AF8712CBF23700EEC835 /* VerticallyAlignedLabel.m */,
 				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
 				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
 				37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */,
@@ -513,9 +462,6 @@
 				3756EAE71298018A00113534 /* Icon@2x.png in Resources */,
 				3756EB5C1298085B00113534 /* Settings.bundle in Resources */,
 				37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */,
-				37D6B10E12CCC93700EEC835 /* StationDetailVC.xib in Resources */,
-				37C189EE14861BE800F64F5B /* WarningIcon.png in Resources */,
-				37DA7EAE148D8B8D004EB098 /* WarningIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,17 +512,12 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* BicycletteApplicationDelegate.m in Sources */,
-				37C8602F117205D300B8526B /* CLLocation+Direction.m in Sources */,
 				37216BC712611C5400A2695A /* VelibModel.m in Sources */,
 				37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */,
 				37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */,
-				37149C8A12625B94009CDE82 /* UITableViewCell+NibLoaded.m in Sources */,
 				37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */,
-				37B69DB21290925B0053728D /* StationStatusView.m in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
-				37D6AF8812CBF23700EEC835 /* VerticallyAlignedLabel.m in Sources */,
-				37D6B10D12CCC93700EEC835 /* StationDetailVC.m in Sources */,
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
 				371E1BF3137FCF7C007EFBFF /* Region.m in Sources */,
 				371E1BF4137FCF7C007EFBFF /* Station.m in Sources */,

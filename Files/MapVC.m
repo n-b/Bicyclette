@@ -11,7 +11,6 @@
 #import "VelibModel.h"
 #import "Station.h"
 #import "Region.h"
-#import "StationDetailVC.h"
 #import "NSArrayAdditions.h"
 #import "VelibModel+Favorites.h"
 #import "RegionAnnotationView.h"
