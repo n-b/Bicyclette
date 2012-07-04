@@ -30,21 +30,17 @@
 		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
 		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
 		371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
-		37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */ = {isa = PBXBuildFile; fileRef = 37201E6112B2EA640001A668 /* UIImage+Tinting.m */; };
 		37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */; };
 		37216BC712611C5400A2695A /* VelibModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibModel.m */; };
 		372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
 		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
-		374785A3149EAAC9009186CE /* _StationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 374785A2149EAAC9009186CE /* _StationList.m */; };
-		374785A6149EAACF009186CE /* StationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 374785A5149EAACF009186CE /* StationList.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EAE41298018A00113534 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EADF1298018A00113534 /* Default.png */; };
 		3756EAE51298018A00113534 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE01298018A00113534 /* Default@2x.png */; };
 		3756EAE61298018A00113534 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE11298018A00113534 /* Icon.png */; };
 		3756EAE71298018A00113534 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE21298018A00113534 /* Icon@2x.png */; };
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
-		37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7B1380446A009D8334 /* VelibModel+Favorites.m */; };
 		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -111,8 +107,6 @@
 		371E1BF0137FCF7C007EFBFF /* _Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
 		371E1BF1137FCF7C007EFBFF /* _Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
 		371E1BF2137FCF7C007EFBFF /* _Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
-		37201E6012B2EA640001A668 /* UIImage+Tinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tinting.h"; sourceTree = "<group>"; };
-		37201E6112B2EA640001A668 /* UIImage+Tinting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tinting.m"; sourceTree = "<group>"; };
 		37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VelibModel.xcdatamodel; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* VelibModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VelibModel.h; sourceTree = "<group>"; };
 		37216BC612611C5400A2695A /* VelibModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelibModel.m; sourceTree = "<group>"; };
@@ -122,10 +116,6 @@
 		3730161715977E1900347C9F /* DrawingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCache.m; sourceTree = "<group>"; };
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
-		374785A1149EAAC9009186CE /* _StationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _StationList.h; sourceTree = "<group>"; };
-		374785A2149EAAC9009186CE /* _StationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _StationList.m; sourceTree = "<group>"; };
-		374785A4149EAACF009186CE /* StationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationList.h; sourceTree = "<group>"; };
-		374785A5149EAACF009186CE /* StationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationList.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3756EADF1298018A00113534 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -135,8 +125,6 @@
 		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Paris.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Paris.gpx; sourceTree = "<group>"; };
-		37822B7A1380446A009D8334 /* VelibModel+Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VelibModel+Favorites.h"; sourceTree = "<group>"; };
-		37822B7B1380446A009D8334 /* VelibModel+Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VelibModel+Favorites.m"; sourceTree = "<group>"; };
 		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
 		37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+StandardPaths.m"; sourceTree = "<group>"; };
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,8 +263,6 @@
 				371E1BEB137FCF7C007EFBFF /* Region.m */,
 				371E1BEC137FCF7C007EFBFF /* Station.h */,
 				371E1BED137FCF7C007EFBFF /* Station.m */,
-				374785A4149EAACF009186CE /* StationList.h */,
-				374785A5149EAACF009186CE /* StationList.m */,
 			);
 			path = Human;
 			sourceTree = "<group>";
@@ -288,8 +274,6 @@
 				371E1BF0137FCF7C007EFBFF /* _Region.m */,
 				371E1BF1137FCF7C007EFBFF /* _Station.h */,
 				371E1BF2137FCF7C007EFBFF /* _Station.m */,
-				374785A1149EAAC9009186CE /* _StationList.h */,
-				374785A2149EAAC9009186CE /* _StationList.m */,
 			);
 			path = Machine;
 			sourceTree = "<group>";
@@ -303,8 +287,6 @@
 				3793DE2113802E6100B50118 /* DataUpdater.m */,
 				37216BC512611C5400A2695A /* VelibModel.h */,
 				37216BC612611C5400A2695A /* VelibModel.m */,
-				37822B7A1380446A009D8334 /* VelibModel+Favorites.h */,
-				37822B7B1380446A009D8334 /* VelibModel+Favorites.m */,
 				37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */,
 				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 				37A346B5128C9D68000A2540 /* VelibModel */,
@@ -375,8 +357,6 @@
 				37149BBB126250D7009CDE82 /* NSArrayAdditions.m */,
 				37149B9312624C15009CDE82 /* NSStringAdditions.h */,
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
-				37201E6012B2EA640001A668 /* UIImage+Tinting.h */,
-				37201E6112B2EA640001A668 /* UIImage+Tinting.m */,
 				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
 				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
 				37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */,
@@ -532,7 +512,6 @@
 				37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */,
 				37212055149EA4F3007697D1 /* VelibModel.xcdatamodel in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
-				37201E6212B2EA640001A668 /* UIImage+Tinting.m in Sources */,
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
 				371E1BF3137FCF7C007EFBFF /* Region.m in Sources */,
 				371E1BF4137FCF7C007EFBFF /* Station.m in Sources */,
@@ -540,13 +519,10 @@
 				371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */,
 				3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
-				37822B7C1380446A009D8334 /* VelibModel+Favorites.m in Sources */,
 				37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */,
 				37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */,
 				37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */,
 				371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
-				374785A3149EAAC9009186CE /* _StationList.m in Sources */,
-				374785A6149EAACF009186CE /* StationList.m in Sources */,
 				371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */,
 				3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */,
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
