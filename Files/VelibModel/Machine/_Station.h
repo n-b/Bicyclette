@@ -28,7 +28,7 @@ extern const struct StationRelationships {
 extern const struct StationFetchedProperties {
 } StationFetchedProperties;
 
-@class StationList;
+@class Region;
 
 
 
@@ -202,7 +202,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) StationList* region;
+@property (nonatomic, strong) Region* region;
 
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
 
@@ -328,8 +328,8 @@ extern const struct StationFetchedProperties {
 
 
 
-- (StationList*)primitiveRegion;
-- (void)setPrimitiveRegion:(StationList*)value;
+- (Region*)primitiveRegion;
+- (void)setPrimitiveRegion:(Region*)value;
 
 
 @end

@@ -12,7 +12,6 @@
 #import "Station.h"
 #import "Region.h"
 #import "NSArrayAdditions.h"
-#import "VelibModel+Favorites.h"
 #import "NSMutableArray+Stations.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
@@ -62,8 +61,6 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 {
 	self = [super initWithCoder:aDecoder];
 	if (self != nil) {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoriteDidChange:) 
-													 name:VelibModelNotifications.favoriteChanged object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
                                                      name:VelibModelNotifications.updateSucceeded object:nil];
 
@@ -338,13 +335,6 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 
 /****************************************************************************/
 #pragma mark -
-
-- (void) favoriteDidChange:(NSNotification*)note
-{
-	Station * station = note.object;
-	MKPinAnnotationView * pinView = (MKPinAnnotationView*)[self.mapView viewForAnnotation:station];
-	pinView.pinColor = [station isFavorite]?MKPinAnnotationColorRed:MKPinAnnotationColorGreen;
-}
 
 - (void) modelUpdated:(NSNotification*) note
 {

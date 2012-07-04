@@ -73,7 +73,7 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, @"refreshing", @"loading", @"favorite" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, @"refreshing", @"loading" ];
 }
 
 /****************************************************************************/

@@ -13,6 +13,7 @@ const struct RegionAttributes RegionAttributes = {
 };
 
 const struct RegionRelationships RegionRelationships = {
+	.stations = @"stations",
 };
 
 const struct RegionFetchedProperties RegionFetchedProperties = {
@@ -184,6 +185,19 @@ const struct RegionFetchedProperties RegionFetchedProperties = {
 
 
 
+
+@dynamic stations;
+
+	
+- (NSMutableOrderedSet*)stationsSet {
+	[self willAccessValueForKey:@"stations"];
+  
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"stations"];
+  
+	[self didAccessValueForKey:@"stations"];
+	return result;
+}
+	
 
 
 

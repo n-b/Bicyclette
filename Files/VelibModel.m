@@ -19,7 +19,6 @@
 #pragma mark Constants
 
 const struct VelibModelNotifications VelibModelNotifications = {
-	.favoriteChanged = @"VelibModelNotifications.favoriteChanged",
     .updateBegan = @"VelibModelNotifications.updateBegan",
     .updateGotNewData = @"VelibModelNotifications.updateGotNewData",
     .updateSucceeded = @"VelibModelNotifications.updateSucceded",
@@ -28,7 +27,6 @@ const struct VelibModelNotifications VelibModelNotifications = {
         .dataChanged = @"VelibModelNotifications.keys.dataChanged",
         .failureReason = @"VelibModelNotifications.keys.failureReason",
         .saveErrors = @"VelibModelNotifications.keys.saveErrors",
-        .station = @"VelibModelNotifications.keys.station",
     }
 };
 

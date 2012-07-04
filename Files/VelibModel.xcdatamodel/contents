@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1480" systemVersion="12A239" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Region" representedClassName="Region" parentEntity="StationList">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1800" systemVersion="12A256" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Region" representedClassName="Region">
         <attribute name="maxLatitude" attributeType="Double" defaultValueString="0">
             <userInfo/>
         </attribute>
@@ -19,6 +19,9 @@
         <attribute name="number" attributeType="String" indexed="YES">
             <userInfo/>
         </attribute>
+        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Station" inverseName="region" inverseEntity="Station">
+            <userInfo/>
+        </relationship>
         <userInfo/>
     </entity>
     <entity name="Station" representedClassName="Station">
@@ -66,21 +69,14 @@
         <attribute name="status_total" optional="YES" attributeType="Integer 16" defaultValueString="0">
             <userInfo/>
         </attribute>
-        <relationship name="region" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="StationList" inverseName="stations" inverseEntity="StationList" indexed="YES">
-            <userInfo/>
-        </relationship>
-        <userInfo/>
-    </entity>
-    <entity name="StationList" representedClassName="StationList">
-        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Station" inverseName="region" inverseEntity="Station">
+        <relationship name="region" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Region" inverseName="stations" inverseEntity="Region" indexed="YES">
             <userInfo/>
         </relationship>
         <userInfo/>
     </entity>
     <fetchRequest name="regionWithNumber" entity="Region" predicateString="number == $number"/>
     <elements>
-        <element name="Region" positionX="45" positionY="-63" width="144" height="135"/>
+        <element name="Region" positionX="45" positionY="-63" width="144" height="150"/>
         <element name="Station" positionX="360" positionY="-234" width="144" height="270"/>
-        <element name="StationList" positionX="54" positionY="-162" width="128" height="60"/>
     </elements>
 </model>
