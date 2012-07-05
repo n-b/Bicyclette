@@ -251,6 +251,8 @@ fromOldState:(MKAnnotationViewDragState)oldState
             [self.mapView viewForAnnotation:radar].bounds = (CGRect){CGPointZero, radarSize};
         }
     }
+
+    [self.model screenCenterRadar].coordinate = self.mapView.centerCoordinate;
 }
 
 /****************************************************************************/
@@ -262,24 +264,14 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
     if(self.mode==MapModeStations)
     {
-        NSMutableArray * visibleStations = [[[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects] mutableCopy];
-        [visibleStations filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
-            return [annotation isKindOfClass:[Station class]];
-        }]];
-        
-        CLLocation * referenceLocation;
-        if(self.mapView.userLocationVisible)
-            referenceLocation = self.mapView.userLocation.location;
-        else
+        NSMutableArray * visibleStations = [NSMutableArray new];
+        for (Radar * radar in self.mapView.annotations)
         {
-            CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
-            referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+            if([radar isKindOfClass:[Radar class]])
+            {
+                [visibleStations addObjectsFromArray:radar.stationsWithinRadarRegion];
+            }
         }
-        
-        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-        
-        [visibleStations filterStationsWithinDistance:radarDistance fromLocation:referenceLocation];
-        [visibleStations sortStationsNearestFirstFromLocation:referenceLocation];
 
         NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
         [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];

@@ -49,7 +49,8 @@
 - (void)drawRect:(CGRect)rect
 {
     [[UIColor colorWithWhite:0 alpha:0.25] setFill];
-    UIRectFill(rect);
+    
+    CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(), rect);
 }
 
 @end
