@@ -16,7 +16,6 @@
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
 		370D2ABB15A3A2270019F36E /* NSMutableArray+Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */; };
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
-		370D2AC115A3A4700019F36E /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2AC015A3A4700019F36E /* Radar.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
@@ -56,6 +55,8 @@
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
+		37EDD1CB15A5CDC80023301D /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDD1CA15A5CDC80023301D /* Radar.m */; };
+		37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDD1CE15A5CDD10023301D /* _Radar.m */; };
 		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */; };
 /* End PBXBuildFile section */
@@ -86,8 +87,6 @@
 		370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stations.m"; sourceTree = "<group>"; };
 		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
 		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
-		370D2ABF15A3A4700019F36E /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
-		370D2AC015A3A4700019F36E /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
@@ -145,6 +144,10 @@
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		37EDD1C915A5CDC80023301D /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
+		37EDD1CA15A5CDC80023301D /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
+		37EDD1CD15A5CDD10023301D /* _Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Radar.h; sourceTree = "<group>"; };
+		37EDD1CE15A5CDD10023301D /* _Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Radar.m; sourceTree = "<group>"; };
 		37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCMapping.h"; sourceTree = "<group>"; };
 		37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping.m"; sourceTree = "<group>"; };
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
@@ -194,8 +197,6 @@
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				370D2AB915A3A2270019F36E /* NSMutableArray+Stations.h */,
 				370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */,
-				370D2ABF15A3A4700019F36E /* Radar.h */,
-				370D2AC015A3A4700019F36E /* Radar.m */,
 				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
 				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
 			);
@@ -263,6 +264,8 @@
 				371E1BEB137FCF7C007EFBFF /* Region.m */,
 				371E1BEC137FCF7C007EFBFF /* Station.h */,
 				371E1BED137FCF7C007EFBFF /* Station.m */,
+				37EDD1C915A5CDC80023301D /* Radar.h */,
+				37EDD1CA15A5CDC80023301D /* Radar.m */,
 			);
 			path = Human;
 			sourceTree = "<group>";
@@ -274,6 +277,8 @@
 				371E1BF0137FCF7C007EFBFF /* _Region.m */,
 				371E1BF1137FCF7C007EFBFF /* _Station.h */,
 				371E1BF2137FCF7C007EFBFF /* _Station.m */,
+				37EDD1CD15A5CDD10023301D /* _Radar.h */,
+				37EDD1CE15A5CDD10023301D /* _Radar.m */,
 			);
 			path = Machine;
 			sourceTree = "<group>";
@@ -530,7 +535,8 @@
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
 				370D2ABB15A3A2270019F36E /* NSMutableArray+Stations.m in Sources */,
 				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
-				370D2AC115A3A4700019F36E /* Radar.m in Sources */,
+				37EDD1CB15A5CDC80023301D /* Radar.m in Sources */,
+				37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

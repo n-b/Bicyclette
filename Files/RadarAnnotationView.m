@@ -21,6 +21,7 @@
     self = [super initWithAnnotation:radar reuseIdentifier:[[self class] reuseIdentifier]];
     if (self) {
         self.radar = radar;
+        self.bounds = CGRectMake(0, 0, 40, 40);
     }
     return self;
 }
@@ -38,8 +39,8 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([RadarAnnotationView class])) {
-        if([keyPath isEqualToString:@"farRadius"])
-            self.bounds = CGRectMake(0, 0, 2*self.radar.farRadius, 2*self.radar.farRadius);
+//        if([keyPath isEqualToString:@"farRadius"])
+//            self.bounds = CGRectMake(0, 0, 2*self.radar.farRadius, 2*self.radar.farRadius);
         [self setNeedsDisplay];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -55,11 +56,11 @@
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
         
-    CGRect smallRect = CGRectMake(rect.size.width/2-self.radar.nearRadius, rect.size.height/2-self.radar.nearRadius,
-                                  2*self.radar.nearRadius, 2*self.radar.nearRadius);
-    CGContextSetStrokeColorWithColor(c, [UIColor blueColor].CGColor);
-    CGContextSetLineWidth(c, 3);
-    CGContextStrokeEllipseInRect(c, smallRect);
+//    CGRect smallRect = CGRectMake(rect.size.width/2-self.radar.nearRadius, rect.size.height/2-self.radar.nearRadius,
+//                                  2*self.radar.nearRadius, 2*self.radar.nearRadius);
+//    CGContextSetStrokeColorWithColor(c, [UIColor blueColor].CGColor);
+//    CGContextSetLineWidth(c, 3);
+    CGContextStrokeEllipseInRect(c, rect);
 }
 
 @end

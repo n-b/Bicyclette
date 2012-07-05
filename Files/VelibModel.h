@@ -16,7 +16,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@class Station;
+@class Radar;
 @class DataUpdater;
 
 @interface VelibModel : CoreDataManager
@@ -24,6 +24,9 @@
 - (void) updateIfNeeded;
 
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
+
+@property (readonly, nonatomic) Radar * userLocationRadar;
+@property (readonly, nonatomic) Radar * screenCenterRadar;
 
 @property (readonly, nonatomic, strong) CLRegion * hardcodedLimits;
 @end

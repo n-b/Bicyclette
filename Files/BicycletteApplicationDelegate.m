@@ -9,14 +9,16 @@
 #import "BicycletteApplicationDelegate.h"
 #import "VelibModel.h"
 #import "DataUpdater.h"
+#import "MapVC.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
-
-@property (strong) IBOutlet UILabel *notificationLabel;
 @property (strong) VelibModel * model;
+
+@property (strong) IBOutlet MapVC *mapVC;
+@property (strong) IBOutlet UILabel *notificationLabel;
 
 @end
 
@@ -24,9 +26,6 @@
 #pragma mark -
 
 @implementation BicycletteApplicationDelegate
-
-@synthesize window, notificationLabel;
-@synthesize model;
 
 /****************************************************************************/
 #pragma mark Application lifecycle
@@ -45,6 +44,7 @@
 
     // Create model
     self.model = [VelibModel new];
+    self.mapVC.model = self.model;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

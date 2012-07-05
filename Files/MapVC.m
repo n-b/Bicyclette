@@ -37,16 +37,15 @@ typedef enum {
 @property (nonatomic) MapMode mode;
 @property (nonatomic) MapDisplay display;
 
-@property Radar * radar;
 @property (nonatomic) NSArray * refreshedStations;
 @end
 
-static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
-{
-    CGFloat dx = point2.x - point1.x;
-    CGFloat dy = point2.y - point1.y;
-    return sqrt(dx*dx + dy*dy );
-};
+//static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
+//{
+//    CGFloat dx = point2.x - point1.x;
+//    CGFloat dy = point2.y - point1.y;
+//    return sqrt(dx*dx + dy*dy );
+//};
 
 
 /****************************************************************************/
@@ -83,8 +82,6 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
         [[UIBarButtonItem alloc] initWithCustomView:_infoButton]];
 
         _drawingCache = [DrawingCache new];
-        
-        _radar = [Radar new];
 	}
 	return self;
 }
@@ -115,14 +112,14 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 
 - (void) reloadData
 {
-    MKCoordinateRegion region = [self.mapView regionThatFits:BicycletteAppDelegate.model.regionContainingData];
+    MKCoordinateRegion region = [self.mapView regionThatFits:self.model.regionContainingData];
     region.span.latitudeDelta /= 2;
     region.span.longitudeDelta /= 2;
     self.referenceRegion = region;
 
 	self.mapView.region = self.referenceRegion;
 
-    [self updateAnnotations];
+    [self addAndRemoveMapAnnotations];
 }
 
 /****************************************************************************/
@@ -137,8 +134,8 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 		self.mode = MapModeStations;
 
     self.displayControl.enabled = (self.mode==MapModeStations);
-        
-    [self updateAnnotations];
+    
+    [self addAndRemoveMapAnnotations];
 }
 
 
@@ -170,7 +167,7 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 			radarAV = [[RadarAnnotationView alloc] initWithRadar:annotation];
         else
             radarAV.annotation = annotation;
-        radarAV.draggable = annotation!=self.radar;
+        radarAV.draggable = annotation!=[self.model userLocationRadar] && annotation!=[self.model screenCenterRadar];
         return radarAV;
     }
 	return nil;
@@ -192,36 +189,40 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    
+    [self.model userLocationRadar].coordinate = userLocation.coordinate;
 }
 
-- (void) updateAnnotations
+- (void) addAndRemoveMapAnnotations
 {
     NSArray * oldAnnotations = self.mapView.annotations;
-    NSFetchRequest * request = [NSFetchRequest new];
+    [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
+    NSArray * newAnnotations;
+    
 
     if (self.mode == MapModeRegions)
     {
-        request.entity = [Region entityInManagedObjectContext:BicycletteAppDelegate.model.moc];
+        NSFetchRequest * regionsRequest = [NSFetchRequest new];
+        regionsRequest.entity = [Region entityInManagedObjectContext:self.model.moc];
+        newAnnotations = [self.model.moc executeFetchRequest:regionsRequest error:NULL];
     }
     else
     {
-		[request setEntity:[Station entityInManagedObjectContext:BicycletteAppDelegate.model.moc]];
+        NSFetchRequest * stationsRequest = [NSFetchRequest new];
+		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.model.moc]];
         MKCoordinateRegion mapRegion = self.mapView.region;
-		request.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
+		stationsRequest.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
 							 mapRegion.center.latitude - mapRegion.span.latitudeDelta/2,
                              mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
                              mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
                              mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
+        newAnnotations = [self.model.moc executeFetchRequest:stationsRequest error:NULL];
+
+        NSFetchRequest * radarsRequest = [NSFetchRequest new];
+		[radarsRequest setEntity:[Radar entityInManagedObjectContext:self.model.moc]];
+        newAnnotations = [newAnnotations arrayByAddingObjectsFromArray:[self.model.moc executeFetchRequest:radarsRequest error:NULL]];
     }
 
-    NSArray * newAnnotations = [BicycletteAppDelegate.model.moc executeFetchRequest:request error:NULL];
-
-    NSMutableArray * annotationsToRemove = [oldAnnotations mutableCopy];
-    [annotationsToRemove removeObjectsInArray:newAnnotations];
-    [annotationsToRemove filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
-        return [annotation isKindOfClass:[Station class]] || [annotation isKindOfClass:[Region class]];
-    }]];
+    NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
     NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
     
     [self.mapView removeAnnotations:annotationsToRemove];
@@ -239,42 +240,41 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) refreshVisibleStations
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
-
-    if(self.mode==MapModeStations)
-    {
-        NSMutableArray * visibleStations = [[[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects] mutableCopy];
-        [visibleStations filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
-            return [annotation isKindOfClass:[Station class]];
-        }]];
-        
-        CLLocation * referenceLocation;
-        if(self.mapView.userLocationVisible)
-            referenceLocation = self.mapView.userLocation.location;
-        else
-        {
-            CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
-            referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
-        }
-        
-        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-        
-        [visibleStations filterStationsWithinDistance:radarDistance fromLocation:referenceLocation];
-        [visibleStations sortStationsNearestFirstFromLocation:referenceLocation];
-
-        NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
-        [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
-        [visibleStations makeObjectsPerformSelector:@selector(refresh)];
-
-        self.radar.coordinate = referenceLocation.coordinate;
-        [self.mapView addAnnotation:self.radar];
-        self.refreshedStations = visibleStations;
-    }
-    else
-    {
-        [self.mapView removeAnnotation:self.radar];
-        self.refreshedStations = nil;
-    }
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+//
+//    if(self.mode==MapModeStations)
+//    {
+//        NSMutableArray * visibleStations = [[[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects] mutableCopy];
+//        [visibleStations filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
+//            return [annotation isKindOfClass:[Station class]];
+//        }]];
+//        
+//        CLLocation * referenceLocation;
+//        if(self.mapView.userLocationVisible)
+//            referenceLocation = self.mapView.userLocation.location;
+//        else
+//        {
+//            CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
+//            referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+//        }
+//        
+//        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+//        
+//        [visibleStations filterStationsWithinDistance:radarDistance fromLocation:referenceLocation];
+//        [visibleStations sortStationsNearestFirstFromLocation:referenceLocation];
+//
+//        NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
+//        [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
+//        [visibleStations makeObjectsPerformSelector:@selector(refresh)];
+//
+//        self.radar.coordinate = referenceLocation.coordinate;
+//        [self.mapView addAnnotation:self.radar];
+//        self.refreshedStations = visibleStations;
+//    }
+//    else
+//    {
+//        self.refreshedStations = nil;
+//    }
 }
 
 - (void) setRefreshedStations:(NSArray *)refreshedStations_
@@ -288,27 +288,27 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) stationRefreshChanged
 {
-    NSMutableArray * stationsStillRefreshing = [[self.refreshedStations filteredArrayWithValue:@YES forKey:@"refreshing"] mutableCopy];
-    if([stationsStillRefreshing count])
-    {
-        [stationsStillRefreshing sortStationsNearestFirstFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.coordinate.latitude longitude:self.radar.coordinate.longitude]];
-        
-        Station * nearestRefreshing = [stationsStillRefreshing objectAtIndex:0];
-        Station * fartherRefreshing = [stationsStillRefreshing lastObject];
-        
-        CGPoint nearPoint = [self.mapView convertCoordinate:nearestRefreshing.coordinate toPointToView:self.mapView];
-        CGPoint farPoint = [self.mapView convertCoordinate:fartherRefreshing.coordinate toPointToView:self.mapView];
-        
-        CGPoint referencePoint = [self.mapView convertCoordinate:self.radar.coordinate toPointToView:self.mapView];
-        
-        self.radar.nearRadius = DistanceBetweenCGPoints(nearPoint, referencePoint);
-        self.radar.farRadius = DistanceBetweenCGPoints(farPoint, referencePoint);
-    }
-    else
-    {
-        self.radar.nearRadius = 0;
-        self.radar.farRadius = 0;
-    }
+//    NSMutableArray * stationsStillRefreshing = [[self.refreshedStations filteredArrayWithValue:@YES forKey:@"refreshing"] mutableCopy];
+//    if([stationsStillRefreshing count])
+//    {
+//        [stationsStillRefreshing sortStationsNearestFirstFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.coordinate.latitude longitude:self.radar.coordinate.longitude]];
+//        
+//        Station * nearestRefreshing = [stationsStillRefreshing objectAtIndex:0];
+//        Station * fartherRefreshing = [stationsStillRefreshing lastObject];
+//        
+//        CGPoint nearPoint = [self.mapView convertCoordinate:nearestRefreshing.coordinate toPointToView:self.mapView];
+//        CGPoint farPoint = [self.mapView convertCoordinate:fartherRefreshing.coordinate toPointToView:self.mapView];
+//        
+//        CGPoint referencePoint = [self.mapView convertCoordinate:self.radar.coordinate toPointToView:self.mapView];
+//        
+//        self.radar.nearRadius = DistanceBetweenCGPoints(nearPoint, referencePoint);
+//        self.radar.farRadius = DistanceBetweenCGPoints(farPoint, referencePoint);
+//    }
+//    else
+//    {
+//        self.radar.nearRadius = 0;
+//        self.radar.farRadius = 0;
+//    }
 }
 
 /****************************************************************************/
@@ -318,7 +318,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 {
     if(longPressRecognizer.state==UIGestureRecognizerStateBegan)
     {
-        Radar * r = [Radar new];
+        Radar * r = [Radar insertInManagedObjectContext:self.model.moc];
         r.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
                              toCoordinateFromView:self.mapView];
         r.nearRadius = 40;

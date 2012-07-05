@@ -9,6 +9,7 @@
 #import "VelibModel.h"
 #import "Station.h"
 #import "Region.h"
+#import "Radar.h"
 #import "NSArrayAdditions.h"
 #import "NSStringAdditions.h"
 #import "NSObject+KVCMapping.h"
@@ -317,6 +318,33 @@ const struct VelibModelNotifications VelibModelNotifications = {
         }
     }
 }
+
+/****************************************************************************/
+#pragma mark Radars
+
+- (Radar *) userLocationRadar
+{
+    Radar * r = [[Radar fetchUserLocationRadar:self.moc] lastObject];
+    if(r==nil)
+    {
+        r = [Radar insertInManagedObjectContext:self.moc];
+        r.identifier = @"userLocationRadar";
+        [self save:nil];
+    }
+    return r;
+}
+- (Radar *) screenCenterRadar
+{
+    Radar * r = [[Radar fetchScreenCenterRadar:self.moc] lastObject];
+    if(r==nil)
+    {
+        r = [Radar insertInManagedObjectContext:self.moc];
+        r.identifier = @"screenCenterRadar";
+        [self save:nil];
+    }
+    return r;
+}
+
 
 /****************************************************************************/
 #pragma mark Coordinates
