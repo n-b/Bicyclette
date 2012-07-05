@@ -9,6 +9,6 @@
 	<key>DebugRemoveStore</key>
 	<false/>
 	<key>RadarDistance</key>
-	<integer>400</integer>
+	<integer>200</integer>
 </dict>
 </plist>

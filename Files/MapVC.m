@@ -136,6 +136,7 @@ typedef enum {
     self.displayControl.enabled = (self.mode==MapModeStations);
     
     [self addAndRemoveMapAnnotations];
+    [self updateRadarSizes];
 }
 
 
@@ -167,6 +168,10 @@ typedef enum {
 			radarAV = [[RadarAnnotationView alloc] initWithRadar:annotation];
         else
             radarAV.annotation = annotation;
+        
+        CGSize radarSize = [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:self.mapView].size;
+        radarAV.bounds = (CGRect){CGPointZero, radarSize};
+
         radarAV.draggable = annotation!=[self.model userLocationRadar] && annotation!=[self.model screenCenterRadar];
         return radarAV;
     }
@@ -176,15 +181,16 @@ typedef enum {
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
 	if([view.annotation isKindOfClass:[Region class]])
-		[self zoomIn:(Region*)view.annotation];
+		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
-        [self showDetails:(Station*)view.annotation];
+        [self refreshStation:(Station*)view.annotation];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
 fromOldState:(MKAnnotationViewDragState)oldState
 {
-    NSLog(@"drag %@",view);
+    Radar * radar = view.annotation;
+    NSLog(@"drag %d",(int)[[radar stationsWithinRadarRegion] count]);
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -235,46 +241,56 @@ fromOldState:(MKAnnotationViewDragState)oldState
     }
 }
 
+- (void) updateRadarSizes
+{
+    for (Radar * radar in self.mapView.annotations)
+    {
+        if([radar isKindOfClass:[Radar class]])
+        {
+            CGSize radarSize = [self.mapView convertRegion:radar.radarRegion toRectToView:self.mapView].size;
+            [self.mapView viewForAnnotation:radar].bounds = (CGRect){CGPointZero, radarSize};
+        }
+    }
+}
+
 /****************************************************************************/
 #pragma mark Refresh
 
 - (void) refreshVisibleStations
 {
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
-//
-//    if(self.mode==MapModeStations)
-//    {
-//        NSMutableArray * visibleStations = [[[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects] mutableCopy];
-//        [visibleStations filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
-//            return [annotation isKindOfClass:[Station class]];
-//        }]];
-//        
-//        CLLocation * referenceLocation;
-//        if(self.mapView.userLocationVisible)
-//            referenceLocation = self.mapView.userLocation.location;
-//        else
-//        {
-//            CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
-//            referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
-//        }
-//        
-//        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-//        
-//        [visibleStations filterStationsWithinDistance:radarDistance fromLocation:referenceLocation];
-//        [visibleStations sortStationsNearestFirstFromLocation:referenceLocation];
-//
-//        NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
-//        [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
-//        [visibleStations makeObjectsPerformSelector:@selector(refresh)];
-//
-//        self.radar.coordinate = referenceLocation.coordinate;
-//        [self.mapView addAnnotation:self.radar];
-//        self.refreshedStations = visibleStations;
-//    }
-//    else
-//    {
-//        self.refreshedStations = nil;
-//    }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+
+    if(self.mode==MapModeStations)
+    {
+        NSMutableArray * visibleStations = [[[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects] mutableCopy];
+        [visibleStations filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
+            return [annotation isKindOfClass:[Station class]];
+        }]];
+        
+        CLLocation * referenceLocation;
+        if(self.mapView.userLocationVisible)
+            referenceLocation = self.mapView.userLocation.location;
+        else
+        {
+            CLLocationCoordinate2D coord = self.mapView.centerCoordinate;
+            referenceLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+        }
+        
+        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+        
+        [visibleStations filterStationsWithinDistance:radarDistance fromLocation:referenceLocation];
+        [visibleStations sortStationsNearestFirstFromLocation:referenceLocation];
+
+        NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
+        [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
+        [visibleStations makeObjectsPerformSelector:@selector(refresh)];
+
+        self.refreshedStations = visibleStations;
+    }
+    else
+    {
+        self.refreshedStations = nil;
+    }
 }
 
 - (void) setRefreshedStations:(NSArray *)refreshedStations_
@@ -321,19 +337,17 @@ fromOldState:(MKAnnotationViewDragState)oldState
         Radar * r = [Radar insertInManagedObjectContext:self.model.moc];
         r.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
                              toCoordinateFromView:self.mapView];
-        r.nearRadius = 40;
-        r.farRadius = 40;
 
         [self.mapView addAnnotation:r];
     }
 }
 
-- (void) showDetails:(Station*)station
+- (void) refreshStation:(Station*)station
 {
     [station refresh];
 }
 
-- (void) zoomIn:(Region*)region
+- (void) zoomInRegion:(Region*)region
 {
     MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
     cregion = MKCoordinateRegionMakeWithDistance(cregion.center, 1000, 1000);

@@ -209,6 +209,11 @@ extern const struct StationFetchedProperties {
 
 
 
++ (NSArray*)fetchStationsWithinRange:(NSManagedObjectContext*)moc_ minLatitude:(NSNumber*)minLatitude_ maxLatitude:(NSNumber*)maxLatitude_ minLongitude:(NSNumber*)minLongitude_ maxLongitude:(NSNumber*)maxLongitude_ ;
++ (NSArray*)fetchStationsWithinRange:(NSManagedObjectContext*)moc_ minLatitude:(NSNumber*)minLatitude_ maxLatitude:(NSNumber*)maxLatitude_ minLongitude:(NSNumber*)minLongitude_ maxLongitude:(NSNumber*)maxLongitude_ error:(NSError**)error_;
+
+
+
 
 @end
 
