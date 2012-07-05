@@ -104,6 +104,9 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
     self.mapView.zoomEnabled = YES;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
+
+    UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
+    [self.mapView addGestureRecognizer:longPressRecognizer];
     
     self.userTrackingButton.mapView = self.mapView;
 
@@ -164,8 +167,10 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
     {
         RadarAnnotationView * radarAV = (RadarAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RadarAnnotationView reuseIdentifier]];
 		if(nil==radarAV)
-			return [[RadarAnnotationView alloc] initWithRadar:self.radar];
-        radarAV.annotation = annotation;
+			radarAV = [[RadarAnnotationView alloc] initWithRadar:annotation];
+        else
+            radarAV.annotation = annotation;
+        radarAV.draggable = annotation!=self.radar;
         return radarAV;
     }
 	return nil;
@@ -177,6 +182,12 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 		[self zoomIn:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
         [self showDetails:(Station*)view.annotation];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
+fromOldState:(MKAnnotationViewDragState)oldState
+{
+    NSLog(@"drag %@",view);
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -208,8 +219,9 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 
     NSMutableArray * annotationsToRemove = [oldAnnotations mutableCopy];
     [annotationsToRemove removeObjectsInArray:newAnnotations];
-    [annotationsToRemove removeObject:self.mapView.userLocation];
-    [annotationsToRemove removeObject:self.radar];
+    [annotationsToRemove filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
+        return [annotation isKindOfClass:[Station class]] || [annotation isKindOfClass:[Region class]];
+    }]];
     NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
     
     [self.mapView removeAnnotations:annotationsToRemove];
@@ -232,9 +244,9 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
     if(self.mode==MapModeStations)
     {
         NSMutableArray * visibleStations = [[[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects] mutableCopy];
-        
-        [visibleStations removeObject:self.radar];
-        [visibleStations removeObject:self.mapView.userLocation];
+        [visibleStations filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id<MKAnnotation> annotation, NSDictionary *bindings) {
+            return [annotation isKindOfClass:[Station class]];
+        }]];
         
         CLLocation * referenceLocation;
         if(self.mapView.userLocationVisible)
@@ -301,6 +313,20 @@ static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
 
 /****************************************************************************/
 #pragma mark Actions
+
+- (void) addRadar:(UILongPressGestureRecognizer*)longPressRecognizer
+{
+    if(longPressRecognizer.state==UIGestureRecognizerStateBegan)
+    {
+        Radar * r = [Radar new];
+        r.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
+                             toCoordinateFromView:self.mapView];
+        r.nearRadius = 40;
+        r.farRadius = 40;
+
+        [self.mapView addAnnotation:r];
+    }
+}
 
 - (void) showDetails:(Station*)station
 {
