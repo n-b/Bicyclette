@@ -93,6 +93,11 @@ typedef enum {
 /****************************************************************************/
 #pragma mark Loading
 
+- (BOOL) canBecomeFirstResponder
+{
+    return YES;
+}
+
 - (void) loadView
 {
     self.mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] applicationFrame]];
@@ -172,7 +177,6 @@ typedef enum {
         CGSize radarSize = [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:self.mapView].size;
         radarAV.bounds = (CGRect){CGPointZero, radarSize};
 
-        radarAV.draggable = annotation!=[self.model userLocationRadar] && annotation!=[self.model screenCenterRadar];
         return radarAV;
     }
 	return nil;
@@ -184,6 +188,8 @@ typedef enum {
 		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
         [self refreshStation:(Station*)view.annotation];
+    else if([view.annotation isKindOfClass:[Radar class]])
+        [self showRadarMenu:(Radar*)view.annotation];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
@@ -349,6 +355,33 @@ fromOldState:(MKAnnotationViewDragState)oldState
 - (void) showInfo:(UIButton*)sender
 {
     
+}
+
+- (void) showRadarMenu:(Radar*)radar
+{
+    [self becomeFirstResponder];
+    UIMenuController * menu = [UIMenuController sharedMenuController];
+    
+    CGPoint point = [self.mapView convertCoordinate:radar.coordinate toPointToView:self.mapView];
+    [menu setTargetRect:(CGRect){point,CGSizeZero} inView:self.mapView];
+    [menu setMenuVisible:YES animated:YES];
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    BOOL res = [super canPerformAction:action withSender:sender];
+    return res;
+}
+
+- (void) delete:(id)sender // From UIMenuController
+{
+    for (Radar * radar in self.mapView.selectedAnnotations)
+    {
+        if([radar isKindOfClass:[Radar class]])
+        {
+            [self.mapView removeAnnotation:radar];
+            [self.model.moc deleteObject:radar];
+        }
+    }
 }
 
 - (void) switchDisplay:(UISegmentedControl*)sender
