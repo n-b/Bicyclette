@@ -193,12 +193,12 @@
 				3700F8521594A806007CF99E /* RegionAnnotationView.m */,
 				378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */,
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
+				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
+				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				370D2AB915A3A2270019F36E /* NSMutableArray+Stations.h */,
 				370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */,
-				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
-				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
 			);
 			name = UI;
 			path = Files;

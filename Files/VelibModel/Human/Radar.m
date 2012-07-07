@@ -2,6 +2,12 @@
 #import "Station.h"
 #import "NSMutableArray+Stations.h"
 
+const struct RadarIdentifiers RadarIdentifiers = {
+	.userLocation = @"userLocationRadar",
+	.screenCenter = @"screenCenterRadar",
+};
+
+
 @interface Radar()
 @property (nonatomic) NSArray * stationsWithinRange;
 @end

@@ -50,14 +50,54 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    if([self.radar.identifier isEqualToString:@"userLocationRadar"])
-        [[UIColor colorWithHue:.5 saturation:.5 brightness:.5 alpha:.2] setFill];
-    else if([self.radar.identifier isEqualToString:@"screenCenterRadar"])
-        [[UIColor colorWithHue:0 saturation:.5 brightness:.5 alpha:.2] setFill];
-    else
-        [[UIColor colorWithHue:0 saturation:0 brightness:.5 alpha:.2] setFill];
+    if([self.radar.identifier isEqualToString:RadarIdentifiers.userLocation] || [self.radar.identifier isEqualToString:RadarIdentifiers.screenCenter])
+        return;
+
+    CGFloat h;
+    switch (self.dragState) {
+        case MKAnnotationViewDragStateNone: h = .9; break;
+        case MKAnnotationViewDragStateStarting: h = .5; break;
+        case MKAnnotationViewDragStateDragging: h = .7; break;
+        case MKAnnotationViewDragStateCanceling: h = .2; break;
+        case MKAnnotationViewDragStateEnding: default: h = 0;
+            break;
+    }
     
+    [[UIColor colorWithHue:h saturation:.5 brightness:.5 alpha:.5] setFill];
     CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(), rect);
+    
+    if(self.selected)
+    {
+        [[UIColor blackColor] setStroke];
+        CGContextStrokeEllipseInRect(UIGraphicsGetCurrentContext(), CGRectInset(rect, 2, 2));
+    }
+}
+
+- (void) setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    [self setNeedsDisplay];
+}
+
+- (void) setDragState:(MKAnnotationViewDragState)newDragState animated:(BOOL)animated
+{
+    [super setDragState:newDragState animated:animated];
+    [self setNeedsDisplay];
+    
+    MKAnnotationViewDragState autoSwithState;
+    switch (newDragState) {
+        case MKAnnotationViewDragStateStarting: autoSwithState = MKAnnotationViewDragStateDragging; break;
+        case MKAnnotationViewDragStateEnding:
+        case MKAnnotationViewDragStateCanceling: autoSwithState = MKAnnotationViewDragStateNone; break;
+        default: autoSwithState = newDragState; break;
+    }
+    if(newDragState!=autoSwithState)
+    {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, .25 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self setDragState:autoSwithState animated:YES];
+        });
+    }
 }
 
 @end

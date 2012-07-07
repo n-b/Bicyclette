@@ -328,7 +328,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     if(r==nil)
     {
         r = [Radar insertInManagedObjectContext:self.moc];
-        r.identifier = @"userLocationRadar";
+        r.identifier = RadarIdentifiers.userLocation;
         [self save:nil];
     }
     return r;
@@ -339,7 +339,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     if(r==nil)
     {
         r = [Radar insertInManagedObjectContext:self.moc];
-        r.identifier = @"screenCenterRadar";
+        r.identifier = RadarIdentifiers.screenCenter;
         [self save:nil];
     }
     return r;

@@ -3,16 +3,4 @@
     <wpt lat="48.8567" lon="2.3508">
          <name>Notre-Dame</name>
 	</wpt>
-    <wpt lat="48.8745" lon="2.3303">
-        <name>Opera</name>
-	</wpt>
-    <wpt lat="48.8524" lon="2.3296">
-        <name>Saint-Germain</name>
-	</wpt>
-    <wpt lat="48.8737" lon="2.3948">
-        <name>Belleville</name>
-	</wpt>
-    <wpt lat="48.8366" lon="2.3772">
-        <name>Austerlitz</name>
-	</wpt>
 </gpx>

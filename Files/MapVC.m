@@ -26,7 +26,6 @@ typedef enum {
 }  MapMode;
 
 @interface MapVC() <MKMapViewDelegate>
-
 // Outlets
 @property MKMapView * mapView;
 @property MKUserTrackingBarButtonItem * userTrackingButton;
@@ -36,6 +35,8 @@ typedef enum {
 @property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
 @property (nonatomic) MapDisplay display;
+
+@property (nonatomic) Radar * droppedRadar;
 
 @property (nonatomic) NSArray * refreshedStations;
 @end
@@ -187,16 +188,19 @@ typedef enum {
 	if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
-        [self refreshStation:(Station*)view.annotation];
-    else if([view.annotation isKindOfClass:[Radar class]])
-        [self showRadarMenu:(Radar*)view.annotation];
+        [self refreshStation:(Station*)view.annotation]; 
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
 fromOldState:(MKAnnotationViewDragState)oldState
 {
-    Radar * radar = view.annotation;
-    NSLog(@"drag %d",(int)[[radar stationsWithinRadarRegion] count]);
+    if([view.annotation isKindOfClass:[Radar class]])
+    {
+        [self.mapView selectAnnotation:view.annotation animated:YES];
+        if(newState==MKAnnotationViewDragStateCanceling)
+            [self showRadarMenu:(Radar*)view.annotation];
+    }
+
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -330,13 +334,29 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) addRadar:(UILongPressGestureRecognizer*)longPressRecognizer
 {
-    if(longPressRecognizer.state==UIGestureRecognizerStateBegan)
+    switch (longPressRecognizer.state)
     {
-        Radar * r = [Radar insertInManagedObjectContext:self.model.moc];
-        r.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
-                             toCoordinateFromView:self.mapView];
-
-        [self.mapView addAnnotation:r];
+        case UIGestureRecognizerStatePossible:
+            break;
+            
+        case UIGestureRecognizerStateBegan:
+            self.droppedRadar = [Radar insertInManagedObjectContext:self.model.moc];
+            [self.mapView addAnnotation:self.droppedRadar];
+            // no break;
+        case UIGestureRecognizerStateChanged:
+            self.droppedRadar.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
+                                                 toCoordinateFromView:self.mapView];
+            // no break;
+        case UIGestureRecognizerStateEnded:
+            [self.mapView selectAnnotation:self.droppedRadar animated:YES];
+            break;
+            
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateFailed:
+            [self.mapView removeAnnotation:self.droppedRadar];
+            [self.model.moc deleteObject:self.droppedRadar];
+            self.droppedRadar = nil;
+            break;
     }
 }
 
