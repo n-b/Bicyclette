@@ -10,5 +10,9 @@
 	<false/>
 	<key>RadarDistance</key>
 	<integer>200</integer>
+	<key>DataUpdaterMaxConcurrentRequests</key>
+	<integer>2</integer>
+	<key>DataUpdaterDelayBetweenRequests</key>
+	<real>0.1</real>
 </dict>
 </plist>

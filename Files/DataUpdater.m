@@ -57,13 +57,17 @@
         else
             [[self queuedUpdaters] addObject:updater];
         
-        while([[self queuedUpdaters] count] && [[self activeUpdaters] count]<2)
+        while([[self queuedUpdaters] count] && [[self activeUpdaters] count] < (NSUInteger)[[NSUserDefaults standardUserDefaults] integerForKey:@"DataUpdaterMaxConcurrentRequests"] )
         {
             DataUpdater * updaterStarted = [[self queuedUpdaters] objectAtIndex:0];
             [[self activeUpdaters] addObject:updaterStarted];
             [[self queuedUpdaters] removeObjectAtIndex:0];
 
-            [updaterStarted startRequest];
+            double delayInSeconds = [[NSUserDefaults standardUserDefaults] doubleForKey:@"DataUpdaterDelayBetweenRequests"];
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [updaterStarted startRequest];
+            });
         }
         [UIApplication sharedApplication].networkActivityIndicatorVisible = [[self activeUpdaters] count]>0;
     }
