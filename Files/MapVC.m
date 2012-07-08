@@ -172,8 +172,6 @@ typedef enum {
         RadarAnnotationView * radarAV = (RadarAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RadarAnnotationView reuseIdentifier]];
 		if(nil==radarAV)
 			radarAV = [[RadarAnnotationView alloc] initWithRadar:annotation];
-        else
-            radarAV.annotation = annotation;
         
         CGSize radarSize = [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:self.mapView].size;
         radarAV.bounds = (CGRect){CGPointZero, radarSize};

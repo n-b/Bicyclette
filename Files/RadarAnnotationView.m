@@ -8,6 +8,12 @@
 
 #import "RadarAnnotationView.h"
 #import "Radar.h"
+#import "Station.h"
+#import "NSArrayAdditions.h"
+
+@interface RadarAnnotationView ()
+@property (nonatomic) NSArray * stationsWithinRadarRegion;
+@end
 
 @implementation RadarAnnotationView
 
@@ -20,58 +26,72 @@
 {
     self = [super initWithAnnotation:radar reuseIdentifier:[[self class] reuseIdentifier]];
     if (self) {
-        self.radar = radar;
+        self.annotation = radar;
     }
     return self;
 }
 
-- (void) setRadar:(Radar *)radar
+/****************************************************************************/
+#pragma mark Data
+
+- (void) prepareForReuse
 {
-    [_radar removeObserver:self forKeyPath:@"stationsWithinRange" context:(__bridge void *)([RadarAnnotationView class])];
-    _radar = radar;
+    self.annotation = nil;
+}
+
+- (Radar*) radar
+{
+    return (Radar*)self.annotation;
+}
+
+- (void) setAnnotation:(id<MKAnnotation>)annotation
+{
+    [self.radar removeObserver:self forKeyPath:@"stationsWithinRadarRegion" context:(__bridge void *)([RadarAnnotationView class])];
+    [super setAnnotation:annotation];
+
     self.draggable = self.radar.identifier==nil;
     self.enabled = self.radar.identifier==nil;
-    [_radar addObserver:self forKeyPath:@"stationsWithinRange" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([RadarAnnotationView class])];
+    if(self.radar==nil)
+        self.stationsWithinRadarRegion = nil;
+    [self.radar addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+                context:(__bridge void *)([RadarAnnotationView class])];
+    [self setNeedsDisplay];
+}
+
+- (void) setStationsWithinRadarRegion:(NSArray *)newValue
+{
+    NSArray * oldValue = _stationsWithinRadarRegion;
+    NSArray * added = [newValue arrayByRemovingObjectsInArray:oldValue];
+    NSArray * removed = [oldValue arrayByRemovingObjectsInArray:newValue];
+
+    for (Station * station in removed)
+        [station removeObserver:self forKeyPath:@"refreshing" context:(__bridge void *)([RadarAnnotationView class])];
+    
+    for (Station * station in added)
+        [station addObserver:self forKeyPath:@"refreshing" options:0 context:(__bridge void *)([RadarAnnotationView class])];
+    
+    _stationsWithinRadarRegion = newValue;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([RadarAnnotationView class])) {
-        [self setNeedsDisplay];
+        if([keyPath isEqualToString:@"stationsWithinRadarRegion"])
+        {
+            id newValue = change[NSKeyValueChangeNewKey];
+            self.stationsWithinRadarRegion = newValue != [NSNull null] ? newValue : nil;
+        }
+        else if([keyPath isEqualToString:@"refreshing"])
+        {
+            [self setNeedsDisplay];
+        }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
-- (BOOL) isOpaque
-{
-    return NO;
-}
-
-- (void)drawRect:(CGRect)rect
-{
-    if([self.radar.identifier isEqualToString:RadarIdentifiers.userLocation] || [self.radar.identifier isEqualToString:RadarIdentifiers.screenCenter])
-        return;
-
-    CGFloat h;
-    switch (self.dragState) {
-        case MKAnnotationViewDragStateNone: h = .9; break;
-        case MKAnnotationViewDragStateStarting: h = .5; break;
-        case MKAnnotationViewDragStateDragging: h = .7; break;
-        case MKAnnotationViewDragStateCanceling: h = .2; break;
-        case MKAnnotationViewDragStateEnding: default: h = 0;
-            break;
-    }
-    
-    [[UIColor colorWithHue:h saturation:.5 brightness:.5 alpha:.5] setFill];
-    CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(), rect);
-    
-    if(self.selected)
-    {
-        [[UIColor blackColor] setStroke];
-        CGContextStrokeEllipseInRect(UIGraphicsGetCurrentContext(), CGRectInset(rect, 2, 2));
-    }
-}
+/****************************************************************************/
+#pragma mark Interaction
 
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -99,5 +119,42 @@
         });
     }
 }
+
+/****************************************************************************/
+#pragma mark Drawing
+
+- (BOOL) isOpaque
+{
+    return NO;
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    CGContextClearRect(c, rect);
+//    if([self.radar.identifier isEqualToString:RadarIdentifiers.userLocation] || [self.radar.identifier isEqualToString:RadarIdentifiers.screenCenter])
+//        return;
+
+    CGFloat h;
+    switch (self.dragState) {
+        case MKAnnotationViewDragStateNone: h = .9; break;
+        case MKAnnotationViewDragStateStarting: h = .5; break;
+        case MKAnnotationViewDragStateDragging: h = .7; break;
+        case MKAnnotationViewDragStateCanceling: h = .2; break;
+        case MKAnnotationViewDragStateEnding: default: h = 0;
+            break;
+    }
+    
+    [[UIColor colorWithHue:h saturation:.5 brightness:.5 alpha:.5] setFill];
+    CGContextFillEllipseInRect(c, rect);
+    
+    [[UIColor blackColor] setStroke];
+    if(self.selected)
+        CGContextStrokeEllipseInRect(c, CGRectInset(rect, 2, 2));
+
+    NSString * test = [NSString stringWithFormat:@"%@/%@", @([[self.stationsWithinRadarRegion filteredArrayWithValue:@YES forKey:@"refreshing"] count]), @([self.stationsWithinRadarRegion count])];
+    [test drawInRect:rect withFont:[UIFont systemFontOfSize:20]];
+}
+
 
 @end

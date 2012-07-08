@@ -11,7 +11,8 @@
 @class Radar;
 
 @interface RadarAnnotationView : MKAnnotationView
+
 + (NSString*) reuseIdentifier;
 - (id) initWithRadar:(Radar*)radar;
-@property (nonatomic) Radar * radar;
+
 @end
