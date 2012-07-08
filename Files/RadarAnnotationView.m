@@ -11,6 +11,14 @@
 #import "Station.h"
 #import "NSArrayAdditions.h"
 
+static CGRect CGRectMakeCentered(CGRect containingRect, float width, float height)
+{
+	float x = containingRect.size.width/2.0 - width/2.0;
+	float y = containingRect.size.height/2.0 - height/2.0;
+    
+	return CGRectMake(x, y, width, height);
+}
+
 @interface RadarAnnotationView ()
 @property (nonatomic) NSArray * stationsWithinRadarRegion;
 @end
@@ -152,9 +160,24 @@
     if(self.selected)
         CGContextStrokeEllipseInRect(c, CGRectInset(rect, 2, 2));
 
-    NSString * test = [NSString stringWithFormat:@"%@/%@", @([[self.stationsWithinRadarRegion filteredArrayWithValue:@YES forKey:@"refreshing"] count]), @([self.stationsWithinRadarRegion count])];
+    
+    NSArray * refreshingStations = [self.stationsWithinRadarRegion filteredArrayWithValue:@YES forKey:@"refreshing"];
+    NSString * test = [NSString stringWithFormat:@"%@/%@", @([refreshingStations count]), @([self.stationsWithinRadarRegion count])];
     [test drawInRect:rect withFont:[UIFont systemFontOfSize:20]];
+    
+    if ([refreshingStations count])
+    {
+        CLLocationDistance neareastDistance = [[[refreshingStations objectAtIndex:0] location] distanceFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.latitudeValue longitude:self.radar.longitudeValue]];
+        CLLocationDistance farthestDistance = [[[refreshingStations lastObject] location] distanceFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.latitudeValue longitude:self.radar.longitudeValue]];
+        
+        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+        CGFloat nearestDiameter = neareastDistance * rect.size.width / radarDistance;
+        CGFloat farthestDiameter = farthestDistance * rect.size.width / radarDistance;
+        
+        CGContextStrokeEllipseInRect(c, CGRectMakeCentered(rect, nearestDiameter, nearestDiameter));
+        CGContextStrokeEllipseInRect(c, CGRectMakeCentered(rect, farthestDiameter, farthestDiameter));
+    }
 }
 
-
 @end
+
