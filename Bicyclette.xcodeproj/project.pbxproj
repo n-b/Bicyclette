@@ -52,6 +52,9 @@
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
+		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
+		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
+		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
@@ -140,6 +143,11 @@
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
+		37C56FD115B1A0E700795961 /* PrefsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsVC.h; sourceTree = "<group>"; };
+		37C56FD215B1A0E700795961 /* PrefsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsVC.m; sourceTree = "<group>"; };
+		37C56FD315B1A0E700795961 /* PrefsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsVC.xib; sourceTree = "<group>"; };
+		37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
+		37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
@@ -199,6 +207,9 @@
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				370D2AB915A3A2270019F36E /* NSMutableArray+Stations.h */,
 				370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */,
+				37C56FD115B1A0E700795961 /* PrefsVC.h */,
+				37C56FD215B1A0E700795961 /* PrefsVC.m */,
+				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
 			);
 			name = UI;
 			path = Files;
@@ -356,6 +367,8 @@
 		37D188291170A25C00950D52 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
+				37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */,
 				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
 				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
 				37149BBA126250D7009CDE82 /* NSArrayAdditions.h */,
@@ -462,6 +475,7 @@
 				3756EAE71298018A00113534 /* Icon@2x.png in Resources */,
 				3756EB5C1298085B00113534 /* Settings.bundle in Resources */,
 				37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */,
+				37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +551,8 @@
 				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
 				37EDD1CB15A5CDC80023301D /* Radar.m in Sources */,
 				37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */,
+				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
+				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

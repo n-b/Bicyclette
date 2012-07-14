@@ -10,6 +10,8 @@
 #import "VelibModel.h"
 #import "DataUpdater.h"
 #import "MapVC.h"
+#import "PrefsVC.h"
+#import "UIView+Screenshot.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -17,9 +19,15 @@
 @interface BicycletteApplicationDelegate()
 @property (strong) VelibModel * model;
 
+@property (strong) IBOutlet UINavigationController *rootNavC;
 @property (strong) IBOutlet MapVC *mapVC;
-@property (strong) IBOutlet UILabel *notificationLabel;
+@property (strong) IBOutlet PrefsVC *prefsVC;
 
+@property (strong) UILabel *notificationLabel;
+
+@property (strong) UIImageView *screenshot;
+@property (weak) UIView *senderSuperview;
+@property CGPoint senderCenter;
 @end
 
 /****************************************************************************/
@@ -119,4 +127,55 @@
     self.notificationLabel.hidden = YES;
 }
 
+
+- (IBAction)showInfo:(UIButton*)sender
+{
+    if(self.rootNavC.visibleViewController==self.mapVC)
+    {
+        CGPoint rotationCenter = [self.window convertPoint:sender.center fromView:sender.superview];
+        self.senderSuperview = sender.superview;
+        self.senderCenter = sender.center;
+        [sender removeFromSuperview];
+        
+        // Take a screenshot of the presenting vc
+        self.screenshot = [[UIImageView alloc] initWithImage:[self.window screenshot]];
+        [self.window addSubview:self.screenshot];
+        [self.screenshot addSubview:sender];
+        self.screenshot.userInteractionEnabled = YES;
+        sender.center = rotationCenter;
+        
+        // Present (not animated)
+        [self.rootNavC presentViewController:self.prefsVC animated:NO completion:nil];
+        
+        self.screenshot.layer.anchorPoint = CGPointMake(rotationCenter.x/self.window.bounds.size.width,
+                                                        rotationCenter.y/self.window.bounds.size.height);
+        CGSize translation = CGSizeMake(rotationCenter.x-CGRectGetMidX(self.window.bounds),
+                                        rotationCenter.y-CGRectGetMidY(self.window.bounds));
+        self.screenshot.transform = CGAffineTransformMakeTranslation(translation.width, translation.height );
+        
+        // Animate
+        [UIView animateWithDuration:.5
+                         animations:^(void) {
+                             CGAffineTransform rotation = CGAffineTransformMakeRotation(.8*M_PI);
+                             self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
+                             sender.transform = CGAffineTransformInvert(rotation);
+                         } completion:nil];
+    }
+    else
+    {
+        [UIView animateWithDuration:.5
+                         animations:^(void) {
+                             CGAffineTransform rotation = CGAffineTransformMakeRotation(-.8*M_PI);
+                             self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
+                             sender.transform = CGAffineTransformIdentity;
+                         } completion:^(BOOL finished) {
+                             [self.senderSuperview addSubview:sender];
+                             sender.center = self.senderCenter;
+                             self.senderSuperview = nil;
+                             [self.screenshot removeFromSuperview];
+                             self.screenshot = nil;
+                             [self.rootNavC dismissViewControllerAnimated:NO completion:nil];
+                         }];
+    }
+}
 @end

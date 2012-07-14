@@ -26,12 +26,14 @@ typedef enum {
 }  MapMode;
 
 @interface MapVC() <MKMapViewDelegate>
-// Outlets
+// UI
 @property MKMapView * mapView;
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * displayControl;
-@property UIButton * infoButton;
 
+@property IBOutlet UIButton * infoButton;
+
+// Data
 @property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
 @property (nonatomic) MapDisplay display;
@@ -57,34 +59,28 @@ typedef enum {
     DrawingCache * _drawingCache;
 }
 
-- (id) initWithCoder:(NSCoder *)aDecoder
+- (void) awakeFromNib
 {
-	self = [super initWithCoder:aDecoder];
-	if (self != nil) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
-                                                     name:VelibModelNotifications.updateSucceeded object:nil];
-
-
-        self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:nil];
+    [super awakeFromNib];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
+                                                 name:VelibModelNotifications.updateSucceeded object:nil];
+    
+    
+    self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:nil];
+    
+    _displayControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKES", nil), NSLocalizedString(@"PARKING", nil) ]];
+    _displayControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [_displayControl addTarget:self action:@selector(switchDisplay:) forControlEvents:UIControlEventValueChanged];
+    _displayControl.selectedSegmentIndex = self.display;
         
-        _displayControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKES", nil), NSLocalizedString(@"PARKING", nil) ]];
-        _displayControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        [_displayControl addTarget:self action:@selector(switchDisplay:) forControlEvents:UIControlEventValueChanged];
-        _displayControl.selectedSegmentIndex = self.display;
-
-        _infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-        [_infoButton addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
-        _infoButton.showsTouchWhenHighlighted = NO;
-        
-        self.toolbarItems = @[self.userTrackingButton,
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-        [[UIBarButtonItem alloc] initWithCustomView:_displayControl],
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-        [[UIBarButtonItem alloc] initWithCustomView:_infoButton]];
-
-        _drawingCache = [DrawingCache new];
-	}
-	return self;
+    self.toolbarItems = @[self.userTrackingButton,
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+    [[UIBarButtonItem alloc] initWithCustomView:self.displayControl],
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+    [[UIBarButtonItem alloc] initWithCustomView:self.infoButton]];
+    
+    _drawingCache = [DrawingCache new];
 }
 
 - (void)dealloc {
@@ -368,11 +364,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
     MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
     cregion = MKCoordinateRegionMakeWithDistance(cregion.center, 1000, 1000);
 	[self.mapView setRegion:cregion animated:YES];
-}
-
-- (void) showInfo:(UIButton*)sender
-{
-    
 }
 
 - (void) showRadarMenu:(Radar*)radar

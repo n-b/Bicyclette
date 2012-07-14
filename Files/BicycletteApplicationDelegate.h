@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define BicycletteBlue			[UIColor colorWithHue:.61f saturation:.87f brightness:.8f alpha:1]
-//#define BicycletteAppDelegate ((BicycletteApplicationDelegate*)[[UIApplication sharedApplication] delegate])
-
-@class VelibModel, BicycletteBar;
-
-@interface BicycletteApplicationDelegate : NSObject <UIApplicationDelegate> 
+@interface BicycletteApplicationDelegate : UIResponder <UIApplicationDelegate> 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window; // redeclare property of parent class to make it an outlet
 
