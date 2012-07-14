@@ -143,9 +143,8 @@
         [self.screenshot addSubview:sender];
         self.screenshot.userInteractionEnabled = YES;
         sender.center = rotationCenter;
-        self.screenshot.layer.shadowRadius = 10;
-        self.screenshot.layer.shadowOpacity = 1;
-        self.screenshot.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.screenshot.layer.borderWidth = 1;
+        self.screenshot.layer.borderColor = [UIColor darkGrayColor].CGColor;
         
         // Present (not animated)
         [self.rootNavC presentViewController:self.prefsVC animated:NO completion:nil];
@@ -162,10 +161,19 @@
                              CGAffineTransform rotation = CGAffineTransformMakeRotation(.8*M_PI);
                              self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
                              sender.transform = CGAffineTransformInvert(rotation);
-                         } completion:nil];
+                         } completion:^(BOOL finished) {
+                             self.screenshot.layer.borderWidth = 0;
+                             self.screenshot.layer.shadowOffset = CGSizeZero;
+                             self.screenshot.layer.shadowRadius = 2;
+                             self.screenshot.layer.shadowOpacity = 1;
+                             self.screenshot.layer.shadowColor = [UIColor blackColor].CGColor;
+                         }];
     }
     else
     {
+        self.screenshot.layer.borderWidth = 1;
+        self.screenshot.layer.shadowRadius = 0;
+        self.screenshot.layer.shadowOpacity = 0;
         [UIView animateWithDuration:.5
                          animations:^(void) {
                              CGAffineTransform rotation = CGAffineTransformMakeRotation(-.8*M_PI);
