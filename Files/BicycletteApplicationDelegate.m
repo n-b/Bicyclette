@@ -143,6 +143,9 @@
         [self.screenshot addSubview:sender];
         self.screenshot.userInteractionEnabled = YES;
         sender.center = rotationCenter;
+        self.screenshot.layer.shadowRadius = 10;
+        self.screenshot.layer.shadowOpacity = 1;
+        self.screenshot.layer.shadowColor = [UIColor blackColor].CGColor;
         
         // Present (not animated)
         [self.rootNavC presentViewController:self.prefsVC animated:NO completion:nil];
