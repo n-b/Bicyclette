@@ -21,6 +21,8 @@
 
 @interface VelibModel : CoreDataManager
 
+- (NSString *) name;
+
 - (void) update;
 
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;

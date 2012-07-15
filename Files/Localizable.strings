@@ -6,11 +6,15 @@
   Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 */
 
+"Vélib" = "Vélib";
+
 "UPDATING : FETCHING" = "Téléchargement…";
 "UPDATING : PARSING" = "Mise à jour…";
 
 "UPDATING : NO NEW DATA" = "Liste à jour";
 "UPDATING : COMPLETED" = "Mise à jour terminée";
-"UPDATING : COMPLETED WITH ERRORS" = "Mise à jour terminée avec des erreurs";
+
+"%d STATION COUNT OF TYPE %@" = "%d stations %@";
+"UPDATING : COMPLETED WITH ERRORS" = "Des stations mal géolocalisées ont été ignorées :";
 
 "UPDATING : FAILED" = "Échec de la mise à jour";

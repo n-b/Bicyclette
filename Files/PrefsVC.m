@@ -8,6 +8,7 @@
 
 #import "PrefsVC.h"
 #import "VelibModel.h"
+#import "Station.h"
 
 @interface PrefsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong) IBOutletCollection(UITableViewCell) NSArray *cells;
@@ -112,10 +113,30 @@
         self.updateButton.enabled = YES;
         BOOL dataChanged = [note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue];
         NSArray * saveErrors = note.userInfo[VelibModelNotifications.keys.saveErrors];
-        if(saveErrors)
-            self.updateLabel.text = NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil);
-        else if(dataChanged)
-            self.updateLabel.text = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+        if(dataChanged)
+        {
+            self.updateLabel.text = @"";
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
+            NSUInteger count = [self.model.moc countForFetchRequest:request error:NULL];
+            NSString * title;
+            NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
+                                  count,
+                                  self.model.name];
+            if(nil==saveErrors)
+            {
+                title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+            }
+            else
+            {
+                message = [message stringByAppendingFormat:@"\n\n%@\n%@.",
+                           NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil),
+                           [[saveErrors valueForKey:@"localizedDescription"] componentsJoinedByString:@",\n"]];
+                title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+            }
+            [[[UIAlertView alloc] initWithTitle:title
+                                        message:message
+                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
         else
             self.updateLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
     }

@@ -62,6 +62,11 @@ const struct VelibModelNotifications VelibModelNotifications = {
 /****************************************************************************/
 #pragma mark Hardcoded Fixes
 
+- (NSString *) name
+{
+    return NSLocalizedString(@"Vélib", nil);
+}
+
 - (NSDictionary*) hardcodedFixes
 {
     NSString * filename = ([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugUseHardcodedErrors"] ?
