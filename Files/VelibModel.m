@@ -64,15 +64,17 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (NSDictionary*) hardcodedFixes
 {
-    return [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VelibHardcodedFixes" ofType:@"plist"]];
+    NSString * filename = ([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugUseHardcodedErrors"] ?
+                           @"VelibHardcodedDebugErrors" :
+                           @"VelibHardcodedFixes");
+    return [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filename ofType:@"plist"]];
 }
 
 - (NSDictionary*) stationsHardcodedFixes
 {
 	if(nil==stationsHardcodedFixes)
-	{
 		self.stationsHardcodedFixes = [self.hardcodedFixes objectForKey:@"stations"];
-	}
+
 	return stationsHardcodedFixes;
 }
 
@@ -108,6 +110,8 @@ const struct VelibModelNotifications VelibModelNotifications = {
 }
 - (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater
 {
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugAlwaysDownloadStationList"])
+        return @"";
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"Database_XML_SHA1"];
 }
 
