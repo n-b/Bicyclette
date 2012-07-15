@@ -410,6 +410,15 @@ fromOldState:(MKAnnotationViewDragState)oldState
 /****************************************************************************/
 #pragma mark -
 
+- (void) setAnnotationsHidden:(BOOL)hidden
+{
+    for (id annotation in self.mapView.annotations) 
+        [self.mapView viewForAnnotation:annotation].hidden = hidden;
+}
+
+/****************************************************************************/
+#pragma mark -
+
 - (void) modelUpdated:(NSNotification*) note
 {
     if([note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue])

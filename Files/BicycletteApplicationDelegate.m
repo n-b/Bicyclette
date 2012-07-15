@@ -132,6 +132,9 @@
 {
     if(self.rootNavC.visibleViewController==self.mapVC)
     {
+        // Hide MapVC, Show PrefsVC.
+        [self.mapVC setAnnotationsHidden:YES];
+        
         CGPoint rotationCenter = [self.window convertPoint:sender.center fromView:sender.superview];
         self.senderSuperview = sender.superview;
         self.senderCenter = sender.center;
@@ -171,6 +174,9 @@
     }
     else
     {
+        // Hide PrefsVC, Show MapVC.
+        [self.mapVC setAnnotationsHidden:NO];
+
         self.screenshot.layer.borderWidth = 1;
         self.screenshot.layer.shadowRadius = 0;
         self.screenshot.layer.shadowOpacity = 0;

@@ -18,4 +18,7 @@ typedef enum {
 
 @interface MapVC : UIViewController 
 @property (strong) VelibModel * model;
+
+// Hook for faster animation
+- (void) setAnnotationsHidden:(BOOL)hidden;
 @end
