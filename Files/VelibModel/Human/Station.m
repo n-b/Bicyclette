@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSError * updateError;
 @property (nonatomic, strong) NSMutableString * currentParsedString;
 @property (nonatomic, strong) CLLocation * location;
-- (BOOL)validateConsistency:(NSError **)error;
 @end
 
 
@@ -238,7 +237,7 @@
 {
     [super prepareForDeletion];
     if (self.region!=nil &&
-        self.region.stations.count &&
+        self.region.stations.count == 1 &&
         [self.region.stations firstObject] == self) {
         [self.managedObjectContext deleteObject:self.region];
     }
