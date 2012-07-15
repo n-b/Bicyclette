@@ -8,81 +8,26 @@
 
 #import "DataUpdater.h"
 #import "NSData+SHA1.h"
+#import "UpdaterQueue.h"
+
+/****************************************************************************/
+#pragma mark -
 
 @interface DataUpdater()
 @property (nonatomic, strong) NSURLConnection * updateConnection;
 @property (nonatomic, strong) NSMutableData * updateData;
-
+@property (strong) UpdaterQueue * queue;
 @end
 
 /****************************************************************************/
 #pragma mark -
 
 @implementation DataUpdater
-@synthesize updateConnection, updateData;
-@synthesize delegate;
 
 /****************************************************************************/
 #pragma mark -
 
-+ (id) updaterWithDelegate:(id<DataUpdaterDelegate>) delegate_
-{
-    return [[self alloc] initWithDelegate:delegate_];
-}
-
-+ (NSMutableArray*) queuedUpdaters
-{
-    static NSMutableArray * s_queued;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ s_queued = [NSMutableArray new]; });
-    return s_queued;
-}
-
-+ (NSMutableArray*) activeUpdaters
-{
-    static NSMutableArray *s_active;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ s_active = [NSMutableArray new]; });
-    return s_active;
-}
-
-+ (void) startUpdater:(DataUpdater*)updater
-{
-    @synchronized(self)
-    {
-        NSAssert(![[self queuedUpdaters] containsObject:updater],@"the same updater can't be reused");
-        
-        if([[self activeUpdaters] containsObject:updater])
-            [[self activeUpdaters] removeObject:updater];
-        else
-            [[self queuedUpdaters] addObject:updater];
-        
-        while([[self queuedUpdaters] count] && [[self activeUpdaters] count] < (NSUInteger)[[NSUserDefaults standardUserDefaults] integerForKey:@"DataUpdaterMaxConcurrentRequests"] )
-        {
-            DataUpdater * updaterStarted = [[self queuedUpdaters] objectAtIndex:0];
-            [[self activeUpdaters] addObject:updaterStarted];
-            [[self queuedUpdaters] removeObjectAtIndex:0];
-
-            double delayInSeconds = [[NSUserDefaults standardUserDefaults] doubleForKey:@"DataUpdaterDelayBetweenRequests"];
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [updaterStarted startRequest];
-            });
-        }
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = [[self activeUpdaters] count]>0;
-    }
-}
-
-+ (void) cancelUpdater:(DataUpdater*)updater
-{
-    @synchronized(self)
-    {
-        NSAssert([[self queuedUpdaters] containsObject:updater], @"trying to remove an updater that was not queued");
-        [[self queuedUpdaters] removeObject:updater];
-    }
-}
-
-- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_
+- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_ queue:(NSString*)queueID_
 {
 	self = [super init];
 	if (self != nil) 
@@ -96,11 +41,13 @@
             NSDate * createDate = [self.delegate dataDateForUpdater:self];
             needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [self.delegate refreshIntervalForUpdater:self]);
         }
+
+        self.queue = [UpdaterQueue queueWithName:queueID_];
         
 		if(needUpdate)
         {
             [self.delegate updaterDidBegin:self];
-            [[self class] startUpdater:self];
+            [self.queue startUpdater:self];
         }
         else
         {
@@ -125,10 +72,10 @@
     if(self.updateConnection)
     {
         [self.updateConnection cancel];
-        [[self class] startUpdater:self];
+        [self.queue startUpdater:self];
     }
     else
-        [[self class] cancelUpdater:self];
+        [self.queue cancelUpdater:self];
 }
 
 - (void) dealloc
@@ -148,7 +95,7 @@
 		[self.updateConnection cancel];
 		self.updateConnection = nil;
 
-        [[self class] startUpdater:self];
+        [self.queue startUpdater:self];
 	}
 }
 
@@ -164,7 +111,7 @@
 	self.updateData = nil;
     [self.delegate updater:self didFailWithError:error];
 
-    [[self class] startUpdater:self];
+    [self.queue startUpdater:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -195,8 +142,9 @@
 	self.updateData = nil;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^(void){
-        [[self class] startUpdater:self];
+        [self.queue startUpdater:self];
     });
 }
 
 @end
+

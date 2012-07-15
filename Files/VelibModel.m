@@ -102,7 +102,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 {
     if(self.updater==nil)
     {
-        self.updater = [DataUpdater updaterWithDelegate:self];
+        self.updater = [[DataUpdater alloc] initWithDelegate:self queue:@"model"];
     }
 }
 

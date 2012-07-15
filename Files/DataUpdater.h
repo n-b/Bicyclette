@@ -10,17 +10,14 @@
 
 @protocol DataUpdaterDelegate;
 
-/****************************************************************************/
-#pragma mark -
-
 // Data Update generic machinery
 @interface DataUpdater : NSObject
 
-+ (id) updaterWithDelegate:(id<DataUpdaterDelegate>) delegate;
-- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate;
+- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate queue:(NSString*)queueID;
 
 @property (nonatomic, weak) id<DataUpdaterDelegate> delegate;
 
+- (void) startRequest;
 - (void) cancel;
 
 @end

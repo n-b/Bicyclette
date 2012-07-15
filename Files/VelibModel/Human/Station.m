@@ -51,7 +51,7 @@
 	if(self.updater!=nil)
 		return;
     self.updateError = nil;
-    self.updater = [DataUpdater updaterWithDelegate:self];
+    self.updater = [[DataUpdater alloc] initWithDelegate:self queue:@"station"];
 }
 
 - (void) cancel
