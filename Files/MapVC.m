@@ -31,8 +31,6 @@ typedef enum {
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * displayControl;
 
-@property IBOutlet UIButton * infoButton;
-
 // Data
 @property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapMode mode;
@@ -77,8 +75,7 @@ typedef enum {
     self.toolbarItems = @[self.userTrackingButton,
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
     [[UIBarButtonItem alloc] initWithCustomView:self.displayControl],
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-    [[UIBarButtonItem alloc] initWithCustomView:self.infoButton]];
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
     
     _drawingCache = [DrawingCache new];
 }

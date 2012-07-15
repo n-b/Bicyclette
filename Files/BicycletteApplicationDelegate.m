@@ -26,8 +26,7 @@
 @property (strong) UILabel *notificationLabel;
 
 @property (strong) UIImageView *screenshot;
-@property (weak) UIView *senderSuperview;
-@property CGPoint senderCenter;
+@property (strong) IBOutlet UIButton *infoButton;
 @end
 
 /****************************************************************************/
@@ -69,6 +68,8 @@
     self.notificationLabel.font = [UIFont boldSystemFontOfSize:13];
 	[self.window addSubview:self.notificationLabel];
 
+    [self.window bringSubviewToFront:self.infoButton];
+    
 	[self.window makeKeyAndVisible];
 
     // Fade animation
@@ -128,43 +129,42 @@
 }
 
 
-- (IBAction)showInfo:(UIButton*)sender
+- (IBAction)showInfo
 {
     if(self.rootNavC.visibleViewController==self.mapVC)
     {
         // Hide MapVC, Show PrefsVC.
         [self.mapVC setAnnotationsHidden:YES];
         
-        CGPoint rotationCenter = [self.window convertPoint:sender.center fromView:sender.superview];
-        self.senderSuperview = sender.superview;
-        self.senderCenter = sender.center;
-        [sender removeFromSuperview];
+        // Rotate around infoButton
+        CGPoint rotationCenter = self.infoButton.center;
         
         // Take a screenshot of the presenting vc
-        self.screenshot = [[UIImageView alloc] initWithImage:[self.window screenshot]];
-        [self.window addSubview:self.screenshot];
-        [self.screenshot addSubview:sender];
-        self.screenshot.userInteractionEnabled = YES;
-        sender.center = rotationCenter;
-        self.screenshot.layer.borderWidth = 1;
-        self.screenshot.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        self.screenshot = [[UIImageView alloc] initWithImage:[self.rootNavC.view screenshot]];
+        [self.window insertSubview:self.screenshot belowSubview:self.infoButton];
         
-        // Present (not animated)
-        [self.rootNavC presentViewController:self.prefsVC animated:NO completion:nil];
-        
+        // Align the screenshot around the rotation center
         self.screenshot.layer.anchorPoint = CGPointMake(rotationCenter.x/self.window.bounds.size.width,
                                                         rotationCenter.y/self.window.bounds.size.height);
         CGSize translation = CGSizeMake(rotationCenter.x-CGRectGetMidX(self.window.bounds),
                                         rotationCenter.y-CGRectGetMidY(self.window.bounds));
         self.screenshot.transform = CGAffineTransformMakeTranslation(translation.width, translation.height );
+
+        // Poor man's shadow for the screenshot (faster during animation)
+        self.screenshot.userInteractionEnabled = YES;
+        self.screenshot.layer.borderWidth = 1;
+        self.screenshot.layer.borderColor = [UIColor darkGrayColor].CGColor;
+
+        // Present (not animated)
+        [self.rootNavC presentViewController:self.prefsVC animated:NO completion:nil];
         
         // Animate
         [UIView animateWithDuration:.5
                          animations:^(void) {
                              CGAffineTransform rotation = CGAffineTransformMakeRotation(.8*M_PI);
                              self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
-                             sender.transform = CGAffineTransformInvert(rotation);
                          } completion:^(BOOL finished) {
+                             // Real Shadow when static
                              self.screenshot.layer.borderWidth = 0;
                              self.screenshot.layer.shadowOffset = CGSizeZero;
                              self.screenshot.layer.shadowRadius = 2;
@@ -177,6 +177,7 @@
         // Hide PrefsVC, Show MapVC.
         [self.mapVC setAnnotationsHidden:NO];
 
+        // Bring back the Poor man's shadow for animation
         self.screenshot.layer.borderWidth = 1;
         self.screenshot.layer.shadowRadius = 0;
         self.screenshot.layer.shadowOpacity = 0;
@@ -184,11 +185,9 @@
                          animations:^(void) {
                              CGAffineTransform rotation = CGAffineTransformMakeRotation(-.8*M_PI);
                              self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
-                             sender.transform = CGAffineTransformIdentity;
+                             self.screenshot.layer.borderWidth = 0;
                          } completion:^(BOOL finished) {
-                             [self.senderSuperview addSubview:sender];
-                             sender.center = self.senderCenter;
-                             self.senderSuperview = nil;
+                             // We're done !
                              [self.screenshot removeFromSuperview];
                              self.screenshot = nil;
                              [self.rootNavC dismissViewControllerAnimated:NO completion:nil];
