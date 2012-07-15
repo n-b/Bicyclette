@@ -26,6 +26,7 @@
 @property (strong) UILabel *notificationLabel;
 
 @property (strong) UIImageView *screenshot;
+@property (strong) IBOutlet UIToolbar *infoToolbar;
 @property (strong) IBOutlet UIButton *infoButton;
 @end
 
@@ -68,6 +69,7 @@
     self.notificationLabel.font = [UIFont boldSystemFontOfSize:13];
 	[self.window addSubview:self.notificationLabel];
 
+    [self.window bringSubviewToFront:self.infoToolbar];
     [self.window bringSubviewToFront:self.infoButton];
     
 	[self.window makeKeyAndVisible];
@@ -128,7 +130,6 @@
     self.notificationLabel.hidden = YES;
 }
 
-
 - (IBAction)showInfo
 {
     if(self.rootNavC.visibleViewController==self.mapVC)
@@ -141,7 +142,7 @@
         
         // Take a screenshot of the presenting vc
         self.screenshot = [[UIImageView alloc] initWithImage:[self.rootNavC.view screenshot]];
-        [self.window insertSubview:self.screenshot belowSubview:self.infoButton];
+        [self.window insertSubview:self.screenshot belowSubview:self.infoToolbar];
         
         // Align the screenshot around the rotation center
         self.screenshot.layer.anchorPoint = CGPointMake(rotationCenter.x/self.window.bounds.size.width,
