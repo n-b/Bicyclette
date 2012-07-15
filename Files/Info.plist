@@ -32,5 +32,9 @@
 	<string>MainWindow</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>designURL</key>
+	<string>twitter.com/_nb</string>
+	<key>sourceURL</key>
+	<string>github.com/n-b/Bicyclette</string>
 </dict>
 </plist>
