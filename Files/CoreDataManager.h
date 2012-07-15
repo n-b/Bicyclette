@@ -21,7 +21,7 @@ extern NSString * const BicycletteErrorDomain;
 @property (readonly, nonatomic, strong) NSManagedObjectContext *moc;
 @property (nonatomic, weak) id<CoreDataManagerDelegate> delegate; 
 
-- (BOOL) save:(NSArray**)saveErrors; // returns an array of errors
+- (BOOL) save:(NSError**)saveError;
 
 @end
 

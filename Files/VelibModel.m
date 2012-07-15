@@ -13,7 +13,7 @@
 #import "NSArrayAdditions.h"
 #import "NSStringAdditions.h"
 #import "NSObject+KVCMapping.h"
-
+#import "NSError+MultipleErrorsCombined.h"
 #import "DataUpdater.h"
 
 /****************************************************************************/
@@ -152,6 +152,18 @@ const struct VelibModelNotifications VelibModelNotifications = {
 	parser.delegate = self;
 	[parser parse];
     
+    // Validate all stations (and delete invalid) before computing coordinates
+    NSError * validationErrors;
+    for (Region *r in [self.parsing_regionsByCodePostal allValues]) {
+        for (Station *s in [r.stations copy]) {
+            if(![s validateForInsert:&validationErrors])
+            {
+                s.region = nil;
+                [self.moc deleteObject:s];
+            }
+        }
+    }
+    
     // Post processing :
 	// Compute regions coordinates
     // and reorder stations in regions
@@ -171,19 +183,20 @@ const struct VelibModelNotifications VelibModelNotifications = {
     self.parsing_oldStations = nil;
     
 	// Save
-    NSArray * errors;
-    if ([self save:&errors])
+    if ([self save:&validationErrors])
     {
         NSMutableDictionary * userInfo = [@{VelibModelNotifications.keys.dataChanged : @YES} mutableCopy];
-        if (errors)
-            [userInfo setObject:errors forKey:VelibModelNotifications.keys.saveErrors];
+        if (validationErrors)
+            [userInfo setObject:[validationErrors underlyingErrors] forKey:VelibModelNotifications.keys.saveErrors];
         [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self
                                                           userInfo:userInfo];
     }
     else
+    {
         [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self
                                                           userInfo:
-         @{VelibModelNotifications.keys.failureError : errors}];
+         @{VelibModelNotifications.keys.failureError : validationErrors}];
+    }
 
     self.updater = nil;
 }

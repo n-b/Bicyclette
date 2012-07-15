@@ -88,33 +88,9 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 /****************************************************************************/
 #pragma mark -
 
-- (BOOL) save:(NSArray**)saveErrors
+- (BOOL) save:(NSError**)saveError
 {
-	NSError * saveError = nil;
-	BOOL success = [self.moc save:&saveError];
-    NSMutableArray * errors = [NSMutableArray array];
-	if(!success)
-    {
-        // Attempt to delete the faulty objects ...
-        for (NSError * error in [saveError underlyingErrors]) {
-            if ([error.domain isEqualToString:BicycletteErrorDomain] && error.code==NSManagedObjectValidationError) {
-                NSManagedObject * object = [error.userInfo objectForKey:NSValidationObjectErrorKey];
-                [self.moc deleteObject:object];
-                [errors addObject:error];
-            }
-        }
-        // ... retry to save
-        saveError = nil;
-        success = [self.moc save:&saveError];
-        if(!success)
-        {
-            errors = [NSMutableArray arrayWithArray:[saveError underlyingErrors]];
-        }
-    }
-    
-    if(saveErrors && errors.count)
-        *saveErrors = errors;
-    return success;
+    return [self.moc save:saveError];
 }
 
 @end
