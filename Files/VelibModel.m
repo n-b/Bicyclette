@@ -284,9 +284,13 @@ const struct VelibModelNotifications VelibModelNotifications = {
             Region * region = [self.parsing_regionsByCodePostal objectForKey:lCodePostal];
             if(nil==region)
             {
-                region = [Region insertInManagedObjectContext:self.moc];
+                region = [[Region fetchRegionWithNumber:self.moc number:lCodePostal] lastObject];
+                if(region==nil)
+                {
+                    region = [Region insertInManagedObjectContext:self.moc];
+                    region.number = lCodePostal;
+                }
                 [self.parsing_regionsByCodePostal setObject:region forKey:lCodePostal];
-                region.number = lCodePostal;
                 if([lCodePostal hasPrefix:@"75"])
                     region.name = [NSString stringWithFormat:@"Paris %@",[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
                 else
