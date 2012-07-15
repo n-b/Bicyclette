@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@class VelibModel;
 
 @interface PrefsVC : UIViewController
-
+@property (strong, nonatomic) VelibModel * model;
 @end

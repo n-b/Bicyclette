@@ -26,7 +26,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     .updateFailed = @"VelibModelNotifications.updateFailed",
     .keys = {
         .dataChanged = @"VelibModelNotifications.keys.dataChanged",
-        .failureReason = @"VelibModelNotifications.keys.failureReason",
+        .failureError = @"VelibModelNotifications.keys.failureError",
         .saveErrors = @"VelibModelNotifications.keys.saveErrors",
     }
 };
@@ -91,7 +91,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 /****************************************************************************/
 #pragma mark Update
 
-- (void) updateIfNeeded
+- (void) update
 {
     if(self.updater==nil)
     {
@@ -101,11 +101,6 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 /****************************************************************************/
 #pragma mark Updater Delegate
-
-- (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater *)updater
-{
-    return [[NSUserDefaults standardUserDefaults] doubleForKey:@"DatabaseReloadInterval"];
-}
 
 - (NSURL*) urlForUpdater:(DataUpdater *)updater
 {
@@ -121,16 +116,6 @@ const struct VelibModelNotifications VelibModelNotifications = {
     [[NSUserDefaults standardUserDefaults] setObject:sha1 forKey:@"Database_XML_SHA1"];
 }
 
-- (NSDate*) dataDateForUpdater:(DataUpdater*)updater
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"DatabaseCreateDate"];
-}
-
-- (void) setUpdater:(DataUpdater*)updater dataDate:(NSDate*)date
-{
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"DatabaseCreateDate"];
-}
-
 - (void) updaterDidBegin:(DataUpdater*)updater
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateBegan object:self];
@@ -142,7 +127,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self userInfo:@{VelibModelNotifications.keys.failureReason : error}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self userInfo:@{VelibModelNotifications.keys.failureError : error}];
     self.updater = nil;
 }
 
@@ -194,7 +179,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     else
         [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self
                                                           userInfo:
-         @{VelibModelNotifications.keys.failureReason : errors}];
+         @{VelibModelNotifications.keys.failureError : errors}];
 
     self.updater = nil;
 }

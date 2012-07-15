@@ -21,7 +21,7 @@
 
 @interface VelibModel : CoreDataManager
 
-- (void) updateIfNeeded;
+- (void) update;
 
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
 
@@ -47,6 +47,6 @@ extern const struct VelibModelNotifications {
     {
         __unsafe_unretained NSString * dataChanged;
         __unsafe_unretained NSString * saveErrors;
-        __unsafe_unretained NSString * failureReason;
+        __unsafe_unretained NSString * failureError;
     } keys;
 } VelibModelNotifications;

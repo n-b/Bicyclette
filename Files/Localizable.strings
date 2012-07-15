@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  Bicyclette
+
+  Created by Nicolas Bouilleaud on 15/07/12.
+  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
+*/
+
+"UPDATING : FETCHING" = "Téléchargement…";
+"UPDATING : PARSING" = "Mise à jour…";
+
+"UPDATING : NO NEW DATA" = "Liste à jour";
+"UPDATING : COMPLETED" = "Mise à jour terminée";
+"UPDATING : COMPLETED WITH ERRORS" = "Mise à jour terminée avec des erreurs";
+
+"UPDATING : FAILED" = "Échec de la mise à jour";

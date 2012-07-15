@@ -23,8 +23,6 @@
 @property (strong) IBOutlet MapVC *mapVC;
 @property (strong) IBOutlet PrefsVC *prefsVC;
 
-@property (strong) UILabel *notificationLabel;
-
 @property (strong) UIImageView *screenshot;
 @property (strong) IBOutlet UIToolbar *infoToolbar;
 @property (strong) IBOutlet UIButton *infoButton;
@@ -45,34 +43,17 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateBegan object:self.model];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateGotNewData object:self.model];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateSucceeded object:self.model];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:VelibModelNotifications.updateFailed object:self.model];
-
     // Create model
     self.model = [VelibModel new];
     self.mapVC.model = self.model;
+    self.prefsVC.model = self.model;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// notification view
-    CGRect frame = [[UIApplication sharedApplication] statusBarFrame];
-    frame.origin.y = frame.size.height;
-    self.notificationLabel = [[UILabel alloc] initWithFrame:frame];
-    self.notificationLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:.83];
-    self.notificationLabel.textColor = [UIColor colorWithWhite:.83 alpha:1];
-    self.notificationLabel.shadowColor = [UIColor colorWithWhite:.0 alpha:.5];
-    self.notificationLabel.textAlignment = NSTextAlignmentCenter;
-    
-    self.notificationLabel.font = [UIFont boldSystemFontOfSize:13];
-	[self.window addSubview:self.notificationLabel];
-
+	// info button
     [self.window bringSubviewToFront:self.infoToolbar];
     [self.window bringSubviewToFront:self.infoButton];
-    
-	[self.window makeKeyAndVisible];
 
     // Fade animation
 	UIView * fadeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]];
@@ -86,49 +67,8 @@
 	return YES;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    self.notificationLabel.hidden = YES;
-    [self.model updateIfNeeded];
-}
-
 /****************************************************************************/
-#pragma mark CoreDataManager delegate
-
-- (void) modelUpdated:(NSNotification*)note
-{
-    self.notificationLabel.hidden = NO;
-    if([note.name isEqualToString:VelibModelNotifications.updateBegan])
-    {
-        self.notificationLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
-    }
-    else if([note.name isEqualToString:VelibModelNotifications.updateGotNewData])
-    {
-        self.notificationLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
-    }
-    else if([note.name isEqualToString:VelibModelNotifications.updateSucceeded])
-    {
-        BOOL newData = [note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue];
-        NSArray * saveErrors = note.userInfo[VelibModelNotifications.keys.saveErrors];
-        if(saveErrors)
-            self.notificationLabel.text = NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil);
-        else if(newData)
-            self.notificationLabel.text = NSLocalizedString(@"UPDATING : COMPLETED", nil);
-        else
-            self.notificationLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
-        [self performSelector:@selector(hideNotification:) withObject:self afterDelay:2];
-    }
-    else if([note.name isEqualToString:VelibModelNotifications.updateFailed])
-    {
-        self.notificationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"UPDATING : FAILED %@", nil),
-                                       note.userInfo[VelibModelNotifications.keys.failureReason]];
-    }
-    [UIView commitAnimations];
-}
-
-- (IBAction)hideNotification:(id)sender {
-    self.notificationLabel.hidden = YES;
-}
+#pragma mark Prefs / Map Transition
 
 - (IBAction)showInfo
 {
@@ -181,7 +121,6 @@
         // Bring back the Poor man's shadow for animation
         self.screenshot.layer.borderWidth = 1;
         self.screenshot.layer.shadowRadius = 0;
-        self.screenshot.layer.shadowOpacity = 0;
         [UIView animateWithDuration:.5
                          animations:^(void) {
                              CGAffineTransform rotation = CGAffineTransformMakeRotation(-.8*M_PI);
