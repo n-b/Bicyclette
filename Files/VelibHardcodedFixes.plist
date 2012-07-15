@@ -14,13 +14,6 @@
 			<key>codePostal</key>
 			<string>75013</string>
 		</dict>
-		<key>10008</key>
-		<dict>
-			<key>lat</key>
-			<real>48.87092</real>
-			<key>lng</key>
-			<real>2.358807</real>
-		</dict>
 	</dict>
 	<key>limits</key>
 	<dict>
