@@ -205,7 +205,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 - (void) addAndRemoveMapAnnotations
 {
     NSArray * oldAnnotations = self.mapView.annotations;
-    [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
+    oldAnnotations = [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
     NSArray * newAnnotations;
     
 
