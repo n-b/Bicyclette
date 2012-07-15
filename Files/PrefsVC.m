@@ -9,11 +9,16 @@
 #import "PrefsVC.h"
 
 @interface PrefsVC () <UITableViewDataSource, UITableViewDelegate>
-@property (weak) IBOutlet UISegmentedControl *radarZonesSizeSegmentedControl;
+@property (weak) IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
 @property (strong) IBOutletCollection(UITableViewCell) NSArray *cells;
 @end
 
 @implementation PrefsVC
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self updateRadarDistancesSegmentedControl];
+}
 
 /****************************************************************************/
 #pragma mark TableView
@@ -49,8 +54,27 @@
 
 - (IBAction)donate {
 }
-- (IBAction)changeRadarZone {
+
+- (void) updateRadarDistancesSegmentedControl{
+    [self.radarDistanceSegmentedControl removeAllSegments];
+    
+    NSNumber * radarDistance = [[NSUserDefaults standardUserDefaults] objectForKey:@"RadarDistance"];
+    
+    NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
+    [distances enumerateObjectsUsingBlock:^(NSNumber * d, NSUInteger index, BOOL *stop) {
+        [self.radarDistanceSegmentedControl insertSegmentWithTitle:[NSString stringWithFormat:@"%@ m",d]
+                                                           atIndex:index animated:NO];
+        if([radarDistance isEqualToNumber:d])
+            self.radarDistanceSegmentedControl.selectedSegmentIndex = index;
+    }];
 }
+
+- (IBAction)changeRadarDistance {
+    NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
+    NSNumber * d = [distances objectAtIndex:self.radarDistanceSegmentedControl.selectedSegmentIndex];
+    [[NSUserDefaults standardUserDefaults] setObject:d forKey:@"RadarDistance"];
+}
+
 - (IBAction)updateStationsList {
 }
 
