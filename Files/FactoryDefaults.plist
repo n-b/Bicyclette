@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>DatabaseReloadInterval</key>
-	<integer>86400</integer>
-	<key>StationRefreshInterval</key>
-	<integer>10</integer>
 	<key>DebugRemoveStore</key>
 	<false/>
 	<key>DebugAlwaysDownloadStationList</key>
@@ -20,9 +16,9 @@
 		<integer>300</integer>
 		<integer>500</integer>
 	</array>
-	<key>DataUpdaterMaxConcurrentRequests</key>
-	<integer>2</integer>
 	<key>DataUpdaterDelayBetweenRequests</key>
 	<real>0.1</real>
+	<key>DataUpdaterDelayBetweenQueues</key>
+	<integer>3</integer>
 </dict>
 </plist>

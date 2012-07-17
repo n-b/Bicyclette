@@ -73,10 +73,10 @@ static CGRect CGRectMakeCentered(CGRect containingRect, float width, float heigh
     NSArray * removed = [oldValue arrayByRemovingObjectsInArray:newValue];
 
     for (Station * station in removed)
-        [station removeObserver:self forKeyPath:@"refreshing" context:(__bridge void *)([RadarAnnotationView class])];
+        [station removeObserver:self forKeyPath:@"needsRefresh" context:(__bridge void *)([RadarAnnotationView class])];
     
     for (Station * station in added)
-        [station addObserver:self forKeyPath:@"refreshing" options:0 context:(__bridge void *)([RadarAnnotationView class])];
+        [station addObserver:self forKeyPath:@"needsRefresh" options:0 context:(__bridge void *)([RadarAnnotationView class])];
     
     _stationsWithinRadarRegion = newValue;
 }
@@ -89,7 +89,7 @@ static CGRect CGRectMakeCentered(CGRect containingRect, float width, float heigh
             id newValue = change[NSKeyValueChangeNewKey];
             self.stationsWithinRadarRegion = newValue != [NSNull null] ? newValue : nil;
         }
-        else if([keyPath isEqualToString:@"refreshing"])
+        else if([keyPath isEqualToString:@"needsRefresh"])
         {
             [self setNeedsDisplay];
         }
@@ -161,7 +161,7 @@ static CGRect CGRectMakeCentered(CGRect containingRect, float width, float heigh
         CGContextStrokeEllipseInRect(c, CGRectInset(rect, 2, 2));
 
     
-    NSArray * refreshingStations = [self.stationsWithinRadarRegion filteredArrayWithValue:@YES forKey:@"refreshing"];
+    NSArray * refreshingStations = [self.stationsWithinRadarRegion filteredArrayWithValue:@YES forKey:@"needsRefresh"];
     NSString * test = [NSString stringWithFormat:@"%@/%@", @([refreshingStations count]), @([self.stationsWithinRadarRegion count])];
     [test drawInRect:rect withFont:[UIFont systemFontOfSize:20]];
     

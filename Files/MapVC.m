@@ -12,12 +12,12 @@
 #import "Station.h"
 #import "Region.h"
 #import "NSArrayAdditions.h"
-#import "NSMutableArray+Stations.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
 #import "DrawingCache.h"
 #import "Radar.h"
 #import "RadarAnnotationView.h"
+#import "RadarUpdateQueue.h"
 
 typedef enum {
 	MapModeNone = 0,
@@ -36,17 +36,9 @@ typedef enum {
 @property (nonatomic) MapMode mode;
 @property (nonatomic) MapDisplay display;
 
+// Radar creation
 @property (nonatomic) Radar * droppedRadar;
-
-@property (nonatomic) NSArray * refreshedStations;
 @end
-
-//static CGFloat DistanceBetweenCGPoints(CGPoint point1,CGPoint point2)
-//{
-//    CGFloat dx = point2.x - point1.x;
-//    CGFloat dy = point2.y - point1.y;
-//    return sqrt(dx*dx + dy*dy );
-//};
 
 
 /****************************************************************************/
@@ -136,6 +128,9 @@ typedef enum {
     
     [self addAndRemoveMapAnnotations];
     [self updateRadarSizes];
+
+    self.model.screenCenterRadar.coordinate = self.mapView.centerCoordinate;
+    self.model.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
 }
 
 
@@ -234,12 +229,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
     
     [self.mapView removeAnnotations:annotationsToRemove];
     [self.mapView addAnnotations:annotationsToAdd];
-    
-    if(self.mode==MapModeStations)
-    {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refreshVisibleStations) object:nil];
-        [self performSelector:@selector(refreshVisibleStations) withObject:nil afterDelay:.5];
-    }
 }
 
 - (void) updateRadarSizes
@@ -252,72 +241,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
             [self.mapView viewForAnnotation:radar].bounds = (CGRect){CGPointZero, radarSize};
         }
     }
-
-    [self.model screenCenterRadar].coordinate = self.mapView.centerCoordinate;
-}
-
-/****************************************************************************/
-#pragma mark Refresh
-
-- (void) refreshVisibleStations
-{
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
-
-    if(self.mode==MapModeStations)
-    {
-        NSMutableArray * visibleStations = [NSMutableArray new];
-        for (Radar * radar in self.mapView.annotations)
-        {
-            if([radar isKindOfClass:[Radar class]])
-            {
-                [visibleStations addObjectsFromArray:radar.stationsWithinRadarRegion];
-            }
-        }
-
-        NSArray * annotationsNotToRefreshAnymore = [self.refreshedStations arrayByRemovingObjectsInArray:visibleStations];
-        [annotationsNotToRefreshAnymore makeObjectsPerformSelector:@selector(cancel)];
-        [visibleStations makeObjectsPerformSelector:@selector(refresh)];
-
-        self.refreshedStations = visibleStations;
-    }
-    else
-    {
-        self.refreshedStations = nil;
-    }
-}
-
-- (void) setRefreshedStations:(NSArray *)refreshedStations_
-{
-    for (Station* station in _refreshedStations)
-        [station removeObserver:self forKeyPath:@"refreshing" context:(__bridge void *)([MapVC class])];
-    _refreshedStations = refreshedStations_;
-    for (Station* station in _refreshedStations)
-        [station addObserver:self forKeyPath:@"refreshing" options:0 context:(__bridge void *)([MapVC class])];
-}
-
-- (void) stationRefreshChanged
-{
-//    NSMutableArray * stationsStillRefreshing = [[self.refreshedStations filteredArrayWithValue:@YES forKey:@"refreshing"] mutableCopy];
-//    if([stationsStillRefreshing count])
-//    {
-//        [stationsStillRefreshing sortStationsNearestFirstFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.coordinate.latitude longitude:self.radar.coordinate.longitude]];
-//        
-//        Station * nearestRefreshing = [stationsStillRefreshing objectAtIndex:0];
-//        Station * fartherRefreshing = [stationsStillRefreshing lastObject];
-//        
-//        CGPoint nearPoint = [self.mapView convertCoordinate:nearestRefreshing.coordinate toPointToView:self.mapView];
-//        CGPoint farPoint = [self.mapView convertCoordinate:fartherRefreshing.coordinate toPointToView:self.mapView];
-//        
-//        CGPoint referencePoint = [self.mapView convertCoordinate:self.radar.coordinate toPointToView:self.mapView];
-//        
-//        self.radar.nearRadius = DistanceBetweenCGPoints(nearPoint, referencePoint);
-//        self.radar.farRadius = DistanceBetweenCGPoints(farPoint, referencePoint);
-//    }
-//    else
-//    {
-//        self.radar.nearRadius = 0;
-//        self.radar.farRadius = 0;
-//    }
 }
 
 /****************************************************************************/
@@ -422,18 +345,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
         [self reloadData];
 }
 
-/****************************************************************************/
-#pragma mark KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == (__bridge void *)([MapVC class]))
-    {
-        if([keyPath isEqualToString:@"refreshing"]) [self stationRefreshChanged];
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
 
 
 @end

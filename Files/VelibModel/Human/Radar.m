@@ -1,6 +1,6 @@
 #import "Radar.h"
 #import "Station.h"
-#import "NSMutableArray+Stations.h"
+#import "NSMutableArray+Locatable.h"
 
 const struct RadarIdentifiers RadarIdentifiers = {
 	.userLocation = @"userLocationRadar",
@@ -9,7 +9,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
 
 
 @interface Radar()
-@property NSArray * stationsWithinRadarRegion;
+@property (nonatomic) NSArray * stationsWithinRadarRegion;
 @end
 
 @implementation Radar
@@ -26,6 +26,14 @@ const struct RadarIdentifiers RadarIdentifiers = {
     return [NSSet setWithObject:@"coordinate"];
 }
 
+- (NSArray *) stationsWithinRadarRegion
+{
+    if(_stationsWithinRadarRegion == nil)
+        [self updateStationsWithinRadarRegion];
+
+    return _stationsWithinRadarRegion;
+}
+
 - (void) updateStationsWithinRadarRegion
 {
     // Fetch in a square
@@ -39,10 +47,16 @@ const struct RadarIdentifiers RadarIdentifiers = {
     // chop those that are actually farther
     CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
     CLLocation * location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-    [stations filterStationsWithinDistance:radarDistance fromLocation:location];
-    [stations sortStationsNearestFirstFromLocation:location];
+    [stations filterWithinDistance:radarDistance fromLocation:location];
+    [stations sortByDistanceFromLocation:location];
     self.stationsWithinRadarRegion = [stations copy];
 }
+
+- (CLLocation*) location
+{
+    return [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
+}
+
 @end
 
 

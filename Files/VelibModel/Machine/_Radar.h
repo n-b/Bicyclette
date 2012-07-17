@@ -66,13 +66,13 @@ extern const struct RadarFetchedProperties {
 
 
 
-+ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ ;
-+ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
-
-
-
 + (NSArray*)fetchUserLocationRadar:(NSManagedObjectContext*)moc_ ;
 + (NSArray*)fetchUserLocationRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
+
+
+
++ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ ;
++ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
 
 
 

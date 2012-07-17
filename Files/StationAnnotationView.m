@@ -73,7 +73,7 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, @"refreshing", @"loading" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, @"needsRefresh", @"loading" ];
 }
 
 /****************************************************************************/
@@ -109,13 +109,13 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([StationAnnotationView class])) {
-        if([keyPath isEqual:@"refreshing"] || [keyPath isEqual:@"loading"])
+        if([keyPath isEqual:@"needsRefresh"] || [keyPath isEqual:@"loading"])
         {
             [_loadingLayer setNeedsDisplay];
         }
         else
         {
-            if( ! [[change objectForKey:NSKeyValueChangeNewKey] isEqual:[change objectForKey:NSKeyValueChangeOldKey]])
+//            if( ! [[change objectForKey:NSKeyValueChangeNewKey] isEqual:[change objectForKey:NSKeyValueChangeOldKey]])
             {
                 [_mainLayer setNeedsDisplay];
                 if([change objectForKey:NSKeyValueChangeOldKey])
@@ -175,7 +175,7 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
 
-    if([self station].refreshing)
+    if([self station].needsRefresh)
     {
         CGFloat phase = 0;
         if([self station].loading)

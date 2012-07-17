@@ -13,7 +13,7 @@
 // Data Update generic machinery
 @interface DataUpdater : NSObject
 
-- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate queue:(NSString*)queueID;
+- (id) initWithDelegate:(id<DataUpdaterDelegate>)delegate;
 
 @property (nonatomic, weak) id<DataUpdaterDelegate> delegate;
 
@@ -26,7 +26,6 @@
 #pragma mark -
 
 @protocol DataUpdaterDelegate <NSObject>
-- (void) updaterDidBegin:(DataUpdater*)updater;
 - (void) updaterDidStartRequest:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;

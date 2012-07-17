@@ -17,7 +17,7 @@
 #pragma mark -
 
 @class Radar;
-@class DataUpdater;
+@class RadarUpdateQueue;
 
 @interface VelibModel : CoreDataManager
 
@@ -29,6 +29,8 @@
 
 @property (readonly, nonatomic) Radar * userLocationRadar;
 @property (readonly, nonatomic) Radar * screenCenterRadar;
+
+@property (readonly) RadarUpdateQueue * updaterQueue;
 
 @property (readonly, nonatomic, strong) CLRegion * hardcodedLimits;
 @end

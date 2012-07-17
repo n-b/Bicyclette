@@ -11,7 +11,6 @@
 
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property (nonatomic, strong) DataUpdater * updater;
-@property (nonatomic) BOOL refreshing;
 @property (nonatomic) BOOL loading;
 @property (nonatomic, strong) NSError * updateError;
 @property (nonatomic, strong) NSMutableString * currentParsedString;
@@ -28,8 +27,9 @@
 #pragma mark -
 
 @synthesize updater, updateError, currentParsedString;
-@synthesize refreshing, loading;
 @synthesize location;
+@synthesize loading;
+@synthesize needsRefresh;
 
 - (NSString *) debugDescription
 {
@@ -51,7 +51,7 @@
 	if(self.updater!=nil)
 		return;
     self.updateError = nil;
-    self.updater = [[DataUpdater alloc] initWithDelegate:self queue:@"station"];
+    self.updater = [[DataUpdater alloc] initWithDelegate:self];
 }
 
 - (void) cancel
@@ -59,12 +59,6 @@
     [self.updater cancel];
     self.updater = nil;
     self.loading = NO;
-    self.refreshing = NO;
-}
-
-- (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater *)updater
-{
-    return [[NSUserDefaults standardUserDefaults] doubleForKey:@"StationRefreshInterval"];
 }
 
 - (NSURL*) urlForUpdater:(DataUpdater*)updater
@@ -82,11 +76,6 @@
     self.status_date = date;
 }
 
-- (void) updaterDidBegin:(DataUpdater *)updater
-{
-    self.refreshing = YES;
-}
-
 - (void) updaterDidStartRequest:(DataUpdater *)updater
 {
     self.loading = YES;
@@ -96,14 +85,12 @@
 {
     self.updateError = error;
     self.updater = nil;
-    self.refreshing = NO;
     self.loading = NO;
 }
 
 - (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
 {
     self.updater = nil;
-    self.refreshing = NO;
     self.loading = NO;
 }
 
@@ -117,7 +104,6 @@
 
     [self.managedObjectContext.model save:nil];
     self.updater = nil;
-    self.refreshing = NO;
     self.loading = NO;
 }
 
@@ -153,11 +139,6 @@
 
 /****************************************************************************/
 #pragma mark status
-
-- (BOOL) isRefreshing
-{
-	return nil!=self.updater;
-}
 
 + (NSSet*) keyPathsForValuesAffectingLoading
 {

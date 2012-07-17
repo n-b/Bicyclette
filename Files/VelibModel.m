@@ -15,6 +15,8 @@
 #import "NSObject+KVCMapping.h"
 #import "NSError+MultipleErrorsCombined.h"
 #import "DataUpdater.h"
+#import "RadarUpdateQueue.h"
+
 
 /****************************************************************************/
 #pragma mark Constants
@@ -41,6 +43,8 @@ const struct VelibModelNotifications VelibModelNotifications = {
 @property (nonatomic, strong) NSDictionary * stationsHardcodedFixes;
 @property (readwrite, nonatomic, strong) CLRegion * hardcodedLimits;
 // -
+@property RadarUpdateQueue * updaterQueue;
+// -
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 // - 
 @property (nonatomic, strong) NSMutableDictionary * parsing_regionsByCodePostal;
@@ -52,12 +56,14 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 @implementation VelibModel
 
-@synthesize updater;
-@synthesize stationsHardcodedFixes;
-@synthesize hardcodedLimits;
-@synthesize regionContainingData;
-@synthesize parsing_regionsByCodePostal;
-@synthesize parsing_oldStations;
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.updaterQueue = [[RadarUpdateQueue alloc] initWithModel:self];
+    }
+    return self;
+}
 
 /****************************************************************************/
 #pragma mark Hardcoded Fixes
@@ -77,22 +83,22 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (NSDictionary*) stationsHardcodedFixes
 {
-	if(nil==stationsHardcodedFixes)
+	if(nil==_stationsHardcodedFixes)
 		self.stationsHardcodedFixes = [self.hardcodedFixes objectForKey:@"stations"];
 
-	return stationsHardcodedFixes;
+	return _stationsHardcodedFixes;
 }
 
 - (CLRegion*) hardcodedLimits
 {
-	if( nil==hardcodedLimits )
+	if( nil==_hardcodedLimits )
 	{
         NSDictionary * dict = [self.hardcodedFixes objectForKey:@"limits"];
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[dict objectForKey:@"latitude"] doubleValue], [[dict objectForKey:@"longitude"] doubleValue]);
         CLLocationDistance distance = [[dict objectForKey:@"distance"] doubleValue];
         self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:NSStringFromClass([self class])];
 	}
-	return hardcodedLimits;
+	return _hardcodedLimits;
 }
 
 /****************************************************************************/
@@ -102,7 +108,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 {
     if(self.updater==nil)
     {
-        self.updater = [[DataUpdater alloc] initWithDelegate:self queue:@"model"];
+        self.updater = [[DataUpdater alloc] initWithDelegate:self];
     }
 }
 
@@ -125,13 +131,9 @@ const struct VelibModelNotifications VelibModelNotifications = {
     [[NSUserDefaults standardUserDefaults] setObject:sha1 forKey:@"Database_XML_SHA1"];
 }
 
-- (void) updaterDidBegin:(DataUpdater*)updater
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateBegan object:self];
-}
-
 - (void) updaterDidStartRequest:(DataUpdater *)updater
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateBegan object:self];
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
@@ -362,10 +364,10 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (MKCoordinateRegion) regionContainingData
 {
-	if(regionContainingData.center.latitude == 0 &&
-	   regionContainingData.center.longitude == 0 &&
-	   regionContainingData.span.latitudeDelta == 0 &&
-	   regionContainingData.span.longitudeDelta == 0 )
+	if(_regionContainingData.center.latitude == 0 &&
+	   _regionContainingData.center.longitude == 0 &&
+	   _regionContainingData.span.latitudeDelta == 0 &&
+	   _regionContainingData.span.longitudeDelta == 0 )
 	{
 		NSFetchRequest * regionsRequest = [NSFetchRequest new];
 		[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
@@ -385,7 +387,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 		span.longitudeDelta = fabs([minLng doubleValue] - [maxLng doubleValue]);
 		self.regionContainingData = MKCoordinateRegionMake(center, span);
 	}
-	return regionContainingData;
+	return _regionContainingData;
 }
 
 @end

@@ -8,7 +8,6 @@
 
 #import "DataUpdater.h"
 #import "NSData+SHA1.h"
-#import "UpdaterQueue.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -16,7 +15,6 @@
 @interface DataUpdater()
 @property (nonatomic, strong) NSURLConnection * updateConnection;
 @property (nonatomic, strong) NSMutableData * updateData;
-@property (strong) UpdaterQueue * queue;
 @end
 
 /****************************************************************************/
@@ -27,7 +25,7 @@
 /****************************************************************************/
 #pragma mark -
 
-- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_ queue:(NSString*)queueID_
+- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_
 {
 	self = [super init];
 	if (self != nil) 
@@ -42,12 +40,9 @@
             needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [self.delegate refreshIntervalForUpdater:self]);
         }
 
-        self.queue = [UpdaterQueue queueWithName:queueID_];
-        
 		if(needUpdate)
         {
-            [self.delegate updaterDidBegin:self];
-            [self.queue startUpdater:self];
+            [self startRequest];
         }
         else
         {
@@ -70,12 +65,7 @@
 - (void) cancel
 {
     if(self.updateConnection)
-    {
         [self.updateConnection cancel];
-        [self.queue startUpdater:self];
-    }
-    else
-        [self.queue cancelUpdater:self];
 }
 
 - (void) dealloc
@@ -94,8 +84,6 @@
 	{
 		[self.updateConnection cancel];
 		self.updateConnection = nil;
-
-        [self.queue startUpdater:self];
 	}
 }
 
@@ -110,8 +98,6 @@
 	self.updateConnection = nil;
 	self.updateData = nil;
     [self.delegate updater:self didFailWithError:error];
-
-    [self.queue startUpdater:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -140,10 +126,6 @@
         [self.delegate updaterDidFinishWithNoNewData:self];
 
 	self.updateData = nil;
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^(void){
-        [self.queue startUpdater:self];
-    });
 }
 
 @end

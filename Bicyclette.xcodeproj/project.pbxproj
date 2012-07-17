@@ -14,7 +14,7 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
-		370D2ABB15A3A2270019F36E /* NSMutableArray+Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */; };
+		370D2ABB15A3A2270019F36E /* NSMutableArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */; };
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
@@ -34,7 +34,7 @@
 		372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
 		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
-		3747106A15B3754E00C1D1D9 /* UpdaterQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* UpdaterQueue.m */; };
+		3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EAE41298018A00113534 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EADF1298018A00113534 /* Default.png */; };
 		3756EAE51298018A00113534 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAE01298018A00113534 /* Default@2x.png */; };
@@ -89,8 +89,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3700F8511594A806007CF99E /* RegionAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
-		370D2AB915A3A2270019F36E /* NSMutableArray+Stations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stations.h"; sourceTree = "<group>"; };
-		370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stations.m"; sourceTree = "<group>"; };
+		370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Locatable.h"; sourceTree = "<group>"; };
+		370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Locatable.m"; sourceTree = "<group>"; };
 		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
 		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -121,8 +121,8 @@
 		3730161715977E1900347C9F /* DrawingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCache.m; sourceTree = "<group>"; };
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
-		3747106815B3754E00C1D1D9 /* UpdaterQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdaterQueue.h; sourceTree = "<group>"; };
-		3747106915B3754E00C1D1D9 /* UpdaterQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdaterQueue.m; sourceTree = "<group>"; };
+		3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarUpdateQueue.h; sourceTree = "<group>"; };
+		3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarUpdateQueue.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3756EADF1298018A00113534 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -212,8 +212,8 @@
 				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
-				370D2AB915A3A2270019F36E /* NSMutableArray+Stations.h */,
-				370D2ABA15A3A2270019F36E /* NSMutableArray+Stations.m */,
+				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
+				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
 				37C56FD115B1A0E700795961 /* PrefsVC.h */,
 				37C56FD215B1A0E700795961 /* PrefsVC.m */,
 				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
@@ -308,10 +308,10 @@
 				3793DE1E1380295400B50118 /* CoreDataManager.m */,
 				3793DE2013802E6100B50118 /* DataUpdater.h */,
 				3793DE2113802E6100B50118 /* DataUpdater.m */,
-				3747106815B3754E00C1D1D9 /* UpdaterQueue.h */,
-				3747106915B3754E00C1D1D9 /* UpdaterQueue.m */,
 				37216BC512611C5400A2695A /* VelibModel.h */,
 				37216BC612611C5400A2695A /* VelibModel.m */,
+				3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */,
+				3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */,
 				37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */,
 				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 				37AFC0F115B2FAED00E3E940 /* VelibHardcodedDebugErrors.plist */,
@@ -560,13 +560,13 @@
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
 				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
-				370D2ABB15A3A2270019F36E /* NSMutableArray+Stations.m in Sources */,
+				370D2ABB15A3A2270019F36E /* NSMutableArray+Locatable.m in Sources */,
 				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
 				37EDD1CB15A5CDC80023301D /* Radar.m in Sources */,
 				37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
-				3747106A15B3754E00C1D1D9 /* UpdaterQueue.m in Sources */,
+				3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
