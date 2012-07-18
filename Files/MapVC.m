@@ -99,6 +99,8 @@ typedef enum {
     self.userTrackingButton.mapView = self.mapView;
 
     [self reloadData];
+    
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 }
 
 - (void) reloadData
@@ -150,7 +152,7 @@ typedef enum {
 	{
 		StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[StationAnnotationView reuseIdentifier]];
 		if(nil==stationAV)
-			stationAV = [[StationAnnotationView alloc] initWithStation:annotation drawingCache:_drawingCache];
+			stationAV = [[StationAnnotationView alloc] initWithStation:(Station*)annotation drawingCache:_drawingCache];
 
         stationAV.display = self.display;
 		return stationAV;
@@ -159,7 +161,7 @@ typedef enum {
     {
         RadarAnnotationView * radarAV = (RadarAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RadarAnnotationView reuseIdentifier]];
 		if(nil==radarAV)
-			radarAV = [[RadarAnnotationView alloc] initWithRadar:annotation];
+			radarAV = [[RadarAnnotationView alloc] initWithRadar:(Radar*)annotation];
         
         CGSize radarSize = [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:self.mapView].size;
         radarAV.bounds = (CGRect){CGPointZero, radarSize};
@@ -345,6 +347,17 @@ fromOldState:(MKAnnotationViewDragState)oldState
         [self reloadData];
 }
 
+/****************************************************************************/
+#pragma mark -
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == (__bridge void *)([MapVC class])) {
+        if([keyPath isEqualToString:@"RadarDistance"])
+            [self updateRadarSizes];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
 
 @end
