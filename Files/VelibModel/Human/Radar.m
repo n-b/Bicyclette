@@ -16,6 +16,51 @@ const struct RadarIdentifiers RadarIdentifiers = {
 @synthesize stationsWithinRadarRegion=_stationsWithinRadarRegion;
 
 /****************************************************************************/
+#pragma mark NSManagedObject
+
+- (void) awakeFromFetch
+{
+    [super awakeFromFetch];
+    [self startObserving];
+}
+
+- (void) awakeFromInsert
+{
+    [super awakeFromInsert];
+    [self startObserving];
+}
+
+- (void) willTurnIntoFault
+{
+    [super willTurnIntoFault];
+    [self stopObserving];
+}
+
+/****************************************************************************/
+#pragma mark KVO
+
+- (void) startObserving
+{
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([Radar class])];
+}
+
+- (void) stopObserving
+{
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"RadarDistance" context:(__bridge void *)([Radar class])];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == (__bridge void *)([Radar class])) {
+        [self willChangeValueForKey:@"radarRegion"];
+        [self didChangeValueForKey:@"radarRegion"];
+        [self updateStationsWithinRadarRegion];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+/****************************************************************************/
 #pragma mark RadarRegion
 
 - (MKCoordinateRegion) radarRegion
