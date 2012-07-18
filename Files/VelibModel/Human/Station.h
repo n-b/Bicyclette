@@ -1,7 +1,8 @@
 #import "_Station.h"
 #import <CoreLocation/CoreLocation.h>
+#import "NSMutableArray+Locatable.h"
 
-@interface Station : _Station {}
+@interface Station : _Station <Locatable>
 
 // status
 - (void) refresh;

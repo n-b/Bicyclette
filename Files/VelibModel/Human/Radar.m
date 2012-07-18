@@ -15,6 +15,9 @@ const struct RadarIdentifiers RadarIdentifiers = {
 @implementation Radar
 @synthesize stationsWithinRadarRegion=_stationsWithinRadarRegion;
 
+/****************************************************************************/
+#pragma mark RadarRegion
+
 - (MKCoordinateRegion) radarRegion
 {
     CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
@@ -25,6 +28,9 @@ const struct RadarIdentifiers RadarIdentifiers = {
 {
     return [NSSet setWithObject:@"coordinate"];
 }
+
+/****************************************************************************/
+#pragma mark stationsWithinRadarRegion
 
 - (NSArray *) stationsWithinRadarRegion
 {
@@ -52,15 +58,14 @@ const struct RadarIdentifiers RadarIdentifiers = {
     self.stationsWithinRadarRegion = [stations copy];
 }
 
+/****************************************************************************/
+#pragma mark Location / Coordinate
+
 - (CLLocation*) location
 {
     return [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
 }
 
-@end
-
-
-@implementation Radar (MKAnnotation)
 - (CLLocationCoordinate2D) coordinate
 {
     return CLLocationCoordinate2DMake(self.latitudeValue, self.longitudeValue);

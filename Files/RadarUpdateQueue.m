@@ -9,6 +9,7 @@
 #import "RadarUpdateQueue.h"
 #import "VelibModel.h"
 #import "Radar.h"
+#import "Station.h"
 #import "NSMutableArray+Locatable.h"
 
 
