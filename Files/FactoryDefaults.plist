@@ -9,12 +9,12 @@
 	<key>DebugUseHardcodedErrors</key>
 	<false/>
 	<key>RadarDistance</key>
-	<integer>200</integer>
+	<integer>150</integer>
 	<key>RadarDistances</key>
 	<array>
 		<integer>100</integer>
+		<integer>150</integer>
 		<integer>200</integer>
-		<integer>300</integer>
 	</array>
 	<key>DataUpdaterDelayBetweenRequests</key>
 	<real>0.1</real>
