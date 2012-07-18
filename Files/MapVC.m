@@ -258,13 +258,16 @@ fromOldState:(MKAnnotationViewDragState)oldState
         case UIGestureRecognizerStateBegan:
             self.droppedRadar = [Radar insertInManagedObjectContext:self.model.moc];
             [self.mapView addAnnotation:self.droppedRadar];
-            // no break;
+            self.droppedRadar.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
+                                                 toCoordinateFromView:self.mapView];
+            [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
+            break;
         case UIGestureRecognizerStateChanged:
             self.droppedRadar.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
                                                  toCoordinateFromView:self.mapView];
-            // no break;
+            break;
         case UIGestureRecognizerStateEnded:
-            [self.mapView selectAnnotation:self.droppedRadar animated:YES];
+            [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateEnding animated:YES];
             break;
             
         case UIGestureRecognizerStateCancelled:
@@ -274,6 +277,12 @@ fromOldState:(MKAnnotationViewDragState)oldState
             self.droppedRadar = nil;
             break;
     }
+}
+
+- (void) selectDroppedRadar
+{
+    [self.mapView selectAnnotation:self.droppedRadar animated:YES];
+    [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateStarting animated:YES];
 }
 
 - (void) refreshStation:(Station*)station

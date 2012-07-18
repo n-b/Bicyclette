@@ -11,14 +11,6 @@
 #import "Station.h"
 #import "NSArrayAdditions.h"
 
-static CGRect CGRectMakeCentered(CGRect containingRect, float width, float height)
-{
-	float x = containingRect.size.width/2.0 - width/2.0;
-	float y = containingRect.size.height/2.0 - height/2.0;
-    
-	return CGRectMake(x, y, width, height);
-}
-
 @interface RadarAnnotationView ()
 @property (nonatomic) NSArray * stationsWithinRadarRegion;
 @end
@@ -101,6 +93,14 @@ static CGRect CGRectMakeCentered(CGRect containingRect, float width, float heigh
 /****************************************************************************/
 #pragma mark Interaction
 
+- (void) setBounds:(CGRect)bounds
+{
+    CGRect b = [self bounds];
+    [super setBounds:bounds];
+    if(!CGRectEqualToRect(b, bounds))
+        [self setNeedsDisplay];
+}
+
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -111,17 +111,44 @@ static CGRect CGRectMakeCentered(CGRect containingRect, float width, float heigh
 {
     [super setDragState:newDragState animated:animated];
     [self setNeedsDisplay];
-    
-    MKAnnotationViewDragState autoSwithState;
+
+    CGFloat scale = 1.0;
+    NSLog(@"state : %d",newDragState);
+    // Automatically switch to next state after .15 seconds
+    MKAnnotationViewDragState autoSwithState = newDragState;
     switch (newDragState) {
-        case MKAnnotationViewDragStateStarting: autoSwithState = MKAnnotationViewDragStateDragging; break;
+        case MKAnnotationViewDragStateNone:
+            scale = 1.0f;
+            break;
+        case MKAnnotationViewDragStateStarting:
+            scale = 1.1f;
+            autoSwithState = MKAnnotationViewDragStateDragging;
+            break;
+        case MKAnnotationViewDragStateDragging:
+            scale = 1.0f;
+            break;
         case MKAnnotationViewDragStateEnding:
-        case MKAnnotationViewDragStateCanceling: autoSwithState = MKAnnotationViewDragStateNone; break;
-        default: autoSwithState = newDragState; break;
+            scale = 1.1f;
+            autoSwithState = MKAnnotationViewDragStateNone;
+            break;
+        case MKAnnotationViewDragStateCanceling:
+            scale = 1.0f;
+            autoSwithState = MKAnnotationViewDragStateNone;
+            break;
     }
+
+    void (^animations)(void) = ^{
+        self.transform = CGAffineTransformMakeScale(scale, scale);
+    };
+    
+    if(animated)
+        [UIView animateWithDuration:.15 animations:animations];
+    else
+        animations();
+
     if(newDragState!=autoSwithState)
     {
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, .25 * NSEC_PER_SEC);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, .15 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self setDragState:autoSwithState animated:YES];
         });
@@ -139,44 +166,30 @@ static CGRect CGRectMakeCentered(CGRect containingRect, float width, float heigh
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
-    CGContextClearRect(c, rect);
-//    if([self.radar.identifier isEqualToString:RadarIdentifiers.userLocation] || [self.radar.identifier isEqualToString:RadarIdentifiers.screenCenter])
-//        return;
-
-    CGFloat h;
-    switch (self.dragState) {
-        case MKAnnotationViewDragStateNone: h = .9; break;
-        case MKAnnotationViewDragStateStarting: h = .5; break;
-        case MKAnnotationViewDragStateDragging: h = .7; break;
-        case MKAnnotationViewDragStateCanceling: h = .2; break;
-        case MKAnnotationViewDragStateEnding: default: h = 0;
-            break;
-    }
-    
-    [[UIColor colorWithHue:h saturation:.5 brightness:.5 alpha:.5] setFill];
-    CGContextFillEllipseInRect(c, rect);
-    
-    [[UIColor blackColor] setStroke];
-    if(self.selected)
-        CGContextStrokeEllipseInRect(c, CGRectInset(rect, 2, 2));
 
     
-    NSArray * refreshingStations = [self.stationsWithinRadarRegion filteredArrayWithValue:@YES forKey:@"needsRefresh"];
-    NSString * test = [NSString stringWithFormat:@"%@/%@", @([refreshingStations count]), @([self.stationsWithinRadarRegion count])];
-    [test drawInRect:rect withFont:[UIFont systemFontOfSize:20]];
-    
-    if ([refreshingStations count])
+    CGContextSetLineWidth(c, 1);
+
+    if (self.dragState != MKAnnotationViewDragStateNone || self.selected)
     {
-        CLLocationDistance neareastDistance = [[[refreshingStations objectAtIndex:0] location] distanceFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.latitudeValue longitude:self.radar.longitudeValue]];
-        CLLocationDistance farthestDistance = [[[refreshingStations lastObject] location] distanceFromLocation:[[CLLocation alloc] initWithLatitude:self.radar.latitudeValue longitude:self.radar.longitudeValue]];
-        
-        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-        CGFloat nearestDiameter = neareastDistance * rect.size.width / radarDistance;
-        CGFloat farthestDiameter = farthestDistance * rect.size.width / radarDistance;
-        
-        CGContextStrokeEllipseInRect(c, CGRectMakeCentered(rect, nearestDiameter, nearestDiameter));
-        CGContextStrokeEllipseInRect(c, CGRectMakeCentered(rect, farthestDiameter, farthestDiameter));
+        [[UIColor blackColor] setStroke];
+        [[UIColor colorWithWhite:.5 alpha:.3] setFill];
     }
+    else if([self.radar.identifier isEqualToString:RadarIdentifiers.userLocation] || [self.radar.identifier isEqualToString:RadarIdentifiers.screenCenter])
+    {
+        [[UIColor lightGrayColor] setStroke];
+        [[UIColor colorWithWhite:.5 alpha:.05] setFill];
+    }
+    else
+    {
+        [[UIColor grayColor] setStroke];
+        [[UIColor colorWithWhite:.5 alpha:.1] setFill];
+    }
+
+    CGContextSetShadow(c, CGSizeMake(1, -1), 1);
+    
+    CGContextAddEllipseInRect(c, CGRectInset(rect, 2, 2));
+    CGContextDrawPath(c, kCGPathFillStroke);
 }
 
 @end
