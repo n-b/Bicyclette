@@ -91,7 +91,7 @@ typedef enum {
                     
                     if(border==BorderModeDashes)
                     {
-                        CGFloat lineWidth = 3;
+                        CGFloat lineWidth = 2;
                         CGFloat perimeter = (rect.size.width-lineWidth/2/scale) * M_PI;
                         CGFloat dash = perimeter/24;
                         CGFloat lengths[] = {dash,dash};
