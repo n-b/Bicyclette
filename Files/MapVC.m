@@ -97,6 +97,7 @@ typedef enum {
     self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithRadar:self.model.screenCenterRadar];
     self.screenCenterRadarView.center = self.mapView.center;
     [self.mapView addSubview:self.screenCenterRadarView];
+    self.screenCenterRadarView.userInteractionEnabled = NO;
 
     UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
     [self.mapView addGestureRecognizer:longPressRecognizer];
