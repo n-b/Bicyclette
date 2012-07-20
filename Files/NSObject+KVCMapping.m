@@ -18,13 +18,13 @@
 
 - (void) setValue:(id)value forKey:(NSString*)wantedKey withMappingDictionary:(NSDictionary*)kvcMappingDictionnary
 {
-    NSString * realKey = [kvcMappingDictionnary objectForKey:wantedKey];
+    NSString * realKey = kvcMappingDictionnary[wantedKey];
     // find a value transformer
     NSArray * realComponents = [realKey componentsSeparatedByString:@":"];
     if(realComponents.count==2)
     {
-        realKey = [realComponents objectAtIndex:1];
-        NSValueTransformer * transformer = [NSValueTransformer valueTransformerForName:[realComponents objectAtIndex:0]];
+        realKey = realComponents[1];
+        NSValueTransformer * transformer = [NSValueTransformer valueTransformerForName:realComponents[0]];
         value = [transformer transformedValue:value];
     }
     
@@ -39,7 +39,7 @@
 - (void) setValuesForKeysWithDictionary:(NSDictionary *)keyedValues withMappingDictionary:(NSDictionary*)kvcMappingDictionnary
 {
     for (NSString * wantedKey in [keyedValues allKeys]) 
-        [self setValue:[keyedValues objectForKey:wantedKey] forKey:wantedKey withMappingDictionary:kvcMappingDictionnary];
+        [self setValue:keyedValues[wantedKey] forKey:wantedKey withMappingDictionary:kvcMappingDictionnary];
 }
 
 @end
@@ -51,7 +51,7 @@
 
 - (void) setTransformedValue:(id)value forRealKey:(NSString*)realKey
 {
-    NSAttributeDescription * attributeDesc = [[[self entity] attributesByName] objectForKey:realKey];
+    NSAttributeDescription * attributeDesc = [[self entity] attributesByName][realKey];
     if(attributeDesc==nil)
     {
         [super setTransformedValue:value forRealKey:realKey];
@@ -78,16 +78,16 @@
              */
         case NSBooleanAttributeType :
             if([value respondsToSelector:@selector(boolValue)])
-                coercedValue = [NSNumber numberWithBool:[value boolValue]];  
+                coercedValue = @([value boolValue]);  
             break;
         case NSInteger16AttributeType :
         case NSInteger32AttributeType :
             if([value respondsToSelector:@selector(intValue)])
-                coercedValue = [NSNumber numberWithLong:[value intValue]];  
+                coercedValue = @([value intValue]);
             break;
         case NSInteger64AttributeType :
             if([value respondsToSelector:@selector(longLongValue)])
-                coercedValue = [NSNumber numberWithLongLong:[value longLongValue]];  
+                coercedValue = @([value longLongValue]);  
             break;
         case NSDecimalAttributeType :
             if([value isKindOfClass:[NSString self]])
@@ -95,11 +95,11 @@
             break;
         case NSDoubleAttributeType :
             if([value respondsToSelector:@selector(doubleValue)])
-                coercedValue = [NSNumber numberWithDouble:[value doubleValue]];  
+                coercedValue = @([value doubleValue]);  
             break;
         case NSFloatAttributeType :
             if([value respondsToSelector:@selector(floatValue)])
-                coercedValue = [NSNumber numberWithFloat:[value floatValue]];  
+                coercedValue = @([value floatValue]);  
             break;
             
             // NSStrings

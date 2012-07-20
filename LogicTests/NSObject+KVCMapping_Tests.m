@@ -19,10 +19,10 @@
 - (void) setUp
 {
     [super setUp];
-    mapping = [NSDictionary dictionaryWithObjectsAndKeys:
-               @"actualName", @"usedName",
-               @"ISO8601StringToDate:actualDate", @"usedDate",
-               nil];
+    mapping = @{
+    @"usedName" : @"actualName",
+    @"usedDate" : @"ISO8601StringToDate:actualDate"
+    };
     
     // Setup formatter and transformer
     NSDateFormatter * dateFormatter = [NSDateFormatter new];
@@ -77,46 +77,40 @@
                                        [[NSBundle bundleForClass:[self class]] URLForResource:@"NSObject+KVCMapping_Tests" 
                                                                                 withExtension:@"momd"]]];
 
-    mapping = [NSDictionary dictionaryWithObjectsAndKeys:
-               @"actualBoolean", @"usedBoolean",
-               @"actualData", @"usedData",
-               @"actualDate", @"usedDate",
-               @"actualDecimal", @"usedDecimal",
-               @"actualDouble", @"usedDouble",
-               @"actualFloat", @"usedFloat",
-               @"actualInt16", @"usedInt16",
-               @"actualInt32", @"usedInt32",
-               @"actualInt64", @"usedInt64",
-               @"actualString", @"usedString",
-               nil];
+    mapping = @{@"usedBoolean": @"actualBoolean",
+               @"usedData": @"actualData",
+               @"usedDate": @"actualDate",
+               @"usedDecimal": @"actualDecimal",
+               @"usedDouble": @"actualDouble",
+               @"usedFloat": @"actualFloat",
+               @"usedInt16": @"actualInt16",
+               @"usedInt32": @"actualInt32",
+               @"usedInt64": @"actualInt64",
+               @"usedString": @"actualString"};
 
     NSDate * date = [NSDate date];
     
-    goodDataset = [NSDictionary dictionaryWithObjectsAndKeys:
-                   [NSNumber numberWithBool:YES], @"usedBoolean",
-                   [NSNumber numberWithShort:100], @"usedInt16",
-                   [NSNumber numberWithInt:100], @"usedInt32",
-                   [NSNumber numberWithLongLong:100], @"usedInt64",
-                   [NSDecimalNumber numberWithInt:100], @"usedDecimal",
-                   [NSNumber numberWithFloat:100], @"usedFloat",
-                   [NSNumber numberWithDouble:100], @"usedDouble",
-                   @"100", @"usedString",
-                   [@"test" dataUsingEncoding:NSUTF8StringEncoding], @"usedData",
-                   date, @"usedDate",
-                   nil];
+    goodDataset = @{@"usedBoolean": @YES,
+                   @"usedInt16": [NSNumber numberWithShort:100],
+                   @"usedInt32": @100,
+                   @"usedInt64": @100LL,
+                   @"usedDecimal": [NSDecimalNumber numberWithInt:100],
+                   @"usedFloat": @100.0f,
+                   @"usedDouble": @100.0,
+                   @"usedString": @"100",
+                   @"usedData": [@"test" dataUsingEncoding:NSUTF8StringEncoding],
+                   @"usedDate": date};
     
-    badDataSet = [NSDictionary dictionaryWithObjectsAndKeys:
-                  @"YES", @"usedBoolean",
-                  @"100", @"usedInt16",
-                  @"100", @"usedInt32",
-                  @"100", @"usedInt64",
-                  @"100", @"usedDecimal",
-                  @"100", @"usedFloat",
-                  @"100", @"usedDouble",
-                  [NSNumber numberWithInt:100], @"usedString",
-                  [@"test" dataUsingEncoding:NSUTF8StringEncoding], @"usedData",
-                  date, @"usedDate",
-                  nil];
+    badDataSet = @{@"usedBoolean": @"YES",
+                  @"usedInt16": @"100",
+                  @"usedInt32": @"100",
+                  @"usedInt64": @"100",
+                  @"usedDecimal": @"100",
+                  @"usedFloat": @"100",
+                  @"usedDouble": @"100",
+                  @"usedString": @100,
+                  @"usedData": [@"test" dataUsingEncoding:NSUTF8StringEncoding],
+                  @"usedDate": date};
 }
 
 - (void) testBasic
@@ -133,8 +127,8 @@
     [test setValuesForKeysWithDictionary:goodDataset withMappingDictionary:mapping];
     
     for (NSString * wantedKey in goodDataset) {
-        id value = [goodDataset objectForKey:wantedKey];
-        NSString * realKey = [mapping objectForKey:wantedKey];
+        id value = goodDataset[wantedKey];
+        NSString * realKey = mapping[wantedKey];
         STAssertEqualObjects([test valueForKey:realKey], value, nil);
     }
 }
@@ -145,8 +139,8 @@
     [test setValuesForKeysWithDictionary:badDataSet withMappingDictionary:mapping];
     
     for (NSString * wantedKey in goodDataset) {
-        id value = [goodDataset objectForKey:wantedKey];
-        NSString * realKey = [mapping objectForKey:wantedKey];
+        id value = goodDataset[wantedKey];
+        NSString * realKey = mapping[wantedKey];
         STAssertEqualObjects([test valueForKey:realKey], value, nil);
     }
 }

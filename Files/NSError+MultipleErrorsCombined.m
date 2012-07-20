@@ -23,15 +23,15 @@
     
     return [self errorWithDomain:NSCocoaErrorDomain 
                             code:NSValidationMultipleErrorsError 
-                        userInfo:[NSDictionary dictionaryWithObject:errors forKey:NSDetailedErrorsKey]];
+                        userInfo:@{ NSDetailedErrorsKey : errors }];
 }
 
 - (NSArray *) underlyingErrors
 {
     if (self.code==NSValidationMultipleErrorsError)
-        return [self.userInfo objectForKey:NSDetailedErrorsKey];
+        return (self.userInfo)[NSDetailedErrorsKey];
     else
-        return [NSArray arrayWithObject:self];
+        return @[ self ];
 }
 
 @end

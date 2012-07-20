@@ -68,7 +68,7 @@
 
 - (void) sortWithProperty:(NSString *) property
 {
-	[self sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:property ascending:YES]]];
+	[self sortUsingDescriptors:@[ [[NSSortDescriptor alloc] initWithKey:property ascending:YES] ]];
 }
 
 @end

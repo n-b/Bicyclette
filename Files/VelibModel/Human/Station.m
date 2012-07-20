@@ -119,12 +119,11 @@
 {
     static NSDictionary * s_mapping = nil;
     if(nil==s_mapping)
-        s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
-                     @"status_available",@"available",
-                     @"status_free",@"free",
-                     @"status_ticket",@"ticket",
-                     @"status_total",@"total",
-                     nil];
+        s_mapping = @{
+        @"available" : @"status_available",
+        @"free" : @"status_free",
+        @"ticket": @"status_ticket",
+        @"total" : @"status_total"};
     
     return s_mapping;
 }
@@ -204,13 +203,13 @@
     if (error != NULL) {
         NSError * limitsError = [NSError errorWithDomain:BicycletteErrorDomain
                                                     code:NSManagedObjectValidationError
-                                                userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                          self, NSValidationObjectErrorKey,
-                                                          NAMEDPROP(location), NSValidationKeyErrorKey,
-                                                          self.location, NSValidationValueErrorKey,
-                                                          [NSString stringWithFormat:NSLocalizedString(@"Station %@", 0),self.name],NSLocalizedDescriptionKey,
-                                                          [NSString stringWithFormat:NSLocalizedString(@"Invalid coordinates (%f,%f)", 0),self.location.coordinate.latitude, self.location.coordinate.longitude], NSLocalizedFailureReasonErrorKey,
-                                                          nil]];
+                                                userInfo:@{
+                             NSValidationObjectErrorKey : self,
+                                NSValidationKeyErrorKey : NAMEDPROP(location),
+                              NSValidationValueErrorKey : self.location,
+                              NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Station %@", 0),self.name],
+                       NSLocalizedFailureReasonErrorKey : [NSString stringWithFormat:NSLocalizedString(@"Invalid coordinates (%f,%f)", 0),self.location.coordinate.latitude, self.location.coordinate.longitude],
+                                 }];
         *error = [NSError errorFromOriginalError:*error error:limitsError];
     }
     return NO;

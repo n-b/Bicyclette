@@ -84,7 +84,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 - (NSDictionary*) stationsHardcodedFixes
 {
 	if(nil==_stationsHardcodedFixes)
-		self.stationsHardcodedFixes = [self.hardcodedFixes objectForKey:@"stations"];
+		self.stationsHardcodedFixes = (self.hardcodedFixes)[@"stations"];
 
 	return _stationsHardcodedFixes;
 }
@@ -93,9 +93,9 @@ const struct VelibModelNotifications VelibModelNotifications = {
 {
 	if( nil==_hardcodedLimits )
 	{
-        NSDictionary * dict = [self.hardcodedFixes objectForKey:@"limits"];
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[dict objectForKey:@"latitude"] doubleValue], [[dict objectForKey:@"longitude"] doubleValue]);
-        CLLocationDistance distance = [[dict objectForKey:@"distance"] doubleValue];
+        NSDictionary * dict = (self.hardcodedFixes)[@"limits"];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([dict[@"latitude"] doubleValue], [dict[@"longitude"] doubleValue]);
+        CLLocationDistance distance = [dict[@"distance"] doubleValue];
         self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:NSStringFromClass([self class])];
 	}
 	return _hardcodedLimits;
@@ -194,7 +194,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     {
         NSMutableDictionary * userInfo = [@{VelibModelNotifications.keys.dataChanged : @YES} mutableCopy];
         if (validationErrors)
-            [userInfo setObject:[validationErrors underlyingErrors] forKey:VelibModelNotifications.keys.saveErrors];
+            userInfo[VelibModelNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
         [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self
                                                           userInfo:userInfo];
     }
@@ -222,17 +222,17 @@ const struct VelibModelNotifications VelibModelNotifications = {
 {
     static NSDictionary * s_mapping = nil;
     if(nil==s_mapping)
-        s_mapping = [[NSDictionary alloc] initWithObjectsAndKeys:
-                     @"address",@"address",
-                     @"bonus",@"bonus",
-                     @"fullAddress",@"fullAddress",
-                     @"name",@"name",
-                     @"number",@"number",
-                     @"open",@"open",
-                     
-                     @"latitude",@"lat",
-                     @"longitude",@"lng",
-                     nil];
+        s_mapping = @{
+        @"address" : @"address",
+        @"bonus" : @"bonus",
+        @"fullAddress" : @"fullAddress",
+        @"name" : @"name",
+        @"number" : @"number",
+        @"open" : @"open",
+        
+        @"lat" : @"latitude",
+        @"lng" : @"longitude"
+        };
     
     return s_mapping;
 }
@@ -242,14 +242,14 @@ const struct VelibModelNotifications VelibModelNotifications = {
 	if([elementName isEqualToString:@"marker"])
 	{
         // Filter out closed stations
-        if( ! [[attributeDict objectForKey:@"open"] boolValue] )
+        if( ! [attributeDict[@"open"] boolValue] )
         {
             NSLog(@"Note : Ignored closed station : %@", attributeDict);
             return;
         }
         
         // Find Existing Stations
-        Station * station = [self.parsing_oldStations firstObjectWithValue:[attributeDict objectForKey:@"number"] forKey:StationAttributes.number];
+        Station * station = [self.parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKey:StationAttributes.number];
         if(station)
         {
             // found existing
@@ -264,7 +264,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
         // Set Values and hardcoded fixes
 		[station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:self.stationKVCMapping]; // Yay!
-		NSDictionary * fixes = [self.stationsHardcodedFixes objectForKey:station.number];
+		NSDictionary * fixes = (self.stationsHardcodedFixes)[station.number];
 		if(fixes)
 		{
 			NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, fixes);
@@ -290,7 +290,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
                         lCodePostal = [NSString stringWithFormat:@"9%@0",[station.number substringToIndex:3]];
                         break;
                     default:						// Stations Mobiles et autres bugs
-                        lCodePostal = [fixes objectForKey:@"codePostal"];
+                        lCodePostal = fixes[@"codePostal"];
                         if(nil==lCodePostal)		// Dernier recours
                             lCodePostal = @"75000";
                         break;
@@ -301,7 +301,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
             NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
             
             // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
-            Region * region = [self.parsing_regionsByCodePostal objectForKey:lCodePostal];
+            Region * region = (self.parsing_regionsByCodePostal)[lCodePostal];
             if(nil==region)
             {
                 region = [[Region fetchRegionWithNumber:self.moc number:lCodePostal] lastObject];
@@ -310,7 +310,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
                     region = [Region insertInManagedObjectContext:self.moc];
                     region.number = lCodePostal;
                 }
-                [self.parsing_regionsByCodePostal setObject:region forKey:lCodePostal];
+                (self.parsing_regionsByCodePostal)[lCodePostal] = region;
                 if([lCodePostal hasPrefix:@"75"])
                     region.name = [NSString stringWithFormat:@"Paris %@",[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
                 else

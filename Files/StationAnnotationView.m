@@ -71,7 +71,7 @@
         else
         {
             [self setNeedsDisplay];
-            if([change objectForKey:NSKeyValueChangeOldKey])
+            if(change[NSKeyValueChangeOldKey])
                 [self pulse];
         }
     } else {

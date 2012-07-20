@@ -48,11 +48,11 @@ typedef enum {
                       (int)size.width, (int)size.height, (float)scale, (int)shape, (int)border,
                       [baseColor hsbString],text, phase];
     
-    CGImageRef result = (__bridge CGImageRef)[_cache objectForKey:key];
+    CGImageRef result = (__bridge CGImageRef)_cache[key];
     if(result) return result;
     @synchronized(self)
     {
-        if ([_cache objectForKey:key]==nil)
+        if (_cache[key]==nil)
         {
             CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
             CGContextRef c = CGBitmapContextCreate(NULL, size.width*scale, size.height*scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast);
@@ -140,10 +140,10 @@ typedef enum {
             UIGraphicsPopContext();
             
             CGImageRef image = CGBitmapContextCreateImage(c);
-            [_cache setObject:CFBridgingRelease(image) forKey:key];
+            _cache[key] = CFBridgingRelease(image);
             CGContextRelease(c);
         }
-        return (__bridge CGImageRef)[_cache objectForKey:key];
+        return (__bridge CGImageRef)_cache[key];
     }
 }
 

@@ -25,14 +25,10 @@
     error4 = [NSError errorWithDomain:@"a" code:4 userInfo:nil];
     error12 = [NSError errorWithDomain:NSCocoaErrorDomain
                                  code:NSValidationMultipleErrorsError
-                             userInfo:
-              [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:error1,error2,nil]
-                                          forKey:NSDetailedErrorsKey]];
+                             userInfo:@{ NSDetailedErrorsKey : @[error1,error2] }];
     error34 = [NSError errorWithDomain:NSCocoaErrorDomain
                                   code:NSValidationMultipleErrorsError
-                              userInfo:
-               [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:error3,error4,nil]
-                                           forKey:NSDetailedErrorsKey]];
+                              userInfo:@{ NSDetailedErrorsKey : @[error3,error4] }];
 }
 
 - (void)tearDown

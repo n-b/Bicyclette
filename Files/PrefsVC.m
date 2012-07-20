@@ -37,7 +37,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [self.cells objectAtIndex:indexPath.row];
+    return (self.cells)[indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -52,12 +52,12 @@
 #pragma mark Actions
 
 - (IBAction)openDesignPage {
-    NSString * designURL = [NSString stringWithFormat:@"http://%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"designURL"]];
+    NSString * designURL = [NSString stringWithFormat:@"http://%@",[[NSBundle mainBundle] infoDictionary][@"designURL"]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:designURL]];    
 }
 
 - (IBAction)openSourcePage {
-    NSString * sourceURL = [NSString stringWithFormat:@"http://%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"sourceURL"]];
+    NSString * sourceURL = [NSString stringWithFormat:@"http://%@",[[NSBundle mainBundle] infoDictionary][@"sourceURL"]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sourceURL]];
 }
 
@@ -80,7 +80,7 @@
 
 - (IBAction)changeRadarDistance {
     NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
-    NSNumber * d = [distances objectAtIndex:self.radarDistanceSegmentedControl.selectedSegmentIndex];
+    NSNumber * d = distances[self.radarDistanceSegmentedControl.selectedSegmentIndex];
     [[NSUserDefaults standardUserDefaults] setObject:d forKey:@"RadarDistance"];
 }
 
