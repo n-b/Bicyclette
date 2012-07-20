@@ -48,4 +48,9 @@
 	return coordinateRegion;
 }
 
+- (CLLocationCoordinate2D) coordinate
+{
+	return self.coordinateRegion.center;
+}
+
 @end

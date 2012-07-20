@@ -94,7 +94,7 @@ typedef enum {
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
     
-    self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithRadar:self.model.screenCenterRadar drawingCache:_drawingCache];
+    self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithAnnotation:self.model.screenCenterRadar drawingCache:_drawingCache];
     self.screenCenterRadarView.center = self.mapView.center;
     [self.mapView addSubview:self.screenCenterRadarView];
     self.screenCenterRadarView.userInteractionEnabled = NO;
@@ -150,7 +150,7 @@ typedef enum {
 	{
 		RegionAnnotationView * regionAV = (RegionAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RegionAnnotationView reuseIdentifier]];
 		if(nil==regionAV)
-			regionAV = [[RegionAnnotationView alloc] initWithRegion:annotation drawingCache:_drawingCache];
+			regionAV = [[RegionAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
 
         return regionAV;
 	}
@@ -158,7 +158,7 @@ typedef enum {
 	{
 		StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[StationAnnotationView reuseIdentifier]];
 		if(nil==stationAV)
-			stationAV = [[StationAnnotationView alloc] initWithStation:(Station*)annotation drawingCache:_drawingCache];
+			stationAV = [[StationAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
 
         stationAV.display = self.display;
 		return stationAV;
@@ -167,7 +167,7 @@ typedef enum {
     {
         RadarAnnotationView * radarAV = (RadarAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RadarAnnotationView reuseIdentifier]];
 		if(nil==radarAV)
-			radarAV = [[RadarAnnotationView alloc] initWithRadar:(Radar*)annotation drawingCache:_drawingCache];
+			radarAV = [[RadarAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
         
         CGSize radarSize = [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:self.mapView].size;
         radarAV.bounds = (CGRect){CGPointZero, radarSize};

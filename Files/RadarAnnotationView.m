@@ -20,42 +20,17 @@
 
 @implementation RadarAnnotationView
 {
-    DrawingCache * _drawingCache;
     CALayer * _handleLayer;
 }
 
-+ (NSString*) reuseIdentifier
+- (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache;
 {
-    return NSStringFromClass([RadarAnnotationView class]);
-}
-
-- (id) initWithRadar:(Radar*)radar drawingCache:(DrawingCache*)drawingCache
-{
-    self = [super initWithAnnotation:radar reuseIdentifier:[[self class] reuseIdentifier]];
-    _drawingCache = drawingCache;
+    self = [super initWithAnnotation:annotation drawingCache:drawingCache];
     _handleLayer = [CALayer new];
     _handleLayer.bounds = CGRectMake(0,0,kRadarAnnotationHandleSize, kRadarAnnotationHandleSize);
     _handleLayer.actions = @{ @"position" : [NSNull null], @"contents" : [NSNull null] };
     [self.layer addSublayer:_handleLayer];
     return self;
-}
-
-- (void) willMoveToWindow:(UIWindow *)newWindow
-{
-    [super willMoveToWindow:newWindow];
-    if(newWindow && _handleLayer.contentsScale!=newWindow.screen.scale)
-    {
-        _handleLayer.contentsScale = newWindow.screen.scale;
-        [self displayHandleLayer];
-    }
-}
-
-/****************************************************************************/
-#pragma mark Data
-
-- (void) prepareForReuse
-{
-    self.annotation = nil;
 }
 
 - (Radar*) radar
@@ -67,16 +42,24 @@
 {
     [self.radar removeObserver:self forKeyPath:@"stationsWithinRadarRegion" context:(__bridge void *)([RadarAnnotationView class])];
     [super setAnnotation:annotation];
-
+    
     self.draggable = self.radar.identifier==nil;
     self.enabled = self.radar.identifier==nil;
     if(self.radar==nil)
         self.stationsWithinRadarRegion = nil;
     [self.radar addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-                context:(__bridge void *)([RadarAnnotationView class])];
+                    context:(__bridge void *)([RadarAnnotationView class])];
     [self setNeedsDisplay];
-    [self displayHandleLayer];
 }
+
+- (void) prepareForReuse
+{
+    [super prepareForReuse];
+    self.annotation = nil; // stop observing
+}
+
+/****************************************************************************/
+#pragma mark Data
 
 - (void) setStationsWithinRadarRegion:(NSArray *)newValue
 {
@@ -92,6 +75,9 @@
     
     _stationsWithinRadarRegion = newValue;
 }
+
+/****************************************************************************/
+#pragma mark KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -197,7 +183,7 @@
     else
     {
         UIColor * color = self.selected ? kRadarAnnotationSelectedColor : kRadarAnnotationDefaultColor;
-        _handleLayer.contents =  (id)[_drawingCache sharedAnnotationViewBackgroundLayerWithSize:_handleLayer.bounds.size
+        _handleLayer.contents =  (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:_handleLayer.bounds.size
                                                                                           scale:_handleLayer.contentsScale
                                                                                           shape:BackgroundShapeOval
                                                                                      borderMode:BorderModeSolid
@@ -209,13 +195,14 @@
 
 - (void)displayLayer:(CALayer *)layer
 {
-    self.layer.contents = (id)[_drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.bounds.size
+    self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.bounds.size
                                                                                scale:self.layer.contentsScale
                                                                                shape:BackgroundShapeOval
                                                                           borderMode:BorderModeDashes
                                                                            baseColor:nil
                                                                                value:@""
                                                                                phase:0];
+    [self displayHandleLayer];
 }
 
 - (void)drawRect:(CGRect)rect

@@ -6,12 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class Radar;
-@class DrawingCache;
+#import "BicycletteAnnotationView.h"
 
-@interface RadarAnnotationView : MKAnnotationView
-
-+ (NSString*) reuseIdentifier;
-- (id) initWithRadar:(Radar*)radar drawingCache:(DrawingCache*)drawingCache;
-
+@interface RadarAnnotationView : BicycletteAnnotationView
 @end

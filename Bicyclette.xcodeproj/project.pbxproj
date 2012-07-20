@@ -14,6 +14,7 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
+		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
 		370D2ABB15A3A2270019F36E /* NSMutableArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */; };
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
@@ -89,6 +90,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3700F8511594A806007CF99E /* RegionAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
+		3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteAnnotationView.h; sourceTree = "<group>"; };
+		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
 		370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Locatable.h"; sourceTree = "<group>"; };
 		370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Locatable.m"; sourceTree = "<group>"; };
 		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
@@ -201,7 +204,6 @@
 		080E96DDFE201D6D7F000001 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				37EFCF3A159E495F007B2E41 /* Style.h */,
 				37E9531412AA29FB00C1D21C /* MapVC.h */,
 				37E9531512AA29FB00C1D21C /* MapVC.m */,
 				3700F8511594A806007CF99E /* RegionAnnotationView.h */,
@@ -210,10 +212,7 @@
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
 				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
 				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
-				3730161615977E1900347C9F /* DrawingCache.h */,
-				3730161715977E1900347C9F /* DrawingCache.m */,
-				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
-				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
+				3705B40915B9B6C8009C8AAA /* UI Utility */,
 				37C56FD115B1A0E700795961 /* PrefsVC.h */,
 				37C56FD215B1A0E700795961 /* PrefsVC.m */,
 				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
@@ -275,6 +274,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3705B40915B9B6C8009C8AAA /* UI Utility */ = {
+			isa = PBXGroup;
+			children = (
+				37EFCF3A159E495F007B2E41 /* Style.h */,
+				3730161615977E1900347C9F /* DrawingCache.h */,
+				3730161715977E1900347C9F /* DrawingCache.m */,
+				3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */,
+				3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */,
+			);
+			name = "UI Utility";
+			sourceTree = "<group>";
+		};
 		371E1BE9137FCF7C007EFBFF /* Human */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +323,8 @@
 				37216BC612611C5400A2695A /* VelibModel.m */,
 				3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */,
+				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
+				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
 				37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */,
 				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 				37AFC0F115B2FAED00E3E940 /* VelibHardcodedDebugErrors.plist */,
@@ -567,6 +580,7 @@
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
 				3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */,
+				3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

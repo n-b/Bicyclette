@@ -7,17 +7,8 @@
 //
 
 #import "MapVC.h"
-#import "Station.h"
+#import "BicycletteAnnotationView.h"
 
-@class DrawingCache;
-
-@interface StationAnnotationView : MKAnnotationView
-
-- (id) initWithStation:(Station*)station drawingCache:(DrawingCache*)layerCache;
-+ (NSString*) reuseIdentifier;
-
+@interface StationAnnotationView : BicycletteAnnotationView
 @property (nonatomic) MapDisplay display;
-@end
-
-@interface Station (Mapkit) <MKAnnotation>
 @end

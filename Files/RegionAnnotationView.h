@@ -6,13 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "Region.h"
-@class DrawingCache;
+#import "BicycletteAnnotationView.h"
 
-@interface RegionAnnotationView : MKAnnotationView
-- (id) initWithRegion:(Region*)region drawingCache:(DrawingCache*)layerCache;
-+ (NSString*) reuseIdentifier;
-@end
-
-@interface Region (Mapkit) <MKAnnotation>
+@interface RegionAnnotationView : BicycletteAnnotationView
 @end

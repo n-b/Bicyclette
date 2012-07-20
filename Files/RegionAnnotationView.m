@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
+#import "Region.h"
 #import "RegionAnnotationView.h"
-#import "DrawingCache.h"
 #import "Style.h"
 
 
@@ -15,21 +15,12 @@
 #pragma mark -
 
 @implementation RegionAnnotationView
-{
-    DrawingCache * _drawingCache;
-}
 
-- (id) initWithRegion:(Region*)region drawingCache:(DrawingCache*)drawingCache
+- (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache
 {
-    self = [super initWithAnnotation:region reuseIdentifier:[[self class] reuseIdentifier]];
-    _drawingCache = drawingCache;
+    self = [super initWithAnnotation:annotation drawingCache:drawingCache];
     self.frame = (CGRect){CGPointZero,{kAnnotationViewSize,kAnnotationViewSize}};
     return self;
-}
-
-+ (NSString*) reuseIdentifier
-{
-    return NSStringFromClass([RegionAnnotationView class]);
 }
 
 - (Region*) region
@@ -39,7 +30,6 @@
 
 - (void) setAnnotation:(id<MKAnnotation>)annotation
 {
-    
     [self.region removeObserver:self forKeyPath:RegionAttributes.number];
     [super setAnnotation:annotation];
     [self setNeedsDisplay];
@@ -52,16 +42,26 @@
     [self.region removeObserver:self forKeyPath:RegionAttributes.number];
 }
 
-- (BOOL) isOpaque
+/****************************************************************************/
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    return NO;
+    if (context == (__bridge void *)([RegionAnnotationView class])) {
+        [self setNeedsDisplay];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
+
+/****************************************************************************/
+#pragma mark Drawing
 
 - (void) drawRect:(CGRect)rect
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
 
-    CGImageRef background = [_drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGImageRef background = [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:BackgroundShapeRectangle
                                                                                borderMode:BorderModeSolid
@@ -88,27 +88,6 @@
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationDetailShadowColor CGColor]);
         [line2 drawInRect:rect2 withFont:kAnnotationDetailFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == (__bridge void *)([RegionAnnotationView class])) {
-        [self setNeedsDisplay];
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
-
-@end
-
-/****************************************************************************/
-#pragma mark -
-
-@implementation Region (Mapkit) 
-
-- (CLLocationCoordinate2D) coordinate
-{
-	return self.coordinateRegion.center;
 }
 
 @end

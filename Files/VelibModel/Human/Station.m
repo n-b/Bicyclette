@@ -146,7 +146,12 @@
 }
 
 /****************************************************************************/
-#pragma mark Location
+#pragma mark MKAnnotation, Locatable
+
+- (CLLocationCoordinate2D) coordinate
+{
+	return self.location.coordinate;
+}
 
 - (CLLocation*) location
 {
@@ -222,5 +227,11 @@
         [self.region.stations firstObject] == self) {
         [self.managedObjectContext deleteObject:self.region];
     }
+}
+
+- (void) willTurnIntoFault
+{
+    [super willTurnIntoFault];
+    
 }
 @end

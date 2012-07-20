@@ -2,7 +2,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "NSMutableArray+Locatable.h"
 
-@interface Station : _Station <Locatable>
+@interface Station : _Station <MKAnnotation, Locatable>
 
 // status
 - (void) refresh;
