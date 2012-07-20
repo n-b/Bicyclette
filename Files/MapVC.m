@@ -94,7 +94,7 @@ typedef enum {
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
     
-    self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithRadar:self.model.screenCenterRadar];
+    self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithRadar:self.model.screenCenterRadar drawingCache:_drawingCache];
     self.screenCenterRadarView.center = self.mapView.center;
     [self.mapView addSubview:self.screenCenterRadarView];
     self.screenCenterRadarView.userInteractionEnabled = NO;
@@ -167,7 +167,7 @@ typedef enum {
     {
         RadarAnnotationView * radarAV = (RadarAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RadarAnnotationView reuseIdentifier]];
 		if(nil==radarAV)
-			radarAV = [[RadarAnnotationView alloc] initWithRadar:(Radar*)annotation];
+			radarAV = [[RadarAnnotationView alloc] initWithRadar:(Radar*)annotation drawingCache:_drawingCache];
         
         CGSize radarSize = [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:self.mapView].size;
         radarAV.bounds = (CGRect){CGPointZero, radarSize};

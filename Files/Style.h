@@ -1,3 +1,4 @@
+
 //
 //  Style.h
 //  Bicyclette
@@ -39,3 +40,7 @@
 #define kAnnotationValueTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationValueShadowColor		[kAnnotationTextColor colorWithBrightness:1]
 #define kAnnotationValueFont			[UIFont fontWithName:@"Futura-Medium" size:19]
+
+#define kRadarAnnotationHandleSize		20
+#define kRadarAnnotationDefaultColor	[UIColor colorWithHue:0 saturation:0 brightness:1 alpha:1]
+#define kRadarAnnotationSelectedColor	[UIColor colorWithHue:0 saturation:0 brightness:.9 alpha:1]

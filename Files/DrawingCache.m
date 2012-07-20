@@ -93,7 +93,9 @@ typedef enum {
                     {
                         CGFloat lineWidth = 2;
                         CGFloat perimeter = (rect.size.width-lineWidth/2/scale) * M_PI;
-                        CGFloat dash = perimeter/24;
+                        CGFloat expectedDashes = 8; // pixels
+                        int count = perimeter/expectedDashes;
+                        CGFloat dash = perimeter/(count*2);
                         CGFloat lengths[] = {dash,dash};
                         CGContextSetLineWidth(c, lineWidth/scale);
                         CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, (lineWidth/2)/scale, (lineWidth/2)/scale)];

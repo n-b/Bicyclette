@@ -10,25 +10,44 @@
 #import "Radar.h"
 #import "Station.h"
 #import "NSArrayAdditions.h"
+#import "DrawingCache.h"
+#import "Style.h"
+
 
 @interface RadarAnnotationView ()
 @property (nonatomic) NSArray * stationsWithinRadarRegion;
 @end
 
 @implementation RadarAnnotationView
+{
+    DrawingCache * _drawingCache;
+    CALayer * _handleLayer;
+}
 
 + (NSString*) reuseIdentifier
 {
     return NSStringFromClass([RadarAnnotationView class]);
 }
 
-- (id) initWithRadar:(Radar*)radar;
+- (id) initWithRadar:(Radar*)radar drawingCache:(DrawingCache*)drawingCache
 {
     self = [super initWithAnnotation:radar reuseIdentifier:[[self class] reuseIdentifier]];
-    if (self) {
-        self.annotation = radar;
-    }
+    _drawingCache = drawingCache;
+    _handleLayer = [CALayer new];
+    _handleLayer.bounds = CGRectMake(0,0,kRadarAnnotationHandleSize, kRadarAnnotationHandleSize);
+    _handleLayer.actions = @{ @"position" : [NSNull null], @"contents" : [NSNull null] };
+    [self.layer addSublayer:_handleLayer];
     return self;
+}
+
+- (void) willMoveToWindow:(UIWindow *)newWindow
+{
+    [super willMoveToWindow:newWindow];
+    if(newWindow && _handleLayer.contentsScale!=newWindow.screen.scale)
+    {
+        _handleLayer.contentsScale = newWindow.screen.scale;
+        [self displayHandleLayer];
+    }
 }
 
 /****************************************************************************/
@@ -56,6 +75,7 @@
     [self.radar addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
                 context:(__bridge void *)([RadarAnnotationView class])];
     [self setNeedsDisplay];
+    [self displayHandleLayer];
 }
 
 - (void) setStationsWithinRadarRegion:(NSArray *)newValue
@@ -83,7 +103,7 @@
         }
         else if([keyPath isEqualToString:@"needsRefresh"])
         {
-            [self setNeedsDisplay];
+//            [self setNeedsDisplay]; // useless now : contents does not depend on which station is being refreshed. Might change.
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -98,47 +118,59 @@
     CGRect b = [self bounds];
     [super setBounds:bounds];
     if(!CGRectEqualToRect(b, bounds))
+    {
+        _handleLayer.position = CGPointMake(CGRectGetMidX(self.layer.bounds), CGRectGetMidY(self.layer.bounds));
         [self setNeedsDisplay];
+    }
 }
 
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    [self setNeedsDisplay];
+    [self displayHandleLayer];
 }
 
 - (void) setDragState:(MKAnnotationViewDragState)newDragState animated:(BOOL)animated
 {
     [super setDragState:newDragState animated:animated];
-    [self setNeedsDisplay];
 
     CGFloat scale = 1.0;
+    CGFloat offsetY = 0.5;
 
     // Automatically switch to next state after .15 seconds
     MKAnnotationViewDragState autoSwithState = newDragState;
     switch (newDragState) {
         case MKAnnotationViewDragStateNone:
             scale = 1.0f;
+            offsetY = 0.f;
             break;
         case MKAnnotationViewDragStateStarting:
-            scale = 1.1f;
+            scale = 1.05f;
+            offsetY = 1.f;
             autoSwithState = MKAnnotationViewDragStateDragging;
             break;
         case MKAnnotationViewDragStateDragging:
             scale = 1.0f;
+            offsetY = .5f;
             break;
         case MKAnnotationViewDragStateEnding:
-            scale = 1.1f;
+            scale = 1.05f;
+            offsetY = 1.f;
             autoSwithState = MKAnnotationViewDragStateNone;
             break;
         case MKAnnotationViewDragStateCanceling:
             scale = 1.0f;
+            offsetY = 0.f;
             autoSwithState = MKAnnotationViewDragStateNone;
             break;
     }
 
     void (^animations)(void) = ^{
         self.transform = CGAffineTransformMakeScale(scale, scale);
+        _handleLayer.anchorPoint = CGPointMake(.5, offsetY+.5);
+        _handleLayer.shadowRadius = 1;
+        _handleLayer.shadowOpacity = offsetY != 0.f ? .4f : 0.f;
+        _handleLayer.shadowOffset = CGSizeMake(0, offsetY*_handleLayer.bounds.size.height);
     };
     
     if(animated)
@@ -158,38 +190,37 @@
 /****************************************************************************/
 #pragma mark Drawing
 
-- (BOOL) isOpaque
+- (void) displayHandleLayer
 {
-    return NO;
+    if(!self.draggable)
+        _handleLayer.contents = nil;
+    else
+    {
+        UIColor * color = self.selected ? kRadarAnnotationSelectedColor : kRadarAnnotationDefaultColor;
+        _handleLayer.contents =  (id)[_drawingCache sharedAnnotationViewBackgroundLayerWithSize:_handleLayer.bounds.size
+                                                                                          scale:_handleLayer.contentsScale
+                                                                                          shape:BackgroundShapeOval
+                                                                                     borderMode:BorderModeSolid
+                                                                                      baseColor:color
+                                                                                          value:@""
+                                                                                          phase:0];
+    }
+}
+
+- (void)displayLayer:(CALayer *)layer
+{
+    self.layer.contents = (id)[_drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.bounds.size
+                                                                               scale:self.layer.contentsScale
+                                                                               shape:BackgroundShapeOval
+                                                                          borderMode:BorderModeDashes
+                                                                           baseColor:nil
+                                                                               value:@""
+                                                                               phase:0];
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef c = UIGraphicsGetCurrentContext();
-
-    
-    CGContextSetLineWidth(c, 1);
-
-    if (self.dragState != MKAnnotationViewDragStateNone || self.selected)
-    {
-        [[UIColor blackColor] setStroke];
-        [[UIColor colorWithWhite:.5 alpha:.3] setFill];
-    }
-    else if([self.radar.identifier isEqualToString:RadarIdentifiers.userLocation] || [self.radar.identifier isEqualToString:RadarIdentifiers.screenCenter])
-    {
-        [[UIColor lightGrayColor] setStroke];
-        [[UIColor colorWithWhite:.5 alpha:.05] setFill];
-    }
-    else
-    {
-        [[UIColor grayColor] setStroke];
-        [[UIColor colorWithWhite:.5 alpha:.1] setFill];
-    }
-
-    CGContextSetShadow(c, CGSizeMake(1, -1), 1);
-    
-    CGContextAddEllipseInRect(c, CGRectInset(rect, 2, 2));
-    CGContextDrawPath(c, kCGPathFillStroke);
+    // implemented just so that displayLayer: is called
 }
 
 @end

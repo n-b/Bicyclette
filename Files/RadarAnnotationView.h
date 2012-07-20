@@ -6,13 +6,12 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
-
 @class Radar;
+@class DrawingCache;
 
 @interface RadarAnnotationView : MKAnnotationView
 
 + (NSString*) reuseIdentifier;
-- (id) initWithRadar:(Radar*)radar;
+- (id) initWithRadar:(Radar*)radar drawingCache:(DrawingCache*)drawingCache;
 
 @end
