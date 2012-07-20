@@ -113,7 +113,7 @@
     [self setNeedsDisplay];
 
     CGFloat scale = 1.0;
-    NSLog(@"state : %d",newDragState);
+
     // Automatically switch to next state after .15 seconds
     MKAnnotationViewDragState autoSwithState = newDragState;
     switch (newDragState) {

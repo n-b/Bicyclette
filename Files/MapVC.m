@@ -136,7 +136,7 @@ typedef enum {
     [self addAndRemoveMapAnnotations];
     [self updateRadarSizes];
 
-    self.model.screenCenterRadar.coordinate = self.mapView.centerCoordinate;
+    self.model.screenCenterRadar.coordinate = [self.mapView convertPoint:self.screenCenterRadarView.center toCoordinateFromView:self.mapView];
     self.model.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
 }
 
@@ -372,7 +372,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([MapVC class])) {
-        if([keyPath isEqualToString:@"RadarDistance"])
+        if(object == [NSUserDefaults standardUserDefaults] && [keyPath isEqualToString:@"RadarDistance"])
             [self updateRadarSizes];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
