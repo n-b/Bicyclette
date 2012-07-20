@@ -18,6 +18,7 @@
 #import "Radar.h"
 #import "RadarAnnotationView.h"
 #import "RadarUpdateQueue.h"
+#import "MKMapView+GoogleLogo.h"
 
 typedef enum {
 	MapModeNone = 0,
@@ -111,6 +112,13 @@ typedef enum {
     [self reloadData];
     
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // Relocate google logo
+    self.mapView.googleLogo.frame = (CGRect){CGPointZero,self.mapView.googleLogo.frame.size};
 }
 
 - (void) reloadData
