@@ -28,6 +28,7 @@ typedef enum {
 @interface MapVC() <MKMapViewDelegate>
 // UI
 @property MKMapView * mapView;
+@property RadarAnnotationView * screenCenterRadarView;
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * displayControl;
 
@@ -92,6 +93,10 @@ typedef enum {
     self.mapView.zoomEnabled = YES;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
+    
+    self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithRadar:self.model.screenCenterRadar];
+    self.screenCenterRadarView.center = self.mapView.center;
+    [self.mapView addSubview:self.screenCenterRadarView];
 
     UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
     [self.mapView addGestureRecognizer:longPressRecognizer];
@@ -223,7 +228,10 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
         NSFetchRequest * radarsRequest = [NSFetchRequest new];
 		[radarsRequest setEntity:[Radar entityInManagedObjectContext:self.model.moc]];
-        newAnnotations = [newAnnotations arrayByAddingObjectsFromArray:[self.model.moc executeFetchRequest:radarsRequest error:NULL]];
+        NSMutableArray * allRadars = [[self.model.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
+        // do not add an annotation for screenCenterRadar, it's handled separately.
+        [allRadars removeObject:self.model.screenCenterRadar];
+        newAnnotations = [newAnnotations arrayByAddingObjectsFromArray:allRadars];
     }
 
     NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
@@ -243,6 +251,8 @@ fromOldState:(MKAnnotationViewDragState)oldState
             [self.mapView viewForAnnotation:radar].bounds = (CGRect){CGPointZero, radarSize};
         }
     }
+    CGSize radarSize = [self.mapView convertRegion:self.model.screenCenterRadar.radarRegion toRectToView:self.mapView].size;
+    self.screenCenterRadarView.bounds = (CGRect){CGPointZero, radarSize};
 }
 
 /****************************************************************************/
