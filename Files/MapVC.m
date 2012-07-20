@@ -231,6 +231,9 @@ fromOldState:(MKAnnotationViewDragState)oldState
         NSMutableArray * allRadars = [[self.model.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
         // do not add an annotation for screenCenterRadar, it's handled separately.
         [allRadars removeObject:self.model.screenCenterRadar];
+        // only add the userLocationRadar if it's actually here
+        if(self.mapView.userLocation.coordinate.latitude==0.0)
+            [allRadars removeObject:self.model.userLocationRadar];
         newAnnotations = [newAnnotations arrayByAddingObjectsFromArray:allRadars];
     }
 
