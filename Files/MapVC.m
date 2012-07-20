@@ -94,10 +94,14 @@ typedef enum {
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
     
+    // Add Screen Center Radar View
     self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithAnnotation:self.model.screenCenterRadar drawingCache:_drawingCache];
     self.screenCenterRadarView.center = self.mapView.center;
     [self.mapView addSubview:self.screenCenterRadarView];
     self.screenCenterRadarView.userInteractionEnabled = NO;
+    
+    // Forget old userLocation, until we have a better one
+    [self.model userLocationRadar].coordinate = CLLocationCoordinate2DMake(0, 0);
 
     UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
     [self.mapView addGestureRecognizer:longPressRecognizer];
@@ -211,12 +215,14 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
     if (self.mode == MapModeRegions)
     {
+        // Regions
         NSFetchRequest * regionsRequest = [NSFetchRequest new];
         regionsRequest.entity = [Region entityInManagedObjectContext:self.model.moc];
         newAnnotations = [self.model.moc executeFetchRequest:regionsRequest error:NULL];
     }
     else
     {
+        // Stations
         NSFetchRequest * stationsRequest = [NSFetchRequest new];
 		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.model.moc]];
         MKCoordinateRegion mapRegion = self.mapView.region;
@@ -226,17 +232,18 @@ fromOldState:(MKAnnotationViewDragState)oldState
                              mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
                              mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
         newAnnotations = [self.model.moc executeFetchRequest:stationsRequest error:NULL];
-
-        NSFetchRequest * radarsRequest = [NSFetchRequest new];
-		[radarsRequest setEntity:[Radar entityInManagedObjectContext:self.model.moc]];
-        NSMutableArray * allRadars = [[self.model.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
-        // do not add an annotation for screenCenterRadar, it's handled separately.
-        [allRadars removeObject:self.model.screenCenterRadar];
-        // only add the userLocationRadar if it's actually here
-        if(self.mapView.userLocation.coordinate.latitude==0.0)
-            [allRadars removeObject:self.model.userLocationRadar];
-        newAnnotations = [newAnnotations arrayByAddingObjectsFromArray:allRadars];
     }
+    
+    // Radars
+    NSFetchRequest * radarsRequest = [NSFetchRequest new];
+    [radarsRequest setEntity:[Radar entityInManagedObjectContext:self.model.moc]];
+    NSMutableArray * allRadars = [[self.model.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
+    // do not add an annotation for screenCenterRadar, it's handled separately.
+    [allRadars removeObject:self.model.screenCenterRadar];
+    // only add the userLocationRadar if it's actually here
+    if(self.mapView.userLocation.coordinate.latitude==0.0)
+        [allRadars removeObject:self.model.userLocationRadar];
+    newAnnotations = [newAnnotations arrayByAddingObjectsFromArray:allRadars];
 
     NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
     NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
