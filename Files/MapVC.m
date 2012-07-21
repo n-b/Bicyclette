@@ -88,17 +88,22 @@ typedef enum {
 
 - (void) loadView
 {
+    [super loadView];
+    
+    // Create mapview
     self.mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    self.view = self.mapView;
+    [self.view addSubview:self.mapView ];
+    self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapView.showsUserLocation = YES;
     self.mapView.zoomEnabled = YES;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
-    
+        
     // Add Screen Center Radar View
     self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithAnnotation:self.model.screenCenterRadar drawingCache:_drawingCache];
+    [self.view addSubview:self.screenCenterRadarView];
     self.screenCenterRadarView.center = self.mapView.center;
-    [self.mapView addSubview:self.screenCenterRadarView];
+    self.screenCenterRadarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.screenCenterRadarView.userInteractionEnabled = NO;
     
     // Forget old userLocation, until we have a better one
@@ -131,6 +136,11 @@ typedef enum {
 	self.mapView.region = self.referenceRegion;
 
     [self addAndRemoveMapAnnotations];
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
 }
 
 /****************************************************************************/
