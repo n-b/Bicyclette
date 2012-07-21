@@ -52,8 +52,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// info button
-    [self.window bringSubviewToFront:self.infoToolbar];
-    [self.window bringSubviewToFront:self.infoButton];
+    [self.rootNavC.view addSubview:self.infoToolbar];
+    [self.rootNavC.view addSubview:self.infoButton];
 
     // Fade animation
 	UIView * fadeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]];
@@ -74,6 +74,7 @@
 {
     if(self.rootNavC.visibleViewController==self.mapVC)
     {
+        UIView * rootView = self.rootNavC.view;
         // Hide MapVC, Show PrefsVC.
         [self.mapVC setAnnotationsHidden:YES];
         
@@ -81,14 +82,19 @@
         CGPoint rotationCenter = self.infoButton.center;
         
         // Take a screenshot of the presenting vc
-        self.screenshot = [[UIImageView alloc] initWithImage:[self.rootNavC.view screenshot]];
-        [self.window insertSubview:self.screenshot belowSubview:self.infoToolbar];
+        self.screenshot = [[UIImageView alloc] initWithImage:[self.mapVC.view.superview screenshot]];
+
+        // Present (not animated)
+        [self.rootNavC pushViewController:self.prefsVC animated:NO];
+
+        // Add the screenshot
+        [rootView insertSubview:self.screenshot belowSubview:self.infoToolbar];
         
         // Align the screenshot around the rotation center
-        self.screenshot.layer.anchorPoint = CGPointMake(rotationCenter.x/self.window.bounds.size.width,
-                                                        rotationCenter.y/self.window.bounds.size.height);
-        CGSize translation = CGSizeMake(rotationCenter.x-CGRectGetMidX(self.window.bounds),
-                                        rotationCenter.y-CGRectGetMidY(self.window.bounds));
+        self.screenshot.layer.anchorPoint = CGPointMake(rotationCenter.x/rootView.bounds.size.width,
+                                                        rotationCenter.y/rootView.bounds.size.height);
+        CGSize translation = CGSizeMake(rotationCenter.x-CGRectGetMidX(rootView.bounds),
+                                        rotationCenter.y-CGRectGetMidY(rootView.bounds));
         self.screenshot.transform = CGAffineTransformMakeTranslation(translation.width, translation.height );
 
         // Poor man's shadow for the screenshot (faster during animation)
@@ -96,13 +102,10 @@
         self.screenshot.layer.borderWidth = 1;
         self.screenshot.layer.borderColor = [UIColor darkGrayColor].CGColor;
 
-        // Present (not animated)
-        [self.rootNavC presentViewController:self.prefsVC animated:NO completion:nil];
-        
         // Animate
         [UIView animateWithDuration:.5
                          animations:^(void) {
-                             CGAffineTransform rotation = CGAffineTransformMakeRotation(.8*M_PI);
+                             CGAffineTransform rotation = CGAffineTransformMakeRotation(.9*M_PI);
                              self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
                          } completion:^(BOOL finished) {
                              // Real Shadow when static
@@ -123,14 +126,16 @@
         self.screenshot.layer.shadowRadius = 0;
         [UIView animateWithDuration:.5
                          animations:^(void) {
-                             CGAffineTransform rotation = CGAffineTransformMakeRotation(-.8*M_PI);
+                             CGAffineTransform rotation = CGAffineTransformMakeRotation(-.9*M_PI);
                              self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
                              self.screenshot.layer.borderWidth = 0;
                          } completion:^(BOOL finished) {
                              // We're done !
                              [self.screenshot removeFromSuperview];
                              self.screenshot = nil;
-                             [self.rootNavC dismissViewControllerAnimated:NO completion:nil];
+                             [self.rootNavC popToRootViewControllerAnimated:NO];
+                             [self.rootNavC.view bringSubviewToFront:self.infoToolbar];
+                             [self.rootNavC.view bringSubviewToFront:self.infoButton];
                          }];
     }
 }

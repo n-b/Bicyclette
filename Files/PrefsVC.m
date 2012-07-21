@@ -17,7 +17,6 @@
 
 @property (weak) IBOutlet UIActivityIndicatorView *updateIndicator;
 @property (weak) IBOutlet UIBarButtonItem *updateButton;
-@property (weak) IBOutlet UILabel *updateLabel;
 @end
 
 @implementation PrefsVC
@@ -26,7 +25,12 @@
     [super viewWillAppear:animated];
     [self updateRadarDistancesSegmentedControl];
     if(![self.updateIndicator isAnimating])
-        self.updateLabel.text = @"";
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return NO;
 }
 
 /****************************************************************************/
@@ -99,13 +103,13 @@
 {
     if([note.name isEqualToString:VelibModelNotifications.updateBegan])
     {
-        self.updateLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil)];
         [self.updateIndicator startAnimating];
         self.updateButton.enabled = NO;
     }
     else if([note.name isEqualToString:VelibModelNotifications.updateGotNewData])
     {
-        self.updateLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : PARSING", nil)];
     }
     else if([note.name isEqualToString:VelibModelNotifications.updateSucceeded])
     {
@@ -115,7 +119,7 @@
         NSArray * saveErrors = note.userInfo[VelibModelNotifications.keys.saveErrors];
         if(dataChanged)
         {
-            self.updateLabel.text = @"";
+            [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
             NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
             NSUInteger count = [self.model.moc countForFetchRequest:request error:NULL];
             NSString * title;
@@ -138,13 +142,13 @@
                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
         else
-            self.updateLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
+            [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil)];
     }
     else if([note.name isEqualToString:VelibModelNotifications.updateFailed])
     {
         [self.updateIndicator stopAnimating];
         self.updateButton.enabled = YES;
-        self.updateLabel.text = @"";
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
         NSError * error = note.userInfo[VelibModelNotifications.keys.failureError];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
                                    message:[error localizedDescription]
