@@ -6,9 +6,10 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "MapVC.h"
 #import "BicycletteAnnotationView.h"
 
+typedef enum { StationAnnotationModeBikes, StationAnnotationModeParking }  StationAnnotationMode;
+
 @interface StationAnnotationView : BicycletteAnnotationView
-@property (nonatomic) MapDisplay display;
+@property (nonatomic) StationAnnotationMode mode;
 @end

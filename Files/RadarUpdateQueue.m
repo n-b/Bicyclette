@@ -65,6 +65,7 @@
 
 - (void) updateStationsList
 {
+    // Make the list of stations to refresh continuously
     NSMutableOrderedSet * stationsList = [NSMutableOrderedSet new];
     
     NSMutableArray * sortedRadars = [self.radars mutableCopy];

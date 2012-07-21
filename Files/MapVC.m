@@ -21,22 +21,22 @@
 #import "MKMapView+GoogleLogo.h"
 
 typedef enum {
-	MapModeNone = 0,
-	MapModeRegions,
-	MapModeStations
-}  MapMode;
+	MapLevelNone = 0,
+	MapLevelRegions,
+	MapLevelStations
+}  MapLevel;
 
 @interface MapVC() <MKMapViewDelegate>
 // UI
 @property MKMapView * mapView;
 @property RadarAnnotationView * screenCenterRadarView;
 @property MKUserTrackingBarButtonItem * userTrackingButton;
-@property UISegmentedControl * displayControl;
+@property UISegmentedControl * modeControl;
 
 // Data
 @property MKCoordinateRegion referenceRegion;
-@property (nonatomic) MapMode mode;
-@property (nonatomic) MapDisplay display;
+@property (nonatomic) MapLevel level;
+@property (nonatomic) StationAnnotationMode stationMode;
 
 // Radar creation
 @property (nonatomic) Radar * droppedRadar;
@@ -61,14 +61,14 @@ typedef enum {
     
     self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:nil];
     
-    _displayControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKES", nil), NSLocalizedString(@"PARKING", nil) ]];
-    _displayControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [_displayControl addTarget:self action:@selector(switchDisplay:) forControlEvents:UIControlEventValueChanged];
-    _displayControl.selectedSegmentIndex = self.display;
+    _modeControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKES", nil), NSLocalizedString(@"PARKING", nil) ]];
+    _modeControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [_modeControl addTarget:self action:@selector(switchMode:) forControlEvents:UIControlEventValueChanged];
+    _modeControl.selectedSegmentIndex = self.stationMode;
         
     self.toolbarItems = @[self.userTrackingButton,
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-    [[UIBarButtonItem alloc] initWithCustomView:self.displayControl],
+    [[UIBarButtonItem alloc] initWithCustomView:self.modeControl],
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
     
     _drawingCache = [DrawingCache new];
@@ -150,11 +150,11 @@ typedef enum {
 {
 	CLLocationDegrees modelSpan = self.referenceRegion.span.latitudeDelta;
 	if(self.mapView.region.span.latitudeDelta>modelSpan/10.0f)
-		self.mode = MapModeRegions;
+		self.level = MapLevelRegions;
 	else
-		self.mode = MapModeStations;
+		self.level = MapLevelStations;
 
-    self.displayControl.enabled = (self.mode==MapModeStations);
+    self.modeControl.enabled = (self.level==MapLevelStations);
     
     [self addAndRemoveMapAnnotations];
     [self updateRadarSizes];
@@ -182,7 +182,7 @@ typedef enum {
 		if(nil==stationAV)
 			stationAV = [[StationAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
 
-        stationAV.display = self.display;
+        stationAV.mode = self.stationMode;
 		return stationAV;
 	}
     else if([annotation isKindOfClass:[Radar class]])
@@ -231,7 +231,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
     NSArray * newAnnotations;
     
 
-    if (self.mode == MapModeRegions)
+    if (self.level == MapLevelRegions)
     {
         // Regions
         NSFetchRequest * regionsRequest = [NSFetchRequest new];
@@ -346,11 +346,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
     [menu setMenuVisible:YES animated:YES];
 }
 
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    BOOL res = [super canPerformAction:action withSender:sender];
-    return res;
-}
-
 - (void) delete:(id)sender // From UIMenuController
 {
     for (Radar * radar in self.mapView.selectedAnnotations)
@@ -363,16 +358,16 @@ fromOldState:(MKAnnotationViewDragState)oldState
     }
 }
 
-- (void) switchDisplay:(UISegmentedControl*)sender
+- (void) switchMode:(UISegmentedControl*)sender
 {
-    self.display = sender.selectedSegmentIndex;
+    self.stationMode = sender.selectedSegmentIndex;
 
-    if(self.mode==MapModeStations)
+    if(self.level==MapLevelStations)
     {
         for (id<MKAnnotation> annotation in self.mapView.annotations) {
             StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
             if([stationAV isKindOfClass:[StationAnnotationView class]])
-                stationAV.display = self.display;
+                stationAV.mode = self.stationMode;
         }
     }
 }

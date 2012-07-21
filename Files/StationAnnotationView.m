@@ -47,9 +47,9 @@
         [self.station removeObserver:self forKeyPath:property];
 }
 
-- (void) setDisplay:(MapDisplay)display_
+- (void) setMode:(StationAnnotationMode)mode_
 {
-    _display = display_;
+    _mode = mode_;
     [self setNeedsDisplay];
 }
 
@@ -109,7 +109,7 @@
         }
         _loadingLayer.contents = (id) [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                                scale:_loadingLayer.contentsScale
-                                                                                               shape:self.display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
+                                                                                               shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                                           borderMode:BorderModeDashes
                                                                                            baseColor:nil
                                                                                                value:@""
@@ -132,7 +132,7 @@
     if([self station].status_date)
     {
         int16_t value;
-        if(self.display==MapDisplayBikes)
+        if(self.mode==StationAnnotationModeBikes)
             value = [self station].status_availableValue;
         else
             value = [self station].status_freeValue;
@@ -151,7 +151,7 @@
     
     self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
                                                                                        scale:self.layer.contentsScale
-                                                                                       shape:self.display==MapDisplayBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
+                                                                                       shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                                   borderMode:BorderModeSolid
                                                                                    baseColor:baseColor
                                                                                        value:text
