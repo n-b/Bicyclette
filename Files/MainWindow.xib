@@ -49,6 +49,7 @@
 					<object class="IBUIToolbar" id="652508182">
 						<reference key="NSNextResponder" ref="380026005"/>
 						<int key="NSvFlags">1289</int>
+						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{278, 436}, {42, 44}}</string>
 						<reference key="NSSuperview" ref="380026005"/>
 						<reference key="NSWindow"/>
@@ -74,7 +75,6 @@
 						<string key="NSFrame">{{290, 448}, {18, 19}}</string>
 						<reference key="NSSuperview" ref="380026005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -274,8 +274,8 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="380026005"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="147904207"/>
 							<reference ref="652508182"/>
+							<reference ref="147904207"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -334,11 +334,6 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">142</int>
-						<reference key="object" ref="147904207"/>
-						<reference key="parent" ref="380026005"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">150</int>
 						<reference key="object" ref="652508182"/>
 						<array class="NSMutableArray" key="children">
@@ -350,6 +345,11 @@
 						<int key="objectID">152</int>
 						<reference key="object" ref="856225542"/>
 						<reference key="parent" ref="652508182"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">142</int>
+						<reference key="object" ref="147904207"/>
+						<reference key="parent" ref="380026005"/>
 					</object>
 				</array>
 			</object>
@@ -379,7 +379,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">162</int>
+			<int key="maxID">164</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

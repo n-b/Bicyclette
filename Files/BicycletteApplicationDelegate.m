@@ -52,7 +52,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// info button
+    CGRect rootViewFrame = self.rootNavC.view.bounds;
     [self.rootNavC.view addSubview:self.infoToolbar];
+    CGRect infoToolbarFrame = self.infoToolbar.frame;
+    infoToolbarFrame.origin.x = rootViewFrame.size.width - infoToolbarFrame.size.width;
+    infoToolbarFrame.origin.y = rootViewFrame.size.height - infoToolbarFrame.size.height;
+    self.infoToolbar.frame = infoToolbarFrame;
+    self.infoButton.center = self.infoToolbar.center;
     [self.rootNavC.view addSubview:self.infoButton];
 
     // Fade animation

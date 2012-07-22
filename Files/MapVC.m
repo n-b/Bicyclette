@@ -111,7 +111,12 @@ typedef enum {
     
     // create toolbar
 #define kToolbarHeight 44 // Strange that I have to declare it
-    self.mapVCToolbar = [[TransparentToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-kToolbarHeight, self.view.bounds.size.width, kToolbarHeight)];
+    self.mapVCToolbar = [[TransparentToolbar alloc] initWithFrame:
+                         CGRectMake(0, self.view.bounds.size.height-kToolbarHeight, 
+                                    self.view.bounds.size.width, kToolbarHeight)];
+    self.mapVCToolbar.barStyle = UIBarStyleBlack;
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        self.mapVCToolbar.translucent = YES; // means transparent actually
     [self.view addSubview:self.mapVCToolbar];
     self.mapVCToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     self.mapVCToolbar.items = @[self.userTrackingButton,
@@ -313,11 +318,12 @@ fromOldState:(MKAnnotationViewDragState)oldState
     {
         if([radar isKindOfClass:[Radar class]])
         {
-            CGSize radarSize = [self.mapView convertRegion:radar.radarRegion toRectToView:self.mapView].size;
-            [self.mapView viewForAnnotation:radar].bounds = (CGRect){CGPointZero, radarSize};
+            RadarAnnotationView * radarView = (RadarAnnotationView *)[self.mapView viewForAnnotation:radar];
+            CGSize radarSize = [self.mapView convertRegion:radar.radarRegion toRectToView:radarView].size;
+            radarView.bounds = (CGRect){CGPointZero, radarSize};
         }
     }
-    CGSize radarSize = [self.mapView convertRegion:self.model.screenCenterRadar.radarRegion toRectToView:self.mapView].size;
+    CGSize radarSize = [self.mapView convertRegion:self.model.screenCenterRadar.radarRegion toRectToView:self.screenCenterRadarView].size;
     self.screenCenterRadarView.bounds = (CGRect){CGPointZero, radarSize};
 }
 

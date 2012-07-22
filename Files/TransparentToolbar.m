@@ -13,23 +13,22 @@
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-	if(self!=nil) self.backgroundColor = [UIColor clearColor];
-    self.barStyle = UIBarStyleBlack;
-    self.translucent = YES;
+    self.backgroundColor = [UIColor clearColor];
 	return self;
 }
 
 - (id) initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
-	if(self!=nil) self.backgroundColor = [UIColor clearColor];
-    self.barStyle = UIBarStyleBlack;
-    self.translucent = YES;
+    self.backgroundColor = [UIColor clearColor];
 	return self;
 }
 
 - (void) drawRect:(CGRect) rect
 {
+    // we take "translucent" for "transparent"
+    if(!self.translucent)
+        [super drawRect:rect];
 }
 
 @end
