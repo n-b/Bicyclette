@@ -177,7 +177,7 @@ typedef enum {
     [self addAndRemoveMapAnnotations];
     [self updateRadarSizes];
 
-    self.model.screenCenterRadar.coordinate = [self.mapView convertPoint:self.screenCenterRadarView.center toCoordinateFromView:self.mapView];
+    self.model.screenCenterRadar.coordinate = [self.mapView convertPoint:self.screenCenterRadarView.center toCoordinateFromView:self.screenCenterRadarView.superview];
     self.model.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
 }
 
