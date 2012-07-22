@@ -7,6 +7,7 @@ const struct RadarAttributes RadarAttributes = {
 	.identifier = @"identifier",
 	.latitude = @"latitude",
 	.longitude = @"longitude",
+	.manualRadar = @"manualRadar",
 };
 
 const struct RadarRelationships RadarRelationships = {
@@ -47,6 +48,10 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
+	if ([key isEqualToString:@"manualRadarValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"manualRadar"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 	}
 
@@ -109,6 +114,32 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 
 - (void)setPrimitiveLongitudeValue:(double)value_ {
 	[self setPrimitiveLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic manualRadar;
+
+
+
+- (BOOL)manualRadarValue {
+	NSNumber *result = [self manualRadar];
+	return [result boolValue];
+}
+
+- (void)setManualRadarValue:(BOOL)value_ {
+	[self setManualRadar:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveManualRadarValue {
+	NSNumber *result = [self primitiveManualRadar];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveManualRadarValue:(BOOL)value_ {
+	[self setPrimitiveManualRadar:[NSNumber numberWithBool:value_]];
 }
 
 

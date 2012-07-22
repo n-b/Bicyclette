@@ -43,8 +43,8 @@
     [self.radar removeObserver:self forKeyPath:@"stationsWithinRadarRegion" context:(__bridge void *)([RadarAnnotationView class])];
     [super setAnnotation:annotation];
     
-    self.draggable = self.radar.identifier==nil;
-    self.enabled = self.radar.identifier==nil;
+    self.draggable = self.radar.manualRadarValue;
+    self.enabled = self.radar.manualRadarValue;
     if(self.radar==nil)
         self.stationsWithinRadarRegion = nil;
     [self.radar addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew

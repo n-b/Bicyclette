@@ -53,7 +53,9 @@ const struct RadarIdentifiers RadarIdentifiers = {
 {
     if (context == (__bridge void *)([Radar class])) {
         [self willChangeValueForKey:@"radarRegion"];
+        [self willChangeValueForKey:@"clRegion"];
         [self didChangeValueForKey:@"radarRegion"];
+        [self didChangeValueForKey:@"clRegion"];
         [self updateStationsWithinRadarRegion];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -70,6 +72,20 @@ const struct RadarIdentifiers RadarIdentifiers = {
 }
 
 + (NSSet *)keyPathsForValuesAffectingRadarRegion
+{
+    return [NSSet setWithObject:@"coordinate"];
+}
+
+/****************************************************************************/
+#pragma mark CLRegion
+
+- (CLRegion*) clRegion
+{
+    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    return [[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:radarDistance identifier:self.identifier];
+}
+
++ (NSSet *)keyPathsForValuesAffectingClRegion
 {
     return [NSSet setWithObject:@"coordinate"];
 }

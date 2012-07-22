@@ -22,3 +22,10 @@
 "UPDATING : COMPLETED WITH ERRORS" = "Des stations mal géolocalisées ont été ignorées :";
 
 "UPDATING : FAILED" = "Échec de la mise à jour";
+
+"LOCALIZATION_PURPOSE" = "Afficher les stations à proximité";
+
+"LOCALIZATION_ERROR_UNAUTHORIZED_TITLE" = "Les services de localisation sont désactivés";
+"LOCALIZATION_ERROR_UNAUTHORIZED_MESSAGE" = "Les alertes automatiques utilisent la géolocalisation pour automatiquement vérifier les stations à proximité.";
+
+"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d vélos, %3$d places à %1$@";

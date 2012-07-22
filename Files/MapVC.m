@@ -339,6 +339,10 @@ fromOldState:(MKAnnotationViewDragState)oldState
             
         case UIGestureRecognizerStateBegan:
             self.droppedRadar = [Radar insertInManagedObjectContext:self.model.moc];
+            self.droppedRadar.manualRadarValue = YES;
+            // just use a timestamp as the id
+            long long identifier = 100*[NSDate timeIntervalSinceReferenceDate];
+            self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",identifier];
             [self.mapView addAnnotation:self.droppedRadar];
             self.droppedRadar.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
                                                  toCoordinateFromView:self.mapView];

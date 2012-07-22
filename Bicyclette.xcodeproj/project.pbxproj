@@ -65,6 +65,7 @@
 		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
 		37EDD1CB15A5CDC80023301D /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDD1CA15A5CDC80023301D /* Radar.m */; };
 		37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDD1CE15A5CDD10023301D /* _Radar.m */; };
+		37EE011915BC87E4008376A1 /* RegionMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* RegionMonitor.m */; };
 		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */; };
 /* End PBXBuildFile section */
@@ -133,7 +134,7 @@
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
-		3770B22E14E976C20003BBA8 /* Paris.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Paris.gpx; sourceTree = "<group>"; };
+		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
 		37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+StandardPaths.m"; sourceTree = "<group>"; };
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,8 +171,13 @@
 		37EDD1CA15A5CDC80023301D /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
 		37EDD1CD15A5CDD10023301D /* _Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Radar.h; sourceTree = "<group>"; };
 		37EDD1CE15A5CDD10023301D /* _Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Radar.m; sourceTree = "<group>"; };
+		37EE011715BC87E4008376A1 /* RegionMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionMonitor.h; sourceTree = "<group>"; };
+		37EE011815BC87E4008376A1 /* RegionMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionMonitor.m; sourceTree = "<group>"; };
 		37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCMapping.h"; sourceTree = "<group>"; };
 		37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping.m"; sourceTree = "<group>"; };
+		37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Beaubourg.gpx; sourceTree = "<group>"; };
+		37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Gare de Lyon.gpx"; sourceTree = "<group>"; };
+		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
 		37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedFixes.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -328,6 +334,8 @@
 				37216BC612611C5400A2695A /* VelibModel.m */,
 				3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */,
+				37EE011715BC87E4008376A1 /* RegionMonitor.h */,
+				37EE011815BC87E4008376A1 /* RegionMonitor.m */,
 				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
 				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
 				37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */,
@@ -355,7 +363,10 @@
 			isa = PBXGroup;
 			children = (
 				3770B22D14E9765A0003BBA8 /* carto.xml */,
-				3770B22E14E976C20003BBA8 /* Paris.gpx */,
+				3770B22E14E976C20003BBA8 /* Austerlitz.gpx */,
+				37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */,
+				37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */,
+				37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -597,6 +608,7 @@
 				3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */,
 				3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */,
 				3705B40C15B9E8DB009C8AAA /* MKMapView+GoogleLogo.m in Sources */,
+				37EE011915BC87E4008376A1 /* RegionMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

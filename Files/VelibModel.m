@@ -16,7 +16,7 @@
 #import "NSError+MultipleErrorsCombined.h"
 #import "DataUpdater.h"
 #import "RadarUpdateQueue.h"
-
+#import "RegionMonitor.h"
 
 /****************************************************************************/
 #pragma mark Constants
@@ -45,6 +45,8 @@ const struct VelibModelNotifications VelibModelNotifications = {
 // -
 @property RadarUpdateQueue * updaterQueue;
 // -
+@property RegionMonitor * regionMonitor;
+// -
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 // - 
 @property (nonatomic, strong) NSMutableDictionary * parsing_regionsByCodePostal;
@@ -61,6 +63,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     self = [super init];
     if (self) {
         self.updaterQueue = [[RadarUpdateQueue alloc] initWithModel:self];
+        self.regionMonitor = [[RegionMonitor alloc] initWithModel:self];
     }
     return self;
 }
@@ -96,7 +99,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
         NSDictionary * dict = (self.hardcodedFixes)[@"limits"];
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([dict[@"latitude"] doubleValue], [dict[@"longitude"] doubleValue]);
         CLLocationDistance distance = [dict[@"distance"] doubleValue];
-        self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:NSStringFromClass([self class])];
+        self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:self.name];
 	}
 	return _hardcodedLimits;
 }
@@ -341,6 +344,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     if(r==nil)
     {
         r = [Radar insertInManagedObjectContext:self.moc];
+        r.manualRadarValue = NO;
         r.identifier = RadarIdentifiers.userLocation;
         [self save:nil];
     }
@@ -352,6 +356,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     if(r==nil)
     {
         r = [Radar insertInManagedObjectContext:self.moc];
+        r.manualRadarValue = NO;
         r.identifier = RadarIdentifiers.screenCenter;
         [self save:nil];
     }

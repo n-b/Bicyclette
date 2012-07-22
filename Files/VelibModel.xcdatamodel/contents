@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1800" systemVersion="12A269" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1803" systemVersion="12A269" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Radar" representedClassName="Radar" syncable="YES">
-        <attribute name="identifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0" indexed="YES">
             <userInfo/>
         </attribute>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0" indexed="YES">
             <userInfo/>
         </attribute>
+        <attribute name="manualRadar" attributeType="Boolean" syncable="YES"/>
     </entity>
     <entity name="Region" representedClassName="Region">
         <attribute name="maxLatitude" attributeType="Double" defaultValueString="0">
@@ -88,7 +89,7 @@
     <fetchRequest name="stationsWithinRange" entity="Station" predicateString="latitude > $minLatitude AND latitude &lt; $maxLatitude AND longitude > $minLongitude AND longitude &lt; $maxLongitude"/>
     <fetchRequest name="userLocationRadar" entity="Radar" predicateString="identifier == &quot;userLocationRadar&quot;"/>
     <elements>
-        <element name="Radar" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Radar" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Region" positionX="45" positionY="-63" width="144" height="150"/>
         <element name="Station" positionX="360" positionY="-234" width="144" height="270"/>
     </elements>
