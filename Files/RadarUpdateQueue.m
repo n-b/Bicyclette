@@ -82,7 +82,6 @@
 
 - (void) setStationsToRefresh:(NSArray *)stationsToRefresh
 {
-    NSLog(@"refreshing = %@",[stationsToRefresh valueForKey:@"name"]);
     BOOL needsStart = [_stationsToRefresh count]==0;
     [self.stationsToRefresh setValue:@NO forKey:@"needsRefresh"];
     _stationsToRefresh = stationsToRefresh;
