@@ -136,6 +136,13 @@ typedef enum {
     self.mapView.googleLogo.frame = (CGRect){CGPointZero,self.mapView.googleLogo.frame.size};
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    // Relocate google logo
+    self.mapView.googleLogo.frame = (CGRect){CGPointZero,self.mapView.googleLogo.frame.size};
+}
+
 - (void) reloadData
 {
     MKCoordinateRegion region = [self.mapView regionThatFits:self.model.regionContainingData];
