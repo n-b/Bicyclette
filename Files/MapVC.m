@@ -24,7 +24,8 @@
 typedef enum {
 	MapLevelNone = 0,
 	MapLevelRegions,
-	MapLevelStations
+	MapLevelRegionsAndRadars,
+	MapLevelStationsAndRadars
 }  MapLevel;
 
 @interface MapVC() <MKMapViewDelegate>
@@ -157,13 +158,21 @@ typedef enum {
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-	CLLocationDegrees modelSpan = self.referenceRegion.span.latitudeDelta;
-	if(self.mapView.region.span.latitudeDelta>modelSpan/10.0f)
-		self.level = MapLevelRegions;
-	else
-		self.level = MapLevelStations;
+    MKCoordinateRegion viewRegion = self.mapView.region;
+    CLLocation * northLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude+viewRegion.span.latitudeDelta longitude:viewRegion.center.latitude];
+    CLLocation * southLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude-viewRegion.span.latitudeDelta longitude:viewRegion.center.latitude];
+    CLLocationDistance distance = [northLocation distanceFromLocation:southLocation];
 
-    self.modeControl.enabled = (self.level==MapLevelStations);
+	if(distance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegions"])
+		self.level = MapLevelNone;
+	else if(distance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegionsAndRadars"])
+		self.level = MapLevelRegions;
+    else if(distance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelStationsAndRadars"])
+		self.level = MapLevelRegionsAndRadars;
+	else
+		self.level = MapLevelStationsAndRadars;
+    
+    self.screenCenterRadarView.hidden = (self.level!=MapLevelStationsAndRadars);
     
     [self addAndRemoveMapAnnotations];
     [self updateRadarSizes];
@@ -237,17 +246,37 @@ fromOldState:(MKAnnotationViewDragState)oldState
 {
     NSArray * oldAnnotations = self.mapView.annotations;
     oldAnnotations = [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
-    NSArray * newAnnotations;
-    
+    NSMutableArray * newAnnotations = [NSMutableArray new];
 
-    if (self.level == MapLevelRegions)
+    if (self.level == MapLevelNone)
+    {
+        // Model
+        [newAnnotations addObject:self.model];
+    }
+
+    if (self.level == MapLevelRegions || self.level == MapLevelRegionsAndRadars)
     {
         // Regions
         NSFetchRequest * regionsRequest = [NSFetchRequest new];
         regionsRequest.entity = [Region entityInManagedObjectContext:self.model.moc];
-        newAnnotations = [self.model.moc executeFetchRequest:regionsRequest error:NULL];
+        [newAnnotations addObjectsFromArray:[self.model.moc executeFetchRequest:regionsRequest error:NULL]];
     }
-    else
+    
+    if (self.level == MapLevelRegionsAndRadars || self.level == MapLevelStationsAndRadars)
+    {
+        // Radars
+        NSFetchRequest * radarsRequest = [NSFetchRequest new];
+        [radarsRequest setEntity:[Radar entityInManagedObjectContext:self.model.moc]];
+        NSMutableArray * allRadars = [[self.model.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
+        // do not add an annotation for screenCenterRadar, it's handled separately.
+        [allRadars removeObject:self.model.screenCenterRadar];
+        // only add the userLocationRadar if it's actually here
+        if(self.mapView.userLocation.coordinate.latitude==0.0)
+            [allRadars removeObject:self.model.userLocationRadar];
+        [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:allRadars]];
+    }
+
+    if (self.level == MapLevelStationsAndRadars)
     {
         // Stations
         NSFetchRequest * stationsRequest = [NSFetchRequest new];
@@ -258,19 +287,8 @@ fromOldState:(MKAnnotationViewDragState)oldState
                              mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
                              mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
                              mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
-        newAnnotations = [self.model.moc executeFetchRequest:stationsRequest error:NULL];
+        [newAnnotations addObjectsFromArray:[self.model.moc executeFetchRequest:stationsRequest error:NULL]];
     }
-    
-    // Radars
-    NSFetchRequest * radarsRequest = [NSFetchRequest new];
-    [radarsRequest setEntity:[Radar entityInManagedObjectContext:self.model.moc]];
-    NSMutableArray * allRadars = [[self.model.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
-    // do not add an annotation for screenCenterRadar, it's handled separately.
-    [allRadars removeObject:self.model.screenCenterRadar];
-    // only add the userLocationRadar if it's actually here
-    if(self.mapView.userLocation.coordinate.latitude==0.0)
-        [allRadars removeObject:self.model.userLocationRadar];
-    newAnnotations = [newAnnotations arrayByAddingObjectsFromArray:allRadars];
 
     NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
     NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
@@ -341,7 +359,8 @@ fromOldState:(MKAnnotationViewDragState)oldState
 - (void) zoomInRegion:(Region*)region
 {
     MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
-    cregion = MKCoordinateRegionMakeWithDistance(cregion.center, 1000, 1000);
+    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
+    cregion = MKCoordinateRegionMakeWithDistance(cregion.center, meters, meters);
 	[self.mapView setRegion:cregion animated:YES];
 }
 
@@ -371,13 +390,10 @@ fromOldState:(MKAnnotationViewDragState)oldState
 {
     self.stationMode = sender.selectedSegmentIndex;
 
-    if(self.level==MapLevelStations)
-    {
-        for (id<MKAnnotation> annotation in self.mapView.annotations) {
-            StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
-            if([stationAV isKindOfClass:[StationAnnotationView class]])
-                stationAV.mode = self.stationMode;
-        }
+    for (id<MKAnnotation> annotation in self.mapView.annotations) {
+        StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
+        if([stationAV isKindOfClass:[StationAnnotationView class]])
+            stationAV.mode = self.stationMode;
     }
 }
 

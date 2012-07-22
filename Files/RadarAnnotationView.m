@@ -195,6 +195,7 @@
 
 - (void)displayLayer:(CALayer *)layer
 {
+    if(self.hidden) return;
     self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.bounds.size
                                                                                scale:self.layer.contentsScale
                                                                                shape:BackgroundShapeOval

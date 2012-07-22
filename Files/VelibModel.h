@@ -19,12 +19,13 @@
 @class Radar;
 @class RadarUpdateQueue;
 
-@interface VelibModel : CoreDataManager
+@interface VelibModel : CoreDataManager <MKAnnotation>
 
 - (NSString *) name;
 
 - (void) update;
 
+@property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
 
 @property (readonly, nonatomic) Radar * userLocationRadar;

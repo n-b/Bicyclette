@@ -362,6 +362,16 @@ const struct VelibModelNotifications VelibModelNotifications = {
 /****************************************************************************/
 #pragma mark Coordinates
 
+- (NSString *) title
+{
+    return self.name;
+}
+
+- (CLLocationCoordinate2D) coordinate
+{
+    return self.regionContainingData.center;
+}
+
 - (MKCoordinateRegion) regionContainingData
 {
 	if(_regionContainingData.center.latitude == 0 &&
