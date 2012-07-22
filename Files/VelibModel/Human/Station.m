@@ -102,7 +102,7 @@
 	[parser parse];
     self.currentParsedString = nil;
 
-    [self.managedObjectContext.model save:nil];
+    [self.managedObjectContext.model setNeedsSave];
     self.updater = nil;
     self.loading = NO;
 }

@@ -88,6 +88,13 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 /****************************************************************************/
 #pragma mark -
 
+- (void) setNeedsSave
+{
+    NSTimeInterval delay = [[NSUserDefaults standardUserDefaults] doubleForKey:@"ModelSaveDelay"];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(save:) object:nil];
+    [self performSelector:@selector(save:) withObject:nil afterDelay:delay];
+}
+
 - (BOOL) save:(NSError**)saveError
 {
     return [self.moc save:saveError];

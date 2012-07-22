@@ -23,6 +23,7 @@ extern NSString * const BicycletteErrorDomain;
 
 - (BOOL) save:(NSError**)saveError;
 
+- (void) setNeedsSave; // Will save later
 @end
 
 // reverse link to obtain the CoreDataManager from a moc, for example in the objects implementation.
