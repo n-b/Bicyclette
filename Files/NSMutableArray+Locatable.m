@@ -15,7 +15,7 @@
     [self filterUsingPredicate:
      [NSPredicate predicateWithBlock:
       ^BOOL(id<Locatable> locatable, NSDictionary *bindings){
-          return [location distanceFromLocation:locatable.location] < distance;
+          return location && [location distanceFromLocation:locatable.location] < distance;
       }]];
 }
 

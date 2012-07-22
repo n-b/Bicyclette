@@ -16,14 +16,16 @@
 		<integer>150</integer>
 		<integer>200</integer>
 	</array>
-	<key>MapLevelStationsAndRadars</key>
-	<integer>4000</integer>
 	<key>MapRegionZoomDistance</key>
 	<integer>1000</integer>
+	<key>MapLevelStationsAndRadars</key>
+	<integer>4000</integer>
 	<key>MapLevelRegionsAndRadars</key>
 	<integer>10000</integer>
 	<key>MapLevelRegions</key>
 	<integer>100000</integer>
+	<key>MaxRefreshDistance</key>
+	<integer>2000</integer>
 	<key>DataUpdaterDelayBetweenRequests</key>
 	<real>0.1</real>
 	<key>DataUpdaterDelayBetweenQueues</key>

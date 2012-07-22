@@ -66,19 +66,23 @@
 - (void) updateStationsList
 {
     // Make the list of stations to refresh continuously
-    NSMutableOrderedSet * stationsList = [NSMutableOrderedSet new];
+    NSMutableOrderedSet * stationsList = [NSMutableOrderedSet new]; // use an orderedset to make sure each station is added only once
     
     NSMutableArray * sortedRadars = [self.radars mutableCopy];
+    CLLocationDistance refreshDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MaxRefreshDistance"];
+    [sortedRadars filterWithinDistance:refreshDistance fromLocation:self.referenceLocation];
     [sortedRadars sortByDistanceFromLocation:self.referenceLocation];
     
     for (Radar * radar in sortedRadars) {
         [stationsList addObjectsFromArray:radar.stationsWithinRadarRegion];
     }
+
     self.stationsToRefresh = [stationsList array];
 }
 
 - (void) setStationsToRefresh:(NSArray *)stationsToRefresh
 {
+    NSLog(@"refreshing = %@",[stationsToRefresh valueForKey:@"name"]);
     BOOL needsStart = [_stationsToRefresh count]==0;
     [self.stationsToRefresh setValue:@NO forKey:@"needsRefresh"];
     _stationsToRefresh = stationsToRefresh;
