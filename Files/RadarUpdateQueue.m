@@ -15,10 +15,14 @@
 
 @interface RadarUpdateQueue () <NSFetchedResultsControllerDelegate>
 @property NSFetchedResultsController * frc;
-@property (copy) NSArray * radars;
+@property (copy) NSArray * radars; // copy
 @property (nonatomic) NSArray * stationsToRefresh;
+@property Station * stationBeingRefreshed;
 @property NSUInteger currentIndex;
 @end
+
+/****************************************************************************/
+#pragma mark -
 
 @implementation RadarUpdateQueue
 
@@ -33,7 +37,7 @@
     self = [super init];
     if (self) {
         NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:[Radar entityName]];
-        request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:RadarAttributes.identifier ascending:YES] ];
+        request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:RadarAttributes.identifier ascending:YES] ]; // frc *needs* a sort descriptor
         self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                        managedObjectContext:model.moc
                                                          sectionNameKeyPath:nil cacheName:nil];
@@ -43,6 +47,8 @@
     return self;
 }
 
+/****************************************************************************/
+#pragma mark -
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
@@ -82,14 +88,13 @@
 
 - (void) setStationsToRefresh:(NSArray *)stationsToRefresh
 {
-    BOOL needsStart = [_stationsToRefresh count]==0;
     [self.stationsToRefresh setValue:@NO forKey:@"needsRefresh"];
     _stationsToRefresh = stationsToRefresh;
     [self.stationsToRefresh setValue:@YES forKey:@"needsRefresh"];
     
     self.currentIndex = 0;
 
-    if(needsStart)
+    if(self.stationBeingRefreshed==nil)
         [self performSelector:@selector(updateNext) withObject:nil afterDelay:.25];
 }
 
@@ -99,9 +104,9 @@
     
     if(self.currentIndex < [self.stationsToRefresh count])
     {
-        Station * stationToRefresh = self.stationsToRefresh[self.currentIndex];
-        [stationToRefresh addObserver:self forKeyPath:@"loading" options:0 context:(__bridge void *)([RadarUpdateQueue class])];
-        [stationToRefresh refresh];
+        self.stationBeingRefreshed = self.stationsToRefresh[self.currentIndex];
+        [self.stationBeingRefreshed addObserver:self forKeyPath:@"loading" options:0 context:(__bridge void *)([RadarUpdateQueue class])];
+        [self.stationBeingRefreshed refresh];
         self.currentIndex ++;
     }
     else
@@ -118,7 +123,9 @@
             [self updateStationsList];
         else if([object isKindOfClass:[Station class]] && [keyPath isEqualToString:@"loading"] && [object loading]==NO)
         {
-            [object removeObserver:self forKeyPath:@"loading" context:(__bridge void *)([RadarUpdateQueue class])];
+            NSAssert(object == self.stationBeingRefreshed,@"error : wrong station being refreshed");
+            [self.stationBeingRefreshed removeObserver:self forKeyPath:@"loading" context:(__bridge void *)([RadarUpdateQueue class])];
+            self.stationBeingRefreshed = nil;
             [self performSelector:@selector(updateNext) withObject:nil afterDelay:.25];
         }
     } else {
