@@ -11,6 +11,7 @@
 #import "VelibModel.h"
 #import "Station.h"
 #import "Region.h"
+#import "TransparentToolbar.h"
 #import "NSArrayAdditions.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
@@ -30,9 +31,9 @@ typedef enum {
 // UI
 @property MKMapView * mapView;
 @property RadarAnnotationView * screenCenterRadarView;
+@property UIToolbar * mapVCToolbar; // Do not use the system toolbal to prevent its height from changing
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * modeControl;
-
 // Data
 @property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapLevel level;
@@ -57,20 +58,7 @@ typedef enum {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
                                                  name:VelibModelNotifications.updateSucceeded object:nil];
-    
-    
-    self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:nil];
-    
-    _modeControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKES", nil), NSLocalizedString(@"PARKING", nil) ]];
-    _modeControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [_modeControl addTarget:self action:@selector(switchMode:) forControlEvents:UIControlEventValueChanged];
-    _modeControl.selectedSegmentIndex = self.stationMode;
         
-    self.toolbarItems = @[self.userTrackingButton,
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-    [[UIBarButtonItem alloc] initWithCustomView:self.modeControl],
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
-    
     _drawingCache = [DrawingCache new];
 }
 
@@ -88,7 +76,7 @@ typedef enum {
 
 - (void) loadView
 {
-    [super loadView];
+    [super loadView]; // get a base view
     
     // Create mapview
     self.mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] applicationFrame]];
@@ -106,17 +94,38 @@ typedef enum {
     self.screenCenterRadarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.screenCenterRadarView.userInteractionEnabled = NO;
     
+    // Add gesture recognizer for menu
+    UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
+    [self.mapView addGestureRecognizer:longPressRecognizer];
+
+    // prepare toolbar items
+    self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    
+    self.modeControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKE", nil), NSLocalizedString(@"PARKING", nil) ]];
+    self.modeControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [self.modeControl addTarget:self action:@selector(switchMode:) forControlEvents:UIControlEventValueChanged];
+    self.modeControl.selectedSegmentIndex = self.stationMode;
+    UIBarButtonItem * modeItem = [[UIBarButtonItem alloc] initWithCustomView:self.modeControl];
+    modeItem.width = 160;
+    
+    // create toolbar
+#define kToolbarHeight 44 // Strange that I have to declare it
+    self.mapVCToolbar = [[TransparentToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-kToolbarHeight, self.view.bounds.size.width, kToolbarHeight)];
+    [self.view addSubview:self.mapVCToolbar];
+    self.mapVCToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    self.mapVCToolbar.items = @[self.userTrackingButton,
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+    modeItem,
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
+    
+    // observe changes to the prefs
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
+
     // Forget old userLocation, until we have a better one
     [self.model userLocationRadar].coordinate = CLLocationCoordinate2DMake(0, 0);
 
-    UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
-    [self.mapView addGestureRecognizer:longPressRecognizer];
-    
-    self.userTrackingButton.mapView = self.mapView;
-
+    // reload data
     [self reloadData];
-    
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 }
 
 - (void) viewWillAppear:(BOOL)animated

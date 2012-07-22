@@ -82,7 +82,7 @@
         CGPoint rotationCenter = self.infoButton.center;
         
         // Take a screenshot of the presenting vc
-        self.screenshot = [[UIImageView alloc] initWithImage:[self.mapVC.view.superview screenshot]];
+        self.screenshot = [[UIImageView alloc] initWithImage:[self.mapVC.view screenshot]];
 
         // Present (not animated)
         [self.rootNavC pushViewController:self.prefsVC animated:NO];
@@ -134,8 +134,6 @@
                              [self.screenshot removeFromSuperview];
                              self.screenshot = nil;
                              [self.rootNavC popToRootViewControllerAnimated:NO];
-                             [self.rootNavC.view bringSubviewToFront:self.infoToolbar];
-                             [self.rootNavC.view bringSubviewToFront:self.infoButton];
                          }];
     }
 }

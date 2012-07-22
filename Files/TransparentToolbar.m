@@ -14,6 +14,8 @@
 {
 	self = [super initWithCoder: decoder];
 	if(self!=nil) self.backgroundColor = [UIColor clearColor];
+    self.barStyle = UIBarStyleBlack;
+    self.translucent = YES;
 	return self;
 }
 
@@ -21,6 +23,8 @@
 {
 	self = [super initWithFrame:frame];
 	if(self!=nil) self.backgroundColor = [UIColor clearColor];
+    self.barStyle = UIBarStyleBlack;
+    self.translucent = YES;
 	return self;
 }
 
