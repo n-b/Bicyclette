@@ -19,7 +19,7 @@
 - (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache
 {
     self = [super initWithAnnotation:annotation drawingCache:drawingCache];
-    self.frame = (CGRect){CGPointZero,{kAnnotationViewSize,kAnnotationViewSize}};
+    self.frame = (CGRect){CGPointZero,{kRegionAnnotationViewSize,kRegionAnnotationViewSize}};
     return self;
 }
 
@@ -61,7 +61,7 @@
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
 
-    CGImageRef background = [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    CGImageRef background = [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kRegionAnnotationViewSize, kRegionAnnotationViewSize)
                                                                                     scale:self.layer.contentsScale
                                                                                     shape:BackgroundShapeRectangle
                                                                                borderMode:BorderModeSolid
@@ -78,7 +78,7 @@
         NSString * line2 = [text substringFromIndex:2];
 
         CGRect rect1, rect2;
-        CGRectDivide(CGRectInset(rect, 0, 4), &rect1, &rect2, 10, CGRectMinYEdge);
+        CGRectDivide(CGRectInset(rect, 0, 2), &rect1, &rect2, 16, CGRectMinYEdge);
 
         [kAnnotationTitleTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationTitleShadowColor CGColor]);

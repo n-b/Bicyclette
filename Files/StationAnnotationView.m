@@ -17,7 +17,7 @@
 - (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache;
 {
     self = [super initWithAnnotation:annotation drawingCache:drawingCache];
-    self.frame = CGRectMake(0,0,kAnnotationViewSize,kAnnotationViewSize);
+    self.frame = CGRectMake(0,0,kStationAnnotationViewSize,kStationAnnotationViewSize);
     _loadingLayer = [CALayer new];
     _loadingLayer.frame = self.frame;
     [self.layer addSublayer:_loadingLayer];
@@ -107,7 +107,7 @@
             phase = floorf(phase*10)/10;
             [self performSelector:_cmd withObject:nil afterDelay:.1];
         }
-        _loadingLayer.contents = (id) [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+        _loadingLayer.contents = (id) [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
                                                                                                scale:_loadingLayer.contentsScale
                                                                                                shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                                           borderMode:BorderModeDashes
@@ -149,7 +149,7 @@
         text = @"-";
     }
     
-    self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kAnnotationViewSize, kAnnotationViewSize)
+    self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
                                                                                        scale:self.layer.contentsScale
                                                                                        shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
                                                                                   borderMode:BorderModeSolid

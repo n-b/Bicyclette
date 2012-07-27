@@ -9,8 +9,9 @@
 
 #import "UIColor+hsb.h"
 
-#define kAnnotationViewSize 			30
+#define kRegionAnnotationViewSize 		40
 
+#define kStationAnnotationViewSize		30
 
 #define kAnnotationFrame1Color			[UIColor colorWithWhite:.95 alpha:.7]
 #define kAnnotationFrame2Color			[UIColor colorWithWhite:.1 alpha:1]
@@ -31,11 +32,11 @@
 
 #define kAnnotationTitleTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationTitleShadowColor		[kAnnotationTextColor colorWithBrightness:1]
-#define kAnnotationTitleFont			[UIFont fontWithName:@"GillSans-Bold" size:13]
+#define kAnnotationTitleFont			[UIFont fontWithName:@"GillSans-Bold" size:19]
 
 #define kAnnotationDetailTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationDetailShadowColor	[kAnnotationTextColor colorWithBrightness:1]
-#define kAnnotationDetailFont			[UIFont fontWithName:@"GillSans" size:11]
+#define kAnnotationDetailFont			[UIFont fontWithName:@"GillSans" size:16]
 
 #define kAnnotationValueTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationValueShadowColor		[kAnnotationTextColor colorWithBrightness:1]
