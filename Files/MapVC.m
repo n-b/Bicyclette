@@ -258,7 +258,16 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    CLLocationCoordinate2D oldCoord = [self.model userLocationRadar].coordinate;
     [self.model userLocationRadar].coordinate = userLocation.coordinate;
+    CLLocationCoordinate2D newCoord = [self.model userLocationRadar].coordinate;
+
+    if(oldCoord.latitude == 0 && oldCoord.longitude == 0
+       && newCoord.latitude > self.referenceRegion.center.latitude - self.referenceRegion.span.latitudeDelta
+       && newCoord.latitude < self.referenceRegion.center.latitude + self.referenceRegion.span.latitudeDelta
+       && newCoord.longitude > self.referenceRegion.center.longitude - self.referenceRegion.span.longitudeDelta
+       && newCoord.longitude < self.referenceRegion.center.longitude + self.referenceRegion.span.longitudeDelta)
+        [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 }
 
 - (void) addAndRemoveMapAnnotations
