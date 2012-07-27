@@ -76,7 +76,7 @@
 
 - (void) monitorRadar:(Radar*)radar
 {
-    [self.locationManager startMonitoringForRegion:radar.clRegion];
+    [self.locationManager startMonitoringForRegion:radar.monitoringRegion];
 }
 
 /****************************************************************************/

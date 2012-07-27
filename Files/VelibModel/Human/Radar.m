@@ -79,10 +79,11 @@ const struct RadarIdentifiers RadarIdentifiers = {
 /****************************************************************************/
 #pragma mark CLRegion
 
-- (CLRegion*) clRegion
+- (CLRegion*) monitoringRegion
 {
     CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-    return [[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:radarDistance identifier:self.identifier];
+    CLLocationDistance monitorDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MonitorDistance"];
+    return [[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:radarDistance+monitorDistance identifier:self.identifier];
 }
 
 + (NSSet *)keyPathsForValuesAffectingClRegion

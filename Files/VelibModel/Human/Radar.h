@@ -8,7 +8,7 @@
 // The stations nearer than the distance specified in the prefs, sorted from nearest to farthest.
 @property (nonatomic,readonly) NSArray * stationsWithinRadarRegion;
 // A circular region centered at the Radar location
-@property (nonatomic,readonly) CLRegion* clRegion;
+@property (nonatomic,readonly) CLRegion* monitoringRegion;
 @end
 
 
