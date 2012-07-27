@@ -19,7 +19,7 @@
 	<key>MonitorDistance</key>
 	<integer>150</integer>
 	<key>MapRegionZoomDistance</key>
-	<integer>1000</integer>
+	<integer>900</integer>
 	<key>MapLevelStationsAndRadars</key>
 	<integer>3000</integer>
 	<key>MapLevelRegionsAndRadars</key>
