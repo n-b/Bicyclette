@@ -388,6 +388,11 @@ const struct VelibModelNotifications VelibModelNotifications = {
 		[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
 		NSError * requestError = nil;
 		NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
+        if([regions count]==0)
+        {
+            CLRegion * limits = [self hardcodedLimits];
+            return MKCoordinateRegionMake(limits.center, MKCoordinateSpanMake(limits.radius*2, limits.radius*2));
+        }
         
 		NSNumber * minLat = [regions valueForKeyPath:@"@min.minLatitude"];
 		NSNumber * maxLat = [regions valueForKeyPath:@"@max.maxLatitude"];
