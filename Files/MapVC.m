@@ -171,15 +171,19 @@ typedef enum {
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     MKCoordinateRegion viewRegion = self.mapView.region;
-    CLLocation * northLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude+viewRegion.span.latitudeDelta longitude:viewRegion.center.latitude];
-    CLLocation * southLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude-viewRegion.span.latitudeDelta longitude:viewRegion.center.latitude];
-    CLLocationDistance distance = [northLocation distanceFromLocation:southLocation];
-
-	if(distance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegions"])
+    CLLocation * northLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude+viewRegion.span.latitudeDelta longitude:viewRegion.center.longitude/2];
+    CLLocation * southLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude-viewRegion.span.latitudeDelta longitude:viewRegion.center.longitude/2];
+    CLLocation * westLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude longitude:viewRegion.center.latitude-viewRegion.span.longitudeDelta/2];
+    CLLocation * eastLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude longitude:viewRegion.center.latitude+viewRegion.span.longitudeDelta/2];
+    CLLocationDistance latDistance = [northLocation distanceFromLocation:southLocation];
+    CLLocationDistance longDistance = [eastLocation distanceFromLocation:westLocation];
+    CLLocationDistance avgDistance = (latDistance+longDistance)/2;
+    
+	if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegions"])
 		self.level = MapLevelNone;
-	else if(distance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegionsAndRadars"])
+	else if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegionsAndRadars"])
 		self.level = MapLevelRegions;
-    else if(distance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelStationsAndRadars"])
+    else if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelStationsAndRadars"])
 		self.level = MapLevelRegionsAndRadars;
 	else
 		self.level = MapLevelStationsAndRadars;

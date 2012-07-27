@@ -21,11 +21,11 @@
 	<key>MapRegionZoomDistance</key>
 	<integer>1000</integer>
 	<key>MapLevelStationsAndRadars</key>
-	<integer>4000</integer>
+	<integer>3000</integer>
 	<key>MapLevelRegionsAndRadars</key>
-	<integer>10000</integer>
+	<integer>15000</integer>
 	<key>MapLevelRegions</key>
-	<integer>100000</integer>
+	<integer>63000</integer>
 	<key>MaxRefreshDistance</key>
 	<integer>2000</integer>
 	<key>DataUpdaterDelayBetweenRequests</key>
