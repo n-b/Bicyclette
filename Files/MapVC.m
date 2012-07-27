@@ -31,7 +31,6 @@ typedef enum {
 @interface MapVC() <MKMapViewDelegate>
 // UI
 @property MKMapView * mapView;
-@property RadarAnnotationView * screenCenterRadarView;
 @property UIToolbar * mapVCToolbar; // Do not use the system toolbal to prevent its height from changing
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * modeControl;
@@ -87,13 +86,6 @@ typedef enum {
     self.mapView.zoomEnabled = YES;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
-        
-    // Add Screen Center Radar View
-    self.screenCenterRadarView = [[RadarAnnotationView alloc] initWithAnnotation:self.model.screenCenterRadar drawingCache:_drawingCache];
-    [self.view addSubview:self.screenCenterRadarView];
-    self.screenCenterRadarView.center = self.mapView.center;
-    self.screenCenterRadarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    self.screenCenterRadarView.userInteractionEnabled = NO;
     
     // Add gesture recognizer for menu
     UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
@@ -188,12 +180,10 @@ typedef enum {
 	else
 		self.level = MapLevelStationsAndRadars;
     
-    self.screenCenterRadarView.hidden = (self.level!=MapLevelStationsAndRadars);
-    
     [self addAndRemoveMapAnnotations];
     [self updateRadarSizes];
 
-    self.model.screenCenterRadar.coordinate = [self.mapView convertPoint:self.screenCenterRadarView.center toCoordinateFromView:self.screenCenterRadarView.superview];
+    self.model.screenCenterRadar.coordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView.superview];
     if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
         self.model.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
     else
@@ -263,6 +253,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
     CLLocationCoordinate2D newCoord = [self.model userLocationRadar].coordinate;
 
     if(oldCoord.latitude == 0 && oldCoord.longitude == 0
+       && newCoord.latitude == 0 && newCoord.longitude == 0
        && newCoord.latitude > self.referenceRegion.center.latitude - self.referenceRegion.span.latitudeDelta
        && newCoord.latitude < self.referenceRegion.center.latitude + self.referenceRegion.span.latitudeDelta
        && newCoord.longitude > self.referenceRegion.center.longitude - self.referenceRegion.span.longitudeDelta
@@ -336,8 +327,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
             radarView.bounds = (CGRect){CGPointZero, radarSize};
         }
     }
-    CGSize radarSize = [self.mapView convertRegion:self.model.screenCenterRadar.radarRegion toRectToView:self.screenCenterRadarView].size;
-    self.screenCenterRadarView.bounds = (CGRect){CGPointZero, radarSize};
 }
 
 /****************************************************************************/
