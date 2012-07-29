@@ -16,6 +16,7 @@
 @property NSError * updateError;
 @property NSMutableString * currentParsedString;
 @property (nonatomic) CLLocation * location;
+@property BOOL notifySummary;
 @end
 
 
@@ -25,7 +26,7 @@
 @implementation Station
 
 @synthesize updater=_updater, loading=_loading, updateError=_updateError, currentParsedString=_currentParsedString;
-@synthesize isInRefreshQueue, wantsImmediateSummary;
+@synthesize isInRefreshQueue, notifySummary;
 @synthesize location=_location;
 
 - (NSString *) debugDescription
@@ -99,11 +100,10 @@
 	[parser parse];
     self.currentParsedString = nil;
 
-    NSLog(@"got data for station %@",self.cleanName);
-    if(self.wantsImmediateSummary)
+    if(self.notifySummary)
     {
         [[UIApplication sharedApplication] presentLocalNotificationMessage:self.localizedSummary];
-        self.wantsImmediateSummary = NO;
+        self.notifySummary = NO;
     }
         
     
@@ -189,6 +189,16 @@
     return [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
             self.cleanName,
             self.status_availableValue, self.status_freeValue];
+}
+
+- (void) notifySummaryAfterNextRefresh
+{
+    self.notifySummary = YES;
+}
+
+- (void) cancelSummaryAfterNextRefresh
+{
+    self.notifySummary = NO;
 }
 
 /****************************************************************************/

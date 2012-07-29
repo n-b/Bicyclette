@@ -10,7 +10,9 @@
 // A circular region centered at the Radar location
 @property (nonatomic,readonly) CLRegion* monitoringRegion;
 
-@property (nonatomic) BOOL wantsImmediateSummary;
+- (void) setWantsSummary;
+- (void) clearWantsSummary;
+@property (readonly) BOOL wantsSummary;
 @end
 
 

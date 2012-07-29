@@ -10,11 +10,12 @@ const struct RadarIdentifiers RadarIdentifiers = {
 
 @interface Radar()
 @property (nonatomic) NSArray * stationsWithinRadarRegion;
+@property BOOL wantsSummary;
 @end
 
 @implementation Radar
 @synthesize stationsWithinRadarRegion=_stationsWithinRadarRegion;
-@synthesize wantsImmediateSummary=_wantsImmediateSummary;
+@synthesize wantsSummary=_wantsSummary;
 
 /****************************************************************************/
 #pragma mark NSManagedObject
@@ -58,7 +59,6 @@ const struct RadarIdentifiers RadarIdentifiers = {
         [self didChangeValueForKey:@"radarRegion"];
         [self didChangeValueForKey:@"clRegion"];
         [self updateStationsWithinRadarRegion];
-        self.wantsImmediateSummary = NO;
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -93,12 +93,19 @@ const struct RadarIdentifiers RadarIdentifiers = {
     return [NSSet setWithObject:@"coordinate"];
 }
 
-- (void) setWantsImmediateSummary:(BOOL)wantsImmediateSummary_
+- (void) setWantsSummary
 {
-    _wantsImmediateSummary = wantsImmediateSummary_;
+    self.wantsSummary = YES;
     for (Station * station in self.stationsWithinRadarRegion) {
-        NSLog(@"want summary %d for %@",wantsImmediateSummary_, station.cleanName);
-        station.wantsImmediateSummary = wantsImmediateSummary_;
+        [station notifySummaryAfterNextRefresh];
+    }
+}
+
+- (void) clearWantsSummary
+{
+    self.wantsSummary = NO;
+    for (Station * station in self.stationsWithinRadarRegion) {
+        [station cancelSummaryAfterNextRefresh];
     }
 }
 
@@ -151,7 +158,6 @@ const struct RadarIdentifiers RadarIdentifiers = {
         self.latitudeValue = coordinate.latitude;
         self.longitudeValue = coordinate.longitude;
         [self updateStationsWithinRadarRegion];
-        self.wantsImmediateSummary = NO;
     }
 }
 @end

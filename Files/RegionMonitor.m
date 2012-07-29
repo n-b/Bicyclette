@@ -101,7 +101,6 @@
     va_list args; va_start(args, format);
     NSString * message = [[NSString alloc] initWithFormat:format arguments:args];
     va_end(args);
-    NSLog(@"%@",message);
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugLogRegionMonitoringWithLocalNotifications"])
         [[UIApplication sharedApplication] presentLocalNotificationMessage:message];
 }
@@ -117,8 +116,7 @@
     if([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
     {
         Radar * radar = [self.radars firstObjectWithValue:region.identifier forKey:RadarAttributes.identifier];
-        NSLog(@"SUMMARY WANTED FOR %@",radar.identifier);
-        radar.wantsImmediateSummary = YES;
+        [radar setWantsSummary];
     }
 }
 
@@ -126,7 +124,7 @@
 {
     Radar * radar = [self.radars firstObjectWithValue:region.identifier forKey:RadarAttributes.identifier];
     [self logDebug:@"did exit region %@",region];
-    radar.wantsImmediateSummary = NO;
+    [radar clearWantsSummary];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

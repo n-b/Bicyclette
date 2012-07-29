@@ -6,7 +6,10 @@
 
 // A flag indicating that we need to refresh the data
 @property BOOL isInRefreshQueue;
-@property BOOL wantsImmediateSummary;
+
+// Summary notification
+- (void) notifySummaryAfterNextRefresh;
+- (void) cancelSummaryAfterNextRefresh;
 
 // status
 - (void) refresh;
