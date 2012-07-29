@@ -96,13 +96,24 @@
 /****************************************************************************/
 #pragma mark -
 
+- (void)logDebug:(NSString*)format, ...
+{
+    va_list args; va_start(args, format);
+    NSString * message = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    NSLog(@"%@",message);
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugLogRegionMonitoringWithLocalNotifications"])
+        [[UIApplication sharedApplication] presentLocalNotificationMessage:message];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
-    NSLog(@"did start monitoring %@",region);
+    [self logDebug:@"did start monitoring %@",region];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
+    [self logDebug:@"did enter region %@",region];
     if([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
     {
         Radar * radar = [self.radars firstObjectWithValue:region.identifier forKey:RadarAttributes.identifier];
@@ -115,16 +126,17 @@
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
+    [self logDebug:@"did exit region %@",region];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"cl did fail %@",error);
+    [self logDebug:@"location manager did fail: %@",error];
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
-    NSLog(@"cl did fail %@ for region %@", error, region);
+    [self logDebug:@"monitoring for region %@ did fail: %@",region, error];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

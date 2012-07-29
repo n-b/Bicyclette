@@ -8,6 +8,10 @@
 	<false/>
 	<key>DebugUseHardcodedErrors</key>
 	<false/>
+	<key>DebugDisplayLocalNotificationsAsAlerts</key>
+	<true/>
+	<key>DebugLogRegionMonitoringWithLocalNotifications</key>
+	<true/>
 	<key>RadarDistance</key>
 	<integer>150</integer>
 	<key>RadarDistances</key>
