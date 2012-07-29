@@ -249,8 +249,9 @@ fromOldState:(MKAnnotationViewDragState)oldState
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     CLLocationCoordinate2D oldCoord = [self.model userLocationRadar].coordinate;
-    [self.model userLocationRadar].coordinate = userLocation.coordinate;
-    CLLocationCoordinate2D newCoord = [self.model userLocationRadar].coordinate;
+    CLLocationCoordinate2D newCoord = userLocation.coordinate;
+    if(oldCoord.latitude != newCoord.latitude || oldCoord.longitude != newCoord.longitude)
+        [self.model userLocationRadar].coordinate = newCoord;
 
     if(oldCoord.latitude == 0 && oldCoord.longitude == 0
        && newCoord.latitude == 0 && newCoord.longitude == 0

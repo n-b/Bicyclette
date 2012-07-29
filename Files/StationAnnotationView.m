@@ -58,13 +58,13 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, @"needsRefresh", @"loading" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, @"isInRefreshQueue", @"loading" ];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([StationAnnotationView class])) {
-        if([keyPath isEqual:@"needsRefresh"] || [keyPath isEqual:@"loading"])
+        if([keyPath isEqual:@"isInRefreshQueue"] || [keyPath isEqual:@"loading"])
         {
             [self displayLoadingLayer];
         }
@@ -97,7 +97,7 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     
-    if([self station].needsRefresh)
+    if([self station].isInRefreshQueue || [self station].loading)
     {
         CGFloat phase = 0;
         if([self station].loading)

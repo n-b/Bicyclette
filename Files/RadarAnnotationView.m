@@ -67,11 +67,13 @@
     NSArray * added = [newValue arrayByRemovingObjectsInArray:oldValue];
     NSArray * removed = [oldValue arrayByRemovingObjectsInArray:newValue];
 
+    // useless now : contents does not depend on which station is being refreshed. Might change.
     for (Station * station in removed)
-        [station removeObserver:self forKeyPath:@"needsRefresh" context:(__bridge void *)([RadarAnnotationView class])];
-    
+        [station removeObserver:self forKeyPath:@"isInRefreshQueue" context:(__bridge void *)([RadarAnnotationView class])];
+
+    // useless now : contents does not depend on which station is being refreshed. Might change.
     for (Station * station in added)
-        [station addObserver:self forKeyPath:@"needsRefresh" options:0 context:(__bridge void *)([RadarAnnotationView class])];
+        [station addObserver:self forKeyPath:@"isInRefreshQueue" options:0 context:(__bridge void *)([RadarAnnotationView class])];
     
     _stationsWithinRadarRegion = newValue;
 }
@@ -87,7 +89,7 @@
             id newValue = change[NSKeyValueChangeNewKey];
             self.stationsWithinRadarRegion = newValue != [NSNull null] ? newValue : nil;
         }
-        else if([keyPath isEqualToString:@"needsRefresh"])
+        else if([keyPath isEqualToString:@"isInRefreshQueue"])
         {
 //            [self setNeedsDisplay]; // useless now : contents does not depend on which station is being refreshed. Might change.
         }

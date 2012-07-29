@@ -11,7 +11,7 @@
 	<key>DebugDisplayLocalNotificationsAsAlerts</key>
 	<true/>
 	<key>DebugLogRegionMonitoringWithLocalNotifications</key>
-	<true/>
+	<false/>
 	<key>RadarDistance</key>
 	<integer>150</integer>
 	<key>RadarDistances</key>

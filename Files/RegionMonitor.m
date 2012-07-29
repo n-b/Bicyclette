@@ -117,16 +117,16 @@
     if([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
     {
         Radar * radar = [self.radars firstObjectWithValue:region.identifier forKey:RadarAttributes.identifier];
-
-        for (Station* station in radar.stationsWithinRadarRegion) {
-            [[UIApplication sharedApplication] presentLocalNotificationMessage:station.localizedSummary];
-        }
+        NSLog(@"SUMMARY WANTED FOR %@",radar.identifier);
+        radar.wantsImmediateSummary = YES;
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
+    Radar * radar = [self.radars firstObjectWithValue:region.identifier forKey:RadarAttributes.identifier];
     [self logDebug:@"did exit region %@",region];
+    radar.wantsImmediateSummary = NO;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

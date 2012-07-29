@@ -4,8 +4,9 @@
 
 @interface Station : _Station <MKAnnotation, Locatable>
 
-//
-@property BOOL needsRefresh;
+// A flag indicating that we need to refresh the data
+@property BOOL isInRefreshQueue;
+@property BOOL wantsImmediateSummary;
 
 // status
 - (void) refresh;

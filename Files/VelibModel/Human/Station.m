@@ -5,6 +5,7 @@
 #import "DataUpdater.h"
 #import "NSObject+KVCMapping.h"
 #import "NSError+MultipleErrorsCombined.h"
+#import "UIApplication+LocalAlerts.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -24,7 +25,7 @@
 @implementation Station
 
 @synthesize updater=_updater, loading=_loading, updateError=_updateError, currentParsedString=_currentParsedString;
-@synthesize needsRefresh;
+@synthesize isInRefreshQueue, wantsImmediateSummary;
 @synthesize location=_location;
 
 - (NSString *) debugDescription
@@ -98,6 +99,14 @@
 	[parser parse];
     self.currentParsedString = nil;
 
+    NSLog(@"got data for station %@",self.cleanName);
+    if(self.wantsImmediateSummary)
+    {
+        [[UIApplication sharedApplication] presentLocalNotificationMessage:self.localizedSummary];
+        self.wantsImmediateSummary = NO;
+    }
+        
+    
     [self.managedObjectContext.model setNeedsSave];
     self.updater = nil;
     self.loading = NO;

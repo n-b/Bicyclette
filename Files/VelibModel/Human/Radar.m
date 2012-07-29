@@ -14,6 +14,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
 
 @implementation Radar
 @synthesize stationsWithinRadarRegion=_stationsWithinRadarRegion;
+@synthesize wantsImmediateSummary=_wantsImmediateSummary;
 
 /****************************************************************************/
 #pragma mark NSManagedObject
@@ -57,6 +58,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
         [self didChangeValueForKey:@"radarRegion"];
         [self didChangeValueForKey:@"clRegion"];
         [self updateStationsWithinRadarRegion];
+        self.wantsImmediateSummary = NO;
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -77,7 +79,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
 }
 
 /****************************************************************************/
-#pragma mark CLRegion
+#pragma mark Monitoring
 
 - (CLRegion*) monitoringRegion
 {
@@ -89,6 +91,15 @@ const struct RadarIdentifiers RadarIdentifiers = {
 + (NSSet *)keyPathsForValuesAffectingClRegion
 {
     return [NSSet setWithObject:@"coordinate"];
+}
+
+- (void) setWantsImmediateSummary:(BOOL)wantsImmediateSummary_
+{
+    _wantsImmediateSummary = wantsImmediateSummary_;
+    for (Station * station in self.stationsWithinRadarRegion) {
+        NSLog(@"want summary %d for %@",wantsImmediateSummary_, station.cleanName);
+        station.wantsImmediateSummary = wantsImmediateSummary_;
+    }
 }
 
 /****************************************************************************/
@@ -117,7 +128,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
     CLLocation * location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
     [stations filterWithinDistance:radarDistance fromLocation:location];
     [stations sortByDistanceFromLocation:location];
-    self.stationsWithinRadarRegion = [stations copy];
+    self.stationsWithinRadarRegion = [stations copy]; // compare first !
 }
 
 /****************************************************************************/
@@ -140,6 +151,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
         self.latitudeValue = coordinate.latitude;
         self.longitudeValue = coordinate.longitude;
         [self updateStationsWithinRadarRegion];
+        self.wantsImmediateSummary = NO;
     }
 }
 @end

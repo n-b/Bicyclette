@@ -9,6 +9,8 @@
 @property (nonatomic,readonly) NSArray * stationsWithinRadarRegion;
 // A circular region centered at the Radar location
 @property (nonatomic,readonly) CLRegion* monitoringRegion;
+
+@property (nonatomic) BOOL wantsImmediateSummary;
 @end
 
 

@@ -11,7 +11,7 @@
 #import "Radar.h"
 #import "Station.h"
 #import "NSMutableArray+Locatable.h"
-
+#import "NSArrayAdditions.h"
 
 @interface RadarUpdateQueue () <NSFetchedResultsControllerDelegate>
 @property NSFetchedResultsController * frc;
@@ -36,6 +36,25 @@
 {
     self = [super init];
     if (self) {
+        // observe app activate
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification
+                                                          object:nil queue:[NSOperationQueue mainQueue]
+                                                      usingBlock:^(NSNotification *note) { [self updateStationsList]; }];
+
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidBecomeActiveNotification
+                                                          object:nil queue:[NSOperationQueue mainQueue]
+                                                      usingBlock:^(NSNotification *note) { [self updateStationsList]; }];
+
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidEnterBackgroundNotification
+                                                          object:nil queue:[NSOperationQueue mainQueue]
+                                                      usingBlock:^(NSNotification *note) { [self updateStationsList]; }];
+
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillResignActiveNotification
+                                                          object:nil queue:[NSOperationQueue mainQueue]
+                                                      usingBlock:^(NSNotification *note) { [self updateStationsList]; }];
+
+
+        // observe all radars
         NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:[Radar entityName]];
         request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:RadarAttributes.identifier ascending:YES] ]; // frc *needs* a sort descriptor
         self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request
@@ -53,12 +72,18 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     for (Radar * radar in self.radars)
+    {
         [radar removeObserver:self forKeyPath:@"stationsWithinRadarRegion" context:(__bridge void *)([RadarUpdateQueue class])];
+        [radar removeObserver:self forKeyPath:@"wantsImmediateSummary" context:(__bridge void *)([RadarUpdateQueue class])];
+    }
 
     self.radars = controller.fetchedObjects;
 
     for (Radar * radar in self.radars)
+    {
         [radar addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:0 context:(__bridge void *)([RadarUpdateQueue class])];
+        [radar addObserver:self forKeyPath:@"wantsImmediateSummary" options:0 context:(__bridge void *)([RadarUpdateQueue class])];
+    }
     
     [self updateStationsList];
 }
@@ -71,26 +96,36 @@
 
 - (void) updateStationsList
 {
+    BOOL isAppActive = [UIApplication sharedApplication].applicationState == UIApplicationStateActive;
+    
     // Make the list of stations to refresh continuously
     NSMutableOrderedSet * stationsList = [NSMutableOrderedSet new]; // use an orderedset to make sure each station is added only once
     
     NSMutableArray * sortedRadars = [self.radars mutableCopy];
     CLLocationDistance refreshDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MaxRefreshDistance"];
-    [sortedRadars filterWithinDistance:refreshDistance fromLocation:self.referenceLocation];
-    [sortedRadars sortByDistanceFromLocation:self.referenceLocation];
-    
-    for (Radar * radar in sortedRadars) {
-        [stationsList addObjectsFromArray:radar.stationsWithinRadarRegion];
+    if(isAppActive)
+    {
+        [sortedRadars filterWithinDistance:refreshDistance fromLocation:self.referenceLocation];
+        [sortedRadars sortByDistanceFromLocation:self.referenceLocation];
     }
+    else
+    {
+        sortedRadars = [[sortedRadars filteredArrayWithValue:@YES forKey:@"wantsImmediateSummary"] mutableCopy];
+    }
+        
+    for (Radar * radar in sortedRadars)
+        [stationsList addObjectsFromArray:radar.stationsWithinRadarRegion];
+
+    NSLog(@"updating stations list : %d stations, app is %d",[stationsList count],[UIApplication sharedApplication].applicationState);
 
     self.stationsToRefresh = [stationsList array];
 }
 
 - (void) setStationsToRefresh:(NSArray *)stationsToRefresh
 {
-    [self.stationsToRefresh setValue:@NO forKey:@"needsRefresh"];
+    [self.stationsToRefresh setValue:@NO forKey:@"isInRefreshQueue"];
     _stationsToRefresh = stationsToRefresh;
-    [self.stationsToRefresh setValue:@YES forKey:@"needsRefresh"];
+    [self.stationsToRefresh setValue:@YES forKey:@"isInRefreshQueue"];
     
     self.currentIndex = 0;
 
