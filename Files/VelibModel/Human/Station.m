@@ -10,11 +10,11 @@
 #pragma mark -
 
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
-@property (nonatomic, strong) DataUpdater * updater;
-@property (nonatomic) BOOL loading;
-@property (nonatomic, strong) NSError * updateError;
-@property (nonatomic, strong) NSMutableString * currentParsedString;
-@property (nonatomic, strong) CLLocation * location;
+@property DataUpdater * updater;
+@property BOOL loading;
+@property NSError * updateError;
+@property NSMutableString * currentParsedString;
+@property (nonatomic) CLLocation * location;
 @end
 
 
@@ -23,13 +23,9 @@
 
 @implementation Station
 
-/****************************************************************************/
-#pragma mark -
-
-@synthesize updater, updateError, currentParsedString;
-@synthesize location;
-@synthesize loading;
+@synthesize updater=_updater, loading=_loading, updateError=_updateError, currentParsedString=_currentParsedString;
 @synthesize needsRefresh;
+@synthesize location=_location;
 
 - (NSString *) debugDescription
 {
@@ -137,14 +133,6 @@
 }
 
 /****************************************************************************/
-#pragma mark status
-
-+ (NSSet*) keyPathsForValuesAffectingLoading
-{
-	return [NSSet setWithObject:@"updater"];
-}
-
-/****************************************************************************/
 #pragma mark MKAnnotation, Locatable
 
 - (CLLocationCoordinate2D) coordinate
@@ -154,26 +142,44 @@
 
 - (CLLocation*) location
 {
-	if(nil==location)
-		location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-	return location;
+	if(nil==_location)
+		_location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
+	return _location;
 }
 
 /****************************************************************************/
-#pragma mark Clean properties
+#pragma mark Display
 
 - (NSString *) cleanName
 {
-	NSRange range = [self.name rangeOfString:@"-"];
-	if(range.location==NSNotFound)
-		return self.name;
-	else
-		return [[self.name substringFromIndex:range.location+range.length] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    // remove number
+    NSString * shortname = self.name;
+    NSRange beginRange = [shortname rangeOfString:@" - "];
+    if (beginRange.location!=NSNotFound)
+        shortname = [self.name substringFromIndex:beginRange.location+beginRange.length];
+    
+    // remove city name
+    NSRange endRange = [shortname rangeOfString:@"("];
+    if(endRange.location!=NSNotFound)
+        shortname = [shortname substringToIndex:endRange.location];
+    
+    // remove whitespace
+    shortname = [shortname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    // capitalized
+    if([shortname respondsToSelector:@selector(capitalizedStringWithLocale:)])
+        shortname = [shortname capitalizedStringWithLocale:[NSLocale currentLocale]];
+    else
+        shortname = [shortname stringByReplacingCharactersInRange:NSMakeRange(1, shortname.length-1) withString:[[shortname substringFromIndex:1] lowercaseString]];
+    
+    return shortname;
 }
 
-+ (NSSet*) keyPathsForValuesAffectingCleanName
+- (NSString *) localizedSummary
 {
-	return [NSSet setWithObjects:@"name",@"number",nil];
+    return [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
+            self.cleanName,
+            self.status_availableValue, self.status_freeValue];
 }
 
 /****************************************************************************/

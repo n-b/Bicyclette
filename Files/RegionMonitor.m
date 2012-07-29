@@ -12,6 +12,7 @@
 #import "Station.h"
 #import "NSArrayAdditions.h"
 #import "NSStringAdditions.h"
+#import "UIApplication+LocalAlerts.h"
 
 @interface RegionMonitor () <NSFetchedResultsControllerDelegate, CLLocationManagerDelegate>
 @property NSFetchedResultsController * frc;
@@ -76,6 +77,7 @@
 
 - (void) monitorRadar:(Radar*)radar
 {
+    // the radar.monitoringRegion always has the same identifier, so that the CLLocationManager knows it's the same region
     [self.locationManager startMonitoringForRegion:radar.monitoringRegion];
 }
 
@@ -96,7 +98,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
-    NSLog(@"did start monitor %@",region);
+    NSLog(@"did start monitoring %@",region);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
@@ -106,27 +108,8 @@
         Radar * radar = [self.radars firstObjectWithValue:region.identifier forKey:RadarAttributes.identifier];
 
         for (Station* station in radar.stationsWithinRadarRegion) {
-            UILocalNotification * userLocalNotif = [UILocalNotification new];
-            NSString * shortname = station.name;
-            NSRange beginRange = [shortname rangeOfString:@" - "];
-            if (beginRange.location!=NSNotFound) 
-                shortname = [station.name substringFromIndex:beginRange.location+beginRange.length];
-            
-            NSRange endRange = [shortname rangeOfString:@"("];
-            if(endRange.location!=NSNotFound)
-                shortname = [shortname substringToIndex:endRange.location];
-            
-            shortname = [shortname stringByReplacingCharactersInRange:NSMakeRange(1, shortname.length-1) withString:[[shortname substringFromIndex:1] lowercaseString]];
-            
-            NSString * msg = [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
-                              shortname,
-                              station.status_availableValue, station.status_freeValue];
-            userLocalNotif.alertBody = msg;
-            userLocalNotif.hasAction = NO;
-            userLocalNotif.soundName = UILocalNotificationDefaultSoundName;
-            [[UIApplication sharedApplication] presentLocalNotificationNow:userLocalNotif];
+            [[UIApplication sharedApplication] presentLocalNotificationMessage:station.localizedSummary];
         }
-
     }
 }
 

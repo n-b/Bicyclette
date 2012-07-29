@@ -4,17 +4,18 @@
 
 @interface Station : _Station <MKAnnotation, Locatable>
 
+//
+@property BOOL needsRefresh;
+
 // status
 - (void) refresh;
 - (void) cancel;
 
-@property (nonatomic, readonly) BOOL loading;
-@property (nonatomic, readonly, strong) NSError * updateError;
-
-@property BOOL needsRefresh;
+@property (readonly) BOOL loading;
+@property (readonly) NSError * updateError;
 
 // Computed properties
-@property (weak, nonatomic, readonly) NSString * cleanName;
-@property (nonatomic, strong, readonly) CLLocation * location;
-
+@property (nonatomic, readonly) CLLocation * location;
+@property (readonly) NSString * cleanName;
+@property (readonly) NSString * localizedSummary;
 @end
