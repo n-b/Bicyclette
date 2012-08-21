@@ -58,7 +58,7 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, @"isInRefreshQueue", @"loading" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, @"isInRefreshQueue", @"loading", @"statusDataIsFresh" ];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -129,7 +129,8 @@
     // Prepare Value
     UIColor * baseColor;
     NSString * text;
-    if([self station].status_date)
+    
+    if([[self station] statusDataIsFresh])
     {
         int16_t value;
         if(self.mode==StationAnnotationModeBikes)
@@ -146,7 +147,10 @@
     else
     {
         baseColor = kUnknownValueColor;
-        text = @"-";
+        if([self station].status_totalValue!=0)
+            text = [NSString stringWithFormat:@"%d",[self station].status_totalValue];
+        else
+            text = @"-";
     }
     
     self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)

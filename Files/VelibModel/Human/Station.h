@@ -22,4 +22,7 @@
 @property (nonatomic, readonly) CLLocation * location;
 @property (readonly) NSString * cleanName;
 @property (readonly) NSString * localizedSummary;
+
+// whether the data is not too old
+@property (readonly) BOOL statusDataIsFresh;
 @end

@@ -46,6 +46,7 @@
 
 - (void) refresh
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
 	if(self.updater!=nil)
 		return;
     self.updateError = nil;
@@ -105,11 +106,24 @@
         [[UIApplication sharedApplication] presentLocalNotificationMessage:self.localizedSummary];
         self.notifySummary = NO;
     }
-        
     
     [self.managedObjectContext.model setNeedsSave];
     self.updater = nil;
     self.loading = NO;
+    
+    [self performSelector:@selector(becomeStale) withObject:nil afterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"]];
+}
+
+- (void) becomeStale
+{
+    [self willChangeValueForKey:@"statusDataIsFresh"];
+    [self didChangeValueForKey:@"statusDataIsFresh"];
+}
+
+- (BOOL) statusDataIsFresh
+{
+    NSTimeInterval stalenessInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"];
+    return self.status_date && [[NSDate date] timeIntervalSinceDate:self.status_date] < stalenessInterval;
 }
 
 /****************************************************************************/
@@ -256,6 +270,6 @@
 - (void) willTurnIntoFault
 {
     [super willTurnIntoFault];
-    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
 }
 @end
