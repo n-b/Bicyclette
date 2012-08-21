@@ -18,6 +18,7 @@
 @property NSFetchedResultsController * frc;
 @property (nonatomic, copy) NSArray * radars;
 @property CLLocationManager * locationManager;
+@property UIAlertView * authorizationAlertView;
 @end
 
 @implementation RegionMonitor
@@ -139,10 +140,19 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
+    [self.authorizationAlertView dismissWithClickedButtonIndex:0 animated:NO];
+    self.authorizationAlertView = nil;
     if(status==kCLAuthorizationStatusDenied || status==kCLAuthorizationStatusRestricted)
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LOCALIZATION_ERROR_UNAUTHORIZED_TITLE", nil)
-                                    message:NSLocalizedString(@"LOCALIZATION_ERROR_UNAUTHORIZED_MESSAGE", nil)
-                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    {
+        NSString * message = NSLocalizedString(@"LOCALIZATION_PURPOSE", nil);
+        if (status==kCLAuthorizationStatusDenied) {
+            message = [message stringByAppendingFormat:@"\n%@",NSLocalizedString(@"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE", nil)];
+        }
+        self.authorizationAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LOCALIZATION_ERROR_UNAUTHORIZED_TITLE", nil)
+                                                                 message:message
+                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [self.authorizationAlertView show];
+    }
 }
 
 
