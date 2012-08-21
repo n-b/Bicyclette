@@ -19,7 +19,7 @@
 #import "Radar.h"
 #import "RadarAnnotationView.h"
 #import "RadarUpdateQueue.h"
-#import "MKMapView+GoogleLogo.h"
+#import "MKMapView+AttributionLogo.h"
 
 typedef enum {
 	MapLevelNone = 0,
@@ -77,9 +77,20 @@ typedef enum {
 - (void) loadView
 {
     [super loadView]; // get a base view
+
+    [self.view addObserver:self forKeyPath:@"frame" options:0 context:NULL];
     
+    // Compute frames
+    // on iPhone, the toolbar is transparent and the mapview is visible beneath it.
+    // on iPad, it's opaque.
+#define kToolbarHeight 44 // Strange. I was expecting to find a declared constant for it.
+    CGRect mapViewFrame, toolBarFrame;
+    CGRectDivide(self.view.bounds, &toolBarFrame, &mapViewFrame, kToolbarHeight, CGRectMaxYEdge);
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        mapViewFrame = self.view.bounds;
+
     // Create mapview
-    self.mapView = [[MKMapView alloc]initWithFrame:self.view.bounds];
+    self.mapView = [[MKMapView alloc]initWithFrame:mapViewFrame];
     [self.view addSubview:self.mapView];
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapView.showsUserLocation = YES;
@@ -102,20 +113,18 @@ typedef enum {
     modeItem.width = 160;
     
     // create toolbar
-#define kToolbarHeight 44 // Strange that I have to declare it
-    self.mapVCToolbar = [[TransparentToolbar alloc] initWithFrame:
-                         CGRectMake(0, self.view.bounds.size.height-kToolbarHeight, 
-                                    self.view.bounds.size.width, kToolbarHeight)];
+    self.mapVCToolbar = [[TransparentToolbar alloc] initWithFrame:toolBarFrame];
     self.mapVCToolbar.barStyle = UIBarStyleBlack;
-    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        self.mapVCToolbar.translucent = YES; // means transparent actually
     [self.view addSubview:self.mapVCToolbar];
     self.mapVCToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     self.mapVCToolbar.items = @[self.userTrackingButton,
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
     modeItem,
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
-    
+
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        self.mapVCToolbar.translucent = YES; // means transparent actually
+
     // observe changes to the prefs
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 
@@ -129,15 +138,13 @@ typedef enum {
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // Relocate google logo
-    self.mapView.googleLogo.frame = (CGRect){CGPointZero,self.mapView.googleLogo.frame.size};
+    [self.mapView relocateAttributionLogoIfNecessary];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    // Relocate google logo
-    self.mapView.googleLogo.frame = (CGRect){CGPointZero,self.mapView.googleLogo.frame.size};
+    [self.mapView relocateAttributionLogoIfNecessary];
 }
 
 - (void) reloadData
