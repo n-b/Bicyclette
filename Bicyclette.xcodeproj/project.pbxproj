@@ -49,7 +49,6 @@
 		373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780615E40EF70057E241 /* Icon~settings@2x.png */; };
 		3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
-		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
 		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -177,7 +176,6 @@
 		3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarUpdateQueue.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3756EB5B1298085B00113534 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
@@ -433,7 +431,6 @@
 			children = (
 				3756EADE1298018A00113534 /* Info.plist */,
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
-				3756EB5B1298085B00113534 /* Settings.bundle */,
 				37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */,
 			);
 			name = CoreResources;
@@ -625,7 +622,6 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
-				3756EB5C1298085B00113534 /* Settings.bundle in Resources */,
 				37FEC45A12C93901005C6606 /* VelibHardcodedFixes.plist in Resources */,
 				37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */,
 				37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */,
