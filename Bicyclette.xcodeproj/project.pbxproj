@@ -43,6 +43,10 @@
 		373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		373A77F415E3F6B80057E241 /* VelibModel.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* VelibModel.sqlite */; };
+		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
+		373A780315E40DA90057E241 /* Icon~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780115E40DA90057E241 /* Icon~ipad@2x.png */; };
+		373A780715E40EF70057E241 /* Icon~settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780515E40EF70057E241 /* Icon~settings.png */; };
+		373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780615E40EF70057E241 /* Icon~settings@2x.png */; };
 		3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
@@ -164,6 +168,11 @@
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
 		373A77F315E3F6B80057E241 /* VelibModel.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = VelibModel.sqlite; path = _DataGrabTempFolder/VelibModel.sqlite; sourceTree = "<group>"; };
+		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
+		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
+		373A780515E40EF70057E241 /* Icon~settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~settings.png"; sourceTree = "<group>"; };
+		373A780615E40EF70057E241 /* Icon~settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~settings@2x.png"; sourceTree = "<group>"; };
+		373A780915E40F060057E241 /* Icon~appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~appstore.png"; sourceTree = "<group>"; };
 		3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarUpdateQueue.h; sourceTree = "<group>"; };
 		3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarUpdateQueue.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
@@ -206,7 +215,6 @@
 		37EC534915BAFB0400F45C09 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		37EC534B15BAFB0400F45C09 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		37EC534C15BAFB0400F45C09 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		37EC534D15BAFB0400F45C09 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		37EDD1C915A5CDC80023301D /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
 		37EDD1CA15A5CDC80023301D /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
 		37EDD1CD15A5CDD10023301D /* _Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Radar.h; sourceTree = "<group>"; };
@@ -516,7 +524,11 @@
 				37EC534915BAFB0400F45C09 /* Default@2x.png */,
 				37EC534B15BAFB0400F45C09 /* Icon.png */,
 				37EC534C15BAFB0400F45C09 /* Icon@2x.png */,
-				37EC534D15BAFB0400F45C09 /* iTunesArtwork.png */,
+				373A780015E40DA90057E241 /* Icon~ipad.png */,
+				373A780115E40DA90057E241 /* Icon~ipad@2x.png */,
+				373A780515E40EF70057E241 /* Icon~settings.png */,
+				373A780615E40EF70057E241 /* Icon~settings@2x.png */,
+				373A780915E40F060057E241 /* Icon~appstore.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -627,6 +639,10 @@
 				37EC535515BAFB0400F45C09 /* Icon.png in Resources */,
 				37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */,
 				373A77F415E3F6B80057E241 /* VelibModel.sqlite in Resources */,
+				373A780215E40DA90057E241 /* Icon~ipad.png in Resources */,
+				373A780315E40DA90057E241 /* Icon~ipad@2x.png in Resources */,
+				373A780715E40EF70057E241 /* Icon~settings.png in Resources */,
+				373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
