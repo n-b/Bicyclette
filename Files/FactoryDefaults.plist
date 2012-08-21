@@ -38,10 +38,7 @@
 	<integer>3</integer>
 	<key>ModelSaveDelay</key>
 	<integer>1</integer>
-<<<<<<< HEAD
-=======
 	<key>StationStatusStalenessInterval</key>
 	<integer>600</integer>
->>>>>>> a8bf50b... fix stations status staleness stuff
 </dict>
 </plist>
