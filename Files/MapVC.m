@@ -78,8 +78,6 @@ typedef enum {
 {
     [super loadView]; // get a base view
 
-    [self.view addObserver:self forKeyPath:@"frame" options:0 context:NULL];
-    
     // Compute frames
     // on iPhone, the toolbar is transparent and the mapview is visible beneath it.
     // on iPad, it's opaque.

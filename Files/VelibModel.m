@@ -391,7 +391,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
         if([regions count]==0)
         {
             CLRegion * limits = [self hardcodedLimits];
-            return MKCoordinateRegionMake(limits.center, MKCoordinateSpanMake(limits.radius*2, limits.radius*2));
+            return MKCoordinateRegionMakeWithDistance(limits.center, limits.radius*2, limits.radius*2);
         }
         
 		NSNumber * minLat = [regions valueForKeyPath:@"@min.minLatitude"];
