@@ -333,7 +333,6 @@ const struct VelibModelNotifications VelibModelNotifications = {
                                            capitalizedString];
                     region.name = cityName;
                 }
-                NSLog(@"Created region %@",region.name);
             }
             station.region = region;
         }
