@@ -79,8 +79,8 @@ typedef enum {
     [super loadView]; // get a base view
     
     // Create mapview
-    self.mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    [self.view addSubview:self.mapView ];
+    self.mapView = [[MKMapView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.mapView];
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapView.showsUserLocation = YES;
     self.mapView.zoomEnabled = YES;

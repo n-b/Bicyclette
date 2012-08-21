@@ -87,8 +87,9 @@
         // Rotate around infoButton
         CGPoint rotationCenter = self.infoButton.center;
         
-        // Take a screenshot of the presenting vc
-        self.screenshot = [[UIImageView alloc] initWithImage:[self.mapVC.view screenshot]];
+        // Take a screenshot of the mapVC view
+        UIView * mapView = self.mapVC.view;
+        self.screenshot = [[UIImageView alloc] initWithImage:[mapView screenshot]];
 
         // Present (not animated)
         [self.rootNavC pushViewController:self.prefsVC animated:NO];
@@ -99,9 +100,9 @@
         // Align the screenshot around the rotation center
         self.screenshot.layer.anchorPoint = CGPointMake(rotationCenter.x/rootView.bounds.size.width,
                                                         rotationCenter.y/rootView.bounds.size.height);
-        CGSize translation = CGSizeMake(rotationCenter.x-CGRectGetMidX(rootView.bounds),
-                                        rotationCenter.y-CGRectGetMidY(rootView.bounds));
-        self.screenshot.transform = CGAffineTransformMakeTranslation(translation.width, translation.height );
+        CGSize translation = CGSizeMake(rotationCenter.x-CGRectGetMidX(mapView.bounds),
+                                        rotationCenter.y-CGRectGetMidY(mapView.bounds));
+        self.screenshot.transform = CGAffineTransformMakeTranslation(translation.width, translation.height);
 
         // Poor man's shadow for the screenshot (faster during animation)
         self.screenshot.userInteractionEnabled = YES;
