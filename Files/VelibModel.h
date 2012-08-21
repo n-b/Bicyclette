@@ -8,8 +8,6 @@
 
 #import "CoreDataManager.h"
 
-#import <MapKit/MapKit.h>
-
 #define kVelibStationsListURL		@"http://www.velib.paris.fr/service/carto"
 #define kVelibStationsStatusURL		@"http://www.velib.paris.fr/service/stationdetails/paris/"
 
@@ -19,14 +17,21 @@
 @class Radar;
 @class RadarUpdateQueue;
 
+#if TARGET_OS_IPHONE
 @interface VelibModel : CoreDataManager <MKAnnotation>
+#else
+@interface VelibModel : CoreDataManager
+#endif
 
 - (NSString *) name;
 
 - (void) update;
 
 @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
+
+#if TARGET_OS_IPHONE
 @property (readonly, nonatomic) MKCoordinateRegion regionContainingData;
+#endif
 
 @property (readonly, nonatomic) Radar * userLocationRadar;
 @property (readonly, nonatomic) Radar * screenCenterRadar;

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "Bicyclette.app"
-               BlueprintName = "Bicyclette"
+               BlueprintIdentifier = "37038A0E15E3A6280043504A"
+               BuildableName = "BicycletteDataGrab"
+               BlueprintName = "BicycletteDataGrab"
                ReferencedContainer = "container:Bicyclette.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -24,27 +24,17 @@
    </BuildAction>
    <TestAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3786E4DB14825A7700814C10"
-               BuildableName = "BicycletteLogicTests.octest"
-               BlueprintName = "BicycletteLogicTests"
-               ReferencedContainer = "container:Bicyclette.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Bicyclette.app"
-            BlueprintName = "Bicyclette"
+            BlueprintIdentifier = "37038A0E15E3A6280043504A"
+            BuildableName = "BicycletteDataGrab"
+            BlueprintName = "BicycletteDataGrab"
             ReferencedContainer = "container:Bicyclette.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,24 +45,19 @@
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
-      ignoresPersistentStateOnLaunch = "YES"
+      ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Bicyclette.app"
-            BlueprintName = "Bicyclette"
+            BlueprintIdentifier = "37038A0E15E3A6280043504A"
+            BuildableName = "BicycletteDataGrab"
+            BlueprintName = "BicycletteDataGrab"
             ReferencedContainer = "container:Bicyclette.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
-         <AdditionalOption
-            key = "OBJC_PRINT_EXCEPTIONS"
-            value = "YES"
-            isEnabled = "YES">
-         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -80,14 +65,13 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
-      ignoresPersistentStateOnLaunch = "YES"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Bicyclette.app"
-            BlueprintName = "Bicyclette"
+            BlueprintIdentifier = "37038A0E15E3A6280043504A"
+            BuildableName = "BicycletteDataGrab"
+            BlueprintName = "BicycletteDataGrab"
             ReferencedContainer = "container:Bicyclette.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -15,8 +15,9 @@ extern NSString * const BicycletteErrorDomain;
 // Core Data Standard Machinery
 @interface CoreDataManager : NSObject
 
-- (id) init; // calls initWithModelName:NSStringFromClass([self class])
-- (id) initWithModelName:(NSString*)modelName;
+- (id) init;									// default model name is NSStringFromClass([self class])
+- (id) initWithModelName:(NSString*)modelName;	// default store url is ~/Documents/<modelName>.sqlite
+- (id) initWithModelName:(NSString*)modelName storeURL:(NSURL*)storeURL;
 
 @property (readonly, nonatomic, strong) NSManagedObjectContext *moc;
 @property (nonatomic, weak) id<CoreDataManagerDelegate> delegate; 

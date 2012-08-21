@@ -5,11 +5,16 @@
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#if TARGET_OS_IPHONE
+	#import <UIKit/UIKit.h>
+	#import <MapKit/MapKit.h>
+#else
+	#import <Cocoa/Cocoa.h>
+#endif
+
 #import <QuartzCore/QuartzCore.h>
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 
 #import "CompatibilityCategories.h"
 

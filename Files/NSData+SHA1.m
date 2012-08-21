@@ -20,7 +20,7 @@
 CC_##method##_CTX ctx;                                              \
 unsigned char digest[CC_##method##_DIGEST_LENGTH];                  \
 CC_##method##_Init(&ctx);                                           \
-CC_##method##_Update(&ctx, [self bytes], [self length]);            \
+CC_##method##_Update(&ctx, [self bytes], (CC_LONG)[self length]);            \
 CC_##method##_Final(digest, &ctx);
 
 #define HEComputeDigestNSData(method)                                   \

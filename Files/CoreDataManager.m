@@ -31,7 +31,6 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 #pragma mark -
 
 @implementation CoreDataManager
-@synthesize mom, psc, moc, delegate;
 
 /****************************************************************************/
 #pragma mark Init
@@ -43,6 +42,12 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 
 - (id) initWithModelName:(NSString*)modelName
 {
+    NSURL *storeURL = [NSURL fileURLWithPath:[[NSFileManager documentsDirectory] stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
+    return [self initWithModelName:modelName storeURL:storeURL];
+}
+
+- (id) initWithModelName:(NSString*)modelName storeURL:(NSURL*)storeURL
+{
     self = [super init];
     if (self) {
         
@@ -52,7 +57,6 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
         // Create psc
 		self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
 		NSError *error = nil;
-		NSURL *storeURL = [NSURL fileURLWithPath: [[NSFileManager documentsDirectory] stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
         
 		if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
         {

@@ -4,7 +4,9 @@
 #pragma mark -
 
 @interface Region ()
+#if TARGET_OS_IPHONE
 @property (readonly, nonatomic, readwrite) MKCoordinateRegion coordinateRegion;
+#endif
 @end
 
 /****************************************************************************/
@@ -12,7 +14,9 @@
 
 @implementation Region
 
+#if TARGET_OS_IPHONE
 @synthesize coordinateRegion;
+#endif
 
 - (void) setupCoordinates
 {
@@ -26,10 +30,11 @@
 {
 	return [NSString stringWithFormat:@"Region %@ (%@) - %d stations - de {%f,%f} à {%f,%f}",
 			self.number, self.name,
-			self.stations.count,
+            (unsigned int)self.stations.count,
 			self.minLatitudeValue, self.minLongitudeValue, self.maxLatitudeValue, self.maxLongitudeValue];
 }
 
+#if TARGET_OS_IPHONE
 - (MKCoordinateRegion) coordinateRegion
 {
 	if(coordinateRegion.center.latitude == 0 &&
@@ -52,5 +57,6 @@
 {
 	return self.coordinateRegion.center;
 }
+#endif
 
 @end

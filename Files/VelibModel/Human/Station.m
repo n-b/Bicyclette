@@ -5,7 +5,9 @@
 #import "DataUpdater.h"
 #import "NSObject+KVCMapping.h"
 #import "NSError+MultipleErrorsCombined.h"
+#if TARGET_OS_IPHONE
 #import "UIApplication+LocalAlerts.h"
+#endif
 
 /****************************************************************************/
 #pragma mark -
@@ -103,7 +105,9 @@
 
     if(self.notifySummary)
     {
+#if TARGET_OS_IPHONE
         [[UIApplication sharedApplication] presentLocalNotificationMessage:self.localizedSummary];
+#endif
         self.notifySummary = NO;
     }
     

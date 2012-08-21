@@ -38,6 +38,10 @@
 		372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
 		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
+		373A77EE15E3EB490057E241 /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
+		373A77EF15E3EB890057E241 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
+		373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
+		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
@@ -54,6 +58,18 @@
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
 		37AFC0F215B2FAED00E3E940 /* VelibHardcodedDebugErrors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0F115B2FAED00E3E940 /* VelibHardcodedDebugErrors.plist */; };
+		37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
+		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
+		37B7ABEF15E3DC5100268B70 /* VelibModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* VelibModel.m */; };
+		37B7ABF015E3DC5E00268B70 /* VelibModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* VelibModel.xcdatamodel */; };
+		37B7ABF115E3DC9100268B70 /* VelibHardcodedFixes.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */; };
+		37B7ABF815E3DE4500268B70 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
+		37B7ABF915E3DE4500268B70 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
+		37B7ABFB15E3DF1F00268B70 /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
+		37B7ABFC15E3DF1F00268B70 /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
+		37B7AC0015E3DF7000268B70 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
+		37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B7AC0115E3DF8B00268B70 /* AppKit.framework */; };
+		37B7AC0315E3DF9C00268B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
 		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
@@ -86,12 +102,13 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		37038A0D15E3A6280043504A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				37B7ABF115E3DC9100268B70 /* VelibHardcodedFixes.plist in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -171,6 +188,7 @@
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37AFC0F115B2FAED00E3E940 /* VelibHardcodedDebugErrors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedDebugErrors.plist; sourceTree = "<group>"; };
 		37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatibilityCategories.h; sourceTree = "<group>"; };
+		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
 		37C56FD115B1A0E700795961 /* PrefsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsVC.h; sourceTree = "<group>"; };
@@ -223,7 +241,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */,
 				37038A1115E3A6280043504A /* Foundation.framework in Frameworks */,
+				37B7AC0015E3DF7000268B70 /* CoreLocation.framework in Frameworks */,
+				37B7AC0315E3DF9C00268B70 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +335,7 @@
 				37E9532C12AA2BE000C1D21C /* MapKit.framework */,
 				370F7DF912F60C2700F5FC45 /* QuartzCore.framework */,
 				3786E4DD14825A7700814C10 /* SenTestingKit.framework */,
+				37B7AC0115E3DF8B00268B70 /* AppKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -513,6 +535,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "BicycletteDataGrab" */;
 			buildPhases = (
+				37B7ABF215E3DCA900268B70 /* Mogenerator */,
 				37038A0B15E3A6280043504A /* Sources */,
 				37038A0C15E3A6280043504A /* Frameworks */,
 				37038A0D15E3A6280043504A /* CopyFiles */,
@@ -633,6 +656,21 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		37B7ABF215E3DCA900268B70 /* Mogenerator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Mogenerator;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/VelibModel.xcdatamodel --template-var arc=true --machine-dir Files/VelibModel/Machine --human-dir Files/VelibModel/Human\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -682,6 +720,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				37038A1415E3A6290043504A /* BicycletteDataGrab.m in Sources */,
+				37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */,
+				37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */,
+				37B7ABEF15E3DC5100268B70 /* VelibModel.m in Sources */,
+				37B7ABF015E3DC5E00268B70 /* VelibModel.xcdatamodel in Sources */,
+				37B7ABF815E3DE4500268B70 /* Region.m in Sources */,
+				37B7ABF915E3DE4500268B70 /* Station.m in Sources */,
+				37B7ABFB15E3DF1F00268B70 /* _Region.m in Sources */,
+				37B7ABFC15E3DF1F00268B70 /* _Station.m in Sources */,
+				373A77EE15E3EB490057E241 /* NSData+SHA1.m in Sources */,
+				373A77EF15E3EB890057E241 /* NSArrayAdditions.m in Sources */,
+				373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */,
+				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,19 +784,8 @@
 		37038A1A15E3A6290043504A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BicycletteDataGrab/BicycletteDataGrab-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -757,16 +796,9 @@
 		37038A1B15E3A6290043504A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BicycletteDataGrab/BicycletteDataGrab-Prefix.pch";
+				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

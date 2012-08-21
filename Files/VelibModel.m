@@ -9,14 +9,18 @@
 #import "VelibModel.h"
 #import "Station.h"
 #import "Region.h"
+#if TARGET_OS_IPHONE
 #import "Radar.h"
+#endif
 #import "NSArrayAdditions.h"
 #import "NSStringAdditions.h"
 #import "NSObject+KVCMapping.h"
 #import "NSError+MultipleErrorsCombined.h"
 #import "DataUpdater.h"
+#if TARGET_OS_IPHONE
 #import "RadarUpdateQueue.h"
 #import "RegionMonitor.h"
+#endif
 
 /****************************************************************************/
 #pragma mark Constants
@@ -43,12 +47,16 @@ const struct VelibModelNotifications VelibModelNotifications = {
 @property (nonatomic, strong) NSDictionary * stationsHardcodedFixes;
 @property (readwrite, nonatomic, strong) CLRegion * hardcodedLimits;
 // -
+#if TARGET_OS_IPHONE
 @property RadarUpdateQueue * updaterQueue;
 // -
 @property RegionMonitor * regionMonitor;
+#endif
 // -
+#if TARGET_OS_IPHONE
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
-// - 
+#endif
+// -
 @property (nonatomic, strong) NSMutableDictionary * parsing_regionsByCodePostal;
 @property (nonatomic, strong) NSMutableArray * parsing_oldStations;
 @end
@@ -58,12 +66,14 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 @implementation VelibModel
 
-- (id)init
+- (id)initWithModelName:(NSString *)modelName storeURL:(NSURL *)storeURL
 {
-    self = [super init];
+    self = [super initWithModelName:modelName storeURL:storeURL];
     if (self) {
+#if TARGET_OS_IPHONE
         self.updaterQueue = [[RadarUpdateQueue alloc] initWithModel:self];
         self.regionMonitor = [[RegionMonitor alloc] initWithModel:self];
+#endif
     }
     return self;
 }
@@ -338,6 +348,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 /****************************************************************************/
 #pragma mark Radars
 
+#if TARGET_OS_IPHONE
 - (Radar *) userLocationRadar
 {
     Radar * r = [[Radar fetchUserLocationRadar:self.moc] lastObject];
@@ -362,7 +373,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     }
     return r;
 }
-
+#endif
 
 /****************************************************************************/
 #pragma mark Coordinates
@@ -372,6 +383,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
     return self.name;
 }
 
+#if TARGET_OS_IPHONE
 - (CLLocationCoordinate2D) coordinate
 {
     return self.regionContainingData.center;
@@ -409,6 +421,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 	}
 	return _regionContainingData;
 }
+#endif
 
 @end
 
