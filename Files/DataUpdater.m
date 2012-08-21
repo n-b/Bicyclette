@@ -84,6 +84,7 @@
 	{
 		[self.updateConnection cancel];
 		self.updateConnection = nil;
+        [self.delegate updaterDidFinishWithNoNewData:self];
 	}
 }
 
