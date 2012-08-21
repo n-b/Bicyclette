@@ -197,8 +197,12 @@
 
 - (void)displayLayer:(CALayer *)layer
 {
-    if(self.hidden) return;
-    if(!self.radar.manualRadarValue) return;
+    if(self.hidden || self.radar.manualRadarValue==NO)
+    {
+        self.layer.contents = nil;
+        return;
+    }
+
     
     self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.bounds.size
                                                                                scale:self.layer.contentsScale
