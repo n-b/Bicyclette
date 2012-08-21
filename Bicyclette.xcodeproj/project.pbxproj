@@ -42,6 +42,7 @@
 		373A77EF15E3EB890057E241 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSArrayAdditions.m */; };
 		373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
+		373A77F415E3F6B80057E241 /* VelibModel.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* VelibModel.sqlite */; };
 		3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		3756EB5C1298085B00113534 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3756EB5B1298085B00113534 /* Settings.bundle */; };
@@ -162,6 +163,7 @@
 		3730161715977E1900347C9F /* DrawingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCache.m; sourceTree = "<group>"; };
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
+		373A77F315E3F6B80057E241 /* VelibModel.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = VelibModel.sqlite; path = _DataGrabTempFolder/VelibModel.sqlite; sourceTree = "<group>"; };
 		3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarUpdateQueue.h; sourceTree = "<group>"; };
 		3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarUpdateQueue.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			children = (
 				3756EA9B1297F52200113534 /* CoreResources */,
 				37EC534315BAFB0400F45C09 /* Images */,
+				373A77F215E3F6860057E241 /* EmbeddedStore */,
 				29B97315FDCFA39411CA2CEA /* App */,
 				37216A411261087300A2695A /* Model */,
 				080E96DDFE201D6D7F000001 /* UI */,
@@ -409,6 +412,14 @@
 			);
 			name = Model;
 			path = Files;
+			sourceTree = "<group>";
+		};
+		373A77F215E3F6860057E241 /* EmbeddedStore */ = {
+			isa = PBXGroup;
+			children = (
+				373A77F315E3F6B80057E241 /* VelibModel.sqlite */,
+			);
+			name = EmbeddedStore;
 			sourceTree = "<group>";
 		};
 		3756EA9B1297F52200113534 /* CoreResources */ = {
@@ -615,6 +626,7 @@
 				37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */,
 				37EC535515BAFB0400F45C09 /* Icon.png in Resources */,
 				37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */,
+				373A77F415E3F6B80057E241 /* VelibModel.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

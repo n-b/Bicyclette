@@ -13,7 +13,7 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool
     {
-        NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Velib.sqlite"];
+        NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite",NSStringFromClass([VelibModel class])]];
 
         // Clear stuff from previous runs
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DebugAlwaysDownloadStationList"];

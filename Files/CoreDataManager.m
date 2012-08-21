@@ -58,23 +58,34 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 		self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
 		NSError *error = nil;
         
+        // Debug
 		if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
         {
 			NSLog(@"Removing data store");
 			[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-            //			[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DebugRemoveStore"];
         }
         
+        // Copy embedded store, if we don't already have a store in the final location, and there's one in the app bundle.
+        if( ![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]])
+        {
+            NSURL * embeddedStoreURL = [[NSBundle mainBundle] URLForResource:modelName withExtension:@"sqlite"];
+            if(embeddedStoreURL)
+                [[NSFileManager defaultManager] copyItemAtURL:embeddedStoreURL toURL:storeURL error:NULL];
+        }
+        
+        // Create PSC
 		if (![self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
         {
 			NSLog(@"Unresolved error when opening store %@, %@", error, [error userInfo]);
 			if( error.code == NSPersistentStoreIncompatibleVersionHashError )
             {
+                // This happens a lot during development. Just dump the old store and create a new one.
 				NSLog(@"trying to remove the existing db");
 				[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
 				[self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];	
             }
 			else
+                // shit.
 				abort();
         }
 		
