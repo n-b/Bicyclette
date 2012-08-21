@@ -10,4 +10,7 @@
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+
+#import "CompatibilityCategories.h"
+
 #endif

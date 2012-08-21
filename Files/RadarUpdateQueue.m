@@ -118,7 +118,7 @@
     else
     {
         // if the app is inactive, the referenceLocation is unused, we just use the summary flag
-        radarsToRefresh = [self.radars filteredArrayWithValue:@YES forKey:@"wantsSummary"];
+        radarsToRefresh = [self.radars filteredArrayWithValue:@(YES) forKey:@"wantsSummary"];
     }
         
     // make the list
@@ -130,9 +130,9 @@
 - (void) setStationsToRefresh:(NSArray *)stationsToRefresh
 {
     // isInRefreshQueue is used by the UI to display progress indicators
-    [self.stationsToRefresh setValue:@NO forKey:@"isInRefreshQueue"];
+    [self.stationsToRefresh setValue:@(NO) forKey:@"isInRefreshQueue"];
     _stationsToRefresh = stationsToRefresh;
-    [self.stationsToRefresh setValue:@YES forKey:@"isInRefreshQueue"];
+    [self.stationsToRefresh setValue:@(YES) forKey:@"isInRefreshQueue"];
     
     self.currentIndex = 0;
 
@@ -162,7 +162,7 @@
         self.currentIndex = 0;
 
         // clear the summary flag : we only want it once.
-        [self.radars setValue:@NO forKey:@"wantsSummary"];
+        [self.radars setValue:@(NO) forKey:@"wantsSummary"];
         
         // after a delay, compute new list, and restart. (only if app is active)
         if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)

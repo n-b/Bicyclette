@@ -195,7 +195,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 	// Save
     if ([self save:&validationErrors])
     {
-        NSMutableDictionary * userInfo = [@{VelibModelNotifications.keys.dataChanged : @YES} mutableCopy];
+        NSMutableDictionary * userInfo = [@{VelibModelNotifications.keys.dataChanged : @(YES)} mutableCopy];
         if (validationErrors)
             userInfo[VelibModelNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
         [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self
@@ -213,7 +213,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self userInfo:@{VelibModelNotifications.keys.dataChanged : @NO}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self userInfo:@{VelibModelNotifications.keys.dataChanged : @(NO)}];
     self.updater = nil;
 }
 
