@@ -193,8 +193,6 @@
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
-		379572BC15E28C5300CCDC19 /* LICENCE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENCE; sourceTree = "<group>"; };
-		379572BE15E28C5B00CCDC19 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37AFC0F115B2FAED00E3E940 /* VelibHardcodedDebugErrors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedDebugErrors.plist; sourceTree = "<group>"; };
@@ -437,8 +435,6 @@
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
 				3756EB5B1298085B00113534 /* Settings.bundle */,
 				37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */,
-				379572BC15E28C5300CCDC19 /* LICENCE */,
-				379572BE15E28C5B00CCDC19 /* README */,
 			);
 			name = CoreResources;
 			path = Files;
