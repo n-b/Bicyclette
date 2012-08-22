@@ -19,7 +19,9 @@
 @property (weak) IBOutlet UIActivityIndicatorView *updateIndicator;
 @property (weak) IBOutlet UIBarButtonItem *updateButton;
 @property (weak) IBOutlet UIActivityIndicatorView *storeIndicator;
+@property (weak) IBOutlet UILabel *storeLabel;
 @property (weak) IBOutlet UIBarButtonItem *storeButton;
+@property (weak) IBOutlet UILabel *rewardLabel;
 
 @property (strong) Store * store;
 @property NSArray * products;
@@ -41,6 +43,7 @@
     [self updateRadarDistancesSegmentedControl];
     if(![self.updateIndicator isAnimating])
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
+    [self updateStoreButton];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -78,22 +81,6 @@
 - (IBAction)openSourcePage {
     NSString * sourceURL = [NSString stringWithFormat:@"http://%@",[[NSBundle mainBundle] infoDictionary][@"sourceURL"]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sourceURL]];
-}
-
-- (IBAction)donate {
-    self.products = nil;
-    BOOL didRequest = [self.store requestProducts];
-    if(didRequest)
-    {
-        [self.storeIndicator startAnimating];
-        self.storeButton.enabled = NO;
-    }
-    else
-    {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_UNAVAILABLE_TITLE", nil)
-                                    message:NSLocalizedString(@"STORE_UNAVAILABLE_MESSAGE", nil)
-                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }
 }
 
 - (void) updateRadarDistancesSegmentedControl{
@@ -190,6 +177,37 @@
 /****************************************************************************/
 #pragma mark Store updates
 
+- (NSDictionary*) productsAndRewards
+{
+    return @{@"Merci1":@"STORE_REWARD_1",@"Merci2":@"STORE_REWARD_2",@"Merci3":@"STORE_REWARD_3"};
+}
+
+- (IBAction)donate {
+    self.products = nil;
+    BOOL didRequest = [self.store requestProducts:[[self productsAndRewards] allKeys]];
+    if(didRequest)
+    {
+        [self.storeIndicator startAnimating];
+        self.storeButton.enabled = NO;
+    }
+    else
+    {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_UNAVAILABLE_TITLE", nil)
+                                    message:NSLocalizedString(@"STORE_UNAVAILABLE_MESSAGE", nil)
+                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
+}
+
+- (void) updateStoreButton
+{
+    NSString * purchasedProductIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
+
+    self.storeLabel.text = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_LABEL", nil) : NSLocalizedString(@"STORE_THANK_YOU_LABEL", nil);
+    self.storeButton.title = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_BUTTON", nil) : @"";
+    self.rewardLabel.text = purchasedProductIdentifier==nil ? @"" : NSLocalizedString([self productsAndRewards][purchasedProductIdentifier], nil);
+    self.storeButton.enabled = purchasedProductIdentifier==nil;
+}
+
 - (void) store:(Store*)store productsRequestDidFailWithError:(NSError*)error
 {
     [self.storeIndicator stopAnimating];
@@ -215,7 +233,7 @@
 
     for (SKProduct * product in self.products) {
         priceFormatter.locale = product.priceLocale;
-        [storeSheet addButtonWithTitle:[NSString stringWithFormat:@"%@ (%@)",product.localizedTitle,[priceFormatter stringFromNumber:product.price]]];
+        [storeSheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@",product.localizedTitle,[priceFormatter stringFromNumber:product.price]]];
     }
     
     [storeSheet addButtonWithTitle:NSLocalizedString(@"STORE_SHEET_CANCEL", nil)];
@@ -244,10 +262,11 @@
 
 - (void) store:(Store*)store purchaseSucceeded:(NSString*)productIdentifier
 {
-    NSLog(@"ok, cool %@", productIdentifier);
+    [[NSUserDefaults standardUserDefaults] setObject:productIdentifier forKey:@"PurchasedProductsIdentifier"];
     [self.storeIndicator stopAnimating];
     self.storeButton.enabled = YES;
     self.products = nil;
+    [self updateStoreButton];
 }
 
 - (void) store:(Store*)store purchaseCancelled:(NSString*)productIdentifier
@@ -262,9 +281,7 @@
     [self.storeIndicator stopAnimating];
     self.storeButton.enabled = YES;
     self.products = nil;
-    [[[UIAlertView alloc] initWithTitle:error.localizedDescription
-                                message:error.localizedFailureReason
-                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    // StoreKit already presents the error, it's useless to display another alert
 }
 
 @end

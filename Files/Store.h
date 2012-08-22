@@ -14,7 +14,7 @@
 @interface Store : NSObject
 
 @property id<StoreDelegate> delegate;
-- (BOOL) requestProducts;
+- (BOOL) requestProducts:(NSArray*)productIdentifiers;
 - (void) buy:(SKProduct*)product;
 @end
 

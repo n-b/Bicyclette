@@ -30,8 +30,16 @@
 
 "STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d vélos, %3$d places à %1$@";
 
+"STORE_PLEASE_HELP_LABEL" = "Vous aimez ?";
+"STORE_PLEASE_HELP_BUTTON" = "Dire merci !";
+
 "STORE_UNAVAILABLE_TITLE" = "Achat impossible";
 "STORE_UNAVAILABLE_MESSAGE" = "Les achats In-App sont désactivés.";
 
-"STORE_SHEET_TITLE" = "Payez ce que vous voulez :";
+"STORE_SHEET_TITLE" = "Cette appli vous est utile ?\nVotre aide est la bienvenue !\n\nPayez ce que vous voulez :";
 "STORE_SHEET_CANCEL" = "Annuler";
+
+"STORE_THANK_YOU_LABEL" = "Merci !";
+"STORE_REWARD_1" = "☺";
+"STORE_REWARD_2" = "☺☺";
+"STORE_REWARD_3" = "☺☺☺";

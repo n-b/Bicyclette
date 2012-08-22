@@ -26,14 +26,14 @@
 /****************************************************************************/
 #pragma mark Request Products
 
-- (BOOL) requestProducts
+- (BOOL) requestProducts:(NSArray*)productIdentifiers
 {
     if( ! [SKPaymentQueue canMakePayments])
         return NO;
     
     [self.productsRequest cancel];
     
-    self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:@[@"ThankYou1", @"ThankYou4", @"ThankYou10"]]];
+    self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];
     self.productsRequest.delegate = self;
     [self.productsRequest start];
     
@@ -62,6 +62,9 @@
 /****************************************************************************/
 #pragma mark Payment
 
+// Purchase mechanisme is quite basic.
+// Since this is a free app anyway, let's not bother checking receipts.
+
 - (void) buy:(SKProduct*)product
 {
     SKPayment *payment = [SKPayment paymentWithProduct:product];
@@ -74,40 +77,28 @@
     {
         switch (transaction.transactionState)
         {
-            case SKPaymentTransactionStatePurchased:
-                [self completeTransaction:transaction];
-                break;
-            case SKPaymentTransactionStateFailed:
-                [self failedTransaction:transaction];
-                break;
             case SKPaymentTransactionStateRestored:
-                [self restoreTransaction:transaction];
+            case SKPaymentTransactionStatePurchased:
+            {
+                [self.delegate store:self purchaseSucceeded:transaction.payment.productIdentifier];
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+                break;
+            }
+            case SKPaymentTransactionStateFailed:
+            {
+                if (transaction.error.code == SKErrorPaymentCancelled) {
+                    [self.delegate store:self purchaseCancelled:transaction.payment.productIdentifier];
+                }else {
+                    [self.delegate store:self purchaseFailed:transaction.payment.productIdentifier withError:transaction.error];
+                }
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+                break;
+            }
             default:
                 break;
         }
     }
 }
 
-- (void) completeTransaction:(SKPaymentTransaction *)transaction
-{
-    [self.delegate store:self purchaseSucceeded:transaction.payment.productIdentifier];
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-}
-
-- (void) restoreTransaction: (SKPaymentTransaction *)transaction
-{
-    [self.delegate store:self purchaseSucceeded:transaction.payment.productIdentifier];
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-}
-
-- (void) failedTransaction: (SKPaymentTransaction *)transaction
-{
-    if (transaction.error.code == SKErrorPaymentCancelled) {
-        [self.delegate store:self purchaseCancelled:transaction.payment.productIdentifier];
-    }else {
-        [self.delegate store:self purchaseFailed:transaction.payment.productIdentifier withError:transaction.error];
-    }
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-}
 
 @end
