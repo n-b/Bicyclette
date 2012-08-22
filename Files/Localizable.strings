@@ -29,3 +29,9 @@
 "LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "Vous pouvez autoriser Bicyclette à utiliser le service de localisation dans Réglages > Confidentialité.";
 
 "STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d vélos, %3$d places à %1$@";
+
+"STORE_UNAVAILABLE_TITLE" = "Achat impossible";
+"STORE_UNAVAILABLE_MESSAGE" = "Les achats In-App sont désactivés.";
+
+"STORE_SHEET_TITLE" = "Payez ce que vous voulez :";
+"STORE_SHEET_CANCEL" = "Annuler";

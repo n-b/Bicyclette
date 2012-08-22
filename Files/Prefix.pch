@@ -8,6 +8,7 @@
 #if TARGET_OS_IPHONE
 	#import <UIKit/UIKit.h>
 	#import <MapKit/MapKit.h>
+	#import <StoreKit/StoreKit.h>
 #else
 	#import <Cocoa/Cocoa.h>
 #endif

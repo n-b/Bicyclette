@@ -39,6 +39,8 @@
 		3724BC6B15E4C50200790869 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6515E4C50200790869 /* Default-Landscape@2x.png */; };
 		3724BC6C15E4C50200790869 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6615E4C50200790869 /* Default-Portrait.png */; };
 		3724BC6D15E4C50200790869 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6715E4C50200790869 /* Default-Portrait@2x.png */; };
+		3724BC7315E4CA1200790869 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 3724BC7215E4CA1200790869 /* Store.m */; };
+		3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3724BC7415E4CA8A00790869 /* StoreKit.framework */; };
 		372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
 		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
@@ -168,6 +170,9 @@
 		3724BC6515E4C50200790869 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
 		3724BC6615E4C50200790869 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
 		3724BC6715E4C50200790869 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = "<group>"; };
+		3724BC7115E4CA1200790869 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		3724BC7215E4CA1200790869 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		3724BC7415E4CA8A00790869 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA1.h"; sourceTree = "<group>"; };
 		372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA1.m"; sourceTree = "<group>"; };
 		3730161615977E1900347C9F /* DrawingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCache.h; sourceTree = "<group>"; };
@@ -241,6 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -349,6 +355,7 @@
 				37A3471B128CA48C000A2540 /* CoreData.framework */,
 				37E9532C12AA2BE000C1D21C /* MapKit.framework */,
 				370F7DF912F60C2700F5FC45 /* QuartzCore.framework */,
+				3724BC7415E4CA8A00790869 /* StoreKit.framework */,
 				3786E4DD14825A7700814C10 /* SenTestingKit.framework */,
 				37B7AC0115E3DF8B00268B70 /* AppKit.framework */,
 			);
@@ -421,6 +428,8 @@
 				37FEC45912C93901005C6606 /* VelibHardcodedFixes.plist */,
 				37AFC0F115B2FAED00E3E940 /* VelibHardcodedDebugErrors.plist */,
 				37A346B5128C9D68000A2540 /* VelibModel */,
+				3724BC7115E4CA1200790869 /* Store.h */,
+				3724BC7215E4CA1200790869 /* Store.m */,
 			);
 			name = Model;
 			path = Files;
@@ -748,6 +757,7 @@
 				3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */,
 				37EE011915BC87E4008376A1 /* RegionMonitor.m in Sources */,
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
+				3724BC7315E4CA1200790869 /* Store.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

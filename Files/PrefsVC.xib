@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
 		<string key="IBDocument.SystemVersion">12A269</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2818</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2829</string>
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1900</string>
+			<string key="NS.object.0">1914</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -111,7 +111,7 @@
 										<string key="NSFrame">{{77, 53}, {243, 64}}</string>
 										<reference key="NSSuperview" ref="199674437"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="974209310"/>
+										<reference key="NSNextKeyView" ref="160468808"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -209,6 +209,16 @@
 								<reference key="NSNextKeyView" ref="417389360"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="323200375"/>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
+							<object class="IBUIActivityIndicatorView" id="900582727">
+								<reference key="NSNextResponder" ref="974209310"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{1, 151}, {20, 20}}</string>
+								<reference key="NSSuperview" ref="974209310"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 							<object class="IBUIView" id="387906994">
@@ -383,7 +393,7 @@
 						<string key="NSFrame">{{80, 0}, {320, 300}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="160468808"/>
+						<reference key="NSNextKeyView" ref="199674437"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="323200375"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -392,7 +402,7 @@
 				<string key="NSFrame">{{0, 20}, {480, 300}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="199674437"/>
+				<reference key="NSNextKeyView" ref="974209310"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC40OTgwMzkyMTU3IDAuNDk4MDM5MjE1NyAwLjQ5ODAzOTIxNTcAA</bytes>
@@ -572,6 +582,22 @@
 					<int key="connectionID">68</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">storeIndicator</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="900582727"/>
+					</object>
+					<int key="connectionID">76</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">storeButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="785563254"/>
+					</object>
+					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">updateStationsList</string>
 						<reference key="source" ref="723946906"/>
@@ -673,6 +699,7 @@
 							<reference ref="387906994"/>
 							<reference ref="160468808"/>
 							<reference ref="199674437"/>
+							<reference ref="900582727"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Center View</string>
@@ -793,6 +820,11 @@
 						<reference key="object" ref="723946906"/>
 						<reference key="parent" ref="95816489"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">75</int>
+						<reference key="object" ref="900582727"/>
+						<reference key="parent" ref="974209310"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -826,12 +858,13 @@
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">74</int>
+			<int key="maxID">77</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -840,6 +873,8 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="radarDistanceSegmentedControl">UISegmentedControl</string>
+						<string key="storeButton">UIBarButtonItem</string>
+						<string key="storeIndicator">UIActivityIndicatorView</string>
 						<string key="updateButton">UIBarButtonItem</string>
 						<string key="updateIndicator">UIActivityIndicatorView</string>
 					</dictionary>
@@ -847,6 +882,14 @@
 						<object class="IBToOneOutletInfo" key="radarDistanceSegmentedControl">
 							<string key="name">radarDistanceSegmentedControl</string>
 							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="storeButton">
+							<string key="name">storeButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="storeIndicator">
+							<string key="name">storeIndicator</string>
+							<string key="candidateClassName">UIActivityIndicatorView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="updateButton">
 							<string key="name">updateButton</string>
@@ -888,6 +931,6 @@
 			<string key="NS.key.0">Icon@2x.png</string>
 			<string key="NS.object.0">{114, 114}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1900</string>
+		<string key="IBCocoaTouchPluginVersion">1914</string>
 	</data>
 </archive>

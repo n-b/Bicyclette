@@ -8,18 +8,33 @@
 
 #import "PrefsVC.h"
 #import "VelibModel.h"
+#import "Store.h"
 #import "Station.h"
 
-@interface PrefsVC () <UITableViewDataSource, UITableViewDelegate>
+@interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (strong) IBOutletCollection(UITableViewCell) NSArray *cells;
 
 @property (weak) IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
 
 @property (weak) IBOutlet UIActivityIndicatorView *updateIndicator;
 @property (weak) IBOutlet UIBarButtonItem *updateButton;
+@property (weak) IBOutlet UIActivityIndicatorView *storeIndicator;
+@property (weak) IBOutlet UIBarButtonItem *storeButton;
+
+@property (strong) Store * store;
+@property NSArray * products;
 @end
 
 @implementation PrefsVC
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    // Create store
+    self.store = [Store new];
+    self.store.delegate = self;
+}
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -66,6 +81,19 @@
 }
 
 - (IBAction)donate {
+    self.products = nil;
+    BOOL didRequest = [self.store requestProducts];
+    if(didRequest)
+    {
+        [self.storeIndicator startAnimating];
+        self.storeButton.enabled = NO;
+    }
+    else
+    {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_UNAVAILABLE_TITLE", nil)
+                                    message:NSLocalizedString(@"STORE_UNAVAILABLE_MESSAGE", nil)
+                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
 }
 
 - (void) updateRadarDistancesSegmentedControl{
@@ -91,6 +119,9 @@
 - (IBAction)updateStationsList {
     [self.model update];
 }
+
+/****************************************************************************/
+#pragma mark Model updates
 
 - (void) setModel:(VelibModel *)model
 {
@@ -154,6 +185,86 @@
                                    message:[error localizedDescription]
                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
+}
+
+/****************************************************************************/
+#pragma mark Store updates
+
+- (void) store:(Store*)store productsRequestDidFailWithError:(NSError*)error
+{
+    [self.storeIndicator stopAnimating];
+    self.storeButton.enabled = YES;
+    [[[UIAlertView alloc] initWithTitle:error.localizedDescription
+                                message:error.localizedFailureReason
+                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+
+- (void) store:(Store*)store productsRequestDidComplete:(NSArray*)products
+{
+    self.products = [products sortedArrayUsingComparator:^NSComparisonResult(SKProduct* product1, SKProduct* product2) {
+        return [product1.price compare:product2.price];
+    }];
+
+    UIActionSheet * storeSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"STORE_SHEET_TITLE", nil)
+                                                             delegate:self
+                                                    cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+
+    NSNumberFormatter *priceFormatter = [NSNumberFormatter new];
+    priceFormatter.formatterBehavior = NSNumberFormatterBehavior10_4;
+    priceFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+
+    for (SKProduct * product in self.products) {
+        priceFormatter.locale = product.priceLocale;
+        [storeSheet addButtonWithTitle:[NSString stringWithFormat:@"%@ (%@)",product.localizedTitle,[priceFormatter stringFromNumber:product.price]]];
+    }
+    
+    [storeSheet addButtonWithTitle:NSLocalizedString(@"STORE_SHEET_CANCEL", nil)];
+    storeSheet.cancelButtonIndex = storeSheet.numberOfButtons-1;
+    
+    [storeSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==actionSheet.cancelButtonIndex)
+    {
+        [self actionSheetCancel:actionSheet];
+        return;
+    }
+    SKProduct * product = self.products[buttonIndex];
+    [self.store buy:product];
+}
+
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+    [self.storeIndicator stopAnimating];
+    self.storeButton.enabled = YES;
+    self.products = nil;
+}
+
+- (void) store:(Store*)store purchaseSucceeded:(NSString*)productIdentifier
+{
+    NSLog(@"ok, cool %@", productIdentifier);
+    [self.storeIndicator stopAnimating];
+    self.storeButton.enabled = YES;
+    self.products = nil;
+}
+
+- (void) store:(Store*)store purchaseCancelled:(NSString*)productIdentifier
+{
+    [self.storeIndicator stopAnimating];
+    self.storeButton.enabled = YES;
+    self.products = nil;
+}
+
+- (void) store:(Store*)store purchaseFailed:(NSString*)productIdentifier withError:(NSError*)error
+{
+    [self.storeIndicator stopAnimating];
+    self.storeButton.enabled = YES;
+    self.products = nil;
+    [[[UIAlertView alloc] initWithTitle:error.localizedDescription
+                                message:error.localizedFailureReason
+                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 @end
