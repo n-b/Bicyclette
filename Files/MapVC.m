@@ -131,6 +131,12 @@ typedef enum {
 
     // reload data
     [self reloadData];
+    
+    // Debug for screenshot (Default.png)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+    {
+        self.modeControl.selectedSegmentIndex = UISegmentedControlNoSegment;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated

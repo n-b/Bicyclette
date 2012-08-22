@@ -61,15 +61,6 @@
     self.infoButton.center = self.infoToolbar.center;
     [self.rootNavC.view addSubview:self.infoButton];
 
-    // Fade animation
-	UIView * fadeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]];
-	[self.window addSubview:fadeView];
-	[UIView beginAnimations:nil context:NULL];
-	fadeView.alpha = 0;
-	fadeView.transform = CGAffineTransformMakeScale(2, 2);
-	[fadeView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
-	[UIView commitAnimations];
-
 	return YES;
 }
 

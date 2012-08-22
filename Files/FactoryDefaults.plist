@@ -9,8 +9,10 @@
 	<key>DebugUseHardcodedErrors</key>
 	<false/>
 	<key>DebugDisplayLocalNotificationsAsAlerts</key>
-	<true/>
+	<false/>
 	<key>DebugLogRegionMonitoringWithLocalNotifications</key>
+	<false/>
+	<key>DebugScreenshotForDefaultMode</key>
 	<false/>
 	<key>RadarDistance</key>
 	<integer>150</integer>

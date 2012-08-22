@@ -12,6 +12,14 @@
 
 - (void) relocateAttributionLogoIfNecessary
 {
+    // Debug for screenshot (Default.png)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+    {
+        self.googleLogo.hidden = YES;
+        self.attributionLabel.hidden = YES;
+        return;
+    }
+
     // We only relocate on iPhone, not on iPad
     if([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
     {
@@ -20,7 +28,7 @@
         // This is the best I came up with : AFAIK, there's no way to tell
         // whether MKMapView is using Google Maps or Apple's.
         if(logo==nil && [[[UIDevice currentDevice] systemVersion] intValue]>=6)
-            logo = [self attributionLabel];
+            logo = self.attributionLabel;
         
         // compute margins only once
         static CGFloat xMargin = 0;
