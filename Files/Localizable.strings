@@ -8,8 +8,8 @@
 
 "Vélib" = "Vélib";
 
-"BIKE" = "Vélo";
-"PARKING" = "Place";
+"BIKE" = "Vélos";
+"PARKING" = "Places";
 
 "UPDATE_STATIONS_LIST_BUTTON" = "Mettre à jour";
 "UPDATING : FETCHING" = "Téléchargement…";
