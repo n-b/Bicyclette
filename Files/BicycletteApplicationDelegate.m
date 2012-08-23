@@ -11,6 +11,7 @@
 #import "DataUpdater.h"
 #import "MapVC.h"
 #import "PrefsVC.h"
+#import "HelpVC.h"
 #import "UIView+Screenshot.h"
 
 /****************************************************************************/
@@ -22,6 +23,7 @@
 @property (strong) IBOutlet UINavigationController *rootNavC;
 @property (strong) IBOutlet MapVC *mapVC;
 @property (strong) IBOutlet PrefsVC *prefsVC;
+@property (strong) IBOutlet HelpVC *helpVC;
 
 @property (strong) UIImageView *screenshot;
 @property (strong) IBOutlet UIToolbar *infoToolbar;
@@ -61,7 +63,20 @@
     self.infoButton.center = self.infoToolbar.center;
     [self.rootNavC.view addSubview:self.infoButton];
 
+    // Show help at first launch
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DisplayHelpAtLaunch"] || [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugDisplayHelpAtLaunch"])
+    {
+        [self.rootNavC.view addSubview:self.helpVC.view];
+        self.helpVC.view.frame = self.rootNavC.view.bounds;
+    }
+    
 	return YES;
+}
+
+- (IBAction)closeHelp:(id)sender
+{
+    [self.helpVC.view removeFromSuperview];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
 }
 
 /****************************************************************************/

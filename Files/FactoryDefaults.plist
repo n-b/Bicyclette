@@ -14,6 +14,8 @@
 	<false/>
 	<key>DebugScreenshotForDefaultMode</key>
 	<false/>
+	<key>DebugDisplayHelpAtLaunch</key>
+	<false/>
 	<key>RadarDistance</key>
 	<integer>150</integer>
 	<key>RadarDistances</key>
@@ -42,5 +44,7 @@
 	<integer>1</integer>
 	<key>StationStatusStalenessInterval</key>
 	<integer>600</integer>
+	<key>DisplayHelpAtLaunch</key>
+	<true/>
 </dict>
 </plist>

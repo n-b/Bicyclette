@@ -81,6 +81,8 @@
 		37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B7AC0115E3DF8B00268B70 /* AppKit.framework */; };
 		37B7AC0315E3DF9C00268B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
+		37BE759D15E6BDE4001DABF6 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BE759B15E6BDE4001DABF6 /* HelpVC.m */; };
+		37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37BE759C15E6BDE4001DABF6 /* HelpVC.xib */; };
 		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
 		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
@@ -211,6 +213,9 @@
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
+		37BE759A15E6BDE4001DABF6 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
+		37BE759B15E6BDE4001DABF6 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
+		37BE759C15E6BDE4001DABF6 /* HelpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpVC.xib; sourceTree = "<group>"; };
 		37C56FD115B1A0E700795961 /* PrefsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsVC.h; sourceTree = "<group>"; };
 		37C56FD215B1A0E700795961 /* PrefsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsVC.m; sourceTree = "<group>"; };
 		37C56FD315B1A0E700795961 /* PrefsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsVC.xib; sourceTree = "<group>"; };
@@ -297,6 +302,9 @@
 				37C56FD115B1A0E700795961 /* PrefsVC.h */,
 				37C56FD215B1A0E700795961 /* PrefsVC.m */,
 				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
+				37BE759A15E6BDE4001DABF6 /* HelpVC.h */,
+				37BE759B15E6BDE4001DABF6 /* HelpVC.m */,
+				37BE759C15E6BDE4001DABF6 /* HelpVC.xib */,
 			);
 			name = UI;
 			path = Files;
@@ -660,6 +668,7 @@
 				3724BC6B15E4C50200790869 /* Default-Landscape@2x.png in Resources */,
 				3724BC6C15E4C50200790869 /* Default-Portrait.png in Resources */,
 				3724BC6D15E4C50200790869 /* Default-Portrait@2x.png in Resources */,
+				37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +767,7 @@
 				37EE011915BC87E4008376A1 /* RegionMonitor.m in Sources */,
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
 				3724BC7315E4CA1200790869 /* Store.m in Sources */,
+				37BE759D15E6BDE4001DABF6 /* HelpVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
