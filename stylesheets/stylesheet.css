@@ -55,9 +55,14 @@ table {
  margin: 0 auto;
 }
 
+aside#downloads {
+  margin-top: 91px;
+}
+
 aside {
- margin-top: 91px;
+ margin-top: 46px;
  margin-left: 20px;
+ clear: right;
  float: right;
  width: 220px;
 }
@@ -70,6 +75,7 @@ aside p {
 #contents {
  width: 660px;
  float: left;
+ clear: left;
 }
 
 header h1 {
@@ -97,13 +103,13 @@ section p {
 section p.left {
  float: left;
  clear: left;
- width: 50%;
+ width: 320px;
 }
 section p.right {
  float: right;
  clear: right;
  margin: 0;
- width: 50%;
+ width: 320px;
 }
 section p.wide {
  float: left;
