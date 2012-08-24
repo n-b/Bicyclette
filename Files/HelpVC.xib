@@ -358,7 +358,7 @@ aWJyZXPCoDoKA</string>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="360619003"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="166710110"/>
+								<reference key="IBUIBackgroundColor" ref="974997585"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 							<object class="IBUIView" id="26579259">
@@ -369,7 +369,7 @@ aWJyZXPCoDoKA</string>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="369054790"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="166710110"/>
+								<reference key="IBUIBackgroundColor" ref="974997585"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 							<object class="IBUIView" id="182200200">
@@ -380,7 +380,7 @@ aWJyZXPCoDoKA</string>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="924781477"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="166710110"/>
+								<reference key="IBUIBackgroundColor" ref="974997585"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
@@ -815,6 +815,30 @@ oCEKA</string>
 					<int key="connectionID">56</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">legendViewForBikes</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1027573795"/>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">legendViewForParking</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="26579259"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">legendViewForStaleData</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="182200200"/>
+					</object>
+					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">changePage:</string>
 						<reference key="source" ref="932872395"/>
@@ -1103,17 +1127,31 @@ oCEKA</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">58</int>
+			<int key="maxID">61</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">HelpVC</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">changePage:</string>
+						<string key="NS.object.0">UIPageControl</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">changePage:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">changePage:</string>
+							<string key="candidateClassName">UIPageControl</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="box">UIView</string>
 						<string key="closeButton">UIButton</string>
 						<string key="contentView">UIView</string>
+						<string key="legendViewForBikes">UIView</string>
+						<string key="legendViewForParking">UIView</string>
+						<string key="legendViewForStaleData">UIView</string>
 						<string key="logoView">UIImageView</string>
 						<string key="pageControl">UIPageControl</string>
 						<string key="scrollView">UIScrollView</string>
@@ -1129,6 +1167,18 @@ oCEKA</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="contentView">
 							<string key="name">contentView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForBikes">
+							<string key="name">legendViewForBikes</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForParking">
+							<string key="name">legendViewForParking</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForStaleData">
+							<string key="name">legendViewForStaleData</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="logoView">

@@ -7,6 +7,7 @@
 //
 
 #import "HelpVC.h"
+#import "DrawingCache.h"
 
 @interface HelpVC () <UIScrollViewDelegate>
 @property (weak) IBOutlet UIView *box;
@@ -15,6 +16,9 @@
 @property (weak) IBOutlet UIPageControl *pageControl;
 @property (weak) IBOutlet UIImageView *logoView;
 @property (weak) IBOutlet UIButton *closeButton;
+@property (weak) IBOutlet UIView *legendViewForBikes;
+@property (weak) IBOutlet UIView *legendViewForParking;
+@property (weak) IBOutlet UIView *legendViewForStaleData;
 @end
 
 /****************************************************************************/
@@ -29,11 +33,34 @@
     [self.scrollView addSubview:self.contentView];
     self.scrollView.contentSize = self.contentView.bounds.size;
     self.logoView.layer.cornerRadius = 9;
-}
 
-- (void) viewDidAppear:(BOOL)animated
-{
- 
+    DrawingCache * drawingCache = [DrawingCache new];
+    
+    self.legendViewForBikes.layer.contents = (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                                                                     scale:self.legendViewForBikes.layer.contentsScale
+                                                                                                     shape:BackgroundShapeOval
+                                                                                                borderMode:BorderModeSolid
+                                                                                                 baseColor:kGoodValueColor
+                                                                                                     value:@"12"
+                                                                                                     phase:0];
+
+    self.legendViewForParking.layer.contents = (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                                                                     scale:self.legendViewForParking.layer.contentsScale
+                                                                                                     shape:BackgroundShapeRoundedRect
+                                                                                                borderMode:BorderModeSolid
+                                                                                                 baseColor:kGoodValueColor
+                                                                                                     value:@"7"
+                                                                                                     phase:0];
+
+    self.legendViewForStaleData.layer.contents = (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                                                                       scale:self.legendViewForStaleData.layer.contentsScale
+                                                                                                       shape:BackgroundShapeRoundedRect
+                                                                                                  borderMode:BorderModeSolid
+                                                                                                   baseColor:kUnknownValueColor
+                                                                                                       value:@"32"
+                                                                                                       phase:0];
+
+    
 }
 
 /****************************************************************************/
@@ -58,4 +85,10 @@
     self.closeButton.enabled = self.pageControl.currentPage==self.pageControl.numberOfPages-1;
 }
 
+- (void)viewDidUnload {
+    [self setLegendViewForBikes:nil];
+    [self setLegendViewForParking:nil];
+    [self setLegendViewForStaleData:nil];
+    [super viewDidUnload];
+}
 @end
