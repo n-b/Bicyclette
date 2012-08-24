@@ -32,6 +32,10 @@
 {
     [super viewDidLoad];
     self.box.layer.cornerRadius = 13;
+    self.box.layer.shadowOpacity = 1;
+    self.box.layer.shadowOffset = CGSizeMake(0, 1);
+    self.box.layer.shadowRadius = 2;
+    self.box.layer.shadowColor = [UIColor colorWithWhite:0 alpha:1].CGColor;
     [self.scrollView addSubview:self.contentView];
     self.scrollView.contentSize = self.contentView.bounds.size;
     self.logoView.layer.cornerRadius = 9;
