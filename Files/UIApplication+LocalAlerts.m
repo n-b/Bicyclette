@@ -12,12 +12,18 @@
 
 - (void) presentLocalNotificationMessage:(NSString*)message
 {
+    [self presentLocalNotificationMessage:message userInfo:nil];
+}
+
+- (void) presentLocalNotificationMessage:(NSString*)message userInfo:(NSDictionary*)userInfo
+{
     if([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
     {
         UILocalNotification * userLocalNotif = [UILocalNotification new];
         userLocalNotif.alertBody = message;
         userLocalNotif.hasAction = NO;
         userLocalNotif.soundName = UILocalNotificationDefaultSoundName;
+        userLocalNotif.userInfo = userInfo;
         [self presentLocalNotificationNow:userLocalNotif];
     }
     else

@@ -371,6 +371,12 @@ const struct VelibModelNotifications VelibModelNotifications = {
 }
 #endif
 
+- (Station*) stationWithNumber:(NSString*)number
+{
+    NSArray * stations = [Station fetchStationWithNumber:self.moc number:number];
+    return [stations lastObject];
+}
+
 /****************************************************************************/
 #pragma mark Coordinates
 

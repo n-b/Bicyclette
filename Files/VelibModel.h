@@ -14,7 +14,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@class Radar;
+@class Station, Radar;
 @class RadarUpdateQueue;
 
 #if TARGET_OS_IPHONE
@@ -35,6 +35,7 @@
 
 @property (readonly, nonatomic) Radar * userLocationRadar;
 @property (readonly, nonatomic) Radar * screenCenterRadar;
+- (Station*) stationWithNumber:(NSString*)number;
 
 @property (readonly) RadarUpdateQueue * updaterQueue;
 

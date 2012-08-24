@@ -351,6 +351,41 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
++ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ {
+	NSError *error = nil;
+	NSArray *result = [self fetchStationWithNumber:moc_ number:number_ error:&error];
+	if (error) {
+#if TARGET_OS_IPHONE
+		NSLog(@"error: %@", error);
+#else
+		[NSApp presentError:error];
+#endif
+	}
+	return result;
+}
++ (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_ {
+	NSParameterAssert(moc_);
+	NSError *error = nil;
+	
+	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
+	
+	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
+														
+														number_, @"number",
+														
+														nil];
+										
+	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"stationWithNumber"
+													 substitutionVariables:substitutionVariables];
+	NSAssert(fetchRequest, @"Can't find fetch request named \"stationWithNumber\".");
+	
+	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
+	if (error_) *error_ = error;
+	return result;
+}
+
+
+
 + (NSArray*)fetchStationsWithinRange:(NSManagedObjectContext*)moc_ minLatitude:(NSNumber*)minLatitude_ maxLatitude:(NSNumber*)maxLatitude_ minLongitude:(NSNumber*)minLongitude_ maxLongitude:(NSNumber*)maxLongitude_ {
 	NSError *error = nil;
 	NSArray *result = [self fetchStationsWithinRange:moc_ minLatitude:minLatitude_ maxLatitude:maxLatitude_ minLongitude:minLongitude_ maxLongitude:maxLongitude_ error:&error];

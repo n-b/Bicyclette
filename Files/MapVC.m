@@ -404,6 +404,13 @@ fromOldState:(MKAnnotationViewDragState)oldState
 	[self.mapView setRegion:cregion animated:YES];
 }
 
+- (void) zoomInStation:(Station*)station
+{
+    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
+	[self.mapView setRegion:region animated:YES];
+}
+
 - (void) showRadarMenu:(Radar*)radar
 {
     [self becomeFirstResponder];

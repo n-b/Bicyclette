@@ -7,11 +7,14 @@
 //
 
 @class VelibModel;
+@class Station;
 
 @interface MapVC : UIViewController 
 @property VelibModel * model;
 
 - (void) startUsingUserLocation;
+
+- (void) zoomInStation:(Station*)station;
 
 // Hook for faster animation
 - (void) setAnnotationsHidden:(BOOL)hidden;

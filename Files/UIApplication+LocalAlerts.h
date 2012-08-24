@@ -9,5 +9,6 @@
 @interface UIApplication (LocalAlerts)
 
 - (void) presentLocalNotificationMessage:(NSString*)message;
+- (void) presentLocalNotificationMessage:(NSString*)message userInfo:(NSDictionary*)userInfo;
 
 @end

@@ -14,6 +14,7 @@
 #import "HelpVC.h"
 #import "UIView+Screenshot.h"
 #import "RegionMonitor.h"
+#import "Station.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -101,6 +102,12 @@
 {
     [self.regionMonitor startUsingUserLocation];
     [self.mapVC startUsingUserLocation];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    Station * station = [self.model stationWithNumber:notification.userInfo[@"stationNumber"]];
+    [self.mapVC zoomInStation:station];
 }
 
 /****************************************************************************/
