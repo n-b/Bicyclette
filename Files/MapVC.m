@@ -157,12 +157,13 @@ typedef enum {
 
 - (void) reloadData
 {
-    MKCoordinateRegion region = [self.mapView regionThatFits:self.model.regionContainingData];
+    self.referenceRegion = self.model.regionContainingData;
+
+    MKCoordinateRegion region = self.model.regionContainingData;
+    // zoom in a little
     region.span.latitudeDelta /= 2;
     region.span.longitudeDelta /= 2;
-    self.referenceRegion = region;
-
-	self.mapView.region = self.referenceRegion;
+	self.mapView.region = region;
 
     [self addAndRemoveMapAnnotations];
 }
