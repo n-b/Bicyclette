@@ -10,4 +10,5 @@
 
 @interface RegionMonitor : NSObject
 - (id)initWithModel:(VelibModel*)model;
+- (void)startUsingUserLocation;
 @end

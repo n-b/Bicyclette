@@ -9,8 +9,11 @@
 @class VelibModel;
 
 @interface MapVC : UIViewController 
-@property (strong) VelibModel * model;
+@property VelibModel * model;
+
+- (void) startUsingUserLocation;
 
 // Hook for faster animation
 - (void) setAnnotationsHidden:(BOOL)hidden;
+
 @end

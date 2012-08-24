@@ -91,7 +91,6 @@ typedef enum {
     self.mapView = [[MKMapView alloc]initWithFrame:mapViewFrame];
     [self.view addSubview:self.mapView];
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.mapView.showsUserLocation = YES;
     self.mapView.zoomEnabled = YES;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
@@ -137,6 +136,11 @@ typedef enum {
     {
         self.modeControl.selectedSegmentIndex = UISegmentedControlNoSegment;
     }
+}
+
+- (void) startUsingUserLocation
+{
+    self.mapView.showsUserLocation = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated

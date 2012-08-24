@@ -37,7 +37,6 @@
         self.locationManager = [CLLocationManager new];
         self.locationManager.delegate = self;
         self.locationManager.purpose = NSLocalizedString(@"LOCALIZATION_PURPOSE", nil);
-        [self.locationManager startUpdatingLocation];
         
         // frc
         NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:[Radar entityName]];
@@ -53,6 +52,11 @@
 
     }
     return self;
+}
+
+- (void) startUsingUserLocation
+{
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller

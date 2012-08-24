@@ -13,12 +13,14 @@
 #import "PrefsVC.h"
 #import "HelpVC.h"
 #import "UIView+Screenshot.h"
+#import "RegionMonitor.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
 @property (strong) VelibModel * model;
+@property (strong) RegionMonitor * regionMonitor;
 
 @property (strong) IBOutlet UINavigationController *rootNavC;
 @property (strong) IBOutlet MapVC *mapVC;
@@ -49,6 +51,7 @@
     self.model = [VelibModel new];
     self.mapVC.model = self.model;
     self.prefsVC.model = self.model;
+    self.regionMonitor = [[RegionMonitor alloc] initWithModel:self.model];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -69,6 +72,10 @@
         [self.rootNavC.view addSubview:self.helpVC.view];
         self.helpVC.view.frame = self.rootNavC.view.bounds;
     }
+    else
+    {
+        [self finishStart];
+    }
     
 	return YES;
 }
@@ -77,6 +84,13 @@
 {
     [self.helpVC.view removeFromSuperview];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
+    [self finishStart];
+}
+
+- (void) finishStart
+{
+    [self.regionMonitor startUsingUserLocation];
+    [self.mapVC startUsingUserLocation];
 }
 
 /****************************************************************************/

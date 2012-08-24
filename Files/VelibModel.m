@@ -19,7 +19,6 @@
 #import "DataUpdater.h"
 #if TARGET_OS_IPHONE
 #import "RadarUpdateQueue.h"
-#import "RegionMonitor.h"
 #endif
 
 /****************************************************************************/
@@ -50,7 +49,6 @@ const struct VelibModelNotifications VelibModelNotifications = {
 #if TARGET_OS_IPHONE
 @property RadarUpdateQueue * updaterQueue;
 // -
-@property RegionMonitor * regionMonitor;
 #endif
 // -
 #if TARGET_OS_IPHONE
@@ -72,7 +70,6 @@ const struct VelibModelNotifications VelibModelNotifications = {
     if (self) {
 #if TARGET_OS_IPHONE
         self.updaterQueue = [[RadarUpdateQueue alloc] initWithModel:self];
-        self.regionMonitor = [[RegionMonitor alloc] initWithModel:self];
 #endif
     }
     return self;
