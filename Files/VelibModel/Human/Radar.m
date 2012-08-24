@@ -16,6 +16,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
 @implementation Radar
 @synthesize stationsWithinRadarRegion=_stationsWithinRadarRegion;
 @synthesize wantsSummary=_wantsSummary;
+@synthesize customRadarSpan=_customRadarSpan;
 
 /****************************************************************************/
 #pragma mark NSManagedObject
@@ -55,9 +56,9 @@ const struct RadarIdentifiers RadarIdentifiers = {
 {
     if (context == (__bridge void *)([Radar class])) {
         [self willChangeValueForKey:@"radarRegion"];
-        [self willChangeValueForKey:@"clRegion"];
+        [self willChangeValueForKey:@"monitoringRegion"];
         [self didChangeValueForKey:@"radarRegion"];
-        [self didChangeValueForKey:@"clRegion"];
+        [self didChangeValueForKey:@"monitoringRegion"];
         [self updateStationsWithinRadarRegion];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -69,13 +70,20 @@ const struct RadarIdentifiers RadarIdentifiers = {
 
 - (MKCoordinateRegion) radarRegion
 {
-    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-    return MKCoordinateRegionMakeWithDistance(self.coordinate, radarDistance*2, radarDistance*2);
+    if(self.customRadarSpan.latitudeDelta!=0 || self.customRadarSpan.longitudeDelta!=0)
+    {
+        return MKCoordinateRegionMake(self.coordinate, self.customRadarSpan);
+    }
+    else
+    {
+        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+        return MKCoordinateRegionMakeWithDistance(self.coordinate, radarDistance*2, radarDistance*2);
+    }
 }
 
 + (NSSet *)keyPathsForValuesAffectingRadarRegion
 {
-    return [NSSet setWithObject:@"coordinate"];
+    return [NSSet setWithObjects:@"coordinate", @"customRadarSpan",nil];
 }
 
 /****************************************************************************/
@@ -88,7 +96,7 @@ const struct RadarIdentifiers RadarIdentifiers = {
     return [[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:radarDistance+monitorDistance identifier:self.identifier];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingClRegion
++ (NSSet *)keyPathsForValuesAffectingMonitoringRegion
 {
     return [NSSet setWithObject:@"coordinate"];
 }
@@ -130,10 +138,14 @@ const struct RadarIdentifiers RadarIdentifiers = {
                                                       minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
                                                       maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)] mutableCopy];
     
-    // chop those that are actually farther
-    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
     CLLocation * location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-    [stations filterWithinDistance:radarDistance fromLocation:location];
+    if(self.customRadarSpan.latitudeDelta==0 && self.customRadarSpan.longitudeDelta==0)
+    {
+        // we're not using a custom span.
+        // chop those that are in the square, but actually farther that the radar distance
+        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+        [stations filterWithinDistance:radarDistance fromLocation:location];
+    }
     [stations sortByDistanceFromLocation:location];
     self.stationsWithinRadarRegion = [stations copy]; // compare first !
 }
@@ -160,4 +172,11 @@ const struct RadarIdentifiers RadarIdentifiers = {
         [self updateStationsWithinRadarRegion];
     }
 }
+
+- (void) setCustomRadarSpan:(MKCoordinateSpan)customRadarSpan_
+{
+    _customRadarSpan = customRadarSpan_;
+    [self updateStationsWithinRadarRegion];
+}
+
 @end

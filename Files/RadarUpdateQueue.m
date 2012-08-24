@@ -137,7 +137,7 @@
     self.currentIndex = 0;
 
     if(self.stationBeingRefreshed==nil)
-        [self performSelector:@selector(updateNext) withObject:nil afterDelay:.25];
+        [self performSelector:@selector(updateNext) withObject:nil afterDelay:0];
 }
 
 - (void) updateNext

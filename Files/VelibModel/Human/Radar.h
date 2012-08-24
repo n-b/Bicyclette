@@ -5,6 +5,9 @@
 @interface Radar : _Radar <MKAnnotation, Locatable>
 // A square of size specified in the prefs, centered at the coordinate of the Radar
 @property (nonatomic,readonly) MKCoordinateRegion radarRegion;
+// An override point for the radarRegion span, only for this Radar.
+// When using this, the RadarDistance size specified in prefs is unused.
+@property (nonatomic) MKCoordinateSpan customRadarSpan;
 // The stations nearer than the distance specified in the prefs, sorted from nearest to farthest.
 @property (nonatomic,readonly) NSArray * stationsWithinRadarRegion;
 // A circular region centered at the Radar location

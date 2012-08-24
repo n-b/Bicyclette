@@ -97,7 +97,7 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     
-    if([self station].isInRefreshQueue || [self station].loading)
+    if([self station].loading)
     {
         CGFloat phase = 0;
         if([self station].loading)

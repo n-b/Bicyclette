@@ -199,6 +199,7 @@ typedef enum {
     [self updateRadarSizes];
 
     self.model.screenCenterRadar.coordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView.superview];
+    self.model.screenCenterRadar.customRadarSpan = self.mapView.region.span;
     if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
         self.model.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
     else
