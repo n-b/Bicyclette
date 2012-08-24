@@ -106,7 +106,8 @@
     va_list args; va_start(args, format);
     NSString * message = [[NSString alloc] initWithFormat:format arguments:args];
     va_end(args);
-    NSLog(@"%@",message);
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugLogRegionMonitoring"])
+        NSLog(@"%@",message);
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugLogRegionMonitoringWithLocalNotifications"])
         [[UIApplication sharedApplication] presentLocalNotificationMessage:message];
 }

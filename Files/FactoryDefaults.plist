@@ -10,6 +10,8 @@
 	<false/>
 	<key>DebugDisplayLocalNotificationsAsAlerts</key>
 	<false/>
+	<key>DebugLogRegionMonitoring</key>
+	<false/>
 	<key>DebugLogRegionMonitoringWithLocalNotifications</key>
 	<false/>
 	<key>DebugScreenshotForDefaultMode</key>
