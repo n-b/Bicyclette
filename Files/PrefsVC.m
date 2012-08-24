@@ -72,22 +72,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(indexPath.row==0)
-        [self openDesignPage];
+        [self openWebPage];
     else
-        [self openSourcePage];
+        [self openEmailSupport];
 }
 
 /****************************************************************************/
 #pragma mark Actions
 
-- (IBAction)openDesignPage {
-    NSString * designURL = [NSString stringWithFormat:@"http://%@",[[NSBundle mainBundle] infoDictionary][@"designURL"]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:designURL]];    
+- (IBAction)openWebPage {
+    NSString * webpageURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"WebpageURL"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:webpageURL]];
 }
 
-- (IBAction)openSourcePage {
-    NSString * sourceURL = [NSString stringWithFormat:@"http://%@",[[NSBundle mainBundle] infoDictionary][@"sourceURL"]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sourceURL]];
+- (IBAction)openEmailSupport {
+    NSString * emailAddress;
+    NSString * purchasedProductIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
+    if(purchasedProductIdentifier!=nil)
+        emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportWithLoveEmailAddress"];
+    else
+        emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportEmailAddress"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailAddress ]];
 }
 
 - (void) updateRadarDistancesSegmentedControl{
@@ -186,7 +191,7 @@
 
 - (NSDictionary*) productsAndRewards
 {
-    return @{@"Merci1":@"STORE_REWARD_1",@"Merci2":@"STORE_REWARD_2",@"Merci3":@"STORE_REWARD_3"};
+    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ProductsAndRewards"];
 }
 
 - (IBAction)donate {

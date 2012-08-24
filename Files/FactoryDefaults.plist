@@ -46,5 +46,20 @@
 	<integer>600</integer>
 	<key>DisplayHelpAtLaunch</key>
 	<true/>
+	<key>WebpageURL</key>
+	<string>http://www.bicyclette-app.fr</string>
+	<key>SupportEmailAddress</key>
+	<string>mailto:support@bicyclette-app.fr?subject=Bicyclette</string>
+	<key>SupportWithLoveEmailAddress</key>
+	<string>mailto:support+love@bicyclette-app.fr?subject=Bicyclette</string>
+	<key>ProductsAndRewards</key>
+	<dict>
+		<key>Merci1</key>
+		<string>STORE_REWARD_1</string>
+		<key>Merci2</key>
+		<string>STORE_REWARD_2</string>
+		<key>Merci3</key>
+		<string>STORE_REWARD_3</string>
+	</dict>
 </dict>
 </plist>

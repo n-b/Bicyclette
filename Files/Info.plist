@@ -58,9 +58,5 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
-	<key>designURL</key>
-	<string>twitter.com/_nb</string>
-	<key>sourceURL</key>
-	<string>github.com/n-b/Bicyclette</string>
 </dict>
 </plist>
