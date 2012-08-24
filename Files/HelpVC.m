@@ -9,14 +9,17 @@
 #import "HelpVC.h"
 
 @interface HelpVC () <UIScrollViewDelegate>
-@property (weak) IBOutlet UIView *box;
-@property (weak) IBOutlet UIScrollView *scrollView;
-@property (weak) IBOutlet UIView *contentView;
-@property (weak) IBOutlet UIPageControl *pageControl;
+@property IBOutlet UIView *box;
+@property IBOutlet UIScrollView *scrollView;
+@property IBOutlet UIView *contentView;
+@property IBOutlet UIPageControl *pageControl;
+@property IBOutlet UIImageView *logoView;
 @end
 
+/****************************************************************************/
+#pragma mark -
+
 @implementation HelpVC
-@synthesize box = _box;
 
 - (void)viewDidLoad
 {
@@ -24,7 +27,16 @@
     self.box.layer.cornerRadius = 13;
     [self.scrollView addSubview:self.contentView];
     self.scrollView.contentSize = self.contentView.bounds.size;
+    self.logoView.layer.cornerRadius = 9;
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+ 
+}
+
+/****************************************************************************/
+#pragma mark -
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -38,8 +50,4 @@
     [self.scrollView setContentOffset:offset animated:YES];
 }
 
-- (void)viewDidUnload {
-    [self setBox:nil];
-    [super viewDidUnload];
-}
 @end

@@ -22,6 +22,7 @@
 @property (weak) IBOutlet UILabel *storeLabel;
 @property (weak) IBOutlet UIBarButtonItem *storeButton;
 @property (weak) IBOutlet UILabel *rewardLabel;
+@property (weak) IBOutlet UIImageView *logoView;
 
 @property (strong) Store * store;
 @property NSArray * products;
@@ -36,6 +37,12 @@
     // Create store
     self.store = [Store new];
     self.store.delegate = self;
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    self.logoView.layer.cornerRadius = 9;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
