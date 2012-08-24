@@ -270,7 +270,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
         [self.model userLocationRadar].coordinate = newCoord;
 
     if(oldCoord.latitude == 0 && oldCoord.longitude == 0
-       && newCoord.latitude == 0 && newCoord.longitude == 0
+       && newCoord.latitude != 0 && newCoord.longitude != 0
        && newCoord.latitude > self.referenceRegion.center.latitude - self.referenceRegion.span.latitudeDelta
        && newCoord.latitude < self.referenceRegion.center.latitude + self.referenceRegion.span.latitudeDelta
        && newCoord.longitude > self.referenceRegion.center.longitude - self.referenceRegion.span.longitudeDelta
