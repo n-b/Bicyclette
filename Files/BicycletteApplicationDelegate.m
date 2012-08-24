@@ -70,7 +70,9 @@
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"DisplayHelpAtLaunch"] || [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugDisplayHelpAtLaunch"])
     {
         [self.rootNavC.view addSubview:self.helpVC.view];
+        [self.helpVC viewWillAppear:NO];
         self.helpVC.view.frame = self.rootNavC.view.bounds;
+        [self.helpVC viewDidAppear:NO];
     }
     else
     {

@@ -19,6 +19,8 @@
 @property (weak) IBOutlet UIView *legendViewForBikes;
 @property (weak) IBOutlet UIView *legendViewForParking;
 @property (weak) IBOutlet UIView *legendViewForStaleData;
+@property (weak) IBOutlet UIView *legendViewForRadar;
+@property (weak) IBOutlet UIView *legendViewForRadarHandle;
 @end
 
 /****************************************************************************/
@@ -33,34 +35,64 @@
     [self.scrollView addSubview:self.contentView];
     self.scrollView.contentSize = self.contentView.bounds.size;
     self.logoView.layer.cornerRadius = 9;
+}
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Display fake data
     DrawingCache * drawingCache = [DrawingCache new];
     
-    self.legendViewForBikes.layer.contents = (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                                                                     scale:self.legendViewForBikes.layer.contentsScale
-                                                                                                     shape:BackgroundShapeOval
-                                                                                                borderMode:BorderModeSolid
-                                                                                                 baseColor:kGoodValueColor
-                                                                                                     value:@"12"
-                                                                                                     phase:0];
-
-    self.legendViewForParking.layer.contents = (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                                                                     scale:self.legendViewForParking.layer.contentsScale
-                                                                                                     shape:BackgroundShapeRoundedRect
-                                                                                                borderMode:BorderModeSolid
-                                                                                                 baseColor:kGoodValueColor
-                                                                                                     value:@"7"
-                                                                                                     phase:0];
-
-    self.legendViewForStaleData.layer.contents = (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                                                                       scale:self.legendViewForStaleData.layer.contentsScale
-                                                                                                       shape:BackgroundShapeRoundedRect
-                                                                                                  borderMode:BorderModeSolid
-                                                                                                   baseColor:kUnknownValueColor
-                                                                                                       value:@"32"
-                                                                                                       phase:0];
-
+    CGFloat scale = self.view.window.screen.scale;
     
+    self.legendViewForBikes.layer.contents =
+    (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                            scale:scale
+                                                            shape:BackgroundShapeOval
+                                                       borderMode:BorderModeSolid
+                                                        baseColor:kGoodValueColor
+                                                            value:@"12"
+                                                            phase:0];
+    
+    self.legendViewForParking.layer.contents =
+    (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                            scale:scale
+                                                            shape:BackgroundShapeRoundedRect
+                                                       borderMode:BorderModeSolid
+                                                        baseColor:kGoodValueColor
+                                                            value:@"7"
+                                                            phase:0];
+    
+    self.legendViewForStaleData.layer.contents =
+    (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                            scale:scale
+                                                            shape:BackgroundShapeRoundedRect
+                                                       borderMode:BorderModeSolid
+                                                        baseColor:kUnknownValueColor
+                                                            value:@"32"
+                                                            phase:0];
+    
+    self.legendViewForRadar.layer.contents =
+    (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.legendViewForRadar.bounds.size
+                                                            scale:scale
+                                                            shape:BackgroundShapeOval
+                                                       borderMode:BorderModeDashes
+                                                        baseColor:nil
+                                                            value:@""
+                                                            phase:0];
+    
+    self.legendViewForRadarHandle.layer.contents =
+    (id)[drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.legendViewForRadarHandle.bounds.size
+                                                            scale:scale
+                                                            shape:BackgroundShapeOval
+                                                       borderMode:BorderModeSolid
+                                                        baseColor:kRadarAnnotationSelectedColor
+                                                            value:@""
+                                                            phase:0];
+    
+    self.legendViewForRadarHandle.layer.shadowOpacity = .4f;
+    self.legendViewForRadarHandle.layer.shadowOffset = CGSizeMake(0, .5*self.legendViewForRadarHandle.bounds.size.height);
 }
 
 /****************************************************************************/
@@ -85,10 +117,4 @@
     self.closeButton.enabled = self.pageControl.currentPage==self.pageControl.numberOfPages-1;
 }
 
-- (void)viewDidUnload {
-    [self setLegendViewForBikes:nil];
-    [self setLegendViewForParking:nil];
-    [self setLegendViewForStaleData:nil];
-    [super viewDidUnload];
-}
 @end
