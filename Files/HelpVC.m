@@ -9,11 +9,12 @@
 #import "HelpVC.h"
 
 @interface HelpVC () <UIScrollViewDelegate>
-@property IBOutlet UIView *box;
-@property IBOutlet UIScrollView *scrollView;
-@property IBOutlet UIView *contentView;
-@property IBOutlet UIPageControl *pageControl;
-@property IBOutlet UIImageView *logoView;
+@property (weak) IBOutlet UIView *box;
+@property (weak) IBOutlet UIScrollView *scrollView;
+@property (weak) IBOutlet UIView *contentView;
+@property (weak) IBOutlet UIPageControl *pageControl;
+@property (weak) IBOutlet UIImageView *logoView;
+@property (weak) IBOutlet UIButton *closeButton;
 @end
 
 /****************************************************************************/
@@ -41,6 +42,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     self.pageControl.currentPage = lround(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width);
+    [self enableCloseButtonIfNeeded];
 }
 
 - (IBAction)changePage:(UIPageControl *)sender
@@ -48,6 +50,12 @@
     CGPoint offset = self.scrollView.contentOffset;
     offset.x = self.pageControl.currentPage * self.scrollView.bounds.size.width;
     [self.scrollView setContentOffset:offset animated:YES];
+    [self enableCloseButtonIfNeeded];
+}
+
+- (void) enableCloseButtonIfNeeded
+{
+    self.closeButton.enabled = self.pageControl.currentPage==self.pageControl.numberOfPages-1;
 }
 
 @end
