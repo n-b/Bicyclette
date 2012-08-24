@@ -25,7 +25,7 @@
 		<integer>200</integer>
 	</array>
 	<key>MonitorDistance</key>
-	<integer>150</integer>
+	<integer>50</integer>
 	<key>MapRegionZoomDistance</key>
 	<integer>900</integer>
 	<key>MapLevelStationsAndRadars</key>
