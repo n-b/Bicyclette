@@ -162,6 +162,11 @@
 /****************************************************************************/
 #pragma mark MKAnnotation, Locatable
 
+- (NSString *) title
+{
+    return self.cleanName;
+}
+
 - (CLLocationCoordinate2D) coordinate
 {
 	return self.location.coordinate;

@@ -21,6 +21,9 @@
     _loadingLayer = [CALayer new];
     _loadingLayer.frame = self.frame;
     [self.layer addSublayer:_loadingLayer];
+    
+    self.canShowCallout = YES;
+    
     return self;
 }
 
