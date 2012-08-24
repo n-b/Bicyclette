@@ -117,6 +117,8 @@
 
 - (IBAction)showInfo
 {
+    self.window.userInteractionEnabled = NO;
+
     if(self.rootNavC.visibleViewController==self.mapVC)
     {
         UIView * rootView = self.rootNavC.view;
@@ -160,6 +162,7 @@
                              self.screenshot.layer.shadowRadius = 2;
                              self.screenshot.layer.shadowOpacity = 1;
                              self.screenshot.layer.shadowColor = [UIColor blackColor].CGColor;
+                             self.window.userInteractionEnabled = YES;
                          }];
     }
     else
@@ -180,6 +183,7 @@
                              [self.screenshot removeFromSuperview];
                              self.screenshot = nil;
                              [self.rootNavC popToRootViewControllerAnimated:NO];
+                             self.window.userInteractionEnabled = YES;
                          }];
     }
 }
