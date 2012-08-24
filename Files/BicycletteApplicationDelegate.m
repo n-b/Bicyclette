@@ -64,6 +64,9 @@
     infoToolbarFrame.origin.y = rootViewFrame.size.height - infoToolbarFrame.size.height;
     self.infoToolbar.frame = infoToolbarFrame;
     self.infoButton.center = self.infoToolbar.center;
+    CGRect f = self.infoButton.frame;
+    f.origin.y = lroundf(f.origin.y);
+    self.infoButton.frame = f;
     [self.rootNavC.view addSubview:self.infoButton];
 
     // Show help at first launch
