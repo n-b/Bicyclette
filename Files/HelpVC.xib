@@ -163,7 +163,7 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUINumberOfLines">0</int>
-								<string key="IBUIText">Quelques mots avant de commencer :</string>
+								<string key="IBUIText">Quelques mots avant de commencer.</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>

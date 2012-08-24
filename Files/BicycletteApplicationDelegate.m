@@ -82,9 +82,14 @@
 
 - (IBAction)closeHelp:(id)sender
 {
-    [self.helpVC.view removeFromSuperview];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
-    [self finishStart];
+    [UIView animateWithDuration:.5 animations:^{
+        self.helpVC.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.helpVC.view removeFromSuperview];
+        self.helpVC = nil;
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
+        [self finishStart];
+    }];
 }
 
 - (void) finishStart
