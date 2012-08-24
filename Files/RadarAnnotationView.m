@@ -200,6 +200,7 @@
     if(self.hidden || self.radar.manualRadarValue==NO)
     {
         self.layer.contents = nil;
+        _handleLayer.contents = nil;
         return;
     }
 
