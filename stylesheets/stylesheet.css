@@ -89,6 +89,8 @@ header h2 {
 
 header img#logo {
  float: right;
+ border-radius:44px;
+ box-shadow: 0px 1px 3px #555;
 }
 
 section {
@@ -119,6 +121,8 @@ section p.wide {
 
 section p img.screenshot {
   float: inherit;
+  border-radius:9px;
+  box-shadow: 0px 1px 3px #555;
 }
 
 footer {
