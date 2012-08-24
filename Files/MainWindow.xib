@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1296</int>
+		<int key="IBDocument.SystemTarget">1536</int>
 		<string key="IBDocument.SystemVersion">12A269</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2829</string>
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1498</string>
+			<string key="NS.object.0">1914</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -112,6 +112,7 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MCAwIDAAA</bytes>
+					<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -194,14 +195,6 @@
 						<reference key="destination" ref="664661524"/>
 					</object>
 					<int key="connectionID">4</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">rootViewController</string>
-						<reference key="source" ref="380026005"/>
-						<reference key="destination" ref="326552125"/>
-					</object>
-					<int key="connectionID">132</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -455,6 +448,65 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">HelpVC</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="box">UIView</string>
+						<string key="closeButton">UIButton</string>
+						<string key="contentView">UIView</string>
+						<string key="legendViewForBikes">UIView</string>
+						<string key="legendViewForParking">UIView</string>
+						<string key="legendViewForRadar">UIView</string>
+						<string key="legendViewForRadarHandle">UIView</string>
+						<string key="legendViewForStaleData">UIView</string>
+						<string key="logoView">UIImageView</string>
+						<string key="pageControl">UIPageControl</string>
+						<string key="scrollView">UIScrollView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="box">
+							<string key="name">box</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="closeButton">
+							<string key="name">closeButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contentView">
+							<string key="name">contentView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForBikes">
+							<string key="name">legendViewForBikes</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForParking">
+							<string key="name">legendViewForParking</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForRadar">
+							<string key="name">legendViewForRadar</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForRadarHandle">
+							<string key="name">legendViewForRadarHandle</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="legendViewForStaleData">
+							<string key="name">legendViewForStaleData</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="logoView">
+							<string key="name">logoView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pageControl">
+							<string key="name">pageControl</string>
+							<string key="candidateClassName">UIPageControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="scrollView">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/HelpVC.h</string>
@@ -472,6 +524,7 @@
 					<string key="className">PrefsVC</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="logoView">UIImageView</string>
 						<string key="radarDistanceSegmentedControl">UISegmentedControl</string>
 						<string key="rewardLabel">UILabel</string>
 						<string key="storeButton">UIBarButtonItem</string>
@@ -481,6 +534,10 @@
 						<string key="updateIndicator">UIActivityIndicatorView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="logoView">
+							<string key="name">logoView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="radarDistanceSegmentedControl">
 							<string key="name">radarDistanceSegmentedControl</string>
 							<string key="candidateClassName">UISegmentedControl</string>
@@ -537,10 +594,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1296" key="NS.object.0"/>
+			<real value="1536" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">1498</string>
+		<string key="IBCocoaTouchPluginVersion">1914</string>
 	</data>
 </archive>

@@ -57,6 +57,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window.rootViewController = self.rootNavC;
+    
 	// info button
     CGRect rootViewFrame = self.rootNavC.view.bounds;
     [self.rootNavC.view addSubview:self.infoToolbar];
