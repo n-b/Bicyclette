@@ -36,17 +36,36 @@ typedef enum {
     return self;
 }
 
-- (CGImageRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
-                                                    scale:(CGFloat)scale
-                                                    shape:(BackgroundShape)shape
-                                               borderMode:(BorderMode)border
-                                                baseColor:(UIColor*)baseColor
-                                                    value:(NSString *)text
-                                                    phase:(CGFloat)phase
+- (CGImageRef)sharedImageWithSize:(CGSize)size
+                            scale:(CGFloat)scale
+                            shape:(BackgroundShape)shape
+                       borderMode:(BorderMode)border
+                        baseColor:(UIColor*)baseColor
+                            value:(NSString *)text
+                            phase:(CGFloat)phase
 {
-    NSString * key = [NSString stringWithFormat:@"layer%d_%d_%f_%d_%d_%@_%@_%f",
+    return [self sharedImageWithSize:size scale:scale shape:shape borderMode:border baseColor:baseColor
+                        borderColor1:kAnnotationFrame1Color borderColor2:kAnnotationFrame2Color borderColor3:kAnnotationFrame3Color borderWidth:1
+                               value:text phase:phase];
+}
+
+- (CGImageRef)sharedImageWithSize:(CGSize)size
+                            scale:(CGFloat)scale
+                            shape:(BackgroundShape)shape
+                       borderMode:(BorderMode)border
+                        baseColor:(UIColor*)baseColor
+                     borderColor1:(UIColor*)borderColor1
+                     borderColor2:(UIColor*)borderColor2
+                     borderColor3:(UIColor*)borderColor3
+                      borderWidth:(CGFloat)borderWidth
+                            value:(NSString *)text
+                            phase:(CGFloat)phase
+{
+    NSString * key = [NSString stringWithFormat:@"image%d_%d_%f_%d_%d_%@_%@_%@_%@_%f_%@_%f",
                       (int)size.width, (int)size.height, (float)scale, (int)shape, (int)border,
-                      [baseColor hsbString],text, phase];
+                      [baseColor hsbString],
+                      [borderColor1 hsbString], [borderColor2 hsbString], [borderColor3 hsbString], borderWidth,
+                      text, phase];
     
     CGImageRef result = (__bridge CGImageRef)_cache[key];
     if(result) return result;
@@ -60,7 +79,7 @@ typedef enum {
             
             CGContextTranslateCTM(c, 0, size.height*scale);
             CGContextScaleCTM(c, 1.0, -1.0);
-
+            
             UIGraphicsPushContext(c); // Make c the current drawing context
             {
                 CGContextScaleCTM(c, scale, scale);
@@ -99,26 +118,26 @@ typedef enum {
                         CGFloat lengths[] = {dash,dash};
                         CGContextSetLineWidth(c, lineWidth/scale);
                         CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, (lineWidth/2)/scale, (lineWidth/2)/scale)];
-
+                        
                         CGContextSetLineDash(c, -phase*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
                         [kAnnotationDash1Color setStroke];
                         CGContextAddPath(c, path);
                         CGContextStrokePath(c);
-
+                        
                         CGContextSetLineDash(c, -(phase+.5)*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
                         [kAnnotationDash2Color setStroke];
                         CGContextAddPath(c, path);
                         CGContextStrokePath(c);
-
+                        
                         CGPathRelease(path);
                     }
                     else
                     {
-                        CGContextSetLineWidth(c, 1/scale);
-
-                        [self drawShape:shape inRect:CGRectInset(rect, 0.5/scale, 0.5/scale) withStrokeColor:kAnnotationFrame1Color];
-                        [self drawShape:shape inRect:CGRectInset(rect, 1.5/scale, 1.5/scale) withStrokeColor:kAnnotationFrame2Color];
-                        [self drawShape:shape inRect:CGRectInset(rect, 2.5/scale, 2.5/scale) withStrokeColor:kAnnotationFrame3Color];
+                        CGContextSetLineWidth(c, borderWidth/scale);
+                        
+                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*.5/scale, borderWidth*.5/scale) withStrokeColor:borderColor1];
+                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*1.5/scale, borderWidth*1.5/scale) withStrokeColor:borderColor2];
+                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*2.5/scale, borderWidth*2.5/scale) withStrokeColor:borderColor3];
                     }
                     
                     CGContextRestoreGState(c);
@@ -165,9 +184,9 @@ typedef enum {
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace,
                                                         (__bridge CFArrayRef)(@[(id)[color1 CGColor],
                                                                               (id)[color2 CGColor]]), locations);
-
+    
     CGContextDrawLinearGradient(UIGraphicsGetCurrentContext(), gradient, point1, point2, 0);
-
+    
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
 }

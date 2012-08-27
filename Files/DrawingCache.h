@@ -27,12 +27,22 @@ typedef enum {
 
 // returns an image drawn with the given params.
 // if the method is called again with the identical values, the same object is returned.
-- (CGImageRef)sharedAnnotationViewBackgroundLayerWithSize:(CGSize)size
-                                                    scale:(CGFloat)scale
-                                                    shape:(BackgroundShape)shape
-                                               borderMode:(BorderMode)border
-                                                baseColor:(UIColor*)baseColor
-                                                    value:(NSString*)text
-                                                    phase:(CGFloat)phase;
-
+- (CGImageRef)sharedImageWithSize:(CGSize)size
+                            scale:(CGFloat)scale
+                            shape:(BackgroundShape)shape
+                       borderMode:(BorderMode)border
+                        baseColor:(UIColor*)baseColor
+                            value:(NSString*)text
+                            phase:(CGFloat)phase;
+- (CGImageRef)sharedImageWithSize:(CGSize)size
+                            scale:(CGFloat)scale
+                            shape:(BackgroundShape)shape
+                       borderMode:(BorderMode)border
+                        baseColor:(UIColor*)baseColor
+                     borderColor1:(UIColor*)borderColor1
+                     borderColor2:(UIColor*)borderColor2
+                     borderColor3:(UIColor*)borderColor3
+                      borderWidth:(CGFloat)borderWidth
+                            value:(NSString *)text
+                            phase:(CGFloat)phase;
 @end

@@ -57,33 +57,42 @@
 /****************************************************************************/
 #pragma mark Drawing
 
+- (BOOL) isOpaque
+{
+    return NO;
+}
+
 - (void) drawRect:(CGRect)rect
 {
     CGContextRef c = UIGraphicsGetCurrentContext();
-
-    CGImageRef background = [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kRegionAnnotationViewSize, kRegionAnnotationViewSize)
-                                                                                    scale:self.layer.contentsScale
-                                                                                    shape:BackgroundShapeRectangle
-                                                                               borderMode:BorderModeSolid
-                                                                                baseColor:kRegionColor
-                                                                                    value:@""
-                                                                                    phase:0];
-
+    
+    CGImageRef background = [self.drawingCache sharedImageWithSize:CGSizeMake(kRegionAnnotationViewSize, kRegionAnnotationViewSize)
+                                                             scale:self.layer.contentsScale
+                                                             shape:BackgroundShapeRoundedRect
+                                                        borderMode:BorderModeSolid
+                                                         baseColor:kRegionColor
+                                                      borderColor1:kRegionFrame1Color
+                                                      borderColor2:kRegionFrame2Color
+                                                      borderColor3:kRegionFrame3Color
+                                                       borderWidth:2
+                                                             value:@""
+                                                             phase:0];
+    
     
     CGContextDrawImage(c, rect, background);
-
+    
     {
         NSString * text = [[self region] number];
         NSString * line1 = [text substringToIndex:2];
         NSString * line2 = [text substringFromIndex:2];
-
+        
         CGRect rect1, rect2;
         CGRectDivide(CGRectInset(rect, 0, 2), &rect1, &rect2, 16, CGRectMinYEdge);
-
+        
         [kAnnotationTitleTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationTitleShadowColor CGColor]);
         [line1 drawInRect:rect1 withFont:kAnnotationTitleFont lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
-
+        
         [kAnnotationDetailTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationDetailShadowColor CGColor]);
         [line2 drawInRect:rect2 withFont:kAnnotationDetailFont lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];

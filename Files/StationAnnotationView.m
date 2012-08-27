@@ -110,13 +110,13 @@
             phase = floorf(phase*10)/10;
             [self performSelector:_cmd withObject:nil afterDelay:.1];
         }
-        _loadingLayer.contents = (id) [self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                                                               scale:_loadingLayer.contentsScale
-                                                                                               shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                                                          borderMode:BorderModeDashes
-                                                                                           baseColor:nil
-                                                                                               value:@""
-                                                                                               phase:phase];
+        _loadingLayer.contents = (id) [self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                                       scale:_loadingLayer.contentsScale
+                                                                       shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
+                                                                  borderMode:BorderModeDashes
+                                                                   baseColor:nil
+                                                                       value:@""
+                                                                       phase:phase];
         
     }
     else
@@ -156,13 +156,13 @@
             text = @"-";
     }
     
-    self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                                                       scale:self.layer.contentsScale
-                                                                                       shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                                                  borderMode:BorderModeSolid
-                                                                                   baseColor:baseColor
-                                                                                       value:text
-                                                                                       phase:0];
+    self.layer.contents = (id)[self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
+                                                               scale:self.layer.contentsScale
+                                                               shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
+                                                          borderMode:BorderModeSolid
+                                                           baseColor:baseColor
+                                                               value:text
+                                                               phase:0];
     [self displayLoadingLayer];
 }
 

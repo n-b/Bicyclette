@@ -66,11 +66,11 @@
     NSArray * oldValue = _stationsWithinRadarRegion;
     NSArray * added = [newValue arrayByRemovingObjectsInArray:oldValue];
     NSArray * removed = [oldValue arrayByRemovingObjectsInArray:newValue];
-
+    
     // useless now : contents does not depend on which station is being refreshed. Might change.
     for (Station * station in removed)
         [station removeObserver:self forKeyPath:@"isInRefreshQueue" context:(__bridge void *)([RadarAnnotationView class])];
-
+    
     // useless now : contents does not depend on which station is being refreshed. Might change.
     for (Station * station in added)
         [station addObserver:self forKeyPath:@"isInRefreshQueue" options:0 context:(__bridge void *)([RadarAnnotationView class])];
@@ -91,7 +91,7 @@
         }
         else if([keyPath isEqualToString:@"isInRefreshQueue"])
         {
-//            [self setNeedsDisplay]; // useless now : contents does not depend on which station is being refreshed. Might change.
+            //            [self setNeedsDisplay]; // useless now : contents does not depend on which station is being refreshed. Might change.
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -121,10 +121,10 @@
 - (void) setDragState:(MKAnnotationViewDragState)newDragState animated:(BOOL)animated
 {
     [super setDragState:newDragState animated:animated];
-
+    
     CGFloat scale = 1.0;
     CGFloat offsetY = 0.5;
-
+    
     // Automatically switch to next state after .15 seconds
     MKAnnotationViewDragState autoSwithState = newDragState;
     switch (newDragState) {
@@ -152,7 +152,7 @@
             autoSwithState = MKAnnotationViewDragStateNone;
             break;
     }
-
+    
     void (^animations)(void) = ^{
         self.transform = CGAffineTransformMakeScale(scale, scale);
         _handleLayer.anchorPoint = CGPointMake(.5, offsetY+.5);
@@ -165,7 +165,7 @@
         [UIView animateWithDuration:.15 animations:animations];
     else
         animations();
-
+    
     if(newDragState!=autoSwithState)
     {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, .15 * NSEC_PER_SEC);
@@ -185,13 +185,13 @@
     else
     {
         UIColor * color = self.selected ? kRadarAnnotationSelectedColor : kRadarAnnotationDefaultColor;
-        _handleLayer.contents =  (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:_handleLayer.bounds.size
-                                                                                          scale:_handleLayer.contentsScale
-                                                                                          shape:BackgroundShapeOval
-                                                                                     borderMode:BorderModeSolid
-                                                                                      baseColor:color
-                                                                                          value:@""
-                                                                                          phase:0];
+        _handleLayer.contents =  (id)[self.drawingCache sharedImageWithSize:_handleLayer.bounds.size
+                                                                      scale:_handleLayer.contentsScale
+                                                                      shape:BackgroundShapeOval
+                                                                 borderMode:BorderModeSolid
+                                                                  baseColor:color
+                                                                      value:@""
+                                                                      phase:0];
     }
 }
 
@@ -203,15 +203,15 @@
         _handleLayer.contents = nil;
         return;
     }
-
     
-    self.layer.contents = (id)[self.drawingCache sharedAnnotationViewBackgroundLayerWithSize:self.bounds.size
-                                                                               scale:self.layer.contentsScale
-                                                                               shape:BackgroundShapeOval
-                                                                          borderMode:BorderModeDashes
-                                                                           baseColor:nil
-                                                                               value:@""
-                                                                               phase:0];
+    
+    self.layer.contents = (id)[self.drawingCache sharedImageWithSize:self.bounds.size
+                                                               scale:self.layer.contentsScale
+                                                               shape:BackgroundShapeOval
+                                                          borderMode:BorderModeDashes
+                                                           baseColor:nil
+                                                               value:@""
+                                                               phase:0];
     [self displayHandleLayer];
 }
 
