@@ -115,12 +115,12 @@
     [[NSUserDefaults standardUserDefaults] setObject:d forKey:@"RadarDistance"];
 }
 
+/****************************************************************************/
+#pragma mark Model updates
+
 - (IBAction)updateStationsList {
     [self.model update];
 }
-
-/****************************************************************************/
-#pragma mark Model updates
 
 - (void) setModel:(VelibModel *)model
 {

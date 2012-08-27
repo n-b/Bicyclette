@@ -98,6 +98,10 @@
     
     self.legendViewForRadarHandle.layer.shadowOpacity = .4f;
     self.legendViewForRadarHandle.layer.shadowOffset = CGSizeMake(0, .5*self.legendViewForRadarHandle.bounds.size.height);
+    
+    // reset
+    self.scrollView.contentOffset = CGPointZero;
+    self.pageControl.currentPage = 0;
 }
 
 /****************************************************************************/
