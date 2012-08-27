@@ -150,7 +150,7 @@
     
     if(self.currentIndex < [self.stationsToRefresh count])
     {
-        NSLog(@"update %d of %d",self.currentIndex,[self.stationsToRefresh count]);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         // refresh next station in the list
         //
         // the stationBeingRefreshed (strong) property is very important
@@ -165,6 +165,7 @@
     {
         // We've done all the stations in the list !
         self.currentIndex = 0;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
         // clear the summary flag : we only want it once.
         [self.radars setValue:@(NO) forKey:@"wantsSummary"];
