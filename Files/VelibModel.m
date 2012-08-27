@@ -287,26 +287,33 @@ const struct VelibModelNotifications VelibModelNotifications = {
             NSString * endOfAddress = [station.fullAddress stringByDeletingPrefix:station.address];
             endOfAddress = [endOfAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             NSString * lCodePostal = nil;
-            if(endOfAddress.length>=5)
-                lCodePostal = [endOfAddress substringToIndex:5];
-            if(nil==lCodePostal || [lCodePostal isEqualToString:@"75000"])
+            if(fixes[@"codePostal"])
             {
-                unichar firstChar = [station.number characterAtIndex:0];
-                switch (firstChar) {
-                    case '0': case '1':				// Paris
-                        lCodePostal = [NSString stringWithFormat:@"750%@",[station.number substringToIndex:2]];
-                        break;
-                    case '2': case '3': case '4':	// Banlieue
-                        lCodePostal = [NSString stringWithFormat:@"9%@0",[station.number substringToIndex:3]];
-                        break;
-                    default:						// Stations Mobiles et autres bugs
-                        lCodePostal = fixes[@"codePostal"];
-                        if(nil==lCodePostal)		// Dernier recours
+                // Stations Mobiles et autres bugs (93401 au lieu de 93400)
+                lCodePostal = fixes[@"codePostal"];
+            }
+            else
+            {
+                if(endOfAddress.length>=5)
+                    lCodePostal = [endOfAddress substringToIndex:5];
+                if(nil==lCodePostal || [lCodePostal isEqualToString:@"75000"])
+                {
+                    unichar firstChar = [station.number characterAtIndex:0];
+                    switch (firstChar) {
+                        case '0': case '1':				// Paris
+                            lCodePostal = [NSString stringWithFormat:@"750%@",[station.number substringToIndex:2]];
+                            break;
+                        case '2': case '3': case '4':	// Banlieue
+                            lCodePostal = [NSString stringWithFormat:@"9%@0",[station.number substringToIndex:3]];
+                            break;
+                        default:
+                            // Dernier recours
                             lCodePostal = @"75000";
-                        break;
+                            break;
+                    }
+                    
+                    NSLog(@"Note : Used heuristics to find region for %@. Found : %@. ",attributeDict, lCodePostal);
                 }
-                
-                NSLog(@"Note : Used heuristics to find region for %@. Found : %@. ",attributeDict, lCodePostal);
             }
             NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
             
