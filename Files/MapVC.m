@@ -359,6 +359,9 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) addRadar:(UILongPressGestureRecognizer*)longPressRecognizer
 {
+    if (self.level != MapLevelRegionsAndRadars && self.level != MapLevelStationsAndRadars)
+        return; // prevent creating radars from high level
+    
     switch (longPressRecognizer.state)
     {
         case UIGestureRecognizerStatePossible:
