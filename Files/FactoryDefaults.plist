@@ -41,7 +41,7 @@
 	<key>DataUpdaterDelayBetweenRequests</key>
 	<real>0.1</real>
 	<key>DataUpdaterDelayBetweenQueues</key>
-	<integer>3</integer>
+	<integer>25</integer>
 	<key>ModelSaveDelay</key>
 	<integer>1</integer>
 	<key>StationStatusStalenessInterval</key>

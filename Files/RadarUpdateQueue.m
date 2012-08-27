@@ -99,6 +99,8 @@
 
 - (void) updateStationsList
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+
     BOOL isAppActive = [UIApplication sharedApplication].applicationState == UIApplicationStateActive;
     
     // Compute the list of stations to refresh continuously
@@ -129,23 +131,26 @@
 
 - (void) setStationsToRefresh:(NSArray *)stationsToRefresh
 {
+    // if it's a different list, restart from beginning
+    if( ! [_stationsToRefresh isEqual:stationsToRefresh])
+        self.currentIndex = 0;
+
     // isInRefreshQueue is used by the UI to display progress indicators
     [self.stationsToRefresh setValue:@(NO) forKey:@"isInRefreshQueue"];
-    _stationsToRefresh = stationsToRefresh;
+    _stationsToRefresh = [stationsToRefresh copy];
     [self.stationsToRefresh setValue:@(YES) forKey:@"isInRefreshQueue"];
     
-    self.currentIndex = 0;
-
     if(self.stationBeingRefreshed==nil)
-        [self performSelector:@selector(updateNext) withObject:nil afterDelay:0.15];
+        [self updateNext];
 }
 
 - (void) updateNext
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateNext) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     
     if(self.currentIndex < [self.stationsToRefresh count])
     {
+        NSLog(@"update %d of %d",self.currentIndex,[self.stationsToRefresh count]);
         // refresh next station in the list
         //
         // the stationBeingRefreshed (strong) property is very important
@@ -166,7 +171,10 @@
         
         // after a delay, compute new list, and restart. (only if app is active)
         if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-            [self performSelector:@selector(updateStationsList) withObject:nil afterDelay:3];
+        {
+            NSTimeInterval delay = [[NSUserDefaults standardUserDefaults] doubleForKey:@"DataUpdaterDelayBetweenQueues"];
+            [self performSelector:@selector(updateStationsList) withObject:nil afterDelay:delay];
+        }
     }
 }
 
@@ -189,7 +197,7 @@
             NSAssert(object == self.stationBeingRefreshed,@"error : wrong station being refreshed");
             [self.stationBeingRefreshed removeObserver:self forKeyPath:@"loading" context:(__bridge void *)([RadarUpdateQueue class])];
             self.stationBeingRefreshed = nil;
-            [self performSelector:@selector(updateNext) withObject:nil afterDelay:.05];
+            [self updateNext];
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

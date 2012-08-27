@@ -199,8 +199,15 @@ typedef enum {
     [self addAndRemoveMapAnnotations];
     [self updateRadarSizes];
 
+    // Keep the screen center Radar centered
     self.model.screenCenterRadar.coordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView.superview];
-    self.model.screenCenterRadar.customRadarSpan = self.mapView.region.span;
+    // And make it as big as the screen, but only if the stations are actually visible
+    if(self.level==MapLevelStationsAndRadars)
+        self.model.screenCenterRadar.customRadarSpan = self.mapView.region.span;
+    else
+        self.model.screenCenterRadar.customRadarSpan = MKCoordinateSpanMake(0, 0);
+
+    // In the same vein, only set the updater reference location if we're down enough
     if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
         self.model.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
     else
