@@ -15,7 +15,8 @@
 @property (weak) IBOutlet UIView *contentView;
 @property (weak) IBOutlet UIPageControl *pageControl;
 @property (weak) IBOutlet UIImageView *logoView;
-@property (weak) IBOutlet UIButton *closeButton;
+@property (weak) IBOutlet UIButton *outCloseButton;
+@property (weak) IBOutlet UIButton *inCloseButton;
 @property (weak) IBOutlet UIView *legendViewForBikes;
 @property (weak) IBOutlet UIView *legendViewForParking;
 @property (weak) IBOutlet UIView *legendViewForStaleData;
@@ -118,7 +119,12 @@
 
 - (void) enableCloseButtonIfNeeded
 {
-    self.closeButton.enabled = self.pageControl.currentPage==self.pageControl.numberOfPages-1;
+    if(self.pageControl.currentPage==self.pageControl.numberOfPages-1)
+    {
+        self.outCloseButton.enabled = YES;
+        [self.contentView bringSubviewToFront:self.inCloseButton];
+        self.inCloseButton.enabled = YES;
+    }
 }
 
 @end
