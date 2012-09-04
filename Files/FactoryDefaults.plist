@@ -51,9 +51,9 @@
 	<key>WebpageURL</key>
 	<string>http://www.bicyclette-app.fr</string>
 	<key>SupportEmailAddress</key>
-	<string>mailto:support@bicyclette-app.fr?subject=Bicyclette</string>
+	<string>support@bicyclette-app.fr</string>
 	<key>SupportWithLoveEmailAddress</key>
-	<string>mailto:support+love@bicyclette-app.fr?subject=Bicyclette</string>
+	<string>support+love@bicyclette-app.fr</string>
 	<key>ProductsAndRewards</key>
 	<dict>
 		<key>Merci1</key>

@@ -43,3 +43,5 @@
 "STORE_REWARD_1" = "☺";
 "STORE_REWARD_2" = "☺☺";
 "STORE_REWARD_3" = "☺☺☺";
+
+"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version : %1$@<br>Modèle : %2$@<br>OS : %3$@";
