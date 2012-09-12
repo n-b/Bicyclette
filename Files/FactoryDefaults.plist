@@ -56,11 +56,11 @@
 	<string>support+love@bicyclette-app.fr</string>
 	<key>ProductsAndRewards</key>
 	<dict>
-		<key>Merci1</key>
+		<key>fr.bicyclette_app.bicyclette.a.merci.1</key>
 		<string>STORE_REWARD_1</string>
-		<key>Merci2</key>
+		<key>fr.bicyclette_app.bicyclette.a.merci.2</key>
 		<string>STORE_REWARD_2</string>
-		<key>Merci3</key>
+		<key>fr.bicyclette_app.bicyclette.a.merci.3</key>
 		<string>STORE_REWARD_3</string>
 	</dict>
 </dict>
