@@ -134,16 +134,16 @@
             break;
         case MKAnnotationViewDragStateStarting:
             scale = 1.05f;
-            offsetY = 1.f;
+            offsetY = 2.5f;
             autoSwithState = MKAnnotationViewDragStateDragging;
             break;
         case MKAnnotationViewDragStateDragging:
             scale = 1.0f;
-            offsetY = .5f;
+            offsetY = 1.5f;
             break;
         case MKAnnotationViewDragStateEnding:
             scale = 1.05f;
-            offsetY = 1.f;
+            offsetY = 2.5f;
             autoSwithState = MKAnnotationViewDragStateNone;
             break;
         case MKAnnotationViewDragStateCanceling:
