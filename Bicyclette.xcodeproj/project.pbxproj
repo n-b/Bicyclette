@@ -88,6 +88,7 @@
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
 		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
+		37D59D051616182400F69988 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37EC535215BAFB0400F45C09 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534815BAFB0400F45C09 /* Default.png */; };
@@ -792,6 +793,7 @@
 				373A77EF15E3EB890057E241 /* NSArrayAdditions.m in Sources */,
 				373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */,
 				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
+				37D59D051616182400F69988 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
