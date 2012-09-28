@@ -85,6 +85,19 @@
         [self finishStart];
     }
     
+    if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForITC2"])
+    {
+        UILocalNotification * userLocalNotif = [UILocalNotification new];
+        userLocalNotif.hasAction = NO;
+        userLocalNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:2];
+        userLocalNotif.alertBody = @"28 vélos, 2 places à Saint Severin";
+        [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
+        userLocalNotif.alertBody = @"32 vélos, 1 places à Saint Michel Danton";
+        [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
+        userLocalNotif.alertBody = @"20 vélos, 23 places à Saint Germain Harpe";
+        [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
+    }
+    
 	return YES;
 }
 
@@ -125,8 +138,12 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    Station * station = [self.model stationWithNumber:notification.userInfo[@"stationNumber"]];
-    [self.mapVC zoomInStation:station];
+    NSString * number = notification.userInfo[@"stationNumber"];
+    if(number)
+    {
+        Station * station = [self.model stationWithNumber:number];
+        [self.mapVC zoomInStation:station];
+    }
 }
 
 /****************************************************************************/
