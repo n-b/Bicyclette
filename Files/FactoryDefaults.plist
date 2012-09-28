@@ -14,8 +14,6 @@
 	<false/>
 	<key>DebugLogRegionMonitoringWithLocalNotifications</key>
 	<false/>
-	<key>DebugScreenshotForDefaultMode</key>
-	<false/>
 	<key>DebugDisplayHelpAtLaunch</key>
 	<false/>
 	<key>RadarDistance</key>

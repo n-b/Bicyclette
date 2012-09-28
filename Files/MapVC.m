@@ -20,7 +20,7 @@
 #import "RadarAnnotationView.h"
 #import "RadarUpdateQueue.h"
 #import "MKMapView+AttributionLogo.h"
-#import "UIApplication+screenshot.h"
+#import "MapVC+DebugScreenshots.h"
 
 typedef enum {
 	MapLevelNone = 0,
@@ -133,7 +133,7 @@ typedef enum {
     [self reloadData];
     
     // Debug for screenshot (Default.png)
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+    if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForDefault"])
     {
         self.modeControl.selectedSegmentIndex = UISegmentedControlNoSegment;
     }
@@ -153,27 +153,12 @@ typedef enum {
 - (void) viewDidAppear:(BOOL)animated
 {
     // Debug for screenshot (Default.png)
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
-    {
-        UIImage * screenshot = [[UIApplication sharedApplication] screenshot];
-        CGFloat height = self.view.frame.size.height;
-        
-        NSDictionary * names = (@{@460 : @"Default.png",
-                                @920 : @"Default@2x.png",
-                                @1096 : @"Default-568h@2x.png",
-                                @748 : @"Default-Landscape.png",
-                                @1496 : @"Default-Landscape@2x.png",
-                                @1004 : @"Default-Portrait.png",
-                                @2008 : @"Default-Portrait@2x.png",
-                                });
-        
-        NSString * path = [[NSUserDefaults standardUserDefaults] stringForKey:@"DebugScreenshotPath"];
-        path = [path stringByAppendingPathComponent:names[@(screenshot.scale * height)]];
-        NSLog(@"Saving screeshot to %@ (h=%@)",path, @(screenshot.scale * height));
-        [UIImagePNGRepresentation(screenshot) writeToFile:path atomically:NO];
-        
-        exit(0);
-    }
+    if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForDefault"])
+        [self takeScreenshotForDefaultAndExit];
+    
+    if ([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForITC"])
+        [self takeScreenshotsForITCAndExit];
+    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -193,7 +178,7 @@ typedef enum {
 	self.mapView.region = region;
 
     // Debug for screenshot (Default.png)
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+    if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForDefault"])
         self.mapView.region = (MKCoordinateRegion){{0.,0.},{20.,20.}};
 
     [self addAndRemoveMapAnnotations];
@@ -320,7 +305,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 - (void) addAndRemoveMapAnnotations
 {
     // Debug for screenshot (Default.png)
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+    if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForDefault"])
         return;
     
     NSArray * oldAnnotations = self.mapView.annotations;
@@ -401,21 +386,11 @@ fromOldState:(MKAnnotationViewDragState)oldState
     {
         case UIGestureRecognizerStatePossible:
             break;
-            
         case UIGestureRecognizerStateBegan:
-            self.droppedRadar = [Radar insertInManagedObjectContext:self.model.moc];
-            self.droppedRadar.manualRadarValue = YES;
-            // just use a timestamp as the id
-            long long identifier = 100*[NSDate timeIntervalSinceReferenceDate];
-            self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",identifier];
-            [self.mapView addAnnotation:self.droppedRadar];
-            self.droppedRadar.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
-                                                 toCoordinateFromView:self.mapView];
-            [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
+            [self createRadarAtPoint:[longPressRecognizer locationInView:self.mapView]];
             break;
         case UIGestureRecognizerStateChanged:
-            self.droppedRadar.coordinate = [self.mapView convertPoint:[longPressRecognizer locationInView:self.mapView]
-                                                 toCoordinateFromView:self.mapView];
+            [self moveRadarAtPoint:[longPressRecognizer locationInView:self.mapView]];
             break;
         case UIGestureRecognizerStateEnded:
             [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateEnding animated:YES];
@@ -428,6 +403,25 @@ fromOldState:(MKAnnotationViewDragState)oldState
             self.droppedRadar = nil;
             break;
     }
+}
+
+- (void) createRadarAtPoint:(CGPoint)pointInMapView
+{
+    self.droppedRadar = [Radar insertInManagedObjectContext:self.model.moc];
+    self.droppedRadar.manualRadarValue = YES;
+    // just use a timestamp as the id
+    long long identifier = 100*[NSDate timeIntervalSinceReferenceDate];
+    self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",identifier];
+    [self.mapView addAnnotation:self.droppedRadar];
+    self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
+                                         toCoordinateFromView:self.mapView];
+    [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
+}
+
+- (void) moveRadarAtPoint:(CGPoint)pointInMapView
+{
+    self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
+                                         toCoordinateFromView:self.mapView];
 }
 
 - (void) selectDroppedRadar
