@@ -73,7 +73,9 @@
     [self.rootNavC.view addSubview:self.infoButton];
 
     // Show help at first launch
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DisplayHelpAtLaunch"] || [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugDisplayHelpAtLaunch"])
+    if( ([[NSUserDefaults standardUserDefaults] boolForKey:@"DisplayHelpAtLaunch"] ||
+        [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugDisplayHelpAtLaunch"])
+       && ![[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
     {
         [self showHelp];
     }

@@ -20,6 +20,7 @@
 #import "RadarAnnotationView.h"
 #import "RadarUpdateQueue.h"
 #import "MKMapView+AttributionLogo.h"
+#import "UIApplication+screenshot.h"
 
 typedef enum {
 	MapLevelNone = 0,
@@ -149,6 +150,32 @@ typedef enum {
     [self.mapView relocateAttributionLogoIfNecessary];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    // Debug for screenshot (Default.png)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+    {
+        UIImage * screenshot = [[UIApplication sharedApplication] screenshot];
+        CGFloat height = self.view.frame.size.height;
+        
+        NSDictionary * names = (@{@460 : @"Default.png",
+                                @920 : @"Default@2x.png",
+                                @1096 : @"Default-568h@2x.png",
+                                @748 : @"Default-Landscape.png",
+                                @1496 : @"Default-Landscape@2x.png",
+                                @1004 : @"Default-Portrait.png",
+                                @2008 : @"Default-Portrait@2x.png",
+                                });
+        
+        NSString * path = [[NSUserDefaults standardUserDefaults] stringForKey:@"DebugScreenshotPath"];
+        path = [path stringByAppendingPathComponent:names[@(screenshot.scale * height)]];
+        NSLog(@"Saving screeshot to %@ (h=%@)",path, @(screenshot.scale * height));
+        [UIImagePNGRepresentation(screenshot) writeToFile:path atomically:NO];
+        
+        exit(0);
+    }
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
@@ -164,6 +191,10 @@ typedef enum {
     region.span.latitudeDelta /= 2;
     region.span.longitudeDelta /= 2;
 	self.mapView.region = region;
+
+    // Debug for screenshot (Default.png)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+        self.mapView.region = (MKCoordinateRegion){{0.,0.},{20.,20.}};
 
     [self addAndRemoveMapAnnotations];
 }
@@ -288,6 +319,10 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) addAndRemoveMapAnnotations
 {
+    // Debug for screenshot (Default.png)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefaultMode"])
+        return;
+    
     NSArray * oldAnnotations = self.mapView.annotations;
     oldAnnotations = [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
     NSMutableArray * newAnnotations = [NSMutableArray new];
