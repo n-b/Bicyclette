@@ -184,9 +184,21 @@ typedef enum {
     [self addAndRemoveMapAnnotations];
 }
 
+// iOS 5
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
+}
+
+// iOS 6
+- (BOOL) shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
 }
 
 /****************************************************************************/

@@ -53,9 +53,21 @@
     [self updateStoreButton];
 }
 
+// iOS 5
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return NO;
+}
+
+// iOS 6
+- (BOOL) shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
 }
 
 /****************************************************************************/
