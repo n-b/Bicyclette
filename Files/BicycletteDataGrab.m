@@ -64,7 +64,7 @@ int main(int argc, const char * argv[])
             else if([note.name isEqualToString:VelibModelNotifications.updateFailed])
             {
                 NSError * error = note.userInfo[VelibModelNotifications.keys.failureError];
-                printf("%s\n",[[NSString stringWithFormat:@"failed : %@", [error localizedDescription]] UTF8String]);
+                printf("%s\n",[[NSString stringWithFormat:@"failed : %@", error] UTF8String]);
                 exit(2);
             }
         }];
