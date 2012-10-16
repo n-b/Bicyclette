@@ -13,7 +13,7 @@
 
 @property NSArray * cities;
 
-@property (readonly) BicycletteCity * currentCity;
+@property (nonatomic, readonly) BicycletteCity * currentCity;
 
 - (void) zoomInStation:(Station*)station;
 

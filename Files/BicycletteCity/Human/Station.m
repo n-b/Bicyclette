@@ -107,7 +107,8 @@
     if(self.notifySummary)
     {
 #if TARGET_OS_IPHONE
-        [[UIApplication sharedApplication] presentLocalNotificationMessage:self.localizedSummary userInfo:@{@"stationNumber" : self.number}];
+        [[UIApplication sharedApplication] presentLocalNotificationMessage:self.localizedSummary userInfo:(@{@"city": NSStringFromClass([self.city class]) ,
+                                                                                                           @"stationNumber": self.number})];
 #endif
         self.notifySummary = NO;
     }

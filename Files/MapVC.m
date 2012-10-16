@@ -37,7 +37,7 @@ typedef enum {
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * modeControl;
 // Data
-@property BicycletteCity * currentCity;
+@property (nonatomic) BicycletteCity * currentCity;
 @property MKCoordinateRegion referenceRegion;
 @property (nonatomic) MapLevel level;
 @property StationAnnotationMode stationMode;
@@ -229,6 +229,11 @@ typedef enum {
         [sortedCities sortByDistanceFromLocation:center];
         self.currentCity = sortedCities[0];
     }
+}
+
+- (void) setCurrentCity:(BicycletteCity *)currentCity_
+{
+    _currentCity = currentCity_;
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.citySelected object:self.currentCity];
 }
 
@@ -485,6 +490,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) zoomInStation:(Station*)station
 {
+    self.currentCity = station.city;
     CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
 	[self.mapView setRegion:region animated:YES];
