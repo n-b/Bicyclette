@@ -19,8 +19,8 @@ extern NSString * const BicycletteErrorDomain;
 - (id) initWithModelName:(NSString*)modelName;	// default store url is ~/Documents/<modelName>.sqlite
 - (id) initWithModelName:(NSString*)modelName storeURL:(NSURL*)storeURL;
 
-@property (readonly, nonatomic, strong) NSManagedObjectContext *moc;
-@property (nonatomic, weak) id<CoreDataManagerDelegate> delegate; 
+@property (readonly) NSManagedObjectContext *moc;
+@property (weak) id<CoreDataManagerDelegate> delegate; 
 
 - (BOOL) save:(NSError**)saveError;
 

@@ -12,19 +12,19 @@
 #import "Station.h"
 
 @interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
-@property (strong) IBOutletCollection(UITableViewCell) NSArray *cells;
+@property IBOutletCollection(UITableViewCell) NSArray *cells;
 
-@property (weak) IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
+@property IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
 
-@property (weak) IBOutlet UIActivityIndicatorView *updateIndicator;
-@property (weak) IBOutlet UIBarButtonItem *updateButton;
-@property (weak) IBOutlet UIActivityIndicatorView *storeIndicator;
-@property (weak) IBOutlet UILabel *storeLabel;
-@property (weak) IBOutlet UIBarButtonItem *storeButton;
-@property (weak) IBOutlet UILabel *rewardLabel;
-@property (weak) IBOutlet UIImageView *logoView;
+@property IBOutlet UIActivityIndicatorView *updateIndicator;
+@property IBOutlet UIBarButtonItem *updateButton;
+@property IBOutlet UIActivityIndicatorView *storeIndicator;
+@property IBOutlet UILabel *storeLabel;
+@property IBOutlet UIBarButtonItem *storeButton;
+@property IBOutlet UILabel *rewardLabel;
+@property IBOutlet UIImageView *logoView;
 
-@property (strong) Store * store;
+@property Store * store;
 @property NSArray * products;
 @end
 

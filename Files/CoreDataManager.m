@@ -18,9 +18,9 @@
 NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 
 @interface CoreDataManager ()
-@property (nonatomic, strong) NSManagedObjectModel *mom;
-@property (nonatomic, strong) NSPersistentStoreCoordinator *psc;
-@property (nonatomic, strong) NSManagedObjectContext *moc;
+@property NSManagedObjectModel *mom;
+@property NSPersistentStoreCoordinator *psc;
+@property NSManagedObjectContext *moc;
 @end
 
 @interface NSManagedObjectContext (AssociatedManager_Private)

@@ -9,5 +9,5 @@
 @class BicycletteCity;
 
 @interface PrefsVC : UIViewController
-@property (strong, nonatomic) BicycletteCity * city;
+@property (nonatomic) BicycletteCity * city;
 @end

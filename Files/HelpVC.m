@@ -10,18 +10,18 @@
 #import "DrawingCache.h"
 
 @interface HelpVC () <UIScrollViewDelegate>
-@property (weak) IBOutlet UIView *box;
-@property (weak) IBOutlet UIScrollView *scrollView;
-@property (weak) IBOutlet UIView *contentView;
-@property (weak) IBOutlet UIPageControl *pageControl;
-@property (weak) IBOutlet UIImageView *logoView;
-@property (weak) IBOutlet UIButton *outCloseButton;
-@property (weak) IBOutlet UIButton *inCloseButton;
-@property (weak) IBOutlet UIView *legendViewForBikes;
-@property (weak) IBOutlet UIView *legendViewForParking;
-@property (weak) IBOutlet UIView *legendViewForStaleData;
-@property (weak) IBOutlet UIView *legendViewForRadar;
-@property (weak) IBOutlet UIView *legendViewForRadarHandle;
+@property IBOutlet UIView *box;
+@property IBOutlet UIScrollView *scrollView;
+@property IBOutlet UIView *contentView;
+@property IBOutlet UIPageControl *pageControl;
+@property IBOutlet UIImageView *logoView;
+@property IBOutlet UIButton *outCloseButton;
+@property IBOutlet UIButton *inCloseButton;
+@property IBOutlet UIView *legendViewForBikes;
+@property IBOutlet UIView *legendViewForParking;
+@property IBOutlet UIView *legendViewForStaleData;
+@property IBOutlet UIView *legendViewForRadar;
+@property IBOutlet UIView *legendViewForRadarHandle;
 @end
 
 /****************************************************************************/

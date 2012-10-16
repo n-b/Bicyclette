@@ -26,7 +26,7 @@
 #pragma mark -
 
 @interface BicycletteCity () <DataUpdaterDelegate, NSXMLParserDelegate>
-@property (nonatomic) DataUpdater * updater;
+@property DataUpdater * updater;
 // -
 @property (nonatomic) NSDictionary * stationsHardcodedFixes;
 @property (readwrite, nonatomic) CLRegion * hardcodedLimits;
@@ -41,8 +41,8 @@
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 #endif
 // -
-@property (nonatomic) NSMutableDictionary * parsing_regionsByNumber;
-@property (nonatomic) NSMutableArray * parsing_oldStations;
+@property NSMutableDictionary * parsing_regionsByNumber;
+@property NSMutableArray * parsing_oldStations;
 @end
 
 /****************************************************************************/

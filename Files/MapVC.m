@@ -37,11 +37,11 @@ typedef enum {
 @property UISegmentedControl * modeControl;
 // Data
 @property MKCoordinateRegion referenceRegion;
-@property (nonatomic) MapLevel level;
-@property (nonatomic) StationAnnotationMode stationMode;
+@property MapLevel level;
+@property StationAnnotationMode stationMode;
 
 // Radar creation
-@property (nonatomic) Radar * droppedRadar;
+@property Radar * droppedRadar;
 @end
 
 
