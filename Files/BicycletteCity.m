@@ -19,19 +19,21 @@
 #import "DataUpdater.h"
 #if TARGET_OS_IPHONE
 #import "RadarUpdateQueue.h"
+#import "RegionMonitor.h"
 #endif
 
 /****************************************************************************/
 #pragma mark -
 
 @interface BicycletteCity () <DataUpdaterDelegate, NSXMLParserDelegate>
-@property (nonatomic, strong) DataUpdater * updater;
+@property (nonatomic) DataUpdater * updater;
 // -
-@property (nonatomic, strong) NSDictionary * stationsHardcodedFixes;
+@property (nonatomic) NSDictionary * stationsHardcodedFixes;
 @property (readwrite, nonatomic) CLRegion * hardcodedLimits;
 // -
 #if TARGET_OS_IPHONE
 @property RadarUpdateQueue * updaterQueue;
+@property RegionMonitor * regionMonitor;
 // -
 #endif
 // -
@@ -39,8 +41,8 @@
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 #endif
 // -
-@property (nonatomic, strong) NSMutableDictionary * parsing_regionsByNumber;
-@property (nonatomic, strong) NSMutableArray * parsing_oldStations;
+@property (nonatomic) NSMutableDictionary * parsing_regionsByNumber;
+@property (nonatomic) NSMutableArray * parsing_oldStations;
 @end
 
 /****************************************************************************/
@@ -54,6 +56,7 @@
     if (self) {
 #if TARGET_OS_IPHONE
         self.updaterQueue = [[RadarUpdateQueue alloc] initWithCity:self];
+        self.regionMonitor = [[RegionMonitor alloc] initWithCity:self];
 #endif
     }
     return self;
@@ -395,6 +398,7 @@
 #pragma mark Constants
 
 const struct BicycletteCityNotifications BicycletteCityNotifications = {
+    .canRequestLocation = @"BicycletteCityNotifications.canRequestLocation",
     .updateBegan = @"BicycletteCityNotifications.updateBegan",
     .updateGotNewData = @"BicycletteCityNotifications.updateGotNewData",
     .updateSucceeded = @"BicycletteCityNotifications.updateSucceded",

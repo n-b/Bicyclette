@@ -10,5 +10,4 @@
 
 @interface RegionMonitor : NSObject
 - (id)initWithCity:(BicycletteCity*)city;
-- (void)startUsingUserLocation;
 @end

@@ -33,6 +33,9 @@
 {
     self = [super init];
     if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canRequestLocation)
+                                                     name:BicycletteCityNotifications.canRequestLocation object:nil];
+
         // location manager
         self.locationManager = [CLLocationManager new];
         self.locationManager.delegate = self;
@@ -54,7 +57,7 @@
     return self;
 }
 
-- (void) startUsingUserLocation
+- (void) canRequestLocation
 {
     [self.locationManager startUpdatingLocation];
 }

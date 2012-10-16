@@ -12,8 +12,6 @@
 @interface MapVC : UIViewController 
 @property BicycletteCity * city;
 
-- (void) startUsingUserLocation;
-
 - (void) zoomInStation:(Station*)station;
 
 // Hook for faster animation

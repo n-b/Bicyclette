@@ -59,7 +59,9 @@ typedef enum {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:)
                                                  name:BicycletteCityNotifications.updateSucceeded object:nil];
-        
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canRequestLocation)
+                                                 name:BicycletteCityNotifications.canRequestLocation object:nil];
+    
     _drawingCache = [DrawingCache new];
 }
 
@@ -139,7 +141,7 @@ typedef enum {
     }
 }
 
-- (void) startUsingUserLocation
+- (void) canRequestLocation
 {
     self.mapView.showsUserLocation = YES;
 }

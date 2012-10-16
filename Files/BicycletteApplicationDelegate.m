@@ -15,24 +15,22 @@
 #import "PrefsVC.h"
 #import "HelpVC.h"
 #import "UIView+Screenshot.h"
-#import "RegionMonitor.h"
 #import "Station.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
-@property (strong) BicycletteCity * city;
-@property (strong) RegionMonitor * regionMonitor;
+@property BicycletteCity * city;
 
-@property (strong) IBOutlet UINavigationController *rootNavC;
-@property (strong) IBOutlet MapVC *mapVC;
-@property (strong) IBOutlet PrefsVC *prefsVC;
-@property (strong) IBOutlet HelpVC *helpVC;
+@property IBOutlet UINavigationController *rootNavC;
+@property IBOutlet MapVC *mapVC;
+@property IBOutlet PrefsVC *prefsVC;
+@property IBOutlet HelpVC *helpVC;
 
-@property (strong) UIImageView *screenshot;
-@property (strong) IBOutlet UIToolbar *infoToolbar;
-@property (strong) IBOutlet UIButton *infoButton;
+@property UIImageView *screenshot;
+@property IBOutlet UIToolbar *infoToolbar;
+@property IBOutlet UIButton *infoButton;
 @end
 
 /****************************************************************************/
@@ -54,7 +52,6 @@
     self.city = [ParisVelibCity new];
     self.mapVC.city = self.city;
     self.prefsVC.city = self.city;
-    self.regionMonitor = [[RegionMonitor alloc] initWithCity:self.city];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -84,7 +81,7 @@
     }
     else
     {
-        [self finishStart];
+        [self notifyCanRequestLocation];
     }
     
     if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForITC2"])
@@ -103,10 +100,9 @@
 	return YES;
 }
 
-- (void) finishStart
+- (void) notifyCanRequestLocation
 {
-    [self.regionMonitor startUsingUserLocation];
-    [self.mapVC startUsingUserLocation];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
 }
 
 - (IBAction)showHelp
@@ -134,7 +130,7 @@
         [self.helpVC.view removeFromSuperview];
         self.helpVC.view.alpha = 1;
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
-        [self finishStart];
+        [self notifyCanRequestLocation];
     }];
 }
 

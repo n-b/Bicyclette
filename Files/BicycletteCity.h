@@ -51,6 +51,7 @@
 #pragma mark -
 
 extern const struct BicycletteCityNotifications {
+	__unsafe_unretained NSString * canRequestLocation;
 	__unsafe_unretained NSString * updateBegan;
 	__unsafe_unretained NSString * updateGotNewData;
 	__unsafe_unretained NSString * updateSucceeded;
