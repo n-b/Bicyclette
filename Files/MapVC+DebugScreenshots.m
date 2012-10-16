@@ -55,10 +55,10 @@
     // delete any remaining radar
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:[Radar entityName]];
     request.predicate = [NSPredicate predicateWithFormat:@"%K == YES",RadarAttributes.manualRadar];
-    NSArray * radars = [self.city.moc executeFetchRequest:request error:NULL];
+    NSArray * radars = [self.currentCity.moc executeFetchRequest:request error:NULL];
     for (Radar * radar in radars) {
         [self.mapView removeAnnotation:radar];
-        [self.city.moc deleteObject:radar];
+        [self.currentCity.moc deleteObject:radar];
     }
 
     // wait for the map to load

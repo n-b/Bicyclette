@@ -21,6 +21,7 @@
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
+@property NSArray * cities;
 @property BicycletteCity * city;
 
 @property IBOutlet UINavigationController *rootNavC;
@@ -49,9 +50,10 @@
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
     
     // Create city
-    self.city = [ParisVelibCity new];
-    self.mapVC.city = self.city;
-    self.prefsVC.city = self.city;
+    self.cities = @[[ParisVelibCity new], [MarseilleLeveloCity new], [ToulouseVeloCity new]];
+//    self.city = [ParisVelibCity new];
+    self.mapVC.cities = self.cities;
+    self.prefsVC.cities = self.cities;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

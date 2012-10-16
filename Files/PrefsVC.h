@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class BicycletteCity;
-
 @interface PrefsVC : UIViewController
-@property (nonatomic) BicycletteCity * city;
+@property NSArray * cities;
 @end

@@ -10,7 +10,10 @@
 @class Station;
 
 @interface MapVC : UIViewController 
-@property BicycletteCity * city;
+
+@property NSArray * cities;
+
+@property (readonly) BicycletteCity * currentCity;
 
 - (void) zoomInStation:(Station*)station;
 

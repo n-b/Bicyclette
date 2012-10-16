@@ -21,6 +21,7 @@
 #import "RadarUpdateQueue.h"
 #import "MKMapView+AttributionLogo.h"
 #import "MapVC+DebugScreenshots.h"
+#import "NSMutableArray+Locatable.h"
 
 typedef enum {
 	MapLevelNone = 0,
@@ -36,8 +37,9 @@ typedef enum {
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * modeControl;
 // Data
+@property BicycletteCity * currentCity;
 @property MKCoordinateRegion referenceRegion;
-@property MapLevel level;
+@property (nonatomic) MapLevel level;
 @property StationAnnotationMode stationMode;
 
 // Radar creation
@@ -128,9 +130,6 @@ typedef enum {
     // observe changes to the prefs
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 
-    // Forget old userLocation, until we have a better one
-    [self.city userLocationRadar].coordinate = CLLocationCoordinate2DMake(0, 0);
-
     // reload data
     [self reloadData];
     
@@ -171,9 +170,17 @@ typedef enum {
 
 - (void) reloadData
 {
-    self.referenceRegion = self.city.regionContainingData;
+    if(self.currentCity)
+        self.referenceRegion = self.currentCity.regionContainingData;
+    else
+    {
+        NSDictionary * dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"BicycletteLimits"];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([dict[@"latitude"] doubleValue], [dict[@"longitude"] doubleValue]);
+        MKCoordinateSpan span = MKCoordinateSpanMake([dict[@"latitudeDelta"] doubleValue], [dict[@"longitudeDelta"] doubleValue]);
+        self.referenceRegion = MKCoordinateRegionMake(coord, span);
+    }
 
-    MKCoordinateRegion region = self.city.regionContainingData;
+    MKCoordinateRegion region = self.referenceRegion;
     // zoom in a little
     region.span.latitudeDelta /= 2;
     region.span.longitudeDelta /= 2;
@@ -206,6 +213,25 @@ typedef enum {
 /****************************************************************************/
 #pragma mark MapView Delegate
 
+- (void) setLevel:(MapLevel)level_
+{
+    if(_level==level_)
+        return;
+    
+    _level = level_;
+    if(self.level == MapLevelNone)
+        self.currentCity = nil;
+    else
+    {
+        CLLocationCoordinate2D centerCoord = self.mapView.region.center;
+        CLLocation * center = [[CLLocation alloc] initWithLatitude:centerCoord.latitude longitude:centerCoord.longitude];
+        NSMutableArray * sortedCities = [self.cities mutableCopy];
+        [sortedCities sortByDistanceFromLocation:center];
+        self.currentCity = sortedCities[0];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.citySelected object:self.currentCity];
+}
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     MKCoordinateRegion viewRegion = self.mapView.region;
@@ -230,18 +256,18 @@ typedef enum {
     [self updateRadarSizes];
 
     // Keep the screen center Radar centered
-    self.city.screenCenterRadar.coordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView.superview];
+    self.currentCity.screenCenterRadar.coordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView.superview];
     // And make it as big as the screen, but only if the stations are actually visible
     if(self.level==MapLevelStationsAndRadars)
-        self.city.screenCenterRadar.customRadarSpan = self.mapView.region.span;
+        self.currentCity.screenCenterRadar.customRadarSpan = self.mapView.region.span;
     else
-        self.city.screenCenterRadar.customRadarSpan = MKCoordinateSpanMake(0, 0);
+        self.currentCity.screenCenterRadar.customRadarSpan = MKCoordinateSpanMake(0, 0);
 
     // In the same vein, only set the updater reference location if we're down enough
     if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
-        self.city.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
+        self.currentCity.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
     else
-        self.city.updaterQueue.referenceLocation = nil;
+        self.currentCity.updaterQueue.referenceLocation = nil;
 }
 
 
@@ -302,10 +328,10 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    CLLocationCoordinate2D oldCoord = [self.city userLocationRadar].coordinate;
+    CLLocationCoordinate2D oldCoord = [self.currentCity userLocationRadar].coordinate;
     CLLocationCoordinate2D newCoord = userLocation.coordinate;
     if(oldCoord.latitude != newCoord.latitude || oldCoord.longitude != newCoord.longitude)
-        [self.city userLocationRadar].coordinate = newCoord;
+        [self.currentCity userLocationRadar].coordinate = newCoord;
 
     if(oldCoord.latitude == 0 && oldCoord.longitude == 0
        && newCoord.latitude != 0 && newCoord.longitude != 0
@@ -329,28 +355,28 @@ fromOldState:(MKAnnotationViewDragState)oldState
     if (self.level == MapLevelNone)
     {
         // City
-        [newAnnotations addObject:self.city];
+        [newAnnotations addObjectsFromArray:self.cities];
     }
 
     if (self.level == MapLevelRegions || self.level == MapLevelRegionsAndRadars)
     {
         // Regions
         NSFetchRequest * regionsRequest = [NSFetchRequest new];
-        regionsRequest.entity = [Region entityInManagedObjectContext:self.city.moc];
-        [newAnnotations addObjectsFromArray:[self.city.moc executeFetchRequest:regionsRequest error:NULL]];
+        regionsRequest.entity = [Region entityInManagedObjectContext:self.currentCity.moc];
+        [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:regionsRequest error:NULL]];
     }
     
     if (self.level == MapLevelRegionsAndRadars || self.level == MapLevelStationsAndRadars)
     {
         // Radars
         NSFetchRequest * radarsRequest = [NSFetchRequest new];
-        [radarsRequest setEntity:[Radar entityInManagedObjectContext:self.city.moc]];
-        NSMutableArray * allRadars = [[self.city.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
+        [radarsRequest setEntity:[Radar entityInManagedObjectContext:self.currentCity.moc]];
+        NSMutableArray * allRadars = [[self.currentCity.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
         // do not add an annotation for screenCenterRadar, it's handled separately.
-        [allRadars removeObject:self.city.screenCenterRadar];
+        [allRadars removeObject:self.currentCity.screenCenterRadar];
         // only add the userLocationRadar if it's actually here
         if(self.mapView.userLocation.coordinate.latitude==0.0)
-            [allRadars removeObject:self.city.userLocationRadar];
+            [allRadars removeObject:self.currentCity.userLocationRadar];
         [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:allRadars]];
     }
 
@@ -358,14 +384,14 @@ fromOldState:(MKAnnotationViewDragState)oldState
     {
         // Stations
         NSFetchRequest * stationsRequest = [NSFetchRequest new];
-		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.city.moc]];
+		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.currentCity.moc]];
         MKCoordinateRegion mapRegion = self.mapView.region;
 		stationsRequest.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
 							 mapRegion.center.latitude - mapRegion.span.latitudeDelta/2,
                              mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
                              mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
                              mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
-        [newAnnotations addObjectsFromArray:[self.city.moc executeFetchRequest:stationsRequest error:NULL]];
+        [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:stationsRequest error:NULL]];
     }
 
     NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
@@ -413,7 +439,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
             [self.mapView removeAnnotation:self.droppedRadar];
-            [self.city.moc deleteObject:self.droppedRadar];
+            [self.currentCity.moc deleteObject:self.droppedRadar];
             self.droppedRadar = nil;
             break;
     }
@@ -421,7 +447,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) createRadarAtPoint:(CGPoint)pointInMapView
 {
-    self.droppedRadar = [Radar insertInManagedObjectContext:self.city.moc];
+    self.droppedRadar = [Radar insertInManagedObjectContext:self.currentCity.moc];
     self.droppedRadar.manualRadarValue = YES;
     // just use a timestamp as the id
     long long identifier = 100*[NSDate timeIntervalSinceReferenceDate];
@@ -482,7 +508,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
         if([radar isKindOfClass:[Radar class]])
         {
             [self.mapView removeAnnotation:radar];
-            [self.city.moc deleteObject:radar];
+            [self.currentCity.moc deleteObject:radar];
         }
     }
 }

@@ -57,6 +57,9 @@
 #if TARGET_OS_IPHONE
         self.updaterQueue = [[RadarUpdateQueue alloc] initWithCity:self];
         self.regionMonitor = [[RegionMonitor alloc] initWithCity:self];
+
+        // Forget old userLocation, until we have a better one
+        [self userLocationRadar].coordinate = CLLocationCoordinate2DMake(0, 0);
 #endif
     }
     return self;
@@ -94,6 +97,12 @@
         self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:self.name];
 	}
 	return _hardcodedLimits;
+}
+
+- (CLLocation *) location
+{
+    CLLocationCoordinate2D coord = [self.hardcodedLimits center];
+    return [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
 }
 
 - (NSString*) stationDetailsURL
@@ -399,6 +408,7 @@
 
 const struct BicycletteCityNotifications BicycletteCityNotifications = {
     .canRequestLocation = @"BicycletteCityNotifications.canRequestLocation",
+    .citySelected = @"BicycletteCityNotifications.citySelected",
     .updateBegan = @"BicycletteCityNotifications.updateBegan",
     .updateGotNewData = @"BicycletteCityNotifications.updateGotNewData",
     .updateSucceeded = @"BicycletteCityNotifications.updateSucceded",

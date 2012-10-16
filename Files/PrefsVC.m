@@ -24,6 +24,8 @@
 @property IBOutlet UILabel *rewardLabel;
 @property IBOutlet UIImageView *logoView;
 
+@property (nonatomic) BicycletteCity * currentCity;
+
 @property Store * store;
 @property NSArray * products;
 @end
@@ -37,8 +39,14 @@
     // Create store
     self.store = [Store new];
     self.store.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(citySelected:) name:BicycletteCityNotifications.citySelected object:nil];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -68,6 +76,14 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) citySelected:(NSNotification*)note
+{
+    self.currentCity = note.object;
 }
 
 /****************************************************************************/
@@ -140,14 +156,23 @@
 #pragma mark City updates
 
 - (IBAction)updateStationsList {
-    [self.city update];
+    [self.currentCity update];
 }
 
-- (void) setCity:(BicycletteCity *)city_
+- (void) setCurrentCity:(BicycletteCity *)currentCity_
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:_city];
-    _city = city_;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:) name:nil object:_city];
+    if([_currentCity isEqual:currentCity_])
+        return;
+    
+    NSArray * notes = (@[ BicycletteCityNotifications.updateBegan,
+                       BicycletteCityNotifications.updateGotNewData,
+                       BicycletteCityNotifications.updateSucceeded,
+                       BicycletteCityNotifications.updateFailed]);
+    for (NSString * note in notes)
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:note object:_currentCity];
+    _currentCity = currentCity_;
+    for (NSString * note in notes)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:) name:note object:_currentCity];
 }
 
 - (void) cityUpdated:(NSNotification*)note
@@ -172,11 +197,11 @@
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
             NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-            NSUInteger count = [self.city.moc countForFetchRequest:request error:NULL];
+            NSUInteger count = [self.currentCity.moc countForFetchRequest:request error:NULL];
             NSString * title;
             NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
                                   count,
-                                  self.city.name];
+                                  self.currentCity.name];
             if(nil==saveErrors)
             {
                 title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
