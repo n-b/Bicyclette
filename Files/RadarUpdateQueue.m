@@ -7,7 +7,7 @@
 //
 
 #import "RadarUpdateQueue.h"
-#import "VelibModel.h"
+#import "BicycletteModel.h"
 #import "Radar.h"
 #import "Station.h"
 #import "NSMutableArray+Locatable.h"
@@ -32,7 +32,7 @@
     return self;
 }
 
-- (id)initWithModel:(VelibModel*)model
+- (id)initWithModel:(BicycletteModel*)model
 {
     self = [super init];
     if (self) {

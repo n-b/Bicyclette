@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class VelibModel;
+@class BicycletteModel;
 
 @interface PrefsVC : UIViewController
-@property (strong, nonatomic) VelibModel * model;
+@property (strong, nonatomic) BicycletteModel * model;
 @end

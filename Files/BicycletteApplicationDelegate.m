@@ -8,6 +8,8 @@
 
 #import "BicycletteApplicationDelegate.h"
 #import "VelibModel.h"
+#import "LeveloModel.h"
+#import "ToulouseVeloModel.h"
 #import "DataUpdater.h"
 #import "MapVC.h"
 #import "PrefsVC.h"
@@ -20,7 +22,7 @@
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
-@property (strong) VelibModel * model;
+@property (strong) BicycletteModel * model;
 @property (strong) RegionMonitor * regionMonitor;
 
 @property (strong) IBOutlet UINavigationController *rootNavC;

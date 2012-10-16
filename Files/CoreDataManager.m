@@ -68,7 +68,8 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
         // Copy embedded store, if we don't already have a store in the final location, and there's one in the app bundle.
         if( ![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]])
         {
-            NSURL * embeddedStoreURL = [[NSBundle mainBundle] URLForResource:modelName withExtension:@"sqlite"];
+            NSString * storeName = [[storeURL.path lastPathComponent] stringByDeletingPathExtension];
+            NSURL * embeddedStoreURL = [[NSBundle mainBundle] URLForResource:storeName withExtension:@"sqlite"];
             if(embeddedStoreURL)
                 [[NSFileManager defaultManager] copyItemAtURL:embeddedStoreURL toURL:storeURL error:NULL];
         }

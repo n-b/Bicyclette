@@ -1,5 +1,5 @@
 #import "Station.h"
-#import "VelibModel.h"
+#import "BicycletteModel.h"
 #import "Region.h"
 #import "NSStringAdditions.h"
 #import "DataUpdater.h"
@@ -64,7 +64,8 @@
 
 - (NSURL*) urlForUpdater:(DataUpdater*)updater
 {
-    return [NSURL URLWithString:[kVelibStationsStatusURL stringByAppendingString:self.number]];
+    return [NSURL URLWithString:[self.managedObjectContext.model.stationDetailsURL
+                                 stringByAppendingString:self.number]];
 }
 
 - (NSDate*) dataDateForUpdater:(DataUpdater*)updater
@@ -164,7 +165,7 @@
 
 - (NSString *) title
 {
-    return self.cleanName;
+    return [self.managedObjectContext.model titleForStation:self];
 }
 
 - (CLLocationCoordinate2D) coordinate
@@ -182,35 +183,10 @@
 /****************************************************************************/
 #pragma mark Display
 
-- (NSString *) cleanName
-{
-    // remove number
-    NSString * shortname = self.name;
-    NSRange beginRange = [shortname rangeOfString:@" - "];
-    if (beginRange.location!=NSNotFound)
-        shortname = [self.name substringFromIndex:beginRange.location+beginRange.length];
-    
-    // remove city name
-    NSRange endRange = [shortname rangeOfString:@"("];
-    if(endRange.location!=NSNotFound)
-        shortname = [shortname substringToIndex:endRange.location];
-    
-    // remove whitespace
-    shortname = [shortname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
-    // capitalized
-    if([shortname respondsToSelector:@selector(capitalizedStringWithLocale:)])
-        shortname = [shortname capitalizedStringWithLocale:[NSLocale currentLocale]];
-    else
-        shortname = [shortname stringByReplacingCharactersInRange:NSMakeRange(1, shortname.length-1) withString:[[shortname substringFromIndex:1] lowercaseString]];
-    
-    return shortname;
-}
-
 - (NSString *) localizedSummary
 {
     return [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
-            self.cleanName,
+            self.title,
             self.status_availableValue, self.status_freeValue];
 }
 

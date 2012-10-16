@@ -1,5 +1,5 @@
 //
-//  VelibModel.h
+//  LeveloModel.h
 //  Bicyclette
 //
 //  Created by Nicolas on 14/10/12.
@@ -8,6 +8,6 @@
 
 #import "BicycletteModel.h"
 
-@interface VelibModel : BicycletteModel <BicycletteModel>
+@interface LeveloModel : BicycletteModel
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "PrefsVC.h"
-#import "VelibModel.h"
+#import "BicycletteModel.h"
 #import "Store.h"
 #import "Station.h"
 
@@ -143,7 +143,7 @@
     [self.model update];
 }
 
-- (void) setModel:(VelibModel *)model
+- (void) setModel:(BicycletteModel *)model
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:_model];
     _model = model;
@@ -152,22 +152,22 @@
 
 - (void) modelUpdated:(NSNotification*)note
 {
-    if([note.name isEqualToString:VelibModelNotifications.updateBegan])
+    if([note.name isEqualToString:BicycletteModelNotifications.updateBegan])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil)];
         [self.updateIndicator startAnimating];
         self.updateButton.enabled = NO;
     }
-    else if([note.name isEqualToString:VelibModelNotifications.updateGotNewData])
+    else if([note.name isEqualToString:BicycletteModelNotifications.updateGotNewData])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : PARSING", nil)];
     }
-    else if([note.name isEqualToString:VelibModelNotifications.updateSucceeded])
+    else if([note.name isEqualToString:BicycletteModelNotifications.updateSucceeded])
     {
         [self.updateIndicator stopAnimating];
         self.updateButton.enabled = YES;
-        BOOL dataChanged = [note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue];
-        NSArray * saveErrors = note.userInfo[VelibModelNotifications.keys.saveErrors];
+        BOOL dataChanged = [note.userInfo[BicycletteModelNotifications.keys.dataChanged] boolValue];
+        NSArray * saveErrors = note.userInfo[BicycletteModelNotifications.keys.saveErrors];
         if(dataChanged)
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
@@ -195,12 +195,12 @@
         else
             [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil)];
     }
-    else if([note.name isEqualToString:VelibModelNotifications.updateFailed])
+    else if([note.name isEqualToString:BicycletteModelNotifications.updateFailed])
     {
         [self.updateIndicator stopAnimating];
         self.updateButton.enabled = YES;
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
-        NSError * error = note.userInfo[VelibModelNotifications.keys.failureError];
+        NSError * error = note.userInfo[BicycletteModelNotifications.keys.failureError];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
                                    message:[error localizedDescription]
                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

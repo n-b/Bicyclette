@@ -1,4 +1,5 @@
 #import "Region.h"
+#import "BicycletteModel.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -58,5 +59,14 @@
 	return self.coordinateRegion.center;
 }
 #endif
+
+- (NSString*) title
+{
+    return [self.managedObjectContext.model titleForRegion:self];
+}
+- (NSString*) subtitle
+{
+    return [self.managedObjectContext.model subtitleForRegion:self];
+}
 
 @end

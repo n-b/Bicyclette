@@ -82,10 +82,9 @@
     CGContextDrawImage(c, rect, background);
     
     {
-        NSString * text = [[self region] number];
-        NSString * line1 = [text substringToIndex:2];
-        NSString * line2 = [text substringFromIndex:2];
-        
+        NSString * line1 = [[self region] title];
+        NSString * line2 = [[self region] subtitle];
+
         CGRect rect1, rect2;
         CGRectDivide(CGRectInset(rect, 0, 2), &rect1, &rect2, 16, CGRectMinYEdge);
         

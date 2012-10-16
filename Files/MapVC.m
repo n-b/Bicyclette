@@ -8,7 +8,7 @@
 
 #import "MapVC.h"
 #import "BicycletteApplicationDelegate.h"
-#import "VelibModel.h"
+#import "BicycletteModel.h"
 #import "Station.h"
 #import "Region.h"
 #import "TransparentToolbar.h"
@@ -58,7 +58,7 @@ typedef enum {
     [super awakeFromNib];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:)
-                                                 name:VelibModelNotifications.updateSucceeded object:nil];
+                                                 name:BicycletteModelNotifications.updateSucceeded object:nil];
         
     _drawingCache = [DrawingCache new];
 }
@@ -510,7 +510,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) modelUpdated:(NSNotification*) note
 {
-    if([note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue])
+    if([note.userInfo[BicycletteModelNotifications.keys.dataChanged] boolValue])
         [self reloadData];
 }
 

@@ -9,7 +9,7 @@
 #import "MapVC+DebugScreenshots.h"
 #import "UIApplication+screenshot.h"
 #import "Radar.h"
-#import "VelibModel.h"
+#import "BicycletteModel.h"
 
 @interface MapVC(Protected)
 @property MKMapView * mapView;
