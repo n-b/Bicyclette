@@ -9,6 +9,7 @@
 #import "ParisVelibCity.h"
 #import "MarseilleLeveloCity.h"
 #import "ToulouseVeloCity.h"
+#import "AmiensVelamCity.h"
 #import "Station.h"
 #import "Region.h"
 
@@ -101,7 +102,11 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool
     {
-        NSArray * cityClasses = @[[ParisVelibCity class], [MarseilleLeveloCity class], [ToulouseVeloCity class]];
+        NSArray * cityClasses = (@[[ParisVelibCity class],
+                                 [MarseilleLeveloCity class],
+                                 [ToulouseVeloCity class],
+                                 [AmiensVelamCity class]
+                                 ]);
         for (Class cityClass in cityClasses) {
             printf("%s:\n",[NSStringFromClass(cityClass) UTF8String]);
             GrabDataForCity(cityClass);

@@ -1,34 +1,34 @@
 //
-//  ToulouseVeloCity.m
+//  AmiensVelamCity.m
 //  Bicyclette
 //
-//  Created by Nicolas on 14/10/12.
+//  Created by Nicolas on 17/10/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "ToulouseVeloCity.h"
+#import "AmiensVelamCity.h"
 #import "Station.h"
 #import "Region.h"
 
-@implementation ToulouseVeloCity
+@implementation AmiensVelamCity
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
     RegionInfo * regionInfo = [RegionInfo new];
-    regionInfo.number = @"Toulouse";
-    regionInfo.name = @"Vêlo";
+    regionInfo.number = @"Amiens";
+    regionInfo.name = @"Vélam";
     
     return regionInfo;
 }
 
 - (NSString*)titleForRegion:(Region*)region
 {
-    return @"Toulouse";
+    return @"Amiens";
 }
 
 - (NSString*)subtitleForRegion:(Region*)region
 {
-    return @"Vêlo";
+    return @"Vélam";
 }
 
 - (NSString*)titleForStation:(Station*)region
