@@ -64,7 +64,7 @@
 
 - (NSURL*) urlForUpdater:(DataUpdater*)updater
 {
-    return [NSURL URLWithString:[self.managedObjectContext.city.stationDetailsURL
+    return [NSURL URLWithString:[[self city].stationDetailsURL
                                  stringByAppendingString:self.number]];
 }
 
@@ -112,7 +112,7 @@
         self.notifySummary = NO;
     }
     
-    [self.managedObjectContext.city setNeedsSave];
+    [[self city] setNeedsSave];
     self.updater = nil;
     self.loading = NO;
     
@@ -165,7 +165,7 @@
 
 - (NSString *) title
 {
-    return [self.managedObjectContext.city titleForStation:self];
+    return [[self city] titleForStation:self];
 }
 
 - (CLLocationCoordinate2D) coordinate
@@ -221,7 +221,7 @@
 
 - (BOOL)validateConsistency:(NSError **)error
 {
-    if([self.managedObjectContext.city.hardcodedLimits containsCoordinate:self.location.coordinate])
+    if([[self city].hardcodedLimits containsCoordinate:self.location.coordinate])
         return YES;
 
     if (error != NULL) {

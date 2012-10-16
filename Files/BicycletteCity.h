@@ -42,9 +42,9 @@
 /****************************************************************************/
 #pragma mark -
 
-// reverse link to obtain the CoreDataManager from a moc, for example in the objects implementation.
-@interface NSManagedObjectContext (AssociatedCity)
-@property (nonatomic, retain, readonly) BicycletteCity * city;
+// Obtain the City from an managedobject.
+@interface NSManagedObject (AssociatedCity)
+- (BicycletteCity *) city;
 @end
 
 /****************************************************************************/

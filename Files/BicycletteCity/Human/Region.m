@@ -62,11 +62,11 @@
 
 - (NSString*) title
 {
-    return [self.managedObjectContext.city titleForRegion:self];
+    return [[self city] titleForRegion:self];
 }
 - (NSString*) subtitle
 {
-    return [self.managedObjectContext.city subtitleForRegion:self];
+    return [[self city] subtitleForRegion:self];
 }
 
 @end

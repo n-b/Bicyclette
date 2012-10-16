@@ -383,10 +383,11 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation  NSManagedObjectContext (AssociatedCity)
+@implementation NSManagedObject (AssociatedCity)
 - (BicycletteCity *) city
 {
-    return (BicycletteCity*) self.coreDataManager;
+    BicycletteCity * city = (BicycletteCity *)[self.managedObjectContext coreDataManager];
+    return city;
 }
 @end
 
