@@ -7,7 +7,7 @@
 //
 
 #import "RegionMonitor.h"
-#import "BicycletteModel.h"
+#import "BicycletteCity.h"
 #import "Radar.h"
 #import "Station.h"
 #import "NSArrayAdditions.h"
@@ -29,7 +29,7 @@
     return self;
 }
 
-- (id)initWithModel:(BicycletteModel*)model
+- (id)initWithCity:(BicycletteCity*)city_
 {
     self = [super init];
     if (self) {
@@ -43,7 +43,7 @@
         request.predicate = [NSPredicate predicateWithFormat:@"%K == YES",RadarAttributes.manualRadar];
         request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:RadarAttributes.identifier ascending:YES] ]; // frc *needs* a sort descriptor
         self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                       managedObjectContext:model.moc
+                                                       managedObjectContext:city_.moc
                                                          sectionNameKeyPath:nil cacheName:nil];
         self.frc.delegate = self;
         [self.frc performFetch:NULL];

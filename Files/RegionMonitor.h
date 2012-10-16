@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class BicycletteModel;
+@class BicycletteCity;
 
 @interface RegionMonitor : NSObject
-- (id)initWithModel:(BicycletteModel*)model;
+- (id)initWithCity:(BicycletteCity*)city;
 - (void)startUsingUserLocation;
 @end

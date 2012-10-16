@@ -1,17 +1,17 @@
 //
-//  VelibModel.m
+//  ParisVelibCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 14/10/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "VelibModel.h"
+#import "ParisVelibCity.h"
 #import "Station.h"
 #import "Region.h"
 #import "NSStringAdditions.h"
 
-@implementation VelibModel
+@implementation ParisVelibCity
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
@@ -102,6 +102,5 @@
     
     return shortname;    
 }
-
 
 @end

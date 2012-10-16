@@ -1,5 +1,5 @@
 #import "Station.h"
-#import "BicycletteModel.h"
+#import "BicycletteCity.h"
 #import "Region.h"
 #import "NSStringAdditions.h"
 #import "DataUpdater.h"
@@ -64,7 +64,7 @@
 
 - (NSURL*) urlForUpdater:(DataUpdater*)updater
 {
-    return [NSURL URLWithString:[self.managedObjectContext.model.stationDetailsURL
+    return [NSURL URLWithString:[self.managedObjectContext.city.stationDetailsURL
                                  stringByAppendingString:self.number]];
 }
 
@@ -112,7 +112,7 @@
         self.notifySummary = NO;
     }
     
-    [self.managedObjectContext.model setNeedsSave];
+    [self.managedObjectContext.city setNeedsSave];
     self.updater = nil;
     self.loading = NO;
     
@@ -165,7 +165,7 @@
 
 - (NSString *) title
 {
-    return [self.managedObjectContext.model titleForStation:self];
+    return [self.managedObjectContext.city titleForStation:self];
 }
 
 - (CLLocationCoordinate2D) coordinate
@@ -221,7 +221,7 @@
 
 - (BOOL)validateConsistency:(NSError **)error
 {
-    if([self.managedObjectContext.model.hardcodedLimits containsCoordinate:self.location.coordinate])
+    if([self.managedObjectContext.city.hardcodedLimits containsCoordinate:self.location.coordinate])
         return YES;
 
     if (error != NULL) {

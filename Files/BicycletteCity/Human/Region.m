@@ -1,5 +1,5 @@
 #import "Region.h"
-#import "BicycletteModel.h"
+#import "BicycletteCity.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -62,11 +62,11 @@
 
 - (NSString*) title
 {
-    return [self.managedObjectContext.model titleForRegion:self];
+    return [self.managedObjectContext.city titleForRegion:self];
 }
 - (NSString*) subtitle
 {
-    return [self.managedObjectContext.model subtitleForRegion:self];
+    return [self.managedObjectContext.city subtitleForRegion:self];
 }
 
 @end

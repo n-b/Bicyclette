@@ -6,11 +6,11 @@
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class BicycletteModel;
+@class BicycletteCity;
 @class Station;
 
 @interface MapVC : UIViewController 
-@property BicycletteModel * model;
+@property BicycletteCity * city;
 
 - (void) startUsingUserLocation;
 

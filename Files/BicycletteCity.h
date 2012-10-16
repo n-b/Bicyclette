@@ -1,5 +1,5 @@
 //
-//  BicycletteModel.h
+//  BicycletteCity.h
 //  Bicyclette
 //
 //  Created by Nicolas on 09/10/10.
@@ -12,9 +12,9 @@
 @class RadarUpdateQueue;
 
 #if TARGET_OS_IPHONE
-@interface BicycletteModel : CoreDataManager <MKAnnotation>
+@interface BicycletteCity : CoreDataManager <MKAnnotation>
 #else
-@interface BicycletteModel : CoreDataManager
+@interface BicycletteCity : CoreDataManager
 #endif
 
 - (NSString *) name;
@@ -43,14 +43,14 @@
 #pragma mark -
 
 // reverse link to obtain the CoreDataManager from a moc, for example in the objects implementation.
-@interface NSManagedObjectContext (AssociatedModel)
-@property (nonatomic, retain, readonly) BicycletteModel * model;
+@interface NSManagedObjectContext (AssociatedCity)
+@property (nonatomic, retain, readonly) BicycletteCity * city;
 @end
 
 /****************************************************************************/
 #pragma mark -
 
-extern const struct BicycletteModelNotifications {
+extern const struct BicycletteCityNotifications {
 	__unsafe_unretained NSString * updateBegan;
 	__unsafe_unretained NSString * updateGotNewData;
 	__unsafe_unretained NSString * updateSucceeded;
@@ -61,7 +61,7 @@ extern const struct BicycletteModelNotifications {
         __unsafe_unretained NSString * saveErrors;
         __unsafe_unretained NSString * failureError;
     } keys;
-} BicycletteModelNotifications;
+} BicycletteCityNotifications;
 
 
 /****************************************************************************/
@@ -72,12 +72,12 @@ extern const struct BicycletteModelNotifications {
 @property NSString * name;
 @end
 
-@protocol BicycletteModel <NSObject>
+@protocol BicycletteCity <NSObject>
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs;
 - (NSString*)titleForRegion:(Region*)region;
 - (NSString*)subtitleForRegion:(Region*)region;
 - (NSString*)titleForStation:(Station*)region;
 @end
 
-@interface BicycletteModel (Reimplement) <BicycletteModel>
+@interface BicycletteCity (Reimplement) <BicycletteCity>
 @end

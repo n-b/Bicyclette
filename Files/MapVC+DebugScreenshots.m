@@ -9,7 +9,7 @@
 #import "MapVC+DebugScreenshots.h"
 #import "UIApplication+screenshot.h"
 #import "Radar.h"
-#import "BicycletteModel.h"
+#import "BicycletteCity.h"
 
 @interface MapVC(Protected)
 @property MKMapView * mapView;
@@ -55,10 +55,10 @@
     // delete any remaining radar
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:[Radar entityName]];
     request.predicate = [NSPredicate predicateWithFormat:@"%K == YES",RadarAttributes.manualRadar];
-    NSArray * radars = [self.model.moc executeFetchRequest:request error:NULL];
+    NSArray * radars = [self.city.moc executeFetchRequest:request error:NULL];
     for (Radar * radar in radars) {
         [self.mapView removeAnnotation:radar];
-        [self.model.moc deleteObject:radar];
+        [self.city.moc deleteObject:radar];
     }
 
     // wait for the map to load

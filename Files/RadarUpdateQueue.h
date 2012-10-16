@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class BicycletteModel;
+@class BicycletteCity;
 
 @interface RadarUpdateQueue : NSObject
-- (id)initWithModel:(BicycletteModel*)model;
+- (id)initWithCity:(BicycletteCity*)city;
 
 @property (nonatomic) CLLocation * referenceLocation;
 @end

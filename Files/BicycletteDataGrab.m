@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "VelibModel.h"
-#import "LeveloModel.h"
-#import "ToulouseVeloModel.h"
+#import "ParisVelibCity.h"
+#import "MarseilleLeveloCity.h"
+#import "ToulouseVeloCity.h"
 #import "Station.h"
 #import "Region.h"
 
@@ -16,51 +16,51 @@
 /****************************************************************************/
 #pragma mark -
 
-static void GrabDataForModel(Class modelClass)
+static void GrabDataForCity(Class cityClass)
 {
-    NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite",NSStringFromClass(modelClass)]];
+    NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite",NSStringFromClass(cityClass)]];
     
     // Clear stuff from previous runs
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DebugAlwaysDownloadStationList"];
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     
     // Create Model
-    BicycletteModel * model = [[modelClass alloc] initWithModelName:NSStringFromClass(modelClass) storeURL:[NSURL fileURLWithPath:path]];
+    BicycletteCity * city = [[cityClass alloc] initWithModelName:NSStringFromClass(cityClass) storeURL:[NSURL fileURLWithPath:path]];
     
     __block BOOL finished = NO;
     // Observe notifications
-    [[NSNotificationCenter defaultCenter] addObserverForName:nil object:model queue:[NSOperationQueue currentQueue] usingBlock:^(NSNotification *note)
+    [[NSNotificationCenter defaultCenter] addObserverForName:nil object:city queue:[NSOperationQueue currentQueue] usingBlock:^(NSNotification *note)
      {
          // Progress
-         // BicycletteModel itself logs a lot of stuff during parsing regarding heuristics and hardcoded fixes
-         if([note.name isEqualToString:BicycletteModelNotifications.updateBegan])
+         // BicycletteCity itself logs a lot of stuff during parsing regarding heuristics and hardcoded fixes
+         if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
              printf("updating...\n");
-         else if([note.name isEqualToString:BicycletteModelNotifications.updateGotNewData])
+         else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
              printf("parsing...\n");
          
          // Success
-         else if([note.name isEqualToString:BicycletteModelNotifications.updateSucceeded])
+         else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
          {
-             BOOL dataChanged = [note.userInfo[BicycletteModelNotifications.keys.dataChanged] boolValue];
+             BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
              if(dataChanged)
              {
                  NSMutableString * message = [@"completed\n" mutableCopy];
                  // How many stations were created ?
                  NSFetchRequest *stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-                 [message appendFormat:@" %d stations\n", (int)[model.moc countForFetchRequest:stationsRequest error:NULL]];
+                 [message appendFormat:@" %d stations\n", (int)[city.moc countForFetchRequest:stationsRequest error:NULL]];
                  
                  // Get Regions
                  NSFetchRequest *regionsRequest = [[NSFetchRequest alloc] initWithEntityName:[Region entityName]];
                  regionsRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:RegionAttributes.number ascending:YES]];
-                 [message appendFormat:@" %d regions:\n", (int)[model.moc countForFetchRequest:regionsRequest error:NULL]];
+                 [message appendFormat:@" %d regions:\n", (int)[city.moc countForFetchRequest:regionsRequest error:NULL]];
                  
-                 for (Region * region in [model.moc executeFetchRequest:regionsRequest error:NULL])
+                 for (Region * region in [city.moc executeFetchRequest:regionsRequest error:NULL])
                  {
                      [message appendFormat:@"  %@ : %d stations\n",region.number, (int)[region.stations count]];
                  }
                  
                  // Were some
-                 NSArray * saveErrors = note.userInfo[BicycletteModelNotifications.keys.saveErrors];
+                 NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
                  if(nil!=saveErrors)
                      [message appendFormat:@"\nerrors:\n%@.",
                       [[saveErrors valueForKey:@"localizedDescription"] componentsJoinedByString:@"\n"]];
@@ -77,16 +77,16 @@ static void GrabDataForModel(Class modelClass)
          }
          
          // Failure
-         else if([note.name isEqualToString:BicycletteModelNotifications.updateFailed])
+         else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
          {
-             NSError * error = note.userInfo[BicycletteModelNotifications.keys.failureError];
+             NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
              printf("%s\n",[[NSString stringWithFormat:@"failed : %@", error] UTF8String]);
              finished = YES;
          }
      }];
     
     
-    [model update];
+    [city update];
     do {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:nil];
     } while (!finished);
@@ -101,10 +101,10 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool
     {
-        NSArray * modelClasses = @[[VelibModel class], [LeveloModel class], [ToulouseVeloModel class]];
-        for (Class modelClass in modelClasses) {
-            printf("%s:\n",[NSStringFromClass(modelClass) UTF8String]);
-            GrabDataForModel(modelClass);
+        NSArray * cityClasses = @[[ParisVelibCity class], [MarseilleLeveloCity class], [ToulouseVeloCity class]];
+        for (Class cityClass in cityClasses) {
+            printf("%s:\n",[NSStringFromClass(cityClass) UTF8String]);
+            GrabDataForCity(cityClass);
             printf("–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n");
         }
     }

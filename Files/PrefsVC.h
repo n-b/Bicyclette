@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class BicycletteModel;
+@class BicycletteCity;
 
 @interface PrefsVC : UIViewController
-@property (strong, nonatomic) BicycletteModel * model;
+@property (strong, nonatomic) BicycletteCity * city;
 @end

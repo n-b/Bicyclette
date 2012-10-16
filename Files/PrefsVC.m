@@ -7,7 +7,7 @@
 //
 
 #import "PrefsVC.h"
-#import "BicycletteModel.h"
+#import "BicycletteCity.h"
 #import "Store.h"
 #import "Station.h"
 
@@ -137,46 +137,46 @@
 }
 
 /****************************************************************************/
-#pragma mark Model updates
+#pragma mark City updates
 
 - (IBAction)updateStationsList {
-    [self.model update];
+    [self.city update];
 }
 
-- (void) setModel:(BicycletteModel *)model
+- (void) setCity:(BicycletteCity *)city_
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:_model];
-    _model = model;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:nil object:_model];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:_city];
+    _city = city_;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:) name:nil object:_city];
 }
 
-- (void) modelUpdated:(NSNotification*)note
+- (void) cityUpdated:(NSNotification*)note
 {
-    if([note.name isEqualToString:BicycletteModelNotifications.updateBegan])
+    if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil)];
         [self.updateIndicator startAnimating];
         self.updateButton.enabled = NO;
     }
-    else if([note.name isEqualToString:BicycletteModelNotifications.updateGotNewData])
+    else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : PARSING", nil)];
     }
-    else if([note.name isEqualToString:BicycletteModelNotifications.updateSucceeded])
+    else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
     {
         [self.updateIndicator stopAnimating];
         self.updateButton.enabled = YES;
-        BOOL dataChanged = [note.userInfo[BicycletteModelNotifications.keys.dataChanged] boolValue];
-        NSArray * saveErrors = note.userInfo[BicycletteModelNotifications.keys.saveErrors];
+        BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
+        NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
         if(dataChanged)
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
             NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-            NSUInteger count = [self.model.moc countForFetchRequest:request error:NULL];
+            NSUInteger count = [self.city.moc countForFetchRequest:request error:NULL];
             NSString * title;
             NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
                                   count,
-                                  self.model.name];
+                                  self.city.name];
             if(nil==saveErrors)
             {
                 title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
@@ -195,12 +195,12 @@
         else
             [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil)];
     }
-    else if([note.name isEqualToString:BicycletteModelNotifications.updateFailed])
+    else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
     {
         [self.updateIndicator stopAnimating];
         self.updateButton.enabled = YES;
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
-        NSError * error = note.userInfo[BicycletteModelNotifications.keys.failureError];
+        NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
                                    message:[error localizedDescription]
                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

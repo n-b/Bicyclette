@@ -1,34 +1,34 @@
 //
-//  LeveloModel.m
+//  ToulouseVeloCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 14/10/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "LeveloModel.h"
+#import "ToulouseVeloCity.h"
 #import "Station.h"
 #import "Region.h"
 
-@implementation LeveloModel
+@implementation ToulouseVeloCity
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
     RegionInfo * regionInfo = [RegionInfo new];
-    regionInfo.number = [station.name substringToIndex:1];
-    regionInfo.name = [station.name substringToIndex:1];
+    regionInfo.number = @"Toulouse";
+    regionInfo.name = @"Toulouse";
     
     return regionInfo;
 }
 
 - (NSString*)titleForRegion:(Region*)region
 {
-    return [NSString stringWithFormat:@"%@°",region.number];
+    return @"Toulouse";
 }
 
 - (NSString*)subtitleForRegion:(Region*)region
 {
-    return @"arr.";
+    return @"";
 }
 
 - (NSString*)titleForStation:(Station*)region
@@ -38,7 +38,7 @@
     NSRange beginRange = [shortname rangeOfString:@"-"];
     if (beginRange.location!=NSNotFound)
         shortname = [region.name substringFromIndex:beginRange.location+beginRange.length];
-        
+    
     // remove whitespace
     shortname = [shortname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     

@@ -7,9 +7,9 @@
 //
 
 #import "BicycletteApplicationDelegate.h"
-#import "VelibModel.h"
-#import "LeveloModel.h"
-#import "ToulouseVeloModel.h"
+#import "ParisVelibCity.h"
+#import "MarseilleLeveloCity.h"
+#import "ToulouseVeloCity.h"
 #import "DataUpdater.h"
 #import "MapVC.h"
 #import "PrefsVC.h"
@@ -22,7 +22,7 @@
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
-@property (strong) BicycletteModel * model;
+@property (strong) BicycletteCity * city;
 @property (strong) RegionMonitor * regionMonitor;
 
 @property (strong) IBOutlet UINavigationController *rootNavC;
@@ -50,11 +50,11 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
     
-    // Create model
-    self.model = [VelibModel new];
-    self.mapVC.model = self.model;
-    self.prefsVC.model = self.model;
-    self.regionMonitor = [[RegionMonitor alloc] initWithModel:self.model];
+    // Create city
+    self.city = [ParisVelibCity new];
+    self.mapVC.city = self.city;
+    self.prefsVC.city = self.city;
+    self.regionMonitor = [[RegionMonitor alloc] initWithCity:self.city];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -143,7 +143,7 @@
     NSString * number = notification.userInfo[@"stationNumber"];
     if(number)
     {
-        Station * station = [self.model stationWithNumber:number];
+        Station * station = [self.city stationWithNumber:number];
         [self.mapVC zoomInStation:station];
     }
 }

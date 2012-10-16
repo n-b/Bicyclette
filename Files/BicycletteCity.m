@@ -1,12 +1,12 @@
 //
-//  BicycletteModel.m
+//  BicycletteCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 09/10/10.
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteModel.h"
+#import "BicycletteCity.h"
 #import "Station.h"
 #import "Region.h"
 #if TARGET_OS_IPHONE
@@ -24,7 +24,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@interface BicycletteModel () <DataUpdaterDelegate, NSXMLParserDelegate>
+@interface BicycletteCity () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property (nonatomic, strong) DataUpdater * updater;
 // -
 @property (nonatomic, strong) NSDictionary * stationsHardcodedFixes;
@@ -46,14 +46,14 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation BicycletteModel
+@implementation BicycletteCity
 
 - (id)initWithModelName:(NSString *)modelName storeURL:(NSURL *)storeURL
 {
-    self = [super initWithModelName:@"BicycletteModel" storeURL:storeURL];
+    self = [super initWithModelName:@"BicycletteCity" storeURL:storeURL];
     if (self) {
 #if TARGET_OS_IPHONE
-        self.updaterQueue = [[RadarUpdateQueue alloc] initWithModel:self];
+        self.updaterQueue = [[RadarUpdateQueue alloc] initWithCity:self];
 #endif
     }
     return self;
@@ -130,18 +130,18 @@
 
 - (void) updaterDidStartRequest:(DataUpdater *)updater
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteModelNotifications.updateBegan object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateBegan object:self];
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteModelNotifications.updateFailed object:self userInfo:@{BicycletteModelNotifications.keys.failureError : error}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateFailed object:self userInfo:@{BicycletteCityNotifications.keys.failureError : error}];
     self.updater = nil;
 }
 
 - (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)xml
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteModelNotifications.updateGotNewData object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateGotNewData object:self];
     
 	NSError * requestError = nil;
 	
@@ -189,17 +189,17 @@
 	// Save
     if ([self save:&validationErrors])
     {
-        NSMutableDictionary * userInfo = [@{BicycletteModelNotifications.keys.dataChanged : @(YES)} mutableCopy];
+        NSMutableDictionary * userInfo = [@{BicycletteCityNotifications.keys.dataChanged : @(YES)} mutableCopy];
         if (validationErrors)
-            userInfo[BicycletteModelNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteModelNotifications.updateSucceeded object:self
+            userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
                                                           userInfo:userInfo];
     }
     else
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteModelNotifications.updateFailed object:self
+        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateFailed object:self
                                                           userInfo:
-         @{BicycletteModelNotifications.keys.failureError : validationErrors}];
+         @{BicycletteCityNotifications.keys.failureError : validationErrors}];
     }
 
     self.updater = nil;
@@ -207,7 +207,7 @@
 
 - (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteModelNotifications.updateSucceeded object:self userInfo:@{BicycletteModelNotifications.keys.dataChanged : @(NO)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self userInfo:@{BicycletteCityNotifications.keys.dataChanged : @(NO)}];
     self.updater = nil;
 }
 
@@ -383,25 +383,25 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation  NSManagedObjectContext (AssociatedModel)
-- (BicycletteModel *) model
+@implementation  NSManagedObjectContext (AssociatedCity)
+- (BicycletteCity *) city
 {
-    return (BicycletteModel*) self.coreDataManager;
+    return (BicycletteCity*) self.coreDataManager;
 }
 @end
 
 /****************************************************************************/
 #pragma mark Constants
 
-const struct BicycletteModelNotifications BicycletteModelNotifications = {
-    .updateBegan = @"BicycletteModelNotifications.updateBegan",
-    .updateGotNewData = @"BicycletteModelNotifications.updateGotNewData",
-    .updateSucceeded = @"BicycletteModelNotifications.updateSucceded",
-    .updateFailed = @"BicycletteModelNotifications.updateFailed",
+const struct BicycletteCityNotifications BicycletteCityNotifications = {
+    .updateBegan = @"BicycletteCityNotifications.updateBegan",
+    .updateGotNewData = @"BicycletteCityNotifications.updateGotNewData",
+    .updateSucceeded = @"BicycletteCityNotifications.updateSucceded",
+    .updateFailed = @"BicycletteCityNotifications.updateFailed",
     .keys = {
-        .dataChanged = @"BicycletteModelNotifications.keys.dataChanged",
-        .failureError = @"BicycletteModelNotifications.keys.failureError",
-        .saveErrors = @"BicycletteModelNotifications.keys.saveErrors",
+        .dataChanged = @"BicycletteCityNotifications.keys.dataChanged",
+        .failureError = @"BicycletteCityNotifications.keys.failureError",
+        .saveErrors = @"BicycletteCityNotifications.keys.saveErrors",
     }
 };
 
