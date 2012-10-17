@@ -1,4 +1,5 @@
 #import "Region.h"
+#import "BicycletteCity.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -58,5 +59,14 @@
 	return self.coordinateRegion.center;
 }
 #endif
+
+- (NSString*) title
+{
+    return [[self city] titleForRegion:self];
+}
+- (NSString*) subtitle
+{
+    return [[self city] subtitleForRegion:self];
+}
 
 @end

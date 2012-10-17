@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Vélô</string>
+	<key>carto</key>
+	<string>http://www.velam.amiens.fr/service/carto/</string>
+	<key>stationdetails</key>
+	<string>http://www.velam.amiens.fr/service/stationdetails/amiens/</string>
+	<key>patchs</key>
+	<dict/>
+	<key>limits</key>
+	<dict>
+		<key>latitude</key>
+		<real>49.8982</real>
+		<key>longitude</key>
+		<real>2.301</real>
+		<key>distance</key>
+		<integer>10000</integer>
+	</dict>
+</dict>
+</plist>

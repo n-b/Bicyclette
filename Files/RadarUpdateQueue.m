@@ -7,7 +7,7 @@
 //
 
 #import "RadarUpdateQueue.h"
-#import "VelibModel.h"
+#import "BicycletteCity.h"
 #import "Radar.h"
 #import "Station.h"
 #import "NSMutableArray+Locatable.h"
@@ -32,7 +32,7 @@
     return self;
 }
 
-- (id)initWithModel:(VelibModel*)model
+- (id)initWithCity:(BicycletteCity*)city_
 {
     self = [super init];
     if (self) {
@@ -59,7 +59,7 @@
         NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:[Radar entityName]];
         request.sortDescriptors = @[ [[NSSortDescriptor alloc] initWithKey:RadarAttributes.identifier ascending:YES] ]; // frc *needs* a sort descriptor
         self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                       managedObjectContext:model.moc
+                                                       managedObjectContext:city_.moc
                                                          sectionNameKeyPath:nil cacheName:nil];
         self.frc.delegate = self;
         [self.frc performFetch:NULL];

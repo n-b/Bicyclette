@@ -7,24 +7,26 @@
 //
 
 #import "PrefsVC.h"
-#import "VelibModel.h"
+#import "BicycletteCity.h"
 #import "Store.h"
 #import "Station.h"
 
 @interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
-@property (strong) IBOutletCollection(UITableViewCell) NSArray *cells;
+@property IBOutletCollection(UITableViewCell) NSArray *cells;
 
-@property (weak) IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
+@property IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
 
-@property (weak) IBOutlet UIActivityIndicatorView *updateIndicator;
-@property (weak) IBOutlet UIBarButtonItem *updateButton;
-@property (weak) IBOutlet UIActivityIndicatorView *storeIndicator;
-@property (weak) IBOutlet UILabel *storeLabel;
-@property (weak) IBOutlet UIBarButtonItem *storeButton;
-@property (weak) IBOutlet UILabel *rewardLabel;
-@property (weak) IBOutlet UIImageView *logoView;
+@property IBOutlet UIActivityIndicatorView *updateIndicator;
+@property IBOutlet UIBarButtonItem *updateButton;
+@property IBOutlet UIActivityIndicatorView *storeIndicator;
+@property IBOutlet UILabel *storeLabel;
+@property IBOutlet UIBarButtonItem *storeButton;
+@property IBOutlet UILabel *rewardLabel;
+@property IBOutlet UIImageView *logoView;
 
-@property (strong) Store * store;
+@property (nonatomic) BicycletteCity * currentCity;
+
+@property Store * store;
 @property NSArray * products;
 @end
 
@@ -37,8 +39,14 @@
     // Create store
     self.store = [Store new];
     self.store.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(citySelected:) name:BicycletteCityNotifications.citySelected object:nil];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -68,6 +76,14 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) citySelected:(NSNotification*)note
+{
+    self.currentCity = note.object;
 }
 
 /****************************************************************************/
@@ -137,46 +153,55 @@
 }
 
 /****************************************************************************/
-#pragma mark Model updates
+#pragma mark City updates
 
 - (IBAction)updateStationsList {
-    [self.model update];
+    [self.currentCity update];
 }
 
-- (void) setModel:(VelibModel *)model
+- (void) setCurrentCity:(BicycletteCity *)currentCity_
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:_model];
-    _model = model;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelUpdated:) name:nil object:_model];
+    if([_currentCity isEqual:currentCity_])
+        return;
+    
+    NSArray * notes = (@[ BicycletteCityNotifications.updateBegan,
+                       BicycletteCityNotifications.updateGotNewData,
+                       BicycletteCityNotifications.updateSucceeded,
+                       BicycletteCityNotifications.updateFailed]);
+    for (NSString * note in notes)
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:note object:_currentCity];
+    _currentCity = currentCity_;
+    for (NSString * note in notes)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:) name:note object:_currentCity];
 }
 
-- (void) modelUpdated:(NSNotification*)note
+- (void) cityUpdated:(NSNotification*)note
 {
-    if([note.name isEqualToString:VelibModelNotifications.updateBegan])
+    if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil)];
         [self.updateIndicator startAnimating];
         self.updateButton.enabled = NO;
     }
-    else if([note.name isEqualToString:VelibModelNotifications.updateGotNewData])
+    else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : PARSING", nil)];
     }
-    else if([note.name isEqualToString:VelibModelNotifications.updateSucceeded])
+    else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
     {
         [self.updateIndicator stopAnimating];
         self.updateButton.enabled = YES;
-        BOOL dataChanged = [note.userInfo[VelibModelNotifications.keys.dataChanged] boolValue];
-        NSArray * saveErrors = note.userInfo[VelibModelNotifications.keys.saveErrors];
+        BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
+        NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
         if(dataChanged)
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
             NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-            NSUInteger count = [self.model.moc countForFetchRequest:request error:NULL];
+            NSUInteger count = [self.currentCity.moc countForFetchRequest:request error:NULL];
             NSString * title;
             NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
                                   count,
-                                  self.model.name];
+                                  self.currentCity.name];
             if(nil==saveErrors)
             {
                 title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
@@ -195,12 +220,12 @@
         else
             [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil)];
     }
-    else if([note.name isEqualToString:VelibModelNotifications.updateFailed])
+    else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
     {
         [self.updateIndicator stopAnimating];
         self.updateButton.enabled = YES;
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
-        NSError * error = note.userInfo[VelibModelNotifications.keys.failureError];
+        NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
                                    message:[error localizedDescription]
                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

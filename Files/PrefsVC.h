@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class VelibModel;
-
 @interface PrefsVC : UIViewController
-@property (strong, nonatomic) VelibModel * model;
+@property NSArray * cities;
 @end

@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class VelibModel;
+@class BicycletteCity;
 
 @interface RadarUpdateQueue : NSObject
-- (id)initWithModel:(VelibModel*)model;
+- (id)initWithCity:(BicycletteCity*)city;
 
 @property (nonatomic) CLLocation * referenceLocation;
 @end

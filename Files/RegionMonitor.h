@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class VelibModel;
+@class BicycletteCity;
 
 @interface RegionMonitor : NSObject
-- (id)initWithModel:(VelibModel*)model;
-- (void)startUsingUserLocation;
+- (id)initWithCity:(BicycletteCity*)city;
 @end

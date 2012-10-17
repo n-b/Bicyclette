@@ -13,8 +13,8 @@
 #pragma mark -
 
 @interface DataUpdater()
-@property (nonatomic, strong) NSURLConnection * updateConnection;
-@property (nonatomic, strong) NSMutableData * updateData;
+@property NSURLConnection * updateConnection;
+@property NSMutableData * updateData;
 @end
 
 /****************************************************************************/

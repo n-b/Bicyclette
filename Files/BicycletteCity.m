@@ -1,12 +1,12 @@
 //
-//  VelibModel.m
+//  BicycletteCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 09/10/10.
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "VelibModel.h"
+#import "BicycletteCity.h"
 #import "Station.h"
 #import "Region.h"
 #if TARGET_OS_IPHONE
@@ -19,35 +19,21 @@
 #import "DataUpdater.h"
 #if TARGET_OS_IPHONE
 #import "RadarUpdateQueue.h"
+#import "RegionMonitor.h"
 #endif
-
-/****************************************************************************/
-#pragma mark Constants
-
-const struct VelibModelNotifications VelibModelNotifications = {
-    .updateBegan = @"VelibModelNotifications.updateBegan",
-    .updateGotNewData = @"VelibModelNotifications.updateGotNewData",
-    .updateSucceeded = @"VelibModelNotifications.updateSucceded",
-    .updateFailed = @"VelibModelNotifications.updateFailed",
-    .keys = {
-        .dataChanged = @"VelibModelNotifications.keys.dataChanged",
-        .failureError = @"VelibModelNotifications.keys.failureError",
-        .saveErrors = @"VelibModelNotifications.keys.saveErrors",
-    }
-};
-
 
 /****************************************************************************/
 #pragma mark -
 
-@interface VelibModel () <DataUpdaterDelegate, NSXMLParserDelegate>
-@property (nonatomic, strong) DataUpdater * updater;
+@interface BicycletteCity () <DataUpdaterDelegate, NSXMLParserDelegate>
+@property DataUpdater * updater;
 // -
-@property (nonatomic, strong) NSDictionary * stationsHardcodedFixes;
-@property (readwrite, nonatomic, strong) CLRegion * hardcodedLimits;
+@property (nonatomic) NSDictionary * stationsHardcodedFixes;
+@property (readwrite, nonatomic) CLRegion * hardcodedLimits;
 // -
 #if TARGET_OS_IPHONE
 @property RadarUpdateQueue * updaterQueue;
+@property RegionMonitor * regionMonitor;
 // -
 #endif
 // -
@@ -55,21 +41,25 @@ const struct VelibModelNotifications VelibModelNotifications = {
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 #endif
 // -
-@property (nonatomic, strong) NSMutableDictionary * parsing_regionsByCodePostal;
-@property (nonatomic, strong) NSMutableArray * parsing_oldStations;
+@property NSMutableDictionary * parsing_regionsByNumber;
+@property NSMutableArray * parsing_oldStations;
 @end
 
 /****************************************************************************/
 #pragma mark -
 
-@implementation VelibModel
+@implementation BicycletteCity
 
 - (id)initWithModelName:(NSString *)modelName storeURL:(NSURL *)storeURL
 {
-    self = [super initWithModelName:modelName storeURL:storeURL];
+    self = [super initWithModelName:@"BicycletteCity" storeURL:storeURL];
     if (self) {
 #if TARGET_OS_IPHONE
-        self.updaterQueue = [[RadarUpdateQueue alloc] initWithModel:self];
+        self.updaterQueue = [[RadarUpdateQueue alloc] initWithCity:self];
+        self.regionMonitor = [[RegionMonitor alloc] initWithCity:self];
+
+        // Forget old userLocation, until we have a better one
+        [self userLocationRadar].coordinate = CLLocationCoordinate2DMake(0, 0);
 #endif
     }
     return self;
@@ -80,21 +70,19 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (NSString *) name
 {
-    return NSLocalizedString(@"Vélib", nil);
+    return self.serviceInfo[@"name"];
 }
 
-- (NSDictionary*) hardcodedFixes
+- (NSDictionary*) serviceInfo
 {
-    NSString * filename = ([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugUseHardcodedErrors"] ?
-                           @"VelibHardcodedDebugErrors" :
-                           @"VelibHardcodedFixes");
+    NSString * filename = NSStringFromClass([self class]);
     return [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filename ofType:@"plist"]];
 }
 
 - (NSDictionary*) stationsHardcodedFixes
 {
 	if(nil==_stationsHardcodedFixes)
-		self.stationsHardcodedFixes = (self.hardcodedFixes)[@"stations"];
+		self.stationsHardcodedFixes = (self.serviceInfo)[@"patchs"];
 
 	return _stationsHardcodedFixes;
 }
@@ -103,12 +91,23 @@ const struct VelibModelNotifications VelibModelNotifications = {
 {
 	if( nil==_hardcodedLimits )
 	{
-        NSDictionary * dict = (self.hardcodedFixes)[@"limits"];
+        NSDictionary * dict = (self.serviceInfo)[@"limits"];
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([dict[@"latitude"] doubleValue], [dict[@"longitude"] doubleValue]);
         CLLocationDistance distance = [dict[@"distance"] doubleValue];
         self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:self.name];
 	}
 	return _hardcodedLimits;
+}
+
+- (CLLocation *) location
+{
+    CLLocationCoordinate2D coord = [self.hardcodedLimits center];
+    return [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+}
+
+- (NSString*) stationDetailsURL
+{
+    return self.serviceInfo[@"stationdetails"];
 }
 
 /****************************************************************************/
@@ -127,7 +126,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (NSURL*) urlForUpdater:(DataUpdater *)updater
 {
-    return [NSURL URLWithString:kVelibStationsListURL];    
+    return [NSURL URLWithString:self.serviceInfo[@"carto"]];
 }
 - (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater
 {
@@ -143,18 +142,18 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (void) updaterDidStartRequest:(DataUpdater *)updater
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateBegan object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateBegan object:self];
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self userInfo:@{VelibModelNotifications.keys.failureError : error}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateFailed object:self userInfo:@{BicycletteCityNotifications.keys.failureError : error}];
     self.updater = nil;
 }
 
 - (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)xml
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateGotNewData object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateGotNewData object:self];
     
 	NSError * requestError = nil;
 	
@@ -164,14 +163,14 @@ const struct VelibModelNotifications VelibModelNotifications = {
     self.parsing_oldStations =  [[self.moc executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
 	
 	// Parsing
-    self.parsing_regionsByCodePostal = [NSMutableDictionary dictionary];
+    self.parsing_regionsByNumber = [NSMutableDictionary dictionary];
 	NSXMLParser * parser = [[NSXMLParser alloc] initWithData:xml];
 	parser.delegate = self;
 	[parser parse];
     
     // Validate all stations (and delete invalid) before computing coordinates
     NSError * validationErrors;
-    for (Region *r in [self.parsing_regionsByCodePostal allValues]) {
+    for (Region *r in [self.parsing_regionsByNumber allValues]) {
         for (Station *s in [r.stations copy]) {
             if(![s validateForInsert:&validationErrors])
             {
@@ -184,13 +183,13 @@ const struct VelibModelNotifications VelibModelNotifications = {
     // Post processing :
 	// Compute regions coordinates
     // and reorder stations in regions
-    for (Region * region in [self.parsing_regionsByCodePostal allValues]) {
+    for (Region * region in [self.parsing_regionsByNumber allValues]) {
         [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
             return [obj1.name compare:obj2.name];
         }];
         [region setupCoordinates];
     }
-    self.parsing_regionsByCodePostal = nil;
+    self.parsing_regionsByNumber = nil;
 
     // Delete Old Stations
 	for (Station * oldStation in self.parsing_oldStations) {
@@ -202,17 +201,17 @@ const struct VelibModelNotifications VelibModelNotifications = {
 	// Save
     if ([self save:&validationErrors])
     {
-        NSMutableDictionary * userInfo = [@{VelibModelNotifications.keys.dataChanged : @(YES)} mutableCopy];
+        NSMutableDictionary * userInfo = [@{BicycletteCityNotifications.keys.dataChanged : @(YES)} mutableCopy];
         if (validationErrors)
-            userInfo[VelibModelNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
-        [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self
+            userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
                                                           userInfo:userInfo];
     }
     else
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateFailed object:self
+        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateFailed object:self
                                                           userInfo:
-         @{VelibModelNotifications.keys.failureError : validationErrors}];
+         @{BicycletteCityNotifications.keys.failureError : validationErrors}];
     }
 
     self.updater = nil;
@@ -220,7 +219,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
 - (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VelibModelNotifications.updateSucceeded object:self userInfo:@{VelibModelNotifications.keys.dataChanged : @(NO)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self userInfo:@{BicycletteCityNotifications.keys.dataChanged : @(NO)}];
     self.updater = nil;
 }
 
@@ -254,7 +253,7 @@ const struct VelibModelNotifications VelibModelNotifications = {
         // Filter out closed stations
         if( ! [attributeDict[@"open"] boolValue] )
         {
-            NSLog(@"Note : Ignored closed station : %@", attributeDict);
+            NSLog(@"Note : Ignored closed station : %@", attributeDict[@"number"]);
             return;
         }
         
@@ -274,77 +273,36 @@ const struct VelibModelNotifications VelibModelNotifications = {
 
         // Set Values and hardcoded fixes
 		[station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:self.stationKVCMapping]; // Yay!
-		NSDictionary * fixes = (self.stationsHardcodedFixes)[station.number];
-		if(fixes)
+		NSDictionary * patchs = (self.stationsHardcodedFixes)[station.number];
+		if(patchs)
 		{
-			NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, fixes);
-			[station setValuesForKeysWithDictionary:fixes withMappingDictionary:self.stationKVCMapping]; // Yay! again
+			NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, patchs);
+			[station setValuesForKeysWithDictionary:patchs withMappingDictionary:self.stationKVCMapping]; // Yay! again
 		}
         
         // Setup region
-        if([station.fullAddress hasPrefix:station.address])
+        RegionInfo * regionInfo = [self regionInfoFromStation:station patchs:patchs];
+        if(nil==regionInfo)
         {
-            NSString * endOfAddress = [station.fullAddress stringByDeletingPrefix:station.address];
-            endOfAddress = [endOfAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            NSString * lCodePostal = nil;
-            if(fixes[@"codePostal"])
-            {
-                // Stations Mobiles et autres bugs (93401 au lieu de 93400)
-                lCodePostal = fixes[@"codePostal"];
-            }
-            else
-            {
-                if(endOfAddress.length>=5)
-                    lCodePostal = [endOfAddress substringToIndex:5];
-                if(nil==lCodePostal || [lCodePostal isEqualToString:@"75000"])
-                {
-                    unichar firstChar = [station.number characterAtIndex:0];
-                    switch (firstChar) {
-                        case '0': case '1':				// Paris
-                            lCodePostal = [NSString stringWithFormat:@"750%@",[station.number substringToIndex:2]];
-                            break;
-                        case '2': case '3': case '4':	// Banlieue
-                            lCodePostal = [NSString stringWithFormat:@"9%@0",[station.number substringToIndex:3]];
-                            break;
-                        default:
-                            // Dernier recours
-                            lCodePostal = @"75000";
-                            break;
-                    }
-                    
-                    NSLog(@"Note : Used heuristics to find region for %@. Found : %@. ",attributeDict, lCodePostal);
-                }
-            }
-            NSAssert1([lCodePostal rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound,@"codePostal %@ contient des caractères invalides",lCodePostal);
-            
-            // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
-            Region * region = (self.parsing_regionsByCodePostal)[lCodePostal];
-            if(nil==region)
-            {
-                region = [[Region fetchRegionWithNumber:self.moc number:lCodePostal] lastObject];
-                if(region==nil)
-                {
-                    region = [Region insertInManagedObjectContext:self.moc];
-                    region.number = lCodePostal;
-                }
-                (self.parsing_regionsByCodePostal)[lCodePostal] = region;
-                if([lCodePostal hasPrefix:@"75"])
-                    region.name = [NSString stringWithFormat:@"Paris %@",[[lCodePostal substringFromIndex:3] stringByDeletingPrefix:@"0"]];
-                else
-                {
-                    NSString * cityName = [[[endOfAddress stringByDeletingPrefix:region.number]
-                                            stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
-                                           capitalizedString];
-                    region.name = cityName;
-                }
-            }
-            station.region = region;
-        }
-        else
-        {
-            NSLog(@"Invalid data ('fulladdress' should begin with 'address'): %@",attributeDict);
+            NSLog(@"Invalid data : %@",attributeDict);
             [self.moc deleteObject:station];
+            return;
         }
+                
+        // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
+        Region * region = (self.parsing_regionsByNumber)[regionInfo.number];
+        if(nil==region)
+        {
+            region = [[Region fetchRegionWithNumber:self.moc number:regionInfo.number] lastObject];
+            if(region==nil)
+            {
+                region = [Region insertInManagedObjectContext:self.moc];
+                region.number = regionInfo.number;
+                region.name = regionInfo.name;
+            }
+            (self.parsing_regionsByNumber)[regionInfo.number] = region;
+        }
+        station.region = region;
     }
 }
 
@@ -437,9 +395,33 @@ const struct VelibModelNotifications VelibModelNotifications = {
 /****************************************************************************/
 #pragma mark -
 
-@implementation  NSManagedObjectContext (AssociatedModel)
-- (VelibModel *) model
+@implementation NSManagedObject (AssociatedCity)
+- (BicycletteCity *) city
 {
-    return (VelibModel*) self.coreDataManager;
+    BicycletteCity * city = (BicycletteCity *)[self.managedObjectContext coreDataManager];
+    return city;
 }
+@end
+
+/****************************************************************************/
+#pragma mark Constants
+
+const struct BicycletteCityNotifications BicycletteCityNotifications = {
+    .canRequestLocation = @"BicycletteCityNotifications.canRequestLocation",
+    .citySelected = @"BicycletteCityNotifications.citySelected",
+    .updateBegan = @"BicycletteCityNotifications.updateBegan",
+    .updateGotNewData = @"BicycletteCityNotifications.updateGotNewData",
+    .updateSucceeded = @"BicycletteCityNotifications.updateSucceded",
+    .updateFailed = @"BicycletteCityNotifications.updateFailed",
+    .keys = {
+        .dataChanged = @"BicycletteCityNotifications.keys.dataChanged",
+        .failureError = @"BicycletteCityNotifications.keys.failureError",
+        .saveErrors = @"BicycletteCityNotifications.keys.saveErrors",
+    }
+};
+
+/****************************************************************************/
+#pragma mark -
+
+@implementation RegionInfo
 @end

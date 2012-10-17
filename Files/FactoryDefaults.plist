@@ -16,6 +16,17 @@
 	<false/>
 	<key>DebugDisplayHelpAtLaunch</key>
 	<false/>
+	<key>BicycletteLimits</key>
+	<dict>
+		<key>latitude</key>
+		<integer>47</integer>
+		<key>longitude</key>
+		<string>2</string>
+		<key>latitudeDelta</key>
+		<string>14</string>
+		<key>longitudeDelta</key>
+		<string>12</string>
+	</dict>
 	<key>RadarDistance</key>
 	<integer>150</integer>
 	<key>RadarDistances</key>

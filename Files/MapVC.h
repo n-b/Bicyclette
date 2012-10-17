@@ -6,13 +6,14 @@
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class VelibModel;
+@class BicycletteCity;
 @class Station;
 
 @interface MapVC : UIViewController 
-@property VelibModel * model;
 
-- (void) startUsingUserLocation;
+@property NSArray * cities;
+
+@property (nonatomic, readonly) BicycletteCity * currentCity;
 
 - (void) zoomInStation:(Station*)station;
 

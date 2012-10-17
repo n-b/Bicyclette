@@ -13,4 +13,7 @@
 @property (readonly, nonatomic) MKCoordinateRegion coordinateRegion;
 #endif
 
+// Used for RegionAnnotationView
+- (NSString*) title;
+- (NSString*) subtitle;
 @end

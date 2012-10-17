@@ -7,30 +7,31 @@
 //
 
 #import "BicycletteApplicationDelegate.h"
-#import "VelibModel.h"
+#import "ParisVelibCity.h"
+#import "MarseilleLeveloCity.h"
+#import "ToulouseVeloCity.h"
+#import "AmiensVelamCity.h"
 #import "DataUpdater.h"
 #import "MapVC.h"
 #import "PrefsVC.h"
 #import "HelpVC.h"
 #import "UIView+Screenshot.h"
-#import "RegionMonitor.h"
 #import "Station.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
-@property (strong) VelibModel * model;
-@property (strong) RegionMonitor * regionMonitor;
+@property NSArray * cities;
 
-@property (strong) IBOutlet UINavigationController *rootNavC;
-@property (strong) IBOutlet MapVC *mapVC;
-@property (strong) IBOutlet PrefsVC *prefsVC;
-@property (strong) IBOutlet HelpVC *helpVC;
+@property IBOutlet UINavigationController *rootNavC;
+@property IBOutlet MapVC *mapVC;
+@property IBOutlet PrefsVC *prefsVC;
+@property IBOutlet HelpVC *helpVC;
 
-@property (strong) UIImageView *screenshot;
-@property (strong) IBOutlet UIToolbar *infoToolbar;
-@property (strong) IBOutlet UIButton *infoButton;
+@property UIImageView *screenshot;
+@property IBOutlet UIToolbar *infoToolbar;
+@property IBOutlet UIButton *infoButton;
 @end
 
 /****************************************************************************/
@@ -48,11 +49,13 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
     
-    // Create model
-    self.model = [VelibModel new];
-    self.mapVC.model = self.model;
-    self.prefsVC.model = self.model;
-    self.regionMonitor = [[RegionMonitor alloc] initWithModel:self.model];
+    // Create city
+    self.cities = (@[[ParisVelibCity new],
+                   [MarseilleLeveloCity new],
+                   [ToulouseVeloCity new],
+                   [AmiensVelamCity new] ]);
+    self.mapVC.cities = self.cities;
+    self.prefsVC.cities = self.cities;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -82,7 +85,7 @@
     }
     else
     {
-        [self finishStart];
+        [self notifyCanRequestLocation];
     }
     
     if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForITC2"])
@@ -101,10 +104,9 @@
 	return YES;
 }
 
-- (void) finishStart
+- (void) notifyCanRequestLocation
 {
-    [self.regionMonitor startUsingUserLocation];
-    [self.mapVC startUsingUserLocation];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
 }
 
 - (IBAction)showHelp
@@ -132,16 +134,25 @@
         [self.helpVC.view removeFromSuperview];
         self.helpVC.view.alpha = 1;
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
-        [self finishStart];
+        [self notifyCanRequestLocation];
     }];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
+    NSString * cityClassName = notification.userInfo[@"city"];
+    BicycletteCity * city;
+    for (BicycletteCity * aCity in self.cities) {
+        if([NSStringFromClass([aCity class]) isEqualToString:cityClassName])
+        {
+            city = aCity;
+            break;
+        }
+    }
     NSString * number = notification.userInfo[@"stationNumber"];
     if(number)
     {
-        Station * station = [self.model stationWithNumber:number];
+        Station * station = [city stationWithNumber:number];
         [self.mapVC zoomInStation:station];
     }
 }
