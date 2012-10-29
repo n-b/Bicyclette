@@ -174,7 +174,7 @@
 		370E3A3D162E17870010E454 /* AmiensVelamCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmiensVelamCity.h; sourceTree = "<group>"; };
 		370E3A3E162E17880010E454 /* AmiensVelamCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmiensVelamCity.m; sourceTree = "<group>"; };
 		370E3A41162E17990010E454 /* AmiensVelamCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AmiensVelamCity.plist; sourceTree = "<group>"; };
-		370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = AmiensVelamCity.sqlite; path = _DataGrabTempFolder/AmiensVelamCity.sqlite; sourceTree = "<group>"; };
+		370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = AmiensVelamCity.sqlite; path = _DataGrabTempFolder/AmiensVelamCity.sqlite; sourceTree = SOURCE_ROOT; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		3730161715977E1900347C9F /* DrawingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCache.m; sourceTree = "<group>"; };
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
-		373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ParisVelibCity.sqlite; path = _DataGrabTempFolder/ParisVelibCity.sqlite; sourceTree = "<group>"; };
+		373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ParisVelibCity.sqlite; path = _DataGrabTempFolder/ParisVelibCity.sqlite; sourceTree = SOURCE_ROOT; };
 		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
 		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
 		373A780515E40EF70057E241 /* Icon~settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~settings.png"; sourceTree = "<group>"; };
@@ -263,8 +263,8 @@
 		37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToulouseVeloCity.h; sourceTree = "<group>"; };
 		37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToulouseVeloCity.m; sourceTree = "<group>"; };
 		37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToulouseVeloCity.plist; sourceTree = "<group>"; };
-		37D9DFE7162A374F0000F263 /* MarseilleLeveloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = MarseilleLeveloCity.sqlite; path = _DataGrabTempFolder/MarseilleLeveloCity.sqlite; sourceTree = "<group>"; };
-		37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ToulouseVeloCity.sqlite; path = _DataGrabTempFolder/ToulouseVeloCity.sqlite; sourceTree = "<group>"; };
+		37D9DFE7162A374F0000F263 /* MarseilleLeveloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = MarseilleLeveloCity.sqlite; path = _DataGrabTempFolder/MarseilleLeveloCity.sqlite; sourceTree = SOURCE_ROOT; };
+		37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ToulouseVeloCity.sqlite; path = _DataGrabTempFolder/ToulouseVeloCity.sqlite; sourceTree = SOURCE_ROOT; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -336,25 +336,14 @@
 		080E96DDFE201D6D7F000001 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				37EFCF3A159E495F007B2E41 /* Style.h */,
 				37513B6116173FAB00388FF3 /* RootNavC.h */,
 				37513B6216173FAB00388FF3 /* RootNavC.m */,
-				37E9531412AA29FB00C1D21C /* MapVC.h */,
-				37E9531512AA29FB00C1D21C /* MapVC.m */,
-				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
-				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
-				3700F8511594A806007CF99E /* RegionAnnotationView.h */,
-				3700F8521594A806007CF99E /* RegionAnnotationView.m */,
-				378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */,
-				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
-				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
-				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
+				37D131FB163F329B00AABEE4 /* Map */,
+				37D131F7163F325100AABEE4 /* AnnotationViews */,
 				3705B40915B9B6C8009C8AAA /* UI Utility */,
-				37C56FD115B1A0E700795961 /* PrefsVC.h */,
-				37C56FD215B1A0E700795961 /* PrefsVC.m */,
-				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
-				37BE759A15E6BDE4001DABF6 /* HelpVC.h */,
-				37BE759B15E6BDE4001DABF6 /* HelpVC.m */,
-				37BE759C15E6BDE4001DABF6 /* HelpVC.xib */,
+				37D131F9163F328500AABEE4 /* Prefs */,
+				37D131FA163F328F00AABEE4 /* Help */,
 			);
 			name = UI;
 			path = Files;
@@ -373,15 +362,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3756EA9B1297F52200113534 /* CoreResources */,
-				37EC534315BAFB0400F45C09 /* Images */,
-				373A77F215E3F6860057E241 /* EmbeddedStore */,
-				29B97315FDCFA39411CA2CEA /* App */,
-				37216A411261087300A2695A /* Model */,
-				080E96DDFE201D6D7F000001 /* UI */,
-				37D188291170A25C00950D52 /* Extensions */,
-				3786E4E114825A7700814C10 /* LogicTests */,
 				37038A1215E3A6280043504A /* BicycletteDataGrab */,
+				373A77F215E3F6860057E241 /* _DataGrabTempFolder */,
+				3756EA9B1297F52200113534 /* Supporting Files */,
+				37EC534315BAFB0400F45C09 /* Images */,
+				29B97315FDCFA39411CA2CEA /* App */,
+				37216A411261087300A2695A /* Backend */,
+				080E96DDFE201D6D7F000001 /* UI */,
 				3770B22C14E976590003BBA8 /* TestData */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -392,8 +379,6 @@
 		29B97315FDCFA39411CA2CEA /* App */ = {
 			isa = PBXGroup;
 			children = (
-				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
-				37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				1D3623240D0F684500981E51 /* BicycletteApplicationDelegate.h */,
@@ -432,11 +417,20 @@
 		3705B40915B9B6C8009C8AAA /* UI Utility */ = {
 			isa = PBXGroup;
 			children = (
-				37EFCF3A159E495F007B2E41 /* Style.h */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
-				3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */,
-				3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */,
+				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
+				37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */,
+				37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */,
+				37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */,
+				371D90C8158FE19900E509E6 /* TransparentToolbar.h */,
+				371D90C9158FE19900E509E6 /* TransparentToolbar.m */,
+				373016191597800E00347C9F /* UIColor+hsb.h */,
+				3730161A1597800E00347C9F /* UIColor+hsb.m */,
+				3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */,
+				3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */,
+				37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */,
+				37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */,
 			);
 			name = "UI Utility";
 			sourceTree = "<group>";
@@ -487,32 +481,23 @@
 			path = Machine;
 			sourceTree = "<group>";
 		};
-		37216A411261087300A2695A /* Model */ = {
+		37216A411261087300A2695A /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				37216BC512611C5400A2695A /* BicycletteCity.h */,
-				37216BC612611C5400A2695A /* BicycletteCity.m */,
-				37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */,
-				37A346B5128C9D68000A2540 /* BicycletteCity */,
-				3717AA65162A1C11005EC7BD /* Cities */,
-				3793DE1D1380295400B50118 /* CoreDataManager.h */,
-				3793DE1E1380295400B50118 /* CoreDataManager.m */,
-				3793DE2013802E6100B50118 /* DataUpdater.h */,
-				3793DE2113802E6100B50118 /* DataUpdater.m */,
+				37D131FC163F32DE00AABEE4 /* Model */,
 				3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */,
 				37EE011715BC87E4008376A1 /* RegionMonitor.h */,
 				37EE011815BC87E4008376A1 /* RegionMonitor.m */,
-				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
-				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
 				3724BC7115E4CA1200790869 /* Store.h */,
 				3724BC7215E4CA1200790869 /* Store.m */,
+				37D131FD163F32FC00AABEE4 /* Utility */,
 			);
-			name = Model;
+			name = Backend;
 			path = Files;
 			sourceTree = "<group>";
 		};
-		373A77F215E3F6860057E241 /* EmbeddedStore */ = {
+		373A77F215E3F6860057E241 /* _DataGrabTempFolder */ = {
 			isa = PBXGroup;
 			children = (
 				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
@@ -520,17 +505,20 @@
 				37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */,
 				370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */,
 			);
-			name = EmbeddedStore;
+			path = _DataGrabTempFolder;
 			sourceTree = "<group>";
 		};
-		3756EA9B1297F52200113534 /* CoreResources */ = {
+		3756EA9B1297F52200113534 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				3756EADE1298018A00113534 /* Info.plist */,
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
 				37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */,
+				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
+				37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */,
+				3786E4E214825A7700814C10 /* Test Supporting Files */,
 			);
-			name = CoreResources;
+			name = "Supporting Files";
 			path = Files;
 			sourceTree = "<group>";
 		};
@@ -552,18 +540,19 @@
 				3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */,
 				371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */,
 				371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */,
-				3786E4E214825A7700814C10 /* Supporting Files */,
 			);
-			path = LogicTests;
+			name = LogicTests;
+			path = ../LogicTests;
 			sourceTree = "<group>";
 		};
-		3786E4E214825A7700814C10 /* Supporting Files */ = {
+		3786E4E214825A7700814C10 /* Test Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				3786E4E314825A7700814C10 /* Info.plist */,
 				3786E4EA14825A7700814C10 /* Prefix.pch */,
 			);
-			name = "Supporting Files";
+			name = "Test Supporting Files";
+			path = ../LogicTests;
 			sourceTree = "<group>";
 		};
 		37A346B5128C9D68000A2540 /* BicycletteCity */ = {
@@ -575,13 +564,79 @@
 			path = BicycletteCity;
 			sourceTree = "<group>";
 		};
-		37D188291170A25C00950D52 /* Extensions */ = {
+		37D131F7163F325100AABEE4 /* AnnotationViews */ = {
 			isa = PBXGroup;
 			children = (
-				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
-				37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */,
-				37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */,
-				37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */,
+				3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */,
+				3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */,
+				3700F8511594A806007CF99E /* RegionAnnotationView.h */,
+				3700F8521594A806007CF99E /* RegionAnnotationView.m */,
+				378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */,
+				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
+				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
+				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
+			);
+			name = AnnotationViews;
+			sourceTree = "<group>";
+		};
+		37D131F9163F328500AABEE4 /* Prefs */ = {
+			isa = PBXGroup;
+			children = (
+				37C56FD115B1A0E700795961 /* PrefsVC.h */,
+				37C56FD215B1A0E700795961 /* PrefsVC.m */,
+				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
+			);
+			name = Prefs;
+			sourceTree = "<group>";
+		};
+		37D131FA163F328F00AABEE4 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				37BE759A15E6BDE4001DABF6 /* HelpVC.h */,
+				37BE759B15E6BDE4001DABF6 /* HelpVC.m */,
+				37BE759C15E6BDE4001DABF6 /* HelpVC.xib */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
+		37D131FB163F329B00AABEE4 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				37E9531412AA29FB00C1D21C /* MapVC.h */,
+				37E9531512AA29FB00C1D21C /* MapVC.m */,
+				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
+				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		37D131FC163F32DE00AABEE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37216BC512611C5400A2695A /* BicycletteCity.h */,
+				37216BC612611C5400A2695A /* BicycletteCity.m */,
+				37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */,
+				37A346B5128C9D68000A2540 /* BicycletteCity */,
+				3717AA65162A1C11005EC7BD /* Cities */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		37D131FD163F32FC00AABEE4 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				3793DE1D1380295400B50118 /* CoreDataManager.h */,
+				3793DE1E1380295400B50118 /* CoreDataManager.m */,
+				3793DE2013802E6100B50118 /* DataUpdater.h */,
+				3793DE2113802E6100B50118 /* DataUpdater.m */,
+				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
+				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
+				37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */,
+				37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */,
+				37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */,
+				37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */,
+				371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */,
+				371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */,
 				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
 				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
 				37149BBA126250D7009CDE82 /* NSArrayAdditions.h */,
@@ -590,23 +645,9 @@
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
 				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
 				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
-				37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */,
-				37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */,
-				37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */,
-				37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */,
-				371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */,
-				371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */,
-				371D90C8158FE19900E509E6 /* TransparentToolbar.h */,
-				371D90C9158FE19900E509E6 /* TransparentToolbar.m */,
-				373016191597800E00347C9F /* UIColor+hsb.h */,
-				3730161A1597800E00347C9F /* UIColor+hsb.m */,
-				3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */,
-				3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */,
-				37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */,
-				37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */,
+				3786E4E114825A7700814C10 /* LogicTests */,
 			);
-			name = Extensions;
-			path = Files;
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		37EC534315BAFB0400F45C09 /* Images */ = {
