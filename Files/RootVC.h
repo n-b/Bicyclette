@@ -9,7 +9,7 @@
 @class Station;
 
 // Autorotation Management for iOS 6
-@interface RootNavC : UINavigationController
+@interface RootVC : UIViewController
 
 - (void) setCities:(NSArray*)cities;
 

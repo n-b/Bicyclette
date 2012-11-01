@@ -6,19 +6,19 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "RootNavC.h"
+#import "RootVC.h"
 #import "MapVC.h"
 #import "PrefsVC.h"
 #import "HelpVC.h"
 #import "UIView+Screenshot.h"
 #import "BicycletteCity.h"
 
-@interface RootNavC ()
+@interface RootVC ()
 @property IBOutlet MapVC *mapVC;
 @property IBOutlet PrefsVC *prefsVC;
 @property IBOutlet HelpVC *helpVC;
+@property UIViewController * visibleViewController;
 
-@property UIImageView *screenshot;
 @property IBOutlet UIToolbar *infoToolbar;
 @property IBOutlet UIButton *infoButton;
 @end
@@ -26,7 +26,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation RootNavC
+@implementation RootVC
 
 - (id)init
 {
@@ -56,15 +56,18 @@
 /****************************************************************************/
 #pragma mark -
 
-- (BOOL) shouldAutorotate
+- (void) applicationDidFinishLaunching:(NSNotification*)note
 {
-    // either the mapVC or the prefsVC
-    return [[self visibleViewController] shouldAutorotate];
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAll;
+    // Show help at first launch
+    if([NSUserDefaults.standardUserDefaults boolForKey:@"DisplayHelpAtLaunch"]||
+       [NSUserDefaults.standardUserDefaults boolForKey:@"DebugDisplayHelpAtLaunch"])
+    {
+        [self showHelp];
+    }
+    else
+    {
+        [self notifyCanRequestLocation];
+    }
 }
 
 /****************************************************************************/
@@ -74,6 +77,22 @@
 {
     [super viewDidLoad];
     
+    // ViewControllers
+    
+    [self addChildViewController:self.prefsVC];
+    self.prefsVC.view.frame = self.view.bounds;
+    [self.view addSubview:self.prefsVC.view];
+    
+    [self addChildViewController:self.mapVC];
+    self.mapVC.view.frame = self.view.bounds;
+    [self.view addSubview:self.mapVC.view];
+    
+    self.visibleViewController = self.mapVC;
+    
+    self.mapVC.view.layer.shadowOffset = CGSizeZero;
+    self.mapVC.view.layer.shadowOpacity = 1;
+    [self setMapVCShadow];
+
     // info button
     CGRect rootViewFrame = self.view.bounds;
     [self.view addSubview:self.infoToolbar];
@@ -85,36 +104,28 @@
     CGRect f = self.infoButton.frame;
     f.origin.y = lroundf(f.origin.y);
     self.infoButton.frame = f;
-    [self.view addSubview:self.infoButton];    
+    [self.view addSubview:self.infoButton];
 }
 
-- (void) applicationDidFinishLaunching:(NSNotification*)note
+- (BOOL) shouldAutorotate
 {
-    // Show help at first launch
-    if( ([NSUserDefaults.standardUserDefaults boolForKey:@"DisplayHelpAtLaunch"]||
-         [NSUserDefaults.standardUserDefaults boolForKey:@"DebugDisplayHelpAtLaunch"])
-       && !([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForDefault"]||
-            [NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForITC"]) )
-    {
-        [self showHelp];
-    }
-    else
-    {
-        [self notifyCanRequestLocation];
-    }
-    
-    if([NSUserDefaults.standardUserDefaults boolForKey:@"DebugScreenshotForITC2"])
-    {
-        UILocalNotification * userLocalNotif = [UILocalNotification new];
-        userLocalNotif.hasAction = NO;
-        userLocalNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:2];
-        userLocalNotif.alertBody = @"28 vélos, 2 places à Saint Severin";
-        [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
-        userLocalNotif.alertBody = @"32 vélos, 1 places à Saint Michel Danton";
-        [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
-        userLocalNotif.alertBody = @"20 vélos, 23 places à Saint Germain Harpe";
-        [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
-    }
+    // either the mapVC or the prefsVC
+    return [[self visibleViewController] shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self setMapVCShadow];
+}
+
+- (void) setMapVCShadow
+{
+    self.mapVC.view.layer.shadowPath = (__bridge CGPathRef)(CFBridgingRelease(CGPathCreateWithRect(self.mapVC.view.layer.bounds, NULL)));
 }
 
 /****************************************************************************/
@@ -154,7 +165,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
 }
 
-
 /****************************************************************************/
 #pragma mark -
 
@@ -178,47 +188,25 @@
 {
     self.view.window.userInteractionEnabled = NO;
     
-    UIView * rootView = self.view;
     // Hide MapVC, Show PrefsVC.
-    [self.mapVC setAnnotationsHidden:YES];
     
     // Rotate around infoButton
     CGPoint rotationCenter = self.infoButton.center;
-    
-    // Take a screenshot of the mapVC view
-    UIView * mapView = self.mapVC.view;
-    self.screenshot = [[UIImageView alloc] initWithImage:[mapView screenshot]];
+    // Align the mapVC around the rotation center
+    self.mapVC.view.layer.anchorPoint = CGPointMake(rotationCenter.x/self.view.bounds.size.width,
+                                                    rotationCenter.y/self.view.bounds.size.height);
+    self.mapVC.view.transform = CGAffineTransformMakeTranslation(rotationCenter.x-CGRectGetMidX(self.mapVC.view.bounds),
+                                                                 rotationCenter.y-CGRectGetMidY(self.mapVC.view.bounds));
     
     // Present (not animated)
-    [self pushViewController:self.prefsVC animated:NO];
-    
-    // Add the screenshot
-    [rootView insertSubview:self.screenshot belowSubview:self.infoToolbar];
-    
-    // Align the screenshot around the rotation center
-    self.screenshot.layer.anchorPoint = CGPointMake(rotationCenter.x/rootView.bounds.size.width,
-                                                    rotationCenter.y/rootView.bounds.size.height);
-    CGSize translation = CGSizeMake(rotationCenter.x-CGRectGetMidX(mapView.bounds),
-                                    rotationCenter.y-CGRectGetMidY(mapView.bounds));
-    self.screenshot.transform = CGAffineTransformMakeTranslation(translation.width, translation.height);
-    
-    // Poor man's shadow for the screenshot (faster during animation)
-    self.screenshot.userInteractionEnabled = YES;
-    self.screenshot.layer.borderWidth = 1;
-    self.screenshot.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.visibleViewController = self.prefsVC;
     
     // Animate
     [UIView animateWithDuration:.5
                      animations:^(void) {
                          CGAffineTransform rotation = CGAffineTransformMakeRotation(.9*M_PI);
-                         self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
+                         self.mapVC.view.transform = CGAffineTransformConcat(rotation, self.mapVC.view.transform);
                      } completion:^(BOOL finished) {
-                         // Real Shadow when static
-                         self.screenshot.layer.borderWidth = 0;
-                         self.screenshot.layer.shadowOffset = CGSizeZero;
-                         self.screenshot.layer.shadowRadius = 2;
-                         self.screenshot.layer.shadowOpacity = 1;
-                         self.screenshot.layer.shadowColor = [UIColor blackColor].CGColor;
                          self.view.window.userInteractionEnabled = YES;
                      }];
 }
@@ -230,19 +218,15 @@
     // Hide PrefsVC, Show MapVC.
     [self.mapVC setAnnotationsHidden:NO];
     
-    // Bring back the Poor man's shadow for animation
-    self.screenshot.layer.borderWidth = 1;
-    self.screenshot.layer.shadowRadius = 0;
     [UIView animateWithDuration:.5
                      animations:^(void) {
                          CGAffineTransform rotation = CGAffineTransformMakeRotation(-.9*M_PI);
-                         self.screenshot.transform = CGAffineTransformConcat(rotation, self.screenshot.transform);
-                         self.screenshot.layer.borderWidth = 0;
+                         self.mapVC.view.transform = CGAffineTransformConcat(rotation, self.mapVC.view.transform);
                      } completion:^(BOOL finished) {
-                         // We're done !
-                         [self.screenshot removeFromSuperview];
-                         self.screenshot = nil;
-                         [self popToRootViewControllerAnimated:NO];
+                         self.visibleViewController = self.mapVC;
+                         self.mapVC.view.layer.anchorPoint = CGPointMake(.5f,.5f);
+                         self.mapVC.view.transform = CGAffineTransformIdentity;
+
                          self.view.window.userInteractionEnabled = YES;
                      }];
 }

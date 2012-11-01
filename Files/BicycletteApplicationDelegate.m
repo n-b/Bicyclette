@@ -12,7 +12,7 @@
 #import "ToulouseVeloCity.h"
 #import "AmiensVelamCity.h"
 #import "Station.h"
-#import "RootNavC.h"
+#import "RootVC.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -20,7 +20,7 @@
 @interface BicycletteApplicationDelegate()
 @property NSArray * cities;
 
-@property IBOutlet RootNavC *rootNavC;
+@property IBOutlet RootVC *rootNavC;
 @end
 
 /****************************************************************************/
