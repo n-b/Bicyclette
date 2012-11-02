@@ -82,10 +82,12 @@
     [self addChildViewController:self.prefsVC];
     self.prefsVC.view.frame = self.view.bounds;
     [self.view addSubview:self.prefsVC.view];
+    [self.prefsVC didMoveToParentViewController:self];
     
     [self addChildViewController:self.mapVC];
     self.mapVC.view.frame = self.view.bounds;
     [self.view addSubview:self.mapVC.view];
+    [self.mapVC didMoveToParentViewController:self];
     
     self.visibleViewController = self.mapVC;
     
@@ -136,15 +138,13 @@
     if(self.visibleViewController!=self.mapVC)
     {
         [self hidePrefs];
-        [self performSelector:_cmd withObject:nil afterDelay:.5];
     }
-    else
-    {
-        [self.view addSubview:self.helpVC.view];
-        [self.helpVC viewWillAppear:NO];
-        self.helpVC.view.frame = self.view.bounds;
-        [self.helpVC viewDidAppear:NO];
-    }
+
+    self.helpVC.view.alpha = 1;
+    [self addChildViewController:self.helpVC];
+    [self.view addSubview:self.helpVC.view];
+    self.helpVC.view.frame = self.view.bounds;
+    [self.helpVC didMoveToParentViewController:self];
 }
 
 
@@ -153,8 +153,9 @@
     [UIView animateWithDuration:.5 animations:^{
         self.helpVC.view.alpha = 0;
     } completion:^(BOOL finished) {
+        [self.helpVC willMoveToParentViewController:nil];
         [self.helpVC.view removeFromSuperview];
-        self.helpVC.view.alpha = 1;
+        [self.helpVC removeFromParentViewController];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
         [self notifyCanRequestLocation];
     }];
@@ -186,7 +187,7 @@
 
 - (void) showPrefs
 {
-    self.view.window.userInteractionEnabled = NO;
+//    self.view.window.userInteractionEnabled = NO;
     
     // Hide MapVC, Show PrefsVC.
     
@@ -207,13 +208,13 @@
                          CGAffineTransform rotation = CGAffineTransformMakeRotation(.9*M_PI);
                          self.mapVC.view.transform = CGAffineTransformConcat(rotation, self.mapVC.view.transform);
                      } completion:^(BOOL finished) {
-                         self.view.window.userInteractionEnabled = YES;
+//                         self.view.window.userInteractionEnabled = YES;
                      }];
 }
 
 - (void) hidePrefs
 {
-    self.view.window.userInteractionEnabled = NO;
+//    self.view.window.userInteractionEnabled = NO;
     
     // Hide PrefsVC, Show MapVC.
     [self.mapVC setAnnotationsHidden:NO];
@@ -227,7 +228,7 @@
                          self.mapVC.view.layer.anchorPoint = CGPointMake(.5f,.5f);
                          self.mapVC.view.transform = CGAffineTransformIdentity;
 
-                         self.view.window.userInteractionEnabled = YES;
+//                         self.view.window.userInteractionEnabled = YES;
                      }];
 }
 
