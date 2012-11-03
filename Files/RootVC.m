@@ -107,6 +107,8 @@
     f.origin.y = lroundf(f.origin.y);
     self.infoButton.frame = f;
     [self.view addSubview:self.infoButton];
+
+    [self setupRotationCenter];
 }
 
 - (BOOL) shouldAutorotate
@@ -120,9 +122,18 @@
     return UIInterfaceOrientationMaskAll;
 }
 
+- (void) setupRotationCenter
+{
+    CGPoint rotationCenter = self.infoButton.center;
+    self.mapVC.view.layer.anchorPoint = CGPointMake(rotationCenter.x/self.view.bounds.size.width,
+                                                    rotationCenter.y/self.view.bounds.size.height);
+    self.mapVC.view.layer.position = rotationCenter;
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self setMapVCShadow];
+    [self setupRotationCenter];
 }
 
 - (void) setMapVCShadow
@@ -187,49 +198,42 @@
 
 - (void) showPrefs
 {
-//    self.view.window.userInteractionEnabled = NO;
-    
-    // Hide MapVC, Show PrefsVC.
-    
-    // Rotate around infoButton
-    CGPoint rotationCenter = self.infoButton.center;
-    // Align the mapVC around the rotation center
-    self.mapVC.view.layer.anchorPoint = CGPointMake(rotationCenter.x/self.view.bounds.size.width,
-                                                    rotationCenter.y/self.view.bounds.size.height);
-    self.mapVC.view.transform = CGAffineTransformMakeTranslation(rotationCenter.x-CGRectGetMidX(self.mapVC.view.bounds),
-                                                                 rotationCenter.y-CGRectGetMidY(self.mapVC.view.bounds));
-    
-    // Present (not animated)
     self.visibleViewController = self.prefsVC;
-    
-    // Animate
-    [UIView animateWithDuration:.5
-                     animations:^(void) {
-                         CGAffineTransform rotation = CGAffineTransformMakeRotation(.9*M_PI);
-                         self.mapVC.view.transform = CGAffineTransformConcat(rotation, self.mapVC.view.transform);
-                     } completion:^(BOOL finished) {
-//                         self.view.window.userInteractionEnabled = YES;
-                     }];
+
+    CGFloat fromAngle = 0;
+    CGFloat toAngle = .9*M_PI;
+
+    [self animateMapsVCFromAngle:fromAngle toAngle:toAngle];
 }
 
 - (void) hidePrefs
 {
-//    self.view.window.userInteractionEnabled = NO;
-    
-    // Hide PrefsVC, Show MapVC.
-    [self.mapVC setAnnotationsHidden:NO];
-    
-    [UIView animateWithDuration:.5
-                     animations:^(void) {
-                         CGAffineTransform rotation = CGAffineTransformMakeRotation(-.9*M_PI);
-                         self.mapVC.view.transform = CGAffineTransformConcat(rotation, self.mapVC.view.transform);
-                     } completion:^(BOOL finished) {
-                         self.visibleViewController = self.mapVC;
-                         self.mapVC.view.layer.anchorPoint = CGPointMake(.5f,.5f);
-                         self.mapVC.view.transform = CGAffineTransformIdentity;
+    self.visibleViewController = self.mapVC;
 
-//                         self.view.window.userInteractionEnabled = YES;
-                     }];
+    CGFloat fromAngle = .9*M_PI;
+    CGFloat toAngle = 0;
+    
+    [self animateMapsVCFromAngle:fromAngle toAngle:toAngle];
+}
+
+- (void) animateMapsVCFromAngle:(CGFloat)fromAngle toAngle:(CGFloat)toAngle
+{
+    CGFloat totalDuration = .5f;
+
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    id presentationValue = [self.mapVC.view.layer.presentationLayer valueForKey:@"transform"];
+    id modelValue = [self.mapVC.view.layer.modelLayer valueForKey:@"transform"];
+    
+    CATransform3D presentationTransform = [presentationValue CATransform3DValue];
+    CGFloat currentAngle = atan2f(presentationTransform.m12, presentationTransform.m11);
+    
+    animation.fromValue = presentationValue;
+    animation.toValue = [NSValue valueWithCATransform3D:CATransform3DRotate([modelValue CATransform3DValue], toAngle, 0, 0, 1)];
+    animation.duration = totalDuration*((toAngle-currentAngle)/(toAngle-fromAngle));
+    
+    animation.fillMode = kCAFillModeBoth;
+    animation.removedOnCompletion = NO;
+    [self.mapVC.view.layer addAnimation:animation forKey:@"rotation"];
 }
 
 @end
