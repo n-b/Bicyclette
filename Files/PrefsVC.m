@@ -70,7 +70,7 @@
 // iOS 6
 - (BOOL) shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 - (NSUInteger)supportedInterfaceOrientations

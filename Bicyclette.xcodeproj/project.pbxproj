@@ -35,6 +35,7 @@
 		3717AA6D162A1E1A005EC7BD /* ParisVelibCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */; };
 		3717AA70162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
 		3717AA71162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
+		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
 		371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */; };
 		371D4FC51483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */; };
@@ -185,6 +186,8 @@
 		3717AA6A162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedDebugErrors.plist; sourceTree = "<group>"; };
 		3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParisVelibCity.h; path = ../ParisVelibCity.h; sourceTree = "<group>"; };
 		3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParisVelibCity.m; path = ../ParisVelibCity.m; sourceTree = "<group>"; };
+		371982BF16451F92006CF77D /* FanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanContainerViewController.h; sourceTree = "<group>"; };
+		371982C016451F92006CF77D /* FanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanContainerViewController.m; sourceTree = "<group>"; };
 		371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping_Tests.m"; sourceTree = "<group>"; };
 		371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NSObject+KVCMapping_Tests.xcdatamodel"; sourceTree = "<group>"; };
 		371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattedStringToDateValueTransformer.h; sourceTree = "<group>"; };
@@ -339,6 +342,8 @@
 				37EFCF3A159E495F007B2E41 /* Style.h */,
 				37513B6116173FAB00388FF3 /* RootVC.h */,
 				37513B6216173FAB00388FF3 /* RootVC.m */,
+				371982BF16451F92006CF77D /* FanContainerViewController.h */,
+				371982C016451F92006CF77D /* FanContainerViewController.m */,
 				37D131FB163F329B00AABEE4 /* Map */,
 				37D131F7163F325100AABEE4 /* AnnotationViews */,
 				3705B40915B9B6C8009C8AAA /* UI Utility */,
@@ -898,6 +903,7 @@
 				37D9DFDE162A2BF60000F263 /* MarseilleLeveloCity.m in Sources */,
 				37D9DFE2162A318E0000F263 /* ToulouseVeloCity.m in Sources */,
 				370E3A3F162E17880010E454 /* AmiensVelamCity.m in Sources */,
+				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

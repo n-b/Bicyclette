@@ -20,7 +20,7 @@
 @interface BicycletteApplicationDelegate()
 @property NSArray * cities;
 
-@property IBOutlet RootVC *rootNavC;
+@property IBOutlet RootVC *rootVC;
 @end
 
 /****************************************************************************/
@@ -39,7 +39,7 @@
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
     
     // Create city
-    [self.rootNavC setCities:(@[[ParisVelibCity new],
+    [self.rootVC setCities:(@[[ParisVelibCity new],
                               [MarseilleLeveloCity new],
                               [ToulouseVeloCity new],
                               [AmiensVelamCity new] ])];
@@ -48,7 +48,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Must not do it automatically, otherwise the UI is broken vertically, initially, on iPad on iOS 5
-    self.window.rootViewController = self.rootNavC;
+    self.window.rootViewController = self.rootVC;
 	return YES;
 }
 
@@ -67,7 +67,7 @@
     if(number)
     {
         Station * station = [city stationWithNumber:number];
-        [self.rootNavC zoomInStation:station];
+        [self.rootVC zoomInStation:station];
     }
 }
 
