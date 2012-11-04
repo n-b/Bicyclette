@@ -8,18 +8,20 @@
 
 #import "FanContainerViewController.h"
 
+#define kFanOpenAngle .9*M_PI
+#define kFanAnimationDuration .4f
+
 @interface FanContainerViewController ()
 @property UIViewController * visibleViewController;
 @end
 
+/****************************************************************************/
+#pragma mark -
+
 @implementation FanContainerViewController
 
-- (void) viewDidLoad
-{
-    [self setupFront];
-    [self setupBack];
-    [self setupRotationCenter];
-}
+/****************************************************************************/
+#pragma mark Child View Controllers
 
 - (void) setFrontViewController:(UIViewController *)frontViewController_
 {
@@ -31,6 +33,18 @@
     
     if([self isViewLoaded])
         [self setupFront];
+}
+
+- (void) setBackViewController:(UIViewController *)backViewController_
+{
+    [self.backViewController willMoveToParentViewController:nil];
+    [self.backViewController.view removeFromSuperview];
+    [self.backViewController removeFromParentViewController];
+
+    _backViewController = backViewController_;
+
+    if([self isViewLoaded])
+        [self setupBack];
 }
 
 - (void) setupFront
@@ -47,22 +61,11 @@
     
     [self.frontViewController didMoveToParentViewController:self];
     
+    // Add Shadow
     self.frontViewController.view.layer.shadowOffset = CGSizeZero;
     self.frontViewController.view.layer.shadowOpacity = 1;
-    [self setFrontViewControllerShadowPath];
+    [self setupFrontLayerShadowPath];
     self.visibleViewController = self.frontViewController;
-}
-
-- (void) setBackViewController:(UIViewController *)backViewController_
-{
-    [self.backViewController willMoveToParentViewController:nil];
-    [self.backViewController.view removeFromSuperview];
-    [self.backViewController removeFromParentViewController];
-
-    _backViewController = backViewController_;
-
-    if([self isViewLoaded])
-        [self setupBack];
 }
 
 - (void) setupBack
@@ -74,49 +77,89 @@
     [self.backViewController didMoveToParentViewController:self];
 }
 
-/****************************************************************************/
-#pragma mark -
-
--(CGPoint) rotationCenter
-{
-    return CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-}
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return [[self visibleViewController] shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
-}
-
-- (BOOL) shouldAutorotate
-{
-    return [[self visibleViewController] shouldAutorotate];
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return [[self visibleViewController] supportedInterfaceOrientations];
-}
-
-- (void) setupRotationCenter
-{
-    self.frontViewController.view.layer.anchorPoint = CGPointMake(self.rotationCenter.x/self.view.bounds.size.width,
-                                                    self.rotationCenter.y/self.view.bounds.size.height);
-    self.frontViewController.view.layer.position = self.rotationCenter;
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self setFrontViewControllerShadowPath];
-    [self setupRotationCenter];
-}
-
-- (void) setFrontViewControllerShadowPath
+- (void) setupFrontLayerShadowPath
 {
     self.frontViewController.view.layer.shadowPath = (__bridge CGPathRef)(CFBridgingRelease(CGPathCreateWithRect(self.frontViewController.view.layer.bounds, NULL)));
 }
 
+- (void) setupRotationCenter
+{
+    // The front view controller layer is actually anchored in the rotation center,
+    // and translated back (via its position) so that its bounds fill its frame.
+    //
+    // This is essential for the rotation animation to take place around that point.
+    self.frontViewController.view.layer.anchorPoint = CGPointMake(self.rotationCenter.x/self.view.bounds.size.width,
+                                                                  self.rotationCenter.y/self.view.bounds.size.height);
+    self.frontViewController.view.layer.position = self.rotationCenter;
+}
+
+- (CGPoint) rotationCenter // Reimplemented
+{
+    return CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    [self setupFront];
+    [self setupBack];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // Do this late : if launched in landscape on iPad, willAnimateRotationToInterfaceOrientation: is not called and the setup is done for portrait in viewDidLoad. 
+    [self setupRotationCenter];
+    [self setupFrontLayerShadowPath];
+}
+
 /****************************************************************************/
-#pragma mark -
+#pragma mark Rotation support
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation // iOS 5
+{
+    return [[self visibleViewController] shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (BOOL) shouldAutorotate // iOS 6
+{
+    return [[self visibleViewController] shouldAutorotate];
+}
+
+- (NSUInteger) supportedInterfaceOrientations // iOS 6
+{
+    return [[self visibleViewController] supportedInterfaceOrientations];
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    // Our frontVC's shadow must be reset
+    [self setupFrontLayerShadowPath];
+
+    // ... with animation
+    CABasicAnimation * shadowAnimation = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
+    shadowAnimation.fromValue = (__bridge id)[self.frontViewController.view.layer.presentationLayer shadowPath];
+    shadowAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    shadowAnimation.duration = duration;
+    [self.frontViewController.view.layer addAnimation:shadowAnimation forKey:@"shadowPath"];
+
+    // When the view rotates, its frame is autoresized (via autoresizing masks),
+    // and the bounds+position of the layer is automatically animated
+    //
+    // However, since the rotation center may not be the same in landscape and portrait,
+    // we need to recompute the anchorPoint+position of the frontVC's view.
+    [self setupRotationCenter];
+    
+    // The position is animated for free by UIViewController, but the anchorPoint isn't.
+    CABasicAnimation * anchorAnimation = [CABasicAnimation animationWithKeyPath:@"anchorPoint"];
+    anchorAnimation.fromValue = [NSValue valueWithCGPoint:[self.frontViewController.view.layer.presentationLayer anchorPoint]];
+    anchorAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anchorAnimation.duration = duration;
+    [self.frontViewController.view.layer addAnimation:anchorAnimation forKey:@"anchorPoint"];
+}
+
+/****************************************************************************/
+#pragma mark Switch Visible View Controller
 
 - (void)switchVisibleViewController
 {
@@ -128,19 +171,21 @@
 
 - (void) showBackViewController
 {
+    self.frontViewController.view.userInteractionEnabled = NO;
     self.visibleViewController = self.backViewController;
     
     CGFloat fromAngle = 0;
-    CGFloat toAngle = .9*M_PI;
+    CGFloat toAngle = kFanOpenAngle;
     
     [self animateMapsVCFromAngle:fromAngle toAngle:toAngle];
 }
 
 - (void) showFrontViewController
 {
+    self.frontViewController.view.userInteractionEnabled = YES;
     self.visibleViewController = self.frontViewController;
     
-    CGFloat fromAngle = .9*M_PI;
+    CGFloat fromAngle = kFanOpenAngle;
     CGFloat toAngle = 0;
     
     [self animateMapsVCFromAngle:fromAngle toAngle:toAngle];
@@ -148,23 +193,30 @@
 
 - (void) animateMapsVCFromAngle:(CGFloat)fromAngle toAngle:(CGFloat)toAngle
 {
-    CGFloat totalDuration = .5f;
-    
+    // We can't animate on transform.rotation.z, because the view already has a transform
+    // and we couldn't get the presentation value for transform.rotation.z.
+    // (We later compute the angle manually)
     CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"transform"];
     id presentationValue = [self.frontViewController.view.layer.presentationLayer valueForKey:@"transform"];
     id modelValue = [self.frontViewController.view.layer.modelLayer valueForKey:@"transform"];
     
+    // Animate from the current presentation angle
     CATransform3D presentationTransform = [presentationValue CATransform3DValue];
     CGFloat currentAngle = atan2f(presentationTransform.m12, presentationTransform.m11);
     
     animation.fromValue = presentationValue;
+    // we rotate on the current transform, which is probably not identity.
     animation.toValue = [NSValue valueWithCATransform3D:CATransform3DRotate([modelValue CATransform3DValue], toAngle, 0, 0, 1)];
-    animation.duration = totalDuration*((toAngle-currentAngle)/(toAngle-fromAngle));
     
-    animation.fillMode = kCAFillModeBoth;
+    // ... for a fraction of the duration, depending on the actual angle we must animate
+    animation.duration = kFanAnimationDuration*((toAngle-currentAngle)/(toAngle-fromAngle));
+    
+    // We never remove this animation. It actually makes things easier because the frontViewController's model layer geometry is left untouched.
     animation.removedOnCompletion = NO;
+
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.fillMode = kCAFillModeBoth;
     [self.frontViewController.view.layer addAnimation:animation forKey:@"rotation"];
 }
-
 
 @end
