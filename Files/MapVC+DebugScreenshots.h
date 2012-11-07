@@ -1,17 +1,17 @@
+////
+////  MapVC+DebugScreenshots.h
+////  Bicyclette
+////
+////  Created by Nicolas Bouilleaud on 29/09/12.
+////  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
+////
 //
-//  MapVC+DebugScreenshots.h
-//  Bicyclette
+//#import "MapVC.h"
 //
-//  Created by Nicolas Bouilleaud on 29/09/12.
-//  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
+//@interface MapVC (DebugScreenshots)
 //
-
-#import "MapVC.h"
-
-@interface MapVC (DebugScreenshots)
-
-- (void) takeScreenshotForDefaultAndExit;
-
-- (void) takeScreenshotsForITCAndExit;
-
-@end
+//- (void) takeScreenshotForDefaultAndExit;
+//
+//- (void) takeScreenshotsForITCAndExit;
+//
+//@end

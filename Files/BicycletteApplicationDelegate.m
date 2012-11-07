@@ -7,17 +7,16 @@
 //
 
 #import "BicycletteApplicationDelegate.h"
-#import "ParisVelibCity.h"
-#import "MarseilleLeveloCity.h"
-#import "ToulouseVeloCity.h"
-#import "AmiensVelamCity.h"
 #import "Station.h"
 #import "RootVC.h"
+#import "CitiesController.h"
+#import "BicycletteCity.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
+@property CitiesController * citiesController;
 @property NSArray * cities;
 
 @property IBOutlet RootVC *rootVC;
@@ -38,11 +37,9 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
     
-    // Create city
-    [self.rootVC setCities:(@[[ParisVelibCity new],
-                              [MarseilleLeveloCity new],
-                              [ToulouseVeloCity new],
-                              [AmiensVelamCity new] ])];
+    self.citiesController = [CitiesController new];
+    
+    self.rootVC.citiesController = self.citiesController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

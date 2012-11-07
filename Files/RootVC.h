@@ -9,11 +9,13 @@
 #import "FanContainerViewController.h"
 
 @class Station;
+@class CitiesController;
 
 // Autorotation Management for iOS 6
 @interface RootVC : FanContainerViewController
 
-- (void) setCities:(NSArray*)cities;
+@property (nonatomic) CitiesController * citiesController;
+//- (void) setCities:(NSArray*)cities;
 
 - (void) zoomInStation:(Station*)station;
 

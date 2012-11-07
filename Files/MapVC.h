@@ -6,18 +6,19 @@
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
+#import "CitiesController.h"
+
 @class BicycletteCity;
 @class Station;
 
-@interface MapVC : UIViewController 
+@interface MapVC : UIViewController  <CitiesControllerDelegate>
 
-@property NSArray * cities;
+@property CitiesController * citiesController;
 
-@property (nonatomic, readonly) BicycletteCity * currentCity;
+//@property NSArray * cities;
+
+//@property (nonatomic, readonly) BicycletteCity * currentCity;
 
 - (void) zoomInStation:(Station*)station;
-
-// Hook for faster animation
-- (void) setAnnotationsHidden:(BOOL)hidden;
 
 @end

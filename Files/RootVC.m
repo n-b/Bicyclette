@@ -12,6 +12,7 @@
 #import "HelpVC.h"
 #import "UIView+Screenshot.h"
 #import "BicycletteCity.h"
+#import "CitiesController.h"
 
 @interface RootVC ()
 @property IBOutlet HelpVC *helpVC;
@@ -44,11 +45,18 @@
 /****************************************************************************/
 #pragma mark -
 
-- (void) setCities:(NSArray*)cities
+- (void) setCitiesController:(CitiesController *)citiesController
 {
-    ((MapVC*)self.frontViewController).cities = cities;
-    ((PrefsVC*)self.backViewController).cities = cities;
+    _citiesController = citiesController;
+    ((MapVC*)self.frontViewController).citiesController = self.citiesController;
+    citiesController.delegate = ((MapVC*)self.frontViewController);
+    ((PrefsVC*)self.backViewController).cities = self.citiesController.cities;
 }
+//- (void) setCities:(NSArray*)cities
+//{
+//    ((MapVC*)self.frontViewController).cities = cities;
+//    ((PrefsVC*)self.backViewController).cities = cities;
+//}
 
 /****************************************************************************/
 #pragma mark -

@@ -66,6 +66,7 @@
 		373A780315E40DA90057E241 /* Icon~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780115E40DA90057E241 /* Icon~ipad@2x.png */; };
 		373A780715E40EF70057E241 /* Icon~settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780515E40EF70057E241 /* Icon~settings.png */; };
 		373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780615E40EF70057E241 /* Icon~settings@2x.png */; };
+		374334CA164B0EC00051294F /* CitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374334C9164B0EC00051294F /* CitiesController.m */; };
 		3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */; };
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
@@ -224,6 +225,8 @@
 		373A780515E40EF70057E241 /* Icon~settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~settings.png"; sourceTree = "<group>"; };
 		373A780615E40EF70057E241 /* Icon~settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~settings@2x.png"; sourceTree = "<group>"; };
 		373A780915E40F060057E241 /* Icon~appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~appstore.png"; sourceTree = "<group>"; };
+		374334C8164B0EC00051294F /* CitiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesController.h; sourceTree = "<group>"; };
+		374334C9164B0EC00051294F /* CitiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesController.m; sourceTree = "<group>"; };
 		3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarUpdateQueue.h; sourceTree = "<group>"; };
 		3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarUpdateQueue.m; sourceTree = "<group>"; };
 		37513B6116173FAB00388FF3 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
@@ -609,6 +612,8 @@
 			children = (
 				37E9531412AA29FB00C1D21C /* MapVC.h */,
 				37E9531512AA29FB00C1D21C /* MapVC.m */,
+				374334C8164B0EC00051294F /* CitiesController.h */,
+				374334C9164B0EC00051294F /* CitiesController.m */,
 				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
 				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
 			);
@@ -904,6 +909,7 @@
 				37D9DFE2162A318E0000F263 /* ToulouseVeloCity.m in Sources */,
 				370E3A3F162E17880010E454 /* AmiensVelamCity.m in Sources */,
 				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
+				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
