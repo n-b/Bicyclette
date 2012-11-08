@@ -15,10 +15,6 @@
 
 @property CitiesController * citiesController;
 
-//@property NSArray * cities;
-
-//@property (nonatomic, readonly) BicycletteCity * currentCity;
-
 - (void) zoomInStation:(Station*)station;
 
 @end

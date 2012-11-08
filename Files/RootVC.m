@@ -52,11 +52,6 @@
     citiesController.delegate = ((MapVC*)self.frontViewController);
     ((PrefsVC*)self.backViewController).cities = self.citiesController.cities;
 }
-//- (void) setCities:(NSArray*)cities
-//{
-//    ((MapVC*)self.frontViewController).cities = cities;
-//    ((PrefsVC*)self.backViewController).cities = cities;
-//}
 
 /****************************************************************************/
 #pragma mark -
