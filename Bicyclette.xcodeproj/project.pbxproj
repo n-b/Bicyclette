@@ -345,12 +345,10 @@
 				37EFCF3A159E495F007B2E41 /* Style.h */,
 				37513B6116173FAB00388FF3 /* RootVC.h */,
 				37513B6216173FAB00388FF3 /* RootVC.m */,
-				371982BF16451F92006CF77D /* FanContainerViewController.h */,
-				371982C016451F92006CF77D /* FanContainerViewController.m */,
 				37D131FB163F329B00AABEE4 /* Map */,
+				37D131F9163F328500AABEE4 /* Prefs */,
 				37D131F7163F325100AABEE4 /* AnnotationViews */,
 				3705B40915B9B6C8009C8AAA /* UI Utility */,
-				37D131F9163F328500AABEE4 /* Prefs */,
 				37D131FA163F328F00AABEE4 /* Help */,
 			);
 			name = UI;
@@ -425,6 +423,8 @@
 		3705B40915B9B6C8009C8AAA /* UI Utility */ = {
 			isa = PBXGroup;
 			children = (
+				371982BF16451F92006CF77D /* FanContainerViewController.h */,
+				371982C016451F92006CF77D /* FanContainerViewController.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,

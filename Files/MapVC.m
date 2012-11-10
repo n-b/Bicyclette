@@ -283,9 +283,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
 {
     if (self.citiesController.level != MapLevelRegionsAndRadars && self.citiesController.level != MapLevelStationsAndRadars)
         return; // prevent creating radars from high level
-
-    if (self.citiesController.level != MapLevelRegionsAndRadars && self.citiesController.level != MapLevelStationsAndRadars)
-        return; // prevent creating radars from high level
     
     switch (longPressRecognizer.state)
     {
@@ -350,7 +347,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) zoomInStation:(Station*)station
 {
-//    self.currentCity = station.city;
     self.citiesController.currentCity = station.city;
     CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);

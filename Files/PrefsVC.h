@@ -7,5 +7,4 @@
 //
 
 @interface PrefsVC : UIViewController
-@property NSArray * cities;
 @end
