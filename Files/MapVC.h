@@ -15,6 +15,4 @@
 
 @property CitiesController * citiesController;
 
-- (void) zoomInStation:(Station*)station;
-
 @end

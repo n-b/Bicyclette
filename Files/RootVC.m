@@ -50,7 +50,6 @@
     _citiesController = citiesController;
     ((MapVC*)self.frontViewController).citiesController = self.citiesController;
     citiesController.delegate = ((MapVC*)self.frontViewController);
-    ((PrefsVC*)self.backViewController).cities = self.citiesController.cities;
 }
 
 /****************************************************************************/
@@ -129,14 +128,6 @@
 - (void) notifyCanRequestLocation
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (void) zoomInStation:(Station*)station
-{
-    [(MapVC*)self.frontViewController zoomInStation:station];
 }
 
 @end

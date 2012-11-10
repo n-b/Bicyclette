@@ -17,7 +17,6 @@
 
 @interface BicycletteApplicationDelegate()
 @property CitiesController * citiesController;
-@property NSArray * cities;
 
 @property IBOutlet RootVC *rootVC;
 @end
@@ -51,21 +50,7 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    NSString * cityClassName = notification.userInfo[@"city"];
-    BicycletteCity * city;
-    for (BicycletteCity * aCity in self.cities) {
-        if([NSStringFromClass([aCity class]) isEqualToString:cityClassName])
-        {
-            city = aCity;
-            break;
-        }
-    }
-    NSString * number = notification.userInfo[@"stationNumber"];
-    if(number)
-    {
-        Station * station = [city stationWithNumber:number];
-        [self.rootVC zoomInStation:station];
-    }
+    [self.citiesController handleLocalNotificaion:notification];
 }
 
 @end

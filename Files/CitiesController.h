@@ -31,6 +31,8 @@ typedef enum {
 
 - (void) regionDidChange:(MKCoordinateRegion)region;
 
+- (void) handleLocalNotificaion:(UILocalNotification*)notification;
+
 @end
 
 @protocol CitiesControllerDelegate <NSObject>
@@ -40,4 +42,6 @@ typedef enum {
 - (MKCoordinateRegion)region;
 
 - (void) setAnnotations:(NSArray*)newAnnotations;
+- (void) selectAnnotation:(id<MKAnnotation>)annotation;
+
 @end

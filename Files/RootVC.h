@@ -15,8 +15,5 @@
 @interface RootVC : FanContainerViewController
 
 @property (nonatomic) CitiesController * citiesController;
-//- (void) setCities:(NSArray*)cities;
-
-- (void) zoomInStation:(Station*)station;
 
 @end

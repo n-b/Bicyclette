@@ -140,7 +140,12 @@
 
 - (void) setRegion:(MKCoordinateRegion)region
 {
-    self.mapView.region = region;
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (void) selectAnnotation:(id<MKAnnotation>)annotation
+{
+    [self.mapView selectAnnotation:annotation animated:YES];
 }
 
 - (MKCoordinateRegion)region
@@ -343,15 +348,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
     CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
     cregion = MKCoordinateRegionMakeWithDistance(cregion.center, meters, meters);
 	[self.mapView setRegion:cregion animated:YES];
-}
-
-- (void) zoomInStation:(Station*)station
-{
-    self.citiesController.currentCity = station.city;
-    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
-	[self.mapView setRegion:region animated:YES];
-    [self.mapView selectAnnotation:station animated:YES];
 }
 
 - (void) showRadarMenu:(Radar*)radar

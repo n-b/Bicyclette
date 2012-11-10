@@ -187,4 +187,35 @@
         [self reloadData];
 }
 
+/****************************************************************************/
+#pragma mark -
+
+- (void) handleLocalNotificaion:(UILocalNotification*)notification
+{
+    NSString * cityClassName = notification.userInfo[@"city"];
+    BicycletteCity * city;
+    for (BicycletteCity * aCity in self.cities) {
+        if([NSStringFromClass([aCity class]) isEqualToString:cityClassName])
+        {
+            city = aCity;
+            break;
+        }
+    }
+    NSString * number = notification.userInfo[@"stationNumber"];
+    Station * station = nil;
+    if(number)
+    {
+        station = [city stationWithNumber:number];
+    }
+
+    if(city && number)
+    {
+        self.currentCity = city;
+        CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
+        [self.delegate setRegion:region];
+        [self.delegate selectAnnotation:station];
+    }
+}
+
 @end
