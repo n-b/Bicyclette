@@ -10,6 +10,10 @@
 
 @implementation Radar (GeoFence)
 
++ (NSSet *)keyPathsForValuesAffectingRegion
+{
+    return [NSSet setWithObject:@"monitoringRegion"];
+}
 - (CLRegion*) region
 {
     return [self monitoringRegion];
