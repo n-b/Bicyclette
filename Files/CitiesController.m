@@ -12,12 +12,22 @@
 #import "Region.h"
 #import "Radar.h"
 #import "NSArrayAdditions.h"
+
 #import "RadarUpdateQueue.h"
+#import "GeoFencesMonitor.h"
 
 #import "ParisVelibCity.h"
 #import "MarseilleLeveloCity.h"
 #import "ToulouseVeloCity.h"
 #import "AmiensVelamCity.h"
+
+
+@interface CitiesController ()
+@property GeoFencesMonitor * fenceMonitor;
+@end
+
+/****************************************************************************/
+#pragma mark -
 
 @implementation CitiesController
 
@@ -31,9 +41,14 @@
                        [ToulouseVeloCity new],
                        [AmiensVelamCity new] ]);
 
-        
+        self.fenceMonitor = [GeoFencesMonitor new];
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:)
                                                      name:BicycletteCityNotifications.updateSucceeded object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
+                                                     name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
+
     }
     return self;
 }
@@ -185,6 +200,22 @@
 {
     if([note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue])
         [self reloadData];
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) objectsChanged:(NSNotification*)note
+{
+    for (id object in note.userInfo[NSInsertedObjectsKey]) {
+        if([object conformsToProtocol:@protocol(GeoFence)])
+            [self.fenceMonitor addFence:object];
+    }
+
+    for (id object in note.userInfo[NSDeletedObjectsKey]) {
+        if([object conformsToProtocol:@protocol(GeoFence)])
+            [self.fenceMonitor removeFence:object];
+    }
 }
 
 /****************************************************************************/
