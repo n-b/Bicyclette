@@ -18,7 +18,7 @@
 #import "DrawingCache.h"
 #import "Radar.h"
 #import "RadarAnnotationView.h"
-#import "RadarUpdateQueue.h"
+#import "LocalUpdateQueue.h"
 #import "MKMapView+AttributionLogo.h"
 #import "MapVC+DebugScreenshots.h"
 

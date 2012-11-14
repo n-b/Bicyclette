@@ -18,7 +18,7 @@
 #import "NSError+MultipleErrorsCombined.h"
 #import "DataUpdater.h"
 #if TARGET_OS_IPHONE
-#import "RadarUpdateQueue.h"
+#import "LocalUpdateQueue.h"
 #endif
 
 /****************************************************************************/
@@ -29,11 +29,6 @@
 // -
 @property (nonatomic) NSDictionary * stationsHardcodedFixes;
 @property (readwrite, nonatomic) CLRegion * hardcodedLimits;
-// -
-#if TARGET_OS_IPHONE
-@property RadarUpdateQueue * updaterQueue;
-// -
-#endif
 // -
 #if TARGET_OS_IPHONE
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
@@ -53,8 +48,6 @@
     self = [super initWithModelName:@"BicycletteCity" storeURL:storeURL];
     if (self) {
 #if TARGET_OS_IPHONE
-        self.updaterQueue = [[RadarUpdateQueue alloc] initWithCity:self];
-
         // Forget old userLocation, until we have a better one
         [self userLocationRadar].coordinate = CLLocationCoordinate2DMake(0, 0);
 #endif

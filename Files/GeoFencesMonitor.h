@@ -20,7 +20,7 @@
 
 @protocol GeoFence <NSObject>
 
-- (CLRegion*) region;
+@property (readonly) CLRegion* region;
 
 - (void) enterFence;
 - (void) exitFence;

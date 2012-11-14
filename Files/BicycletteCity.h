@@ -9,7 +9,7 @@
 #import "CoreDataManager.h"
 
 @class Station, Region, Radar;
-@class RadarUpdateQueue;
+@class LocalUpdateQueue;
 
 #if TARGET_OS_IPHONE
 @interface BicycletteCity : CoreDataManager <MKAnnotation>
@@ -30,8 +30,6 @@
 @property (readonly) Radar * userLocationRadar;
 @property (readonly) Radar * screenCenterRadar;
 - (Station*) stationWithNumber:(NSString*)number;
-
-@property (readonly) RadarUpdateQueue * updaterQueue;
 
 
 @property (nonatomic, readonly) CLRegion * hardcodedLimits;

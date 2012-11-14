@@ -67,7 +67,7 @@
 		373A780715E40EF70057E241 /* Icon~settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780515E40EF70057E241 /* Icon~settings.png */; };
 		373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780615E40EF70057E241 /* Icon~settings@2x.png */; };
 		374334CA164B0EC00051294F /* CitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374334C9164B0EC00051294F /* CitiesController.m */; };
-		3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */; };
+		3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
@@ -88,6 +88,12 @@
 		37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
 		37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
 		37AA66211653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
+		37AA662416543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
+		37AA662516543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
+		37AA662616543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
+		37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
+		37AA662A16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
+		37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
 		37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
@@ -233,8 +239,8 @@
 		373A780915E40F060057E241 /* Icon~appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~appstore.png"; sourceTree = "<group>"; };
 		374334C8164B0EC00051294F /* CitiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesController.h; sourceTree = "<group>"; };
 		374334C9164B0EC00051294F /* CitiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesController.m; sourceTree = "<group>"; };
-		3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarUpdateQueue.h; sourceTree = "<group>"; };
-		3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarUpdateQueue.m; sourceTree = "<group>"; };
+		3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUpdateQueue.h; sourceTree = "<group>"; };
+		3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueue.m; sourceTree = "<group>"; };
 		37513B6116173FAB00388FF3 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
@@ -260,6 +266,10 @@
 		37AA66181653E9EA001F9660 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
 		37AA661D1653F027001F9660 /* Radar+GeoFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Radar+GeoFence.h"; sourceTree = "<group>"; };
 		37AA661E1653F027001F9660 /* Radar+GeoFence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Radar+GeoFence.m"; sourceTree = "<group>"; };
+		37AA662216543B2C001F9660 /* Radar+LocalUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Radar+LocalUpdateGroup.h"; sourceTree = "<group>"; };
+		37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Radar+LocalUpdateGroup.m"; sourceTree = "<group>"; };
+		37AA662716543EC1001F9660 /* Station+LocalUpdatePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Station+LocalUpdatePoint.h"; sourceTree = "<group>"; };
+		37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Station+LocalUpdatePoint.m"; sourceTree = "<group>"; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatibilityCategories.h; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -505,8 +515,12 @@
 				374334C8164B0EC00051294F /* CitiesController.h */,
 				374334C9164B0EC00051294F /* CitiesController.m */,
 				37D131FC163F32DE00AABEE4 /* Model */,
-				3747106815B3754E00C1D1D9 /* RadarUpdateQueue.h */,
-				3747106915B3754E00C1D1D9 /* RadarUpdateQueue.m */,
+				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
+				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
+				37AA662216543B2C001F9660 /* Radar+LocalUpdateGroup.h */,
+				37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */,
+				37AA662716543EC1001F9660 /* Station+LocalUpdatePoint.h */,
+				37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */,
 				37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */,
 				37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */,
 				37AA661D1653F027001F9660 /* Radar+GeoFence.h */,
@@ -908,7 +922,7 @@
 				37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
-				3747106A15B3754E00C1D1D9 /* RadarUpdateQueue.m in Sources */,
+				3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */,
 				3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */,
 				3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */,
 				37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */,
@@ -926,6 +940,8 @@
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */,
+				37AA662416543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
+				37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -953,6 +969,8 @@
 				370E3A40162E17880010E454 /* AmiensVelamCity.m in Sources */,
 				37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA66211653F027001F9660 /* Radar+GeoFence.m in Sources */,
+				37AA662616543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
+				37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,6 +986,8 @@
 				371D4FC91484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
 				37AA661A1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */,
+				37AA662516543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
+				37AA662A16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

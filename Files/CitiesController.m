@@ -13,7 +13,7 @@
 #import "Radar.h"
 #import "NSArrayAdditions.h"
 
-#import "RadarUpdateQueue.h"
+#import "LocalUpdateQueue.h"
 #import "GeoFencesMonitor.h"
 
 #import "ParisVelibCity.h"
@@ -24,6 +24,7 @@
 
 @interface CitiesController ()
 @property GeoFencesMonitor * fenceMonitor;
+@property LocalUpdateQueue * updateQueue;
 @end
 
 /****************************************************************************/
@@ -42,6 +43,7 @@
                        [AmiensVelamCity new] ]);
 
         self.fenceMonitor = [GeoFencesMonitor new];
+        self.updateQueue = [LocalUpdateQueue new];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:)
                                                      name:BicycletteCityNotifications.updateSucceeded object:nil];
@@ -136,10 +138,10 @@
     if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
     {
         CLLocationCoordinate2D center = [self.delegate region].center;
-        self.currentCity.updaterQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:center.latitude longitude:center.longitude];
+        self.updateQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:center.latitude longitude:center.longitude];
     }
     else
-        self.currentCity.updaterQueue.referenceLocation = nil;
+        self.updateQueue.referenceLocation = nil;
 
 }
 
@@ -210,11 +212,15 @@
     for (id object in note.userInfo[NSInsertedObjectsKey]) {
         if([object conformsToProtocol:@protocol(GeoFence)])
             [self.fenceMonitor addFence:object];
+        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
+            [self.updateQueue addGroup:object];
     }
 
     for (id object in note.userInfo[NSDeletedObjectsKey]) {
         if([object conformsToProtocol:@protocol(GeoFence)])
             [self.fenceMonitor removeFence:object];
+        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
+            [self.updateQueue removeGroup:object];
     }
 }
 
