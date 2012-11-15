@@ -19,6 +19,17 @@
 			name = GrabData;
 			productName = GrabData;
 		};
+		370220D0165502DD00350AD1 /* Mogenerate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 370220D1165502DE00350AD1 /* Build configuration list for PBXAggregateTarget "Mogenerate" */;
+			buildPhases = (
+				370220D4165502F600350AD1 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerate;
+			productName = mogenerate;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -29,6 +40,9 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
+		370220D9165525B100350AD1 /* BicycletteCity.mogenerated in Resources */ = {isa = PBXBuildFile; fileRef = 370220D7165525B100350AD1 /* BicycletteCity.mogenerated */; };
+		370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
+		370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		37038A1115E3A6280043504A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
 		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
@@ -57,10 +71,6 @@
 		371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
 		371D4FC91484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
 		371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D90C9158FE19900E509E6 /* TransparentToolbar.m */; };
-		371E1BF3137FCF7C007EFBFF /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
-		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
-		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
-		371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
 		37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
 		37216BC712611C5400A2695A /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
 		3724BC6A15E4C50200790869 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6415E4C50200790869 /* Default-Landscape.png */; };
@@ -112,10 +122,6 @@
 		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
 		37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
-		37B7ABF815E3DE4500268B70 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
-		37B7ABF915E3DE4500268B70 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
-		37B7ABFB15E3DF1F00268B70 /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
-		37B7ABFC15E3DF1F00268B70 /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
 		37B7AC0015E3DF7000268B70 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B7AC0115E3DF8B00268B70 /* AppKit.framework */; };
 		37B7AC0315E3DF9C00268B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
@@ -141,8 +147,6 @@
 		37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534915BAFB0400F45C09 /* Default@2x.png */; };
 		37EC535515BAFB0400F45C09 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534B15BAFB0400F45C09 /* Icon.png */; };
 		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
-		37EDD1CB15A5CDC80023301D /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDD1CA15A5CDC80023301D /* Radar.m */; };
-		37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDD1CE15A5CDD10023301D /* _Radar.m */; };
 		37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */; };
 		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
@@ -164,6 +168,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 370220C7165500CC00350AD1;
 			remoteInfo = GrabData;
+		};
+		370220D5165503AB00350AD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 370220D0165502DD00350AD1;
+			remoteInfo = Mogenerate;
+		};
+		370220DC1655270500350AD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 370220D0165502DD00350AD1;
+			remoteInfo = Mogenerate;
 		};
 		371D4FB71482F66700A6DF77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -202,6 +220,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3700F8511594A806007CF99E /* RegionAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
+		370220D7165525B100350AD1 /* BicycletteCity.mogenerated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BicycletteCity.mogenerated; sourceTree = "<group>"; };
+		370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteCity.mogenerated.m; sourceTree = "<group>"; };
 		37038A0F15E3A6280043504A /* BicycletteDataGrab */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BicycletteDataGrab; sourceTree = BUILT_PRODUCTS_DIR; };
 		37038A1315E3A6290043504A /* DataGrabber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DataGrabber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteAnnotationView.h; sourceTree = "<group>"; };
@@ -234,14 +254,6 @@
 		371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattedStringToDateValueTransformer.m; sourceTree = "<group>"; };
 		371D90C8158FE19900E509E6 /* TransparentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentToolbar.h; sourceTree = "<group>"; };
 		371D90C9158FE19900E509E6 /* TransparentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentToolbar.m; sourceTree = "<group>"; };
-		371E1BEA137FCF7C007EFBFF /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
-		371E1BEB137FCF7C007EFBFF /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
-		371E1BEC137FCF7C007EFBFF /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		371E1BED137FCF7C007EFBFF /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
-		371E1BEF137FCF7C007EFBFF /* _Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Region.h; sourceTree = "<group>"; };
-		371E1BF0137FCF7C007EFBFF /* _Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
-		371E1BF1137FCF7C007EFBFF /* _Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
-		371E1BF2137FCF7C007EFBFF /* _Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
 		37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BicycletteCity.xcdatamodel; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* BicycletteCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BicycletteCity.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		37216BC612611C5400A2695A /* BicycletteCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BicycletteCity.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -325,10 +337,6 @@
 		37EC534915BAFB0400F45C09 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		37EC534B15BAFB0400F45C09 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		37EC534C15BAFB0400F45C09 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		37EDD1C915A5CDC80023301D /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
-		37EDD1CA15A5CDC80023301D /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
-		37EDD1CD15A5CDD10023301D /* _Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Radar.h; sourceTree = "<group>"; };
-		37EDD1CE15A5CDD10023301D /* _Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Radar.m; sourceTree = "<group>"; };
 		37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFencesMonitor.h; sourceTree = "<group>"; };
 		37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFencesMonitor.m; sourceTree = "<group>"; };
 		37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCMapping.h"; sourceTree = "<group>"; };
@@ -510,32 +518,6 @@
 			path = Cities;
 			sourceTree = "<group>";
 		};
-		371E1BE9137FCF7C007EFBFF /* Human */ = {
-			isa = PBXGroup;
-			children = (
-				371E1BEA137FCF7C007EFBFF /* Region.h */,
-				371E1BEB137FCF7C007EFBFF /* Region.m */,
-				371E1BEC137FCF7C007EFBFF /* Station.h */,
-				371E1BED137FCF7C007EFBFF /* Station.m */,
-				37EDD1C915A5CDC80023301D /* Radar.h */,
-				37EDD1CA15A5CDC80023301D /* Radar.m */,
-			);
-			path = Human;
-			sourceTree = "<group>";
-		};
-		371E1BEE137FCF7C007EFBFF /* Machine */ = {
-			isa = PBXGroup;
-			children = (
-				371E1BEF137FCF7C007EFBFF /* _Region.h */,
-				371E1BF0137FCF7C007EFBFF /* _Region.m */,
-				371E1BF1137FCF7C007EFBFF /* _Station.h */,
-				371E1BF2137FCF7C007EFBFF /* _Station.m */,
-				37EDD1CD15A5CDD10023301D /* _Radar.h */,
-				37EDD1CE15A5CDD10023301D /* _Radar.m */,
-			);
-			path = Machine;
-			sourceTree = "<group>";
-		};
 		37216A411261087300A2695A /* Backend */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,15 +600,6 @@
 			path = ../LogicTests;
 			sourceTree = "<group>";
 		};
-		37A346B5128C9D68000A2540 /* BicycletteCity */ = {
-			isa = PBXGroup;
-			children = (
-				371E1BE9137FCF7C007EFBFF /* Human */,
-				371E1BEE137FCF7C007EFBFF /* Machine */,
-			);
-			path = BicycletteCity;
-			sourceTree = "<group>";
-		};
 		37D131F7163F325100AABEE4 /* AnnotationViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,7 +652,8 @@
 				37216BC512611C5400A2695A /* BicycletteCity.h */,
 				37216BC612611C5400A2695A /* BicycletteCity.m */,
 				37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */,
-				37A346B5128C9D68000A2540 /* BicycletteCity */,
+				370220D7165525B100350AD1 /* BicycletteCity.mogenerated */,
+				370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */,
 				3717AA65162A1C11005EC7BD /* Cities */,
 			);
 			name = Model;
@@ -743,7 +717,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Bicyclette" */;
 			buildPhases = (
-				371E1BF8137FD03C007EFBFF /* Mogenerator */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -751,6 +724,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				370220D6165503AB00350AD1 /* PBXTargetDependency */,
 				370220CE165500E600350AD1 /* PBXTargetDependency */,
 			);
 			name = Bicyclette;
@@ -762,7 +736,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "DataGrabber" */;
 			buildPhases = (
-				37B7ABF215E3DCA900268B70 /* Mogenerator */,
 				37038A0B15E3A6280043504A /* Sources */,
 				37038A0C15E3A6280043504A /* Frameworks */,
 				37038A0D15E3A6280043504A /* CopyFiles */,
@@ -770,6 +743,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				370220DD1655270500350AD1 /* PBXTargetDependency */,
 			);
 			name = DataGrabber;
 			productName = BicycletteDataGrab;
@@ -821,6 +795,7 @@
 			targets = (
 				37038A0E15E3A6280043504A /* DataGrabber */,
 				370220C7165500CC00350AD1 /* GrabData */,
+				370220D0165502DD00350AD1 /* Mogenerate */,
 				1D6058900D05DD3D006BFB54 /* Bicyclette */,
 				3786E4DB14825A7700814C10 /* BicycletteLogicTests */,
 			);
@@ -859,6 +834,7 @@
 				37D9DFEA162A374F0000F263 /* ToulouseVeloCity.sqlite in Resources */,
 				370E3A42162E17990010E454 /* AmiensVelamCity.plist in Resources */,
 				370E3A45162E189D0010E454 /* AmiensVelamCity.sqlite in Resources */,
+				370220D9165525B100350AD1 /* BicycletteCity.mogenerated in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -889,20 +865,20 @@
 			shellPath = /bin/sh;
 			shellScript = "${SRCROOT}/_DataGrabTempFolder/DataGrabber";
 		};
-		371E1BF8137FD03C007EFBFF /* Mogenerator */ = {
+		370220D4165502F600350AD1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Files/BicycletteCity.xcdatamodel",
 			);
-			name = Mogenerator;
 			outputPaths = (
+				"${SRCROOT}/Files/BicycletteCity/BicycletteCity.mogenerated.m",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/BicycletteCity.xcdatamodel --template-var arc=true --machine-dir Files/BicycletteCity/Machine --human-dir Files/BicycletteCity/Human\n";
-			showEnvVarsInLog = 0;
+			shellScript = "PATH=$PATH:/usr/local/bin\\\n\tmogenerator\\\n\t--model \"${SRCROOT}/Files/BicycletteCity.xcdatamodel\"\\\n\t--template-var arc=true\\\n\t--machine-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/_machine\"\\\n\t--human-dir \"${SRCROOT}Files/BicycletteCity.mogenerated/\"\\\n\t--includem \"${SRCROOT}/Files/BicycletteCity.mogenerated.m\"\n";
 		};
 		3786E4DA14825A7700814C10 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -916,21 +892,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		37B7ABF215E3DCA900268B70 /* Mogenerator */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Mogenerator;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/BicycletteCity.xcdatamodel --template-var arc=true --machine-dir Files/BicycletteCity/Machine --human-dir Files/BicycletteCity/Human\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -947,10 +908,6 @@
 				37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
-				371E1BF3137FCF7C007EFBFF /* Region.m in Sources */,
-				371E1BF4137FCF7C007EFBFF /* Station.m in Sources */,
-				371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */,
-				371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */,
 				3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
 				37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */,
@@ -964,8 +921,6 @@
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
 				370D2ABB15A3A2270019F36E /* NSMutableArray+Locatable.m in Sources */,
 				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
-				37EDD1CB15A5CDC80023301D /* Radar.m in Sources */,
-				37EDD1CF15A5CDD20023301D /* _Radar.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
 				3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */,
@@ -988,6 +943,7 @@
 				37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */,
 				37AA662416543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
 				37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
+				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,10 +956,6 @@
 				37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */,
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
 				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
-				37B7ABF815E3DE4500268B70 /* Region.m in Sources */,
-				37B7ABF915E3DE4500268B70 /* Station.m in Sources */,
-				37B7ABFB15E3DF1F00268B70 /* _Region.m in Sources */,
-				37B7ABFC15E3DF1F00268B70 /* _Station.m in Sources */,
 				373A77EE15E3EB490057E241 /* NSData+SHA1.m in Sources */,
 				373A77EF15E3EB890057E241 /* NSSetAdditions.m in Sources */,
 				373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */,
@@ -1015,6 +967,7 @@
 				370E3A40162E17880010E454 /* AmiensVelamCity.m in Sources */,
 				37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
+				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1000,16 @@
 			isa = PBXTargetDependency;
 			target = 370220C7165500CC00350AD1 /* GrabData */;
 			targetProxy = 370220CD165500E600350AD1 /* PBXContainerItemProxy */;
+		};
+		370220D6165503AB00350AD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 370220D0165502DD00350AD1 /* Mogenerate */;
+			targetProxy = 370220D5165503AB00350AD1 /* PBXContainerItemProxy */;
+		};
+		370220DD1655270500350AD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 370220D0165502DD00350AD1 /* Mogenerate */;
+			targetProxy = 370220DC1655270500350AD1 /* PBXContainerItemProxy */;
 		};
 		371D4FB81482F66700A6DF77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1086,6 +1049,20 @@
 			name = Debug;
 		};
 		370220CA165500CC00350AD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		370220D2165502DE00350AD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		370220D3165502DE00350AD1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1186,6 +1163,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Files/BicycletteCity.mogenerated/**";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1228,6 +1206,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Files/BicycletteCity.mogenerated/**";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1250,6 +1229,14 @@
 			buildConfigurations = (
 				370220C9165500CC00350AD1 /* Debug */,
 				370220CA165500CC00350AD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		370220D1165502DE00350AD1 /* Build configuration list for PBXAggregateTarget "Mogenerate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				370220D2165502DE00350AD1 /* Debug */,
+				370220D3165502DE00350AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

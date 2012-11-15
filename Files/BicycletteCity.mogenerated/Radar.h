@@ -1,6 +1,7 @@
 #import "_Radar.h"
 #import "NSMutableArray+Locatable.h"
 
+#if TARGET_OS_IPHONE
 
 @interface Radar : _Radar <MKAnnotation, Locatable>
 // A square of size specified in the prefs, centered at the coordinate of the Radar
@@ -24,3 +25,5 @@ extern const struct RadarIdentifiers {
 	__unsafe_unretained NSString *userLocation;
 	__unsafe_unretained NSString *screenCenter;
 } RadarIdentifiers;
+
+#endif

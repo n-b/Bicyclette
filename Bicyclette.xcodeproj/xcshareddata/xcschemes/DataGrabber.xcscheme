@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "37038A0E15E3A6280043504A"
-               BuildableName = "BicycletteDataGrab"
+               BuildableName = "DataGrabber"
                BlueprintName = "DataGrabber"
                ReferencedContainer = "container:Bicyclette.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37038A0E15E3A6280043504A"
-            BuildableName = "BicycletteDataGrab"
+            BuildableName = "DataGrabber"
             BlueprintName = "DataGrabber"
             ReferencedContainer = "container:Bicyclette.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37038A0E15E3A6280043504A"
-            BuildableName = "BicycletteDataGrab"
+            BuildableName = "DataGrabber"
             BlueprintName = "DataGrabber"
             ReferencedContainer = "container:Bicyclette.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37038A0E15E3A6280043504A"
-            BuildableName = "BicycletteDataGrab"
+            BuildableName = "DataGrabber"
             BlueprintName = "DataGrabber"
             ReferencedContainer = "container:Bicyclette.xcodeproj">
          </BuildableReference>

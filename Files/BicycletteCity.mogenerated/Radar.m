@@ -2,6 +2,8 @@
 #import "Station.h"
 #import "NSMutableArray+Locatable.h"
 
+#if TARGET_OS_IPHONE
+
 const struct RadarIdentifiers RadarIdentifiers = {
 	.userLocation = @"userLocationRadar",
 	.screenCenter = @"screenCenterRadar",
@@ -180,3 +182,5 @@ const struct RadarIdentifiers RadarIdentifiers = {
 }
 
 @end
+
+#endif
