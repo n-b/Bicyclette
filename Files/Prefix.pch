@@ -3,8 +3,8 @@
 //
 #import <Availability.h>
 
-#ifdef __OBJC__
 #import <Foundation/Foundation.h>
+
 #if TARGET_OS_IPHONE
 	#import <UIKit/UIKit.h>
 	#import <MapKit/MapKit.h>
@@ -19,4 +19,6 @@
 
 #import "CompatibilityCategories.h"
 
+#if TESTING
+	#import <SenTestingKit/SenTestingKit.h>
 #endif

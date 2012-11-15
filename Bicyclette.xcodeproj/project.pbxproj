@@ -43,6 +43,12 @@
 		370220D9165525B100350AD1 /* BicycletteCity.mogenerated in Resources */ = {isa = PBXBuildFile; fileRef = 370220D7165525B100350AD1 /* BicycletteCity.mogenerated */; };
 		370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
+		370220E4165527D000350AD1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
+		370220E5165530CD00350AD1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
+		370220E6165530E900350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
+		370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
+		370220E81655310D00350AD1 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
+		370220E91655311000350AD1 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37038A1115E3A6280043504A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
 		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
@@ -222,7 +228,7 @@
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
 		370220D7165525B100350AD1 /* BicycletteCity.mogenerated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BicycletteCity.mogenerated; sourceTree = "<group>"; };
 		370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteCity.mogenerated.m; sourceTree = "<group>"; };
-		37038A0F15E3A6280043504A /* BicycletteDataGrab */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BicycletteDataGrab; sourceTree = BUILT_PRODUCTS_DIR; };
+		37038A0F15E3A6280043504A /* BicycletteDataGrab */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = BicycletteDataGrab; path = DataGrabber; sourceTree = BUILT_PRODUCTS_DIR; };
 		37038A1315E3A6290043504A /* DataGrabber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DataGrabber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteAnnotationView.h; sourceTree = "<group>"; };
 		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
@@ -293,7 +299,6 @@
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined_Tests.m"; sourceTree = "<group>"; };
-		3786E4EA14825A7700814C10 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationAnnotationView.h; sourceTree = "<group>"; };
 		378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationAnnotationView.m; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -388,6 +393,8 @@
 				3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */,
 				3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */,
 				3786E4F21482EB2E00814C10 /* CoreData.framework in Frameworks */,
+				370220E4165527D000350AD1 /* MapKit.framework in Frameworks */,
+				370220E5165530CD00350AD1 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +531,7 @@
 				374334C8164B0EC00051294F /* CitiesController.h */,
 				374334C9164B0EC00051294F /* CitiesController.m */,
 				37D131FC163F32DE00AABEE4 /* Model */,
+				3717AA65162A1C11005EC7BD /* Cities */,
 				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
 				37AA662216543B2C001F9660 /* Radar+LocalUpdateGroup.h */,
@@ -594,7 +602,6 @@
 			isa = PBXGroup;
 			children = (
 				3786E4E314825A7700814C10 /* Info.plist */,
-				3786E4EA14825A7700814C10 /* Prefix.pch */,
 			);
 			name = "Test Supporting Files";
 			path = ../LogicTests;
@@ -654,7 +661,6 @@
 				37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */,
 				370220D7165525B100350AD1 /* BicycletteCity.mogenerated */,
 				370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */,
-				3717AA65162A1C11005EC7BD /* Cities */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -985,6 +991,10 @@
 				37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */,
 				37AA662516543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
 				37AA662A16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
+				370220E6165530E900350AD1 /* BicycletteCity.mogenerated.m in Sources */,
+				370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */,
+				370220E81655310D00350AD1 /* CoreDataManager.m in Sources */,
+				370220E91655311000350AD1 /* DataUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,7 +1032,6 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Bicyclette;
@@ -1033,7 +1042,6 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Bicyclette;
@@ -1102,7 +1110,10 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
-				GCC_PREFIX_HEADER = LogicTests/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					$inherited,
+					"TESTING=1",
+				);
 				INFOPLIST_FILE = LogicTests/Info.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -1116,7 +1127,10 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
-				GCC_PREFIX_HEADER = LogicTests/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					$inherited,
+					"TESTING=1",
+				);
 				INFOPLIST_FILE = LogicTests/Info.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -1136,6 +1150,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1179,6 +1194,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Files/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "NS_BLOCK_ASSERTIONS=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1231,6 +1247,7 @@
 				370220CA165500CC00350AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		370220D1165502DE00350AD1 /* Build configuration list for PBXAggregateTarget "Mogenerate" */ = {
 			isa = XCConfigurationList;
@@ -1239,6 +1256,7 @@
 				370220D3165502DE00350AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "DataGrabber" */ = {
 			isa = XCConfigurationList;
