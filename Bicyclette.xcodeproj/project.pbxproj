@@ -884,7 +884,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin\\\n\tmogenerator\\\n\t--model \"${SRCROOT}/Files/BicycletteCity.xcdatamodel\"\\\n\t--template-var arc=true\\\n\t--machine-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/_machine\"\\\n\t--human-dir \"${SRCROOT}Files/BicycletteCity.mogenerated/\"\\\n\t--includem \"${SRCROOT}/Files/BicycletteCity.mogenerated.m\"\n";
+			shellScript = "PATH=$PATH:/usr/local/bin\\\n\tmogenerator\\\n\t--model \"${SRCROOT}/Files/BicycletteCity.xcdatamodel\"\\\n\t--template-var arc=true\\\n\t--machine-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/_machine\"\\\n\t--human-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/\"\\\n\t--includem \"${SRCROOT}/Files/BicycletteCity.mogenerated.m\"\n";
 		};
 		3786E4DA14825A7700814C10 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
