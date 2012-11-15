@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		370220C7165500CC00350AD1 /* GrabData */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 370220C8165500CC00350AD1 /* Build configuration list for PBXAggregateTarget "GrabData" */;
+			buildPhases = (
+				370220CF165500EB00350AD1 /* ShellScript */,
+			);
+			dependencies = (
+				370220CC165500D700350AD1 /* PBXTargetDependency */,
+			);
+			name = GrabData;
+			productName = GrabData;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* BicycletteApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* BicycletteApplicationDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -15,7 +30,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
 		37038A1115E3A6280043504A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		37038A1415E3A6290043504A /* BicycletteDataGrab.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* BicycletteDataGrab.m */; };
+		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
 		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
 		3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */; };
 		370D2ABB15A3A2270019F36E /* NSMutableArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */; };
@@ -87,10 +102,8 @@
 		37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* NSArrayAdditions.m */; };
 		37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
 		37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
-		37AA66211653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
 		37AA662416543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
 		37AA662516543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
-		37AA662616543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
 		37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
 		37AA662A16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
 		37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
@@ -138,6 +151,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		370220CB165500D700350AD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37038A0E15E3A6280043504A;
+			remoteInfo = BicycletteDataGrab;
+		};
+		370220CD165500E600350AD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 370220C7165500CC00350AD1;
+			remoteInfo = GrabData;
+		};
 		371D4FB71482F66700A6DF77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -176,7 +203,7 @@
 		3700F8511594A806007CF99E /* RegionAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
 		37038A0F15E3A6280043504A /* BicycletteDataGrab */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BicycletteDataGrab; sourceTree = BUILT_PRODUCTS_DIR; };
-		37038A1315E3A6290043504A /* BicycletteDataGrab.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BicycletteDataGrab.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		37038A1315E3A6290043504A /* DataGrabber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DataGrabber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteAnnotationView.h; sourceTree = "<group>"; };
 		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
 		3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+AttributionLogo.h"; sourceTree = "<group>"; };
@@ -388,7 +415,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				37038A1215E3A6280043504A /* BicycletteDataGrab */,
+				37038A1215E3A6280043504A /* DataGrabber */,
 				373A77F215E3F6860057E241 /* _DataGrabTempFolder */,
 				3756EA9B1297F52200113534 /* Supporting Files */,
 				37EC534315BAFB0400F45C09 /* Images */,
@@ -431,12 +458,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		37038A1215E3A6280043504A /* BicycletteDataGrab */ = {
+		37038A1215E3A6280043504A /* DataGrabber */ = {
 			isa = PBXGroup;
 			children = (
-				37038A1315E3A6290043504A /* BicycletteDataGrab.m */,
+				37038A1315E3A6290043504A /* DataGrabber.m */,
 			);
-			name = BicycletteDataGrab;
+			name = DataGrabber;
 			path = Files;
 			sourceTree = "<group>";
 		};
@@ -724,15 +751,16 @@
 			buildRules = (
 			);
 			dependencies = (
+				370220CE165500E600350AD1 /* PBXTargetDependency */,
 			);
 			name = Bicyclette;
 			productName = Velib;
 			productReference = 1D6058910D05DD3D006BFB54 /* Bicyclette.app */;
 			productType = "com.apple.product-type.application";
 		};
-		37038A0E15E3A6280043504A /* BicycletteDataGrab */ = {
+		37038A0E15E3A6280043504A /* DataGrabber */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "BicycletteDataGrab" */;
+			buildConfigurationList = 37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "DataGrabber" */;
 			buildPhases = (
 				37B7ABF215E3DCA900268B70 /* Mogenerator */,
 				37038A0B15E3A6280043504A /* Sources */,
@@ -743,7 +771,7 @@
 			);
 			dependencies = (
 			);
-			name = BicycletteDataGrab;
+			name = DataGrabber;
 			productName = BicycletteDataGrab;
 			productReference = 37038A0F15E3A6280043504A /* BicycletteDataGrab */;
 			productType = "com.apple.product-type.tool";
@@ -791,9 +819,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				37038A0E15E3A6280043504A /* DataGrabber */,
+				370220C7165500CC00350AD1 /* GrabData */,
 				1D6058900D05DD3D006BFB54 /* Bicyclette */,
 				3786E4DB14825A7700814C10 /* BicycletteLogicTests */,
-				37038A0E15E3A6280043504A /* BicycletteDataGrab */,
 			);
 		};
 /* End PBXProject section */
@@ -843,6 +872,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		370220CF165500EB00350AD1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/_DataGrabTempFolder/AmiensVelamCity.sqlite",
+				"$(SRCROOT)/_DataGrabTempFolder/MarseilleLeveloCity.sqlite",
+				"$(SRCROOT)/_DataGrabTempFolder/ParisVelibCity.sqlite",
+				"$(SRCROOT)/_DataGrabTempFolder/ToulouseVeloCity.sqlite",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/_DataGrabTempFolder/DataGrabber";
+		};
 		371E1BF8137FD03C007EFBFF /* Mogenerator */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -949,7 +995,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37038A1415E3A6290043504A /* BicycletteDataGrab.m in Sources */,
+				37038A1415E3A6290043504A /* DataGrabber.m in Sources */,
 				37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */,
 				37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */,
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
@@ -968,8 +1014,6 @@
 				37D9DFE3162A318E0000F263 /* ToulouseVeloCity.m in Sources */,
 				370E3A40162E17880010E454 /* AmiensVelamCity.m in Sources */,
 				37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
-				37AA66211653F027001F9660 /* Radar+GeoFence.m in Sources */,
-				37AA662616543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
 				37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -994,6 +1038,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		370220CC165500D700350AD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37038A0E15E3A6280043504A /* DataGrabber */;
+			targetProxy = 370220CB165500D700350AD1 /* PBXContainerItemProxy */;
+		};
+		370220CE165500E600350AD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 370220C7165500CC00350AD1 /* GrabData */;
+			targetProxy = 370220CD165500E600350AD1 /* PBXContainerItemProxy */;
+		};
 		371D4FB81482F66700A6DF77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* Bicyclette */;
@@ -1021,6 +1075,20 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Bicyclette;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		370220C9165500CC00350AD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		370220CA165500CC00350AD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1177,7 +1245,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "BicycletteDataGrab" */ = {
+		370220C8165500CC00350AD1 /* Build configuration list for PBXAggregateTarget "GrabData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				370220C9165500CC00350AD1 /* Debug */,
+				370220CA165500CC00350AD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "DataGrabber" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37038A1A15E3A6290043504A /* Debug */,
