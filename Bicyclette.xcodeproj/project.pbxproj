@@ -123,6 +123,8 @@
 		37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
 		37AA662A16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
 		37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
+		37AEF3AD1657A04B00F6E56C /* NSArrayAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */; };
+		37AEF3AE1657A04B00F6E56C /* NSSetAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
 		37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
@@ -314,6 +316,8 @@
 		37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Radar+LocalUpdateGroup.m"; sourceTree = "<group>"; };
 		37AA662716543EC1001F9660 /* Station+LocalUpdatePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Station+LocalUpdatePoint.h"; sourceTree = "<group>"; };
 		37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Station+LocalUpdatePoint.m"; sourceTree = "<group>"; };
+		37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditionsTests.m; sourceTree = "<group>"; };
+		37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSSetAdditionsTests.m; sourceTree = "<group>"; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatibilityCategories.h; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -587,14 +591,16 @@
 			path = TestData;
 			sourceTree = "<group>";
 		};
-		3786E4E114825A7700814C10 /* LogicTests */ = {
+		3786E4E114825A7700814C10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */,
+				37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */,
 				3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */,
 				371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */,
 				371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */,
 			);
-			name = LogicTests;
+			name = Tests;
 			path = ../LogicTests;
 			sourceTree = "<group>";
 		};
@@ -690,7 +696,7 @@
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
 				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
 				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
-				3786E4E114825A7700814C10 /* LogicTests */,
+				3786E4E114825A7700814C10 /* Tests */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -995,6 +1001,8 @@
 				370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */,
 				370220E81655310D00350AD1 /* CoreDataManager.m in Sources */,
 				370220E91655311000350AD1 /* DataUpdater.m in Sources */,
+				37AEF3AD1657A04B00F6E56C /* NSArrayAdditionsTests.m in Sources */,
+				37AEF3AE1657A04B00F6E56C /* NSSetAdditionsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

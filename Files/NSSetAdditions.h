@@ -20,15 +20,5 @@
  */
 - (NSSet*) filteredSetWithValue:(id)value forKey:(NSString*)key;
 
-/*
- * KVC related addition : find and return the objects who return a YES value when the passed selector is sent to them.
- */
-- (NSSet*) filteredSetWithSelector:(SEL)aFilterSelector;
-
-/*
- * arrayByRemovingObjectsInArray
- */
-- (NSSet*) setByRemovingObjectsInSet:(NSSet*)otherSet;
-
 @end
 

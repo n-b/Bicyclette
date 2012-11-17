@@ -16,32 +16,8 @@
 @interface NSString (NSStringAdditions)
 
 /*!
-	@method containsString:
-*/
-- (BOOL)containsString:(NSString *)aString;
-- (BOOL)containsString:(NSString *)aString ignoringCase:(BOOL)flag;
-
-/*!
 	@method stringByDeletingPrefix/Suffix:
 */
 - (NSString*) stringByDeletingPrefix:(NSString*) prefix;
-- (NSString*) stringByDeletingSuffix:(NSString*) suffix;
-- (NSString*) stringByDeletingPrefixAndSuffix:(NSString*) prefixsuffix;
-
-/*!
-	@method stringWithData:
-*/
-+ (NSString *)stringWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
-
-/*!
-	@method stringWithBytes:
-*/
-+ (NSString *)stringWithBytes:(const void *)bytes length:(unsigned)length encoding:(NSStringEncoding)encoding;
-
-
-/*!
-	@method stringByRemovingCharactersInSet:
- */
-- (NSString *)stringByRemovingCharactersInSet:(NSCharacterSet*)characterSet;
 
 @end

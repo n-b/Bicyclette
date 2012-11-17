@@ -21,23 +21,9 @@
 - (NSArray*) filteredArrayWithValue:(id)value forKey:(NSString*)key;
 
 /*
- * KVC related addition : find and return the objects who return a YES value when the passed selector is sent to them.
- */
-- (NSArray*) filteredArrayWithSelector:(SEL)aFilterSelector;
-
-/*
  * arrayByRemovingObjectsInArray
  */
 - (NSArray*) arrayByRemovingObjectsInArray:(NSArray*)otherArray;
 
 @end
 
-
-@interface NSMutableArray (Additions)
-
-/*
- * KVC related addition : ease NSSortDescriptor usage
- */
-- (void) sortWithProperty:(NSString *) property;
-
-@end
