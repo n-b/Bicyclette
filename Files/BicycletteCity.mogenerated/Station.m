@@ -230,7 +230,7 @@
                                                     code:NSManagedObjectValidationError
                                                 userInfo:@{
                              NSValidationObjectErrorKey : self,
-                                NSValidationKeyErrorKey : NAMEDPROP(location),
+                                NSValidationKeyErrorKey : @"location",
                               NSValidationValueErrorKey : self.location,
                               NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Station %@", 0),self.name],
                        NSLocalizedFailureReasonErrorKey : [NSString stringWithFormat:NSLocalizedString(@"Invalid coordinates (%f,%f)", 0),self.location.coordinate.latitude, self.location.coordinate.longitude],

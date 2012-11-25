@@ -71,14 +71,11 @@
 		3717AA70162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
 		3717AA71162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
 		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
-		371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
-		371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */; };
-		371D4FC51483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */; };
-		371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
-		371D4FC91484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */; };
 		371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D90C9158FE19900E509E6 /* TransparentToolbar.m */; };
 		37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
 		37216BC712611C5400A2695A /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
+		37235E8C1662BDB200F33BF1 /* libKVCMapping-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37235E8B1662BDB200F33BF1 /* libKVCMapping-osx.a */; };
+		37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B4C1F71659521600DE4756 /* libKVCMapping-ios.a */; };
 		3724BC6A15E4C50200790869 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6415E4C50200790869 /* Default-Landscape.png */; };
 		3724BC6B15E4C50200790869 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6515E4C50200790869 /* Default-Landscape@2x.png */; };
 		3724BC6C15E4C50200790869 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6615E4C50200790869 /* Default-Portrait.png */; };
@@ -90,7 +87,6 @@
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
 		373A77EE15E3EB490057E241 /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
 		373A77EF15E3EB890057E241 /* NSSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSSetAdditions.m */; };
-		373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		373A77F415E3F6B80057E241 /* ParisVelibCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */; };
 		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
@@ -106,8 +102,6 @@
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		3786E4E914825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */; };
-		3786E4EE1482EAC000814C10 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
 		3786E4F21482EB2E00814C10 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
@@ -126,6 +120,9 @@
 		37AEF3AD1657A04B00F6E56C /* NSArrayAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */; };
 		37AEF3AE1657A04B00F6E56C /* NSSetAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
+		37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
+		37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
+		37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
 		37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
@@ -133,14 +130,12 @@
 		37B7AC0015E3DF7000268B70 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B7AC0115E3DF8B00268B70 /* AppKit.framework */; };
 		37B7AC0315E3DF9C00268B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
 		37BE759D15E6BDE4001DABF6 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BE759B15E6BDE4001DABF6 /* HelpVC.m */; };
 		37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37BE759C15E6BDE4001DABF6 /* HelpVC.xib */; };
 		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
 		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
-		37D59D051616182400F69988 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */; };
 		37D9DFDE162A2BF60000F263 /* MarseilleLeveloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D9DFDD162A2BF60000F263 /* MarseilleLeveloCity.m */; };
 		37D9DFDF162A2BF60000F263 /* MarseilleLeveloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D9DFDD162A2BF60000F263 /* MarseilleLeveloCity.m */; };
 		37D9DFE2162A318E0000F263 /* ToulouseVeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */; };
@@ -156,7 +151,6 @@
 		37EC535515BAFB0400F45C09 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534B15BAFB0400F45C09 /* Icon.png */; };
 		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */; };
-		37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */; };
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
 		37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */; };
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
@@ -198,6 +192,27 @@
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Bicyclette;
 		};
+		37235E8A1662BDB200F33BF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37235E741662BCCB00F33BF1;
+			remoteInfo = "KVCMapping-osx";
+		};
+		37B4C1F61659521600DE4756 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37A80DEE150B8CE800B9B6E1;
+			remoteInfo = KVCMapping;
+		};
+		37B4C1F81659521600DE4756 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37A80DFE150B8CE800B9B6E1;
+			remoteInfo = KVCMappingTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -230,7 +245,7 @@
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
 		370220D7165525B100350AD1 /* BicycletteCity.mogenerated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BicycletteCity.mogenerated; sourceTree = "<group>"; };
 		370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteCity.mogenerated.m; sourceTree = "<group>"; };
-		37038A0F15E3A6280043504A /* BicycletteDataGrab */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = BicycletteDataGrab; path = DataGrabber; sourceTree = BUILT_PRODUCTS_DIR; };
+		37038A0F15E3A6280043504A /* DataGrabber */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataGrabber; sourceTree = BUILT_PRODUCTS_DIR; };
 		37038A1315E3A6290043504A /* DataGrabber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DataGrabber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteAnnotationView.h; sourceTree = "<group>"; };
 		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
@@ -256,10 +271,6 @@
 		3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParisVelibCity.m; path = ../ParisVelibCity.m; sourceTree = "<group>"; };
 		371982BF16451F92006CF77D /* FanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanContainerViewController.h; sourceTree = "<group>"; };
 		371982C016451F92006CF77D /* FanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanContainerViewController.m; sourceTree = "<group>"; };
-		371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping_Tests.m"; sourceTree = "<group>"; };
-		371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NSObject+KVCMapping_Tests.xcdatamodel"; sourceTree = "<group>"; };
-		371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattedStringToDateValueTransformer.h; sourceTree = "<group>"; };
-		371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattedStringToDateValueTransformer.m; sourceTree = "<group>"; };
 		371D90C8158FE19900E509E6 /* TransparentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentToolbar.h; sourceTree = "<group>"; };
 		371D90C9158FE19900E509E6 /* TransparentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentToolbar.m; sourceTree = "<group>"; };
 		37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BicycletteCity.xcdatamodel; sourceTree = "<group>"; };
@@ -300,7 +311,6 @@
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined_Tests.m"; sourceTree = "<group>"; };
 		378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationAnnotationView.h; sourceTree = "<group>"; };
 		378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationAnnotationView.m; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -319,10 +329,11 @@
 		37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditionsTests.m; sourceTree = "<group>"; };
 		37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSSetAdditionsTests.m; sourceTree = "<group>"; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
+		37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
+		37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
 		37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatibilityCategories.h; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
-		37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
-		37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
 		37BE759A15E6BDE4001DABF6 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
 		37BE759B15E6BDE4001DABF6 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
 		37BE759C15E6BDE4001DABF6 /* HelpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpVC.xib; sourceTree = "<group>"; };
@@ -348,8 +359,6 @@
 		37EC534C15BAFB0400F45C09 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFencesMonitor.h; sourceTree = "<group>"; };
 		37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFencesMonitor.m; sourceTree = "<group>"; };
-		37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCMapping.h"; sourceTree = "<group>"; };
-		37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCMapping.m"; sourceTree = "<group>"; };
 		37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Beaubourg.gpx; sourceTree = "<group>"; };
 		37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Gare de Lyon.gpx"; sourceTree = "<group>"; };
 		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
@@ -367,6 +376,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */,
 				3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -382,6 +392,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37235E8C1662BDB200F33BF1 /* libKVCMapping-osx.a in Frameworks */,
 				37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */,
 				37038A1115E3A6280043504A /* Foundation.framework in Frameworks */,
 				37B7AC0015E3DF7000268B70 /* CoreLocation.framework in Frameworks */,
@@ -426,7 +437,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Bicyclette.app */,
 				3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */,
-				37038A0F15E3A6280043504A /* BicycletteDataGrab */,
+				37038A0F15E3A6280043504A /* DataGrabber */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -463,6 +474,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */,
 				37D188381170A5FA00950D52 /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -596,9 +608,6 @@
 			children = (
 				37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */,
 				37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */,
-				3786E4E814825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m */,
-				371D4FB31482F53E00A6DF77 /* NSObject+KVCMapping_Tests.m */,
-				371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */,
 			);
 			name = Tests;
 			path = ../LogicTests;
@@ -611,6 +620,16 @@
 			);
 			name = "Test Supporting Files";
 			path = ../LogicTests;
+			sourceTree = "<group>";
+		};
+		37B4C1EF1659521600DE4756 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37B4C1F71659521600DE4756 /* libKVCMapping-ios.a */,
+				37235E8B1662BDB200F33BF1 /* libKVCMapping-osx.a */,
+				37B4C1F91659521600DE4756 /* KVCMappingTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		37D131F7163F325100AABEE4 /* AnnotationViews */ = {
@@ -678,14 +697,10 @@
 				3793DE1E1380295400B50118 /* CoreDataManager.m */,
 				3793DE2013802E6100B50118 /* DataUpdater.h */,
 				3793DE2113802E6100B50118 /* DataUpdater.m */,
+				37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */,
+				37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */,
 				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
 				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
-				37BAD8D014269F1000AC2368 /* NSError+MultipleErrorsCombined.h */,
-				37BAD8D114269F1000AC2368 /* NSError+MultipleErrorsCombined.m */,
-				37EE532013AC1C5C00D5A64C /* NSObject+KVCMapping.h */,
-				37EE532113AC1C5C00D5A64C /* NSObject+KVCMapping.m */,
-				371D4FC61484C76100A6DF77 /* FormattedStringToDateValueTransformer.h */,
-				371D4FC71484C76100A6DF77 /* FormattedStringToDateValueTransformer.m */,
 				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
 				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
 				37149BBA126250D7009CDE82 /* NSSetAdditions.h */,
@@ -759,7 +774,7 @@
 			);
 			name = DataGrabber;
 			productName = BicycletteDataGrab;
-			productReference = 37038A0F15E3A6280043504A /* BicycletteDataGrab */;
+			productReference = 37038A0F15E3A6280043504A /* DataGrabber */;
 			productType = "com.apple.product-type.tool";
 		};
 		3786E4DB14825A7700814C10 /* BicycletteLogicTests */ = {
@@ -803,6 +818,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 37B4C1EF1659521600DE4756 /* Products */;
+					ProjectRef = 37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				37038A0E15E3A6280043504A /* DataGrabber */,
@@ -813,6 +834,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		37235E8B1662BDB200F33BF1 /* libKVCMapping-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libKVCMapping-osx.a";
+			remoteRef = 37235E8A1662BDB200F33BF1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37B4C1F71659521600DE4756 /* libKVCMapping-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libKVCMapping-ios.a";
+			remoteRef = 37B4C1F61659521600DE4756 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37B4C1F91659521600DE4756 /* KVCMappingTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KVCMappingTests.octest;
+			remoteRef = 37B4C1F81659521600DE4756 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -923,9 +968,6 @@
 				3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
 				37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */,
-				37EE532213AC1C5C00D5A64C /* NSObject+KVCMapping.m in Sources */,
-				37BAD8D214269F1000AC2368 /* NSError+MultipleErrorsCombined.m in Sources */,
-				371D4FC81484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
 				371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */,
 				3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */,
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
@@ -956,6 +998,7 @@
 				37AA662416543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
 				37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
+				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,9 +1013,7 @@
 				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
 				373A77EE15E3EB490057E241 /* NSData+SHA1.m in Sources */,
 				373A77EF15E3EB890057E241 /* NSSetAdditions.m in Sources */,
-				373A77F015E3EBA60057E241 /* NSObject+KVCMapping.m in Sources */,
 				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
-				37D59D051616182400F69988 /* NSError+MultipleErrorsCombined.m in Sources */,
 				3717AA71162A1F39005EC7BD /* ParisVelibCity.m in Sources */,
 				37D9DFDF162A2BF60000F263 /* MarseilleLeveloCity.m in Sources */,
 				37D9DFE3162A318E0000F263 /* ToulouseVeloCity.m in Sources */,
@@ -980,6 +1021,7 @@
 				37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
+				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,12 +1029,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3786E4E914825A7700814C10 /* NSError+MultipleErrorsCombined_Tests.m in Sources */,
-				3786E4EE1482EAC000814C10 /* NSError+MultipleErrorsCombined.m in Sources */,
-				371D4FB51482F59000A6DF77 /* NSObject+KVCMapping.m in Sources */,
-				371D4FB61482F5B700A6DF77 /* NSObject+KVCMapping_Tests.m in Sources */,
-				371D4FC51483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld in Sources */,
-				371D4FC91484C76100A6DF77 /* FormattedStringToDateValueTransformer.m in Sources */,
 				37AA661A1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */,
 				37AA662516543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
@@ -1003,6 +1039,7 @@
 				370220E91655311000350AD1 /* DataUpdater.m in Sources */,
 				37AEF3AD1657A04B00F6E56C /* NSArrayAdditionsTests.m in Sources */,
 				37AEF3AE1657A04B00F6E56C /* NSSetAdditionsTests.m in Sources */,
+				37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1183,10 +1220,11 @@
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Files/BicycletteCity.mogenerated/**";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Files/BicycletteCity.mogenerated/** ${SRCROOT}/submodules/**";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1227,10 +1265,11 @@
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Files/BicycletteCity.mogenerated/**";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/Files/BicycletteCity.mogenerated/** ${SRCROOT}/submodules/**";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1294,19 +1333,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */,
-			);
-			currentVersion = 371D4FC41483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodel */;
-			path = "NSObject+KVCMapping_Tests.xcdatamodeld";
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

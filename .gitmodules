@@ -1,0 +1,3 @@
+[submodule "submodules/KVCMapping"]
+	path = submodules/KVCMapping
+	url = https://github.com/n-b/KVCMapping.git
