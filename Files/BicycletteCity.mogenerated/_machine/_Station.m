@@ -50,40 +50,48 @@ const struct StationFetchedProperties StationFetchedProperties = {
 	return (StationID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"bonusValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"bonus"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"latitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"openValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"open"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"status_availableValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"status_available"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"status_freeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"status_free"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"status_ticketValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"status_ticket"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"status_totalValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"status_total"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 
 	return keyPaths;
@@ -355,10 +363,10 @@ const struct StationFetchedProperties StationFetchedProperties = {
 	NSError *error = nil;
 	NSArray *result = [self fetchStationWithNumber:moc_ number:number_ error:&error];
 	if (error) {
-#if TARGET_OS_IPHONE
-		NSLog(@"error: %@", error);
-#else
+#ifdef NSAppKitVersionNumber10_0
 		[NSApp presentError:error];
+#else
+		NSLog(@"error: %@", error);
 #endif
 	}
 	return result;
@@ -366,7 +374,7 @@ const struct StationFetchedProperties StationFetchedProperties = {
 + (NSArray*)fetchStationWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
-	
+
 	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
 	
 	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -374,11 +382,11 @@ const struct StationFetchedProperties StationFetchedProperties = {
 														number_, @"number",
 														
 														nil];
-										
+	
 	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"stationWithNumber"
 													 substitutionVariables:substitutionVariables];
 	NSAssert(fetchRequest, @"Can't find fetch request named \"stationWithNumber\".");
-	
+
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;
 	return result;
@@ -390,10 +398,10 @@ const struct StationFetchedProperties StationFetchedProperties = {
 	NSError *error = nil;
 	NSArray *result = [self fetchStationsWithinRange:moc_ minLatitude:minLatitude_ maxLatitude:maxLatitude_ minLongitude:minLongitude_ maxLongitude:maxLongitude_ error:&error];
 	if (error) {
-#if TARGET_OS_IPHONE
-		NSLog(@"error: %@", error);
-#else
+#ifdef NSAppKitVersionNumber10_0
 		[NSApp presentError:error];
+#else
+		NSLog(@"error: %@", error);
 #endif
 	}
 	return result;
@@ -401,7 +409,7 @@ const struct StationFetchedProperties StationFetchedProperties = {
 + (NSArray*)fetchStationsWithinRange:(NSManagedObjectContext*)moc_ minLatitude:(NSNumber*)minLatitude_ maxLatitude:(NSNumber*)maxLatitude_ minLongitude:(NSNumber*)minLongitude_ maxLongitude:(NSNumber*)maxLongitude_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
-	
+
 	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
 	
 	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -415,11 +423,11 @@ const struct StationFetchedProperties StationFetchedProperties = {
 														maxLongitude_, @"maxLongitude",
 														
 														nil];
-										
+	
 	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"stationsWithinRange"
 													 substitutionVariables:substitutionVariables];
 	NSAssert(fetchRequest, @"Can't find fetch request named \"stationsWithinRange\".");
-	
+
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;
 	return result;

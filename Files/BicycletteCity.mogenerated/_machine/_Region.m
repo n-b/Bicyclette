@@ -42,24 +42,28 @@ const struct RegionFetchedProperties RegionFetchedProperties = {
 	return (RegionID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"maxLatitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maxLatitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"maxLongitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maxLongitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"minLatitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"minLatitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"minLongitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"minLongitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 
 	return keyPaths;
@@ -208,10 +212,10 @@ const struct RegionFetchedProperties RegionFetchedProperties = {
 	NSError *error = nil;
 	NSArray *result = [self fetchRegionWithNumber:moc_ number:number_ error:&error];
 	if (error) {
-#if TARGET_OS_IPHONE
-		NSLog(@"error: %@", error);
-#else
+#ifdef NSAppKitVersionNumber10_0
 		[NSApp presentError:error];
+#else
+		NSLog(@"error: %@", error);
 #endif
 	}
 	return result;
@@ -219,7 +223,7 @@ const struct RegionFetchedProperties RegionFetchedProperties = {
 + (NSArray*)fetchRegionWithNumber:(NSManagedObjectContext*)moc_ number:(NSString*)number_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
-	
+
 	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
 	
 	NSDictionary *substitutionVariables = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -227,11 +231,11 @@ const struct RegionFetchedProperties RegionFetchedProperties = {
 														number_, @"number",
 														
 														nil];
-										
+	
 	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"regionWithNumber"
 													 substitutionVariables:substitutionVariables];
 	NSAssert(fetchRequest, @"Can't find fetch request named \"regionWithNumber\".");
-	
+
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;
 	return result;

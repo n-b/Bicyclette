@@ -35,7 +35,9 @@ extern const struct RadarFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSString* identifier;
+
 
 
 //- (BOOL)validateIdentifier:(id*)value_ error:(NSError**)error_;
@@ -43,7 +45,9 @@ extern const struct RadarFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* latitude;
+
 
 
 @property double latitudeValue;
@@ -55,7 +59,9 @@ extern const struct RadarFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* longitude;
+
 
 
 @property double longitudeValue;
@@ -67,7 +73,9 @@ extern const struct RadarFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* manualRadar;
+
 
 
 @property BOOL manualRadarValue;

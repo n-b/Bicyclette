@@ -57,7 +57,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSString* address;
+
 
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
@@ -65,7 +67,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* bonus;
+
 
 
 @property BOOL bonusValue;
@@ -77,7 +81,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) UIColor* color;
+
 
 
 //- (BOOL)validateColor:(id*)value_ error:(NSError**)error_;
@@ -85,7 +91,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSString* fullAddress;
+
 
 
 //- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
@@ -93,7 +101,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* latitude;
+
 
 
 @property double latitudeValue;
@@ -105,7 +115,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* longitude;
+
 
 
 @property double longitudeValue;
@@ -117,7 +129,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSString* name;
+
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -125,7 +139,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSString* number;
+
 
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
@@ -133,7 +149,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* open;
+
 
 
 @property BOOL openValue;
@@ -145,7 +163,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* status_available;
+
 
 
 @property int16_t status_availableValue;
@@ -157,7 +177,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSDate* status_date;
+
 
 
 //- (BOOL)validateStatus_date:(id*)value_ error:(NSError**)error_;
@@ -165,7 +187,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* status_free;
+
 
 
 @property int16_t status_freeValue;
@@ -177,7 +201,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* status_ticket;
+
 
 
 @property BOOL status_ticketValue;
@@ -189,7 +215,9 @@ extern const struct StationFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* status_total;
+
 
 
 @property int16_t status_totalValue;
@@ -202,7 +230,7 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) Region* region;
+@property (nonatomic, strong) Region *region;
 
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
 

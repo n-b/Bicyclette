@@ -39,20 +39,23 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 	return (RadarID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"latitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"manualRadarValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"manualRadar"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 
 	return keyPaths;
@@ -155,10 +158,10 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 	NSError *error = nil;
 	NSArray *result = [self fetchScreenCenterRadar:moc_ error:&error];
 	if (error) {
-#if TARGET_OS_IPHONE
-		NSLog(@"error: %@", error);
-#else
+#ifdef NSAppKitVersionNumber10_0
 		[NSApp presentError:error];
+#else
+		NSLog(@"error: %@", error);
 #endif
 	}
 	return result;
@@ -166,15 +169,15 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 + (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
-	
+
 	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
 	
 	NSDictionary *substitutionVariables = [NSDictionary dictionary];
-										
+	
 	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"screenCenterRadar"
 													 substitutionVariables:substitutionVariables];
 	NSAssert(fetchRequest, @"Can't find fetch request named \"screenCenterRadar\".");
-	
+
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;
 	return result;
@@ -186,10 +189,10 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 	NSError *error = nil;
 	NSArray *result = [self fetchUserLocationRadar:moc_ error:&error];
 	if (error) {
-#if TARGET_OS_IPHONE
-		NSLog(@"error: %@", error);
-#else
+#ifdef NSAppKitVersionNumber10_0
 		[NSApp presentError:error];
+#else
+		NSLog(@"error: %@", error);
 #endif
 	}
 	return result;
@@ -197,15 +200,15 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 + (NSArray*)fetchUserLocationRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_ {
 	NSParameterAssert(moc_);
 	NSError *error = nil;
-	
+
 	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
 	
 	NSDictionary *substitutionVariables = [NSDictionary dictionary];
-										
+	
 	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"userLocationRadar"
 													 substitutionVariables:substitutionVariables];
 	NSAssert(fetchRequest, @"Can't find fetch request named \"userLocationRadar\".");
-	
+
 	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
 	if (error_) *error_ = error;
 	return result;

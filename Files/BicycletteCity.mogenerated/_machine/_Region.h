@@ -41,7 +41,9 @@ extern const struct RegionFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* maxLatitude;
+
 
 
 @property double maxLatitudeValue;
@@ -53,7 +55,9 @@ extern const struct RegionFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* maxLongitude;
+
 
 
 @property double maxLongitudeValue;
@@ -65,7 +69,9 @@ extern const struct RegionFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* minLatitude;
+
 
 
 @property double minLatitudeValue;
@@ -77,7 +83,9 @@ extern const struct RegionFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSNumber* minLongitude;
+
 
 
 @property double minLongitudeValue;
@@ -89,7 +97,9 @@ extern const struct RegionFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSString* name;
+
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -97,7 +107,9 @@ extern const struct RegionFetchedProperties {
 
 
 
+
 @property (nonatomic, strong) NSString* number;
+
 
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
@@ -106,7 +118,7 @@ extern const struct RegionFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSOrderedSet* stations;
+@property (nonatomic, strong) NSOrderedSet *stations;
 
 - (NSMutableOrderedSet*)stationsSet;
 

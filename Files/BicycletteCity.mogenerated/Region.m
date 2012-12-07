@@ -6,7 +6,7 @@
 
 @interface Region ()
 #if TARGET_OS_IPHONE
-@property (readonly, nonatomic, readwrite) MKCoordinateRegion coordinateRegion;
+@property (readwrite, nonatomic) MKCoordinateRegion coordinateRegion;
 #endif
 @end
 
