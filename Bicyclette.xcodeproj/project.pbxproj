@@ -98,7 +98,6 @@
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
-		37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -306,8 +305,6 @@
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardPaths.h"; sourceTree = "<group>"; };
-		37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+StandardPaths.m"; sourceTree = "<group>"; };
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -709,8 +706,6 @@
 				37AA66181653E9EA001F9660 /* NSArrayAdditions.m */,
 				37149B9312624C15009CDE82 /* NSStringAdditions.h */,
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
-				37822B7D1380457D009D8334 /* NSFileManager+StandardPaths.h */,
-				37822B7E1380457D009D8334 /* NSFileManager+StandardPaths.m */,
 				3786E4E114825A7700814C10 /* Tests */,
 			);
 			name = Utility;
@@ -967,7 +962,6 @@
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
 				3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
-				37822B7F1380457D009D8334 /* NSFileManager+StandardPaths.m in Sources */,
 				371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */,
 				3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */,
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,

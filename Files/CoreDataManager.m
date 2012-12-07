@@ -7,15 +7,12 @@
 //
 
 #import "CoreDataManager.h"
-#import "NSFileManager+StandardPaths.h"
 #import "NSError+MultipleErrorsCombined.h"
 #import <objc/runtime.h>
 
 
 /****************************************************************************/
 #pragma mark Private Methods
-
-NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 
 @interface CoreDataManager ()
 @property NSManagedObjectModel *mom;
@@ -42,7 +39,8 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
 
 - (id) initWithModelName:(NSString*)modelName
 {
-    NSURL *storeURL = [NSURL fileURLWithPath:[[NSFileManager documentsDirectory] stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
+    NSString * documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSURL *storeURL = [NSURL fileURLWithPath:[documentsDirectory stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"sqlite"]]];
     return [self initWithModelName:modelName storeURL:storeURL];
 }
 

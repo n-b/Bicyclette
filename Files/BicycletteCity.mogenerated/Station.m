@@ -226,8 +226,8 @@
         return YES;
 
     if (error != NULL) {
-        NSError * limitsError = [NSError errorWithDomain:BicycletteErrorDomain
-                                                    code:NSManagedObjectValidationError
+        NSError * limitsError = [NSError errorWithDomain: NSCocoaErrorDomain
+                                                    code: NSManagedObjectValidationError
                                                 userInfo:@{
                              NSValidationObjectErrorKey : self,
                                 NSValidationKeyErrorKey : @"location",

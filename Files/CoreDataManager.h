@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-extern NSString * const BicycletteErrorDomain;
 @protocol CoreDataManagerDelegate;
 
 // Core Data Standard Machinery
