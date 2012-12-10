@@ -7,7 +7,6 @@ const struct RadarAttributes RadarAttributes = {
 	.identifier = @"identifier",
 	.latitude = @"latitude",
 	.longitude = @"longitude",
-	.manualRadar = @"manualRadar",
 };
 
 const struct RadarRelationships RadarRelationships = {
@@ -49,11 +48,6 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"manualRadarValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"manualRadar"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -123,96 +117,8 @@ const struct RadarFetchedProperties RadarFetchedProperties = {
 
 
 
-@dynamic manualRadar;
 
 
-
-- (BOOL)manualRadarValue {
-	NSNumber *result = [self manualRadar];
-	return [result boolValue];
-}
-
-- (void)setManualRadarValue:(BOOL)value_ {
-	[self setManualRadar:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveManualRadarValue {
-	NSNumber *result = [self primitiveManualRadar];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveManualRadarValue:(BOOL)value_ {
-	[self setPrimitiveManualRadar:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
-
-
-
-
-
-+ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ {
-	NSError *error = nil;
-	NSArray *result = [self fetchScreenCenterRadar:moc_ error:&error];
-	if (error) {
-#ifdef NSAppKitVersionNumber10_0
-		[NSApp presentError:error];
-#else
-		NSLog(@"error: %@", error);
-#endif
-	}
-	return result;
-}
-+ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_ {
-	NSParameterAssert(moc_);
-	NSError *error = nil;
-
-	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
-	
-	NSDictionary *substitutionVariables = [NSDictionary dictionary];
-	
-	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"screenCenterRadar"
-													 substitutionVariables:substitutionVariables];
-	NSAssert(fetchRequest, @"Can't find fetch request named \"screenCenterRadar\".");
-
-	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
-	if (error_) *error_ = error;
-	return result;
-}
-
-
-
-+ (NSArray*)fetchUserLocationRadar:(NSManagedObjectContext*)moc_ {
-	NSError *error = nil;
-	NSArray *result = [self fetchUserLocationRadar:moc_ error:&error];
-	if (error) {
-#ifdef NSAppKitVersionNumber10_0
-		[NSApp presentError:error];
-#else
-		NSLog(@"error: %@", error);
-#endif
-	}
-	return result;
-}
-+ (NSArray*)fetchUserLocationRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_ {
-	NSParameterAssert(moc_);
-	NSError *error = nil;
-
-	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
-	
-	NSDictionary *substitutionVariables = [NSDictionary dictionary];
-	
-	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"userLocationRadar"
-													 substitutionVariables:substitutionVariables];
-	NSAssert(fetchRequest, @"Can't find fetch request named \"userLocationRadar\".");
-
-	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
-	if (error_) *error_ = error;
-	return result;
-}
 
 
 

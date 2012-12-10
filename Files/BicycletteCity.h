@@ -25,10 +25,9 @@
 
 #if TARGET_OS_IPHONE
 @property (nonatomic, readonly) MKCoordinateRegion regionContainingData;
+- (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
 #endif
 
-@property (readonly) Radar * userLocationRadar;
-@property (readonly) Radar * screenCenterRadar;
 - (Station*) stationWithNumber:(NSString*)number;
 
 

@@ -8,22 +8,14 @@
 
 @class BicycletteCity;
 
-typedef enum {
-	MapLevelNone = 0,
-	MapLevelRegions,
-	MapLevelRegionsAndRadars,
-	MapLevelStationsAndRadars
-}  MapLevel;
-
 @protocol CitiesControllerDelegate;
 
 @interface CitiesController : NSObject
 
 @property NSArray * cities;
 
-@property (nonatomic) BicycletteCity * currentCity;
+@property (readonly, nonatomic) BicycletteCity * currentCity;
 @property MKCoordinateRegion referenceRegion;
-@property (nonatomic) MapLevel level;
 
 @property (assign) id<CitiesControllerDelegate> delegate;
 

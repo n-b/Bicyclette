@@ -8,7 +8,6 @@ extern const struct RadarAttributes {
 	__unsafe_unretained NSString *identifier;
 	__unsafe_unretained NSString *latitude;
 	__unsafe_unretained NSString *longitude;
-	__unsafe_unretained NSString *manualRadar;
 } RadarAttributes;
 
 extern const struct RadarRelationships {
@@ -16,7 +15,6 @@ extern const struct RadarRelationships {
 
 extern const struct RadarFetchedProperties {
 } RadarFetchedProperties;
-
 
 
 
@@ -74,30 +72,6 @@ extern const struct RadarFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* manualRadar;
-
-
-
-@property BOOL manualRadarValue;
-- (BOOL)manualRadarValue;
-- (void)setManualRadarValue:(BOOL)value_;
-
-//- (BOOL)validateManualRadar:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-+ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ ;
-+ (NSArray*)fetchScreenCenterRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
-
-
-
-+ (NSArray*)fetchUserLocationRadar:(NSManagedObjectContext*)moc_ ;
-+ (NSArray*)fetchUserLocationRadar:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
-
-
-
 
 @end
 
@@ -128,15 +102,6 @@ extern const struct RadarFetchedProperties {
 
 - (double)primitiveLongitudeValue;
 - (void)setPrimitiveLongitudeValue:(double)value_;
-
-
-
-
-- (NSNumber*)primitiveManualRadar;
-- (void)setPrimitiveManualRadar:(NSNumber*)value;
-
-- (BOOL)primitiveManualRadarValue;
-- (void)setPrimitiveManualRadarValue:(BOOL)value_;
 
 
 

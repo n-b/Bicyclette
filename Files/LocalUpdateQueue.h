@@ -7,7 +7,10 @@
 //
 
 @protocol LocalUpdateGroup;
+#import "NSMutableArray+Locatable.h"
 
+
+// Queue
 @interface LocalUpdateQueue : NSObject
 @property (nonatomic) CLLocation * referenceLocation;
 - (void) addGroup:(id<LocalUpdateGroup>)group;
@@ -17,14 +20,19 @@
 @end
 
 
-@protocol LocalUpdateGroup <NSObject>
+// Update Group
+@protocol LocalUpdateGroup <NSObject, Locatable>
 @property (readonly) CLLocation * location;
-@property (readonly) NSSet* updatePoints;
+@property (readonly) NSArray * updatePoints;
 @property (readonly) BOOL wantsSummary;
 @end
 
+// Update Point
 @protocol LocalUpdatePoint <NSObject>
 @property (readonly) CLLocation * location;
 - (void) update;
 @property (readonly) BOOL loading;
 @end
+
+
+

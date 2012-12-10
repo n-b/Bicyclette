@@ -26,10 +26,15 @@
 - (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache;
 {
     self = [super initWithAnnotation:annotation drawingCache:drawingCache];
-    _handleLayer = [CALayer new];
-    _handleLayer.bounds = CGRectMake(0,0,kRadarAnnotationHandleSize, kRadarAnnotationHandleSize);
-    _handleLayer.actions = @{ @"position" : [NSNull null], @"contents" : [NSNull null] };
-    [self.layer addSublayer:_handleLayer];
+    if(self!=nil)
+    {
+        self.draggable = YES;
+        self.enabled = YES;
+        _handleLayer = [CALayer new];
+        _handleLayer.bounds = CGRectMake(0,0,kRadarAnnotationHandleSize, kRadarAnnotationHandleSize);
+        _handleLayer.actions = @{ @"position" : [NSNull null], @"contents" : [NSNull null] };
+        [self.layer addSublayer:_handleLayer];
+    }
     return self;
 }
 
@@ -43,8 +48,6 @@
     [self.radar removeObserver:self forKeyPath:@"stationsWithinRadarRegion" context:(__bridge void *)([RadarAnnotationView class])];
     [super setAnnotation:annotation];
     
-    self.draggable = self.radar.manualRadarValue;
-    self.enabled = self.radar.manualRadarValue;
     if(self.radar==nil)
         self.stationsWithinRadarRegion = nil;
     [self.radar addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
@@ -197,12 +200,12 @@
 
 - (void)displayLayer:(CALayer *)layer
 {
-    if(self.hidden || self.radar.manualRadarValue==NO)
-    {
-        self.layer.contents = nil;
-        _handleLayer.contents = nil;
-        return;
-    }
+//    if(self.hidden)
+//    {
+//        self.layer.contents = nil;
+//        _handleLayer.contents = nil;
+//        return;
+//    }
     
     
     self.layer.contents = (id)[self.drawingCache sharedImageWithSize:self.bounds.size

@@ -14,6 +14,7 @@
 #import "NSArrayAdditions.h"
 
 #import "LocalUpdateQueue.h"
+#import "BicycletteCity+LocalUpdateGroup.h"
 #import "GeoFencesMonitor.h"
 
 #import "ParisVelibCity.h"
@@ -21,10 +22,21 @@
 #import "ToulouseVeloCity.h"
 #import "AmiensVelamCity.h"
 
+typedef enum {
+	MapLevelNone = 0,
+	MapLevelRegions,
+	MapLevelRegionsAndRadars,
+	MapLevelStationsAndRadars
+}  MapLevel;
 
-@interface CitiesController ()
+
+@interface CitiesController () <CLLocationManagerDelegate>
 @property GeoFencesMonitor * fenceMonitor;
+@property CLLocationManager * userLocationManager;
 @property LocalUpdateQueue * updateQueue;
+@property MapLevel level;
+@property LocalUpdateGroup * userLocationUpdateGroup;
+@property LocalUpdateGroup * screenCenterUpdateGroup;
 @end
 
 /****************************************************************************/
@@ -50,6 +62,11 @@
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
                                                      name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
+
+        self.userLocationUpdateGroup = [LocalUpdateGroup new];
+        self.screenCenterUpdateGroup = [LocalUpdateGroup new];
+        [self.updateQueue addGroup:self.userLocationUpdateGroup];
+        [self.updateQueue addGroup:self.screenCenterUpdateGroup];
 
     }
     return self;
@@ -80,32 +97,26 @@
     [self addAndRemoveMapAnnotations];
 }
 
-- (void) setLevel:(MapLevel)level_
-{
-    if(_level==level_)
-        return;
-    
-    _level = level_;
-    if(self.level == MapLevelNone)
-        self.currentCity = nil;
-    else
-    {
-        CLLocationCoordinate2D centerCoord = [self.delegate region].center;
-        CLLocation * center = [[CLLocation alloc] initWithLatitude:centerCoord.latitude longitude:centerCoord.longitude];
-        NSMutableArray * sortedCities = [self.cities mutableCopy];
-        [sortedCities sortByDistanceFromLocation:center];
-        self.currentCity = sortedCities[0];
-    }
-}
-
 - (void) setCurrentCity:(BicycletteCity *)currentCity_
 {
-    _currentCity = currentCity_;
-    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.citySelected object:self.currentCity];
+    if(_currentCity != currentCity_)
+    {
+        _currentCity = currentCity_;
+        NSLog(@"city changed to %@",_currentCity.name);
+        self.screenCenterUpdateGroup.city = _currentCity;
+        self.userLocationUpdateGroup.city = _currentCity;
+        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.citySelected object:self.currentCity];
+    }
 }
 
 - (void) regionDidChange:(MKCoordinateRegion)viewRegion
 {
+    // Compute coordinates
+    // center
+    CLLocationCoordinate2D centerCoord = viewRegion.center;
+    CLLocation * center = [[CLLocation alloc] initWithLatitude:centerCoord.latitude longitude:centerCoord.longitude];
+
+    // bounds
     CLLocation * northLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude+viewRegion.span.latitudeDelta longitude:viewRegion.center.longitude/2];
     CLLocation * southLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude-viewRegion.span.latitudeDelta longitude:viewRegion.center.longitude/2];
     CLLocation * westLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude longitude:viewRegion.center.latitude-viewRegion.span.longitudeDelta/2];
@@ -114,6 +125,7 @@
     CLLocationDistance longDistance = [eastLocation distanceFromLocation:westLocation];
     CLLocationDistance avgDistance = (latDistance+longDistance)/2;
 
+    // Change level according to bounds
     if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegions"])
 		self.level = MapLevelNone;
 	else if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegionsAndRadars"])
@@ -123,23 +135,30 @@
 	else
 		self.level = MapLevelStationsAndRadars;
     
+    // Change to nearest city
+    if(self.level == MapLevelNone)
+        self.currentCity = nil;
+    else
+    {
+        NSMutableArray * sortedCities = [self.cities mutableCopy];
+        [sortedCities sortByDistanceFromLocation:center];
+        self.currentCity = sortedCities[0];
+    }
+
+    // Update annotations
     [self addAndRemoveMapAnnotations];
 
     // Keep the screen center Radar centered
-    self.currentCity.screenCenterRadar.coordinate = [self.delegate region].center;
-
     // And make it as big as the screen, but only if the stations are actually visible
     if(self.level==MapLevelStationsAndRadars)
-        self.currentCity.screenCenterRadar.customRadarSpan = [self.delegate region].span;
+        [self.screenCenterUpdateGroup setRegion:[self.delegate region]];
     else
-        self.currentCity.screenCenterRadar.customRadarSpan = MKCoordinateSpanMake(0, 0);
+        [self.screenCenterUpdateGroup setRegion:
+         MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(0, 0), 0, 0)];
     
     // In the same vein, only set the updater reference location if we're down enough
     if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
-    {
-        CLLocationCoordinate2D center = [self.delegate region].center;
-        self.updateQueue.referenceLocation = [[CLLocation alloc] initWithLatitude:center.latitude longitude:center.longitude];
-    }
+        self.updateQueue.referenceLocation = center;
     else
         self.updateQueue.referenceLocation = nil;
 
@@ -159,23 +178,16 @@
     if (self.level == MapLevelRegions || self.level == MapLevelRegionsAndRadars)
     {
         // Regions
-        NSFetchRequest * regionsRequest = [NSFetchRequest new];
-        regionsRequest.entity = [Region entityInManagedObjectContext:self.currentCity.moc];
+        NSFetchRequest * regionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
         [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:regionsRequest error:NULL]];
     }
     
     if (self.level == MapLevelRegionsAndRadars || self.level == MapLevelStationsAndRadars)
     {
         // Radars
-        NSFetchRequest * radarsRequest = [NSFetchRequest new];
-        [radarsRequest setEntity:[Radar entityInManagedObjectContext:self.currentCity.moc]];
-        NSMutableArray * allRadars = [[self.currentCity.moc executeFetchRequest:radarsRequest error:NULL] mutableCopy];
-        // do not add an annotation for screenCenterRadar, it's handled separately.
-        [allRadars removeObject:self.currentCity.screenCenterRadar];
-//        // only add the userLocationRadar if it's actually here
-//        if(self.mapView.userLocation.coordinate.latitude==0.0)
-//            [allRadars removeObject:self.currentCity.userLocationRadar];
-        [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:allRadars]];
+        NSFetchRequest * radarsRequest = [NSFetchRequest fetchRequestWithEntityName:[Radar entityName]];
+        NSArray * radars = [self.currentCity.moc executeFetchRequest:radarsRequest error:NULL];
+        [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:radars]];
     }
     
     if (self.level == MapLevelStationsAndRadars)
@@ -193,6 +205,18 @@
     }
     
     [self.delegate setAnnotations:newAnnotations];
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(newLocation.coordinate,
+                                                                               distance, distance)];
 }
 
 /****************************************************************************/

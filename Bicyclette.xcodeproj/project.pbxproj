@@ -97,6 +97,7 @@
 		3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
+		376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -111,11 +112,6 @@
 		37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* NSArrayAdditions.m */; };
 		37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
 		37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
-		37AA662416543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
-		37AA662516543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */; };
-		37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
-		37AA662A16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
-		37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */; };
 		37AEF3AD1657A04B00F6E56C /* NSArrayAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */; };
 		37AEF3AE1657A04B00F6E56C /* NSSetAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
@@ -302,6 +298,8 @@
 		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+LocalUpdateGroup.h"; sourceTree = "<group>"; };
+		376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+LocalUpdateGroup.m"; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -319,10 +317,6 @@
 		37AA66181653E9EA001F9660 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
 		37AA661D1653F027001F9660 /* Radar+GeoFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Radar+GeoFence.h"; sourceTree = "<group>"; };
 		37AA661E1653F027001F9660 /* Radar+GeoFence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Radar+GeoFence.m"; sourceTree = "<group>"; };
-		37AA662216543B2C001F9660 /* Radar+LocalUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Radar+LocalUpdateGroup.h"; sourceTree = "<group>"; };
-		37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Radar+LocalUpdateGroup.m"; sourceTree = "<group>"; };
-		37AA662716543EC1001F9660 /* Station+LocalUpdatePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Station+LocalUpdatePoint.h"; sourceTree = "<group>"; };
-		37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Station+LocalUpdatePoint.m"; sourceTree = "<group>"; };
 		37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditionsTests.m; sourceTree = "<group>"; };
 		37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSSetAdditionsTests.m; sourceTree = "<group>"; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -545,12 +539,12 @@
 				374334C9164B0EC00051294F /* CitiesController.m */,
 				37D131FC163F32DE00AABEE4 /* Model */,
 				3717AA65162A1C11005EC7BD /* Cities */,
+				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
+				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
 				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
-				37AA662216543B2C001F9660 /* Radar+LocalUpdateGroup.h */,
-				37AA662316543B2C001F9660 /* Radar+LocalUpdateGroup.m */,
-				37AA662716543EC1001F9660 /* Station+LocalUpdatePoint.h */,
-				37AA662816543EC1001F9660 /* Station+LocalUpdatePoint.m */,
+				376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */,
+				376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */,
 				37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */,
 				37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */,
 				37AA661D1653F027001F9660 /* Radar+GeoFence.h */,
@@ -696,8 +690,6 @@
 				3793DE2113802E6100B50118 /* DataUpdater.m */,
 				37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */,
 				37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */,
-				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
-				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
 				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
 				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
 				37149BBA126250D7009CDE82 /* NSSetAdditions.h */,
@@ -797,7 +789,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Nicolas Bouilleaud";
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Bicyclette" */;
@@ -989,10 +981,9 @@
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */,
-				37AA662416543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
-				37AA662916543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
+				376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,7 +1004,6 @@
 				37D9DFE3162A318E0000F263 /* ToulouseVeloCity.m in Sources */,
 				370E3A40162E17880010E454 /* AmiensVelamCity.m in Sources */,
 				37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
-				37AA662B16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
@@ -1025,8 +1015,6 @@
 			files = (
 				37AA661A1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
 				37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */,
-				37AA662516543B2C001F9660 /* Radar+LocalUpdateGroup.m in Sources */,
-				37AA662A16543EC1001F9660 /* Station+LocalUpdatePoint.m in Sources */,
 				370220E6165530E900350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */,
 				370220E81655310D00350AD1 /* CoreDataManager.m in Sources */,
@@ -1182,7 +1170,11 @@
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1229,7 +1221,11 @@
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

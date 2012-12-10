@@ -45,14 +45,7 @@
 
 - (id)initWithModelName:(NSString *)modelName storeURL:(NSURL *)storeURL
 {
-    self = [super initWithModelName:@"BicycletteCity" storeURL:storeURL];
-    if (self) {
-#if TARGET_OS_IPHONE
-        // Forget old userLocation, until we have a better one
-        [self userLocationRadar].coordinate = CLLocationCoordinate2DMake(0, 0);
-#endif
-    }
-    return self;
+    return [super initWithModelName:@"BicycletteCity" storeURL:storeURL];
 }
 
 /****************************************************************************/
@@ -297,40 +290,26 @@
 }
 
 /****************************************************************************/
-#pragma mark Radars
-
-#if TARGET_OS_IPHONE
-- (Radar *) userLocationRadar
-{
-    Radar * r = [[Radar fetchUserLocationRadar:self.moc] lastObject];
-    if(r==nil)
-    {
-        r = [Radar insertInManagedObjectContext:self.moc];
-        r.manualRadarValue = NO;
-        r.identifier = RadarIdentifiers.userLocation;
-        [self save:nil];
-    }
-    return r;
-}
-- (Radar *) screenCenterRadar
-{
-    Radar * r = [[Radar fetchScreenCenterRadar:self.moc] lastObject];
-    if(r==nil)
-    {
-        r = [Radar insertInManagedObjectContext:self.moc];
-        r.manualRadarValue = NO;
-        r.identifier = RadarIdentifiers.screenCenter;
-        [self save:nil];
-    }
-    return r;
-}
-#endif
+#pragma mark Fetch requests
 
 - (Station*) stationWithNumber:(NSString*)number
 {
     NSArray * stations = [Station fetchStationWithNumber:self.moc number:number];
     return [stations lastObject];
 }
+
+#if TARGET_OS_IPHONE
+- (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region
+{
+    NSMutableArray * stations = [[Station fetchStationsWithinRange:self.moc
+                                                       minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
+                                                       maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
+                                                      minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
+                                                      maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)] mutableCopy];
+    [stations sortByDistanceFromLocation:[[CLLocation alloc]initWithLatitude:region.center.latitude longitude:region.center.longitude]];
+    return stations;
+}
+#endif
 
 /****************************************************************************/
 #pragma mark Coordinates

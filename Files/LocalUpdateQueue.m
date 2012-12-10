@@ -46,7 +46,7 @@
 {
     if(![self.updateGroups containsObject:group])
     {
-        [group addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:0 context:(__bridge void *)([LocalUpdateQueue class])];
+        [group addObserver:self forKeyPath:@"updatePoints" options:0 context:(__bridge void *)([LocalUpdateQueue class])];
         [self.updateGroups addObject:group];
         [self updateStationsList];
     }
@@ -56,7 +56,7 @@
 {
     if(![self.updateGroups containsObject:group])
     {
-        [group removeObserver:self forKeyPath:@"stationsWithinRadarRegion"];
+        [group removeObserver:self forKeyPath:@"updatePoints"];
         [self.updateGroups removeObject:group];
         [self updateStationsList];
     }
@@ -105,7 +105,7 @@
     // make the list
     NSMutableOrderedSet * pointsList = [NSMutableOrderedSet new]; // use an orderedset to make sure each station is added only once
     for (id<LocalUpdateGroup> group in groupsToRefresh)
-        [pointsList unionSet:group.updatePoints];
+        [pointsList addObjectsFromArray:group.updatePoints];
     self.updatePoints = [pointsList array];
 }
 
@@ -148,7 +148,7 @@
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
         // clear the summary flag : we only want it once.
-        [self.updateGroups setValue:@(NO) forKey:@"wantsSummary"];
+//        [self.updateGroups setValue:@(NO) forKey:@"wantsSummary"];
         
         // after a delay, compute new list, and restart. (only if app is active)
         if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
@@ -162,17 +162,18 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([LocalUpdateQueue class])) {
+        Protocol * p = @protocol(LocalUpdatePoint);
         if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
         {
             // A radar has changed : update the list of stations
-            if([keyPath isEqualToString:@"stationsWithinRadarRegion"])
+            if([keyPath isEqualToString:@"updatePoints"])
                 [self updateStationsList];
             else if([keyPath isEqualToString:@"wantsSummary"] && [object wantsSummary])
                 // only update if wantsSummary is YES. We do not want to update when the flag is cleared.
                 // (if it's cleared because leaving a zone, the summary display will be ignored anyway)
                 [self updateStationsList];
         }
-        else if([object conformsToProtocol:@protocol(LocalUpdatePoint)] && [keyPath isEqualToString:@"loading"] && [object loading]==NO)
+        else if([[object class] conformsToProtocol:p] && [keyPath isEqualToString:@"loading"] && [object loading]==NO)
         {
             // The station being refreshed has finished (maybe on error, but it's no more "loading").
             NSAssert(object == self.pointBeingUpdated,@"error : wrong station being refreshed");
@@ -186,3 +187,4 @@
 }
 
 @end
+

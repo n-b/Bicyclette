@@ -1,14 +1,9 @@
 #import "Radar.h"
 #import "Station.h"
 #import "NSMutableArray+Locatable.h"
+#import "BicycletteCity.h"
 
 #if TARGET_OS_IPHONE
-
-const struct RadarIdentifiers RadarIdentifiers = {
-	.userLocation = @"userLocationRadar",
-	.screenCenter = @"screenCenterRadar",
-};
-
 
 @interface Radar()
 @property (nonatomic) NSArray * stationsWithinRadarRegion;
@@ -18,7 +13,6 @@ const struct RadarIdentifiers RadarIdentifiers = {
 @implementation Radar
 @synthesize stationsWithinRadarRegion=_stationsWithinRadarRegion;
 @synthesize wantsSummary=_wantsSummary;
-@synthesize customRadarSpan=_customRadarSpan;
 
 /****************************************************************************/
 #pragma mark NSManagedObject
@@ -72,20 +66,13 @@ const struct RadarIdentifiers RadarIdentifiers = {
 
 - (MKCoordinateRegion) radarRegion
 {
-    if(self.customRadarSpan.latitudeDelta!=0 || self.customRadarSpan.longitudeDelta!=0)
-    {
-        return MKCoordinateRegionMake(self.coordinate, self.customRadarSpan);
-    }
-    else
-    {
-        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-        return MKCoordinateRegionMakeWithDistance(self.coordinate, radarDistance*2, radarDistance*2);
-    }
+    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    return MKCoordinateRegionMakeWithDistance(self.coordinate, radarDistance*2, radarDistance*2);
 }
 
 + (NSSet *)keyPathsForValuesAffectingRadarRegion
 {
-    return [NSSet setWithObjects:@"coordinate", @"customRadarSpan",nil];
+    return [NSSet setWithObjects:@"coordinate",nil];
 }
 
 /****************************************************************************/
@@ -133,32 +120,18 @@ const struct RadarIdentifiers RadarIdentifiers = {
 - (void) updateStationsWithinRadarRegion
 {
     // Fetch in a square
-    MKCoordinateRegion region = [self radarRegion];
-    NSMutableArray * stations = [[Station fetchStationsWithinRange:self.managedObjectContext
-                                                       minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
-                                                       maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
-                                                      minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
-                                                      maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)] mutableCopy];
-    
+    NSMutableArray * stations = [[self.city stationsWithinRegion:[self radarRegion]] mutableCopy];
+
     CLLocation * location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-    if(self.customRadarSpan.latitudeDelta==0 && self.customRadarSpan.longitudeDelta==0)
-    {
-        // we're not using a custom span.
-        // chop those that are in the square, but actually farther that the radar distance
-        CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-        [stations filterWithinDistance:radarDistance fromLocation:location];
-    }
-    [stations sortByDistanceFromLocation:location];
+    // chop those that are in the square, but actually farther that the radar distance
+    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    [stations filterWithinDistance:radarDistance fromLocation:location];
+
     self.stationsWithinRadarRegion = [stations copy]; // compare first !
 }
 
 /****************************************************************************/
 #pragma mark Location / Coordinate
-
-- (CLLocation*) location
-{
-    return [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-}
 
 - (CLLocationCoordinate2D) coordinate
 {
@@ -173,12 +146,6 @@ const struct RadarIdentifiers RadarIdentifiers = {
         self.longitudeValue = coordinate.longitude;
         [self updateStationsWithinRadarRegion];
     }
-}
-
-- (void) setCustomRadarSpan:(MKCoordinateSpan)customRadarSpan_
-{
-    _customRadarSpan = customRadarSpan_;
-    [self updateStationsWithinRadarRegion];
 }
 
 @end

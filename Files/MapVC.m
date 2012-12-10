@@ -30,6 +30,7 @@
 @property UISegmentedControl * modeControl;
 
 @property StationAnnotationMode stationMode;
+@property CLLocationCoordinate2D userCoordinates;
 
 // Radar creation
 @property Radar * droppedRadar;
@@ -117,6 +118,7 @@
     // observe changes to the prefs
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 
+    self.userCoordinates = CLLocationCoordinate2DMake(0, 0);
     // reload data
     [self.citiesController reloadData];
 }
@@ -239,19 +241,18 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    CLLocationCoordinate2D oldCoord = [self.citiesController.currentCity userLocationRadar].coordinate;
     CLLocationCoordinate2D newCoord = userLocation.coordinate;
-    if(oldCoord.latitude != newCoord.latitude || oldCoord.longitude != newCoord.longitude)
-        [self.citiesController.currentCity userLocationRadar].coordinate = newCoord;
-    
     MKCoordinateRegion referenceRegion = self.citiesController.referenceRegion;
-    if(oldCoord.latitude == 0 && oldCoord.longitude == 0
+    if(self.userCoordinates.latitude == 0 && self.userCoordinates.longitude == 0
        && newCoord.latitude != 0 && newCoord.longitude != 0
        && newCoord.latitude > referenceRegion.center.latitude - referenceRegion.span.latitudeDelta
        && newCoord.latitude < referenceRegion.center.latitude + referenceRegion.span.latitudeDelta
        && newCoord.longitude > referenceRegion.center.longitude - referenceRegion.span.longitudeDelta
        && newCoord.longitude < referenceRegion.center.longitude + referenceRegion.span.longitudeDelta)
+    {
         [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+        self.userCoordinates = newCoord;
+    }
 }
 
 
@@ -286,7 +287,7 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) addRadar:(UILongPressGestureRecognizer*)longPressRecognizer
 {
-    if (self.citiesController.level != MapLevelRegionsAndRadars && self.citiesController.level != MapLevelStationsAndRadars)
+    if (self.citiesController.currentCity == nil)
         return; // prevent creating radars from high level
     
     switch (longPressRecognizer.state)
@@ -315,7 +316,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
 - (void) createRadarAtPoint:(CGPoint)pointInMapView
 {
     self.droppedRadar = [Radar insertInManagedObjectContext:self.citiesController.currentCity.moc];
-    self.droppedRadar.manualRadarValue = YES;
     // just use a timestamp as the id
     long long identifier = 100*[NSDate timeIntervalSinceReferenceDate];
     self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",identifier];
