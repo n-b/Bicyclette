@@ -9,7 +9,7 @@
 #import "RadarAnnotationView.h"
 #import "Radar.h"
 #import "Station.h"
-#import "NSArrayAdditions.h"
+#import "CollectionsAdditions.h"
 #import "DrawingCache.h"
 #import "Style.h"
 

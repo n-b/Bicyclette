@@ -12,7 +12,7 @@
 #import "Station.h"
 #import "Region.h"
 #import "TransparentToolbar.h"
-#import "NSArrayAdditions.h"
+#import "CollectionsAdditions.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
 #import "DrawingCache.h"

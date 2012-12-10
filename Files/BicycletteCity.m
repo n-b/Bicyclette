@@ -12,7 +12,7 @@
 #if TARGET_OS_IPHONE
 #import "Radar.h"
 #endif
-#import "NSArrayAdditions.h"
+#import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 #import "NSObject+KVCMapping.h"
 #import "NSError+MultipleErrorsCombined.h"
@@ -241,7 +241,7 @@
         }
         
         // Find Existing Stations
-        Station * station = [self.parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKey:StationAttributes.number];
+        Station * station = [self.parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKeyPath:StationAttributes.number];
         if(station)
         {
             // found existing

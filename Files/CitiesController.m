@@ -11,7 +11,7 @@
 #import "Station.h"
 #import "Region.h"
 #import "Radar.h"
-#import "NSArrayAdditions.h"
+#import "CollectionsAdditions.h"
 
 #import "LocalUpdateQueue.h"
 #import "BicycletteCity+LocalUpdateGroup.h"

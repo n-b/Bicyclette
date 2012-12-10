@@ -9,7 +9,7 @@
 #import "LocalUpdateQueue.h"
 #import "BicycletteCity.h"
 #import "NSMutableArray+Locatable.h"
-#import "NSSetAdditions.h"
+#import "CollectionsAdditions.h"
 
 @interface LocalUpdateQueue () <NSFetchedResultsControllerDelegate>
 @property NSMutableSet * updateGroups;
@@ -99,7 +99,7 @@
     else
     {
         // if the app is inactive, the referenceLocation is unused, we just use the summary flag
-        groupsToRefresh = [[self.updateGroups filteredSetWithValue:@(YES) forKey:@"wantsSummary"] allObjects];
+        groupsToRefresh = [[self.updateGroups filteredSetWithValue:@(YES) forKeyPath:@"wantsSummary"] allObjects];
     }
         
     // make the list

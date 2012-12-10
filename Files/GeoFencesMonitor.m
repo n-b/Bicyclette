@@ -7,7 +7,7 @@
 //
 
 #import "GeoFencesMonitor.h"
-#import "NSSetAdditions.h"
+#import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 #import "BicycletteCity.h"
 
@@ -104,7 +104,7 @@
 {
     NSLog(@"did enter region %@",region);
     
-    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region forKey:@"region"];
+    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region forKeyPath:@"region"];
     [fence enterFence];
 }
 
@@ -112,7 +112,7 @@
 {
     NSLog(@"did exit region %@",region);
     
-    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region forKey:@"region"];
+    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region forKeyPath:@"region"];
     [fence exitFence];
 }
 

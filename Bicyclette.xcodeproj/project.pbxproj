@@ -62,7 +62,6 @@
 		370E3A45162E189D0010E454 /* AmiensVelamCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
-		37149BBC126250D7009CDE82 /* NSSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSSetAdditions.m */; };
 		3717AA68162A1C11005EC7BD /* MarseilleLeveloCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3717AA66162A1C11005EC7BD /* MarseilleLeveloCity.plist */; };
 		3717AA69162A1C11005EC7BD /* ParisVelibCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */; };
 		3717AA6B162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3717AA6A162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist */; };
@@ -86,7 +85,6 @@
 		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
 		373A77EE15E3EB490057E241 /* NSData+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */; };
-		373A77EF15E3EB890057E241 /* NSSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149BBB126250D7009CDE82 /* NSSetAdditions.m */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		373A77F415E3F6B80057E241 /* ParisVelibCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */; };
 		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
@@ -107,13 +105,12 @@
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		37AA66191653E9EA001F9660 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* NSArrayAdditions.m */; };
-		37AA661A1653E9EA001F9660 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* NSArrayAdditions.m */; };
-		37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* NSArrayAdditions.m */; };
+		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
+		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
+		37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
 		37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
-		37AEF3AD1657A04B00F6E56C /* NSArrayAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */; };
-		37AEF3AE1657A04B00F6E56C /* NSSetAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */; };
+		37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
 		37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
 		37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
@@ -257,8 +254,6 @@
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		37149BBA126250D7009CDE82 /* NSSetAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSSetAdditions.h; sourceTree = "<group>"; };
-		37149BBB126250D7009CDE82 /* NSSetAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSSetAdditions.m; sourceTree = "<group>"; };
 		3717AA66162A1C11005EC7BD /* MarseilleLeveloCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MarseilleLeveloCity.plist; sourceTree = "<group>"; };
 		3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ParisVelibCity.plist; sourceTree = "<group>"; };
 		3717AA6A162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedDebugErrors.plist; sourceTree = "<group>"; };
@@ -313,12 +308,11 @@
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		37AA66171653E9EA001F9660 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayAdditions.h; sourceTree = "<group>"; };
-		37AA66181653E9EA001F9660 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
+		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
+		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
 		37AA661D1653F027001F9660 /* Radar+GeoFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Radar+GeoFence.h"; sourceTree = "<group>"; };
 		37AA661E1653F027001F9660 /* Radar+GeoFence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Radar+GeoFence.m"; sourceTree = "<group>"; };
-		37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditionsTests.m; sourceTree = "<group>"; };
-		37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSSetAdditionsTests.m; sourceTree = "<group>"; };
+		37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditionsTests.m; sourceTree = "<group>"; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
 		37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
@@ -597,8 +591,7 @@
 		3786E4E114825A7700814C10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				37AEF3AA1657A04B00F6E56C /* NSArrayAdditionsTests.m */,
-				37AEF3AB1657A04B00F6E56C /* NSSetAdditionsTests.m */,
+				37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */,
 			);
 			name = Tests;
 			path = ../LogicTests;
@@ -686,16 +679,14 @@
 			children = (
 				3793DE1D1380295400B50118 /* CoreDataManager.h */,
 				3793DE1E1380295400B50118 /* CoreDataManager.m */,
-				3793DE2013802E6100B50118 /* DataUpdater.h */,
-				3793DE2113802E6100B50118 /* DataUpdater.m */,
 				37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */,
 				37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */,
+				3793DE2013802E6100B50118 /* DataUpdater.h */,
+				3793DE2113802E6100B50118 /* DataUpdater.m */,
 				372BC7DF132ECB2000D12CBE /* NSData+SHA1.h */,
 				372BC7E0132ECB2000D12CBE /* NSData+SHA1.m */,
-				37149BBA126250D7009CDE82 /* NSSetAdditions.h */,
-				37149BBB126250D7009CDE82 /* NSSetAdditions.m */,
-				37AA66171653E9EA001F9660 /* NSArrayAdditions.h */,
-				37AA66181653E9EA001F9660 /* NSArrayAdditions.m */,
+				37AA66171653E9EA001F9660 /* CollectionsAdditions.h */,
+				37AA66181653E9EA001F9660 /* CollectionsAdditions.m */,
 				37149B9312624C15009CDE82 /* NSStringAdditions.h */,
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
 				3786E4E114825A7700814C10 /* Tests */,
@@ -948,7 +939,6 @@
 				1D3623260D0F684500981E51 /* BicycletteApplicationDelegate.m in Sources */,
 				37216BC712611C5400A2695A /* BicycletteCity.m in Sources */,
 				37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */,
-				37149BBC126250D7009CDE82 /* NSSetAdditions.m in Sources */,
 				37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
@@ -979,7 +969,7 @@
 				370E3A3F162E17880010E454 /* AmiensVelamCity.m in Sources */,
 				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
-				37AA66191653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
+				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
@@ -997,13 +987,12 @@
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
 				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
 				373A77EE15E3EB490057E241 /* NSData+SHA1.m in Sources */,
-				373A77EF15E3EB890057E241 /* NSSetAdditions.m in Sources */,
 				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
 				3717AA71162A1F39005EC7BD /* ParisVelibCity.m in Sources */,
 				37D9DFDF162A2BF60000F263 /* MarseilleLeveloCity.m in Sources */,
 				37D9DFE3162A318E0000F263 /* ToulouseVeloCity.m in Sources */,
 				370E3A40162E17880010E454 /* AmiensVelamCity.m in Sources */,
-				37AA661B1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
+				37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
@@ -1013,14 +1002,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37AA661A1653E9EA001F9660 /* NSArrayAdditions.m in Sources */,
+				37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */,
 				370220E6165530E900350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */,
 				370220E81655310D00350AD1 /* CoreDataManager.m in Sources */,
 				370220E91655311000350AD1 /* DataUpdater.m in Sources */,
-				37AEF3AD1657A04B00F6E56C /* NSArrayAdditionsTests.m in Sources */,
-				37AEF3AE1657A04B00F6E56C /* NSSetAdditionsTests.m in Sources */,
+				37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */,
 				37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
