@@ -301,12 +301,12 @@
 #if TARGET_OS_IPHONE
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region
 {
-    NSMutableArray * stations = [[Station fetchStationsWithinRange:self.moc
-                                                       minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
-                                                       maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
-                                                      minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
-                                                      maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)] mutableCopy];
-    [stations sortByDistanceFromLocation:[[CLLocation alloc]initWithLatitude:region.center.latitude longitude:region.center.longitude]];
+    NSArray * stations = [Station fetchStationsWithinRange:self.moc
+                                               minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
+                                               maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
+                                              minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
+                                              maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)];
+    stations = [stations sortedArrayByDistanceFromLocation:[[CLLocation alloc]initWithLatitude:region.center.latitude longitude:region.center.longitude]];
     return stations;
 }
 #endif

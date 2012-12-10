@@ -1,11 +1,9 @@
 #import "_Station.h"
-#import <CoreLocation/CoreLocation.h>
-#import "NSMutableArray+Locatable.h"
 
 #if TARGET_OS_IPHONE
-@interface Station : _Station <MKAnnotation, Locatable>
+@interface Station : _Station <MKAnnotation>
 #else
-@interface Station : _Station <Locatable>
+@interface Station : _Station
 #endif
 
 // A flag indicating that we need to refresh the data

@@ -53,7 +53,7 @@
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
 		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
 		3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */; };
-		370D2ABB15A3A2270019F36E /* NSMutableArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */; };
+		370D2ABB15A3A2270019F36E /* NSArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */; };
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370E3A3F162E17880010E454 /* AmiensVelamCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370E3A3E162E17880010E454 /* AmiensVelamCity.m */; };
 		370E3A40162E17880010E454 /* AmiensVelamCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370E3A3E162E17880010E454 /* AmiensVelamCity.m */; };
@@ -96,6 +96,8 @@
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */; };
+		3760881316762BF000B1161E /* NSArray+LocatableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3760881216762BEF00B1161E /* NSArray+LocatableTests.m */; };
+		3760881516762FB400B1161E /* NSArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -243,8 +245,8 @@
 		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
 		3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+AttributionLogo.h"; sourceTree = "<group>"; };
 		3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+AttributionLogo.m"; sourceTree = "<group>"; };
-		370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Locatable.h"; sourceTree = "<group>"; };
-		370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Locatable.m"; sourceTree = "<group>"; };
+		370D2AB915A3A2270019F36E /* NSArray+Locatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Locatable.h"; sourceTree = "<group>"; };
+		370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Locatable.m"; sourceTree = "<group>"; };
 		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
 		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
 		370E3A3D162E17870010E454 /* AmiensVelamCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmiensVelamCity.h; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+LocalUpdateGroup.h"; sourceTree = "<group>"; };
 		376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+LocalUpdateGroup.m"; sourceTree = "<group>"; };
+		3760881216762BEF00B1161E /* NSArray+LocatableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LocatableTests.m"; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -533,8 +536,8 @@
 				374334C9164B0EC00051294F /* CitiesController.m */,
 				37D131FC163F32DE00AABEE4 /* Model */,
 				3717AA65162A1C11005EC7BD /* Cities */,
-				370D2AB915A3A2270019F36E /* NSMutableArray+Locatable.h */,
-				370D2ABA15A3A2270019F36E /* NSMutableArray+Locatable.m */,
+				370D2AB915A3A2270019F36E /* NSArray+Locatable.h */,
+				370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */,
 				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
 				376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */,
@@ -545,6 +548,7 @@
 				37AA661E1653F027001F9660 /* Radar+GeoFence.m */,
 				3724BC7115E4CA1200790869 /* Store.h */,
 				3724BC7215E4CA1200790869 /* Store.m */,
+				3760881416762BF300B1161E /* Tests */,
 				37D131FD163F32FC00AABEE4 /* Utility */,
 			);
 			name = Backend;
@@ -576,6 +580,15 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		3760881416762BF300B1161E /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3760881216762BEF00B1161E /* NSArray+LocatableTests.m */,
+			);
+			name = Tests;
+			path = LogicTests;
+			sourceTree = SOURCE_ROOT;
+		};
 		3770B22C14E976590003BBA8 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,8 +607,8 @@
 				37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */,
 			);
 			name = Tests;
-			path = ../LogicTests;
-			sourceTree = "<group>";
+			path = LogicTests;
+			sourceTree = SOURCE_ROOT;
 		};
 		3786E4E214825A7700814C10 /* Test Supporting Files */ = {
 			isa = PBXGroup;
@@ -949,7 +962,7 @@
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
 				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
-				370D2ABB15A3A2270019F36E /* NSMutableArray+Locatable.m in Sources */,
+				370D2ABB15A3A2270019F36E /* NSArray+Locatable.m in Sources */,
 				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
@@ -1010,6 +1023,8 @@
 				370220E91655311000350AD1 /* DataUpdater.m in Sources */,
 				37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */,
 				37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
+				3760881316762BF000B1161E /* NSArray+LocatableTests.m in Sources */,
+				3760881516762FB400B1161E /* NSArray+Locatable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

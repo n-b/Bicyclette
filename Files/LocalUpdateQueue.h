@@ -7,7 +7,7 @@
 //
 
 @protocol LocalUpdateGroup;
-#import "NSMutableArray+Locatable.h"
+#import "NSArray+Locatable.h"
 
 
 // Queue

@@ -139,11 +139,7 @@ typedef enum {
     if(self.level == MapLevelNone)
         self.currentCity = nil;
     else
-    {
-        NSMutableArray * sortedCities = [self.cities mutableCopy];
-        [sortedCities sortByDistanceFromLocation:center];
-        self.currentCity = sortedCities[0];
-    }
+        self.currentCity = [self.cities sortedArrayByDistanceFromLocation:center][0];
 
     // Update annotations
     [self addAndRemoveMapAnnotations];

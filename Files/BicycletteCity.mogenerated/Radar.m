@@ -1,6 +1,6 @@
 #import "Radar.h"
 #import "Station.h"
-#import "NSMutableArray+Locatable.h"
+#import "NSArray+Locatable.h"
 #import "BicycletteCity.h"
 
 #if TARGET_OS_IPHONE
@@ -120,12 +120,12 @@
 - (void) updateStationsWithinRadarRegion
 {
     // Fetch in a square
-    NSMutableArray * stations = [[self.city stationsWithinRegion:[self radarRegion]] mutableCopy];
+    NSArray * stations = [self.city stationsWithinRegion:[self radarRegion]];
 
     CLLocation * location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
     // chop those that are in the square, but actually farther that the radar distance
     CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-    [stations filterWithinDistance:radarDistance fromLocation:location];
+    stations = [stations filteredArrayWithinDistance:radarDistance fromLocation:location];
 
     self.stationsWithinRadarRegion = [stations copy]; // compare first !
 }

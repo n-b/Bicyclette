@@ -1,5 +1,4 @@
 #import "_Radar.h"
-#import "NSMutableArray+Locatable.h"
 
 #if TARGET_OS_IPHONE
 

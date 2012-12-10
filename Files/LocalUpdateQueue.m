@@ -8,7 +8,7 @@
 
 #import "LocalUpdateQueue.h"
 #import "BicycletteCity.h"
-#import "NSMutableArray+Locatable.h"
+#import "NSArray+Locatable.h"
 #import "CollectionsAdditions.h"
 
 @interface LocalUpdateQueue () <NSFetchedResultsControllerDelegate>
@@ -91,9 +91,10 @@
     {
         // if the app is active, it's simply the stations of the radars,
         // within a limit, from the nearest.
-        NSMutableArray * sortedGroups = [[self.updateGroups allObjects] mutableCopy];
-        [sortedGroups filterWithinDistance:refreshDistance fromLocation:self.referenceLocation];
-        [sortedGroups sortByDistanceFromLocation:self.referenceLocation];
+        
+        NSArray * sortedGroups = [self.updateGroups allObjects];
+        sortedGroups = [sortedGroups filteredArrayWithinDistance:refreshDistance fromLocation:self.referenceLocation];
+        sortedGroups = [sortedGroups sortedArrayByDistanceFromLocation:self.referenceLocation];
         groupsToRefresh = sortedGroups;
     }
     else
