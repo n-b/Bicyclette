@@ -16,7 +16,7 @@
 {
     RegionInfo * regionInfo = [RegionInfo new];
     regionInfo.number = @"Toulouse";
-    regionInfo.name = @"Vêlo";
+    regionInfo.name = @"VélÔ";
     
     return regionInfo;
 }
@@ -28,7 +28,7 @@
 
 - (NSString*)subtitleForRegion:(Region*)region
 {
-    return @"Vêlo";
+    return @"VélÔ";
 }
 
 - (NSString*)titleForStation:(Station*)region
