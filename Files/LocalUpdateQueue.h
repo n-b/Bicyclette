@@ -25,7 +25,6 @@
 @property BOOL queuedForUpdate;
 @end
 
-
 //
 // Collections
 @interface NSArray (Locatable)
@@ -44,6 +43,7 @@
 
 // Monitored Update Groups
 @property (nonatomic) CLLocationDistance moniteredGroupsMaximumDistance;
+@property (nonatomic) BOOL monitoringPaused;
 - (void) addMonitoredGroup:(NSObject<LocalUpdateGroup>*)group;
 - (void) removeMonitoredGroup:(NSObject<LocalUpdateGroup>*)group;
 

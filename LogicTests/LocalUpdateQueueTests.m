@@ -80,24 +80,36 @@
 /****************************************************************************/
 #pragma mark -
 
-@interface LocalUpdateQueueTests : SenTestCase
+@interface LocalUpdateQueueTests : SenTestCase <LocalUpdateQueueDelegate>
 @end
 
 @implementation LocalUpdateQueueTests
-
-- (void) testMonitoredGroups
 {
-    // Prepare a reference points and a group of local points
-    LocalUpdateQueue * queue = [LocalUpdateQueue new];
+    LocalUpdateQueue * queue;
+    id g1, g2;
+    id p1, p2;
+    __block BOOL delegateCalledFlag;
+}
+
+- (void) setUp
+{
+    [super setUp];
+    queue = [LocalUpdateQueue new];
     queue.referenceLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
     queue.delayBetweenPointUpdates = .01;
     queue.moniteredGroupsMaximumDistance = 1000000;
     
-    id p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:.5]} mutableCopy];
-    id p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:-.5]} mutableCopy];
-    id g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1, p2]};
+    delegateCalledFlag = NO;
+}
+
+- (void) testMonitoredGroups
+{
+    // Prepare a group of local points
+    p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:.5]} mutableCopy];
+    p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:-.5]} mutableCopy];
+    g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1, p2]};
     
-    __block BOOL completed;
+    __block BOOL completed = NO;
     __block int updateCount = 0;
     p1[@"update"] = ^(id obj){ updateCount ++; completed = updateCount==5; };
 
@@ -119,16 +131,12 @@
 
 - (void) testOneshotGroups
 {
-    // Prepare a reference points and a group of local points
-    LocalUpdateQueue * queue = [LocalUpdateQueue new];
-    queue.referenceLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
-    queue.delayBetweenPointUpdates = .01;
-    queue.moniteredGroupsMaximumDistance = 1000000;
+    // Prepare a group of local points
+    p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:.5]} mutableCopy];
+    p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:-.5]} mutableCopy];
+    g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1, p2]};
     
-    id p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:.5]} mutableCopy];
-    id p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:-.5]} mutableCopy];
-    id g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1, p2]};
-    
+    // Set a test update block to count calls
     __block int updateCount = 0;
     p1[@"update"] = ^(id obj){ updateCount ++; };
     
@@ -148,19 +156,37 @@
     STAssertFalse([p2 queuedForUpdate],  nil);
 }
 
-- (void) testMonitoredGroupsDistance
+- (void) testOneshotDelegate
 {
     // Prepare a reference points and a group of local points
-    LocalUpdateQueue * queue = [LocalUpdateQueue new];
-    queue.referenceLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
-    queue.delayBetweenPointUpdates = .01;
-    queue.moniteredGroupsMaximumDistance = 1000000;
+    queue.delegate = self;
     
-    id p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:20 longitude:.5]} mutableCopy];
-    id g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1]};
+    p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:.5]} mutableCopy];
+    g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1]};
+        
+    // Add our group
+    [queue addOneshotGroup:g1];
+        
+    // Check "update" is called only once
+    [self waitForCompletion:.05 flag:&delegateCalledFlag];
+    
+    STAssertTrue(delegateCalledFlag, nil);
+}
+- (void) updateQueue:(LocalUpdateQueue *)queue didUpdateOneshotPoint:(id<LocalUpdatePoint>)point ofGroup:(id<LocalUpdateGroup>)group
+{
+    STAssertEqualObjects(point, p1, nil);
+    STAssertEqualObjects(group, g1, nil);
+    delegateCalledFlag = YES;
+}
 
-    id p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:20 longitude:.5]} mutableCopy];
-    id g2 = @{@"location" : [[CLLocation alloc] initWithLatitude:10 longitude:1], @"points" : @[p2]};
+- (void) testMonitoredGroupsDistance
+{
+    // Prepare groups of local points
+    p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:20 longitude:.5]} mutableCopy];
+    g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1]};
+    
+    p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:20 longitude:.5]} mutableCopy];
+    g2 = @{@"location" : [[CLLocation alloc] initWithLatitude:10 longitude:1], @"points" : @[p2]};
 
     // Add our groups
     [queue addMonitoredGroup:g1];
@@ -173,17 +199,12 @@
 
 - (void) testUpdatedPointsOrder
 {
-    // Prepare a reference points and a group of local points
-    LocalUpdateQueue * queue = [LocalUpdateQueue new];
-    queue.referenceLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
-    queue.delayBetweenPointUpdates = .01;
-    queue.moniteredGroupsMaximumDistance = 1000000;
+    // Prepare groups of local points    
+    p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:0]} mutableCopy];
+    g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:0], @"points" : @[p1]};
     
-    id p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:0]} mutableCopy];
-    id g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:0], @"points" : @[p1]};
-    
-    id p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:0]} mutableCopy];
-    id g2 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p2]};
+    p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:0]} mutableCopy];
+    g2 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p2]};
     
     // Add our groups
     [queue addMonitoredGroup:g1];
@@ -194,6 +215,29 @@
 
     [self waitForCompletion:.025 flag:NULL]; // Just give it enough time for 2 updates
     STAssertEqualObjects(updates, (@[p1,p2,p1,p2]),nil);
+}
+
+- (void) testMonitoringPause
+{
+    // Prepare a group of local points
+    p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:20 longitude:.5]} mutableCopy];
+    g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1]};
+    
+    // Add our groups
+    [queue addMonitoredGroup:g1];
+    
+    // Check our point is queued
+    STAssertTrue([p1 queuedForUpdate],  nil);
+    
+    queue.monitoringPaused = YES;
+    
+    // Check our point is unqueued
+    STAssertFalse([p1 queuedForUpdate],  nil);
+    
+    queue.monitoringPaused = NO;
+    
+    // Check our point is back in queue
+    STAssertTrue([p1 queuedForUpdate],  nil);
 }
 
 @end

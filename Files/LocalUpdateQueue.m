@@ -26,13 +26,6 @@
 {
     self = [super init];
     if (self) {
-
-        // observe app state changes
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buildUpdateQueue) name:UIApplicationWillEnterForegroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buildUpdateQueue) name:UIApplicationDidBecomeActiveNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buildUpdateQueue) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buildUpdateQueue) name:UIApplicationWillResignActiveNotification object:nil];
-        
         self.monitoredGroups = [NSMutableSet new];
         self.oneshotGroups = [NSMutableSet new];
     }
@@ -45,6 +38,12 @@
 - (void) setReferenceLocation:(CLLocation *)referenceLocation
 {
     _referenceLocation = referenceLocation;
+    [self buildUpdateQueue];
+}
+
+- (void) setMonitoringPaused:(BOOL)monitoringPaused_
+{
+    _monitoringPaused = monitoringPaused_;
     [self buildUpdateQueue];
 }
 
@@ -92,10 +91,8 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
 
-    BOOL isAppActive = [UIApplication sharedApplication].applicationState == UIApplicationStateActive;
-        
     NSArray * groupsToRefresh;
-    if(isAppActive)
+    if(!self.monitoringPaused)
     {
         // if the app is active, update the monitored groups
         NSArray * sortedGroups = [self.monitoredGroups allObjects];
@@ -166,11 +163,8 @@
         // clear the summary flag : we only want it once.
         self.oneshotGroups = [NSMutableSet new];
         
-        // after a delay, compute new list, and restart. (only if app is active)
-        if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-        {
-            [self performSelector:@selector(buildUpdateQueue) withObject:nil afterDelay:self.delayBetweenPointUpdates];
-        }
+        // after a delay, compute new list, and restart.
+        [self performSelector:@selector(buildUpdateQueue) withObject:nil afterDelay:self.delayBetweenPointUpdates];
     }
 }
 

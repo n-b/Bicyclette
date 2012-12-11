@@ -69,6 +69,9 @@ typedef enum {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
                                                      name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+
         self.userLocationUpdateGroup = [LocalUpdateGroup new];
         self.screenCenterUpdateGroup = [LocalUpdateGroup new];
         [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
@@ -215,6 +218,14 @@ typedef enum {
     }
     
     [self.delegate setAnnotations:newAnnotations];
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) appStateChanged:(NSNotification*)note
+{
+    self.updateQueue.monitoringPaused = [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
 }
 
 /****************************************************************************/
