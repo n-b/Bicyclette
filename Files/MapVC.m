@@ -295,18 +295,29 @@
         case UIGestureRecognizerStatePossible:
             break;
         case UIGestureRecognizerStateBegan:
-            self.droppedRadar = [Radar insertInManagedObjectContext:self.controller.currentCity.moc];
-            // just use a timestamp as the id
-            self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",(long long)(100*[NSDate timeIntervalSinceReferenceDate])];
-            [self.mapView addAnnotation:self.droppedRadar];
-            self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
-                                                 toCoordinateFromView:self.mapView];
-            [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
+        {
+            [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
+                Radar * radar = [Radar insertInManagedObjectContext:updateContext];
+                // just use a timestamp as the id
+                radar.identifier = [NSString stringWithFormat:@"%lld",(long long)(100*[NSDate timeIntervalSinceReferenceDate])];
+                radar.coordinate = [self.mapView convertPoint:pointInMapView
+                                         toCoordinateFromView:self.mapView];
+            } saveCompletion:^(NSNotification *contextDidSaveNotification) {
+                self.droppedRadar = [contextDidSaveNotification userInfo][NSInsertedObjectsKey][0];
+                [self.mapView addAnnotation:self.droppedRadar];
+                [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
+            }];
             break;
+        }
         case UIGestureRecognizerStateChanged:
-            self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
-                                                 toCoordinateFromView:self.mapView];
+        {
+            [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
+                Radar * radar = (Radar*)[updateContext objectWithID:self.droppedRadar.objectID];
+                radar.coordinate = [self.mapView convertPoint:pointInMapView
+                                                     toCoordinateFromView:self.mapView];
+            } saveCompletion:nil];
             break;
+        }
         case UIGestureRecognizerStateEnded:
             [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateEnding animated:YES];
             break;
@@ -314,7 +325,9 @@
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
             [self.mapView removeAnnotation:self.droppedRadar];
-            [self.controller.currentCity.moc deleteObject:self.droppedRadar];
+            [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
+                [updateContext deleteObject:[updateContext objectWithID:self.droppedRadar.objectID]];
+            } saveCompletion:nil];
             self.droppedRadar = nil;
             break;
     }
@@ -350,7 +363,9 @@
     NSAssert([radar isKindOfClass:[Radar class]],nil);
 
     [self.mapView removeAnnotation:radar];
-    [self.controller.currentCity.moc deleteObject:radar];
+    [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
+        [updateContext deleteObject:[updateContext objectWithID:radar.objectID]];
+    } saveCompletion:nil];
 }
 
 /****************************************************************************/

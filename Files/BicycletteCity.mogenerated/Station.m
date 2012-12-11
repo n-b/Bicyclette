@@ -85,20 +85,24 @@
 
 - (void) updater:(DataUpdater *)updater finishedWithNewData:(NSData *)data
 {
-    NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
-	parser.delegate = self;
-    self.currentParsedString = [NSMutableString string];
-	[parser parse];
-    self.currentParsedString = nil;
+    [self.city performUpdates:^(NSManagedObjectContext *updateContext) {
+        Station * station = (Station*)[updateContext objectWithID:self.objectID];
+        NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
+        parser.delegate = station;
+        station.currentParsedString = [NSMutableString string];
+        [parser parse];
+        station.currentParsedString = nil;
+        station.status_date = [NSDate date];
+    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
+        NSAssert([[[contextDidSaveNotification.userInfo[NSUpdatedObjectsKey] anyObject] objectID] isEqual:[self objectID]], nil);
+        self.updater = nil;
+        self.updating = NO;
+        if(self.completionBlock)
+            self.completionBlock();
+        self.completionBlock = nil;
+    }];
     
-    [[self city] setNeedsSave];
-    self.updater = nil;
-    self.updating = NO;
-    if(self.completionBlock)
-        self.completionBlock();
-    self.completionBlock = nil;
 
-    self.status_date = [NSDate date];
     [self performSelector:@selector(becomeStale) withObject:nil afterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"]];
 }
 

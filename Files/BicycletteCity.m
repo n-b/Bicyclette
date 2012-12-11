@@ -34,6 +34,7 @@
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 #endif
 // -
+@property NSManagedObjectContext * parsing_context;
 @property NSMutableDictionary * parsing_regionsByNumber;
 @property NSMutableArray * parsing_oldStations;
 @end
@@ -134,64 +135,58 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateGotNewData object:self];
     
-	NSError * requestError = nil;
-	
-	// Get Old Stations Names
-	NSFetchRequest * oldStationsRequest = [NSFetchRequest new];
-	[oldStationsRequest setEntity:[Station entityInManagedObjectContext:self.moc]];
-    self.parsing_oldStations =  [[self.moc executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
-	
-	// Parsing
-    self.parsing_regionsByNumber = [NSMutableDictionary dictionary];
-	NSXMLParser * parser = [[NSXMLParser alloc] initWithData:xml];
-	parser.delegate = self;
-	[parser parse];
-    
-    // Validate all stations (and delete invalid) before computing coordinates
-    NSError * validationErrors;
-    for (Region *r in [self.parsing_regionsByNumber allValues]) {
-        for (Station *s in [r.stations copy]) {
-            if(![s validateForInsert:&validationErrors])
-            {
-                s.region = nil;
-                [self.moc deleteObject:s];
+    __block NSError * validationErrors;
+    [self performUpdates:^(NSManagedObjectContext *updateContext) {
+        // Get Old Stations Names
+        NSError * requestError = nil;
+
+        NSFetchRequest * oldStationsRequest = [NSFetchRequest fetchRequestWithEntityName:[Station entityName]];
+        self.parsing_oldStations =  [[updateContext executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
+        
+        // Parsing
+        self.parsing_regionsByNumber = [NSMutableDictionary dictionary];
+        self.parsing_context = updateContext;
+        NSXMLParser * parser = [[NSXMLParser alloc] initWithData:xml];
+        parser.delegate = self;
+        [parser parse];
+        
+        // Validate all stations (and delete invalid) before computing coordinates
+        for (Region *r in [self.parsing_regionsByNumber allValues]) {
+            for (Station *s in [r.stations copy]) {
+                if(![s validateForInsert:&validationErrors])
+                {
+                    s.region = nil;
+                    [updateContext deleteObject:s];
+                }
             }
         }
-    }
-    
-    // Post processing :
-	// Compute regions coordinates
-    // and reorder stations in regions
-    for (Region * region in [self.parsing_regionsByNumber allValues]) {
-        [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
-            return [obj1.name compare:obj2.name];
-        }];
-        [region setupCoordinates];
-    }
-    self.parsing_regionsByNumber = nil;
+        
+        // Post processing :
+        // Compute regions coordinates
+        // and reorder stations in regions
+        for (Region * region in [self.parsing_regionsByNumber allValues]) {
+            [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
+                return [obj1.name compare:obj2.name];
+            }];
+            [region setupCoordinates];
+        }
+        self.parsing_regionsByNumber = nil;
+        
+        // Delete Old Stations
+        for (Station * oldStation in self.parsing_oldStations) {
+            NSLog(@"Note : old station deleted after update : %@", oldStation);
+            [updateContext deleteObject:oldStation];
+        }
+        self.parsing_oldStations = nil;
 
-    // Delete Old Stations
-	for (Station * oldStation in self.parsing_oldStations) {
-        NSLog(@"Note : old station deleted after update : %@", oldStation);
-		[self.moc deleteObject:oldStation];
-	}
-    self.parsing_oldStations = nil;
-    
-	// Save
-    if ([self save:&validationErrors])
-    {
+        self.parsing_context = nil;
+    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
         NSMutableDictionary * userInfo = [@{BicycletteCityNotifications.keys.dataChanged : @(YES)} mutableCopy];
         if (validationErrors)
             userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
         [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
                                                           userInfo:userInfo];
-    }
-    else
-    {
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateFailed object:self
-                                                          userInfo:
-         @{BicycletteCityNotifications.keys.failureError : validationErrors}];
-    }
+    }];
 
     self.updater = nil;
 }
@@ -247,7 +242,7 @@
         {
             if(self.parsing_oldStations.count)
                 NSLog(@"Note : new station found after update : %@", attributeDict);
-            station = [Station insertInManagedObjectContext:self.moc];
+            station = [Station insertInManagedObjectContext:self.parsing_context];
         }
 
         // Set Values and hardcoded fixes
@@ -264,7 +259,7 @@
         if(nil==regionInfo)
         {
             NSLog(@"Invalid data : %@",attributeDict);
-            [self.moc deleteObject:station];
+            [self.parsing_context deleteObject:station];
             return;
         }
                 
@@ -272,10 +267,10 @@
         Region * region = (self.parsing_regionsByNumber)[regionInfo.number];
         if(nil==region)
         {
-            region = [[Region fetchRegionWithNumber:self.moc number:regionInfo.number] lastObject];
+            region = [[Region fetchRegionWithNumber:self.parsing_context number:regionInfo.number] lastObject];
             if(region==nil)
             {
-                region = [Region insertInManagedObjectContext:self.moc];
+                region = [Region insertInManagedObjectContext:self.parsing_context];
                 region.number = regionInfo.number;
                 region.name = regionInfo.name;
             }

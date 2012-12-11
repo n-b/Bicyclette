@@ -110,6 +110,9 @@
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
+		37AEB5A516777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
+		37AEB5A916778822000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
+		37AEB5AA16778823000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
 		37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
 		37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
@@ -311,6 +314,8 @@
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
+		37AEB5A316777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+ValidateDeleteAndSave.h"; sourceTree = "<group>"; };
+		37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+ValidateDeleteAndSave.m"; sourceTree = "<group>"; };
 		37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditionsTests.m; sourceTree = "<group>"; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
@@ -688,6 +693,8 @@
 			children = (
 				3793DE1D1380295400B50118 /* CoreDataManager.h */,
 				3793DE1E1380295400B50118 /* CoreDataManager.m */,
+				37AEB5A316777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.h */,
+				37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */,
 				37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */,
 				37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */,
 				3793DE2013802E6100B50118 /* DataUpdater.h */,
@@ -981,6 +988,7 @@
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */,
+				37AEB5A516777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,6 +1010,7 @@
 				37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
+				37AEB5A916778822000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1028,7 @@
 				376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */,
 				376088181676333600B1161E /* LocalUpdateQueue.m in Sources */,
 				3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */,
+				37AEB5AA16778823000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
