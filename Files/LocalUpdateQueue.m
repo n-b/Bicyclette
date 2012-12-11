@@ -47,6 +47,9 @@
     [self buildUpdateQueue];
 }
 
+/****************************************************************************/
+#pragma mark Groups Lists
+
 - (void) addGroup:(NSObject<LocalUpdateGroup>*)group toArray:(NSMutableSet*)list
 {
     if([list containsObject:group])
@@ -84,6 +87,14 @@
     [self removeGroup:group fromArray:self.oneshotGroups];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == (__bridge void *)([LocalUpdateQueue class]))
+        // An Update Group has changed its points
+        [self buildUpdateQueue];
+    else
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
 /****************************************************************************/
 #pragma mark Data
 
@@ -168,19 +179,6 @@
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == (__bridge void *)([LocalUpdateQueue class])) {
-        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
-        {
-            // A radar has changed : update the list of stations
-            if([keyPath isEqualToString:@"pointsToUpdate"])
-                [self buildUpdateQueue];
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
 
 @end
 

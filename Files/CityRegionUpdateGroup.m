@@ -1,22 +1,19 @@
 //
-//  BicycletteCity+LocalUpdateGroup.m
+//  CityRegionUpdateGroup.m
 //  Bicyclette
 //
 //  Created by Nicolas on 10/12/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity+LocalUpdateGroup.h"
+#import "CityRegionUpdateGroup.h"
+#import "BicycletteCity.h"
 
-/****************************************************************************/
-#pragma mark -
-
-
-@interface LocalUpdateGroup ()
+@interface CityRegionUpdateGroup ()
 @property MKCoordinateRegion region;
 @end
 
-@implementation LocalUpdateGroup
+@implementation CityRegionUpdateGroup
 - (CLLocation *) location
 {
     return [[CLLocation alloc] initWithLatitude:self.region.center.latitude longitude:self.region.center.longitude];

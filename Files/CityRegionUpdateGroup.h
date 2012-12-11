@@ -1,18 +1,18 @@
 //
-//  BicycletteCity+LocalUpdateGroup.h
+//  CityRegionUpdateGroup.h
 //  Bicyclette
 //
 //  Created by Nicolas on 10/12/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
-#import "Radar.h"
 #import "LocalUpdateQueue.h"
+
+@class BicycletteCity;
 
 // Concrete version
 @class BicycletteCity;
-@interface LocalUpdateGroup : NSObject <LocalUpdateGroup>
+@interface CityRegionUpdateGroup : NSObject <LocalUpdateGroup>
 @property BicycletteCity * city;
 - (void) setRegion:(MKCoordinateRegion)region;
 @end

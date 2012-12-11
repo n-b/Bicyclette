@@ -14,7 +14,7 @@
 #import "CollectionsAdditions.h"
 
 #import "LocalUpdateQueue.h"
-#import "BicycletteCity+LocalUpdateGroup.h"
+#import "CityRegionUpdateGroup.h"
 #import "GeoFencesMonitor.h"
 
 #import "ParisVelibCity.h"
@@ -37,8 +37,8 @@ typedef enum {
 @property CLLocationManager * userLocationManager;
 @property LocalUpdateQueue * updateQueue;
 @property MapLevel level;
-@property LocalUpdateGroup * userLocationUpdateGroup;
-@property LocalUpdateGroup * screenCenterUpdateGroup;
+@property CityRegionUpdateGroup * userLocationUpdateGroup;
+@property CityRegionUpdateGroup * screenCenterUpdateGroup;
 @end
 
 /****************************************************************************/
@@ -72,8 +72,8 @@ typedef enum {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationWillEnterForegroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationDidEnterBackgroundNotification object:nil];
 
-        self.userLocationUpdateGroup = [LocalUpdateGroup new];
-        self.screenCenterUpdateGroup = [LocalUpdateGroup new];
+        self.userLocationUpdateGroup = [CityRegionUpdateGroup new];
+        self.screenCenterUpdateGroup = [CityRegionUpdateGroup new];
         [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
         [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
 

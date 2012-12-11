@@ -11,29 +11,19 @@
 @protocol CitiesControllerDelegate;
 
 @interface CitiesController : NSObject
-
 @property NSArray * cities;
-
 @property (readonly, nonatomic) BicycletteCity * currentCity;
 @property MKCoordinateRegion referenceRegion;
-
 @property (assign) id<CitiesControllerDelegate> delegate;
-
 - (void) reloadData;
-
 - (void) regionDidChange:(MKCoordinateRegion)region;
-
 - (void) handleLocalNotificaion:(UILocalNotification*)notification;
-
 @end
 
+
 @protocol CitiesControllerDelegate <NSObject>
-
 - (void) setRegion:(MKCoordinateRegion)region;
-
 - (MKCoordinateRegion)region;
-
 - (void) setAnnotations:(NSArray*)newAnnotations;
 - (void) selectAnnotation:(id<MKAnnotation>)annotation;
-
 @end

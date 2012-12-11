@@ -95,7 +95,7 @@
 		3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748429616772DE600DD457E /* SenTestCase+RunLoop.m */; };
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
-		376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */; };
+		376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* CityRegionUpdateGroup.m */; };
 		376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376088161676333300B1161E /* LocalUpdateQueueTests.m */; };
 		376088181676333600B1161E /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
@@ -293,8 +293,8 @@
 		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+LocalUpdateGroup.h"; sourceTree = "<group>"; };
-		376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+LocalUpdateGroup.m"; sourceTree = "<group>"; };
+		376087F41675E27400B1161E /* CityRegionUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityRegionUpdateGroup.h; sourceTree = "<group>"; };
+		376087F51675E27400B1161E /* CityRegionUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityRegionUpdateGroup.m; sourceTree = "<group>"; };
 		376088161676333300B1161E /* LocalUpdateQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueueTests.m; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
@@ -534,8 +534,8 @@
 				3717AA65162A1C11005EC7BD /* Cities */,
 				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
-				376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */,
-				376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */,
+				376087F41675E27400B1161E /* CityRegionUpdateGroup.h */,
+				376087F51675E27400B1161E /* CityRegionUpdateGroup.m */,
 				37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */,
 				37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */,
 				3724BC7115E4CA1200790869 /* Store.h */,
@@ -978,7 +978,7 @@
 				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
-				376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */,
+				376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
