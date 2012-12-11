@@ -22,8 +22,8 @@
 
 
 @protocol CitiesControllerDelegate <NSObject>
-- (void) setRegion:(MKCoordinateRegion)region;
-- (MKCoordinateRegion)region;
-- (void) setAnnotations:(NSArray*)newAnnotations;
-- (void) selectAnnotation:(id<MKAnnotation>)annotation;
+- (void) controller:(CitiesController*)controller setRegion:(MKCoordinateRegion)region;
+- (MKCoordinateRegion)regionForController:(CitiesController*)controller;
+- (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations;
+- (void) controller:(CitiesController*)controller selectAnnotation:(id<MKAnnotation>)annotation;
 @end

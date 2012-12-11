@@ -60,12 +60,7 @@
 }
 
 /****************************************************************************/
-#pragma mark Loading
-
-- (BOOL) canBecomeFirstResponder
-{
-    return YES;
-}
+#pragma mark View Cycle
 
 - (void) loadView
 {
@@ -123,36 +118,32 @@
     [self.citiesController reloadData];
 }
 
-- (void) canRequestLocation
-{
-    self.mapView.showsUserLocation = YES;
-}
-
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.mapView relocateAttributionLogoIfNecessary];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == (__bridge void *)([MapVC class]))
+        [self updateRadarSizes];
+    else
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+- (void) canRequestLocation
+{
+    self.mapView.showsUserLocation = YES;
+}
+
+/****************************************************************************/
+#pragma mark Rotation Support
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [self.mapView relocateAttributionLogoIfNecessary];
-}
-
-- (void) setRegion:(MKCoordinateRegion)region
-{
-    [self.mapView setRegion:region animated:YES];
-}
-
-- (void) selectAnnotation:(id<MKAnnotation>)annotation
-{
-    [self.mapView selectAnnotation:annotation animated:YES];
-}
-
-- (MKCoordinateRegion)region
-{
-    return self.mapView.region;
 }
 
 // iOS 5
@@ -173,15 +164,51 @@
 }
 
 /****************************************************************************/
+#pragma mark CitiesControllerDelegate
+
+- (void) controller:(CitiesController*)controller setRegion:(MKCoordinateRegion)region
+{
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (void) controller:(CitiesController*)controller selectAnnotation:(id<MKAnnotation>)annotation
+{
+    [self.mapView selectAnnotation:annotation animated:YES];
+}
+
+- (MKCoordinateRegion)regionForController:(CitiesController*)controller
+{
+    return self.mapView.region;
+}
+
+- (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations
+{
+    NSArray * oldAnnotations = self.mapView.annotations;
+    oldAnnotations = [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
+    
+    NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
+    NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
+    
+    [self.mapView removeAnnotations:annotationsToRemove];
+    [self.mapView addAnnotations:annotationsToAdd];
+}
+
+/****************************************************************************/
 #pragma mark MapView Delegate
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    MKCoordinateRegion viewRegion = self.mapView.region;
-    [self.citiesController regionDidChange:viewRegion];
-
+    [self.citiesController regionDidChange:self.mapView.region];
     [self updateRadarSizes];
+}
 
+- (void) updateRadarSizes
+{
+    for (Radar * radar in [self.mapView.annotations filteredArrayWithValue:[Radar class] forKeyPath:@"class"])
+    {
+        RadarAnnotationView * radarView = (RadarAnnotationView *)[self.mapView viewForAnnotation:radar];
+        radarView.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:radar.radarRegion toRectToView:radarView].size};
+    }
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView_ viewForAnnotation:(id <MKAnnotation>)annotation
@@ -219,26 +246,6 @@
 	return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
-	if([view.annotation isKindOfClass:[Region class]])
-		[self zoomInRegion:(Region*)view.annotation];
-    else if([view.annotation isKindOfClass:[Station class]])
-        [(Station*)view.annotation updateWithCompletionBlock:nil];
-}
-
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
-fromOldState:(MKAnnotationViewDragState)oldState
-{
-    if([view.annotation isKindOfClass:[Radar class]])
-    {
-        [self.mapView selectAnnotation:view.annotation animated:YES];
-        if(newState==MKAnnotationViewDragStateCanceling)
-            [self showRadarMenu:(Radar*)view.annotation];
-    }
-
-}
-
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     CLLocationCoordinate2D newCoord = userLocation.coordinate;
@@ -255,50 +262,50 @@ fromOldState:(MKAnnotationViewDragState)oldState
     }
 }
 
-
-- (void) setAnnotations:(NSArray*)newAnnotations
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    NSArray * oldAnnotations = self.mapView.annotations;
-    oldAnnotations = [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
-
-    NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
-    NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
-
-    [self.mapView removeAnnotations:annotationsToRemove];
-    [self.mapView addAnnotations:annotationsToAdd];
+	if([view.annotation isKindOfClass:[BicycletteCity class]])
+        [self.mapView setRegion:[((BicycletteCity*)view.annotation) regionContainingData] animated:YES];
+    else if([view.annotation isKindOfClass:[Region class]])
+		[self zoomInRegion:(Region*)view.annotation];
+    else if([view.annotation isKindOfClass:[Station class]])
+        [(Station*)view.annotation updateWithCompletionBlock:nil];
 }
 
-
-- (void) updateRadarSizes
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
 {
-    for (Radar * radar in self.mapView.annotations)
-    {
-        if([radar isKindOfClass:[Radar class]])
-        {
-            RadarAnnotationView * radarView = (RadarAnnotationView *)[self.mapView viewForAnnotation:radar];
-            CGSize radarSize = [self.mapView convertRegion:radar.radarRegion toRectToView:radarView].size;
-            radarView.bounds = (CGRect){CGPointZero, radarSize};
-        }
-    }
+    NSAssert([view.annotation isKindOfClass:[Radar class]],nil);
+
+    [self.mapView selectAnnotation:view.annotation animated:YES];
+    if(newState==MKAnnotationViewDragStateCanceling)
+        [self showDeleteRadarMenu:(Radar*)view.annotation];
 }
 
 /****************************************************************************/
-#pragma mark Actions
+#pragma mark UILongPressGestureRecognizer Action
 
 - (void) addRadar:(UILongPressGestureRecognizer*)longPressRecognizer
 {
     if (self.citiesController.currentCity == nil)
         return; // prevent creating radars from high level
     
+    CGPoint pointInMapView = [longPressRecognizer locationInView:self.mapView];
     switch (longPressRecognizer.state)
     {
         case UIGestureRecognizerStatePossible:
             break;
         case UIGestureRecognizerStateBegan:
-            [self createRadarAtPoint:[longPressRecognizer locationInView:self.mapView]];
+            self.droppedRadar = [Radar insertInManagedObjectContext:self.citiesController.currentCity.moc];
+            // just use a timestamp as the id
+            self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",(long long)(100*[NSDate timeIntervalSinceReferenceDate])];
+            [self.mapView addAnnotation:self.droppedRadar];
+            self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
+                                                 toCoordinateFromView:self.mapView];
+            [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
             break;
         case UIGestureRecognizerStateChanged:
-            [self moveRadarAtPoint:[longPressRecognizer locationInView:self.mapView]];
+            self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
+                                                 toCoordinateFromView:self.mapView];
             break;
         case UIGestureRecognizerStateEnded:
             [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateEnding animated:YES];
@@ -313,39 +320,21 @@ fromOldState:(MKAnnotationViewDragState)oldState
     }
 }
 
-- (void) createRadarAtPoint:(CGPoint)pointInMapView
-{
-    self.droppedRadar = [Radar insertInManagedObjectContext:self.citiesController.currentCity.moc];
-    // just use a timestamp as the id
-    long long identifier = 100*[NSDate timeIntervalSinceReferenceDate];
-    self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",identifier];
-    [self.mapView addAnnotation:self.droppedRadar];
-    self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
-                                         toCoordinateFromView:self.mapView];
-    [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
-}
-
-- (void) moveRadarAtPoint:(CGPoint)pointInMapView
-{
-    self.droppedRadar.coordinate = [self.mapView convertPoint:pointInMapView
-                                         toCoordinateFromView:self.mapView];
-}
-
 - (void) selectDroppedRadar
 {
     [self.mapView selectAnnotation:self.droppedRadar animated:YES];
     [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateStarting animated:YES];
 }
 
-- (void) zoomInRegion:(Region*)region
+/****************************************************************************/
+#pragma mark UIMenuController
+
+- (BOOL) canBecomeFirstResponder
 {
-    MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
-    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
-    cregion = MKCoordinateRegionMakeWithDistance(cregion.center, meters, meters);
-	[self.mapView setRegion:cregion animated:YES];
+    return YES;
 }
 
-- (void) showRadarMenu:(Radar*)radar
+- (void) showDeleteRadarMenu:(Radar*)radar
 {
     [self becomeFirstResponder];
     UIMenuController * menu = [UIMenuController sharedMenuController];
@@ -357,37 +346,30 @@ fromOldState:(MKAnnotationViewDragState)oldState
 
 - (void) delete:(id)sender // From UIMenuController
 {
-    for (Radar * radar in self.mapView.selectedAnnotations)
-    {
-        if([radar isKindOfClass:[Radar class]])
-        {
-            [self.mapView removeAnnotation:radar];
-            [self.citiesController.currentCity.moc deleteObject:radar];
-        }
-    }
+    Radar * radar = [self.mapView.selectedAnnotations lastObject];
+    NSAssert([radar isKindOfClass:[Radar class]],nil);
+
+    [self.mapView removeAnnotation:radar];
+    [self.citiesController.currentCity.moc deleteObject:radar];
+}
+
+/****************************************************************************/
+#pragma mark Actions
+
+- (void) zoomInRegion:(Region*)region
+{
+    MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
+    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
+    cregion = MKCoordinateRegionMakeWithDistance(cregion.center, meters, meters);
+	[self.mapView setRegion:cregion animated:YES];
 }
 
 - (void) switchMode:(UISegmentedControl*)sender
 {
     self.stationMode = sender.selectedSegmentIndex;
-
-    for (id<MKAnnotation> annotation in self.mapView.annotations) {
+    for (id<MKAnnotation> annotation in [self.mapView.annotations filteredArrayWithValue:[Station class] forKeyPath:@"class"]) {
         StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
-        if([stationAV isKindOfClass:[StationAnnotationView class]])
-            stationAV.mode = self.stationMode;
-    }
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == (__bridge void *)([MapVC class])) {
-        if(object == [NSUserDefaults standardUserDefaults] && [keyPath isEqualToString:@"RadarDistance"])
-            [self updateRadarSizes];
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        stationAV.mode = self.stationMode;
     }
 }
 

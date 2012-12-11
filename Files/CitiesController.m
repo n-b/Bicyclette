@@ -101,7 +101,7 @@ typedef enum {
     // zoom in a little
     region.span.latitudeDelta /= 2;
     region.span.longitudeDelta /= 2;
-	[self.delegate setRegion:region];
+	[self.delegate controller:self setRegion:region];
     
     [self addAndRemoveMapAnnotations];
 }
@@ -164,7 +164,7 @@ typedef enum {
     // Keep the screen center Radar centered
     // And make it as big as the screen, but only if the stations are actually visible
     if(self.level==MapLevelStationsAndRadars)
-        [self.screenCenterUpdateGroup setRegion:[self.delegate region]];
+        [self.screenCenterUpdateGroup setRegion:[self.delegate regionForController:self]];
     else
         [self.screenCenterUpdateGroup setRegion:
          MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(0, 0), 0, 0)];
@@ -208,7 +208,7 @@ typedef enum {
         // Stations
         NSFetchRequest * stationsRequest = [NSFetchRequest new];
 		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.currentCity.moc]];
-        MKCoordinateRegion mapRegion = [self.delegate region];
+        MKCoordinateRegion mapRegion = [self.delegate regionForController:self];
 		stationsRequest.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
                                      mapRegion.center.latitude - mapRegion.span.latitudeDelta/2,
                                      mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
@@ -217,7 +217,7 @@ typedef enum {
         [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:stationsRequest error:NULL]];
     }
     
-    [self.delegate setAnnotations:newAnnotations];
+    [self.delegate controller:self setAnnotations:newAnnotations];
 }
 
 /****************************************************************************/
@@ -319,8 +319,8 @@ typedef enum {
         self.currentCity = city;
         CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
-        [self.delegate setRegion:region];
-        [self.delegate selectAnnotation:station];
+        [self.delegate controller:self setRegion:region];
+        [self.delegate controller:self selectAnnotation:station];
     }
 }
 
