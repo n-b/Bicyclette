@@ -318,6 +318,7 @@
 		37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
 		37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatibilityCategories.h; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		37B97574167779BD00B38AC4 /* BicycletteCity.mogenerated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteCity.mogenerated.h; sourceTree = "<group>"; };
 		37BE759A15E6BDE4001DABF6 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
 		37BE759B15E6BDE4001DABF6 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
 		37BE759C15E6BDE4001DABF6 /* HelpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpVC.xib; sourceTree = "<group>"; };
@@ -676,6 +677,7 @@
 				37216BC612611C5400A2695A /* BicycletteCity.m */,
 				37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */,
 				370220D7165525B100350AD1 /* BicycletteCity.mogenerated */,
+				37B97574167779BD00B38AC4 /* BicycletteCity.mogenerated.h */,
 				370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */,
 			);
 			name = Model;
@@ -920,7 +922,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin\\\n\tmogenerator\\\n\t--model \"${SRCROOT}/Files/BicycletteCity.xcdatamodel\"\\\n\t--template-var arc=true\\\n\t--machine-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/_machine\"\\\n\t--human-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/\"\\\n\t--includem \"${SRCROOT}/Files/BicycletteCity.mogenerated.m\"\n";
+			shellScript = "PATH=$PATH:/usr/local/bin\\\n\tmogenerator\\\n\t--model \"${SRCROOT}/Files/BicycletteCity.xcdatamodel\"\\\n\t--template-var arc=true\\\n\t--machine-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/_machine\"\\\n\t--human-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/\"\\\n\t--includem \"${SRCROOT}/Files/BicycletteCity.mogenerated.m\"\\\n\t--includeh \"${SRCROOT}/Files/BicycletteCity.mogenerated.h\"\n";
 		};
 		3786E4DA14825A7700814C10 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
