@@ -11,6 +11,7 @@
 "BIKE" = "Vélos";
 "PARKING" = "Places";
 
+"STATIONS_LIST_CITY_%@" = "Liste des stations %@";
 "UPDATE_STATIONS_LIST_BUTTON" = "Mettre à jour";
 "UPDATING : FETCHING" = "Téléchargement…";
 "UPDATING : PARSING" = "Mise à jour…";

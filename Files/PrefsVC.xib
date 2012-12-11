@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.SystemVersion">12C3006</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3081</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1930</string>
+			<string key="NS.object.0">2080</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -267,7 +267,7 @@
 									<object class="IBUILabel" id="272909212">
 										<reference key="NSNextResponder" ref="387906994"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{19, 14}, {139, 16}}</string>
+										<string key="NSFrame">{{0, 14}, {158, 16}}</string>
 										<reference key="NSSuperview" ref="387906994"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="857323411"/>
@@ -289,7 +289,7 @@
 											<bytes key="NSWhite">MCAwLjUAA</bytes>
 										</object>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<int key="IBUITextAlignment">1</int>
+										<int key="IBUITextAlignment">2</int>
 										<reference key="IBUIFontDescription" ref="589148854"/>
 										<reference key="IBUIFont" ref="1046389045"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -304,7 +304,7 @@
 												<string key="NSFrame">{{6, 8}, {148, 30}}</string>
 												<reference key="NSSuperview" ref="857323411"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="327493425"/>
+												<reference key="NSNextKeyView" ref="1060569230"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIOpaque">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -380,10 +380,10 @@
 									<object class="IBUIActivityIndicatorView" id="327493425">
 										<reference key="NSNextResponder" ref="387906994"/>
 										<int key="NSvFlags">-2147483356</int>
-										<string key="NSFrame">{{21, 56}, {20, 20}}</string>
+										<string key="NSFrame">{{138, 56}, {20, 20}}</string>
 										<reference key="NSSuperview" ref="387906994"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="1060569230"/>
+										<reference key="NSNextKeyView" ref="95816489"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -391,10 +391,10 @@
 									<object class="IBUILabel" id="1060569230">
 										<reference key="NSNextResponder" ref="387906994"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{49, 58}, {109, 16}}</string>
+										<string key="NSFrame">{{0, 58}, {158, 16}}</string>
 										<reference key="NSSuperview" ref="387906994"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="95816489"/>
+										<reference key="NSNextKeyView" ref="327493425"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -424,6 +424,7 @@
 										<string key="NSFrame">{{160, 102}, {160, 44}}</string>
 										<reference key="NSSuperview" ref="387906994"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -502,7 +503,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="67725001">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="134001759">
@@ -550,7 +551,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{316, 24}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="134001759"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -706,6 +706,14 @@
 						<reference key="destination" ref="692765268"/>
 					</object>
 					<int key="connectionID">81</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">updateLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1060569230"/>
+					</object>
+					<int key="connectionID">89</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1013,7 +1021,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">88</int>
+			<int key="maxID">89</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1029,6 +1037,7 @@
 						<string key="storeLabel">UILabel</string>
 						<string key="updateButton">UIBarButtonItem</string>
 						<string key="updateIndicator">UIActivityIndicatorView</string>
+						<string key="updateLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="logoView">
@@ -1063,6 +1072,10 @@
 							<string key="name">updateIndicator</string>
 							<string key="candidateClassName">UIActivityIndicatorView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="updateLabel">
+							<string key="name">updateLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 					</dictionary>
 					<object class="NSMutableDictionary" key="toManyOutletInfosByName">
 						<string key="NS.key.0">cells</string>
@@ -1095,6 +1108,6 @@
 			<string key="NS.key.0">Icon@2x.png</string>
 			<string key="NS.object.0">{114, 114}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1930</string>
+		<string key="IBCocoaTouchPluginVersion">2080</string>
 	</data>
 </archive>

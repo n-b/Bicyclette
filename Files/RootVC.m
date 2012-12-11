@@ -48,7 +48,8 @@
 - (void) setCitiesController:(CitiesController *)citiesController
 {
     _citiesController = citiesController;
-    ((MapVC*)self.frontViewController).citiesController = self.citiesController;
+    ((MapVC*)self.frontViewController).controller = self.citiesController;
+    ((PrefsVC*)self.backViewController).controller = self.citiesController;
     citiesController.delegate = ((MapVC*)self.frontViewController);
 }
 

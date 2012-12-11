@@ -13,6 +13,6 @@
 
 @interface MapVC : UIViewController  <CitiesControllerDelegate>
 
-@property CitiesController * citiesController;
+@property CitiesController * controller;
 
 @end

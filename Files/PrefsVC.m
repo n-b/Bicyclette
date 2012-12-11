@@ -10,6 +10,7 @@
 #import "BicycletteCity.h"
 #import "Store.h"
 #import "Station.h"
+#import "CitiesController.h"
 
 @interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property IBOutletCollection(UITableViewCell) NSArray *cells;
@@ -17,6 +18,7 @@
 @property IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
 
 @property IBOutlet UIActivityIndicatorView *updateIndicator;
+@property IBOutlet UILabel *updateLabel;
 @property IBOutlet UIBarButtonItem *updateButton;
 @property IBOutlet UIActivityIndicatorView *storeIndicator;
 @property IBOutlet UILabel *storeLabel;
@@ -30,6 +32,9 @@
 @property NSArray * products;
 @end
 
+/****************************************************************************/
+#pragma mark -
+
 @implementation PrefsVC
 
 - (void)awakeFromNib
@@ -40,13 +45,35 @@
     self.store = [Store new];
     self.store.delegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(citySelected:) name:BicycletteCityNotifications.citySelected object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateBegan object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateFailed object:nil];
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void) setController:(CitiesController *)controller_
+{
+    [_controller removeObserver:self forKeyPath:@"currentCity" context:(__bridge void *)([self class])];
+    _controller = controller_;
+    [_controller addObserver:self forKeyPath:@"currentCity" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([self class])];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == (__bridge void *)([self class]))
+        [self updateUpdateLabel];
+    else
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+/****************************************************************************/
+#pragma mark View Cycle
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -55,11 +82,34 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self updateUpdateLabel];
     [self updateRadarDistancesSegmentedControl];
     if(![self.updateIndicator isAnimating])
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
     [self updateStoreButton];
 }
+
+- (void) updateUpdateLabel
+{
+    self.updateLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),self.controller.currentCity.name];
+}
+
+- (void) updateRadarDistancesSegmentedControl{
+    [self.radarDistanceSegmentedControl removeAllSegments];
+    
+    NSNumber * radarDistance = [[NSUserDefaults standardUserDefaults] objectForKey:@"RadarDistance"];
+    
+    NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
+    [distances enumerateObjectsUsingBlock:^(NSNumber * d, NSUInteger index, BOOL *stop) {
+        [self.radarDistanceSegmentedControl insertSegmentWithTitle:[NSString stringWithFormat:@"%@ m",d]
+                                                           atIndex:index animated:NO];
+        if([radarDistance isEqualToNumber:d])
+            self.radarDistanceSegmentedControl.selectedSegmentIndex = index;
+    }];
+}
+
+/****************************************************************************/
+#pragma mark Autorotation support
 
 // iOS 5
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -76,14 +126,6 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (void) citySelected:(NSNotification*)note
-{
-    self.currentCity = note.object;
 }
 
 /****************************************************************************/
@@ -132,20 +174,6 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailLink]];
 }
 
-- (void) updateRadarDistancesSegmentedControl{
-    [self.radarDistanceSegmentedControl removeAllSegments];
-    
-    NSNumber * radarDistance = [[NSUserDefaults standardUserDefaults] objectForKey:@"RadarDistance"];
-    
-    NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
-    [distances enumerateObjectsUsingBlock:^(NSNumber * d, NSUInteger index, BOOL *stop) {
-        [self.radarDistanceSegmentedControl insertSegmentWithTitle:[NSString stringWithFormat:@"%@ m",d]
-                                                           atIndex:index animated:NO];
-        if([radarDistance isEqualToNumber:d])
-            self.radarDistanceSegmentedControl.selectedSegmentIndex = index;
-    }];
-}
-
 - (IBAction)changeRadarDistance {
     NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
     NSNumber * d = distances[self.radarDistanceSegmentedControl.selectedSegmentIndex];
@@ -156,7 +184,7 @@
 #pragma mark City updates
 
 - (IBAction)updateStationsList {
-    [self.currentCity update];
+    [self.controller.currentCity update];
 }
 
 - (void) setCurrentCity:(BicycletteCity *)currentCity_
@@ -164,23 +192,23 @@
     if([_currentCity isEqual:currentCity_])
         return;
     
-    NSArray * notes = (@[ BicycletteCityNotifications.updateBegan,
-                       BicycletteCityNotifications.updateGotNewData,
-                       BicycletteCityNotifications.updateSucceeded,
-                       BicycletteCityNotifications.updateFailed]);
-    for (NSString * note in notes)
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:note object:_currentCity];
     _currentCity = currentCity_;
-    for (NSString * note in notes)
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:) name:note object:_currentCity];
+    
+    [self.updateIndicator stopAnimating];
+    self.updateLabel.hidden = NO;
+    self.updateButton.enabled = YES;
 }
 
-- (void) cityUpdated:(NSNotification*)note
+- (void) cityDataUpdated:(NSNotification*)note
 {
+    if(note.object!=self.controller.currentCity)
+        return;
+    
     if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil)];
         [self.updateIndicator startAnimating];
+        self.updateLabel.hidden = YES;
         self.updateButton.enabled = NO;
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
@@ -190,6 +218,7 @@
     else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
     {
         [self.updateIndicator stopAnimating];
+        self.updateLabel.hidden = NO;
         self.updateButton.enabled = YES;
         BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
         NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
@@ -197,11 +226,11 @@
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
             NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-            NSUInteger count = [self.currentCity.moc countForFetchRequest:request error:NULL];
+            NSUInteger count = [self.controller.currentCity.moc countForFetchRequest:request error:NULL];
             NSString * title;
             NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
                                   count,
-                                  self.currentCity.name];
+                                  self.controller.currentCity.name];
             if(nil==saveErrors)
             {
                 title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
@@ -223,6 +252,7 @@
     else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
     {
         [self.updateIndicator stopAnimating];
+        self.updateLabel.hidden = NO;
         self.updateButton.enabled = YES;
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
         NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
@@ -235,11 +265,22 @@
 /****************************************************************************/
 #pragma mark Store updates
 
+- (void) updateStoreButton
+{
+    NSString * purchasedProductIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
+    
+    self.storeLabel.text = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_LABEL", nil) : NSLocalizedString(@"STORE_THANK_YOU_LABEL", nil);
+    self.storeButton.title = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_BUTTON", nil) : @"";
+    self.rewardLabel.text = purchasedProductIdentifier==nil ? @"" : NSLocalizedString([self productsAndRewards][purchasedProductIdentifier], nil);
+    self.storeButton.enabled = purchasedProductIdentifier==nil;
+}
+
 - (NSDictionary*) productsAndRewards
 {
     return [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ProductsAndRewards"];
 }
 
+// Begin Store Action
 - (IBAction)donate {
     self.products = nil;
     BOOL didRequest = [self.store requestProducts:[[self productsAndRewards] allKeys]];
@@ -256,16 +297,7 @@
     }
 }
 
-- (void) updateStoreButton
-{
-    NSString * purchasedProductIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
-
-    self.storeLabel.text = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_LABEL", nil) : NSLocalizedString(@"STORE_THANK_YOU_LABEL", nil);
-    self.storeButton.title = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_BUTTON", nil) : @"";
-    self.rewardLabel.text = purchasedProductIdentifier==nil ? @"" : NSLocalizedString([self productsAndRewards][purchasedProductIdentifier], nil);
-    self.storeButton.enabled = purchasedProductIdentifier==nil;
-}
-
+// List Products
 - (void) store:(Store*)store productsRequestDidFailWithError:(NSError*)error
 {
     [self.storeIndicator stopAnimating];
@@ -300,6 +332,7 @@
     [storeSheet showInView:self.view];
 }
 
+// Pick a product
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==actionSheet.cancelButtonIndex)
@@ -318,6 +351,7 @@
     self.products = nil;
 }
 
+// Transaction end
 - (void) store:(Store*)store purchaseSucceeded:(NSString*)productIdentifier
 {
     [[NSUserDefaults standardUserDefaults] setObject:productIdentifier forKey:@"PurchasedProductsIdentifier"];

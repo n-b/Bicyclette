@@ -115,7 +115,7 @@
 
     self.userCoordinates = CLLocationCoordinate2DMake(0, 0);
     // reload data
-    [self.citiesController reloadData];
+    [self.controller reloadData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -198,7 +198,7 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    [self.citiesController regionDidChange:self.mapView.region];
+    [self.controller regionDidChange:self.mapView.region];
     [self updateRadarSizes];
 }
 
@@ -249,7 +249,7 @@
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     CLLocationCoordinate2D newCoord = userLocation.coordinate;
-    MKCoordinateRegion referenceRegion = self.citiesController.referenceRegion;
+    MKCoordinateRegion referenceRegion = self.controller.referenceRegion;
     if(self.userCoordinates.latitude == 0 && self.userCoordinates.longitude == 0
        && newCoord.latitude != 0 && newCoord.longitude != 0
        && newCoord.latitude > referenceRegion.center.latitude - referenceRegion.span.latitudeDelta
@@ -286,7 +286,7 @@
 
 - (void) addRadar:(UILongPressGestureRecognizer*)longPressRecognizer
 {
-    if (self.citiesController.currentCity == nil)
+    if (self.controller.currentCity == nil)
         return; // prevent creating radars from high level
     
     CGPoint pointInMapView = [longPressRecognizer locationInView:self.mapView];
@@ -295,7 +295,7 @@
         case UIGestureRecognizerStatePossible:
             break;
         case UIGestureRecognizerStateBegan:
-            self.droppedRadar = [Radar insertInManagedObjectContext:self.citiesController.currentCity.moc];
+            self.droppedRadar = [Radar insertInManagedObjectContext:self.controller.currentCity.moc];
             // just use a timestamp as the id
             self.droppedRadar.identifier = [NSString stringWithFormat:@"%lld",(long long)(100*[NSDate timeIntervalSinceReferenceDate])];
             [self.mapView addAnnotation:self.droppedRadar];
@@ -314,7 +314,7 @@
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
             [self.mapView removeAnnotation:self.droppedRadar];
-            [self.citiesController.currentCity.moc deleteObject:self.droppedRadar];
+            [self.controller.currentCity.moc deleteObject:self.droppedRadar];
             self.droppedRadar = nil;
             break;
     }
@@ -350,7 +350,7 @@
     NSAssert([radar isKindOfClass:[Radar class]],nil);
 
     [self.mapView removeAnnotation:radar];
-    [self.citiesController.currentCity.moc deleteObject:radar];
+    [self.controller.currentCity.moc deleteObject:radar];
 }
 
 /****************************************************************************/

@@ -6,5 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
+@class CitiesController;
 @interface PrefsVC : UIViewController
+@property (nonatomic) CitiesController * controller;
 @end
