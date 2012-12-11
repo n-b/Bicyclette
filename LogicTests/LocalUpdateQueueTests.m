@@ -24,9 +24,9 @@
 }
 - (void) updateWithCompletionBlock:(void (^)())completion
 {
-    void (^updateblock)() = self[@"update"];
+    void (^updateblock)(id obj) = self[@"update"];
     if(updateblock)
-        updateblock();
+        updateblock(self);
     completion();
 }
 - (BOOL) queuedForUpdate
@@ -85,7 +85,7 @@
 
 @implementation LocalUpdateQueueTests
 
-- (void) testLocalUpdateQueueMonitoredGroups
+- (void) testMonitoredGroups
 {
     // Prepare a reference points and a group of local points
     LocalUpdateQueue * queue = [LocalUpdateQueue new];
@@ -99,10 +99,7 @@
     
     __block BOOL completed;
     __block int updateCount = 0;
-    p1[@"update"] = ^(){
-        updateCount ++;
-        completed = updateCount==10;
-    };
+    p1[@"update"] = ^(id obj){ updateCount ++; completed = updateCount==5; };
 
     // Add our group
     [queue addMonitoredGroup:g1];
@@ -112,15 +109,15 @@
     STAssertTrue([p2 queuedForUpdate],  nil);
 
     // Check "update" is called repeatedly
-    [self waitForCompletion:2 flag:&completed];
+    [self waitForCompletion:.1 flag:&completed];
     STAssertTrue(completed,  nil);
-    STAssertEquals(updateCount, 10,  nil);
+    STAssertEquals(updateCount, 5,  nil);
 
     STAssertTrue([p1 queuedForUpdate],  nil);
     STAssertTrue([p2 queuedForUpdate],  nil);
 }
 
-- (void) testLocalUpdateQueueOneshotGroups
+- (void) testOneshotGroups
 {
     // Prepare a reference points and a group of local points
     LocalUpdateQueue * queue = [LocalUpdateQueue new];
@@ -133,9 +130,7 @@
     id g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1, p2]};
     
     __block int updateCount = 0;
-    p1[@"update"] = ^(){
-        updateCount ++;
-    };
+    p1[@"update"] = ^(id obj){ updateCount ++; };
     
     // Add our group
     [queue addOneshotGroup:g1];
@@ -145,12 +140,60 @@
     STAssertTrue([p2 queuedForUpdate],  nil);
     
     // Check "update" is called only once
-    [self waitForCompletion:.5 flag:NULL];
+    [self waitForCompletion:.05 flag:NULL];
     
     STAssertEquals(updateCount, 1,  nil);
     
     STAssertFalse([p1 queuedForUpdate],  nil);
     STAssertFalse([p2 queuedForUpdate],  nil);
+}
+
+- (void) testMonitoredGroupsDistance
+{
+    // Prepare a reference points and a group of local points
+    LocalUpdateQueue * queue = [LocalUpdateQueue new];
+    queue.referenceLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
+    queue.delayBetweenPointUpdates = .01;
+    queue.moniteredGroupsMaximumDistance = 1000000;
+    
+    id p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:20 longitude:.5]} mutableCopy];
+    id g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p1]};
+
+    id p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:20 longitude:.5]} mutableCopy];
+    id g2 = @{@"location" : [[CLLocation alloc] initWithLatitude:10 longitude:1], @"points" : @[p2]};
+
+    // Add our groups
+    [queue addMonitoredGroup:g1];
+    [queue addMonitoredGroup:g2];
+    
+    // Check only the points of the near group are queued
+    STAssertTrue([p1 queuedForUpdate],  nil);
+    STAssertFalse([p2 queuedForUpdate],  nil);
+}
+
+- (void) testUpdatedPointsOrder
+{
+    // Prepare a reference points and a group of local points
+    LocalUpdateQueue * queue = [LocalUpdateQueue new];
+    queue.referenceLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
+    queue.delayBetweenPointUpdates = .01;
+    queue.moniteredGroupsMaximumDistance = 1000000;
+    
+    id p1 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:0]} mutableCopy];
+    id g1 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:0], @"points" : @[p1]};
+    
+    id p2 = [@{@"location": [[CLLocation alloc] initWithLatitude:0 longitude:0]} mutableCopy];
+    id g2 = @{@"location" : [[CLLocation alloc] initWithLatitude:0 longitude:1], @"points" : @[p2]};
+    
+    // Add our groups
+    [queue addMonitoredGroup:g1];
+    [queue addMonitoredGroup:g2];
+
+    NSMutableArray * updates = [NSMutableArray new];
+    p1[@"update"] = p2[@"update"] = ^(id obj){ [updates addObject:obj]; };
+
+    [self waitForCompletion:.025 flag:NULL]; // Just give it enough time for 2 updates
+    STAssertEqualObjects(updates, (@[p1,p2,p1,p2]),nil);
 }
 
 @end
