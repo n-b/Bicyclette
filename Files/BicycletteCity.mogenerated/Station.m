@@ -12,9 +12,8 @@
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property DataUpdater * updater;
 @property BOOL updating;
-@property NSError * updateError;
 @property NSMutableString * currentParsedString;
-@property (copy) void(^completionBlock)() ;
+@property (copy) void(^completionBlock)(NSError*) ;
 @end
 
 
@@ -23,7 +22,7 @@
 
 @implementation Station
 
-@synthesize updater, updating, updateError, currentParsedString, completionBlock;
+@synthesize updater, updating, currentParsedString, completionBlock;
 @synthesize queuedForUpdate;
 
 - (NSString *) debugDescription
@@ -41,12 +40,11 @@
 /****************************************************************************/
 #pragma mark updating
 
-- (void) updateWithCompletionBlock:(void (^)())completion
+- (void) updateWithCompletionBlock:(void (^)(NSError* error))completion
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
 	if(self.updater!=nil)
 		return;
-    self.updateError = nil;
     self.completionBlock = completion;
     self.updater = [[DataUpdater alloc] initWithURL:
                     [NSURL URLWithString:[[self city].stationDetailsURL
@@ -69,9 +67,9 @@
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
-    self.updateError = error;
     self.updater = nil;
     self.updating = NO;
+    self.completionBlock(error);
     self.completionBlock = nil;
 }
 
@@ -79,7 +77,7 @@
 {
     self.updater = nil;
     self.updating = NO;
-    self.completionBlock();
+    self.completionBlock(nil);
     self.completionBlock = nil;
 }
 
@@ -98,7 +96,7 @@
         self.updater = nil;
         self.updating = NO;
         if(self.completionBlock)
-            self.completionBlock();
+            self.completionBlock(nil);
         self.completionBlock = nil;
     }];
     

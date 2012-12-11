@@ -22,12 +22,12 @@
 {
     return self[@"points"];
 }
-- (void) updateWithCompletionBlock:(void (^)())completion
+- (void) updateWithCompletionBlock:(void (^)(NSError* e))completion
 {
     void (^updateblock)(id obj) = self[@"update"];
     if(updateblock)
         updateblock(self);
-    completion();
+    completion(nil);
 }
 - (BOOL) queuedForUpdate
 {

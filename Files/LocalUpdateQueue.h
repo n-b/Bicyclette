@@ -21,7 +21,7 @@
 //
 // Update Point
 @protocol LocalUpdatePoint <NSObject, Locatable>
-- (void) updateWithCompletionBlock:(void(^)())completion;
+- (void) updateWithCompletionBlock:(void(^)(NSError* error))completion;
 @property BOOL queuedForUpdate;
 @end
 

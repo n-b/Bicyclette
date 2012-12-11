@@ -12,7 +12,6 @@
 - (void) cancel;
 
 @property (readonly) BOOL updating;
-@property (readonly) NSError * updateError;
 
 // Computed properties
 @property (readonly) CLLocation * location;
