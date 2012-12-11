@@ -309,6 +309,13 @@
     stations = [stations sortedArrayByDistanceFromLocation:[[CLLocation alloc]initWithLatitude:region.center.latitude longitude:region.center.longitude]];
     return stations;
 }
+
+- (NSArray*) radars
+{
+    NSFetchRequest * radarsRequest = [NSFetchRequest fetchRequestWithEntityName:[Radar entityName]];
+    return [self.moc executeFetchRequest:radarsRequest error:NULL];
+}
+
 #endif
 
 /****************************************************************************/

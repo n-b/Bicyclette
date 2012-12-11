@@ -22,6 +22,8 @@
 #import "ToulouseVeloCity.h"
 #import "AmiensVelamCity.h"
 
+#import "UIApplication+LocalAlerts.h"
+
 typedef enum {
 	MapLevelNone = 0,
 	MapLevelRegions,
@@ -30,7 +32,7 @@ typedef enum {
 }  MapLevel;
 
 
-@interface CitiesController () <CLLocationManagerDelegate>
+@interface CitiesController () <CLLocationManagerDelegate, LocalUpdateQueueDelegate, GeoFencesMonitorDelegate>
 @property GeoFencesMonitor * fenceMonitor;
 @property CLLocationManager * userLocationManager;
 @property LocalUpdateQueue * updateQueue;
@@ -55,7 +57,11 @@ typedef enum {
                        [AmiensVelamCity new] ]);
 
         self.fenceMonitor = [GeoFencesMonitor new];
+        self.fenceMonitor.delegate = self;
         self.updateQueue = [LocalUpdateQueue new];
+        self.updateQueue.delayBetweenPointUpdates = [[NSUserDefaults standardUserDefaults] doubleForKey:@"DataUpdaterDelayBetweenQueues"];
+        self.updateQueue.moniteredGroupsMaximumDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MaxRefreshDistance"];
+        self.updateQueue.delegate = self;
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:)
                                                      name:BicycletteCityNotifications.updateSucceeded object:nil];
@@ -65,8 +71,8 @@ typedef enum {
 
         self.userLocationUpdateGroup = [LocalUpdateGroup new];
         self.screenCenterUpdateGroup = [LocalUpdateGroup new];
-        [self.updateQueue addGroup:self.userLocationUpdateGroup];
-        [self.updateQueue addGroup:self.screenCenterUpdateGroup];
+        [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
+        [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
 
     }
     return self;
@@ -101,7 +107,15 @@ typedef enum {
 {
     if(_currentCity != currentCity_)
     {
+        for (Radar * radar in [_currentCity radars]) {
+            [self.updateQueue removeMonitoredGroup:radar];
+        }
         _currentCity = currentCity_;
+        for (Radar * radar in [_currentCity radars]) {
+            [self.fenceMonitor addFence:radar];
+            [self.updateQueue addMonitoredGroup:radar];
+        }
+        
         NSLog(@"city changed to %@",_currentCity.name);
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
@@ -218,6 +232,30 @@ typedef enum {
 /****************************************************************************/
 #pragma mark -
 
+- (void) monitor:(GeoFencesMonitor*)monitor fenceWasEntered:(Radar*)radar
+{
+    [self.updateQueue addOneshotGroup:radar];
+}
+
+- (void) monitor:(GeoFencesMonitor*)monitor fenceWasExited:(Radar*)radar
+{
+    [self.updateQueue removeOneshotGroup:radar];
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) updateQueue:(LocalUpdateQueue *)queue didUpdateOneshotPoint:(Station*)station ofGroup:(Radar*)radar
+{
+    NSAssert([station isKindOfClass:[Station class]],nil);
+    NSAssert([radar isKindOfClass:[Radar class]],nil);
+    [[UIApplication sharedApplication] presentLocalNotificationMessage:station.localizedSummary userInfo:(@{@"city": NSStringFromClass([station.city class]) ,
+                                                                                                          @"stationNumber": station.number})];
+}
+
+/****************************************************************************/
+#pragma mark -
+
 - (void) cityUpdated:(NSNotification*) note
 {
     if([note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue])
@@ -233,14 +271,14 @@ typedef enum {
         if([object conformsToProtocol:@protocol(GeoFence)])
             [self.fenceMonitor addFence:object];
         if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
-            [self.updateQueue addGroup:object];
+            [self.updateQueue addMonitoredGroup:object];
     }
 
     for (id object in note.userInfo[NSDeletedObjectsKey]) {
         if([object conformsToProtocol:@protocol(GeoFence)])
             [self.fenceMonitor removeFence:object];
         if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
-            [self.updateQueue removeGroup:object];
+            [self.updateQueue removeMonitoredGroup:object];
     }
 }
 

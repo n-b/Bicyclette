@@ -98,6 +98,8 @@
 		376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */; };
 		3760881316762BF000B1161E /* NSArray+LocatableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3760881216762BEF00B1161E /* NSArray+LocatableTests.m */; };
 		3760881516762FB400B1161E /* NSArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */; };
+		376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376088161676333300B1161E /* LocalUpdateQueueTests.m */; };
+		376088181676333600B1161E /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -110,8 +112,6 @@
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
-		37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
-		37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA661E1653F027001F9660 /* Radar+GeoFence.m */; };
 		37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */; };
 		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
 		37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
@@ -298,6 +298,7 @@
 		376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+LocalUpdateGroup.h"; sourceTree = "<group>"; };
 		376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+LocalUpdateGroup.m"; sourceTree = "<group>"; };
 		3760881216762BEF00B1161E /* NSArray+LocatableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LocatableTests.m"; sourceTree = "<group>"; };
+		376088161676333300B1161E /* LocalUpdateQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueueTests.m; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -313,8 +314,6 @@
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
-		37AA661D1653F027001F9660 /* Radar+GeoFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Radar+GeoFence.h"; sourceTree = "<group>"; };
-		37AA661E1653F027001F9660 /* Radar+GeoFence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Radar+GeoFence.m"; sourceTree = "<group>"; };
 		37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditionsTests.m; sourceTree = "<group>"; };
 		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
@@ -544,8 +543,6 @@
 				376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */,
 				37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */,
 				37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */,
-				37AA661D1653F027001F9660 /* Radar+GeoFence.h */,
-				37AA661E1653F027001F9660 /* Radar+GeoFence.m */,
 				3724BC7115E4CA1200790869 /* Store.h */,
 				3724BC7215E4CA1200790869 /* Store.m */,
 				3760881416762BF300B1161E /* Tests */,
@@ -584,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				3760881216762BEF00B1161E /* NSArray+LocatableTests.m */,
+				376088161676333300B1161E /* LocalUpdateQueueTests.m */,
 			);
 			name = Tests;
 			path = LogicTests;
@@ -983,7 +981,6 @@
 				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
-				37AA661F1653F027001F9660 /* Radar+GeoFence.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */,
@@ -1016,7 +1013,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
-				37AA66201653F027001F9660 /* Radar+GeoFence.m in Sources */,
 				370220E6165530E900350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */,
 				370220E81655310D00350AD1 /* CoreDataManager.m in Sources */,
@@ -1025,6 +1021,8 @@
 				37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				3760881316762BF000B1161E /* NSArray+LocatableTests.m in Sources */,
 				3760881516762FB400B1161E /* NSArray+Locatable.m in Sources */,
+				376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */,
+				376088181676333600B1161E /* LocalUpdateQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

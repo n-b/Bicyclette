@@ -224,7 +224,7 @@
 	if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
-        [self refreshStation:(Station*)view.annotation]; 
+        [(Station*)view.annotation updateWithCompletionBlock:nil];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
@@ -335,11 +335,6 @@ fromOldState:(MKAnnotationViewDragState)oldState
 {
     [self.mapView selectAnnotation:self.droppedRadar animated:YES];
     [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateStarting animated:YES];
-}
-
-- (void) refreshStation:(Station*)station
-{
-    [station refresh];
 }
 
 - (void) zoomInRegion:(Region*)region

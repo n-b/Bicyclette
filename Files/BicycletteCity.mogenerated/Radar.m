@@ -6,16 +6,11 @@
 #if TARGET_OS_IPHONE
 
 @interface Radar()
-@property (nonatomic) NSArray * stationsWithinRadarRegion;
-@property BOOL wantsSummary;
+@property NSArray* pointsToUpdate;
 @end
 
 @implementation Radar
-@synthesize stationsWithinRadarRegion=_stationsWithinRadarRegion;
-@synthesize wantsSummary=_wantsSummary;
-
-/****************************************************************************/
-#pragma mark NSManagedObject
+@synthesize pointsToUpdate;
 
 - (void) awakeFromFetch
 {
@@ -52,17 +47,60 @@
 {
     if (context == (__bridge void *)([Radar class])) {
         [self willChangeValueForKey:@"radarRegion"];
-        [self willChangeValueForKey:@"monitoringRegion"];
+        [self willChangeValueForKey:@"fenceRegion"];
         [self didChangeValueForKey:@"radarRegion"];
-        [self didChangeValueForKey:@"monitoringRegion"];
-        [self updateStationsWithinRadarRegion];
+        [self didChangeValueForKey:@"fenceRegion"];
+        [self updateStationsInRadar];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
 /****************************************************************************/
-#pragma mark RadarRegion
+#pragma mark GeoFence
+
+- (CLRegion*) fenceRegion
+{
+    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    CLLocationDistance monitorDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MonitorDistance"];
+    return [[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:radarDistance+monitorDistance identifier:self.identifier];
+}
+
++ (NSSet *)keyPathsForValuesAffectingFenceRegion
+{
+    return [NSSet setWithObject:@"coordinate"];
+}
+
+/****************************************************************************/
+#pragma mark Locatable
+
+- (CLLocation *) location
+{
+    return [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
+}
+
++ (NSSet *)keyPathsForValuesAffectingLocation
+{
+    return [NSSet setWithObjects:@"latitude", @"longitude",nil];
+}
+
+/****************************************************************************/
+#pragma mark LocalUpdateGroup
+
+- (void) updateStationsInRadar
+{
+    // Fetch in a square
+    NSArray * stations = [self.city stationsWithinRegion:[self radarRegion]];
+
+    // chop those that are in the square, but actually farther that the radar distance
+    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    stations = [stations filteredArrayWithinDistance:radarDistance fromLocation:self.location];
+
+    self.pointsToUpdate = stations;
+}
+
+/****************************************************************************/
+#pragma mark -
 
 - (MKCoordinateRegion) radarRegion
 {
@@ -72,62 +110,7 @@
 
 + (NSSet *)keyPathsForValuesAffectingRadarRegion
 {
-    return [NSSet setWithObjects:@"coordinate",nil];
-}
-
-/****************************************************************************/
-#pragma mark Monitoring
-
-- (CLRegion*) monitoringRegion
-{
-    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-    CLLocationDistance monitorDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MonitorDistance"];
-    return [[CLRegion alloc] initCircularRegionWithCenter:self.coordinate radius:radarDistance+monitorDistance identifier:self.identifier];
-}
-
-+ (NSSet *)keyPathsForValuesAffectingMonitoringRegion
-{
     return [NSSet setWithObject:@"coordinate"];
-}
-
-- (void) setWantsSummary
-{
-    self.wantsSummary = YES;
-    for (Station * station in self.stationsWithinRadarRegion) {
-        [station notifySummaryAfterNextRefresh];
-    }
-}
-
-- (void) clearWantsSummary
-{
-    self.wantsSummary = NO;
-    for (Station * station in self.stationsWithinRadarRegion) {
-        [station cancelSummaryAfterNextRefresh];
-    }
-}
-
-/****************************************************************************/
-#pragma mark stationsWithinRadarRegion
-
-- (NSArray *) stationsWithinRadarRegion
-{
-    if(_stationsWithinRadarRegion == nil)
-        [self updateStationsWithinRadarRegion];
-
-    return _stationsWithinRadarRegion;
-}
-
-- (void) updateStationsWithinRadarRegion
-{
-    // Fetch in a square
-    NSArray * stations = [self.city stationsWithinRegion:[self radarRegion]];
-
-    CLLocation * location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-    // chop those that are in the square, but actually farther that the radar distance
-    CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-    stations = [stations filteredArrayWithinDistance:radarDistance fromLocation:location];
-
-    self.stationsWithinRadarRegion = [stations copy]; // compare first !
 }
 
 /****************************************************************************/
@@ -144,7 +127,7 @@
     {
         self.latitudeValue = coordinate.latitude;
         self.longitudeValue = coordinate.longitude;
-        [self updateStationsWithinRadarRegion];
+        [self updateStationsInRadar];
     }
 }
 

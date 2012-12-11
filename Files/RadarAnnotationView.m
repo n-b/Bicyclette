@@ -13,11 +13,6 @@
 #import "DrawingCache.h"
 #import "Style.h"
 
-
-@interface RadarAnnotationView ()
-@property (nonatomic) NSArray * stationsWithinRadarRegion;
-@end
-
 @implementation RadarAnnotationView
 {
     CALayer * _handleLayer;
@@ -45,60 +40,14 @@
 
 - (void) setAnnotation:(id<MKAnnotation>)annotation
 {
-    [self.radar removeObserver:self forKeyPath:@"stationsWithinRadarRegion" context:(__bridge void *)([RadarAnnotationView class])];
     [super setAnnotation:annotation];
-    
-    if(self.radar==nil)
-        self.stationsWithinRadarRegion = nil;
-    [self.radar addObserver:self forKeyPath:@"stationsWithinRadarRegion" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-                    context:(__bridge void *)([RadarAnnotationView class])];
     [self setNeedsDisplay];
 }
 
 - (void) prepareForReuse
 {
     [super prepareForReuse];
-    self.annotation = nil; // stop observing
-}
-
-/****************************************************************************/
-#pragma mark Data
-
-- (void) setStationsWithinRadarRegion:(NSArray *)newValue
-{
-    NSArray * oldValue = _stationsWithinRadarRegion;
-    NSArray * added = [newValue arrayByRemovingObjectsInArray:oldValue];
-    NSArray * removed = [oldValue arrayByRemovingObjectsInArray:newValue];
-    
-    // useless now : contents does not depend on which station is being refreshed. Might change.
-    for (Station * station in removed)
-        [station removeObserver:self forKeyPath:@"isInRefreshQueue" context:(__bridge void *)([RadarAnnotationView class])];
-    
-    // useless now : contents does not depend on which station is being refreshed. Might change.
-    for (Station * station in added)
-        [station addObserver:self forKeyPath:@"isInRefreshQueue" options:0 context:(__bridge void *)([RadarAnnotationView class])];
-    
-    _stationsWithinRadarRegion = newValue;
-}
-
-/****************************************************************************/
-#pragma mark KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == (__bridge void *)([RadarAnnotationView class])) {
-        if([keyPath isEqualToString:@"stationsWithinRadarRegion"])
-        {
-            id newValue = change[NSKeyValueChangeNewKey];
-            self.stationsWithinRadarRegion = newValue != [NSNull null] ? newValue : nil;
-        }
-        else if([keyPath isEqualToString:@"isInRefreshQueue"])
-        {
-            //            [self setNeedsDisplay]; // useless now : contents does not depend on which station is being refreshed. Might change.
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
+    self.annotation = nil;
 }
 
 /****************************************************************************/
@@ -129,7 +78,7 @@
     CGFloat offsetY = 0.5;
     
     // Automatically switch to next state after .15 seconds
-    MKAnnotationViewDragState autoSwithState = newDragState;
+    MKAnnotationViewDragState autoSwitchState = newDragState;
     switch (newDragState) {
         case MKAnnotationViewDragStateNone:
             scale = 1.0f;
@@ -138,7 +87,7 @@
         case MKAnnotationViewDragStateStarting:
             scale = 1.05f;
             offsetY = 2.5f;
-            autoSwithState = MKAnnotationViewDragStateDragging;
+            autoSwitchState = MKAnnotationViewDragStateDragging;
             break;
         case MKAnnotationViewDragStateDragging:
             scale = 1.0f;
@@ -147,12 +96,12 @@
         case MKAnnotationViewDragStateEnding:
             scale = 1.05f;
             offsetY = 2.5f;
-            autoSwithState = MKAnnotationViewDragStateNone;
+            autoSwitchState = MKAnnotationViewDragStateNone;
             break;
         case MKAnnotationViewDragStateCanceling:
             scale = 1.0f;
             offsetY = 0.f;
-            autoSwithState = MKAnnotationViewDragStateNone;
+            autoSwitchState = MKAnnotationViewDragStateNone;
             break;
     }
     
@@ -169,11 +118,11 @@
     else
         animations();
     
-    if(newDragState!=autoSwithState)
+    if(newDragState!=autoSwitchState)
     {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, .15 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self setDragState:autoSwithState animated:YES];
+            [self setDragState:autoSwitchState animated:YES];
         });
     }
 }
@@ -200,14 +149,6 @@
 
 - (void)displayLayer:(CALayer *)layer
 {
-//    if(self.hidden)
-//    {
-//        self.layer.contents = nil;
-//        _handleLayer.contents = nil;
-//        return;
-//    }
-    
-    
     self.layer.contents = (id)[self.drawingCache sharedImageWithSize:self.bounds.size
                                                                scale:self.layer.contentsScale
                                                                shape:BackgroundShapeOval

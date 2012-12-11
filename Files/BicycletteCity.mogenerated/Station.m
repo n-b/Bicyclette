@@ -5,20 +5,16 @@
 #import "DataUpdater.h"
 #import "NSObject+KVCMapping.h"
 #import "NSError+MultipleErrorsCombined.h"
-#if TARGET_OS_IPHONE
-#import "UIApplication+LocalAlerts.h"
-#endif
 
 /****************************************************************************/
 #pragma mark -
 
 @interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
 @property DataUpdater * updater;
-@property BOOL loading;
+@property BOOL updating;
 @property NSError * updateError;
 @property NSMutableString * currentParsedString;
-@property (nonatomic) CLLocation * location;
-@property BOOL notifySummary;
+@property (copy) void(^completionBlock)() ;
 @end
 
 
@@ -27,9 +23,8 @@
 
 @implementation Station
 
-@synthesize updater=_updater, loading=_loading, updateError=_updateError, currentParsedString=_currentParsedString;
-@synthesize isInRefreshQueue, notifySummary;
-@synthesize location=_location;
+@synthesize updater, updating, updateError, currentParsedString, completionBlock;
+@synthesize queuedForUpdate;
 
 - (NSString *) debugDescription
 {
@@ -46,12 +41,13 @@
 /****************************************************************************/
 #pragma mark updating
 
-- (void) refresh
+- (void) updateWithCompletionBlock:(void (^)())completion
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
 	if(self.updater!=nil)
 		return;
     self.updateError = nil;
+    self.completionBlock = completion;
     self.updater = [[DataUpdater alloc] initWithDelegate:self];
 }
 
@@ -59,7 +55,8 @@
 {
     [self.updater cancel];
     self.updater = nil;
-    self.loading = NO;
+    self.updating = NO;
+    self.completionBlock = nil;
 }
 
 - (NSURL*) urlForUpdater:(DataUpdater*)updater
@@ -80,20 +77,23 @@
 
 - (void) updaterDidStartRequest:(DataUpdater *)updater
 {
-    self.loading = YES;
+    self.updating = YES;
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
     self.updateError = error;
     self.updater = nil;
-    self.loading = NO;
+    self.updating = NO;
+    self.completionBlock = nil;
 }
 
 - (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
 {
     self.updater = nil;
-    self.loading = NO;
+    self.updating = NO;
+    self.completionBlock();
+    self.completionBlock = nil;
 }
 
 - (void) updater:(DataUpdater *)updater finishedWithNewData:(NSData *)data
@@ -103,20 +103,14 @@
     self.currentParsedString = [NSMutableString string];
 	[parser parse];
     self.currentParsedString = nil;
-
-    if(self.notifySummary)
-    {
-#if TARGET_OS_IPHONE
-        [[UIApplication sharedApplication] presentLocalNotificationMessage:self.localizedSummary userInfo:(@{@"city": NSStringFromClass([self.city class]) ,
-                                                                                                           @"stationNumber": self.number})];
-#endif
-        self.notifySummary = NO;
-    }
     
     [[self city] setNeedsSave];
     self.updater = nil;
-    self.loading = NO;
-    
+    self.updating = NO;
+    if(self.completionBlock)
+        self.completionBlock();
+    self.completionBlock = nil;
+
     [self performSelector:@selector(becomeStale) withObject:nil afterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"]];
 }
 
@@ -176,9 +170,7 @@
 
 - (CLLocation*) location
 {
-	if(nil==_location)
-		_location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-	return _location;
+    return [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
 }
 
 /****************************************************************************/
@@ -189,16 +181,6 @@
     return [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
             self.title,
             self.status_availableValue, self.status_freeValue];
-}
-
-- (void) notifySummaryAfterNextRefresh
-{
-    self.notifySummary = YES;
-}
-
-- (void) cancelSummaryAfterNextRefresh
-{
-    self.notifySummary = NO;
 }
 
 /****************************************************************************/

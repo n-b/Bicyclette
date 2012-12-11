@@ -26,6 +26,7 @@
 #if TARGET_OS_IPHONE
 @property (nonatomic, readonly) MKCoordinateRegion regionContainingData;
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
+- (NSArray*) radars;
 #endif
 
 - (Station*) stationWithNumber:(NSString*)number;

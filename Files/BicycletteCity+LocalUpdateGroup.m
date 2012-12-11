@@ -11,33 +11,6 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation Radar (LocalUpdateGroup)
-- (CLLocation *) location
-{
-    return [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-}
-
-+ (NSSet *)keyPathsForValuesAffectingUpdatePoints
-{
-    return [NSSet setWithObjects:@"latitude", @"longitude",nil];
-}
-
-- (NSSet *) updatePoints
-{
-    return [NSSet setWithArray:self.stationsWithinRadarRegion];
-}
-
-@dynamic wantsSummary;
-@end
-
-
-@implementation Station (LocalUpdatePoint)
-@dynamic location, loading;
-- (void) update
-{
-    [self refresh];
-}
-@end
 
 @interface LocalUpdateGroup ()
 @property MKCoordinateRegion region;
@@ -48,16 +21,11 @@
 {
     return [[CLLocation alloc] initWithLatitude:self.region.center.latitude longitude:self.region.center.longitude];
 }
-- (BOOL) wantsSummary
-{
-    return NO;
-}
-- (NSArray*) updatePoints
+- (NSArray*) pointsToUpdate
 {
     return [self.city stationsWithinRegion:self.region];
 }
-
-+ (NSSet *)keyPathsForValuesAffectingUpdatePoints
++ (NSSet *)keyPathsForValuesAffectingPointsToUpdate
 {
     return [NSSet setWithObjects:@"city",@"region", nil];
 }

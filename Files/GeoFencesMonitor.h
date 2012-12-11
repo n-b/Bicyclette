@@ -7,6 +7,7 @@
 //
 
 @protocol GeoFence;
+@protocol GeoFencesMonitorDelegate;
 
 // GeoFencesMonitor
 //
@@ -14,15 +15,20 @@
 @interface GeoFencesMonitor : NSObject
 - (void) addFence:(id<GeoFence>)fence;
 - (void) removeFence:(id<GeoFence>)fence;
-- (void) setFences:(NSSet *)geofences;
+
+@property (weak) id<GeoFencesMonitorDelegate> delegate;
+@end
+
+@protocol GeoFencesMonitorDelegate <NSObject>
+
+- (void) monitor:(GeoFencesMonitor*)monitor fenceWasEntered:(id<GeoFence>)fence;
+- (void) monitor:(GeoFencesMonitor*)monitor fenceWasExited:(id<GeoFence>)fence;
+
 @end
 
 
 @protocol GeoFence <NSObject>
 
-@property (readonly) CLRegion* region;
-
-- (void) enterFence;
-- (void) exitFence;
+@property (readonly) CLRegion* fenceRegion;
 
 @end

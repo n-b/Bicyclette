@@ -8,14 +8,7 @@
 
 #import "BicycletteCity.h"
 #import "Radar.h"
-#import "Station.h"
 #import "LocalUpdateQueue.h"
-
-@interface Radar (LocalUpdateGroup) <LocalUpdateGroup>
-@end
-
-@interface Station (LocalUpdatePoint) <LocalUpdatePoint>
-@end
 
 // Concrete version
 @class BicycletteCity;

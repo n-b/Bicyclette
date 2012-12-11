@@ -61,7 +61,7 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, @"isInRefreshQueue", @"loading", @"statusDataIsFresh" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, @"queuedForUpdate", @"updating", @"statusDataIsFresh" ];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -100,10 +100,10 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     
-    if([self station].loading)
+    if([self station].updating)
     {
         CGFloat phase = 0;
-        if([self station].loading)
+        if([self station].updating)
         {
             double integral;
             phase = modf([[NSDate date] timeIntervalSinceReferenceDate], &integral);

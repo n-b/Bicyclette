@@ -46,7 +46,7 @@
     if(![self.geofences containsObject:fence])
     {
         [self monitorFence:fence];
-        [fence addObserver:self forKeyPath:@"region" options:0 context:(__bridge void *)([GeoFencesMonitor class])];
+        [fence addObserver:self forKeyPath:@"fenceRegion" options:0 context:(__bridge void *)([GeoFencesMonitor class])];
         [self.geofences addObject:fence];
     }
 }
@@ -55,8 +55,8 @@
 {
     if([self.geofences containsObject:fence])
     {
-        [fence removeObserver:self forKeyPath:@"region" context:(__bridge void *)([GeoFencesMonitor class])];
-        [self.locationManager stopMonitoringForRegion:fence.region];
+        [fence removeObserver:self forKeyPath:@"fenceRegion" context:(__bridge void *)([GeoFencesMonitor class])];
+        [self.locationManager stopMonitoringForRegion:fence.fenceRegion];
     }
 }
 
@@ -76,8 +76,8 @@
 
 - (void) monitorFence:(NSObject<GeoFence>*)fence
 {
-    // the radar.monitoringRegion always has the same identifier, so that the CLLocationManager knows it's the same region
-    [self.locationManager startMonitoringForRegion:fence.region];
+    // the radar.fenceRegion always has the same identifier, so that the CLLocationManager knows it's the same region
+    [self.locationManager startMonitoringForRegion:fence.fenceRegion];
 }
 
 /****************************************************************************/
@@ -104,16 +104,17 @@
 {
     NSLog(@"did enter region %@",region);
     
-    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region forKeyPath:@"region"];
-    [fence enterFence];
+    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region.identifier forKeyPath:@"fenceRegion.identifier"];
+    if(fence)
+        [self.delegate monitor:self fenceWasEntered:fence];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     NSLog(@"did exit region %@",region);
     
-    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region forKeyPath:@"region"];
-    [fence exitFence];
+    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region.identifier forKeyPath:@"fenceRegion.identifier"];
+    [self.delegate monitor:self fenceWasExited:fence];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
