@@ -53,7 +53,6 @@
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
 		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
 		3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */; };
-		370D2ABB15A3A2270019F36E /* NSArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */; };
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370E3A3F162E17880010E454 /* AmiensVelamCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370E3A3E162E17880010E454 /* AmiensVelamCity.m */; };
 		370E3A40162E17880010E454 /* AmiensVelamCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370E3A3E162E17880010E454 /* AmiensVelamCity.m */; };
@@ -93,11 +92,10 @@
 		373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780615E40EF70057E241 /* Icon~settings@2x.png */; };
 		374334CA164B0EC00051294F /* CitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374334C9164B0EC00051294F /* CitiesController.m */; };
 		3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
+		3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748429616772DE600DD457E /* SenTestCase+RunLoop.m */; };
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		376087F71675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */; };
-		3760881316762BF000B1161E /* NSArray+LocatableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3760881216762BEF00B1161E /* NSArray+LocatableTests.m */; };
-		3760881516762FB400B1161E /* NSArray+Locatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */; };
 		376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376088161676333300B1161E /* LocalUpdateQueueTests.m */; };
 		376088181676333600B1161E /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
@@ -245,8 +243,6 @@
 		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
 		3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+AttributionLogo.h"; sourceTree = "<group>"; };
 		3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+AttributionLogo.m"; sourceTree = "<group>"; };
-		370D2AB915A3A2270019F36E /* NSArray+Locatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Locatable.h"; sourceTree = "<group>"; };
-		370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Locatable.m"; sourceTree = "<group>"; };
 		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
 		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
 		370E3A3D162E17870010E454 /* AmiensVelamCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmiensVelamCity.h; sourceTree = "<group>"; };
@@ -291,13 +287,14 @@
 		374334C9164B0EC00051294F /* CitiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesController.m; sourceTree = "<group>"; };
 		3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUpdateQueue.h; sourceTree = "<group>"; };
 		3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueue.m; sourceTree = "<group>"; };
+		3748429516772DE600DD457E /* SenTestCase+RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+RunLoop.h"; sourceTree = "<group>"; };
+		3748429616772DE600DD457E /* SenTestCase+RunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+RunLoop.m"; sourceTree = "<group>"; };
 		37513B6116173FAB00388FF3 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+LocalUpdateGroup.h"; sourceTree = "<group>"; };
 		376087F51675E27400B1161E /* BicycletteCity+LocalUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+LocalUpdateGroup.m"; sourceTree = "<group>"; };
-		3760881216762BEF00B1161E /* NSArray+LocatableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LocatableTests.m"; sourceTree = "<group>"; };
 		376088161676333300B1161E /* LocalUpdateQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueueTests.m; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
@@ -535,8 +532,6 @@
 				374334C9164B0EC00051294F /* CitiesController.m */,
 				37D131FC163F32DE00AABEE4 /* Model */,
 				3717AA65162A1C11005EC7BD /* Cities */,
-				370D2AB915A3A2270019F36E /* NSArray+Locatable.h */,
-				370D2ABA15A3A2270019F36E /* NSArray+Locatable.m */,
 				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
 				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
 				376087F41675E27400B1161E /* BicycletteCity+LocalUpdateGroup.h */,
@@ -580,7 +575,6 @@
 		3760881416762BF300B1161E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3760881216762BEF00B1161E /* NSArray+LocatableTests.m */,
 				376088161676333300B1161E /* LocalUpdateQueueTests.m */,
 			);
 			name = Tests;
@@ -590,6 +584,8 @@
 		3770B22C14E976590003BBA8 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				3748429516772DE600DD457E /* SenTestCase+RunLoop.h */,
+				3748429616772DE600DD457E /* SenTestCase+RunLoop.m */,
 				3770B22D14E9765A0003BBA8 /* carto.xml */,
 				3770B22E14E976C20003BBA8 /* Austerlitz.gpx */,
 				37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */,
@@ -960,7 +956,6 @@
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
 				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
-				370D2ABB15A3A2270019F36E /* NSArray+Locatable.m in Sources */,
 				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
@@ -1019,10 +1014,9 @@
 				370220E91655311000350AD1 /* DataUpdater.m in Sources */,
 				37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */,
 				37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
-				3760881316762BF000B1161E /* NSArray+LocatableTests.m in Sources */,
-				3760881516762FB400B1161E /* NSArray+Locatable.m in Sources */,
 				376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */,
 				376088181676333600B1161E /* LocalUpdateQueue.m in Sources */,
+				3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

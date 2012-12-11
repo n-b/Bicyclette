@@ -1,9 +1,10 @@
+#if TARGET_OS_IPHONE
+
 #import "Radar.h"
 #import "Station.h"
-#import "NSArray+Locatable.h"
+#import "LocalUpdateQueue.h"
 #import "BicycletteCity.h"
 
-#if TARGET_OS_IPHONE
 
 @interface Radar()
 @property NSArray* pointsToUpdate;

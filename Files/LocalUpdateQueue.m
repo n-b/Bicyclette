@@ -1,5 +1,5 @@
 //
-//  RadarUpdateQueue.m
+//  LocalUpdateQueue.m
 //  Bicyclette
 //
 //  Created by Nicolas Bouilleaud on 16/07/12.
@@ -7,7 +7,6 @@
 //
 
 #import "LocalUpdateQueue.h"
-#import "NSArray+Locatable.h"
 #import "CollectionsAdditions.h"
 
 @interface LocalUpdateQueue () <NSFetchedResultsControllerDelegate>
@@ -96,17 +95,16 @@
     BOOL isAppActive = [UIApplication sharedApplication].applicationState == UIApplicationStateActive;
         
     NSArray * groupsToRefresh;
-    CLLocationDistance refreshDistance = self.moniteredGroupsMaximumDistance;
     if(isAppActive)
     {
         // if the app is active, update the monitored groups
         NSArray * sortedGroups = [self.monitoredGroups allObjects];
-        sortedGroups = [sortedGroups filteredArrayWithinDistance:refreshDistance fromLocation:self.referenceLocation];
+        sortedGroups = [sortedGroups filteredArrayWithinDistance:self.moniteredGroupsMaximumDistance fromLocation:self.referenceLocation];
         sortedGroups = [sortedGroups sortedArrayByDistanceFromLocation:self.referenceLocation];
         groupsToRefresh = sortedGroups;
     }
 
-    [groupsToRefresh arrayByAddingObjectsFromArray:[self.oneshotGroups allObjects]];
+    groupsToRefresh = [groupsToRefresh arrayByAddingObjectsFromArray:[self.oneshotGroups allObjects]];
     
     // make the list
     NSMutableOrderedSet * pointsSet = [NSMutableOrderedSet new]; // use an orderedset to make sure each station is added only once
@@ -115,15 +113,16 @@
     NSArray * pointsToUpdate = [pointsSet array];
     
     // if it's a different list, restart from beginning
-    if([self.pointsInQueue isEqual:pointsToUpdate])
-        return;
+    if( ! [self.pointsInQueue isEqual:pointsToUpdate])
+    {
+        // queuedForUpdate is used by the UI to display progress indicators
+        [self.pointsInQueue setValue:@(NO) forKey:@"queuedForUpdate"];
+        self.pointsInQueue = pointsToUpdate;
+        [self.pointsInQueue setValue:@(YES) forKey:@"queuedForUpdate"];
+
+        self.currentIndex = 0;
+    }
     
-    // queuedForUpdate is used by the UI to display progress indicators
-    [self.pointsInQueue setValue:@(NO) forKey:@"queuedForUpdate"];
-    self.pointsInQueue = pointsToUpdate;
-    [self.pointsInQueue setValue:@(YES) forKey:@"queuedForUpdate"];
-    
-    self.currentIndex = 0;
     if(self.pointBeingUpdated==nil)
     {
         [self updateNext];
@@ -142,6 +141,7 @@
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         // refresh next station in the list
         self.pointBeingUpdated = self.pointsInQueue[self.currentIndex];
+        self.currentIndex ++;
         [self.pointBeingUpdated updateWithCompletionBlock:^{
             __block id<LocalUpdateGroup> groupOfPoint = nil;
             [self.oneshotGroups enumerateObjectsUsingBlock:^(id<LocalUpdateGroup> group, BOOL *stop) {
@@ -155,7 +155,6 @@
                 [self.delegate updateQueue:self didUpdateOneshotPoint:self.pointBeingUpdated ofGroup:groupOfPoint];
             [self updateNext];
         }];
-        self.currentIndex ++;
     }
     else
     {
@@ -191,3 +190,26 @@
 
 @end
 
+/****************************************************************************/
+#pragma mark Collections
+
+@implementation NSArray (Locatable)
+- (instancetype) filteredArrayWithinDistance:(CLLocationDistance)distance fromLocation:(CLLocation*)location
+{
+    return [self filteredArrayUsingPredicate:
+            [NSPredicate predicateWithBlock:
+             ^BOOL(id<Locatable> locatable, NSDictionary *bindings){
+                 return location && [location distanceFromLocation:locatable.location] < distance;
+             }]];
+}
+
+- (instancetype) sortedArrayByDistanceFromLocation:(CLLocation*)location
+{
+    return [self sortedArrayUsingComparator:
+            ^NSComparisonResult(id<Locatable> l1, id<Locatable> l2) {
+                CLLocationDistance d1 = [location distanceFromLocation:l1.location];
+                CLLocationDistance d2 = [location distanceFromLocation:l2.location];
+                return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
+            }];
+}
+@end
