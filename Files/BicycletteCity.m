@@ -100,17 +100,13 @@
 {
     if(self.updater==nil)
     {
-        self.updater = [[DataUpdater alloc] initWithDelegate:self];
+        self.updater = [[DataUpdater alloc] initWithURL:[NSURL URLWithString:self.serviceInfo[@"carto"]] delegate:self];
     }
 }
 
 /****************************************************************************/
 #pragma mark Updater Delegate
 
-- (NSURL*) urlForUpdater:(DataUpdater *)updater
-{
-    return [NSURL URLWithString:self.serviceInfo[@"carto"]];
-}
 - (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater
 {
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugAlwaysDownloadStationList"])

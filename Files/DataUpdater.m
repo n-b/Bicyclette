@@ -13,6 +13,7 @@
 #pragma mark -
 
 @interface DataUpdater()
+@property NSURL* URL;
 @property NSURLConnection * updateConnection;
 @property NSMutableData * updateData;
 @end
@@ -25,47 +26,29 @@
 /****************************************************************************/
 #pragma mark -
 
-- (id) initWithDelegate:(id<DataUpdaterDelegate>) delegate_
+- (id) initWithURL:(NSURL*)url_ delegate:(id<DataUpdaterDelegate>) delegate_
 {
 	self = [super init];
 	if (self != nil) 
 	{
+        self.URL = url_;
         self.delegate = delegate_;
-        BOOL needUpdate = YES;
-		// Find if I need to update
-        if ([self.delegate respondsToSelector:@selector(dataDateForUpdater:)]
-             && [self.delegate respondsToSelector:@selector(refreshIntervalForUpdater:)])
-        {
-            NSDate * createDate = [self.delegate dataDateForUpdater:self];
-            needUpdate = (nil==createDate || [[NSDate date] timeIntervalSinceDate:createDate] > [self.delegate refreshIntervalForUpdater:self]);
-        }
-
-		if(needUpdate)
-        {
-            [self startRequest];
-        }
-        else
-        {
-            // Do not even start
-            return nil;
-        }
+        [self startRequest];
 	}
 	return self;
 }
 
 - (void) startRequest
 {
-    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.delegate urlForUpdater:self]];
-    [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
-    self.updateConnection = [NSURLConnection connectionWithRequest:request
+    self.updateConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:self.URL]
                                                           delegate:self];
     [self.delegate updaterDidStartRequest:self];
 }
 
 - (void) cancel
 {
-    if(self.updateConnection)
-        [self.updateConnection cancel];
+    [self.updateConnection cancel];
+    self.delegate = nil;
 }
 
 - (void) dealloc
@@ -109,7 +92,7 @@
     {
         NSString * oldSha1 = [self.delegate knownDataSha1ForUpdater:self];
         NSString * newSha1 = [self.updateData sha1DigestString];
-        if([oldSha1 isEqualToString:newSha1] && ! [[NSUserDefaults standardUserDefaults] boolForKey:@"DebugRemoveStore"])
+        if([oldSha1 isEqualToString:newSha1])
         {
             notifyDelegate = NO;
             NSLog(@"No need to rebuild database, the data actually hasn't changed.");
@@ -117,9 +100,6 @@
         else if([self.delegate respondsToSelector:@selector(setUpdater:knownDataSha1:)])
             [self.delegate setUpdater:self knownDataSha1:newSha1];
     }
-
-    if([self.delegate respondsToSelector:@selector(setUpdater:dataDate:)])
-        [self.delegate setUpdater:self dataDate:[NSDate date]];
 
     if(notifyDelegate)
 		[self.delegate updater:self finishedWithNewData:self.updateData];

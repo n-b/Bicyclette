@@ -48,7 +48,10 @@
 		return;
     self.updateError = nil;
     self.completionBlock = completion;
-    self.updater = [[DataUpdater alloc] initWithDelegate:self];
+    self.updater = [[DataUpdater alloc] initWithURL:
+                    [NSURL URLWithString:[[self city].stationDetailsURL
+                                          stringByAppendingString:self.number]]
+                                           delegate:self];
 }
 
 - (void) cancel
@@ -57,22 +60,6 @@
     self.updater = nil;
     self.updating = NO;
     self.completionBlock = nil;
-}
-
-- (NSURL*) urlForUpdater:(DataUpdater*)updater
-{
-    return [NSURL URLWithString:[[self city].stationDetailsURL
-                                 stringByAppendingString:self.number]];
-}
-
-- (NSDate*) dataDateForUpdater:(DataUpdater*)updater
-{
-    return self.status_date;
-}
-
-- (void) setUpdater:(DataUpdater*)updater dataDate:(NSDate*)date
-{
-    self.status_date = date;
 }
 
 - (void) updaterDidStartRequest:(DataUpdater *)updater
@@ -111,6 +98,7 @@
         self.completionBlock();
     self.completionBlock = nil;
 
+    self.status_date = [NSDate date];
     [self performSelector:@selector(becomeStale) withObject:nil afterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"]];
 }
 

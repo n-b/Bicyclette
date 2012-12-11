@@ -13,11 +13,10 @@
 // Data Update generic machinery
 @interface DataUpdater : NSObject
 
-- (id) initWithDelegate:(id<DataUpdaterDelegate>)delegate;
-
+- (id) initWithURL:(NSURL*)url delegate:(id<DataUpdaterDelegate>)delegate;
+@property (readonly) NSURL* URL;
 @property (nonatomic, weak) id<DataUpdaterDelegate> delegate;
 
-- (void) startRequest;
 - (void) cancel;
 
 @end
@@ -31,14 +30,7 @@
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)data;
 
-// Data for updater
-- (NSURL*) urlForUpdater:(DataUpdater*)updater;
 @optional
-// Refresh Interval
-- (NSTimeInterval) refreshIntervalForUpdater:(DataUpdater*)updater;
-// Date
-- (NSDate*) dataDateForUpdater:(DataUpdater*)updater;
-- (void) setUpdater:(DataUpdater*)updater dataDate:(NSDate*)date;
 // SHA-1
 - (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater;
 - (void) setUpdater:(DataUpdater*)updater knownDataSha1:(NSString*)sha1;
