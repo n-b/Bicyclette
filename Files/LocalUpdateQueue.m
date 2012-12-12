@@ -120,14 +120,10 @@
         [pointsSet addObjectsFromArray:[group pointsToUpdate]];
     NSArray * pointsToUpdate = [pointsSet array];
     
-    // if it's a different list, restart from beginning
-    if( ! [self.pointsInQueue isEqual:pointsToUpdate])
-    {
-        // queuedForUpdate is used by the UI to display progress indicators
-        [[self.pointsInQueue arrayByRemovingObjectsInArray:pointsToUpdate] setValue:@NO forKey:@"queuedForUpdate"];
-        [[pointsToUpdate arrayByRemovingObjectsInArray:self.pointsInQueue] setValue:@YES forKey:@"queuedForUpdate"];
-        self.pointsInQueue = pointsToUpdate;
-    }
+    // queuedForUpdate is used by the UI to display progress indicators
+    [[self.pointsInQueue arrayByRemovingObjectsInArray:pointsToUpdate] setValue:@NO forKey:@"queuedForUpdate"];
+    [[pointsToUpdate arrayByRemovingObjectsInArray:self.pointsInQueue] setValue:@YES forKey:@"queuedForUpdate"];
+    self.pointsInQueue = pointsToUpdate;
     
     if([self.pointsUpdated count]==0)
         [self updateNext];
@@ -146,7 +142,6 @@
 
         id<LocalUpdatePoint> point = pointsNotUpdated[0];
         [self.pointsUpdated addObject:point];
-        
         [point updateWithCompletionBlock:^(NSError* error){
             if(error==nil)
             {
@@ -163,22 +158,19 @@
                     [self.delegate updateQueue:self didUpdateOneshotPoint:point ofGroup:oneshotGroup];
             }
             
-            if([[self.pointsInQueue arrayByRemovingObjectsInArray:self.pointsUpdated] count]==0)
-            {
-                // We've done all the stations in the list !
-                self.pointsUpdated = [NSMutableArray new];
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                
-                // clear the oneshot groups and restart after a delay
-                self.oneshotGroups = [NSMutableSet new];
-                [self performSelector:@selector(buildUpdateQueue) withObject:nil afterDelay:self.delayBetweenPointUpdates];
-            }
-            else
-            {
-                // Loop
-                [self updateNext];
-            }
+            // Loop
+            [self updateNext];
         }];
+    }
+    else
+    {
+        // We've done all the stations in the list !
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        self.pointsUpdated = [NSMutableArray new];
+        
+        // clear the oneshot groups and restart after a delay
+        self.oneshotGroups = [NSMutableSet new];
+        [self performSelector:@selector(buildUpdateQueue) withObject:nil afterDelay:self.delayBetweenPointUpdates];
     }
 }
 
