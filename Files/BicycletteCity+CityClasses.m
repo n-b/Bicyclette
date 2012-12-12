@@ -16,6 +16,7 @@
 #import "DublinBikesCity.h"
 #import "GoteborgStyrStallCity.h"
 #import "LjubljanaBicikeljCity.h"
+#import "LuxembourgVelohCity.h"
 #import "MarseilleLeVeloCity.h"
 #import "MulhouseVelociteCity.h"
 #import "NancyVelostanCity.h"
@@ -37,6 +38,7 @@
              [DublinBikesCity class],
              [GoteborgStyrStallCity class],
              [LjubljanaBicikeljCity class],
+             [LuxembourgVelohCity class],
              [MarseilleLeVeloCity class],
     		 [MulhouseVelociteCity class],
 			 [NancyVelostanCity class],
