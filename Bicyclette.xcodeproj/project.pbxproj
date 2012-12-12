@@ -131,6 +131,11 @@
 		373960881678F46A005F0672 /* LuxembourgVelohCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 373960851678F46A005F0672 /* LuxembourgVelohCity.plist */; };
 		373960891678F4B1005F0672 /* LuxembourgVelohCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 373960851678F46A005F0672 /* LuxembourgVelohCity.plist */; };
 		3739608B1678F529005F0672 /* LuxembourgVelohCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3739608A1678F529005F0672 /* LuxembourgVelohCity.sqlite */; };
+		3739608F1678F5F3005F0672 /* SantanderTusBicCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3739608D1678F5F2005F0672 /* SantanderTusBicCity.m */; };
+		373960901678F5F3005F0672 /* SantanderTusBicCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3739608D1678F5F2005F0672 /* SantanderTusBicCity.m */; };
+		373960911678F5F3005F0672 /* SantanderTusBicCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3739608E1678F5F2005F0672 /* SantanderTusBicCity.plist */; };
+		373960921678F624005F0672 /* SantanderTusBicCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3739608E1678F5F2005F0672 /* SantanderTusBicCity.plist */; };
+		373960941678F6AA005F0672 /* SantanderTusBicCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373960931678F6AA005F0672 /* SantanderTusBicCity.sqlite */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		373A77F415E3F6B80057E241 /* ParisVelibCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */; };
 		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
@@ -299,6 +304,7 @@
 				3793D3F21678CE8F009C6F27 /* NantesBiclooCity.plist in CopyFiles */,
 				3717AA6D162A1E1A005EC7BD /* ParisVelibCity.plist in CopyFiles */,
 				37376A871678EA140060CDEA /* RouenCyclicCity.plist in CopyFiles */,
+				373960921678F624005F0672 /* SantanderTusBicCity.plist in CopyFiles */,
 				37D9DFE6162A34E00000F263 /* ToulouseVeloCity.plist in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +402,10 @@
 		373960841678F46A005F0672 /* LuxembourgVelohCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuxembourgVelohCity.m; sourceTree = "<group>"; };
 		373960851678F46A005F0672 /* LuxembourgVelohCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LuxembourgVelohCity.plist; sourceTree = "<group>"; };
 		3739608A1678F529005F0672 /* LuxembourgVelohCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LuxembourgVelohCity.sqlite; sourceTree = "<group>"; };
+		3739608C1678F5F2005F0672 /* SantanderTusBicCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantanderTusBicCity.h; sourceTree = "<group>"; };
+		3739608D1678F5F2005F0672 /* SantanderTusBicCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantanderTusBicCity.m; sourceTree = "<group>"; };
+		3739608E1678F5F2005F0672 /* SantanderTusBicCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SantanderTusBicCity.plist; sourceTree = "<group>"; };
+		373960931678F6AA005F0672 /* SantanderTusBicCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SantanderTusBicCity.sqlite; sourceTree = "<group>"; };
 		373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ParisVelibCity.sqlite; path = _DataGrabTempFolder/ParisVelibCity.sqlite; sourceTree = SOURCE_ROOT; };
 		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
 		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
@@ -694,6 +704,7 @@
 				3793D3F31678CF15009C6F27 /* NantesBiclooCity.sqlite */,
 				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
 				37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */,
+				373960931678F6AA005F0672 /* SantanderTusBicCity.sqlite */,
 				37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */,
 			);
 			path = _DataGrabTempFolder;
@@ -775,6 +786,9 @@
 				37376A811678E8FD0060CDEA /* RouenCyclicCity.h */,
 				37376A821678E8FD0060CDEA /* RouenCyclicCity.m */,
 				37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */,
+				3739608C1678F5F2005F0672 /* SantanderTusBicCity.h */,
+				3739608D1678F5F2005F0672 /* SantanderTusBicCity.m */,
+				3739608E1678F5F2005F0672 /* SantanderTusBicCity.plist */,
 				37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */,
 				37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */,
 				37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */,
@@ -1104,6 +1118,8 @@
 				373960821678F3CD005F0672 /* LjubljanaBicikeljCity.sqlite in Resources */,
 				373960881678F46A005F0672 /* LuxembourgVelohCity.plist in Resources */,
 				3739608B1678F529005F0672 /* LuxembourgVelohCity.sqlite in Resources */,
+				373960911678F5F3005F0672 /* SantanderTusBicCity.plist in Resources */,
+				373960941678F6AA005F0672 /* SantanderTusBicCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,6 +1237,7 @@
 				373960751678F13D005F0672 /* GoteborgStyrStallCity.m in Sources */,
 				3739607E1678F345005F0672 /* LjubljanaBicikeljCity.m in Sources */,
 				373960871678F46A005F0672 /* LuxembourgVelohCity.m in Sources */,
+				373960901678F5F3005F0672 /* SantanderTusBicCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1257,6 +1274,7 @@
 				373960741678F13D005F0672 /* GoteborgStyrStallCity.m in Sources */,
 				3739607D1678F345005F0672 /* LjubljanaBicikeljCity.m in Sources */,
 				373960861678F46A005F0672 /* LuxembourgVelohCity.m in Sources */,
+				3739608F1678F5F3005F0672 /* SantanderTusBicCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
