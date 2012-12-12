@@ -111,6 +111,11 @@
 		3793D3F11678CD8A009C6F27 /* NantesBiclooCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3793D3F01678CD8A009C6F27 /* NantesBiclooCity.plist */; };
 		3793D3F21678CE8F009C6F27 /* NantesBiclooCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3793D3F01678CD8A009C6F27 /* NantesBiclooCity.plist */; };
 		3793D3F41678CF15009C6F27 /* NantesBiclooCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3793D3F31678CF15009C6F27 /* NantesBiclooCity.sqlite */; };
+		3793D4021678D9F2009C6F27 /* BesanconVelociteCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3793D4011678D9F1009C6F27 /* BesanconVelociteCity.plist */; };
+		3793D4051678DA06009C6F27 /* BesanconVelociteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793D4041678DA05009C6F27 /* BesanconVelociteCity.m */; };
+		3793D4061678DA06009C6F27 /* BesanconVelociteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793D4041678DA05009C6F27 /* BesanconVelociteCity.m */; };
+		3793D4071678DA19009C6F27 /* BesanconVelociteCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3793D4011678D9F1009C6F27 /* BesanconVelociteCity.plist */; };
+		3793D4091678DADB009C6F27 /* BesanconVelociteCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3793D4081678DADB009C6F27 /* BesanconVelociteCity.sqlite */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
@@ -223,11 +228,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				3717AA6C162A1E18005EC7BD /* MarseilleLeVeloCity.plist in CopyFiles */,
-				3717AA6D162A1E1A005EC7BD /* ParisVelibCity.plist in CopyFiles */,
-				3793D3F21678CE8F009C6F27 /* NantesBiclooCity.plist in CopyFiles */,
-				37D9DFE6162A34E00000F263 /* ToulouseVeloCity.plist in CopyFiles */,
 				370E3A43162E18820010E454 /* AmiensVelamCity.plist in CopyFiles */,
+				3793D4071678DA19009C6F27 /* BesanconVelociteCity.plist in CopyFiles */,
+				3717AA6C162A1E18005EC7BD /* MarseilleLeVeloCity.plist in CopyFiles */,
+				3793D3F21678CE8F009C6F27 /* NantesBiclooCity.plist in CopyFiles */,
+				3717AA6D162A1E1A005EC7BD /* ParisVelibCity.plist in CopyFiles */,
+				37D9DFE6162A34E00000F263 /* ToulouseVeloCity.plist in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +326,10 @@
 		3793D3EA1678CD7D009C6F27 /* NantesBiclooCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NantesBiclooCity.m; sourceTree = "<group>"; };
 		3793D3F01678CD8A009C6F27 /* NantesBiclooCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NantesBiclooCity.plist; sourceTree = "<group>"; };
 		3793D3F31678CF15009C6F27 /* NantesBiclooCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = NantesBiclooCity.sqlite; sourceTree = "<group>"; };
+		3793D4011678D9F1009C6F27 /* BesanconVelociteCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BesanconVelociteCity.plist; sourceTree = "<group>"; };
+		3793D4031678DA05009C6F27 /* BesanconVelociteCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BesanconVelociteCity.h; sourceTree = "<group>"; };
+		3793D4041678DA05009C6F27 /* BesanconVelociteCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BesanconVelociteCity.m; sourceTree = "<group>"; };
+		3793D4081678DADB009C6F27 /* BesanconVelociteCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BesanconVelociteCity.sqlite; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -559,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */,
+				3793D4081678DADB009C6F27 /* BesanconVelociteCity.sqlite */,
 				376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */,
 				3793D3F31678CF15009C6F27 /* NantesBiclooCity.sqlite */,
 				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
@@ -598,6 +609,9 @@
 				370E3A3D162E17870010E454 /* AmiensVelamCity.h */,
 				370E3A3E162E17880010E454 /* AmiensVelamCity.m */,
 				370E3A41162E17990010E454 /* AmiensVelamCity.plist */,
+				3793D4031678DA05009C6F27 /* BesanconVelociteCity.h */,
+				3793D4041678DA05009C6F27 /* BesanconVelociteCity.m */,
+				3793D4011678D9F1009C6F27 /* BesanconVelociteCity.plist */,
 				37D9DFDC162A2BF60000F263 /* MarseilleLeVeloCity.h */,
 				37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */,
 				3717AA66162A1C11005EC7BD /* MarseilleLeVeloCity.plist */,
@@ -912,6 +926,8 @@
 				376D0E5E1678C9FE006F321D /* MarseilleLeVeloCity.sqlite in Resources */,
 				3793D3F11678CD8A009C6F27 /* NantesBiclooCity.plist in Resources */,
 				3793D3F41678CF15009C6F27 /* NantesBiclooCity.sqlite in Resources */,
+				3793D4021678D9F2009C6F27 /* BesanconVelociteCity.plist in Resources */,
+				3793D4091678DADB009C6F27 /* BesanconVelociteCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1033,7 @@
 				376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */,
 				376D0E621678CA4E006F321D /* BicycletteCity+CityClasses.m in Sources */,
 				3793D3EC1678CD7D009C6F27 /* NantesBiclooCity.m in Sources */,
+				3793D4061678DA06009C6F27 /* BesanconVelociteCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,6 +1058,7 @@
 				376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */,
 				376D0E611678CA4E006F321D /* BicycletteCity+CityClasses.m in Sources */,
 				3793D3EB1678CD7D009C6F27 /* NantesBiclooCity.m in Sources */,
+				3793D4051678DA06009C6F27 /* BesanconVelociteCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
