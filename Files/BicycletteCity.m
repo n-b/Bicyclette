@@ -108,18 +108,6 @@
 /****************************************************************************/
 #pragma mark Updater Delegate
 
-- (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater
-{
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugAlwaysDownloadStationList"])
-        return @"";
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"Database_XML_SHA1"];
-}
-
-- (void) setUpdater:(DataUpdater*)updater knownDataSha1:(NSString*)sha1
-{
-    [[NSUserDefaults standardUserDefaults] setObject:sha1 forKey:@"Database_XML_SHA1"];
-}
-
 - (void) updaterDidStartRequest:(DataUpdater *)updater
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateBegan object:self];

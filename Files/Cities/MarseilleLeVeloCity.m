@@ -1,16 +1,16 @@
 //
-//  MarseilleLeveloCity.m
+//  MarseilleLeVeloCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 14/10/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "MarseilleLeveloCity.h"
+#import "MarseilleLeVeloCity.h"
 #import "Station.h"
 #import "Region.h"
 
-@implementation MarseilleLeveloCity
+@implementation MarseilleLeVeloCity
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {

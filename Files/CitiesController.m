@@ -18,7 +18,7 @@
 #import "GeoFencesMonitor.h"
 
 #import "ParisVelibCity.h"
-#import "MarseilleLeveloCity.h"
+#import "MarseilleLeVeloCity.h"
 #import "ToulouseVeloCity.h"
 #import "AmiensVelamCity.h"
 
@@ -51,7 +51,7 @@ typedef enum {
     if (self) {
         // Create city
         self.cities = (@[[ParisVelibCity new],
-                       [MarseilleLeveloCity new],
+                       [MarseilleLeVeloCity new],
                        [ToulouseVeloCity new],
                        [AmiensVelamCity new] ]);
 

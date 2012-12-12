@@ -1,5 +1,5 @@
 //
-//  MarseilleLeveloCity.h
+//  MarseilleLeVeloCity.h
 //  Bicyclette
 //
 //  Created by Nicolas on 14/10/12.
@@ -8,6 +8,6 @@
 
 #import "BicycletteCity.h"
 
-@interface MarseilleLeveloCity : BicycletteCity
+@interface MarseilleLeVeloCity : BicycletteCity
 
 @end
