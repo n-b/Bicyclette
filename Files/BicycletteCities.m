@@ -33,6 +33,7 @@ NSArray * BicycletteCityClasses(void)
              [SantanderTusBicCity class],
              [SevillaSEViciCity class],
              [ToulouseVeloCity class],
-             [ToyamaCyclOcityCity class]
+             [ToyamaCyclOcityCity class],
+             [ValenciaValenbisiCity class],
              ];
 }

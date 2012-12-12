@@ -265,5 +265,17 @@
 			<integer>10000</integer>
 		</dict>
 	</dict>
+	<key>ValenciaValenbisiCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>39.47</real>
+			<key>longitude</key>
+			<real>-0.366</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 </dict>
 </plist>

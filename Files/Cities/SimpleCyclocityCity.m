@@ -146,3 +146,10 @@
 - (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.cyclocity.jp/service/stationdetails/toyama/%@",station.number]; }
 - (NSString*) title { return @"CyclOcity"; }
 @end
+
+@implementation ValenciaValenbisiCity
+- (NSString*) updateURLString { return @"http://www.valenbisi.es/service/carto"; }
+- (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.valenbisi.es/service/stationdetails/valence/%@",station.number]; }
+- (NSString*) title { return @"Valenbisi"; }
+@end
+

@@ -90,6 +90,7 @@
 		3739609C16791A11005F0672 /* BicycletteCities.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3739609A167917CE005F0672 /* BicycletteCities.plist */; };
 		3739609E16791DC9005F0672 /* SevillaSEViciCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3739609D16791DC9005F0672 /* SevillaSEViciCity.sqlite */; };
 		373960A3167920B7005F0672 /* ToyamaCyclOcityCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373960A2167920B7005F0672 /* ToyamaCyclOcityCity.sqlite */; };
+		373960A816792296005F0672 /* ValenciaValenbisiCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373960A716792296005F0672 /* ValenciaValenbisiCity.sqlite */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		373A77F415E3F6B80057E241 /* ParisVelibCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */; };
 		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
@@ -294,6 +295,7 @@
 		3739609A167917CE005F0672 /* BicycletteCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BicycletteCities.plist; sourceTree = "<group>"; };
 		3739609D16791DC9005F0672 /* SevillaSEViciCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SevillaSEViciCity.sqlite; sourceTree = "<group>"; };
 		373960A2167920B7005F0672 /* ToyamaCyclOcityCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ToyamaCyclOcityCity.sqlite; sourceTree = "<group>"; };
+		373960A716792296005F0672 /* ValenciaValenbisiCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ValenciaValenbisiCity.sqlite; sourceTree = "<group>"; };
 		373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ParisVelibCity.sqlite; path = _DataGrabTempFolder/ParisVelibCity.sqlite; sourceTree = SOURCE_ROOT; };
 		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
 		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 				3739609D16791DC9005F0672 /* SevillaSEViciCity.sqlite */,
 				37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */,
 				373960A2167920B7005F0672 /* ToyamaCyclOcityCity.sqlite */,
+				373960A716792296005F0672 /* ValenciaValenbisiCity.sqlite */,
 			);
 			path = _DataGrabTempFolder;
 			sourceTree = "<group>";
@@ -936,6 +939,7 @@
 				3739609B167917CE005F0672 /* BicycletteCities.plist in Resources */,
 				3739609E16791DC9005F0672 /* SevillaSEViciCity.sqlite in Resources */,
 				373960A3167920B7005F0672 /* ToyamaCyclOcityCity.sqlite in Resources */,
+				373960A816792296005F0672 /* ValenciaValenbisiCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

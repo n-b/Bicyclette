@@ -67,3 +67,6 @@
 
 @interface ToyamaCyclOcityCity : SimpleCyclocityCity <SimpleCycloCity>
 @end
+
+@interface ValenciaValenbisiCity : SimpleCyclocityCity <SimpleCycloCity>
+@end
