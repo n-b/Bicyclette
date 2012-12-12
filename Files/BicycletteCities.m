@@ -7,7 +7,7 @@
 //
 
 #import "BicycletteCities.h"
-#import "SimpleCyclocityCity.h"
+#import "CyclocityCities.h"
 #import "MarseilleLeVeloCity.h"
 #import "ParisVelibCity.h"
 

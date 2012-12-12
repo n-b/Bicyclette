@@ -15,14 +15,28 @@
 /****************************************************************************/
 #pragma mark BicycletteParsing
 
-- (NSString*) updateURLString
-{
-    return @"http://www.velib.paris.fr/service/carto";
-}
+- (NSString*) updateURLString { return @"http://www.velib.paris.fr/service/carto"; }
+- (NSString *) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velib.paris.fr/service/stationdetails/paris/%@",station.number]; }
 
-- (NSString *) detailsURLStringForStation:(Station*)station
+/****************************************************************************/
+#pragma mark BicycletteCityAnnotations
+
+- (NSString*) title { return @"Vélib"; }
+- (NSString*) titleForRegion:(Region*)region { return [region.number substringToIndex:2]; }
+- (NSString*) subtitleForRegion:(Region*)region { return [region.number substringFromIndex:2]; }
+
+- (NSString*) titleForStation:(Station*)station
 {
-    return [NSString stringWithFormat:@"http://www.velib.paris.fr/service/stationdetails/paris/%@",station.number];
+    NSString * title = [super titleForStation:station];
+
+    // remove city name
+    NSRange endRange = [title rangeOfString:@"("];
+    if(endRange.location!=NSNotFound)
+        title = [title substringToIndex:endRange.location];
+    
+    title = [title stringByTrimmingWhitespace];
+    
+    return title;
 }
 
 /****************************************************************************/
@@ -82,49 +96,6 @@
         regionInfo.name = cityName;
     }
     return regionInfo;
-}
-
-/****************************************************************************/
-#pragma mark BicycletteCityAnnotations
-
-- (NSString*) title
-{
-    return @"Vélib";
-}
-
-- (NSString*) titleForRegion:(Region*)region
-{
-    return [region.number substringToIndex:2];
-}
-
-- (NSString*) subtitleForRegion:(Region*)region
-{
-    return [region.number substringFromIndex:2];
-}
-
-- (NSString*) titleForStation:(Station*)region
-{
-    // remove number
-    NSString * shortname = region.name;
-    NSRange beginRange = [shortname rangeOfString:@" - "];
-    if (beginRange.location!=NSNotFound)
-        shortname = [region.name substringFromIndex:beginRange.location+beginRange.length];
-    
-    // remove city name
-    NSRange endRange = [shortname rangeOfString:@"("];
-    if(endRange.location!=NSNotFound)
-        shortname = [shortname substringToIndex:endRange.location];
-    
-    // remove whitespace
-    shortname = [shortname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    // capitalized
-    if([shortname respondsToSelector:@selector(capitalizedStringWithLocale:)])
-        shortname = [shortname capitalizedStringWithLocale:[NSLocale currentLocale]];
-    else
-        shortname = [shortname stringByReplacingCharactersInRange:NSMakeRange(1, shortname.length-1) withString:[[shortname substringFromIndex:1] lowercaseString]];
-    
-    return shortname;    
 }
 
 @end

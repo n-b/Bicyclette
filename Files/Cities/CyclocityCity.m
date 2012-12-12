@@ -1,9 +1,9 @@
 //
 //  CyclocityCity.m
-//  
+//  Bicyclette
 //
 //  Created by Nicolas on 12/12/12.
-//
+//  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
 #import "CyclocityCity.h"
@@ -11,6 +11,7 @@
 #import "NSError+MultipleErrorsCombined.h"
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
+#import "NSStringAdditions.h"
 
 @interface CyclocityCity(Subclasses) <CyclocityCityParsing>
 @end
@@ -34,6 +35,19 @@
     return [self respondsToSelector:@selector(regionInfoFromStation:patchs:)];
 }
 
+
+- (NSString*) titleForStation:(Station*)station
+{
+    NSString * title = station.name;
+    title = [title stringByTrimmingZeros];
+    title = [title stringByDeletingPrefix:station.number];
+    title = [title stringByTrimmingWhitespace];
+    title = [title stringByDeletingPrefix:@"-"];
+    title = [title stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    title = [title stringByTrimmingWhitespace];
+    title = [title capitalizedStringWithCurrentLocale];
+    return title;
+}
 
 /****************************************************************************/
 #pragma mark Parsing

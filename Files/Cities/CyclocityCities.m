@@ -1,43 +1,13 @@
 //
-//  SimpleCyclocityCity.m
-//  
+//  CyclocityCities.m
+//  Bicyclette
 //
 //  Created by Nicolas on 12/12/12.
-//
+//  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "SimpleCyclocityCity.h"
+#import "CyclocityCities.h"
 #import "BicycletteCity.mogenerated.h"
-
-/****************************************************************************/
-#pragma mark SimpleCycloCity
-
-@implementation SimpleCyclocityCity
-
-- (NSString*) titleForStation:(Station*)station
-{
-    // remove number
-    NSString * shortname = station.name;
-    NSRange beginRange = [shortname rangeOfString:@"-"];
-    if (beginRange.location!=NSNotFound)
-        shortname = [station.name substringFromIndex:beginRange.location+beginRange.length];
-    
-    // remove whitespace
-    shortname = [shortname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    // capitalized
-    if([shortname respondsToSelector:@selector(capitalizedStringWithLocale:)])
-        shortname = [shortname capitalizedStringWithLocale:[NSLocale currentLocale]];
-    else
-        shortname = [shortname stringByReplacingCharactersInRange:NSMakeRange(1, shortname.length-1) withString:[[shortname substringFromIndex:1] lowercaseString]];
-    
-    return shortname;
-}
-
-@end
-
-/****************************************************************************/
-#pragma mark Cities
 
 @implementation AmiensVelamCity
 - (NSString*) updateURLString { return @"http://www.velam.amiens.fr/service/carto"; }
@@ -67,6 +37,7 @@
 - (NSString*) updateURLString { return @"http://www.velo2.cergypontoise.fr/service/carto"; }
 - (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velo2.cergypontoise.fr/service/stationdetails/cergy/%@",station.number]; }
 - (NSString*) title { return @"VélO2"; }
+
 @end
 
 @implementation CreteilCristoLibCity
