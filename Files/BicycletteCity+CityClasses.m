@@ -10,6 +10,7 @@
 #import "AmiensVelamCity.h"
 #import "BesanconVelociteCity.h"
 #import "BrisbaneCityCycleCity.h"
+#import "BruxellesVilloCity.h"
 #import "CergyPointoiseVelO2City.h"
 #import "CreteilCristoLibCity.h"
 #import "MarseilleLeVeloCity.h"
@@ -27,6 +28,7 @@
              [AmiensVelamCity class],
              [BesanconVelociteCity class],
              [BrisbaneCityCycleCity class],
+             [BruxellesVilloCity class],
              [CergyPointoiseVelO2City class],
     		 [CreteilCristoLibCity class],
              [MarseilleLeVeloCity class],
