@@ -163,7 +163,8 @@
               [self.moc mergeChangesFromContextDidSaveNotification:note];
 
               // Call completion
-              completion(note);
+              if(completion)
+                  completion(note);
           }];
          
          // Call the update block
