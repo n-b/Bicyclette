@@ -7,8 +7,7 @@
 //
 
 #import "ParisVelibCity.h"
-#import "Station.h"
-#import "Region.h"
+#import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
 @implementation ParisVelibCity

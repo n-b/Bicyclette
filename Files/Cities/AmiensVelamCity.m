@@ -7,8 +7,7 @@
 //
 
 #import "AmiensVelamCity.h"
-#import "Station.h"
-#import "Region.h"
+#import "BicycletteCity.mogenerated.h"
 
 @implementation AmiensVelamCity
 

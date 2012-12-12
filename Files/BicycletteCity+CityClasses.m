@@ -9,6 +9,7 @@
 #import "BicycletteCity+CityClasses.h"
 #import "AmiensVelamCity.h"
 #import "MarseilleLeVeloCity.h"
+#import "NantesBiclooCity.h"
 #import "ParisVelibCity.h"
 #import "ToulouseVeloCity.h"
 
@@ -18,6 +19,7 @@
     return @[
              [AmiensVelamCity class],
              [MarseilleLeVeloCity class],
+             [NantesBiclooCity class],
              [ParisVelibCity class],
              [ToulouseVeloCity class],
              ];

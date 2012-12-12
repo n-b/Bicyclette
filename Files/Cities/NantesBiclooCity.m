@@ -1,27 +1,27 @@
 //
-//  ToulouseVeloCity.m
+//  NantesBiclooCity.m
 //  Bicyclette
 //
-//  Created by Nicolas on 14/10/12.
+//  Created by Nicolas on 12/12/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "ToulouseVeloCity.h"
+#import "NantesBiclooCity.h"
 #import "BicycletteCity.mogenerated.h"
 
-@implementation ToulouseVeloCity
+@implementation NantesBiclooCity
 
 /****************************************************************************/
 #pragma mark BicycletteParsing
 
 - (NSURL*) updateURL
 {
-    return [NSURL URLWithString:@"http://www.velo.toulouse.fr/service/carto"];
+    return [NSURL URLWithString:@"http://www.bicloo.nantesmetropole.fr/service/carto"];
 }
 
 - (NSURL *) detailsURLForStation:(Station*)station
 {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.velo.toulouse.fr/service/stationdetails/toulouse/%@",station.number]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.bicloo.nantesmetropole.fr/service/stationdetails/nantes/%@",station.number]];
 }
 
 /****************************************************************************/
@@ -30,8 +30,8 @@
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
     RegionInfo * regionInfo = [RegionInfo new];
-    regionInfo.number = @"Toulouse";
-    regionInfo.name = @"VélÔ";
+    regionInfo.number = @"Nantes";
+    regionInfo.name = @"Bicloo";
     
     return regionInfo;
 }
@@ -41,17 +41,17 @@
 
 - (NSString*) title
 {
-    return @"VélÔ";
+    return @"Bicloo";
 }
 
 - (NSString*) titleForRegion:(Region*)region
 {
-    return @"Toulouse";
+    return @"Nantes";
 }
 
 - (NSString*) subtitleForRegion:(Region*)region
 {
-    return @"VélÔ";
+    return @"Bicloo";
 }
 
 - (NSString*) titleForStation:(Station*)region
