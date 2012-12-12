@@ -67,7 +67,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([StationAnnotationView class])) {
-        if([keyPath isEqual:@"isInRefreshQueue"] || [keyPath isEqual:@"loading"])
+        if([keyPath isEqual:@"queuedForUpdate"] || [keyPath isEqual:@"loading"])
         {
             [self displayLoadingLayer];
         }
@@ -98,6 +98,7 @@
 
 - (void) displayLoadingLayer
 {
+    return;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     
     if([self station].updating)
