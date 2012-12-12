@@ -63,12 +63,18 @@
 {
 	if(response.statusCode==200)
 		self.updateData = [NSMutableData data];
-	else
+	else if(response.statusCode==304)
 	{
 		[self.updateConnection cancel];
 		self.updateConnection = nil;
         [self.delegate updaterDidFinishWithNoNewData:self];
 	}
+	else
+    {
+		[self.updateConnection cancel];
+		self.updateConnection = nil;
+        [self.delegate updater:self didFailWithError:[NSError errorWithDomain:@"http" code:response.statusCode userInfo:nil]];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
