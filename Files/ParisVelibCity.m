@@ -41,6 +41,7 @@
     {
         // Stations Mobiles et autres bugs (93401 au lieu de 93400)
         lCodePostal = patchs[@"codePostal"];
+        NSLog(@"Note : Used hardcoded codePostal for station %@. Full Address: %@. Patch : %@.",station.number, station.fullAddress, lCodePostal);
     }
     else
     {
@@ -63,7 +64,7 @@
                     break;
             }
             
-            NSLog(@"Note : Used heuristics to find region for %@. Found : %@. ",station, lCodePostal);
+            NSLog(@"Note : Used heuristics to find region for Station %@. Full Address: %@. Found from number : %@",station.number, station.fullAddress, lCodePostal);
         }
     }
 

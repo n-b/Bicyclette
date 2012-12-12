@@ -70,9 +70,9 @@
         // Compute regions coordinates
         // and reorder stations in regions
         for (Region * region in [self.parsing_regionsByNumber allValues]) {
-            [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
-                return [obj1.name compare:obj2.name];
-            }];
+//            [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
+//                return [obj1.name compare:obj2.name];
+//            }];
             [region setupCoordinates];
         }
         self.parsing_regionsByNumber = nil;
@@ -125,7 +125,7 @@
         // Filter out closed stations
         if( ! [attributeDict[@"open"] boolValue] )
         {
-            NSLog(@"Note : Ignored closed station : %@", attributeDict[@"number"]);
+            NSLog(@"Note : Ignored closed station : %@", attributeDict[@"name"]);
             return;
         }
         
@@ -146,7 +146,8 @@
         // Set Values and hardcoded fixes
 		[station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:[self KVCMapping]]; // Yay!
 		NSDictionary * patchs = [self patches][station.number];
-		if(patchs)
+        BOOL hasDataPatches = patchs && ![[[patchs allKeys] arrayByRemovingObjectsInArray:[[self KVCMapping] allKeys]] isEqualToArray:[patchs allKeys]];
+		if(hasDataPatches)
 		{
 			NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, patchs);
 			[station setValuesForKeysWithDictionary:patchs withMappingDictionary:[self KVCMapping]]; // Yay! again
