@@ -11,6 +11,7 @@
 #import "Region.h"
 #import "NSStringAdditions.h"
 #import "DataUpdater.h"
+#import "NSError+MultipleErrorsCombined.h"
 #if TARGET_OS_IPHONE
 #import "Radar.h"
 #import "LocalUpdateQueue.h"
@@ -90,17 +91,59 @@
     self.updater = nil;
 }
 
+- (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self userInfo:@{BicycletteCityNotifications.keys.dataChanged : @(NO)}];
+    self.updater = nil;
+}
+
 - (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSArray*)datas
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateGotNewData object:self];
     
-    [self parseDataChunks:datas];
-    self.updater = nil;
-}
-
-- (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self userInfo:@{BicycletteCityNotifications.keys.dataChanged : @(NO)}];
+    __block NSError * validationErrors;
+    [self performUpdates:^(NSManagedObjectContext *updateContext) {
+        // Get Old Stations Names
+        NSError * requestError = nil;
+        
+        NSFetchRequest * oldStationsRequest = [NSFetchRequest fetchRequestWithEntityName:[Station entityName]];
+        NSMutableArray* oldStations =  [[updateContext executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
+        
+        // Parsing
+        for (NSData * data in datas) {
+            [self parseData:data
+                  inContext:updateContext
+                oldStations:oldStations];
+        }
+        
+        // Post processing :
+        // Validate all stations (and delete invalid) before computing coordinates
+        NSFetchRequest * allRegionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
+        NSArray * regions = [updateContext executeFetchRequest:allRegionsRequest error:&requestError];
+        for (Region *r in regions) {
+            for (Station *s in [r.stations copy]) {
+                if(![s validateForInsert:&validationErrors])
+                {
+                    s.region = nil;
+                    [updateContext deleteObject:s];
+                }
+            }
+            [r setupCoordinates];
+        }
+                
+        // Delete Old Stations
+        for (Station * oldStation in oldStations) {
+            NSLog(@"Note : old station deleted after update : %@", oldStation);
+            [updateContext deleteObject:oldStation];
+        }
+        
+    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
+        NSMutableDictionary * userInfo = [@{BicycletteCityNotifications.keys.dataChanged : @(YES)} mutableCopy];
+        if (validationErrors)
+            userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
+                                                          userInfo:userInfo];
+    }];
     self.updater = nil;
 }
 

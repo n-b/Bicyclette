@@ -8,7 +8,7 @@
 
 #import "BicycletteCity.h"
 
-// Common code for all Cyclocity systems
+// Common code for all Cyclocity systems (except Velov)
 @interface CyclocityCity : BicycletteCity <BicycletteCityParsing>
 @end
 

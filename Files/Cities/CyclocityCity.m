@@ -8,7 +8,6 @@
 
 #import "CyclocityCity.h"
 #import "BicycletteCity.mogenerated.h"
-#import "NSError+MultipleErrorsCombined.h"
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
@@ -35,7 +34,6 @@
     return [self respondsToSelector:@selector(regionInfoFromStation:patchs:)];
 }
 
-
 - (NSString*) titleForStation:(Station*)station
 {
     NSString * title = station.name;
@@ -52,58 +50,21 @@
 /****************************************************************************/
 #pragma mark Parsing
 
-- (void) parseDataChunks:(NSArray *)datas
+- (void) parseData:(NSData *)data
+         inContext:(NSManagedObjectContext*)context
+       oldStations:(NSMutableArray*)oldStations
 {
-    __block NSError * validationErrors;
-    [self performUpdates:^(NSManagedObjectContext *updateContext) {
-        // Get Old Stations Names
-        NSError * requestError = nil;
-        
-        NSFetchRequest * oldStationsRequest = [NSFetchRequest fetchRequestWithEntityName:[Station entityName]];
-        self.parsing_oldStations =  [[updateContext executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
-        
-        // Parsing
-        self.parsing_regionsByNumber = [NSMutableDictionary dictionary];
-        self.parsing_context = updateContext;
-        for (NSData * data in datas) {
-            NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
-            parser.delegate = self;
-            [parser parse];
-        }
-        
-        // Validate all stations (and delete invalid) before computing coordinates
-        for (Region *r in [self.parsing_regionsByNumber allValues]) {
-            for (Station *s in [r.stations copy]) {
-                if(![s validateForInsert:&validationErrors])
-                {
-                    s.region = nil;
-                    [updateContext deleteObject:s];
-                }
-            }
-        }
-        
-        // Post processing :
-        // Compute regions coordinates
-        for (Region * region in [self.parsing_regionsByNumber allValues]) {
-            [region setupCoordinates];
-        }
-        self.parsing_regionsByNumber = nil;
-        
-        // Delete Old Stations
-        for (Station * oldStation in self.parsing_oldStations) {
-            NSLog(@"Note : old station deleted after update : %@", oldStation);
-            [updateContext deleteObject:oldStation];
-        }
-        self.parsing_oldStations = nil;
-        
-        self.parsing_context = nil;
-    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        NSMutableDictionary * userInfo = [@{BicycletteCityNotifications.keys.dataChanged : @(YES)} mutableCopy];
-        if (validationErrors)
-            userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
-                                                          userInfo:userInfo];
-    }];
+    self.parsing_context = context;
+    self.parsing_oldStations = oldStations;
+    self.parsing_regionsByNumber = [NSMutableDictionary new];
+
+    NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
+    parser.delegate = self;
+    [parser parse];
+
+    self.parsing_context = nil;
+    self.parsing_oldStations = nil;
+    self.parsing_regionsByNumber = nil;
 }
 
 - (NSDictionary*) patches
