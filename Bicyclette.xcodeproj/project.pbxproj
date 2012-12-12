@@ -101,6 +101,11 @@
 		37376A861678E8FE0060CDEA /* RouenCyclicCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */; };
 		37376A871678EA140060CDEA /* RouenCyclicCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */; };
 		37376A891678EA2B0060CDEA /* RouenCyclicCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */; };
+		37376A8D1678EBD10060CDEA /* BrisbaneCityCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37376A8B1678EBD00060CDEA /* BrisbaneCityCycleCity.m */; };
+		37376A8E1678EBD10060CDEA /* BrisbaneCityCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37376A8B1678EBD00060CDEA /* BrisbaneCityCycleCity.m */; };
+		37376A8F1678EBD10060CDEA /* BrisbaneCityCycleCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37376A8C1678EBD00060CDEA /* BrisbaneCityCycleCity.plist */; };
+		373960591678EC55005F0672 /* BrisbaneCityCycleCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37376A8C1678EBD00060CDEA /* BrisbaneCityCycleCity.plist */; };
+		3739605E1678ECCF005F0672 /* BrisbaneCityCycleCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3739605D1678ECCF005F0672 /* BrisbaneCityCycleCity.sqlite */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		373A77F415E3F6B80057E241 /* ParisVelibCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */; };
 		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
@@ -255,6 +260,7 @@
 			files = (
 				370E3A43162E18820010E454 /* AmiensVelamCity.plist in CopyFiles */,
 				3793D4071678DA19009C6F27 /* BesanconVelociteCity.plist in CopyFiles */,
+				373960591678EC55005F0672 /* BrisbaneCityCycleCity.plist in CopyFiles */,
 				3793D4141678DD62009C6F27 /* CergyPointoiseVelO2City.plist in CopyFiles */,
 				37376A6A1678E1860060CDEA /* CreteilCristoLibCity.plist in CopyFiles */,
 				3717AA6C162A1E18005EC7BD /* MarseilleLeVeloCity.plist in CopyFiles */,
@@ -336,6 +342,10 @@
 		37376A821678E8FD0060CDEA /* RouenCyclicCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouenCyclicCity.m; sourceTree = "<group>"; };
 		37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RouenCyclicCity.plist; sourceTree = "<group>"; };
 		37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = RouenCyclicCity.sqlite; sourceTree = "<group>"; };
+		37376A8A1678EBCF0060CDEA /* BrisbaneCityCycleCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrisbaneCityCycleCity.h; sourceTree = "<group>"; };
+		37376A8B1678EBD00060CDEA /* BrisbaneCityCycleCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrisbaneCityCycleCity.m; sourceTree = "<group>"; };
+		37376A8C1678EBD00060CDEA /* BrisbaneCityCycleCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BrisbaneCityCycleCity.plist; sourceTree = "<group>"; };
+		3739605D1678ECCF005F0672 /* BrisbaneCityCycleCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BrisbaneCityCycleCity.sqlite; sourceTree = "<group>"; };
 		373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ParisVelibCity.sqlite; path = _DataGrabTempFolder/ParisVelibCity.sqlite; sourceTree = SOURCE_ROOT; };
 		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
 		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
@@ -620,6 +630,7 @@
 			children = (
 				370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */,
 				3793D4081678DADB009C6F27 /* BesanconVelociteCity.sqlite */,
+				3739605D1678ECCF005F0672 /* BrisbaneCityCycleCity.sqlite */,
 				3793D4151678DD83009C6F27 /* CergyPointoiseVelO2City.sqlite */,
 				37376A6B1678E38C0060CDEA /* CreteilCristoLibCity.sqlite */,
 				376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */,
@@ -667,6 +678,9 @@
 				3793D4031678DA05009C6F27 /* BesanconVelociteCity.h */,
 				3793D4041678DA05009C6F27 /* BesanconVelociteCity.m */,
 				3793D4011678D9F1009C6F27 /* BesanconVelociteCity.plist */,
+				37376A8A1678EBCF0060CDEA /* BrisbaneCityCycleCity.h */,
+				37376A8B1678EBD00060CDEA /* BrisbaneCityCycleCity.m */,
+				37376A8C1678EBD00060CDEA /* BrisbaneCityCycleCity.plist */,
 				3793D40B1678DC72009C6F27 /* CergyPointoiseVelO2City.h */,
 				3793D40C1678DC72009C6F27 /* CergyPointoiseVelO2City.m */,
 				3793D4111678DC7D009C6F27 /* CergyPointoiseVelO2City.plist */,
@@ -1008,6 +1022,8 @@
 				37376A7E1678E7AA0060CDEA /* NancyVelostanCity.sqlite in Resources */,
 				37376A861678E8FE0060CDEA /* RouenCyclicCity.plist in Resources */,
 				37376A891678EA2B0060CDEA /* RouenCyclicCity.sqlite in Resources */,
+				37376A8F1678EBD10060CDEA /* BrisbaneCityCycleCity.plist in Resources */,
+				3739605E1678ECCF005F0672 /* BrisbaneCityCycleCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,6 +1135,7 @@
 				37376A701678E5120060CDEA /* MulhouseVelociteCity.m in Sources */,
 				37376A791678E70D0060CDEA /* NancyVelostanCity.m in Sources */,
 				37376A851678E8FE0060CDEA /* RouenCyclicCity.m in Sources */,
+				37376A8E1678EBD10060CDEA /* BrisbaneCityCycleCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,6 +1166,7 @@
 				37376A6F1678E5120060CDEA /* MulhouseVelociteCity.m in Sources */,
 				37376A7C1678E78F0060CDEA /* NancyVelostanCity.m in Sources */,
 				37376A841678E8FE0060CDEA /* RouenCyclicCity.m in Sources */,
+				37376A8D1678EBD10060CDEA /* BrisbaneCityCycleCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
