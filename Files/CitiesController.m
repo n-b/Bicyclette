@@ -119,7 +119,7 @@ typedef enum {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
                                                      name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity.moc];
         
-        NSLog(@"city changed to %@",_currentCity.name);
+        NSLog(@"city changed to %@",_currentCity.title);
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
     }

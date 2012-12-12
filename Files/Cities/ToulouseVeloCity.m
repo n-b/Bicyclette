@@ -12,6 +12,22 @@
 
 @implementation ToulouseVeloCity
 
+/****************************************************************************/
+#pragma mark BicycletteParsing
+
+- (NSURL*) updateURL
+{
+    return [NSURL URLWithString:@"http://www.velo.toulouse.fr/service/carto"];
+}
+
+- (NSURL *) detailsURLForStation:(Station*)station
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.velo.toulouse.fr/service/stationdetails/toulouse/%@",station.number]];
+}
+
+/****************************************************************************/
+#pragma mark CyclocityParsing
+
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
     RegionInfo * regionInfo = [RegionInfo new];
@@ -21,17 +37,25 @@
     return regionInfo;
 }
 
-- (NSString*)titleForRegion:(Region*)region
-{
-    return @"Toulouse";
-}
+/****************************************************************************/
+#pragma mark BicycletteCityAnnotations
 
-- (NSString*)subtitleForRegion:(Region*)region
+- (NSString*) title
 {
     return @"VélÔ";
 }
 
-- (NSString*)titleForStation:(Station*)region
+- (NSString*) titleForRegion:(Region*)region
+{
+    return @"Toulouse";
+}
+
+- (NSString*) subtitleForRegion:(Region*)region
+{
+    return @"VélÔ";
+}
+
+- (NSString*) titleForStation:(Station*)region
 {
     // remove number
     NSString * shortname = region.name;

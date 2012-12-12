@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
+#import "CyclocityCity.h"
 
-@interface MarseilleLeVeloCity : BicycletteCity
+@interface MarseilleLeVeloCity : CyclocityCity <BicycletteCityURLs, CyclocityCityParsing, BicycletteCityAnnotations>
 
 @end

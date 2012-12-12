@@ -91,7 +91,7 @@
 
 - (void) updateUpdateLabel
 {
-    self.updateLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),self.controller.currentCity.name];
+    self.updateLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),self.controller.currentCity.title];
 }
 
 - (void) updateRadarDistancesSegmentedControl{
@@ -230,7 +230,7 @@
             NSString * title;
             NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
                                   count,
-                                  self.controller.currentCity.name];
+                                  self.controller.currentCity.title];
             if(nil==saveErrors)
             {
                 title = NSLocalizedString(@"UPDATING : COMPLETED", nil);

@@ -17,32 +17,21 @@
 @interface BicycletteCity : CoreDataManager
 #endif
 
-- (NSString *) name;
+@property (readonly) CLLocationCoordinate2D coordinate;
 
 - (void) update;
 
-@property (readonly) CLLocationCoordinate2D coordinate;
 
 #if TARGET_OS_IPHONE
 @property (nonatomic, readonly) MKCoordinateRegion regionContainingData;
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
 - (NSArray*) radars;
 #endif
-
 - (Station*) stationWithNumber:(NSString*)number;
 
-
 @property (nonatomic, readonly) CLRegion * hardcodedLimits;
-@property (readonly) NSString * stationDetailsURL;
+@property (nonatomic, readonly) NSDictionary* serviceInfo;
 @property (readonly) NSDictionary* stationsPatchs;
-@end
-
-/****************************************************************************/
-#pragma mark -
-
-// Obtain the City from an managedobject.
-@interface NSManagedObject (AssociatedCity)
-- (BicycletteCity *) city;
 @end
 
 /****************************************************************************/
@@ -66,17 +55,27 @@ extern const struct BicycletteCityNotifications {
 /****************************************************************************/
 #pragma mark Reimplemented
 
-@interface RegionInfo : NSObject
-@property NSString * number;
-@property NSString * name;
+@protocol BicycletteCityURLs <NSObject>
+- (NSURL*) updateURL;
+@optional
+- (NSURL *) detailsURLForStation:(Station*)station;
 @end
 
-@protocol BicycletteCity <NSObject>
-- (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs;
+@protocol BicycletteCityParsing <NSObject>
+- (void) parseData:(NSData*)data;
+@end
+
+@protocol BicycletteCityAnnotations <NSObject>
+- (NSString*)title;
 - (NSString*)titleForRegion:(Region*)region;
 - (NSString*)subtitleForRegion:(Region*)region;
 - (NSString*)titleForStation:(Station*)region;
 @end
 
-@interface BicycletteCity (Reimplement) <BicycletteCity>
+/****************************************************************************/
+#pragma mark -
+
+// Obtain the City from a ManagedObject.
+@interface NSManagedObject (AssociatedCity)
+- (BicycletteCity<BicycletteCityAnnotations, BicycletteCityURLs> *) city;
 @end

@@ -2,13 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>name</key>
-	<string>Vélib</string>
-	<key>carto</key>
-	<string>http://www.velib.paris.fr/service/carto</string>
-	<key>stationdetails</key>
-	<string>http://www.velib.paris.fr/service/stationdetails/paris/</string>
-	<key>patchs</key>
+	<key>patches</key>
 	<dict>
 		<key>901</key>
 		<dict>

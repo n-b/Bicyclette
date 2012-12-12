@@ -9,34 +9,25 @@
 #import "BicycletteCity.h"
 #import "Station.h"
 #import "Region.h"
-#if TARGET_OS_IPHONE
-#import "Radar.h"
-#endif
-#import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
-#import "NSObject+KVCMapping.h"
-#import "NSError+MultipleErrorsCombined.h"
 #import "DataUpdater.h"
 #if TARGET_OS_IPHONE
+#import "Radar.h"
 #import "LocalUpdateQueue.h"
 #endif
+
+@interface BicycletteCity (BicycletteCityParsing) <BicycletteCityURLs, BicycletteCityAnnotations, BicycletteCityParsing>
+@end
 
 /****************************************************************************/
 #pragma mark -
 
-@interface BicycletteCity () <DataUpdaterDelegate, NSXMLParserDelegate>
+@interface BicycletteCity () <DataUpdaterDelegate>
+@property (nonatomic) NSDictionary* serviceInfo;
 @property DataUpdater * updater;
-// -
-@property (nonatomic) NSDictionary * stationsHardcodedFixes;
-@property (readwrite, nonatomic) CLRegion * hardcodedLimits;
-// -
 #if TARGET_OS_IPHONE
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
 #endif
-// -
-@property NSManagedObjectContext * parsing_context;
-@property NSMutableDictionary * parsing_regionsByNumber;
-@property NSMutableArray * parsing_oldStations;
 @end
 
 /****************************************************************************/
@@ -52,46 +43,28 @@
 /****************************************************************************/
 #pragma mark Service Info
 
-- (NSString *) name
-{
-    return self.serviceInfo[@"name"];
-}
-
 - (NSDictionary*) serviceInfo
 {
-    NSString * filename = NSStringFromClass([self class]);
-    return [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filename ofType:@"plist"]];
-}
-
-- (NSDictionary*) stationsHardcodedFixes
-{
-	if(nil==_stationsHardcodedFixes)
-		self.stationsHardcodedFixes = (self.serviceInfo)[@"patchs"];
-
-	return _stationsHardcodedFixes;
+    if(nil==_serviceInfo)
+    {
+        NSString * filename = NSStringFromClass([self class]);
+        _serviceInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filename ofType:@"plist"]];
+    }
+    return _serviceInfo;
 }
 
 - (CLRegion*) hardcodedLimits
 {
-	if( nil==_hardcodedLimits )
-	{
-        NSDictionary * dict = (self.serviceInfo)[@"limits"];
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([dict[@"latitude"] doubleValue], [dict[@"longitude"] doubleValue]);
-        CLLocationDistance distance = [dict[@"distance"] doubleValue];
-        self.hardcodedLimits = [[CLRegion alloc] initCircularRegionWithCenter:coord radius:distance identifier:self.name];
-	}
-	return _hardcodedLimits;
+    NSDictionary * limits = self.serviceInfo[@"limits"];
+    return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([limits[@"latitude"] doubleValue],
+                                                                                     [limits[@"longitude"] doubleValue])
+                                                   radius:[limits[@"distance"] doubleValue] identifier:[self title]];
 }
 
 - (CLLocation *) location
 {
-    CLLocationCoordinate2D coord = [self.hardcodedLimits center];
-    return [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
-}
-
-- (NSString*) stationDetailsURL
-{
-    return self.serviceInfo[@"stationdetails"];
+    NSDictionary * limits = self.serviceInfo[@"limits"];
+    return [[CLLocation alloc] initWithLatitude:[limits[@"latitude"] doubleValue] longitude:[limits[@"longitude"] doubleValue]];
 }
 
 /****************************************************************************/
@@ -101,12 +74,9 @@
 {
     if(self.updater==nil)
     {
-        self.updater = [[DataUpdater alloc] initWithURL:[NSURL URLWithString:self.serviceInfo[@"carto"]] delegate:self];
+        self.updater = [[DataUpdater alloc] initWithURL:[self updateURL] delegate:self];
     }
 }
-
-/****************************************************************************/
-#pragma mark Updater Delegate
 
 - (void) updaterDidStartRequest:(DataUpdater *)updater
 {
@@ -119,63 +89,11 @@
     self.updater = nil;
 }
 
-- (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)xml
+- (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)data
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateGotNewData object:self];
     
-    __block NSError * validationErrors;
-    [self performUpdates:^(NSManagedObjectContext *updateContext) {
-        // Get Old Stations Names
-        NSError * requestError = nil;
-
-        NSFetchRequest * oldStationsRequest = [NSFetchRequest fetchRequestWithEntityName:[Station entityName]];
-        self.parsing_oldStations =  [[updateContext executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
-        
-        // Parsing
-        self.parsing_regionsByNumber = [NSMutableDictionary dictionary];
-        self.parsing_context = updateContext;
-        NSXMLParser * parser = [[NSXMLParser alloc] initWithData:xml];
-        parser.delegate = self;
-        [parser parse];
-        
-        // Validate all stations (and delete invalid) before computing coordinates
-        for (Region *r in [self.parsing_regionsByNumber allValues]) {
-            for (Station *s in [r.stations copy]) {
-                if(![s validateForInsert:&validationErrors])
-                {
-                    s.region = nil;
-                    [updateContext deleteObject:s];
-                }
-            }
-        }
-        
-        // Post processing :
-        // Compute regions coordinates
-        // and reorder stations in regions
-        for (Region * region in [self.parsing_regionsByNumber allValues]) {
-            [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
-                return [obj1.name compare:obj2.name];
-            }];
-            [region setupCoordinates];
-        }
-        self.parsing_regionsByNumber = nil;
-        
-        // Delete Old Stations
-        for (Station * oldStation in self.parsing_oldStations) {
-            NSLog(@"Note : old station deleted after update : %@", oldStation);
-            [updateContext deleteObject:oldStation];
-        }
-        self.parsing_oldStations = nil;
-
-        self.parsing_context = nil;
-    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        NSMutableDictionary * userInfo = [@{BicycletteCityNotifications.keys.dataChanged : @(YES)} mutableCopy];
-        if (validationErrors)
-            userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
-                                                          userInfo:userInfo];
-    }];
-
+    [self parseData:data];
     self.updater = nil;
 }
 
@@ -183,89 +101,6 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self userInfo:@{BicycletteCityNotifications.keys.dataChanged : @(NO)}];
     self.updater = nil;
-}
-
-
-/****************************************************************************/
-#pragma mark Parser delegate
-
-- (NSDictionary*) stationKVCMapping
-{
-    static NSDictionary * s_mapping = nil;
-    if(nil==s_mapping)
-        s_mapping = @{
-        @"address" : @"address",
-        @"bonus" : @"bonus",
-        @"fullAddress" : @"fullAddress",
-        @"name" : @"name",
-        @"number" : @"number",
-        @"open" : @"open",
-        
-        @"lat" : @"latitude",
-        @"lng" : @"longitude"
-        };
-    
-    return s_mapping;
-}
-
-- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-	if([elementName isEqualToString:@"marker"])
-	{
-        // Filter out closed stations
-        if( ! [attributeDict[@"open"] boolValue] )
-        {
-            NSLog(@"Note : Ignored closed station : %@", attributeDict[@"number"]);
-            return;
-        }
-        
-        // Find Existing Stations
-        Station * station = [self.parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKeyPath:StationAttributes.number];
-        if(station)
-        {
-            // found existing
-            [self.parsing_oldStations removeObject:station];
-        }
-        else
-        {
-            if(self.parsing_oldStations.count)
-                NSLog(@"Note : new station found after update : %@", attributeDict);
-            station = [Station insertInManagedObjectContext:self.parsing_context];
-        }
-
-        // Set Values and hardcoded fixes
-		[station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:self.stationKVCMapping]; // Yay!
-		NSDictionary * patchs = (self.stationsHardcodedFixes)[station.number];
-		if(patchs)
-		{
-			NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, patchs);
-			[station setValuesForKeysWithDictionary:patchs withMappingDictionary:self.stationKVCMapping]; // Yay! again
-		}
-        
-        // Setup region
-        RegionInfo * regionInfo = [self regionInfoFromStation:station patchs:patchs];
-        if(nil==regionInfo)
-        {
-            NSLog(@"Invalid data : %@",attributeDict);
-            [self.parsing_context deleteObject:station];
-            return;
-        }
-                
-        // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
-        Region * region = (self.parsing_regionsByNumber)[regionInfo.number];
-        if(nil==region)
-        {
-            region = [[Region fetchRegionWithNumber:self.parsing_context number:regionInfo.number] lastObject];
-            if(region==nil)
-            {
-                region = [Region insertInManagedObjectContext:self.parsing_context];
-                region.number = regionInfo.number;
-                region.name = regionInfo.name;
-            }
-            (self.parsing_regionsByNumber)[regionInfo.number] = region;
-        }
-        station.region = region;
-    }
 }
 
 /****************************************************************************/
@@ -299,11 +134,6 @@
 
 /****************************************************************************/
 #pragma mark Coordinates
-
-- (NSString *) title
-{
-    return self.name;
-}
 
 #if TARGET_OS_IPHONE
 - (CLLocationCoordinate2D) coordinate
@@ -373,9 +203,3 @@ const struct BicycletteCityNotifications BicycletteCityNotifications = {
         .saveErrors = @"BicycletteCityNotifications.keys.saveErrors",
     }
 };
-
-/****************************************************************************/
-#pragma mark -
-
-@implementation RegionInfo
-@end

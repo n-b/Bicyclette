@@ -61,10 +61,9 @@
 		370E3A45162E189D0010E454 /* AmiensVelamCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
-		3717AA68162A1C11005EC7BD /* MarseilleLeveloCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3717AA66162A1C11005EC7BD /* MarseilleLeveloCity.plist */; };
+		3717AA68162A1C11005EC7BD /* MarseilleLeVeloCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3717AA66162A1C11005EC7BD /* MarseilleLeVeloCity.plist */; };
 		3717AA69162A1C11005EC7BD /* ParisVelibCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */; };
-		3717AA6B162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3717AA6A162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist */; };
-		3717AA6C162A1E18005EC7BD /* MarseilleLeveloCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3717AA66162A1C11005EC7BD /* MarseilleLeveloCity.plist */; };
+		3717AA6C162A1E18005EC7BD /* MarseilleLeVeloCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3717AA66162A1C11005EC7BD /* MarseilleLeVeloCity.plist */; };
 		3717AA6D162A1E1A005EC7BD /* ParisVelibCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */; };
 		3717AA70162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
 		3717AA71162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
@@ -96,6 +95,8 @@
 		376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* CityRegionUpdateGroup.m */; };
 		376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376088161676333300B1161E /* LocalUpdateQueueTests.m */; };
 		376088181676333600B1161E /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
+		376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
+		376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -215,7 +216,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				3717AA6C162A1E18005EC7BD /* MarseilleLeveloCity.plist in CopyFiles */,
+				3717AA6C162A1E18005EC7BD /* MarseilleLeVeloCity.plist in CopyFiles */,
 				3717AA6D162A1E1A005EC7BD /* ParisVelibCity.plist in CopyFiles */,
 				37D9DFE6162A34E00000F263 /* ToulouseVeloCity.plist in CopyFiles */,
 				370E3A43162E18820010E454 /* AmiensVelamCity.plist in CopyFiles */,
@@ -253,9 +254,8 @@
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		3717AA66162A1C11005EC7BD /* MarseilleLeveloCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MarseilleLeveloCity.plist; sourceTree = "<group>"; };
+		3717AA66162A1C11005EC7BD /* MarseilleLeVeloCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MarseilleLeVeloCity.plist; sourceTree = "<group>"; };
 		3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ParisVelibCity.plist; sourceTree = "<group>"; };
-		3717AA6A162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VelibHardcodedDebugErrors.plist; sourceTree = "<group>"; };
 		3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParisVelibCity.h; path = ../ParisVelibCity.h; sourceTree = "<group>"; };
 		3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParisVelibCity.m; path = ../ParisVelibCity.m; sourceTree = "<group>"; };
 		371982BF16451F92006CF77D /* FanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanContainerViewController.h; sourceTree = "<group>"; };
@@ -295,6 +295,8 @@
 		376087F41675E27400B1161E /* CityRegionUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityRegionUpdateGroup.h; sourceTree = "<group>"; };
 		376087F51675E27400B1161E /* CityRegionUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityRegionUpdateGroup.m; sourceTree = "<group>"; };
 		376088161676333300B1161E /* LocalUpdateQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueueTests.m; sourceTree = "<group>"; };
+		376D0E4B1678B56D006F321D /* CyclocityCity.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = CyclocityCity.h; path = Files/CyclocityCity.h; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
+		376D0E4C1678B56D006F321D /* CyclocityCity.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = CyclocityCity.m; path = Files/CyclocityCity.m; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -510,19 +512,9 @@
 		3717AA65162A1C11005EC7BD /* Cities */ = {
 			isa = PBXGroup;
 			children = (
-				3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */,
-				3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */,
-				3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */,
-				3717AA6A162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist */,
-				37D9DFDC162A2BF60000F263 /* MarseilleLeVeloCity.h */,
-				37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */,
-				3717AA66162A1C11005EC7BD /* MarseilleLeveloCity.plist */,
-				37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */,
-				37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */,
-				37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */,
-				370E3A3D162E17870010E454 /* AmiensVelamCity.h */,
-				370E3A3E162E17880010E454 /* AmiensVelamCity.m */,
-				370E3A41162E17990010E454 /* AmiensVelamCity.plist */,
+				376D0E4B1678B56D006F321D /* CyclocityCity.h */,
+				376D0E4C1678B56D006F321D /* CyclocityCity.m */,
+				376D0E4F1678B587006F321D /* Cyclocity */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -582,6 +574,25 @@
 			name = Tests;
 			path = LogicTests;
 			sourceTree = SOURCE_ROOT;
+		};
+		376D0E4F1678B587006F321D /* Cyclocity */ = {
+			isa = PBXGroup;
+			children = (
+				3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */,
+				3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */,
+				3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */,
+				37D9DFDC162A2BF60000F263 /* MarseilleLeVeloCity.h */,
+				37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */,
+				3717AA66162A1C11005EC7BD /* MarseilleLeVeloCity.plist */,
+				37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */,
+				37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */,
+				37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */,
+				370E3A3D162E17870010E454 /* AmiensVelamCity.h */,
+				370E3A3E162E17880010E454 /* AmiensVelamCity.m */,
+				370E3A41162E17990010E454 /* AmiensVelamCity.plist */,
+			);
+			name = Cyclocity;
+			sourceTree = "<group>";
 		};
 		3770B22C14E976590003BBA8 /* TestData */ = {
 			isa = PBXGroup;
@@ -871,9 +882,8 @@
 				3724BC6D15E4C50200790869 /* Default-Portrait@2x.png in Resources */,
 				37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */,
 				377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */,
-				3717AA68162A1C11005EC7BD /* MarseilleLeveloCity.plist in Resources */,
+				3717AA68162A1C11005EC7BD /* MarseilleLeVeloCity.plist in Resources */,
 				3717AA69162A1C11005EC7BD /* ParisVelibCity.plist in Resources */,
-				3717AA6B162A1C3E005EC7BD /* VelibHardcodedDebugErrors.plist in Resources */,
 				37D9DFE5162A31970000F263 /* ToulouseVeloCity.plist in Resources */,
 				37D9DFE9162A374F0000F263 /* MarseilleLeveloCity.sqlite in Resources */,
 				37D9DFEA162A374F0000F263 /* ToulouseVeloCity.sqlite in Resources */,
@@ -982,6 +992,7 @@
 				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */,
 				37AEB5A516777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
+				376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1014,7 @@
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				37AEB5A916778822000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
+				376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

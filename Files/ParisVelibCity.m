@@ -13,6 +13,22 @@
 
 @implementation ParisVelibCity
 
+/****************************************************************************/
+#pragma mark BicycletteParsing
+
+- (NSURL*) updateURL
+{
+    return [NSURL URLWithString:@"http://www.velib.paris.fr/service/carto"];
+}
+
+- (NSURL *) detailsURLForStation:(Station*)station
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.velib.paris.fr/service/stationdetails/paris/%@",station.number]];
+}
+
+/****************************************************************************/
+#pragma mark CyclocityParsing
+
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
     if( ! [station.fullAddress hasPrefix:station.address] )
@@ -68,17 +84,25 @@
     return regionInfo;
 }
 
-- (NSString*)titleForRegion:(Region*)region
+/****************************************************************************/
+#pragma mark BicycletteCityAnnotations
+
+- (NSString*) title
+{
+    return @"Vélib";
+}
+
+- (NSString*) titleForRegion:(Region*)region
 {
     return [region.number substringToIndex:2];
 }
 
-- (NSString*)subtitleForRegion:(Region*)region
+- (NSString*) subtitleForRegion:(Region*)region
 {
     return [region.number substringFromIndex:2];
 }
 
-- (NSString*)titleForStation:(Station*)region
+- (NSString*) titleForStation:(Station*)region
 {
     // remove number
     NSString * shortname = region.name;

@@ -12,6 +12,22 @@
 
 @implementation AmiensVelamCity
 
+/****************************************************************************/
+#pragma mark BicycletteParsing
+
+- (NSURL*) updateURL
+{
+    return [NSURL URLWithString:@"http://www.velam.amiens.fr/service/carto"];
+}
+
+- (NSURL *) detailsURLForStation:(Station*)station
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.velam.amiens.fr/service/stationdetails/amiens/%@",station.number]];
+}
+
+/****************************************************************************/
+#pragma mark CyclocityParsing
+
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
     RegionInfo * regionInfo = [RegionInfo new];
@@ -21,17 +37,25 @@
     return regionInfo;
 }
 
-- (NSString*)titleForRegion:(Region*)region
-{
-    return @"Amiens";
-}
+/****************************************************************************/
+#pragma mark BicycletteCityAnnotations
 
-- (NSString*)subtitleForRegion:(Region*)region
+- (NSString*) title
 {
     return @"Vélam";
 }
 
-- (NSString*)titleForStation:(Station*)region
+- (NSString*) titleForRegion:(Region*)region
+{
+    return @"Amiens";
+}
+
+- (NSString*) subtitleForRegion:(Region*)region
+{
+    return @"Vélam";
+}
+
+- (NSString*) titleForStation:(Station*)region
 {
     // remove number
     NSString * shortname = region.name;
