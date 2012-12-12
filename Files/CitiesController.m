@@ -34,7 +34,6 @@ typedef enum {
 
 @interface CitiesController () <CLLocationManagerDelegate, LocalUpdateQueueDelegate, GeoFencesMonitorDelegate>
 @property GeoFencesMonitor * fenceMonitor;
-@property CLLocationManager * userLocationManager;
 @property LocalUpdateQueue * updateQueue;
 @property MapLevel level;
 @property CityRegionUpdateGroup * userLocationUpdateGroup;
@@ -172,10 +171,14 @@ typedef enum {
     
     // In the same vein, only set the updater reference location if we're down enough
     if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
+    {
         self.updateQueue.referenceLocation = center;
+        CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+        [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(center.coordinate,
+                                                                                   distance, distance)];
+    }
     else
         self.updateQueue.referenceLocation = nil;
-
 }
 
 
@@ -227,18 +230,6 @@ typedef enum {
 - (void) appStateChanged:(NSNotification*)note
 {
     self.updateQueue.monitoringPaused = [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-    CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-    [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(newLocation.coordinate,
-                                                                               distance, distance)];
 }
 
 /****************************************************************************/
