@@ -14,7 +14,7 @@
 /****************************************************************************/
 #pragma mark BicycletteParsing
 
-- (NSString*) updateURLString { return @"http://www.levelo-mpm.fr/service/carto"; }
+- (NSArray*) updateURLStrings { return @[ @"http://www.levelo-mpm.fr/service/carto" ]; }
 - (NSString *) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.levelo-mpm.fr/service/stationdetails/marseille/%@",station.number]; }
 
 /****************************************************************************/

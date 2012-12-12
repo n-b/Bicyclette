@@ -13,8 +13,7 @@
 // Data Update generic machinery
 @interface DataUpdater : NSObject
 
-- (id) initWithURL:(NSURL*)url delegate:(id<DataUpdaterDelegate>)delegate;
-@property (readonly) NSURL* URL;
+- (id) initWithURLStrings:(NSArray*)urlStrings delegate:(id<DataUpdaterDelegate>)delegate;
 @property (nonatomic, weak) id<DataUpdaterDelegate> delegate;
 
 - (void) cancel;
@@ -28,5 +27,5 @@
 - (void) updaterDidStartRequest:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;
-- (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)data;
+- (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSArray*)datas;
 @end

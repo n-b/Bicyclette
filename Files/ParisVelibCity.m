@@ -15,7 +15,7 @@
 /****************************************************************************/
 #pragma mark BicycletteParsing
 
-- (NSString*) updateURLString { return @"http://www.velib.paris.fr/service/carto"; }
+- (NSArray*) updateURLStrings { return @[ @"http://www.velib.paris.fr/service/carto" ]; }
 - (NSString *) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velib.paris.fr/service/stationdetails/paris/%@",station.number]; }
 
 /****************************************************************************/

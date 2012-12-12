@@ -75,8 +75,7 @@
 {
     if(self.updater==nil)
     {
-        
-        self.updater = [[DataUpdater alloc] initWithURL:[NSURL URLWithString:[self updateURLString]] delegate:self];
+        self.updater = [[DataUpdater alloc] initWithURLStrings:[self updateURLStrings] delegate:self];
     }
 }
 
@@ -91,11 +90,11 @@
     self.updater = nil;
 }
 
-- (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)data
+- (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSArray*)datas
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateGotNewData object:self];
     
-    [self parseData:data];
+    [self parseDataChunks:datas];
     self.updater = nil;
 }
 

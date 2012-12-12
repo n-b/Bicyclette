@@ -55,14 +55,14 @@ extern const struct BicycletteCityNotifications {
 #pragma mark Reimplemented
 
 @protocol BicycletteCityURLs <NSObject>
-- (NSString*) updateURLString;
+- (NSArray*) updateURLStrings;
 @optional
 - (NSString*) detailsURLStringForStation:(Station*)station;
 @end
 
 @protocol BicycletteCityParsing <NSObject>
 - (BOOL) hasRegions;
-- (void) parseData:(NSData*)data;
+- (void) parseDataChunks:(NSArray*)datas;
 @end
 
 @protocol BicycletteCityAnnotations <NSObject>

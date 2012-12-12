@@ -12,7 +12,9 @@
 #pragma mark -
 
 @interface DataUpdater()
-@property NSURL* URL;
+@property NSMutableArray * urls;
+@property NSMutableArray * chunks;
+
 @property NSURLConnection * updateConnection;
 @property NSMutableData * updateData;
 @end
@@ -25,28 +27,40 @@
 /****************************************************************************/
 #pragma mark -
 
-- (id) initWithURL:(NSURL*)url_ delegate:(id<DataUpdaterDelegate>) delegate_
+- (id) initWithURLStrings:(NSMutableArray*)urlStrings_ delegate:(id<DataUpdaterDelegate>)delegate_
 {
 	self = [super init];
 	if (self != nil) 
 	{
-        self.URL = url_;
+        NSAssert([urlStrings_ count],@"There must be at least 1 url");
+        
         self.delegate = delegate_;
-        [self startRequest];
+
+        self.urls = [NSMutableArray new];
+        for (NSString * urlString in urlStrings_) {
+            [self.urls addObject:[NSURL URLWithString:urlString]];
+        }
+        self.chunks = [NSMutableArray new];
+        
+        [self startNextRequest];
+        [self.delegate updaterDidStartRequest:self];
 	}
 	return self;
 }
 
-- (void) startRequest
+- (void) startNextRequest
 {
-    self.updateConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:self.URL]
+    self.updateConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:self.urls[0]]
                                                           delegate:self];
-    [self.delegate updaterDidStartRequest:self];
+    [self.urls removeObjectAtIndex:0];
 }
 
 - (void) cancel
 {
     [self.updateConnection cancel];
+    self.updateData = nil;
+    self.urls = nil;
+    self.chunks = nil;
     self.delegate = nil;
 }
 
@@ -64,15 +78,13 @@
 		self.updateData = [NSMutableData data];
 	else if(response.statusCode==304)
 	{
-		[self.updateConnection cancel];
-		self.updateConnection = nil;
         [self.delegate updaterDidFinishWithNoNewData:self];
+        [self cancel];
 	}
 	else
     {
-		[self.updateConnection cancel];
-		self.updateConnection = nil;
         [self.delegate updater:self didFailWithError:[NSError errorWithDomain:@"http" code:response.statusCode userInfo:nil]];
+        [self cancel];
     }
 }
 
@@ -83,18 +95,20 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	[self.updateConnection cancel];
-	self.updateConnection = nil;
-	self.updateData = nil;
     [self.delegate updater:self didFailWithError:error];
+    [self cancel];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	self.updateConnection = nil;
-    [self.delegate updater:self finishedWithNewData:self.updateData];
-
+    [self.chunks addObject:self.updateData];
+    self.updateConnection = nil;
 	self.updateData = nil;
+    
+    if([self.urls count])
+        [self startNextRequest];
+    else
+        [self.delegate updater:self finishedWithNewDataChunks:self.chunks];
 }
 
 @end

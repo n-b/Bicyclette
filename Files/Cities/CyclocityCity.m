@@ -52,7 +52,7 @@
 /****************************************************************************/
 #pragma mark Parsing
 
-- (void) parseData:(NSData*)data
+- (void) parseDataChunks:(NSArray *)datas
 {
     __block NSError * validationErrors;
     [self performUpdates:^(NSManagedObjectContext *updateContext) {
@@ -65,9 +65,11 @@
         // Parsing
         self.parsing_regionsByNumber = [NSMutableDictionary dictionary];
         self.parsing_context = updateContext;
-        NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
-        parser.delegate = self;
-        [parser parse];
+        for (NSData * data in datas) {
+            NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
+            parser.delegate = self;
+            [parser parse];
+        }
         
         // Validate all stations (and delete invalid) before computing coordinates
         for (Region *r in [self.parsing_regionsByNumber allValues]) {
@@ -82,11 +84,7 @@
         
         // Post processing :
         // Compute regions coordinates
-        // and reorder stations in regions
         for (Region * region in [self.parsing_regionsByNumber allValues]) {
-//            [region.stationsSet sortUsingComparator:^NSComparisonResult(Station* obj1, Station* obj2) {
-//                return [obj1.name compare:obj2.name];
-//            }];
             [region setupCoordinates];
         }
         self.parsing_regionsByNumber = nil;
