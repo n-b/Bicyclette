@@ -50,7 +50,7 @@
 }
 
 /****************************************************************************/
-#pragma mark Hardcoded Fixes
+#pragma mark Service Info
 
 - (NSString *) name
 {
@@ -375,7 +375,6 @@
 
 const struct BicycletteCityNotifications BicycletteCityNotifications = {
     .canRequestLocation = @"BicycletteCityNotifications.canRequestLocation",
-    .citySelected = @"BicycletteCityNotifications.citySelected",
     .updateBegan = @"BicycletteCityNotifications.updateBegan",
     .updateGotNewData = @"BicycletteCityNotifications.updateGotNewData",
     .updateSucceeded = @"BicycletteCityNotifications.updateSucceded",

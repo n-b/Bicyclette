@@ -122,7 +122,6 @@ typedef enum {
         NSLog(@"city changed to %@",_currentCity.name);
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.citySelected object:self.currentCity.moc];
     }
 }
 
