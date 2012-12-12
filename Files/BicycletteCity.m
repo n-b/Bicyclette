@@ -16,9 +16,6 @@
 #import "LocalUpdateQueue.h"
 #endif
 
-@interface BicycletteCity (BicycletteCityParsing) <BicycletteCityURLs, BicycletteCityAnnotations, BicycletteCityParsing>
-@end
-
 /****************************************************************************/
 #pragma mark -
 

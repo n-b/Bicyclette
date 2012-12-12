@@ -303,8 +303,8 @@
 		376087F41675E27400B1161E /* CityRegionUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityRegionUpdateGroup.h; sourceTree = "<group>"; };
 		376087F51675E27400B1161E /* CityRegionUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityRegionUpdateGroup.m; sourceTree = "<group>"; };
 		376088161676333300B1161E /* LocalUpdateQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueueTests.m; sourceTree = "<group>"; };
-		376D0E4B1678B56D006F321D /* CyclocityCity.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = CyclocityCity.h; path = Files/CyclocityCity.h; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
-		376D0E4C1678B56D006F321D /* CyclocityCity.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = CyclocityCity.m; path = Files/CyclocityCity.m; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
+		376D0E4B1678B56D006F321D /* CyclocityCity.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = CyclocityCity.h; path = Files/Cities/CyclocityCity.h; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
+		376D0E4C1678B56D006F321D /* CyclocityCity.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = CyclocityCity.m; path = Files/Cities/CyclocityCity.m; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MarseilleLeVeloCity.sqlite; sourceTree = "<group>"; };
 		376D0E5F1678CA4E006F321D /* BicycletteCity+CityClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BicycletteCity+CityClasses.h"; path = "../BicycletteCity+CityClasses.h"; sourceTree = "<group>"; };
 		376D0E601678CA4E006F321D /* BicycletteCity+CityClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BicycletteCity+CityClasses.m"; path = "../BicycletteCity+CityClasses.m"; sourceTree = "<group>"; };
@@ -528,8 +528,6 @@
 			children = (
 				376D0E5F1678CA4E006F321D /* BicycletteCity+CityClasses.h */,
 				376D0E601678CA4E006F321D /* BicycletteCity+CityClasses.m */,
-				376D0E4B1678B56D006F321D /* CyclocityCity.h */,
-				376D0E4C1678B56D006F321D /* CyclocityCity.m */,
 				376D0E4F1678B587006F321D /* Cyclocity */,
 			);
 			path = Cities;
@@ -595,6 +593,8 @@
 		376D0E4F1678B587006F321D /* Cyclocity */ = {
 			isa = PBXGroup;
 			children = (
+				376D0E4B1678B56D006F321D /* CyclocityCity.h */,
+				376D0E4C1678B56D006F321D /* CyclocityCity.m */,
 				370E3A3D162E17870010E454 /* AmiensVelamCity.h */,
 				370E3A3E162E17880010E454 /* AmiensVelamCity.m */,
 				370E3A41162E17990010E454 /* AmiensVelamCity.plist */,

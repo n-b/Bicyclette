@@ -8,6 +8,6 @@
 
 #import "CyclocityCity.h"
 
-@interface AmiensVelamCity : CyclocityCity <BicycletteCityURLs, CyclocityCityParsing, BicycletteCityAnnotations>
+@interface AmiensVelamCity : SimpleCyclocityCity <BicycletteCityURLs, CyclocityCityParsing, BicycletteCityAnnotations>
 
 @end

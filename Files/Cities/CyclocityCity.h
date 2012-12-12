@@ -8,14 +8,22 @@
 
 #import "BicycletteCity.h"
 
-@interface CyclocityCity : BicycletteCity <BicycletteCityParsing, BicycletteCityParsing>
+// Common code for all Cyclocity systems
+@interface CyclocityCity : BicycletteCity <BicycletteCityParsing>
 @end
+
+// Simpler cities
+@interface SimpleCyclocityCity : CyclocityCity
+@end
+
 
 @interface RegionInfo : NSObject
 @property NSString * number;
 @property NSString * name;
 @end
 
+// Cities with multiple Regions
 @protocol CyclocityCityParsing <NSObject>
+@optional
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs;
 @end

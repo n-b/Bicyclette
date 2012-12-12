@@ -15,18 +15,28 @@
 @interface CyclocityCity(Subclasses) <CyclocityCityParsing>
 @end
 
+@implementation RegionInfo
+@end
+
+/****************************************************************************/
+#pragma mark -
+
 @interface CyclocityCity () <NSXMLParserDelegate>
 @property NSManagedObjectContext * parsing_context;
 @property NSMutableDictionary * parsing_regionsByNumber;
 @property NSMutableArray * parsing_oldStations;
 @end
 
-@implementation RegionInfo
-@end
-
 @implementation CyclocityCity
 
-#pragma mark XML Parsing
+- (BOOL) hasRegions
+{
+    return [self respondsToSelector:@selector(regionInfoFromStation:patchs:)];
+}
+
+
+/****************************************************************************/
+#pragma mark Parsing
 
 - (void) parseData:(NSData*)data
 {
@@ -143,12 +153,23 @@
 		}
         
         // Setup region
-        RegionInfo * regionInfo = [self regionInfoFromStation:station patchs:patchs];
-        if(nil==regionInfo)
+        RegionInfo * regionInfo;
+        
+        if([self hasRegions])
         {
-            NSLog(@"Invalid data : %@",attributeDict);
-            [self.parsing_context deleteObject:station];
-            return;
+            regionInfo = [self regionInfoFromStation:station patchs:patchs];
+            if(nil==regionInfo)
+            {
+                NSLog(@"Invalid data : %@",attributeDict);
+                [self.parsing_context deleteObject:station];
+                return;
+            }
+        }
+        else
+        {
+            regionInfo = [RegionInfo new];
+            regionInfo.number = @"anonymousregion";
+            regionInfo.name = @"anonymousregion";
         }
         
         // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
@@ -169,3 +190,32 @@
 }
 
 @end
+
+/****************************************************************************/
+#pragma mark SimpleCycloCity
+
+@implementation SimpleCyclocityCity
+
+- (NSString*) titleForStation:(Station*)region
+{
+    // remove number
+    NSString * shortname = region.name;
+    NSRange beginRange = [shortname rangeOfString:@"-"];
+    if (beginRange.location!=NSNotFound)
+        shortname = [region.name substringFromIndex:beginRange.location+beginRange.length];
+    
+    // remove whitespace
+    shortname = [shortname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    // capitalized
+    if([shortname respondsToSelector:@selector(capitalizedStringWithLocale:)])
+        shortname = [shortname capitalizedStringWithLocale:[NSLocale currentLocale]];
+    else
+        shortname = [shortname stringByReplacingCharactersInRange:NSMakeRange(1, shortname.length-1) withString:[[shortname substringFromIndex:1] lowercaseString]];
+    
+    return shortname;
+}
+
+
+@end
+

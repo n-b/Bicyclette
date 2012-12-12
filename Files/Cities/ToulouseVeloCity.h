@@ -8,6 +8,6 @@
 
 #import "CyclocityCity.h"
 
-@interface ToulouseVeloCity : CyclocityCity <BicycletteCityURLs, CyclocityCityParsing, BicycletteCityAnnotations>
+@interface ToulouseVeloCity : SimpleCyclocityCity <BicycletteCityURLs, CyclocityCityParsing, BicycletteCityAnnotations>
 
 @end

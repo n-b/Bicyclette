@@ -131,20 +131,27 @@ typedef enum {
     CLLocationDistance avgDistance = (latDistance+longDistance)/2;
 
     // Change level according to bounds
+    MapLevel mapLevel;
     if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegions"])
-		self.level = MapLevelNone;
+		mapLevel = MapLevelNone;
 	else if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegionsAndRadars"])
-		self.level = MapLevelRegions;
+		mapLevel = MapLevelRegions;
     else if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelStationsAndRadars"])
-		self.level = MapLevelRegionsAndRadars;
+		mapLevel = MapLevelRegionsAndRadars;
 	else
-		self.level = MapLevelStationsAndRadars;
-    
+		mapLevel = MapLevelStationsAndRadars;
+        
     // Change to nearest city
-    if(self.level == MapLevelNone)
+    if(mapLevel == MapLevelNone)
         self.currentCity = nil;
     else
         self.currentCity = [self.cities sortedArrayByDistanceFromLocation:center][0];
+
+    // Skip Regions Level if the City is too small
+    if((mapLevel==MapLevelRegions || mapLevel==MapLevelRegionsAndRadars) && [self.currentCity hasRegions]==NO)
+        mapLevel = MapLevelStationsAndRadars;
+
+    self.level = mapLevel;
 
     // Update annotations
     [self addAndRemoveMapAnnotations];

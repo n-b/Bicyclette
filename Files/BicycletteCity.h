@@ -21,7 +21,6 @@
 
 - (void) update;
 
-
 #if TARGET_OS_IPHONE
 @property (nonatomic, readonly) MKCoordinateRegion regionContainingData;
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
@@ -29,8 +28,8 @@
 #endif
 - (Station*) stationWithNumber:(NSString*)number;
 
-@property (nonatomic, readonly) CLRegion * hardcodedLimits;
 @property (nonatomic, readonly) NSDictionary* serviceInfo;
+@property (readonly) CLRegion * hardcodedLimits;
 @property (readonly) NSDictionary* stationsPatchs;
 @end
 
@@ -62,14 +61,16 @@ extern const struct BicycletteCityNotifications {
 @end
 
 @protocol BicycletteCityParsing <NSObject>
+- (BOOL) hasRegions;
 - (void) parseData:(NSData*)data;
 @end
 
 @protocol BicycletteCityAnnotations <NSObject>
 - (NSString*)title;
+- (NSString*)titleForStation:(Station*)region;
+@optional
 - (NSString*)titleForRegion:(Region*)region;
 - (NSString*)subtitleForRegion:(Region*)region;
-- (NSString*)titleForStation:(Station*)region;
 @end
 
 /****************************************************************************/
@@ -77,5 +78,8 @@ extern const struct BicycletteCityNotifications {
 
 // Obtain the City from a ManagedObject.
 @interface NSManagedObject (AssociatedCity)
-- (BicycletteCity<BicycletteCityAnnotations, BicycletteCityURLs> *) city;
+- (BicycletteCity *) city;
+@end
+
+@interface BicycletteCity (Subclasses) <BicycletteCityURLs, BicycletteCityAnnotations, BicycletteCityParsing>
 @end

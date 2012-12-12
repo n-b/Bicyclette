@@ -8,6 +8,6 @@
 
 #import "CyclocityCity.h"
 
-@interface NantesBiclooCity : CyclocityCity
+@interface NantesBiclooCity : SimpleCyclocityCity
 
 @end
