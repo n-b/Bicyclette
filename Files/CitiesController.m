@@ -66,9 +66,6 @@ typedef enum {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityUpdated:)
                                                      name:BicycletteCityNotifications.updateSucceeded object:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
-                                                     name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
-
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationWillEnterForegroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationDidEnterBackgroundNotification object:nil];
 
@@ -113,16 +110,20 @@ typedef enum {
         for (Radar * radar in [_currentCity radars]) {
             [self.updateQueue removeMonitoredGroup:radar];
         }
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity];
+        
         _currentCity = currentCity_;
         for (Radar * radar in [_currentCity radars]) {
             [self.fenceMonitor addFence:radar];
             [self.updateQueue addMonitoredGroup:radar];
         }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
+                                                     name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity.moc];
         
         NSLog(@"city changed to %@",_currentCity.name);
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.citySelected object:self.currentCity];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.citySelected object:self.currentCity.moc];
     }
 }
 
