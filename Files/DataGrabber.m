@@ -7,7 +7,7 @@
 //
 
 #import "ParisVelibCity.h"
-#import "MarseilleLeveloCity.h"
+#import "MarseilleLeVeloCity.h"
 #import "ToulouseVeloCity.h"
 #import "AmiensVelamCity.h"
 #import "Station.h"
@@ -103,7 +103,7 @@ int main(int argc, const char * argv[])
     @autoreleasepool
     {
         NSArray * cityClasses = (@[[ParisVelibCity class],
-                                 [MarseilleLeveloCity class],
+                                 [MarseilleLeVeloCity class],
                                  [ToulouseVeloCity class],
                                  [AmiensVelamCity class]
                                  ]);

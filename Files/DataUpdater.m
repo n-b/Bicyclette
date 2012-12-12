@@ -7,7 +7,6 @@
 //
 
 #import "DataUpdater.h"
-#import "NSData+SHA1.h"
 
 /****************************************************************************/
 #pragma mark -
@@ -93,24 +92,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	self.updateConnection = nil;
-    BOOL notifyDelegate = YES;
-    if([self.delegate respondsToSelector:@selector(knownDataSha1ForUpdater:)])
-    {
-        NSString * oldSha1 = [self.delegate knownDataSha1ForUpdater:self];
-        NSString * newSha1 = [self.updateData sha1DigestString];
-        if([oldSha1 isEqualToString:newSha1])
-        {
-            notifyDelegate = NO;
-            NSLog(@"No need to rebuild database, the data actually hasn't changed.");
-        }
-        else if([self.delegate respondsToSelector:@selector(setUpdater:knownDataSha1:)])
-            [self.delegate setUpdater:self knownDataSha1:newSha1];
-    }
-
-    if(notifyDelegate)
-		[self.delegate updater:self finishedWithNewData:self.updateData];
-    else
-        [self.delegate updaterDidFinishWithNoNewData:self];
+    [self.delegate updater:self finishedWithNewData:self.updateData];
 
 	self.updateData = nil;
 }

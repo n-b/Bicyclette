@@ -29,9 +29,4 @@
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater finishedWithNewData:(NSData*)data;
-
-@optional
-// SHA-1
-- (NSString*) knownDataSha1ForUpdater:(DataUpdater*)updater;
-- (void) setUpdater:(DataUpdater*)updater knownDataSha1:(NSString*)sha1;
 @end
