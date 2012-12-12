@@ -1,4 +1,4 @@
-//
+ //
 //  RootNavC.m
 //  Bicyclette
 //
@@ -26,9 +26,9 @@
 
 @implementation RootVC
 
-- (id)init
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super init];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(applicationDidFinishLaunching:) name:UIApplicationDidFinishLaunchingNotification

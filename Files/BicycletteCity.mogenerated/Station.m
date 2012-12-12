@@ -69,7 +69,8 @@
 {
     self.updater = nil;
     self.updating = NO;
-    self.completionBlock(error);
+    if (completionBlock)
+        self.completionBlock(error);
     self.completionBlock = nil;
 }
 
@@ -77,7 +78,8 @@
 {
     self.updater = nil;
     self.updating = NO;
-    self.completionBlock(nil);
+    if (completionBlock)
+        self.completionBlock(nil);
     self.completionBlock = nil;
 }
 
