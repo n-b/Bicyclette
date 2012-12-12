@@ -140,3 +140,9 @@
 - (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velo.toulouse.fr/service/stationdetails/toulouse/%@",station.number]; }
 - (NSString*) title { return @"VélÔ"; }
 @end
+
+@implementation ToyamaCyclOcityCity
+- (NSString*) updateURLString { return @"http://www.cyclocity.jp/service/carto"; }
+- (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.cyclocity.jp/service/stationdetails/toyama/%@",station.number]; }
+- (NSString*) title { return @"CyclOcity"; }
+@end

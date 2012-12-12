@@ -64,3 +64,6 @@
 
 @interface ToulouseVeloCity : SimpleCyclocityCity <SimpleCycloCity>
 @end
+
+@interface ToyamaCyclOcityCity : SimpleCyclocityCity <SimpleCycloCity>
+@end
