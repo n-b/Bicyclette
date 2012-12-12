@@ -8,20 +8,12 @@
 
 #import "CitiesController.h"
 #import "BicycletteCity.h"
-#import "Station.h"
-#import "Region.h"
-#import "Radar.h"
+#import "BicycletteCity+CityClasses.h"
+#import "BicycletteCity.mogenerated.h"
 #import "CollectionsAdditions.h"
-
 #import "LocalUpdateQueue.h"
 #import "CityRegionUpdateGroup.h"
 #import "GeoFencesMonitor.h"
-
-#import "ParisVelibCity.h"
-#import "MarseilleLeVeloCity.h"
-#import "ToulouseVeloCity.h"
-#import "AmiensVelamCity.h"
-
 #import "UIApplication+LocalAlerts.h"
 
 typedef enum {
@@ -50,10 +42,7 @@ typedef enum {
     self = [super init];
     if (self) {
         // Create city
-        self.cities = (@[[ParisVelibCity new],
-                       [MarseilleLeVeloCity new],
-                       [ToulouseVeloCity new],
-                       [AmiensVelamCity new] ]);
+        self.cities = [[BicycletteCity cityClasses] valueForKey:@"new"]; // \o/
 
         self.fenceMonitor = [GeoFencesMonitor new];
         self.fenceMonitor.delegate = self;

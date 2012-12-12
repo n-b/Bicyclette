@@ -97,6 +97,9 @@
 		376088181676333600B1161E /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
 		376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
+		376D0E5E1678C9FE006F321D /* MarseilleLeVeloCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */; };
+		376D0E611678CA4E006F321D /* BicycletteCity+CityClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E601678CA4E006F321D /* BicycletteCity+CityClasses.m */; };
+		376D0E621678CA4E006F321D /* BicycletteCity+CityClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E601678CA4E006F321D /* BicycletteCity+CityClasses.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -136,7 +139,6 @@
 		37D9DFE3162A318E0000F263 /* ToulouseVeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */; };
 		37D9DFE5162A31970000F263 /* ToulouseVeloCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */; };
 		37D9DFE6162A34E00000F263 /* ToulouseVeloCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */; };
-		37D9DFE9162A374F0000F263 /* MarseilleLeveloCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37D9DFE7162A374F0000F263 /* MarseilleLeveloCity.sqlite */; };
 		37D9DFEA162A374F0000F263 /* ToulouseVeloCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
@@ -297,6 +299,9 @@
 		376088161676333300B1161E /* LocalUpdateQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueueTests.m; sourceTree = "<group>"; };
 		376D0E4B1678B56D006F321D /* CyclocityCity.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = CyclocityCity.h; path = Files/CyclocityCity.h; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		376D0E4C1678B56D006F321D /* CyclocityCity.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = CyclocityCity.m; path = Files/CyclocityCity.m; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
+		376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MarseilleLeVeloCity.sqlite; sourceTree = "<group>"; };
+		376D0E5F1678CA4E006F321D /* BicycletteCity+CityClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BicycletteCity+CityClasses.h"; path = "../BicycletteCity+CityClasses.h"; sourceTree = "<group>"; };
+		376D0E601678CA4E006F321D /* BicycletteCity+CityClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BicycletteCity+CityClasses.m"; path = "../BicycletteCity+CityClasses.m"; sourceTree = "<group>"; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -336,7 +341,6 @@
 		37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToulouseVeloCity.h; sourceTree = "<group>"; };
 		37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToulouseVeloCity.m; sourceTree = "<group>"; };
 		37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToulouseVeloCity.plist; sourceTree = "<group>"; };
-		37D9DFE7162A374F0000F263 /* MarseilleLeveloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = MarseilleLeveloCity.sqlite; path = _DataGrabTempFolder/MarseilleLeveloCity.sqlite; sourceTree = SOURCE_ROOT; };
 		37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ToulouseVeloCity.sqlite; path = _DataGrabTempFolder/ToulouseVeloCity.sqlite; sourceTree = SOURCE_ROOT; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
@@ -512,6 +516,8 @@
 		3717AA65162A1C11005EC7BD /* Cities */ = {
 			isa = PBXGroup;
 			children = (
+				376D0E5F1678CA4E006F321D /* BicycletteCity+CityClasses.h */,
+				376D0E601678CA4E006F321D /* BicycletteCity+CityClasses.m */,
 				376D0E4B1678B56D006F321D /* CyclocityCity.h */,
 				376D0E4C1678B56D006F321D /* CyclocityCity.m */,
 				376D0E4F1678B587006F321D /* Cyclocity */,
@@ -544,10 +550,10 @@
 		373A77F215E3F6860057E241 /* _DataGrabTempFolder */ = {
 			isa = PBXGroup;
 			children = (
-				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
-				37D9DFE7162A374F0000F263 /* MarseilleLeveloCity.sqlite */,
-				37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */,
 				370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */,
+				376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */,
+				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
+				37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */,
 			);
 			path = _DataGrabTempFolder;
 			sourceTree = "<group>";
@@ -578,18 +584,18 @@
 		376D0E4F1678B587006F321D /* Cyclocity */ = {
 			isa = PBXGroup;
 			children = (
-				3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */,
-				3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */,
-				3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */,
-				37D9DFDC162A2BF60000F263 /* MarseilleLeVeloCity.h */,
-				37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */,
-				3717AA66162A1C11005EC7BD /* MarseilleLeVeloCity.plist */,
-				37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */,
-				37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */,
-				37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */,
 				370E3A3D162E17870010E454 /* AmiensVelamCity.h */,
 				370E3A3E162E17880010E454 /* AmiensVelamCity.m */,
 				370E3A41162E17990010E454 /* AmiensVelamCity.plist */,
+				37D9DFDC162A2BF60000F263 /* MarseilleLeVeloCity.h */,
+				37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */,
+				3717AA66162A1C11005EC7BD /* MarseilleLeVeloCity.plist */,
+				3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */,
+				3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */,
+				3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */,
+				37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */,
+				37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */,
+				37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */,
 			);
 			name = Cyclocity;
 			sourceTree = "<group>";
@@ -885,11 +891,11 @@
 				3717AA68162A1C11005EC7BD /* MarseilleLeVeloCity.plist in Resources */,
 				3717AA69162A1C11005EC7BD /* ParisVelibCity.plist in Resources */,
 				37D9DFE5162A31970000F263 /* ToulouseVeloCity.plist in Resources */,
-				37D9DFE9162A374F0000F263 /* MarseilleLeveloCity.sqlite in Resources */,
 				37D9DFEA162A374F0000F263 /* ToulouseVeloCity.sqlite in Resources */,
 				370E3A42162E17990010E454 /* AmiensVelamCity.plist in Resources */,
 				370E3A45162E189D0010E454 /* AmiensVelamCity.sqlite in Resources */,
 				370220D9165525B100350AD1 /* BicycletteCity.mogenerated in Resources */,
+				376D0E5E1678C9FE006F321D /* MarseilleLeVeloCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,6 +999,7 @@
 				376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */,
 				37AEB5A516777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 				376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */,
+				376D0E621678CA4E006F321D /* BicycletteCity+CityClasses.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,6 +1022,7 @@
 				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				37AEB5A916778822000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 				376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */,
+				376D0E611678CA4E006F321D /* BicycletteCity+CityClasses.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

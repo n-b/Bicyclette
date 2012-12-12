@@ -6,16 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "ParisVelibCity.h"
-#import "MarseilleLeVeloCity.h"
-#import "ToulouseVeloCity.h"
-#import "AmiensVelamCity.h"
-#import "Station.h"
-#import "Region.h"
-
-
-/****************************************************************************/
-#pragma mark -
+#import "BicycletteCity+CityClasses.h"
+#import "BicycletteCity.mogenerated.h"
 
 static void GrabDataForCity(Class cityClass)
 {
@@ -102,12 +94,7 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool
     {
-        NSArray * cityClasses = (@[[ParisVelibCity class],
-                                 [MarseilleLeVeloCity class],
-                                 [ToulouseVeloCity class],
-                                 [AmiensVelamCity class]
-                                 ]);
-        for (Class cityClass in cityClasses) {
+        for (Class cityClass in [BicycletteCity cityClasses]) {
             printf("%s:\n",[NSStringFromClass(cityClass) UTF8String]);
             GrabDataForCity(cityClass);
             printf("–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n");
