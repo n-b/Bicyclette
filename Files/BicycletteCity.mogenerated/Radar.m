@@ -17,6 +17,7 @@
 {
     [super awakeFromFetch];
     [self startObserving];
+    [self updateStationsInRadar];
 }
 
 - (void) awakeFromInsert

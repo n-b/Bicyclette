@@ -303,7 +303,8 @@
                 radar.coordinate = [self.mapView convertPoint:pointInMapView
                                          toCoordinateFromView:self.mapView];
             } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-                self.droppedRadar = [[contextDidSaveNotification userInfo][NSInsertedObjectsKey] anyObject];
+                NSManagedObjectID * radarID = [[[contextDidSaveNotification userInfo][NSInsertedObjectsKey] anyObject] objectID];
+                self.droppedRadar = (Radar*)[self.controller.currentCity.moc objectWithID:radarID];
                 [self.mapView addAnnotation:self.droppedRadar];
                 [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
             }];
