@@ -47,8 +47,6 @@
 	<integer>63000</integer>
 	<key>MaxRefreshDistance</key>
 	<integer>2000</integer>
-	<key>DataUpdaterDelayBetweenRequests</key>
-	<real>0.1</real>
 	<key>DataUpdaterDelayBetweenQueues</key>
 	<integer>25</integer>
 	<key>ModelSaveDelay</key>

@@ -102,7 +102,7 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
 
-    NSArray * groupsToRefresh;
+    NSArray * groupsToRefresh = [NSArray new];
     if(!self.monitoringPaused)
     {
         // if the app is active, update the monitored groups
