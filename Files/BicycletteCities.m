@@ -31,6 +31,7 @@ NSArray * BicycletteCityClasses(void)
              [ParisVelibCity class],
     		 [RouenCyclicCity class],
              [SantanderTusBicCity class],
+             [SevillaSEViciCity class],
              [ToulouseVeloCity class],
              ];
 }

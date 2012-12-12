@@ -59,5 +59,8 @@
 @interface SantanderTusBicCity : SimpleCyclocityCity <SimpleCycloCity>
 @end
 
+@interface SevillaSEViciCity : SimpleCyclocityCity <SimpleCycloCity>
+@end
+
 @interface ToulouseVeloCity : SimpleCyclocityCity <SimpleCycloCity>
 @end

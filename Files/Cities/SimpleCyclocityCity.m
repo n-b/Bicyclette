@@ -14,13 +14,13 @@
 
 @implementation SimpleCyclocityCity
 
-- (NSString*) titleForStation:(Station*)region
+- (NSString*) titleForStation:(Station*)station
 {
     // remove number
-    NSString * shortname = region.name;
+    NSString * shortname = station.name;
     NSRange beginRange = [shortname rangeOfString:@"-"];
     if (beginRange.location!=NSNotFound)
-        shortname = [region.name substringFromIndex:beginRange.location+beginRange.length];
+        shortname = [station.name substringFromIndex:beginRange.location+beginRange.length];
     
     // remove whitespace
     shortname = [shortname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -127,6 +127,12 @@
 - (NSString*) updateURLString { return @"http://www.tusbic.es/service/carto"; }
 - (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.tusbic.es/service/stationdetails/santander/%@",station.number]; }
 - (NSString*) title { return @"TusBic"; }
+@end
+
+@implementation SevillaSEViciCity
+- (NSString*) updateURLString { return @"http://www.sevici.es/service/carto"; }
+- (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.sevici.es/service/stationdetails/seville/%@",station.number]; }
+- (NSString*) title { return @"SEVici"; }
 @end
 
 @implementation ToulouseVeloCity

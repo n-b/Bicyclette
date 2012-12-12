@@ -229,6 +229,18 @@
 			<integer>10000</integer>
 		</dict>
 	</dict>
+	<key>SevillaSEViciCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>37.3901</real>
+			<key>longitude</key>
+			<real>-5.979</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 	<key>ToulouseVeloCity</key>
 	<dict>
 		<key>limits</key>
