@@ -20,7 +20,6 @@
 #pragma mark -
 
 @interface BicycletteCity () <DataUpdaterDelegate>
-@property (nonatomic) NSDictionary* serviceInfo;
 @property DataUpdater * updater;
 #if TARGET_OS_IPHONE
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
@@ -40,14 +39,19 @@
 /****************************************************************************/
 #pragma mark Service Info
 
++ (NSDictionary*) citiesInfo
+{
+    static NSDictionary * s_citiesInfo;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        s_citiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BicycletteCities" ofType:@"plist"]];
+    });
+    return s_citiesInfo;
+}
+
 - (NSDictionary*) serviceInfo
 {
-    if(nil==_serviceInfo)
-    {
-        NSString * filename = NSStringFromClass([self class]);
-        _serviceInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filename ofType:@"plist"]];
-    }
-    return _serviceInfo;
+    return [[[self class] citiesInfo] objectForKey:NSStringFromClass([self class])];
 }
 
 - (CLRegion*) hardcodedLimits
@@ -71,7 +75,8 @@
 {
     if(self.updater==nil)
     {
-        self.updater = [[DataUpdater alloc] initWithURL:[self updateURL] delegate:self];
+        
+        self.updater = [[DataUpdater alloc] initWithURL:[NSURL URLWithString:[self updateURLString]] delegate:self];
     }
 }
 

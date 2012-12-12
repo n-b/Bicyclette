@@ -1,33 +1,17 @@
 //
-//  BicycletteCity+CityClasses.m
+//  BicycletteCities.m
 //  Bicyclette
 //
 //  Created by Nicolas on 12/12/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity+CityClasses.h"
-#import "AmiensVelamCity.h"
-#import "BesanconVelociteCity.h"
-#import "BrisbaneCityCycleCity.h"
-#import "BruxellesVilloCity.h"
-#import "CergyPointoiseVelO2City.h"
-#import "CreteilCristoLibCity.h"
-#import "DublinBikesCity.h"
-#import "GoteborgStyrStallCity.h"
-#import "LjubljanaBicikeljCity.h"
-#import "LuxembourgVelohCity.h"
+#import "BicycletteCities.h"
+#import "SimpleCyclocityCity.h"
 #import "MarseilleLeVeloCity.h"
-#import "MulhouseVelociteCity.h"
-#import "NancyVelostanCity.h"
-#import "NantesBiclooCity.h"
 #import "ParisVelibCity.h"
-#import "RouenCyclicCity.h"
-#import "SantanderTusBicCity.h"
-#import "ToulouseVeloCity.h"
 
-@implementation BicycletteCity (CityClasses)
-+ (NSArray*) cityClasses
+NSArray * BicycletteCityClasses(void)
 {
     return @[
              [AmiensVelamCity class],
@@ -50,4 +34,3 @@
              [ToulouseVeloCity class],
              ];
 }
-@end

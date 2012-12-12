@@ -14,14 +14,14 @@
 /****************************************************************************/
 #pragma mark BicycletteParsing
 
-- (NSURL*) updateURL
+- (NSString*) updateURLString
 {
-    return [NSURL URLWithString:@"http://www.levelo-mpm.fr/service/carto"];
+    return @"http://www.levelo-mpm.fr/service/carto";
 }
 
-- (NSURL *) detailsURLForStation:(Station*)station
+- (NSString *) detailsURLStringForStation:(Station*)station
 {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.levelo-mpm.fr/service/stationdetails/marseille/%@",station.number]];
+    return [NSString stringWithFormat:@"http://www.levelo-mpm.fr/service/stationdetails/marseille/%@",station.number];
 }
 
 /****************************************************************************/
@@ -32,7 +32,6 @@
     RegionInfo * regionInfo = [RegionInfo new];
     regionInfo.number = [station.name substringToIndex:1];
     regionInfo.name = [station.name substringToIndex:1];
-    
     return regionInfo;
 }
 

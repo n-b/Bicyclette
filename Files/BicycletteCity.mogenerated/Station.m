@@ -46,7 +46,7 @@
 	if(self.updater!=nil)
 		return;
     self.completionBlock = completion;
-    self.updater = [[DataUpdater alloc] initWithURL:[[self city] detailsURLForStation:self]
+    self.updater = [[DataUpdater alloc] initWithURL:[NSURL URLWithString:[[self city] detailsURLStringForStation:self]]
                                            delegate:self];
 }
 

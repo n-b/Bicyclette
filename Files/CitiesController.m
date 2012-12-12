@@ -8,7 +8,7 @@
 
 #import "CitiesController.h"
 #import "BicycletteCity.h"
-#import "BicycletteCity+CityClasses.h"
+#import "BicycletteCities.h"
 #import "BicycletteCity.mogenerated.h"
 #import "CollectionsAdditions.h"
 #import "LocalUpdateQueue.h"
@@ -42,7 +42,7 @@ typedef enum {
     self = [super init];
     if (self) {
         // Create city
-        self.cities = [[BicycletteCity cityClasses] valueForKey:@"new"]; // \o/
+        self.cities = [BicycletteCityClasses() valueForKey:@"new"]; // \o/
 
         self.fenceMonitor = [GeoFencesMonitor new];
         self.fenceMonitor.delegate = self;

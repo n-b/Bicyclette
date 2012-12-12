@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity+CityClasses.h"
+#import "BicycletteCities.h"
 #import "BicycletteCity.mogenerated.h"
 
 static void GrabDataForCity(Class cityClass)
@@ -94,7 +94,7 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool
     {
-        for (Class cityClass in [BicycletteCity cityClasses]) {
+        for (Class cityClass in BicycletteCityClasses()) {
             printf("%s:\n",[NSStringFromClass(cityClass) UTF8String]);
             GrabDataForCity(cityClass);
             printf("–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n");

@@ -12,11 +12,6 @@
 @interface CyclocityCity : BicycletteCity <BicycletteCityParsing>
 @end
 
-// Simpler cities
-@interface SimpleCyclocityCity : CyclocityCity
-@end
-
-
 @interface RegionInfo : NSObject
 @property NSString * number;
 @property NSString * name;

@@ -28,7 +28,7 @@
 #endif
 - (Station*) stationWithNumber:(NSString*)number;
 
-@property (nonatomic, readonly) NSDictionary* serviceInfo;
+@property (readonly) NSDictionary* serviceInfo;
 @property (readonly) CLRegion * hardcodedLimits;
 @property (readonly) NSDictionary* stationsPatchs;
 @end
@@ -55,9 +55,9 @@ extern const struct BicycletteCityNotifications {
 #pragma mark Reimplemented
 
 @protocol BicycletteCityURLs <NSObject>
-- (NSURL*) updateURL;
+- (NSString*) updateURLString;
 @optional
-- (NSURL *) detailsURLForStation:(Station*)station;
+- (NSString*) detailsURLStringForStation:(Station*)station;
 @end
 
 @protocol BicycletteCityParsing <NSObject>
