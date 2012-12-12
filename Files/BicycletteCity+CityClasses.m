@@ -13,6 +13,7 @@
 #import "BruxellesVilloCity.h"
 #import "CergyPointoiseVelO2City.h"
 #import "CreteilCristoLibCity.h"
+#import "DublinBikesCity.h"
 #import "MarseilleLeVeloCity.h"
 #import "MulhouseVelociteCity.h"
 #import "NancyVelostanCity.h"
@@ -31,6 +32,7 @@
              [BruxellesVilloCity class],
              [CergyPointoiseVelO2City class],
     		 [CreteilCristoLibCity class],
+             [DublinBikesCity class],
              [MarseilleLeVeloCity class],
     		 [MulhouseVelociteCity class],
 			 [NancyVelostanCity class],
