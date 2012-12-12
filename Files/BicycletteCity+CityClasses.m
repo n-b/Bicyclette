@@ -16,6 +16,7 @@
 #import "NancyVelostanCity.h"
 #import "NantesBiclooCity.h"
 #import "ParisVelibCity.h"
+#import "RouenCyclicCity.h"
 #import "ToulouseVeloCity.h"
 
 @implementation BicycletteCity (CityClasses)
@@ -31,6 +32,7 @@
 			 [NancyVelostanCity class],
              [NantesBiclooCity class],
              [ParisVelibCity class],
+    		 [RouenCyclicCity class],
              [ToulouseVeloCity class],
              ];
 }

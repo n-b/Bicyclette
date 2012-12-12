@@ -96,6 +96,11 @@
 		37376A7B1678E7590060CDEA /* NancyVelostanCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37376A781678E70D0060CDEA /* NancyVelostanCity.plist */; };
 		37376A7C1678E78F0060CDEA /* NancyVelostanCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37376A771678E70D0060CDEA /* NancyVelostanCity.m */; };
 		37376A7E1678E7AA0060CDEA /* NancyVelostanCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37376A7D1678E7AA0060CDEA /* NancyVelostanCity.sqlite */; };
+		37376A841678E8FE0060CDEA /* RouenCyclicCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37376A821678E8FD0060CDEA /* RouenCyclicCity.m */; };
+		37376A851678E8FE0060CDEA /* RouenCyclicCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37376A821678E8FD0060CDEA /* RouenCyclicCity.m */; };
+		37376A861678E8FE0060CDEA /* RouenCyclicCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */; };
+		37376A871678EA140060CDEA /* RouenCyclicCity.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */; };
+		37376A891678EA2B0060CDEA /* RouenCyclicCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		373A77F415E3F6B80057E241 /* ParisVelibCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */; };
 		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
@@ -257,6 +262,7 @@
 				37376A7B1678E7590060CDEA /* NancyVelostanCity.plist in CopyFiles */,
 				3793D3F21678CE8F009C6F27 /* NantesBiclooCity.plist in CopyFiles */,
 				3717AA6D162A1E1A005EC7BD /* ParisVelibCity.plist in CopyFiles */,
+				37376A871678EA140060CDEA /* RouenCyclicCity.plist in CopyFiles */,
 				37D9DFE6162A34E00000F263 /* ToulouseVeloCity.plist in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +332,10 @@
 		37376A771678E70D0060CDEA /* NancyVelostanCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NancyVelostanCity.m; sourceTree = "<group>"; };
 		37376A781678E70D0060CDEA /* NancyVelostanCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NancyVelostanCity.plist; sourceTree = "<group>"; };
 		37376A7D1678E7AA0060CDEA /* NancyVelostanCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = NancyVelostanCity.sqlite; sourceTree = "<group>"; };
+		37376A811678E8FD0060CDEA /* RouenCyclicCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouenCyclicCity.h; sourceTree = "<group>"; };
+		37376A821678E8FD0060CDEA /* RouenCyclicCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouenCyclicCity.m; sourceTree = "<group>"; };
+		37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RouenCyclicCity.plist; sourceTree = "<group>"; };
+		37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = RouenCyclicCity.sqlite; sourceTree = "<group>"; };
 		373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = ParisVelibCity.sqlite; path = _DataGrabTempFolder/ParisVelibCity.sqlite; sourceTree = SOURCE_ROOT; };
 		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
 		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
@@ -617,6 +627,7 @@
 				37376A7D1678E7AA0060CDEA /* NancyVelostanCity.sqlite */,
 				3793D3F31678CF15009C6F27 /* NantesBiclooCity.sqlite */,
 				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
+				37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */,
 				37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */,
 			);
 			path = _DataGrabTempFolder;
@@ -677,6 +688,9 @@
 				3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */,
 				3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */,
 				3717AA67162A1C11005EC7BD /* ParisVelibCity.plist */,
+				37376A811678E8FD0060CDEA /* RouenCyclicCity.h */,
+				37376A821678E8FD0060CDEA /* RouenCyclicCity.m */,
+				37376A831678E8FD0060CDEA /* RouenCyclicCity.plist */,
 				37D9DFE0162A318E0000F263 /* ToulouseVeloCity.h */,
 				37D9DFE1162A318E0000F263 /* ToulouseVeloCity.m */,
 				37D9DFE4162A31970000F263 /* ToulouseVeloCity.plist */,
@@ -992,6 +1006,8 @@
 				37376A751678E6050060CDEA /* MulhouseVelociteCity.sqlite in Resources */,
 				37376A7A1678E70D0060CDEA /* NancyVelostanCity.plist in Resources */,
 				37376A7E1678E7AA0060CDEA /* NancyVelostanCity.sqlite in Resources */,
+				37376A861678E8FE0060CDEA /* RouenCyclicCity.plist in Resources */,
+				37376A891678EA2B0060CDEA /* RouenCyclicCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,6 +1118,7 @@
 				37376A691678E1000060CDEA /* CreteilCristoLibCity.m in Sources */,
 				37376A701678E5120060CDEA /* MulhouseVelociteCity.m in Sources */,
 				37376A791678E70D0060CDEA /* NancyVelostanCity.m in Sources */,
+				37376A851678E8FE0060CDEA /* RouenCyclicCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,6 +1148,7 @@
 				37376A681678E1000060CDEA /* CreteilCristoLibCity.m in Sources */,
 				37376A6F1678E5120060CDEA /* MulhouseVelociteCity.m in Sources */,
 				37376A7C1678E78F0060CDEA /* NancyVelostanCity.m in Sources */,
+				37376A841678E8FE0060CDEA /* RouenCyclicCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
