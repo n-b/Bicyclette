@@ -34,10 +34,10 @@
         <userInfo/>
     </entity>
     <entity name="Station" representedClassName="Station">
-        <attribute name="address" attributeType="String" defaultValueString="-1">
+        <attribute name="address" optional="YES" attributeType="String" defaultValueString="-1">
             <userInfo/>
         </attribute>
-        <attribute name="bonus" attributeType="Boolean">
+        <attribute name="bonus" optional="YES" attributeType="Boolean">
             <userInfo/>
         </attribute>
         <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES">
@@ -45,7 +45,7 @@
                 <entry key="attributeValueClassName" value="UIColor"/>
             </userInfo>
         </attribute>
-        <attribute name="fullAddress" attributeType="String">
+        <attribute name="fullAddress" optional="YES" attributeType="String">
             <userInfo/>
         </attribute>
         <attribute name="latitude" attributeType="Double" defaultValueString="0" indexed="YES">
@@ -60,7 +60,7 @@
         <attribute name="number" attributeType="String" indexed="YES">
             <userInfo/>
         </attribute>
-        <attribute name="open" attributeType="Boolean">
+        <attribute name="open" optional="YES" attributeType="Boolean" defaultValueString="YES">
             <userInfo/>
         </attribute>
         <attribute name="status_available" optional="YES" attributeType="Integer 16" defaultValueString="0">

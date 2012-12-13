@@ -13,7 +13,7 @@
 
 @interface DataUpdater()
 @property NSMutableArray * urls;
-@property NSMutableArray * chunks;
+@property NSMutableDictionary * chunks;
 
 @property NSURLConnection * updateConnection;
 @property NSMutableData * updateData;
@@ -40,7 +40,7 @@
         for (NSString * urlString in urlStrings_) {
             [self.urls addObject:[NSURL URLWithString:urlString]];
         }
-        self.chunks = [NSMutableArray new];
+        self.chunks = [NSMutableDictionary new];
         
         [self startNextRequest];
         [self.delegate updaterDidStartRequest:self];
@@ -52,7 +52,6 @@
 {
     self.updateConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:self.urls[0]]
                                                           delegate:self];
-    [self.urls removeObjectAtIndex:0];
 }
 
 - (void) cancel
@@ -101,7 +100,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [self.chunks addObject:self.updateData];
+    [self.chunks setObject:self.updateData forKey:[self.urls[0] absoluteString]];
+    [self.urls removeObjectAtIndex:0];
     self.updateConnection = nil;
 	self.updateData = nil;
     

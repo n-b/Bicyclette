@@ -10,6 +10,7 @@
 #import "CyclocityCities.h"
 #import "MarseilleLeVeloCity.h"
 #import "ParisVelibCity.h"
+#import "LyonVelovCity.h"
 
 NSArray * BicycletteCityClasses(void)
 {
@@ -24,16 +25,19 @@ NSArray * BicycletteCityClasses(void)
              [GoteborgStyrStallCity class],
              [LjubljanaBicikeljCity class],
              [LuxembourgVelohCity class],
-             [MarseilleLeVeloCity class],
     		 [MulhouseVelociteCity class],
 			 [NancyVelostanCity class],
              [NantesBiclooCity class],
-             [ParisVelibCity class],
     		 [RouenCyclicCity class],
              [SantanderTusBicCity class],
              [SevillaSEViciCity class],
              [ToulouseVeloCity class],
              [ToyamaCyclOcityCity class],
              [ValenciaValenbisiCity class],
+
+             [ParisVelibCity class],
+             [MarseilleLeVeloCity class],
+
+             [LyonVelovCity class],
              ];
 }

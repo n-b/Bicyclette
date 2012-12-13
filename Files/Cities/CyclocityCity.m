@@ -51,6 +51,7 @@
 #pragma mark Parsing
 
 - (void) parseData:(NSData *)data
+     fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context
        oldStations:(NSMutableArray*)oldStations
 {
@@ -77,15 +78,15 @@
     static NSDictionary * s_mapping = nil;
     if(nil==s_mapping)
         s_mapping = @{
-        @"address" : @"address",
-        @"bonus" : @"bonus",
-        @"fullAddress" : @"fullAddress",
-        @"name" : @"name",
-        @"number" : @"number",
-        @"open" : @"open",
+        @"address" : StationAttributes.address,
+        @"bonus" : StationAttributes.bonus,
+        @"fullAddress" : StationAttributes.fullAddress,
+        @"name" : StationAttributes.name,
+        @"number" : StationAttributes.number,
+        @"open" : StationAttributes.open,
         
-        @"lat" : @"latitude",
-        @"lng" : @"longitude"
+        @"lat" : StationAttributes.latitude,
+        @"lng" : StationAttributes.longitude,
         };
     
     return s_mapping;

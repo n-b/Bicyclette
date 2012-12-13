@@ -97,7 +97,7 @@
     self.updater = nil;
 }
 
-- (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSArray*)datas
+- (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSDictionary*)datas
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateGotNewData object:self];
     
@@ -110,8 +110,9 @@
         NSMutableArray* oldStations =  [[updateContext executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
         
         // Parsing
-        for (NSData * data in datas) {
-            [self parseData:data
+        for (NSString * urlString in datas) {
+            [self parseData:datas[urlString]
+              fromURLString:urlString
                   inContext:updateContext
                 oldStations:oldStations];
         }

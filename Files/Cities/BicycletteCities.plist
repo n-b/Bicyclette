@@ -122,6 +122,18 @@
 			<integer>10000</integer>
 		</dict>
 	</dict>
+	<key>LyonVelovCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>45.7611</real>
+			<key>longitude</key>
+			<real>4.835</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 	<key>MarseilleLeVeloCity</key>
 	<dict>
 		<key>limits</key>

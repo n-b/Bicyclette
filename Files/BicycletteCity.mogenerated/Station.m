@@ -81,11 +81,11 @@
     self.completionBlock = nil;
 }
 
-- (void) updater:(DataUpdater *)updater finishedWithNewDataChunks:(NSArray *)datas
+- (void) updater:(DataUpdater *)updater finishedWithNewDataChunks:(NSDictionary *)datas
 {
     [self.city performUpdates:^(NSManagedObjectContext *updateContext) {
         Station * station = (Station*)[updateContext objectWithID:self.objectID];
-        NSXMLParser * parser = [[NSXMLParser alloc] initWithData:[datas lastObject]];
+        NSXMLParser * parser = [[NSXMLParser alloc] initWithData:[[datas allValues] lastObject]];
         parser.delegate = station;
         station.currentParsedString = [NSMutableString string];
         [parser parse];

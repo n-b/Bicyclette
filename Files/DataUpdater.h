@@ -27,5 +27,5 @@
 - (void) updaterDidStartRequest:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;
-- (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSArray*)datas;
+- (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSDictionary*)datas;
 @end

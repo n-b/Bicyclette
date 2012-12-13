@@ -63,6 +63,7 @@ extern const struct BicycletteCityNotifications {
 @protocol BicycletteCityParsing <NSObject>
 - (BOOL) hasRegions;
 - (void) parseData:(NSData *)data
+     fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context
        oldStations:(NSMutableArray*)oldStations;
 @end

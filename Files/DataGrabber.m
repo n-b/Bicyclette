@@ -51,7 +51,7 @@ static void GrabDataForCity(Class cityClass)
              
              for (Region * region in [city.moc executeFetchRequest:regionsRequest error:NULL])
              {
-                 [message appendFormat:@"  %@ : %d Stations\n",region.number, (int)[region.stations count]];
+                 [message appendFormat:@"  %@ : %d Stations, (%@-%@, %@-%@)\n",region.number, (int)[region.stations count], region.minLatitude, region.maxLatitude, region.minLongitude, region.maxLongitude];
                  for (Station * station in region.stations)
                  {
                      [message appendFormat:@"   \"%@\"->\"%@\"\n",station.name, [city titleForStation:station]];
