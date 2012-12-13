@@ -221,7 +221,10 @@ typedef enum {
 
 - (void) appStateChanged:(NSNotification*)note
 {
-    self.updateQueue.monitoringPaused = [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
+    if([note.name isEqualToString:UIApplicationDidEnterBackgroundNotification])
+        self.updateQueue.monitoringPaused = YES;
+    else if([note.name isEqualToString:UIApplicationWillEnterForegroundNotification])
+        self.updateQueue.monitoringPaused = NO;
 }
 
 /****************************************************************************/
