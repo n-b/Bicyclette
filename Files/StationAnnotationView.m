@@ -8,6 +8,7 @@
 
 #import "StationAnnotationView.h"
 #import "Station.h"
+#import "Station+Update.h"
 
 @implementation StationAnnotationView
 {

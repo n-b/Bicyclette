@@ -11,21 +11,21 @@
 
 @implementation MarseilleLeVeloCity
 
-/****************************************************************************/
-#pragma mark BicycletteParsing
+#pragma mark City Data Update
 
 - (NSArray*) updateURLStrings { return @[ @"http://www.levelo-mpm.fr/service/carto" ]; }
+
+#pragma mark Stations Individual Data Updates
+
 - (NSString *) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.levelo-mpm.fr/service/stationdetails/marseille/%@",station.number]; }
 
-/****************************************************************************/
-#pragma mark BicycletteCityAnnotations
+#pragma mark Annotations
 
 - (NSString*) title { return @"Le Vélo"; }
 - (NSString*) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
 - (NSString*) subtitleForRegion:(Region*)region { return @"arr."; }
 
-/****************************************************************************/
-#pragma mark CyclocityParsing
+#pragma mark CyclocityCity
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {

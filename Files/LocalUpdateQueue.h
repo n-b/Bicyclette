@@ -9,7 +9,7 @@
 //
 // Locatable
 @protocol Locatable <NSObject>
-@property (readonly) CLLocation * location;
+- (CLLocation *) location;
 @end
 
 //
@@ -21,8 +21,8 @@
 //
 // Update Point
 @protocol LocalUpdatePoint <NSObject, Locatable>
-- (void) updateWithCompletionBlock:(void(^)(NSError* error))completion;
 @property BOOL queuedForUpdate;
+- (void) updateWithCompletionBlock:(void(^)(NSError* error))completion;
 @end
 
 //

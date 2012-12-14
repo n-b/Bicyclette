@@ -53,6 +53,8 @@
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
 		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
 		3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */; };
+		3709F575167B755600F865E3 /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
+		3709F57B167B7DCD00F865E3 /* CyclocityStationParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F57A167B7DCD00F865E3 /* CyclocityStationParse.m */; };
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370E3A45162E189D0010E454 /* AmiensVelamCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
@@ -113,6 +115,8 @@
 		376D0E5E1678C9FE006F321D /* MarseilleLeVeloCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */; };
 		376D0E611678CA4E006F321D /* BicycletteCities.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E601678CA4E006F321D /* BicycletteCities.m */; };
 		376D0E621678CA4E006F321D /* BicycletteCities.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E601678CA4E006F321D /* BicycletteCities.m */; };
+		377620DE167BD263004E9E3D /* CyclocityStationParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F57A167B7DCD00F865E3 /* CyclocityStationParse.m */; };
+		377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -256,6 +260,10 @@
 		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
 		3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+AttributionLogo.h"; sourceTree = "<group>"; };
 		3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+AttributionLogo.m"; sourceTree = "<group>"; };
+		3709F573167B755600F865E3 /* Station+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Station+Update.h"; sourceTree = "<group>"; };
+		3709F574167B755600F865E3 /* Station+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Station+Update.m"; sourceTree = "<group>"; };
+		3709F579167B7DCD00F865E3 /* CyclocityStationParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CyclocityStationParse.h; sourceTree = "<group>"; };
+		3709F57A167B7DCD00F865E3 /* CyclocityStationParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CyclocityStationParse.m; sourceTree = "<group>"; };
 		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
 		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
 		370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = AmiensVelamCity.sqlite; path = _DataGrabTempFolder/AmiensVelamCity.sqlite; sourceTree = SOURCE_ROOT; };
@@ -537,6 +545,19 @@
 			name = "UI Utility";
 			sourceTree = "<group>";
 		};
+		3709F572167B752300F865E3 /* Station Updates */ = {
+			isa = PBXGroup;
+			children = (
+				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
+				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
+				376087F41675E27400B1161E /* CityRegionUpdateGroup.h */,
+				376087F51675E27400B1161E /* CityRegionUpdateGroup.m */,
+				3709F573167B755600F865E3 /* Station+Update.h */,
+				3709F574167B755600F865E3 /* Station+Update.m */,
+			);
+			name = "Station Updates";
+			sourceTree = "<group>";
+		};
 		3717AA65162A1C11005EC7BD /* Cities */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,8 +565,6 @@
 				376D0E601678CA4E006F321D /* BicycletteCities.m */,
 				3739609A167917CE005F0672 /* BicycletteCities.plist */,
 				376D0E4F1678B587006F321D /* Cyclocity */,
-				373960A916794634005F0672 /* LyonVelovCity.h */,
-				373960AA16794634005F0672 /* LyonVelovCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -557,10 +576,7 @@
 				374334C9164B0EC00051294F /* CitiesController.m */,
 				37D131FC163F32DE00AABEE4 /* Model */,
 				3717AA65162A1C11005EC7BD /* Cities */,
-				3747106815B3754E00C1D1D9 /* LocalUpdateQueue.h */,
-				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
-				376087F41675E27400B1161E /* CityRegionUpdateGroup.h */,
-				376087F51675E27400B1161E /* CityRegionUpdateGroup.m */,
+				3709F572167B752300F865E3 /* Station Updates */,
 				37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */,
 				37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */,
 				3724BC7115E4CA1200790869 /* Store.h */,
@@ -627,6 +643,10 @@
 		376D0E4F1678B587006F321D /* Cyclocity */ = {
 			isa = PBXGroup;
 			children = (
+				3709F579167B7DCD00F865E3 /* CyclocityStationParse.h */,
+				3709F57A167B7DCD00F865E3 /* CyclocityStationParse.m */,
+				373960A916794634005F0672 /* LyonVelovCity.h */,
+				373960AA16794634005F0672 /* LyonVelovCity.m */,
 				376D0E4B1678B56D006F321D /* CyclocityCity.h */,
 				376D0E4C1678B56D006F321D /* CyclocityCity.m */,
 				37396095167910BF005F0672 /* CyclocityCities.h */,
@@ -1054,6 +1074,8 @@
 				376D0E621678CA4E006F321D /* BicycletteCities.m in Sources */,
 				3739609916791518005F0672 /* CyclocityCities.m in Sources */,
 				373960AC16794635005F0672 /* LyonVelovCity.m in Sources */,
+				3709F575167B755600F865E3 /* Station+Update.m in Sources */,
+				3709F57B167B7DCD00F865E3 /* CyclocityStationParse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1099,8 @@
 				376D0E611678CA4E006F321D /* BicycletteCities.m in Sources */,
 				37396097167910C1005F0672 /* CyclocityCities.m in Sources */,
 				373960AB16794635005F0672 /* LyonVelovCity.m in Sources */,
+				377620DE167BD263004E9E3D /* CyclocityStationParse.m in Sources */,
+				377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

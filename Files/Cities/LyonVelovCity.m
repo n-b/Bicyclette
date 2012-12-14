@@ -11,31 +11,12 @@
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
 #import "NSObject+KVCMapping.h"
+#import "CyclocityStationParse.h"
 
 @implementation LyonVelovCity
 
-- (NSArray*) updateURLStrings
-{
-    NSArray * zips = @[
-                       @"69381",
-                       @"69382",
-                       @"69383",
-                       @"69384",
-                       @"69385",
-                       @"69386",
-                       @"69387",
-                       @"69388",
-                       @"69389",
-                       ];
+#pragma mark Annotations
 
-    NSMutableArray * urlStrings = [NSMutableArray new];
-    for (NSString * zip in zips) {
-        [urlStrings addObject:[NSString stringWithFormat:@"http://www.velov.grandlyon.com/velovmap/zhp/inc/StationsParArrondissement.php?arrondissement=%@",zip]];
-    }
-    return urlStrings;
-}
-
-- (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velov.grandlyon.com/velovmap/zhp/inc/DispoStationsParId.php?id=%@",station.number]; }
 - (NSString*) title { return @"Vélo’v"; }
 
 - (NSString*) titleForStation:(Station*)station
@@ -54,10 +35,33 @@
 - (NSString*) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
 - (NSString*) subtitleForRegion:(Region*)region { return @"arr."; }
 
-- (BOOL) hasRegions
+#pragma mark Stations Individual Data Updates
+
+- (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velov.grandlyon.com/velovmap/zhp/inc/DispoStationsParId.php?id=%@",station.number]; }
+- (void) parseData:(NSData *)data forStation:(Station *)station { [CyclocityStationParse parseData:data forStation:station]; }
+
+#pragma mark City Data Update
+
+- (NSArray*) updateURLStrings
 {
-    return YES;
+    NSArray * zips = @[@"69381",
+                       @"69382",
+                       @"69383",
+                       @"69384",
+                       @"69385",
+                       @"69386",
+                       @"69387",
+                       @"69388",
+                       @"69389"];
+    
+    NSMutableArray * urlStrings = [NSMutableArray new];
+    for (NSString * zip in zips) {
+        [urlStrings addObject:[NSString stringWithFormat:@"http://www.velov.grandlyon.com/velovmap/zhp/inc/StationsParArrondissement.php?arrondissement=%@",zip]];
+    }
+    return urlStrings;
 }
+
+- (BOOL) hasRegions { return YES; }
 
 - (NSDictionary*) KVCMapping
 {

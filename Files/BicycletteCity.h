@@ -7,35 +7,80 @@
 //
 
 #import "CoreDataManager.h"
-
+#import "LocalUpdateQueue.h"
 @class Station, Region, Radar;
-@class LocalUpdateQueue;
 
-#if TARGET_OS_IPHONE
-@interface BicycletteCity : CoreDataManager <MKAnnotation>
-#else
-@interface BicycletteCity : CoreDataManager
-#endif
+//
+#pragma mark Semi-Abstract superclass.
+@interface _BicycletteCity : CoreDataManager <Locatable>
 
-@property (readonly) CLLocationCoordinate2D coordinate;
-
-- (void) update;
-
-#if TARGET_OS_IPHONE
-@property (nonatomic, readonly) MKCoordinateRegion regionContainingData;
-- (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
-- (NSArray*) radars;
-#endif
-- (Station*) stationWithNumber:(NSString*)number;
-
-@property (readonly) NSDictionary* serviceInfo;
+#pragma mark General properties
+@property (readonly) NSDictionary* serviceInfo; //plist
 @property (readonly) CLRegion * hardcodedLimits;
-@property (readonly) NSDictionary* stationsPatchs;
+#if TARGET_OS_IPHONE
+@property (readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly) MKCoordinateRegion regionContainingData;
+#endif
+
+#pragma mark Fetch requests
+- (Station*) stationWithNumber:(NSString*)number;
+#if TARGET_OS_IPHONE
+- (NSArray*) radars;
+- (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
+#endif
+
+#pragma mark Data Updates
+- (void) update;
+- (BOOL) canUpdateIndividualStations;
+
 @end
 
-/****************************************************************************/
-#pragma mark -
 
+//
+// Methods to be reimplementend by concrete subclasses
+@protocol BicycletteCity
+#if TARGET_OS_IPHONE
+							<MKAnnotation>
+#endif
+
+#pragma mark City Data Update
+@required
+- (NSArray*) updateURLStrings;
+- (BOOL) hasRegions;
+- (void) parseData:(NSData *)data
+     fromURLString:(NSString*)urlString
+         inContext:(NSManagedObjectContext*)context
+       oldStations:(NSMutableArray*)oldStations;
+
+#pragma mark Stations Individual Data Updates
+@optional
+- (NSString*) detailsURLStringForStation:(Station*)station_;
+- (void) parseData:(NSData *)data forStation:(Station *)station;
+
+#pragma mark Annotations
+@required
+- (NSString*) title;
+- (NSString*) titleForStation:(Station*)region;
+@optional
+- (NSString*) titleForRegion:(Region*)region;
+- (NSString*) subtitleForRegion:(Region*)region;
+
+@end
+
+// BicycletteCity
+// This class does not really exist, it's just so that client code can call the methods declared in subclasses
+//
+// The rest of the app should always just use BicycletteCity*.
+@interface BicycletteCity : _BicycletteCity < BicycletteCity >
+@end
+
+// Obtain the City from any Station, Region, or Radar.
+@interface NSManagedObject (BicycletteCity)
+- (BicycletteCity *) city;
+@end
+
+//
+#pragma mark Update Notifications
 extern const struct BicycletteCityNotifications {
 	__unsafe_unretained NSString * canRequestLocation;
 	__unsafe_unretained NSString * updateBegan;
@@ -49,40 +94,3 @@ extern const struct BicycletteCityNotifications {
         __unsafe_unretained NSString * failureError;
     } keys;
 } BicycletteCityNotifications;
-
-
-/****************************************************************************/
-#pragma mark Reimplemented
-
-@protocol BicycletteCityURLs <NSObject>
-- (NSArray*) updateURLStrings;
-@optional
-- (NSString*) detailsURLStringForStation:(Station*)station;
-@end
-
-@protocol BicycletteCityParsing <NSObject>
-- (BOOL) hasRegions;
-- (void) parseData:(NSData *)data
-     fromURLString:(NSString*)urlString
-         inContext:(NSManagedObjectContext*)context
-       oldStations:(NSMutableArray*)oldStations;
-@end
-
-@protocol BicycletteCityAnnotations <NSObject>
-- (NSString*)title;
-- (NSString*)titleForStation:(Station*)region;
-@optional
-- (NSString*)titleForRegion:(Region*)region;
-- (NSString*)subtitleForRegion:(Region*)region;
-@end
-
-/****************************************************************************/
-#pragma mark -
-
-// Obtain the City from a ManagedObject.
-@interface NSManagedObject (AssociatedCity)
-- (BicycletteCity *) city;
-@end
-
-@interface BicycletteCity (Subclasses) <BicycletteCityURLs, BicycletteCityAnnotations, BicycletteCityParsing>
-@end

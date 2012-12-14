@@ -43,7 +43,6 @@
         self.chunks = [NSMutableDictionary new];
         
         [self startNextRequest];
-        [self.delegate updaterDidStartRequest:self];
 	}
 	return self;
 }

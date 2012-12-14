@@ -3,6 +3,7 @@
 //
 #import <Availability.h>
 
+#import <objc/runtime.h>
 #import <Foundation/Foundation.h>
 
 #if TARGET_OS_IPHONE

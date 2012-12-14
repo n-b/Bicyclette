@@ -10,6 +10,7 @@
 #import "BicycletteApplicationDelegate.h"
 #import "BicycletteCity.h"
 #import "Station.h"
+#import "Station+Update.h"
 #import "Region.h"
 #import "TransparentToolbar.h"
 #import "CollectionsAdditions.h"
@@ -264,7 +265,7 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-	if([view.annotation isKindOfClass:[BicycletteCity class]])
+	if([view.annotation isKindOfClass:[_BicycletteCity class]])
         [self.mapView setRegion:[((BicycletteCity*)view.annotation) regionContainingData] animated:YES];
     else if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];

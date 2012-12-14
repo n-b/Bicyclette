@@ -8,6 +8,5 @@
 
 #import "BicycletteCity.h"
 
-@interface LyonVelovCity : BicycletteCity <BicycletteCityParsing>
-
+@interface LyonVelovCity : _BicycletteCity <BicycletteCity>
 @end

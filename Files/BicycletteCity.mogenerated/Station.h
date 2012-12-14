@@ -1,22 +1,14 @@
 #import "_Station.h"
 #import "LocalUpdateQueue.h"
 
-@interface Station : _Station < LocalUpdatePoint
+@interface Station : _Station < Locatable
 #if TARGET_OS_IPHONE
-								,MKAnnotation >
-#else
-								>
+								,MKAnnotation
 #endif
+								>
 
-// status
-- (void) cancel;
+- (CLLocation *) location;
 
-@property (readonly) BOOL updating;
+- (NSString *) localizedSummary;
 
-// Computed properties
-@property (readonly) CLLocation * location;
-@property (readonly) NSString * localizedSummary;
-
-// whether the data is not too old
-@property (readonly) BOOL statusDataIsFresh;
 @end

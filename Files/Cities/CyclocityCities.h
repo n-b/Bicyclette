@@ -10,59 +10,59 @@
 
 // Simpler cities
 
-@interface AmiensVelamCity : CyclocityCity
+@interface AmiensVelamCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface BesanconVelociteCity : CyclocityCity
+@interface BesanconVelociteCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface BrisbaneCityCycleCity : CyclocityCity
+@interface BrisbaneCityCycleCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface BruxellesVilloCity : CyclocityCity
+@interface BruxellesVilloCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface CergyPointoiseVelO2City : CyclocityCity
+@interface CergyPointoiseVelO2City : _CyclocityCity <CyclocityCity>
 @end
 
-@interface CreteilCristoLibCity : CyclocityCity
+@interface CreteilCristoLibCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface DublinBikesCity : CyclocityCity
+@interface DublinBikesCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface GoteborgStyrStallCity : CyclocityCity
+@interface GoteborgStyrStallCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface LjubljanaBicikeljCity : CyclocityCity
+@interface LjubljanaBicikeljCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface LuxembourgVelohCity : CyclocityCity
+@interface LuxembourgVelohCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface MulhouseVelociteCity : CyclocityCity
+@interface MulhouseVelociteCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface NancyVelostanCity : CyclocityCity
+@interface NancyVelostanCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface NantesBiclooCity : CyclocityCity
+@interface NantesBiclooCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface RouenCyclicCity : CyclocityCity
+@interface RouenCyclicCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface SantanderTusBicCity : CyclocityCity
+@interface SantanderTusBicCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface SevillaSEViciCity : CyclocityCity
+@interface SevillaSEViciCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface ToulouseVeloCity : CyclocityCity
+@interface ToulouseVeloCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface ToyamaCyclOcityCity : CyclocityCity
+@interface ToyamaCyclOcityCity : _CyclocityCity <CyclocityCity>
 @end
 
-@interface ValenciaValenbisiCity : CyclocityCity
+@interface ValenciaValenbisiCity : _CyclocityCity <CyclocityCity>
 @end

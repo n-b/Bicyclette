@@ -11,28 +11,26 @@
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
+#import "CyclocityStationParse.h"
 
-@interface CyclocityCity(Subclasses) <CyclocityCityParsing>
+// Allow me to use method implemented in subclasses
+@interface _CyclocityCity(CyclocityCity) <CyclocityCity>
 @end
 
 @implementation RegionInfo
 @end
 
-/****************************************************************************/
 #pragma mark -
 
-@interface CyclocityCity () <NSXMLParserDelegate>
+@interface _CyclocityCity () <NSXMLParserDelegate>
 @property NSManagedObjectContext * parsing_context;
 @property NSMutableDictionary * parsing_regionsByNumber;
 @property NSMutableArray * parsing_oldStations;
 @end
 
-@implementation CyclocityCity
+@implementation _CyclocityCity
 
-- (BOOL) hasRegions
-{
-    return [self respondsToSelector:@selector(regionInfoFromStation:patchs:)];
-}
+#pragma mark Annotations
 
 - (NSString*) titleForStation:(Station*)station
 {
@@ -47,8 +45,16 @@
     return title;
 }
 
-/****************************************************************************/
-#pragma mark Parsing
+#pragma mark Stations Individual Data Updates
+
+- (void) parseData:(NSData *)data forStation:(Station *)station { [CyclocityStationParse parseData:data forStation:station]; }
+
+#pragma mark City Data Updates
+
+- (BOOL) hasRegions
+{
+    return [self respondsToSelector:@selector(regionInfoFromStation:patchs:)];
+}
 
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString

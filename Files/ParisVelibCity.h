@@ -8,6 +8,6 @@
 
 #import "CyclocityCity.h"
 
-@interface ParisVelibCity : CyclocityCity <BicycletteCityURLs, CyclocityCityParsing, BicycletteCityAnnotations>
+@interface ParisVelibCity : _CyclocityCity <CyclocityCity>
 
 @end

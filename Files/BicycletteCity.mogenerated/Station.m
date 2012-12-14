@@ -2,147 +2,13 @@
 #import "BicycletteCity.h"
 #import "Region.h"
 #import "NSStringAdditions.h"
-#import "DataUpdater.h"
-#import "NSObject+KVCMapping.h"
 #import "NSError+MultipleErrorsCombined.h"
-
-/****************************************************************************/
-#pragma mark -
-
-@interface Station () <DataUpdaterDelegate, NSXMLParserDelegate>
-@property DataUpdater * updater;
-@property BOOL updating;
-@property NSMutableString * currentParsedString;
-@property (copy) void(^completionBlock)(NSError*) ;
-@end
-
-
-/****************************************************************************/
-#pragma mark -
 
 @implementation Station
 
-@synthesize updater, updating, currentParsedString, completionBlock;
-@synthesize queuedForUpdate;
-
-- (NSString *) debugDescription
+- (void)dealloc
 {
-	return [NSString stringWithFormat:@"Station %@ (%@): %@ (%f,%f) %s %s\n\t%s\t%02d/%02d/%02d",
-			self.name, self.number, self.address, self.latitudeValue, self.longitudeValue, self.openValue?"O":"F", self.bonusValue?"+":"",
-			self.status_ticketValue?"+":"", self.status_availableValue, self.status_freeValue, self.status_totalValue];
-}
-
-- (void) dealloc
-{
-    self.updater.delegate = nil;
-}
-
-/****************************************************************************/
-#pragma mark updating
-
-- (void) updateWithCompletionBlock:(void (^)(NSError* error))completion
-{
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
-	if(self.updater!=nil)
-		return;
-    self.completionBlock = completion;
-    self.updater = [[DataUpdater alloc] initWithURLStrings:@[[[self city] detailsURLStringForStation:self]]
-                                                  delegate:self];
-}
-
-- (void) cancel
-{
-    [self.updater cancel];
-    self.updater = nil;
-    self.updating = NO;
-    self.completionBlock = nil;
-}
-
-- (void) updaterDidStartRequest:(DataUpdater *)updater
-{
-    self.updating = YES;
-}
-
-- (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
-{
-    self.updater = nil;
-    self.updating = NO;
-    if (completionBlock)
-        self.completionBlock(error);
-    self.completionBlock = nil;
-}
-
-- (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
-{
-    self.updater = nil;
-    self.updating = NO;
-    if (completionBlock)
-        self.completionBlock(nil);
-    self.completionBlock = nil;
-}
-
-- (void) updater:(DataUpdater *)updater finishedWithNewDataChunks:(NSDictionary *)datas
-{
-    [self.city performUpdates:^(NSManagedObjectContext *updateContext) {
-        Station * station = (Station*)[updateContext objectWithID:self.objectID];
-        NSXMLParser * parser = [[NSXMLParser alloc] initWithData:[[datas allValues] lastObject]];
-        parser.delegate = station;
-        station.currentParsedString = [NSMutableString string];
-        [parser parse];
-        station.currentParsedString = nil;
-        station.status_date = [NSDate date];
-    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        NSAssert([[[contextDidSaveNotification.userInfo[NSUpdatedObjectsKey] anyObject] objectID] isEqual:[self objectID]], nil);
-        self.updater = nil;
-        self.updating = NO;
-        if(self.completionBlock)
-            self.completionBlock(nil);
-        self.completionBlock = nil;
-    }];
-    
-
-    [self performSelector:@selector(becomeStale) withObject:nil afterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"]];
-}
-
-- (void) becomeStale
-{
-    [self willChangeValueForKey:@"statusDataIsFresh"];
-    [self didChangeValueForKey:@"statusDataIsFresh"];
-}
-
-- (BOOL) statusDataIsFresh
-{
-    NSTimeInterval stalenessInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"];
-    return self.status_date && [[NSDate date] timeIntervalSinceDate:self.status_date] < stalenessInterval;
-}
-
-/****************************************************************************/
-#pragma mark parsing
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    [self.currentParsedString appendString:string];
-}
-
-- (NSDictionary*) stationStatusKVCMapping
-{
-    static NSDictionary * s_mapping = nil;
-    if(nil==s_mapping)
-        s_mapping = @{
-        @"available" : @"status_available",
-        @"free" : @"status_free",
-        @"ticket": @"status_ticket",
-        @"total" : @"status_total"};
-    
-    return s_mapping;
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    NSString * value = [self.currentParsedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    self.currentParsedString = [NSMutableString string];
-    if([value length])
-        [self setValue:value forKey:elementName withMappingDictionary:self.stationStatusKVCMapping];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 /****************************************************************************/
@@ -155,7 +21,7 @@
 
 - (CLLocationCoordinate2D) coordinate
 {
-	return self.location.coordinate;
+	return CLLocationCoordinate2DMake(self.latitudeValue, self.longitudeValue);
 }
 
 - (CLLocation*) location
@@ -225,9 +91,4 @@
     }
 }
 
-- (void) willTurnIntoFault
-{
-    [super willTurnIntoFault];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
-}
 @end

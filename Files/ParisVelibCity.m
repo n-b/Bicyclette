@@ -12,14 +12,15 @@
 
 @implementation ParisVelibCity
 
-/****************************************************************************/
-#pragma mark BicycletteParsing
+#pragma mark City Data Update
 
 - (NSArray*) updateURLStrings { return @[ @"http://www.velib.paris.fr/service/carto" ]; }
+
+#pragma mark Stations Individual Data Updates
+
 - (NSString *) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velib.paris.fr/service/stationdetails/paris/%@",station.number]; }
 
-/****************************************************************************/
-#pragma mark BicycletteCityAnnotations
+#pragma mark Annotations
 
 - (NSString*) title { return @"Vélib"; }
 - (NSString*) titleForRegion:(Region*)region { return [region.number substringToIndex:2]; }
@@ -39,8 +40,7 @@
     return title;
 }
 
-/****************************************************************************/
-#pragma mark CyclocityParsing
+#pragma mark CyclocityCity
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
 {
