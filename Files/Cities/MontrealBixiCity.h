@@ -1,5 +1,5 @@
 //
-//  RennesVeloStarCity.h
+//  MontrealBixiCity.h
 //  Bicyclette
 //
 //  Created by Nicolas on 15/12/12.
@@ -8,6 +8,6 @@
 
 #import "BicycletteCity.h"
 
-@interface RennesVeloStarCity : _BicycletteCity <BicycletteCity>
+@interface MontrealBixiCity : _BicycletteCity <BicycletteCity>
 
 @end

@@ -146,6 +146,18 @@
 			<integer>10000</integer>
 		</dict>
 	</dict>
+	<key>MontrealBixiCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>45.513</real>
+			<key>longitude</key>
+			<real>-73.578</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 	<key>MulhouseVelociteCity</key>
 	<dict>
 		<key>limits</key>
