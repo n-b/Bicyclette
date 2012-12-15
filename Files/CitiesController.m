@@ -205,15 +205,8 @@ typedef enum {
     if (self.level == MapLevelStationsAndRadars)
     {
         // Stations
-        NSFetchRequest * stationsRequest = [NSFetchRequest new];
-		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.currentCity.moc]];
         MKCoordinateRegion mapRegion = [self.delegate regionForController:self];
-		stationsRequest.predicate = [NSPredicate predicateWithFormat:@"latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
-                                     mapRegion.center.latitude - mapRegion.span.latitudeDelta/2,
-                                     mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
-                                     mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
-                                     mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
-        [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:stationsRequest error:NULL]];
+        [newAnnotations addObjectsFromArray:[self.currentCity stationsWithinRegion:mapRegion]];
     }
     
     [self.delegate controller:self setAnnotations:newAnnotations];

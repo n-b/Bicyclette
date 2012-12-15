@@ -130,7 +130,6 @@
                                                maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
                                               minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
                                               maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)];
-    stations = [stations sortedArrayByDistanceFromLocation:[[CLLocation alloc]initWithLatitude:region.center.latitude longitude:region.center.longitude]];
     return stations;
 }
 #endif

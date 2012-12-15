@@ -20,7 +20,10 @@
 }
 - (NSArray*) pointsToUpdate
 {
-    return [self.city stationsWithinRegion:self.region];
+    // Sort from center
+    NSArray * stations = [self.city stationsWithinRegion:self.region];
+    stations = [stations sortedArrayByDistanceFromLocation:[[CLLocation alloc] initWithLatitude:self.region.center.latitude longitude:self.region.center.longitude]];
+    return stations;
 }
 + (NSSet *)keyPathsForValuesAffectingPointsToUpdate
 {

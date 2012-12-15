@@ -92,7 +92,11 @@
 - (void) updateStationsInRadar
 {
     // Fetch in a square
-    NSArray * stations = [self.city stationsWithinRegion:[self radarRegion]];
+    MKCoordinateRegion region = [self radarRegion];
+    NSArray * stations = [self.city stationsWithinRegion:region];
+
+    // Sort from center
+    stations = [stations sortedArrayByDistanceFromLocation:[[CLLocation alloc]initWithLatitude:region.center.latitude longitude:region.center.longitude]];
 
     // chop those that are in the square, but actually farther that the radar distance
     CLLocationDistance radarDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];

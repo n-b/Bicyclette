@@ -42,10 +42,10 @@
 
 - (NSDictionary*) KVCMapping
 {
-    return @{@"available" : @"status_available",
-             @"free" : @"status_free",
-             @"ticket": @"status_ticket",
-             @"total" : @"status_total"};
+    return @{@"available" : StationAttributes.status_available,
+             @"free" : StationAttributes.status_free,
+             @"ticket": StationAttributes.status_ticket,
+             @"total" : StationAttributes.status_total};
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName

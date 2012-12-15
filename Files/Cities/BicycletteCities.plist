@@ -182,6 +182,18 @@
 			<integer>20000</integer>
 		</dict>
 	</dict>
+	<key>OrleansVeloPlusCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>47.908</real>
+			<key>longitude</key>
+			<real>1.908188</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 	<key>ParisVelibCity</key>
 	<dict>
 		<key>patches</key>

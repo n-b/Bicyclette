@@ -23,13 +23,14 @@
 #pragma mark -
 
 @interface _CyclocityCity () <NSXMLParserDelegate>
-@property NSManagedObjectContext * parsing_context;
-@property NSMutableDictionary * parsing_regionsByNumber;
-@property NSMutableArray * parsing_oldStations;
 @end
 
 @implementation _CyclocityCity
-
+{
+    NSManagedObjectContext * _parsing_context;
+    NSMutableDictionary * _parsing_regionsByNumber;
+    NSMutableArray * _parsing_oldStations;
+}
 #pragma mark Annotations
 
 - (NSString*) titleForStation:(Station*)station
@@ -61,17 +62,17 @@
          inContext:(NSManagedObjectContext*)context
        oldStations:(NSMutableArray*)oldStations
 {
-    self.parsing_context = context;
-    self.parsing_oldStations = oldStations;
-    self.parsing_regionsByNumber = [NSMutableDictionary new];
+    _parsing_context = context;
+    _parsing_oldStations = oldStations;
+    _parsing_regionsByNumber = [NSMutableDictionary new];
 
     NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
     parser.delegate = self;
     [parser parse];
 
-    self.parsing_context = nil;
-    self.parsing_oldStations = nil;
-    self.parsing_regionsByNumber = nil;
+    _parsing_context = nil;
+    _parsing_oldStations = nil;
+    _parsing_regionsByNumber = nil;
 }
 
 - (NSDictionary*) patches
@@ -101,26 +102,19 @@
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
 	if([elementName isEqualToString:@"marker"])
-	{
-        // Filter out closed stations
-        if( ! [attributeDict[@"open"] boolValue] )
-        {
-            NSLog(@"Note : Ignored closed station : %@", attributeDict[@"name"]);
-            return;
-        }
-        
-        // Find Existing Stations
-        Station * station = [self.parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKeyPath:StationAttributes.number];
+	{        
+        // Find Existing Station
+        Station * station = [_parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKeyPath:StationAttributes.number];
         if(station)
         {
             // found existing
-            [self.parsing_oldStations removeObject:station];
+            [_parsing_oldStations removeObject:station];
         }
         else
         {
-            if(self.parsing_oldStations.count)
+            if(_parsing_oldStations.count)
                 NSLog(@"Note : new station found after update : %@", attributeDict);
-            station = [Station insertInManagedObjectContext:self.parsing_context];
+            station = [Station insertInManagedObjectContext:_parsing_context];
         }
         
         // Set Values and hardcoded fixes
@@ -142,7 +136,7 @@
             if(nil==regionInfo)
             {
                 NSLog(@"Invalid data : %@",attributeDict);
-                [self.parsing_context deleteObject:station];
+                [_parsing_context deleteObject:station];
                 return;
             }
         }
@@ -154,17 +148,17 @@
         }
         
         // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
-        Region * region = (self.parsing_regionsByNumber)[regionInfo.number];
+        Region * region = (_parsing_regionsByNumber)[regionInfo.number];
         if(nil==region)
         {
-            region = [[Region fetchRegionWithNumber:self.parsing_context number:regionInfo.number] lastObject];
+            region = [[Region fetchRegionWithNumber:_parsing_context number:regionInfo.number] lastObject];
             if(region==nil)
             {
-                region = [Region insertInManagedObjectContext:self.parsing_context];
+                region = [Region insertInManagedObjectContext:_parsing_context];
                 region.number = regionInfo.number;
                 region.name = regionInfo.name;
             }
-            (self.parsing_regionsByNumber)[regionInfo.number] = region;
+            (_parsing_regionsByNumber)[regionInfo.number] = region;
         }
         station.region = region;
     }

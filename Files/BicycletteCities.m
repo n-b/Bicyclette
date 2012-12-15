@@ -11,6 +11,7 @@
 #import "MarseilleLeVeloCity.h"
 #import "ParisVelibCity.h"
 #import "LyonVelovCity.h"
+#import "OrleansVeloPlusCity.h"
 
 NSArray * BicycletteCityClasses(void)
 {
@@ -39,5 +40,7 @@ NSArray * BicycletteCityClasses(void)
              [MarseilleLeVeloCity class],
 
              [LyonVelovCity class],
+             
+             [OrleansVeloPlusCity class],
              ];
 }

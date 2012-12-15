@@ -60,7 +60,7 @@
 #pragma mark Annotations
 @required
 - (NSString*) title;
-- (NSString*) titleForStation:(Station*)region;
+- (NSString*) titleForStation:(Station*)station;
 @optional
 - (NSString*) titleForRegion:(Region*)region;
 - (NSString*) subtitleForRegion:(Region*)region;
