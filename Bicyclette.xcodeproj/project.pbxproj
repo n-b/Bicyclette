@@ -175,6 +175,9 @@
 		37F827E8167C0827001D85D8 /* MontrealBixiCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827E7167C0827001D85D8 /* MontrealBixiCity.m */; };
 		37F827E9167C09D4001D85D8 /* MontrealBixiCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827E7167C0827001D85D8 /* MontrealBixiCity.m */; };
 		37F827EB167C0A3D001D85D8 /* MontrealBixiCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F827EA167C0A3D001D85D8 /* MontrealBixiCity.sqlite */; };
+		37F827EE167C0BFE001D85D8 /* BostonHubwayCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827ED167C0BFE001D85D8 /* BostonHubwayCity.m */; };
+		37F827EF167C0CB2001D85D8 /* BostonHubwayCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827ED167C0BFE001D85D8 /* BostonHubwayCity.m */; };
+		37F827F1167C0D26001D85D8 /* BostonHubwayCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F827F0167C0D26001D85D8 /* BostonHubwayCity.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,6 +414,9 @@
 		37F827E6167C0827001D85D8 /* MontrealBixiCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MontrealBixiCity.h; sourceTree = "<group>"; };
 		37F827E7167C0827001D85D8 /* MontrealBixiCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MontrealBixiCity.m; sourceTree = "<group>"; };
 		37F827EA167C0A3D001D85D8 /* MontrealBixiCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MontrealBixiCity.sqlite; sourceTree = "<group>"; };
+		37F827EC167C0BFE001D85D8 /* BostonHubwayCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BostonHubwayCity.h; sourceTree = "<group>"; };
+		37F827ED167C0BFE001D85D8 /* BostonHubwayCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BostonHubwayCity.m; sourceTree = "<group>"; };
+		37F827F0167C0D26001D85D8 /* BostonHubwayCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BostonHubwayCity.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -589,6 +595,8 @@
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 				37F827E6167C0827001D85D8 /* MontrealBixiCity.h */,
 				37F827E7167C0827001D85D8 /* MontrealBixiCity.m */,
+				37F827EC167C0BFE001D85D8 /* BostonHubwayCity.h */,
+				37F827ED167C0BFE001D85D8 /* BostonHubwayCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -617,6 +625,7 @@
 			children = (
 				370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */,
 				3793D4081678DADB009C6F27 /* BesanconVelociteCity.sqlite */,
+				37F827F0167C0D26001D85D8 /* BostonHubwayCity.sqlite */,
 				3739605D1678ECCF005F0672 /* BrisbaneCityCycleCity.sqlite */,
 				373960661678EE64005F0672 /* BruxellesVilloCity.sqlite */,
 				3793D4151678DD83009C6F27 /* CergyPointoiseVelO2City.sqlite */,
@@ -1000,6 +1009,7 @@
 				372D411D167BF21400624B07 /* OrleansVeloPlusCity.sqlite in Resources */,
 				37F827E5167BFF32001D85D8 /* RennesVeloStarCity.sqlite in Resources */,
 				37F827EB167C0A3D001D85D8 /* MontrealBixiCity.sqlite in Resources */,
+				37F827F1167C0D26001D85D8 /* BostonHubwayCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,6 +1119,7 @@
 				377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
 				37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
 				37F827E8167C0827001D85D8 /* MontrealBixiCity.m in Sources */,
+				37F827EE167C0BFE001D85D8 /* BostonHubwayCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1148,7 @@
 				377620E6167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
 				37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
 				37F827E9167C09D4001D85D8 /* MontrealBixiCity.m in Sources */,
+				37F827EF167C0CB2001D85D8 /* BostonHubwayCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

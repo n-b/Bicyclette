@@ -26,6 +26,18 @@
 			<integer>5000</integer>
 		</dict>
 	</dict>
+	<key>BostonHubwayCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>42.329</real>
+			<key>longitude</key>
+			<real>-71.05800000000001</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 	<key>BrisbaneCityCycleCity</key>
 	<dict>
 		<key>limits</key>
