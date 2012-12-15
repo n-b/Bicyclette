@@ -12,35 +12,38 @@
 #import "ParisVelibCity.h"
 #import "LyonVelovCity.h"
 #import "OrleansVeloPlusCity.h"
+#import "RennesVeloStarCity.h"
 
 NSArray * BicycletteCityClasses(void)
 {
     return @[
-             [AmiensVelamCity class],
-             [BesanconVelociteCity class],
-             [BrisbaneCityCycleCity class],
-             [BruxellesVilloCity class],
-             [CergyPointoiseVelO2City class],
-    		 [CreteilCristoLibCity class],
-             [DublinBikesCity class],
-             [GoteborgStyrStallCity class],
-             [LjubljanaBicikeljCity class],
-             [LuxembourgVelohCity class],
-    		 [MulhouseVelociteCity class],
-			 [NancyVelostanCity class],
-             [NantesBiclooCity class],
-    		 [RouenCyclicCity class],
-             [SantanderTusBicCity class],
-             [SevillaSEViciCity class],
-             [ToulouseVeloCity class],
-             [ToyamaCyclOcityCity class],
-             [ValenciaValenbisiCity class],
-
-             [ParisVelibCity class],
-             [MarseilleLeVeloCity class],
-
-             [LyonVelovCity class],
-             
-             [OrleansVeloPlusCity class],
+//             [AmiensVelamCity class],
+//             [BesanconVelociteCity class],
+//             [BrisbaneCityCycleCity class],
+//             [BruxellesVilloCity class],
+//             [CergyPointoiseVelO2City class],
+//    		 [CreteilCristoLibCity class],
+//             [DublinBikesCity class],
+//             [GoteborgStyrStallCity class],
+//             [LjubljanaBicikeljCity class],
+//             [LuxembourgVelohCity class],
+//    		 [MulhouseVelociteCity class],
+//			 [NancyVelostanCity class],
+//             [NantesBiclooCity class],
+//    		 [RouenCyclicCity class],
+//             [SantanderTusBicCity class],
+//             [SevillaSEViciCity class],
+//             [ToulouseVeloCity class],
+//             [ToyamaCyclOcityCity class],
+//             [ValenciaValenbisiCity class],
+//
+//             [ParisVelibCity class],
+//             [MarseilleLeVeloCity class],
+//
+//             [LyonVelovCity class],
+//             
+//             [OrleansVeloPlusCity class],
+//             
+             [RennesVeloStarCity class],
              ];
 }

@@ -26,7 +26,6 @@
 @implementation OrleansVeloPlusCity
 {
     NSManagedObjectContext * _parsing_context;
-    NSMutableDictionary * _parsing_regionsByNumber;
     NSMutableArray * _parsing_oldStations;
     Region * _parsing_region;
 }
@@ -48,7 +47,6 @@
 {
     _parsing_context = context;
     _parsing_oldStations = oldStations;
-    _parsing_regionsByNumber = [NSMutableDictionary new];
     
     // Create an anonymous region
     _parsing_region = [[Region fetchRegionWithNumber:_parsing_context number:@"anonymousregion"] lastObject];
@@ -67,7 +65,6 @@
     _parsing_region = nil;
     _parsing_context = nil;
     _parsing_oldStations = nil;
-    _parsing_regionsByNumber = nil;
 }
 
 - (NSDictionary*) KVCMapping

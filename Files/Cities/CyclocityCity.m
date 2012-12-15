@@ -147,8 +147,9 @@
             regionInfo.name = @"anonymousregion";
         }
         
+        // Set Region
         // Keep regions in an array locally, to avoid fetching a Region for every Station parsed.
-        Region * region = (_parsing_regionsByNumber)[regionInfo.number];
+        Region * region = _parsing_regionsByNumber[regionInfo.number];
         if(nil==region)
         {
             region = [[Region fetchRegionWithNumber:_parsing_context number:regionInfo.number] lastObject];
@@ -158,7 +159,7 @@
                 region.number = regionInfo.number;
                 region.name = regionInfo.name;
             }
-            (_parsing_regionsByNumber)[regionInfo.number] = region;
+            _parsing_regionsByNumber[regionInfo.number] = region;
         }
         station.region = region;
     }

@@ -107,10 +107,14 @@ typedef enum {
         }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
                                                      name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity.moc];
-        
-        NSLog(@"city changed to %@",_currentCity.title);
+
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
+
+        if( ! [_currentCity canUpdateIndividualStations])
+            [_currentCity update];
+
+        NSLog(@"city changed to %@",_currentCity.title);
     }
 }
 
@@ -165,7 +169,7 @@ typedef enum {
          MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(0, 0), 0, 0)];
     
     // In the same vein, only set the updater reference location if we're down enough
-    if(self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars)
+    if([self.currentCity canUpdateIndividualStations] && (self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars))
     {
         self.updateQueue.referenceLocation = center;
         CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];

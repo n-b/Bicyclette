@@ -241,6 +241,18 @@
 			<integer>10000</integer>
 		</dict>
 	</dict>
+	<key>RennesVeloStarCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>48.1136</real>
+			<key>longitude</key>
+			<real>-1.6752</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 	<key>SantanderTusBicCity</key>
 	<dict>
 		<key>limits</key>

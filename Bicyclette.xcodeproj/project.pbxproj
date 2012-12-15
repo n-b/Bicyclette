@@ -169,6 +169,9 @@
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
 		37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */; };
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
+		37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
+		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
+		37F827E5167BFF32001D85D8 /* RennesVeloStarCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F827E4167BFF32001D85D8 /* RennesVeloStarCity.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -399,6 +402,9 @@
 		37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MapVC+DebugScreenshots.m"; sourceTree = "<group>"; };
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
 		37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LocalAlerts.m"; sourceTree = "<group>"; };
+		37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RennesVeloStarCity.h; sourceTree = "<group>"; };
+		37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RennesVeloStarCity.m; sourceTree = "<group>"; };
+		37F827E4167BFF32001D85D8 /* RennesVeloStarCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = RennesVeloStarCity.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -573,6 +579,8 @@
 				376D0E4F1678B587006F321D /* Cyclocity */,
 				377620E4167BE61A004E9E3D /* OrleansVeloPlusCity.h */,
 				377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */,
+				37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */,
+				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -616,6 +624,7 @@
 				3793D3F31678CF15009C6F27 /* NantesBiclooCity.sqlite */,
 				372D411C167BF21400624B07 /* OrleansVeloPlusCity.sqlite */,
 				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
+				37F827E4167BFF32001D85D8 /* RennesVeloStarCity.sqlite */,
 				37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */,
 				373960931678F6AA005F0672 /* SantanderTusBicCity.sqlite */,
 				3739609D16791DC9005F0672 /* SevillaSEViciCity.sqlite */,
@@ -980,6 +989,7 @@
 				373960A816792296005F0672 /* ValenciaValenbisiCity.sqlite in Resources */,
 				373960AE1679507D005F0672 /* LyonVelovCity.sqlite in Resources */,
 				372D411D167BF21400624B07 /* OrleansVeloPlusCity.sqlite in Resources */,
+				37F827E5167BFF32001D85D8 /* RennesVeloStarCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,6 +1097,7 @@
 				3709F575167B755600F865E3 /* Station+Update.m in Sources */,
 				3709F57B167B7DCD00F865E3 /* CyclocityStationParse.m in Sources */,
 				377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
+				37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,6 +1124,7 @@
 				377620DE167BD263004E9E3D /* CyclocityStationParse.m in Sources */,
 				377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */,
 				377620E6167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
+				37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
