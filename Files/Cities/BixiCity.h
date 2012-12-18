@@ -1,5 +1,5 @@
 //
-//  MontrealBixiCity.h
+//  BixiCity.h
 //  Bicyclette
 //
 //  Created by Nicolas on 15/12/12.
@@ -10,8 +10,9 @@
 
 @interface _BixiCity : _BicycletteCity
 
-- (BOOL) hasRegions; // NO
+- (NSString *) titleForStation:(Station *)station;
 
+- (BOOL) hasRegions; // NO
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context

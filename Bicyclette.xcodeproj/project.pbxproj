@@ -166,6 +166,11 @@
 		37EC535515BAFB0400F45C09 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534B15BAFB0400F45C09 /* Icon.png */; };
 		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */; };
+		37F092301680CB66001E8127 /* LondonCycleHireCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F0922B1680CB66001E8127 /* LondonCycleHireCity.sqlite */; };
+		37F092311680CB66001E8127 /* MinneapolisNiceRideCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F0922C1680CB66001E8127 /* MinneapolisNiceRideCity.sqlite */; };
+		37F092321680CB66001E8127 /* OttawaBixiCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F0922D1680CB66001E8127 /* OttawaBixiCity.sqlite */; };
+		37F092331680CB66001E8127 /* TorontoBixiCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F0922E1680CB66001E8127 /* TorontoBixiCity.sqlite */; };
+		37F092341680CB66001E8127 /* WashingtonBikeShareCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 37F0922F1680CB66001E8127 /* WashingtonBikeShareCity.sqlite */; };
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
 		37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */; };
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
@@ -402,6 +407,11 @@
 		37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Gare de Lyon.gpx"; sourceTree = "<group>"; };
 		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
+		37F0922B1680CB66001E8127 /* LondonCycleHireCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LondonCycleHireCity.sqlite; sourceTree = "<group>"; };
+		37F0922C1680CB66001E8127 /* MinneapolisNiceRideCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MinneapolisNiceRideCity.sqlite; sourceTree = "<group>"; };
+		37F0922D1680CB66001E8127 /* OttawaBixiCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = OttawaBixiCity.sqlite; sourceTree = "<group>"; };
+		37F0922E1680CB66001E8127 /* TorontoBixiCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TorontoBixiCity.sqlite; sourceTree = "<group>"; };
+		37F0922F1680CB66001E8127 /* WashingtonBikeShareCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = WashingtonBikeShareCity.sqlite; sourceTree = "<group>"; };
 		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+screenshot.h"; sourceTree = "<group>"; };
 		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+screenshot.m"; sourceTree = "<group>"; };
 		37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapVC+DebugScreenshots.h"; sourceTree = "<group>"; };
@@ -630,22 +640,27 @@
 				3739606F1678F03D005F0672 /* DublinBikesCity.sqlite */,
 				373960781678F25B005F0672 /* GoteborgStyrStallCity.sqlite */,
 				373960811678F3CD005F0672 /* LjubljanaBicikeljCity.sqlite */,
+				37F0922B1680CB66001E8127 /* LondonCycleHireCity.sqlite */,
 				3739608A1678F529005F0672 /* LuxembourgVelohCity.sqlite */,
 				373960AD1679507D005F0672 /* LyonVelovCity.sqlite */,
 				376D0E5D1678C9FE006F321D /* MarseilleLeVeloCity.sqlite */,
+				37F0922C1680CB66001E8127 /* MinneapolisNiceRideCity.sqlite */,
 				37F827EA167C0A3D001D85D8 /* MontrealBixiCity.sqlite */,
 				37376A741678E6050060CDEA /* MulhouseVelociteCity.sqlite */,
 				37376A7D1678E7AA0060CDEA /* NancyVelostanCity.sqlite */,
 				3793D3F31678CF15009C6F27 /* NantesBiclooCity.sqlite */,
 				372D411C167BF21400624B07 /* OrleansVeloPlusCity.sqlite */,
+				37F0922D1680CB66001E8127 /* OttawaBixiCity.sqlite */,
 				373A77F315E3F6B80057E241 /* ParisVelibCity.sqlite */,
 				37F827E4167BFF32001D85D8 /* RennesVeloStarCity.sqlite */,
 				37376A881678EA2B0060CDEA /* RouenCyclicCity.sqlite */,
 				373960931678F6AA005F0672 /* SantanderTusBicCity.sqlite */,
 				3739609D16791DC9005F0672 /* SevillaSEViciCity.sqlite */,
 				37D9DFE8162A374F0000F263 /* ToulouseVeloCity.sqlite */,
+				37F0922E1680CB66001E8127 /* TorontoBixiCity.sqlite */,
 				373960A2167920B7005F0672 /* ToyamaCyclOcityCity.sqlite */,
 				373960A716792296005F0672 /* ValenciaValenbisiCity.sqlite */,
+				37F0922F1680CB66001E8127 /* WashingtonBikeShareCity.sqlite */,
 			);
 			path = _DataGrabTempFolder;
 			sourceTree = "<group>";
@@ -1018,6 +1033,11 @@
 				37F827E5167BFF32001D85D8 /* RennesVeloStarCity.sqlite in Resources */,
 				37F827EB167C0A3D001D85D8 /* MontrealBixiCity.sqlite in Resources */,
 				37F827F1167C0D26001D85D8 /* BostonHubwayCity.sqlite in Resources */,
+				37F092301680CB66001E8127 /* LondonCycleHireCity.sqlite in Resources */,
+				37F092311680CB66001E8127 /* MinneapolisNiceRideCity.sqlite in Resources */,
+				37F092321680CB66001E8127 /* OttawaBixiCity.sqlite in Resources */,
+				37F092331680CB66001E8127 /* TorontoBixiCity.sqlite in Resources */,
+				37F092341680CB66001E8127 /* WashingtonBikeShareCity.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

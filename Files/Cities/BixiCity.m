@@ -1,12 +1,12 @@
 //
-//  MontrealBixiCity.m
+//  BixiCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 15/12/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "MontrealBixiCity.h"
+#import "BixiCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
@@ -26,8 +26,13 @@
     Region * _parsing_region;
 }
 
-- (BOOL) hasRegions { return NO; }
+#pragma mark Annotations
 
+- (NSString *) titleForStation:(Station *)station { return station.name; }
+
+#pragma mark City Data Update
+
+- (BOOL) hasRegions { return NO; }
 
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString

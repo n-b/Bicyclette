@@ -122,6 +122,18 @@
 			<integer>10000</integer>
 		</dict>
 	</dict>
+	<key>LondonCycleHireCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>51.50738</real>
+			<key>longitude</key>
+			<real>-0.1105</real>
+			<key>distance</key>
+			<integer>20000</integer>
+		</dict>
+	</dict>
 	<key>LuxembourgVelohCity</key>
 	<dict>
 		<key>limits</key>
@@ -155,7 +167,19 @@
 			<key>longitude</key>
 			<real>5.371</real>
 			<key>distance</key>
-			<integer>10000</integer>
+			<integer>30000</integer>
+		</dict>
+	</dict>
+	<key>MinneapolisNiceRideCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>44.981</real>
+			<key>longitude</key>
+			<real>-93.264</real>
+			<key>distance</key>
+			<integer>20000</integer>
 		</dict>
 	</dict>
 	<key>MontrealBixiCity</key>
@@ -216,6 +240,18 @@
 			<real>1.908188</real>
 			<key>distance</key>
 			<integer>10000</integer>
+		</dict>
+	</dict>
+	<key>OttawaBixiCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>45.412</real>
+			<key>longitude</key>
+			<real>-75.699</real>
+			<key>distance</key>
+			<integer>20000</integer>
 		</dict>
 	</dict>
 	<key>ParisVelibCity</key>
@@ -313,6 +349,18 @@
 			<integer>10000</integer>
 		</dict>
 	</dict>
+	<key>TorontoBixiCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>43.639</real>
+			<key>longitude</key>
+			<real>-79.379</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
 	<key>ToyamaCyclOcityCity</key>
 	<dict>
 		<key>limits</key>
@@ -333,6 +381,18 @@
 			<real>39.47</real>
 			<key>longitude</key>
 			<real>-0.366</real>
+			<key>distance</key>
+			<integer>10000</integer>
+		</dict>
+	</dict>
+	<key>WashingtonBikeShareCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>38.888</real>
+			<key>longitude</key>
+			<real>-77.038</real>
 			<key>distance</key>
 			<integer>10000</integer>
 		</dict>
