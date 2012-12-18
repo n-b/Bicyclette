@@ -21,7 +21,9 @@
 #import "RadarAnnotationView.h"
 #import "LocalUpdateQueue.h"
 #import "MKMapView+AttributionLogo.h"
+#import "UIViewController+Banner.h"
 #import "MapVC+DebugScreenshots.h"
+#import "FanContainerViewController.h"
 
 @interface MapVC() <MKMapViewDelegate>
 // UI
@@ -53,11 +55,22 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canRequestLocation)
                                                  name:BicycletteCityNotifications.canRequestLocation object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateBegan object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
+    
     _drawingCache = [DrawingCache new];
 }
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) setController:(CitiesController *)controller_
+{
+    [_controller removeObserver:self forKeyPath:@"currentCity" context:(__bridge void *)([self class])];
+    _controller = controller_;
+    [_controller addObserver:self forKeyPath:@"currentCity" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([self class])];
 }
 
 /****************************************************************************/
@@ -128,9 +141,30 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([MapVC class]))
-        [self updateRadarSizes];
+    {
+        if(object==[NSUserDefaults standardUserDefaults] && [keyPath isEqualToString:@"RadarDistance"])
+            [self updateRadarSizes];
+        else if(object==self.controller && [keyPath isEqualToString:@"currentCity"])
+        {
+            if(self.controller.currentCity)
+                [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"%@_NETWORK",nil),self.controller.currentCity.title]];
+        }
+    }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+- (void) cityDataUpdated:(NSNotification*)note
+{
+    if(note.object==self.controller.currentCity && [self isVisibleViewController])
+    {
+        if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
+            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : FETCHING", nil)]];
+        else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
+            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : PARSING", nil)]];
+        else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
+            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : COMPLETED", nil)]];
+    }
 }
 
 - (void) canRequestLocation

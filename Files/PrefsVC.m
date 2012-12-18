@@ -11,6 +11,7 @@
 #import "Store.h"
 #import "Station.h"
 #import "CitiesController.h"
+#import "FanContainerViewController.h"
 
 @interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property IBOutletCollection(UITableViewCell) NSArray *cells;
@@ -25,8 +26,6 @@
 @property IBOutlet UIBarButtonItem *storeButton;
 @property IBOutlet UILabel *rewardLabel;
 @property IBOutlet UIImageView *logoView;
-
-@property (nonatomic) BicycletteCity * currentCity;
 
 @property Store * store;
 @property NSArray * products;
@@ -187,18 +186,6 @@
     [self.controller.currentCity update];
 }
 
-- (void) setCurrentCity:(BicycletteCity *)currentCity_
-{
-    if([_currentCity isEqual:currentCity_])
-        return;
-    
-    _currentCity = currentCity_;
-    
-    [self.updateIndicator stopAnimating];
-    self.updateLabel.hidden = NO;
-    self.updateButton.enabled = YES;
-}
-
 - (void) cityDataUpdated:(NSNotification*)note
 {
     if(note.object!=self.controller.currentCity)
@@ -225,26 +212,29 @@
         if(dataChanged)
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
-            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-            NSUInteger count = [self.controller.currentCity.moc countForFetchRequest:request error:NULL];
-            NSString * title;
-            NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
-                                  count,
-                                  self.controller.currentCity.title];
-            if(nil==saveErrors)
+            if([self isVisibleViewController])
             {
-                title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+                NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
+                NSUInteger count = [self.controller.currentCity.moc countForFetchRequest:request error:NULL];
+                NSString * title;
+                NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
+                                      count,
+                                      self.controller.currentCity.title];
+                if(nil==saveErrors)
+                {
+                    title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+                }
+                else
+                {
+                    message = [message stringByAppendingFormat:@"\n\n%@\n%@.",
+                               NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil),
+                               [[saveErrors valueForKey:@"localizedDescription"] componentsJoinedByString:@",\n"]];
+                    title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+                }
+                [[[UIAlertView alloc] initWithTitle:title
+                                            message:message
+                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             }
-            else
-            {
-                message = [message stringByAppendingFormat:@"\n\n%@\n%@.",
-                           NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil),
-                           [[saveErrors valueForKey:@"localizedDescription"] componentsJoinedByString:@",\n"]];
-                title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
-            }
-            [[[UIAlertView alloc] initWithTitle:title
-                                        message:message
-                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
         else
             [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil)];

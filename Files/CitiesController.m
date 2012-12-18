@@ -81,13 +81,7 @@ typedef enum {
         MKCoordinateSpan span = MKCoordinateSpanMake([dict[@"latitudeDelta"] doubleValue], [dict[@"longitudeDelta"] doubleValue]);
         self.referenceRegion = MKCoordinateRegionMake(coord, span);
     }
-    
-    MKCoordinateRegion region = self.referenceRegion;
-    // zoom in a little
-    region.span.latitudeDelta /= 2;
-    region.span.longitudeDelta /= 2;
-	[self.delegate controller:self setRegion:region];
-    
+        
     [self addAndRemoveMapAnnotations];
 }
 
@@ -113,8 +107,6 @@ typedef enum {
 
         if( ! [[_currentCity class] canUpdateIndividualStations])
             [_currentCity update];
-
-        NSLog(@"city changed to %@",_currentCity.title);
     }
 }
 
@@ -146,10 +138,11 @@ typedef enum {
 		mapLevel = MapLevelStationsAndRadars;
         
     // Change to nearest city
-    if(mapLevel == MapLevelNone)
-        self.currentCity = nil;
-    else
-        self.currentCity = [self.cities sortedArrayByDistanceFromLocation:center][0];
+    BicycletteCity * newCity = nil;;
+    if(mapLevel != MapLevelNone)
+        newCity = [self.cities sortedArrayByDistanceFromLocation:center][0];
+    if(self.currentCity!=newCity)
+        self.currentCity = newCity;
 
     // Skip Regions Level if the City is too small
     if((mapLevel==MapLevelRegions || mapLevel==MapLevelRegionsAndRadars) && [self.currentCity hasRegions]==NO)

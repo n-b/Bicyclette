@@ -6,8 +6,6 @@
   Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 */
 
-"Vélib" = "Vélib";
-
 "BIKE" = "Vélos";
 "PARKING" = "Places";
 
@@ -15,6 +13,7 @@
 "UPDATE_STATIONS_LIST_BUTTON" = "Mettre à jour";
 "UPDATING : FETCHING" = "Téléchargement…";
 "UPDATING : PARSING" = "Mise à jour…";
+"%@_NETWORK" = "Réseau %@";
 
 "UPDATING : NO NEW DATA" = "Liste à jour";
 "UPDATING : COMPLETED" = "Mise à jour terminée";

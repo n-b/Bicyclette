@@ -166,6 +166,7 @@
 		37EC535515BAFB0400F45C09 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534B15BAFB0400F45C09 /* Icon.png */; };
 		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */; };
+		37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F092361680D671001E8127 /* UIViewController+Banner.m */; };
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
 		37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */; };
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
@@ -399,6 +400,8 @@
 		37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Gare de Lyon.gpx"; sourceTree = "<group>"; };
 		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
+		37F092351680D671001E8127 /* UIViewController+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Banner.h"; sourceTree = "<group>"; };
+		37F092361680D671001E8127 /* UIViewController+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Banner.m"; sourceTree = "<group>"; };
 		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+screenshot.h"; sourceTree = "<group>"; };
 		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+screenshot.m"; sourceTree = "<group>"; };
 		37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapVC+DebugScreenshots.h"; sourceTree = "<group>"; };
@@ -545,6 +548,8 @@
 			children = (
 				371982BF16451F92006CF77D /* FanContainerViewController.h */,
 				371982C016451F92006CF77D /* FanContainerViewController.m */,
+				37F092351680D671001E8127 /* UIViewController+Banner.h */,
+				37F092361680D671001E8127 /* UIViewController+Banner.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
@@ -1116,6 +1121,7 @@
 				37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
 				37F827E8167C0827001D85D8 /* BixiCity.m in Sources */,
 				37F827EE167C0BFE001D85D8 /* BixiCities.m in Sources */,
+				37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

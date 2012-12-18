@@ -220,3 +220,15 @@
 }
 
 @end
+
+/****************************************************************************/
+#pragma mark -
+
+@implementation UIViewController (FanContainedViewController)
+
+- (BOOL) isVisibleViewController
+{
+    return [(FanContainerViewController*)self.parentViewController visibleViewController] == self;
+}
+
+@end
