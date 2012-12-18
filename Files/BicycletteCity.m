@@ -208,9 +208,9 @@
     self.updater = nil;
 }
 
-- (BOOL) canUpdateIndividualStations
++ (BOOL) canUpdateIndividualStations
 {
-    return [self respondsToSelector:@selector(detailsURLStringForStation:)] && [self respondsToSelector:@selector(parseData:forStation:)];
+    return [self instancesRespondToSelector:@selector(detailsURLStringForStation:)] && [self instancesRespondToSelector:@selector(parseData:forStation:)];
 }
 
 @end

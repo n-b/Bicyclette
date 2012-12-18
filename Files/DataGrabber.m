@@ -11,14 +11,19 @@
 
 static void GrabDataForCity(Class cityClass)
 {
-    NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite",NSStringFromClass(cityClass)]];
-    
-    // Clear stuff from previous runs
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DebugAlwaysDownloadStationList"];
-    [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+    NSURL * url = nil;
+    if([cityClass canUpdateIndividualStations])
+    {
+        NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite",NSStringFromClass(cityClass)]];
+        
+        // Clear stuff from previous runs
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DebugAlwaysDownloadStationList"];
+        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+        url = [NSURL fileURLWithPath:path];
+    }
     
     // Create Model
-    BicycletteCity * city = [[cityClass alloc] initWithModelName:nil storeURL:[NSURL fileURLWithPath:path]];
+    BicycletteCity * city = [[cityClass alloc] initWithModelName:nil storeURL:url];
     
     printf("%s: (%f, %f) %.0fm\n",[NSStringFromClass(cityClass) UTF8String], [city hardcodedLimits].center.latitude, [city hardcodedLimits].center.longitude, [city hardcodedLimits].radius );
 

@@ -31,7 +31,7 @@
 
 #pragma mark Data Updates
 - (void) update;
-- (BOOL) canUpdateIndividualStations;
++ (BOOL) canUpdateIndividualStations;
 
 @end
 
@@ -68,9 +68,7 @@
 @end
 
 // BicycletteCity
-// This class does not really exist, it's just so that client code can call the methods declared in subclasses
-//
-// The rest of the app should always just use BicycletteCity*.
+// This class does not really exist. It serves as an abstract class that responds to all the <BicycletteCity> methods for the rest of the app.
 @interface BicycletteCity : _BicycletteCity < BicycletteCity >
 @end
 

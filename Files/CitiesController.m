@@ -111,7 +111,7 @@ typedef enum {
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
 
-        if( ! [_currentCity canUpdateIndividualStations])
+        if( ! [[_currentCity class] canUpdateIndividualStations])
             [_currentCity update];
 
         NSLog(@"city changed to %@",_currentCity.title);
@@ -169,7 +169,7 @@ typedef enum {
          MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(0, 0), 0, 0)];
     
     // In the same vein, only set the updater reference location if we're down enough
-    if([self.currentCity canUpdateIndividualStations] && (self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars))
+    if([[self.currentCity class] canUpdateIndividualStations] && (self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars))
     {
         self.updateQueue.referenceLocation = center;
         CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];

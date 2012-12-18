@@ -47,11 +47,6 @@
 
 - (id) initWithModelName:(NSString*)modelName storeURL:(NSURL*)storeURL
 {
-    return [self initWithModelName:modelName storeURL:storeURL storeType:NSSQLiteStoreType];
-}
-
-- (id) initWithModelName:(NSString*)modelName storeURL:(NSURL*)storeURL storeType:(NSString*)storeType
-{
     self = [super init];
     if (self) {
         
@@ -68,36 +63,50 @@
 		self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
 		NSError *error = nil;
         
-        // Copy embedded store if we don't already have a store in the final location.
-        if( ![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]])
-            [self copyBundledStoreIfAvailableToURL:storeURL];
-
-        // Add Persistent Store
-		if (![self.psc addPersistentStoreWithType:storeType configuration:nil URL:storeURL
-                                          options:nil error:&error])
+        if(storeURL)
         {
-			if( error.code == NSPersistentStoreIncompatibleVersionHashError )
-            {
-                // This happens a lot during development. Just dump the old store and create a new one.
-				NSLog(@"Incompatible data store. Trying to remove the existing db");
-				[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-                error = nil;
-                
-                // Copy embedded store instead of the incompatible one.
+            // Copy embedded store if we don't already have a store in the final location.
+            if( ![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]])
                 [self copyBundledStoreIfAvailableToURL:storeURL];
-
-                // Retry
-				[self.psc addPersistentStoreWithType:storeType configuration:nil URL:storeURL options:nil error:&error];
-            }
-			
-            if (error)
+            
+            // Add Persistent Store
+            if (![self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL
+                                              options:nil error:&error])
             {
-                NSLog(@"Unresolved error when opening store %@, %@", error, [error userInfo]);
-                // shit.
-				abort();
+                if( error.code == NSPersistentStoreIncompatibleVersionHashError )
+                {
+                    // This happens a lot during development. Just dump the old store and create a new one.
+                    NSLog(@"Incompatible data store. Trying to remove the existing db");
+                    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
+                    error = nil;
+                    
+                    // Copy embedded store instead of the incompatible one.
+                    [self copyBundledStoreIfAvailableToURL:storeURL];
+                    
+                    // Retry
+                    [self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
+                }
+                
+                if (error)
+                {
+                    NSLog(@"Unresolved error when opening store %@, %@", error, [error userInfo]);
+                    // shit.
+                    abort();
+                }
             }
         }
-		
+        else
+        {
+            // Create an inmemory store
+            [self.psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error];
+            if (error)
+            {
+                NSLog(@"Unresolved error when creating memory store %@, %@", error, [error userInfo]);
+                // shit.
+                abort();
+            }
+        }
+        
         // Create update queue
         self.backgroundQueue = [NSOperationQueue new];
         self.backgroundQueue.maxConcurrentOperationCount = 1;
