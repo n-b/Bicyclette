@@ -68,7 +68,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([StationAnnotationView class])) {
-        if([keyPath isEqual:@"queuedForUpdate"] || [keyPath isEqual:@"loading"])
+        if([keyPath isEqual:@"queuedForUpdate"] || [keyPath isEqual:@"updating"])
         {
             [self displayLoadingLayer];
         }
