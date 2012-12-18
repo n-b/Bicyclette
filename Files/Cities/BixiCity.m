@@ -13,10 +13,11 @@
 
 #pragma mark -
 
-@interface MontrealBixiCity () <NSXMLParserDelegate>
+
+@interface _BixiCity () <NSXMLParserDelegate>
 @end
 
-@implementation MontrealBixiCity
+@implementation _BixiCity
 {
     NSManagedObjectContext * _parsing_context;
     NSMutableArray * _parsing_oldStations;
@@ -25,16 +26,8 @@
     Region * _parsing_region;
 }
 
-#pragma mark Annotations
-
-- (NSString *) title { return @"BIXI"; }
-- (NSString *) titleForStation:(Station *)station { return station.name; }
-
-#pragma mark City Data Update
-
-- (NSArray *) updateURLStrings { return @[@"http://montreal.bixi.com/data/bikeStations.xml"]; }
-
 - (BOOL) hasRegions { return NO; }
+
 
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString
@@ -43,7 +36,7 @@
 {
     _parsing_context = context;
     _parsing_oldStations = oldStations;
-
+    
     // Create an anonymous region
     _parsing_region = [[Region fetchRegionWithNumber:_parsing_context number:@"anonymousregion"] lastObject];
     if(_parsing_region==nil)
@@ -52,7 +45,7 @@
         _parsing_region.number = @"anonymousregion";
         _parsing_region.name = @"anonymousregion";
     }
-
+    
     // Parse stations XML
     NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
     parser.delegate = self;
@@ -81,12 +74,12 @@
         _parsing_currentValues = [NSMutableDictionary new];
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     [_parsing_currentString appendString:string];
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+- (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if([elementName isEqualToString:@"station"]) // End of station dict
     {
@@ -127,3 +120,4 @@
 }
 
 @end
+
