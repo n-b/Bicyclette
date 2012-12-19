@@ -7,13 +7,19 @@
 //
 
 #import "BicycletteCities.h"
+
 #import "CyclocityCities.h"
 #import "MarseilleLeVeloCity.h"
 #import "ParisVelibCity.h"
 #import "LyonVelovCity.h"
-#import "OrleansVeloPlusCity.h"
-#import "RennesVeloStarCity.h"
+
 #import "BixiCities.h"
+
+#import "OrleansVeloPlusCity.h"
+
+#import "RennesVeloStarCity.h"
+
+#import "LaRochelleYeloCity.h"
 
 NSArray * BicycletteCityClasses(void)
 {
@@ -37,16 +43,10 @@ NSArray * BicycletteCityClasses(void)
              [ToulouseVeloCity class],
              [ToyamaCyclOcityCity class],
              [ValenciaValenbisiCity class],
-
              [ParisVelibCity class],
              [MarseilleLeVeloCity class],
-
              [LyonVelovCity class],
-             
-             [OrleansVeloPlusCity class],
-             
-             [RennesVeloStarCity class],
-             
+
              [MontrealBixiCity class],
              [TorontoBixiCity class],
              [OttawaBixiCity class],
@@ -54,5 +54,12 @@ NSArray * BicycletteCityClasses(void)
              [WashingtonBikeShareCity class],
              [BostonHubwayCity class],
              [MinneapolisNiceRideCity class],
+
+             [OrleansVeloPlusCity class],
+             
+             [RennesVeloStarCity class],
+             
+             [LaRochelleYeloCity class],
+             
              ];
 }

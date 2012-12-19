@@ -16,6 +16,7 @@
 - (NSString*) stringStartingAtComponent:(NSUInteger)start usingSeparator:(NSString*)separator;
 - (NSString*) stringByTrimmingZeros;
 - (NSString*) stringByTrimmingWhitespace;
+- (NSString*) stringByTrimmingQuotes;
 - (NSString*) capitalizedStringWithCurrentLocale;
 
 @end

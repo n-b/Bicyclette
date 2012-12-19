@@ -38,6 +38,11 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
+- (NSString*) stringByTrimmingQuotes
+{
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"'\""]];
+}
+
 - (NSString*) capitalizedStringWithCurrentLocale
 {
     if([self respondsToSelector:@selector(capitalizedStringWithLocale:)])

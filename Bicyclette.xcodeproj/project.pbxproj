@@ -167,6 +167,8 @@
 		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */; };
 		37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F092361680D671001E8127 /* UIViewController+Banner.m */; };
+		37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
+		37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
 		37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */; };
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
@@ -402,6 +404,8 @@
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
 		37F092351680D671001E8127 /* UIViewController+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Banner.h"; sourceTree = "<group>"; };
 		37F092361680D671001E8127 /* UIViewController+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Banner.m"; sourceTree = "<group>"; };
+		37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaRochelleYeloCity.h; sourceTree = "<group>"; };
+		37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaRochelleYeloCity.m; sourceTree = "<group>"; };
 		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+screenshot.h"; sourceTree = "<group>"; };
 		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+screenshot.m"; sourceTree = "<group>"; };
 		37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapVC+DebugScreenshots.h"; sourceTree = "<group>"; };
@@ -588,11 +592,13 @@
 				376D0E601678CA4E006F321D /* BicycletteCities.m */,
 				3739609A167917CE005F0672 /* BicycletteCities.plist */,
 				376D0E4F1678B587006F321D /* Cyclocity */,
+				37F092271680BF36001E8127 /* BIXI */,
 				377620E4167BE61A004E9E3D /* OrleansVeloPlusCity.h */,
 				377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */,
 				37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */,
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
-				37F092271680BF36001E8127 /* BIXI */,
+				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
+				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -1122,6 +1128,7 @@
 				37F827E8167C0827001D85D8 /* BixiCity.m in Sources */,
 				37F827EE167C0BFE001D85D8 /* BixiCities.m in Sources */,
 				37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */,
+				37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,6 +1158,7 @@
 				37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
 				37F827E9167C09D4001D85D8 /* BixiCity.m in Sources */,
 				37F827EF167C0CB2001D85D8 /* BixiCities.m in Sources */,
+				37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
