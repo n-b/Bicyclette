@@ -21,6 +21,8 @@
 
 #import "LaRochelleYeloCity.h"
 
+#import "MelbourneBikeShareCity.h"
+
 NSArray * BicycletteCityClasses(void)
 {
     return @[
@@ -61,5 +63,6 @@ NSArray * BicycletteCityClasses(void)
              
              [LaRochelleYeloCity class],
              
+             [MelbourneBikeShareCity class],
              ];
 }

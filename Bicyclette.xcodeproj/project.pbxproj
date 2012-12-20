@@ -55,6 +55,8 @@
 		3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */; };
 		3709F575167B755600F865E3 /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
 		3709F57B167B7DCD00F865E3 /* CyclocityStationParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F57A167B7DCD00F865E3 /* CyclocityStationParse.m */; };
+		370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
+		370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370E3A45162E189D0010E454 /* AmiensVelamCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
@@ -276,6 +278,8 @@
 		3709F574167B755600F865E3 /* Station+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Station+Update.m"; sourceTree = "<group>"; };
 		3709F579167B7DCD00F865E3 /* CyclocityStationParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CyclocityStationParse.h; sourceTree = "<group>"; };
 		3709F57A167B7DCD00F865E3 /* CyclocityStationParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CyclocityStationParse.m; sourceTree = "<group>"; };
+		370C477C1682877200CA40E8 /* MelbourneBikeShareCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelbourneBikeShareCity.h; sourceTree = "<group>"; };
+		370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelbourneBikeShareCity.m; sourceTree = "<group>"; };
 		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
 		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
 		370E3A44162E189D0010E454 /* AmiensVelamCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = AmiensVelamCity.sqlite; path = _DataGrabTempFolder/AmiensVelamCity.sqlite; sourceTree = SOURCE_ROOT; };
@@ -599,6 +603,8 @@
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
 				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
+				370C477C1682877200CA40E8 /* MelbourneBikeShareCity.h */,
+				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -1129,6 +1135,7 @@
 				37F827EE167C0BFE001D85D8 /* BixiCities.m in Sources */,
 				37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */,
 				37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
+				370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1159,6 +1166,7 @@
 				37F827E9167C09D4001D85D8 /* BixiCity.m in Sources */,
 				37F827EF167C0CB2001D85D8 /* BixiCities.m in Sources */,
 				37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
+				370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

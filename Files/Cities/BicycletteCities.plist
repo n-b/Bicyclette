@@ -182,6 +182,18 @@
 			<integer>30000</integer>
 		</dict>
 	</dict>
+	<key>MelbourneBikeShareCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>-37.8174</real>
+			<key>longitude</key>
+			<real>144.966</real>
+			<key>distance</key>
+			<integer>30000</integer>
+		</dict>
+	</dict>
 	<key>MinneapolisNiceRideCity</key>
 	<dict>
 		<key>limits</key>
