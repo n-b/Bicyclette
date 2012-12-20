@@ -59,10 +59,7 @@
     [scanner scanString:@"<script type=\"text/javascript\">var markers = [{" intoString:nil];
     [scanner scanUpToString:@"}]</script>" intoString:&jsonText];
     if([jsonText length])
-    {
-//        NSError * error;
-//        id json = [NSJSONSerialization JSONObjectWithData:[jsonText dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-        
+    {        
         for (NSString * stationText in [jsonText componentsSeparatedByString:@"},{"]) {
             NSMutableDictionary * attributeDict = [NSMutableDictionary new];
             for (NSString * attr in [stationText componentsSeparatedByString:@","]) {
@@ -95,51 +92,6 @@
 
         }
     }
-    
-//    while ([scanner scanUpToString:@"<tr>" intoString:nil]) {
-//        NSString * number, * name, * status;
-//        NSInteger bikesCount, totalCount;
-//        BOOL ok = YES;
-//
-//        ok &= [scanner scanUpToString:@"<td class='colNum'>" intoString:nil];
-//        ok &= [scanner scanUpToString:@"</td>" intoString:&number];
-//
-//        ok &= [scanner scanUpToString:@"<td class='colName'>" intoString:nil];
-//        ok &= [scanner scanUpToString:@"</td>" intoString:&name];
-//
-//        ok &= [scanner scanUpToString:@"<td class='colVelo'>" intoString:nil];
-//        ok &= [scanner scanInteger:&bikesCount];
-//        ok &= [scanner scanUpToCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:nil];
-//        ok &= [scanner scanInteger:&totalCount];
-//        ok &= [scanner scanUpToString:@"</td>" intoString:&status];
-//        
-//        if(!ok) continue;
-//
-//        Station * station = [oldStations firstObjectWithValue:number forKeyPath:StationAttributes.number];
-//        if(station)
-//        {
-//            // found existing
-//            [oldStations removeObject:station];
-//        }
-//        else
-//        {
-//            if(oldStations.count)
-//                NSLog(@"Note : new station found after update : %@", number);
-//            station = [Station insertInManagedObjectContext:context];
-//        }
-//        
-//        // Set Values
-//        station.number = number;
-//        station.name = name;
-//        station.status_availableValue = bikesCount;
-//        station.status_totalValue = totalCount;
-//        station.status_freeValue = totalCount - bikesCount;
-//                
-//        // Set Station
-//        station.region = region;
-//    };
-    
-    
 }
 
 @end
