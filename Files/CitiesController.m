@@ -41,8 +41,10 @@ typedef enum {
 {
     self = [super init];
     if (self) {
-        // Create city
-        self.cities = [BicycletteCityClasses() valueForKey:@"new"]; // \o/
+        // Create cities
+        BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(YES);
+        BicycletteCitySetStoresDirectory([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
+        self.cities = BicycletteCities();
 
         self.fenceMonitor = [GeoFencesMonitor new];
         self.fenceMonitor.delegate = self;

@@ -8,4 +8,4 @@
 
 #import "BicycletteCity.h"
 
-NSArray * BicycletteCityClasses(void);
+NSArray * BicycletteCities(void);

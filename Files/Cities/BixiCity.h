@@ -18,3 +18,7 @@
 
 @end
 
+
+@interface BixiCity : _BixiCity <BicycletteCity>
++ (NSArray*) allBIXICities;
+@end

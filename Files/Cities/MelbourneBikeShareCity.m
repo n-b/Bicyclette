@@ -13,7 +13,8 @@
 
 #pragma mark Annotations
 
-- (NSString *) title { return @"Bike Share"; }
+- (NSString *) cityName { return @"Melbourne"; };
+- (NSString *) serviceName { return @"Bike Share"; }
 
 #pragma mark City Data Update
 

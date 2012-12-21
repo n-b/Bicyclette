@@ -22,11 +22,12 @@
 
 #pragma mark Annotations
 
-- (NSString*) title { return @"Vélib"; }
-- (NSString*) titleForRegion:(Region*)region { return [region.number substringToIndex:2]; }
-- (NSString*) subtitleForRegion:(Region*)region { return [region.number substringFromIndex:2]; }
+- (NSString *) cityName { return @"Paris"; };
+- (NSString *) serviceName { return @"Vélib"; }
+- (NSString *) titleForRegion:(Region*)region { return [region.number substringToIndex:2]; }
+- (NSString *) subtitleForRegion:(Region*)region { return [region.number substringFromIndex:2]; }
 
-- (NSString*) titleForStation:(Station*)station
+- (NSString *) titleForStation:(Station*)station
 {
     NSString * title = [super titleForStation:station];
 

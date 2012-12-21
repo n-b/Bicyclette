@@ -30,11 +30,39 @@
 
 #pragma mark -
 
+void BicycletteCitySetStoresDirectory(NSString* directory)
+{
+    [[NSUserDefaults standardUserDefaults] setObject:directory forKey:@"BicycletteStoresDirectory"];
+}
+
+static NSString* BicycletteCityStoresDirectory(void)
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"BicycletteStoresDirectory"];
+}
+
+void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save)
+{
+    [[NSUserDefaults standardUserDefaults] setBool:save forKey:@"BicycletteSaveStationsWithNoIndividualStatonUpdates"];
+}
+
+static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteSaveStationsWithNoIndividualStatonUpdates"];
+}
+
 @implementation _BicycletteCity
 
-- (id)initWithModelName:(NSString *)modelName storeURL:(NSURL *)storeURL
++ (NSString*) storePathForName:(NSString*)storeName
 {
-    return [super initWithModelName:@"BicycletteCity" storeURL:storeURL];
+    if(!BicycletteCitySaveStationsWithNoIndividualStatonUpdates() && ![self canUpdateIndividualStations])
+        return nil;
+
+    return [BicycletteCityStoresDirectory() stringByAppendingPathComponent:storeName];
+}
+
+- (id) init
+{
+    return [super initWithStoreName:[NSString stringWithFormat:@"%@_%@.coredata",[self cityName], [self serviceName]]];
 }
 
 #pragma mark General properties
@@ -59,7 +87,7 @@
     NSDictionary * limits = self.serviceInfo[@"limits"];
     return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([limits[@"latitude"] doubleValue],
                                                                                      [limits[@"longitude"] doubleValue])
-                                                   radius:[limits[@"distance"] doubleValue] identifier:NSStringFromClass([self class])];
+                                                   radius:[limits[@"distance"] doubleValue] identifier:[self title]];
 }
 
 - (CLLocation *) location
@@ -215,6 +243,7 @@
 
 #pragma mark Annotations
 
+- (NSString*) title { return [NSString stringWithFormat:@"%@ %@",[self cityName],[self serviceName]]; }
 - (NSString *) titleForStation:(Station *)station { return station.name; }
 
 @end

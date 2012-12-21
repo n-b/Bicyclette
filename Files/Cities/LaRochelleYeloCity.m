@@ -19,7 +19,8 @@
 
 #pragma mark Annotations
 
-- (NSString *) title { return @"Yélo"; };
+- (NSString *) cityName { return @"La Rochelle"; };
+- (NSString *) serviceName { return @"Yélo"; };
 
 #pragma mark City Data Update
 

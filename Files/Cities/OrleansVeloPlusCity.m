@@ -32,7 +32,8 @@
 
 #pragma mark Annotations
 
-- (NSString *) title { return @"Vélo’+"; }
+- (NSString *) cityName { return @"Orléans"; };
+- (NSString *) serviceName { return @"Vélo’+"; }
 - (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
 
 #pragma mark City Data Update

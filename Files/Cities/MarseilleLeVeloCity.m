@@ -21,9 +21,10 @@
 
 #pragma mark Annotations
 
-- (NSString*) title { return @"Le Vélo"; }
-- (NSString*) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
-- (NSString*) subtitleForRegion:(Region*)region { return @"arr."; }
+- (NSString *) cityName { return @"Marseille"; };
+- (NSString *) serviceName { return @"Le Vélo"; }
+- (NSString *) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
+- (NSString *) subtitleForRegion:(Region*)region { return @"arr."; }
 
 #pragma mark CyclocityCity
 

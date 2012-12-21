@@ -10,9 +10,15 @@
 #import "LocalUpdateQueue.h"
 @class Station, Region, Radar;
 
+void BicycletteCitySetStoresDirectory(NSString* directory);
+void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
+
 //
 #pragma mark Semi-Abstract superclass.
 @interface _BicycletteCity : CoreDataManager <Locatable>
+
+#pragma mark initialization
+- (id) init;
 
 #pragma mark General properties
 @property (readonly) NSDictionary* serviceInfo; //plist
@@ -34,6 +40,7 @@
 + (BOOL) canUpdateIndividualStations;
 
 #pragma mark Annotation
+- (NSString*) title;
 - (NSString*) titleForStation:(Station*)station; // returns station.name, override for custom behaviour
 
 @end
@@ -62,7 +69,8 @@
 
 #pragma mark Annotations
 @required
-- (NSString*) title;
+- (NSString*) cityName;
+- (NSString*) serviceName;
 @optional
 - (NSString*) titleForStation:(Station*)station;
 - (NSString*) titleForRegion:(Region*)region;

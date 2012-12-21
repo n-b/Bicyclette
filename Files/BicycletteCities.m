@@ -13,7 +13,7 @@
 #import "ParisVelibCity.h"
 #import "LyonVelovCity.h"
 
-#import "BixiCities.h"
+#import "BixiCity.h"
 
 #import "OrleansVeloPlusCity.h"
 
@@ -25,48 +25,44 @@
 
 #import "ChattanoogaBikeCity.h"
 
-NSArray * BicycletteCityClasses(void)
+NSArray * BicycletteCities(void)
 {
-    return @[
-             [AmiensVelamCity class],
-             [BesanconVelociteCity class],
-             [BrisbaneCityCycleCity class],
-             [BruxellesVilloCity class],
-             [CergyPointoiseVelO2City class],
-    		 [CreteilCristoLibCity class],
-             [DublinBikesCity class],
-             [GoteborgStyrStallCity class],
-             [LjubljanaBicikeljCity class],
-             [LuxembourgVelohCity class],
-    		 [MulhouseVelociteCity class],
-			 [NancyVelostanCity class],
-             [NantesBiclooCity class],
-    		 [RouenCyclicCity class],
-             [SantanderTusBicCity class],
-             [SevillaSEViciCity class],
-             [ToulouseVeloCity class],
-             [ToyamaCyclOcityCity class],
-             [ValenciaValenbisiCity class],
-             [ParisVelibCity class],
-             [MarseilleLeVeloCity class],
-             [LyonVelovCity class],
-
-             [MontrealBixiCity class],
-             [TorontoBixiCity class],
-             [OttawaBixiCity class],
-             [LondonCycleHireCity class],
-             [WashingtonBikeShareCity class],
-             [BostonHubwayCity class],
-             [MinneapolisNiceRideCity class],
-
-             [OrleansVeloPlusCity class],
-             
-             [RennesVeloStarCity class],
-             
-             [LaRochelleYeloCity class],
-             
-             [MelbourneBikeShareCity class],
+    NSArray * cities = @[
+                         [AmiensVelamCity new],
+                         [BesanconVelociteCity new],
+                         [BrisbaneCityCycleCity new],
+                         [BruxellesVilloCity new],
+                         [CergyPointoiseVelO2City new],
+                         [CreteilCristoLibCity new],
+                         [DublinBikesCity new],
+                         [GoteborgStyrStallCity new],
+                         [LjubljanaBicikeljCity new],
+                         [LuxembourgVelohCity new],
+                         [MulhouseVelociteCity new],
+                         [NancyVelostanCity new],
+                         [NantesBiclooCity new],
+                         [RouenCyclicCity new],
+                         [SantanderTusBicCity new],
+                         [SevillaSEViciCity new],
+                         [ToulouseVeloCity new],
+                         [ToyamaCyclOcityCity new],
+                         [ValenciaValenbisiCity new],
+                         [ParisVelibCity new],
+                         [MarseilleLeVeloCity new],
+                         [LyonVelovCity new],
+                         
+                         
+                         [OrleansVeloPlusCity new],
+                         
+                         [RennesVeloStarCity new],
+                         
+                         [LaRochelleYeloCity new],
+                         
+                         [MelbourneBikeShareCity new],
+                         
+                         [ChattanoogaBikeCity new],
+                         ];
     
-             [ChattanoogaBikeCity class],
-             ];
+    cities = [cities arrayByAddingObjectsFromArray:[BixiCity allBIXICities]];
+    return cities;
 }

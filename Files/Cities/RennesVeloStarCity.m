@@ -28,7 +28,8 @@
 
 #pragma mark Annotations
 
-- (NSString *) title { return @"LE vélo STAR"; }
+- (NSString *) cityName { return @"Rennes"; };
+- (NSString *) serviceName { return @"LE vélo STAR"; }
 - (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
 - (NSString *) titleForRegion:(Region*)region { return region.name; }
 - (NSString *) subtitleForRegion:(Region*)region { return @""; }

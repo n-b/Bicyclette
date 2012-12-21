@@ -122,3 +122,48 @@
 
 @end
 
+/****************************************************************************/
+#pragma mark -
+
+@implementation BixiCity
+{
+    NSDictionary * _serviceInfo;
+}
+
+- (id) initWithServiceInfo:(NSDictionary*)serviceInfo_
+{
+    self = [super init];
+    if (self) {
+        _serviceInfo = serviceInfo_;
+    }
+    return self;
+}
+
+- (NSString *) cityName { return _serviceInfo[@"city_name"]; }
+- (NSString*) serviceName { return _serviceInfo[@"title"]; }
+- (NSArray*) updateURLStrings { return @[_serviceInfo[@"update_url"]]; }
+
+- (CLRegion*) hardcodedLimits
+{
+    return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([_serviceInfo[@"latitude"] doubleValue],
+                                                                                     [_serviceInfo[@"longitude"] doubleValue])
+                                                   radius:[_serviceInfo[@"radius"] doubleValue] identifier:[self title]];
+}
+
+- (CLLocation *) location
+{
+    return [[CLLocation alloc] initWithLatitude:[_serviceInfo[@"latitude"] doubleValue] longitude:[_serviceInfo[@"longitude"] doubleValue]];
+}
+
++ (NSArray*) allBIXICities
+{
+    NSData * data = [NSData dataWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"BixiCities" ofType:@"json"]];
+    NSArray * serviceInfoArrays = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSMutableArray * cities = [NSMutableArray new];
+    for (NSDictionary * serviceInfo in serviceInfoArrays) {
+        [cities addObject:[[self alloc] initWithServiceInfo:serviceInfo]];
+    }
+    return cities;
+}
+
+@end

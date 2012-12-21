@@ -10,9 +10,8 @@
 // Core Data Standard Machinery
 @interface CoreDataManager : NSObject
 
-- (id) init;									// default model name is NSStringFromClass([self class])
-- (id) initWithModelName:(NSString*)modelName;	// default store url is ~/Documents/<modelName>.sqlite
-- (id) initWithModelName:(NSString*)modelName storeURL:(NSURL*)storeURL;
++ (NSString*) storePathForName:(NSString*)storeName;
+- (id) initWithStoreName:(NSString*)storeName;
 
 // The main context, to be used on the main thread.
 @property (readonly) NSManagedObjectContext *moc;

@@ -17,7 +17,8 @@
 
 #pragma mark Annotations
 
-- (NSString*) title { return @"Vélo’v"; }
+- (NSString *) cityName { return @"Lyon"; };
+- (NSString*) serviceName { return @"Vélo’v"; }
 
 - (NSString*) titleForStation:(Station*)station
 {

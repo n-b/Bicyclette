@@ -33,38 +33,35 @@
 /****************************************************************************/
 #pragma mark Init
 
-- (id) init
-{
-    return [self initWithModelName:NSStringFromClass([self class])];
-}
-
-- (id) initWithModelName:(NSString*)modelName
++ (NSString*) storePathForName:(NSString*)storeName
 {
     NSString * documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSURL *storeURL = [NSURL fileURLWithPath:[documentsDirectory stringByAppendingPathComponent:[modelName stringByAppendingPathExtension:@"coredata"]]];
-    return [self initWithModelName:modelName storeURL:storeURL];
+    return [documentsDirectory stringByAppendingPathComponent:[storeName stringByAppendingPathExtension:@"coredata"]];
 }
 
-- (id) initWithModelName:(NSString*)modelName storeURL:(NSURL*)storeURL
+- (id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+- (id) initWithStoreName:(NSString*)storeName
 {
     self = [super init];
     if (self) {
         
         // Create mom. Look for mom and momd variants.
-        NSBundle * classBundle = [NSBundle bundleForClass:[self class]];
-        NSURL * momURL = [classBundle URLForResource:modelName withExtension:@"mom"];
-        if(nil==momURL)
-            momURL = [classBundle URLForResource:modelName withExtension:@"momd"];
-        if(nil==momURL)
-            return nil;
+        NSURL * momURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"BicycletteCity" withExtension:@"mom"];
 		self.mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
         
         // Create psc
 		self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
 		NSError *error = nil;
         
-        if(storeURL)
+        NSString * storePath = [[self class] storePathForName:storeName];
+        if(storePath)
         {
+            NSURL *storeURL = [NSURL fileURLWithPath:storePath];
             // Copy embedded store if we don't already have a store in the final location.
             if( ![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]])
                 [self copyBundledStoreIfAvailableToURL:storeURL];
@@ -122,8 +119,8 @@
 
 - (void) copyBundledStoreIfAvailableToURL:(NSURL*)storeURL
 {
-    NSString * storeName = [[storeURL.path lastPathComponent] stringByDeletingPathExtension];
-    NSURL * embeddedStoreURL = [[NSBundle mainBundle] URLForResource:storeName withExtension:@"sqlite"];
+    NSString * storeName = [storeURL.path lastPathComponent];
+    NSURL * embeddedStoreURL = [[NSBundle mainBundle] URLForResource:[storeName stringByDeletingPathExtension] withExtension:[storeName pathExtension]];
     if(embeddedStoreURL)
         [[NSFileManager defaultManager] copyItemAtURL:embeddedStoreURL toURL:storeURL error:NULL];
 }
