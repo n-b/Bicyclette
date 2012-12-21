@@ -154,6 +154,8 @@
 		37B7AC0315E3DF9C00268B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37BE759D15E6BDE4001DABF6 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BE759B15E6BDE4001DABF6 /* HelpVC.m */; };
 		37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37BE759C15E6BDE4001DABF6 /* HelpVC.xib */; };
+		37C535861684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */; };
+		37C535871684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */; };
 		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
 		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
@@ -384,6 +386,8 @@
 		37BE759A15E6BDE4001DABF6 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
 		37BE759B15E6BDE4001DABF6 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
 		37BE759C15E6BDE4001DABF6 /* HelpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpVC.xib; sourceTree = "<group>"; };
+		37C535841684A2FC00E4327C /* ChattanoogaBikeCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattanoogaBikeCity.h; sourceTree = "<group>"; };
+		37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattanoogaBikeCity.m; sourceTree = "<group>"; };
 		37C56FD115B1A0E700795961 /* PrefsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsVC.h; sourceTree = "<group>"; };
 		37C56FD215B1A0E700795961 /* PrefsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsVC.m; sourceTree = "<group>"; };
 		37C56FD315B1A0E700795961 /* PrefsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsVC.xib; sourceTree = "<group>"; };
@@ -601,10 +605,12 @@
 				377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */,
 				37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */,
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
-				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
-				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
 				370C477C1682877200CA40E8 /* MelbourneBikeShareCity.h */,
 				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
+				37C535841684A2FC00E4327C /* ChattanoogaBikeCity.h */,
+				37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */,
+				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
+				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -1136,6 +1142,7 @@
 				37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */,
 				37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 				370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
+				37C535871684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1174,7 @@
 				37F827EF167C0CB2001D85D8 /* BixiCities.m in Sources */,
 				37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 				370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
+				37C535861684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

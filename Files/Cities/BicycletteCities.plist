@@ -71,7 +71,19 @@
 			<key>longitude</key>
 			<real>2.0783</real>
 			<key>distance</key>
-			<integer>200000</integer>
+			<integer>20000</integer>
+		</dict>
+	</dict>
+	<key>ChattanoogaBikeCity</key>
+	<dict>
+		<key>limits</key>
+		<dict>
+			<key>latitude</key>
+			<real>35.056</real>
+			<key>longitude</key>
+			<real>-85.295</real>
+			<key>distance</key>
+			<integer>20000</integer>
 		</dict>
 	</dict>
 	<key>CreteilCristoLibCity</key>

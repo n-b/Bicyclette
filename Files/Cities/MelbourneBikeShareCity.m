@@ -11,11 +11,6 @@
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
 
-@interface MelbourneBikeShareCity ()
-
-@end
-
-
 @implementation MelbourneBikeShareCity
 
 #pragma mark Annotations
