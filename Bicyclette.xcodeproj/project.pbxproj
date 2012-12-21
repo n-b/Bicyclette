@@ -609,8 +609,6 @@
 				377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */,
 				37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */,
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
-				370C477C1682877200CA40E8 /* MelbourneBikeShareCity.h */,
-				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
 				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
 				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
@@ -837,6 +835,8 @@
 				37E43D8E1684AEAA0085EC4F /* SimpleStationsListBicycletteCity.m */,
 				37C535841684A2FC00E4327C /* ChattanoogaBikeCity.h */,
 				37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */,
+				370C477C1682877200CA40E8 /* MelbourneBikeShareCity.h */,
+				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
 			);
 			name = SimpleStationsList;
 			sourceTree = "<group>";

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
+#import "SimpleStationsListBicycletteCity.h"
 
-@interface MelbourneBikeShareCity : _BicycletteCity
+@interface MelbourneBikeShareCity : _SimpleJSONStationsListBicycletteCity <SimpleJSONStationsListBicycletteCity>
 
 @end
