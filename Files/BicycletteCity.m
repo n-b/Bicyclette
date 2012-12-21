@@ -213,6 +213,10 @@
     return [self instancesRespondToSelector:@selector(detailsURLStringForStation:)] && [self instancesRespondToSelector:@selector(parseData:forStation:)];
 }
 
+#pragma mark Annotations
+
+- (NSString *) titleForStation:(Station *)station { return station.name; }
+
 @end
 
 #pragma mark -

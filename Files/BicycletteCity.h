@@ -33,6 +33,9 @@
 - (void) update;
 + (BOOL) canUpdateIndividualStations;
 
+#pragma mark Annotation
+- (NSString*) titleForStation:(Station*)station; // returns station.name, override for custom behaviour
+
 @end
 
 
@@ -60,8 +63,8 @@
 #pragma mark Annotations
 @required
 - (NSString*) title;
-- (NSString*) titleForStation:(Station*)station;
 @optional
+- (NSString*) titleForStation:(Station*)station;
 - (NSString*) titleForRegion:(Region*)region;
 - (NSString*) subtitleForRegion:(Region*)region;
 

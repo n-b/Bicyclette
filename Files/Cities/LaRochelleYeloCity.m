@@ -20,7 +20,6 @@
 #pragma mark Annotations
 
 - (NSString *) title { return @"Yélo"; };
-- (NSString *) titleForStation:(Station *)station { return station.name; };
 
 #pragma mark City Data Update
 

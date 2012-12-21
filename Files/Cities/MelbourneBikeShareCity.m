@@ -14,7 +14,6 @@
 #pragma mark Annotations
 
 - (NSString *) title { return @"Bike Share"; }
-- (NSString *) titleForStation:(Station *)station { return station.name; }
 
 #pragma mark City Data Update
 

@@ -10,8 +10,6 @@
 
 @interface _BixiCity : _BicycletteCity
 
-- (NSString *) titleForStation:(Station *)station;
-
 - (BOOL) hasRegions; // NO
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString

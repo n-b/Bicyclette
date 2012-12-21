@@ -26,10 +26,6 @@
     Region * _parsing_region;
 }
 
-#pragma mark Annotations
-
-- (NSString *) titleForStation:(Station *)station { return station.name; }
-
 #pragma mark City Data Update
 
 - (BOOL) hasRegions { return NO; }

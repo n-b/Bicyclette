@@ -15,7 +15,6 @@
 #pragma mark Annotations
 
 - (NSString *) title { return @"Bike Chattanooga"; }
-- (NSString *) titleForStation:(Station *)station { return station.name; }
 
 #pragma mark City Data Update
 
