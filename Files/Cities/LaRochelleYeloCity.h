@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
+#import "SimpleStationsListBicycletteCity.h"
 
-@interface LaRochelleYeloCity : _BicycletteCity <BicycletteCity>
+@interface LaRochelleYeloCity : _SimpleStationsListBicycletteCity <SimpleStationsListBicycletteCity>
 
 @end

@@ -50,9 +50,23 @@
         }
         
         [station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:[self KVCMapping]];
-        station.status_totalValue = station.status_freeValue + station.status_availableValue;
+
+        // Build missing status, if needed
+        if([[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]==0)
+        {
+            // "Total" is not in data
+            station.status_totalValue = station.status_freeValue + station.status_availableValue;
+        }
+        else if ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]==0)
+        {
+            // "Free" is not in data
+            station.status_freeValue = station.status_totalValue - station.status_availableValue;
+        }
+
+        // Set Date to now
         station.status_date = [NSDate date];
         
+        // Set Region to "anonymous"
         station.region = region;
     }
 }

@@ -610,8 +610,6 @@
 				37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */,
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
-				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
-				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -837,6 +835,8 @@
 				37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */,
 				370C477C1682877200CA40E8 /* MelbourneBikeShareCity.h */,
 				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
+				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
+				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
 			);
 			name = SimpleStationsList;
 			sourceTree = "<group>";
