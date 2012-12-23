@@ -22,6 +22,7 @@
 @end
 
 @interface _BicycletteCity () <DataUpdaterDelegate>
+@property NSDictionary* serviceInfo;
 @property DataUpdater * updater;
 #if TARGET_OS_IPHONE
 @property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
@@ -60,40 +61,53 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return [BicycletteCityStoresDirectory() stringByAppendingPathComponent:storeName];
 }
 
-- (id) init
++ (NSArray*) allCities
 {
-    return [super initWithStoreName:[NSString stringWithFormat:@"%@_%@.coredata",[self cityName], [self serviceName]]];
+    NSData * data = [NSData dataWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"BicycletteCities" ofType:@"json"]];
+    NSError * error;
+    NSArray * serviceInfoArrays = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    NSAssert(serviceInfoArrays!=nil, @"BicycletteCities JSON error: %@", error);
+    NSMutableArray * cities = [NSMutableArray new];
+    for (NSDictionary * serviceInfo in serviceInfoArrays) {
+        [cities addObject:[self cityWithServiceInfo:serviceInfo]];
+    }
+    return cities;
+}
+
++ (instancetype) cityWithServiceInfo:(NSDictionary*)serviceInfo_
+{
+    Class cityClass = NSClassFromString(serviceInfo_[@"city_class"]);
+    NSAssert([cityClass isSubclassOfClass:self], nil);
+    return [[cityClass alloc] initWithServiceInfo:serviceInfo_];
+}
+
+- (id) initWithServiceInfo:(NSDictionary*)serviceInfo_
+{
+    self = [super initWithStoreName:[NSString stringWithFormat:@"%@_%@.coredata",serviceInfo_[@"city_name"], serviceInfo_[@"service_name"]]];
+    if(self!=nil)
+    {
+        self.serviceInfo = serviceInfo_;
+    }
+    return self;
 }
 
 #pragma mark General properties
 
-+ (NSDictionary*) citiesInfo
-{
-    static NSDictionary * s_citiesInfo;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        s_citiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BicycletteCities" ofType:@"plist"]];
-    });
-    return s_citiesInfo;
-}
+- (NSString *) cityName { return _serviceInfo[@"city_name"]; }
+- (NSString *) serviceName { return _serviceInfo[@"service_name"]; }
+- (NSArray *) updateURLStrings { return @[_serviceInfo[@"update_url"]]; }
+- (NSString *) detailsURLStringForStation:(Station*)station { return [self.serviceInfo[@"station_details_url"] stringByAppendingString:station.number]; }
 
-- (NSDictionary*) serviceInfo
+- (CLRegion *) hardcodedLimits
 {
-    return [[[self class] citiesInfo] objectForKey:NSStringFromClass([self class])];
-}
-
-- (CLRegion*) hardcodedLimits
-{
-    NSDictionary * limits = self.serviceInfo[@"limits"];
-    return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([limits[@"latitude"] doubleValue],
-                                                                                     [limits[@"longitude"] doubleValue])
-                                                   radius:[limits[@"distance"] doubleValue] identifier:[self title]];
+    return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([self.serviceInfo[@"latitude"] doubleValue],
+                                                                                     [self.serviceInfo[@"longitude"] doubleValue])
+                                                   radius:[self.serviceInfo[@"radius"] doubleValue] identifier:[self title]];
 }
 
 - (CLLocation *) location
 {
-    NSDictionary * limits = self.serviceInfo[@"limits"];
-    return [[CLLocation alloc] initWithLatitude:[limits[@"latitude"] doubleValue] longitude:[limits[@"longitude"] doubleValue]];
+    return [[CLLocation alloc] initWithLatitude:[self.serviceInfo[@"latitude"] doubleValue] longitude:[self.serviceInfo[@"longitude"] doubleValue]];
 }
 
 #if TARGET_OS_IPHONE
@@ -238,7 +252,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 + (BOOL) canUpdateIndividualStations
 {
-    return [self instancesRespondToSelector:@selector(detailsURLStringForStation:)] && [self instancesRespondToSelector:@selector(parseData:forStation:)];
+    return [self instancesRespondToSelector:@selector(parseData:forStation:)];
 }
 
 #pragma mark Annotations

@@ -28,8 +28,6 @@
 
 #pragma mark Annotations
 
-- (NSString *) cityName { return @"Rennes"; };
-- (NSString *) serviceName { return @"LE vélo STAR"; }
 - (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
 - (NSString *) titleForRegion:(Region*)region { return region.name; }
 - (NSString *) subtitleForRegion:(Region*)region { return @""; }
@@ -37,7 +35,6 @@
 
 #pragma mark City Data Update
 
-- (NSArray *) updateURLStrings { return @[@"http://data.keolis-rennes.com/xml/?version=1.0&key=U3JFQO8IG7CUY28&cmd=getstation"]; }
 - (BOOL) hasRegions { return YES; }
 
 - (void) parseData:(NSData *)data

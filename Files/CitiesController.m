@@ -8,7 +8,6 @@
 
 #import "CitiesController.h"
 #import "BicycletteCity.h"
-#import "BicycletteCities.h"
 #import "BicycletteCity.mogenerated.h"
 #import "CollectionsAdditions.h"
 #import "LocalUpdateQueue.h"
@@ -44,7 +43,7 @@ typedef enum {
         // Create cities
         BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(YES);
         BicycletteCitySetStoresDirectory([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
-        self.cities = BicycletteCities();
+        self.cities = [_BicycletteCity allCities];
 
         self.fenceMonitor = [GeoFencesMonitor new];
         self.fenceMonitor.delegate = self;

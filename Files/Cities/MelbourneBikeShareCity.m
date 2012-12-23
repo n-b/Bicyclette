@@ -11,14 +11,8 @@
 
 @implementation MelbourneBikeShareCity
 
-#pragma mark Annotations
-
-- (NSString *) cityName { return @"Melbourne"; };
-- (NSString *) serviceName { return @"Bike Share"; }
-
 #pragma mark City Data Update
 
-- (NSArray *) updateURLStrings { return @[@"http://www.melbournebikeshare.com.au/stationmap/data"]; }
 - (BOOL) hasRegions { return NO; }
 
 - (NSDictionary*) KVCMapping

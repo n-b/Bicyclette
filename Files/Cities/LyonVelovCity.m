@@ -17,9 +17,6 @@
 
 #pragma mark Annotations
 
-- (NSString *) cityName { return @"Lyon"; };
-- (NSString*) serviceName { return @"Vélo’v"; }
-
 - (NSString*) titleForStation:(Station*)station
 {
     NSString * title = station.name;
@@ -38,7 +35,6 @@
 
 #pragma mark Stations Individual Data Updates
 
-- (NSString*) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velov.grandlyon.com/velovmap/zhp/inc/DispoStationsParId.php?id=%@",station.number]; }
 - (void) parseData:(NSData *)data forStation:(Station *)station { [CyclocityStationParse parseData:data forStation:station]; }
 
 #pragma mark City Data Update
@@ -56,8 +52,9 @@
                        @"69389"];
     
     NSMutableArray * urlStrings = [NSMutableArray new];
+    NSString * baseURL = self.serviceInfo[@"update_url"];
     for (NSString * zip in zips) {
-        [urlStrings addObject:[NSString stringWithFormat:@"http://www.velov.grandlyon.com/velovmap/zhp/inc/StationsParArrondissement.php?arrondissement=%@",zip]];
+        [urlStrings addObject:[baseURL stringByAppendingString:zip]];
     }
     return urlStrings;
 }

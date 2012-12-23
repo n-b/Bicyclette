@@ -8,7 +8,7 @@
 
 #import "BicycletteCity.h"
 
-@interface _BixiCity : _BicycletteCity
+@interface BixiCity : _BicycletteCity <BicycletteCity>
 
 - (BOOL) hasRegions; // NO
 - (void) parseData:(NSData *)data
@@ -16,9 +16,4 @@
          inContext:(NSManagedObjectContext*)context
        oldStations:(NSMutableArray*)oldStations;
 
-@end
-
-
-@interface BixiCity : _BixiCity <BicycletteCity>
-+ (NSArray*) allBIXICities;
 @end

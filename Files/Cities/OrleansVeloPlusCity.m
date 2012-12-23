@@ -32,13 +32,10 @@
 
 #pragma mark Annotations
 
-- (NSString *) cityName { return @"Orléans"; };
-- (NSString *) serviceName { return @"Vélo’+"; }
 - (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
 
 #pragma mark City Data Update
 
-- (NSArray *) updateURLStrings { return @[@"https://www.agglo-veloplus.fr/component/data_1.xml"]; }
 - (BOOL) hasRegions { return NO; }
 
 - (void) parseData:(NSData *)data

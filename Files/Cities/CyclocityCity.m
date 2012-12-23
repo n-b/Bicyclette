@@ -14,7 +14,7 @@
 #import "CyclocityStationParse.h"
 
 // Allow me to use method implemented in subclasses
-@interface _CyclocityCity(CyclocityCity) <CyclocityCity>
+@interface CyclocityCity(CyclocityCity) <CyclocityCity>
 @end
 
 @implementation RegionInfo
@@ -22,10 +22,10 @@
 
 #pragma mark -
 
-@interface _CyclocityCity () <NSXMLParserDelegate>
+@interface CyclocityCity () <NSXMLParserDelegate>
 @end
 
-@implementation _CyclocityCity
+@implementation CyclocityCity
 {
     NSManagedObjectContext * _parsing_context;
     NSMutableDictionary * _parsing_regionsByNumber;

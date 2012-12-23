@@ -17,15 +17,9 @@
 
 @implementation LaRochelleYeloCity
 
-#pragma mark Annotations
-
-- (NSString *) cityName { return @"La Rochelle"; };
-- (NSString *) serviceName { return @"Yélo"; };
-
 #pragma mark City Data Update
 
 - (BOOL) hasRegions { return NO; }
-- (NSArray *)updateURLStrings { return @[ @"http://www.rtcr.fr/ct_93_297__Carte_du_libre_service_velos.html" ]; };
 
 - (NSDictionary*) KVCMapping
 {

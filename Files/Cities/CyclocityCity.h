@@ -9,7 +9,7 @@
 #import "BicycletteCity.h"
 
 // Common code for all Cyclocity systems (except Velov)
-@interface _CyclocityCity : _BicycletteCity
+@interface CyclocityCity : _BicycletteCity
 - (BOOL) hasRegions;
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString

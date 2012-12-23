@@ -1,0 +1,362 @@
+[
+    {
+        "city_class": "ChattanoogaBikeCity", 
+        "city_name": "Chattanooga", 
+        "latitude": 35.056, 
+        "longitude": -85.295, 
+        "radius": 20000,
+        "service_name": "Bike",
+        "update_url": "http://www.bikechattanooga.com/stations/json"
+    },
+ 
+ 
+    {
+        "city_class": "LaRochelleYeloCity", 
+        "city_name": "La Rochelle", 
+        "latitude": 46.1596, 
+        "longitude": -1.151, 
+        "radius": 10000,
+        "service_name": "Yélo",
+		"update_url": "http://www.rtcr.fr/ct_93_297__Carte_du_libre_service_velos.html"
+    },
+ 
+ 
+    {
+        "city_class": "LyonVelovCity", 
+        "city_name": "Lyon", 
+        "latitude": 45.7611, 
+        "longitude": 4.835, 
+        "radius": 10000,
+        "service_name": "Vélo’v",
+        "station_details_url": "http://www.velov.grandlyon.com/velovmap/zhp/inc/DispoStationsParId.php?id=", 
+		"update_url": "http://www.velov.grandlyon.com/velovmap/zhp/inc/StationsParArrondissement.php?arrondissement="
+    },
+ 
+ 
+    {
+        "city_class": "MarseilleLeVeloCity", 
+        "city_name": "Marseille", 
+        "latitude": 43.296, 
+        "longitude": 5.371, 
+        "radius": 30000,
+        "service_name": "Le Vélo", 
+        "station_details_url": "http://www.levelo-mpm.fr/service/stationdetails/marseille/", 
+		"update_url": "http://www.levelo-mpm.fr/service/carto"
+    },
+ 
+ 
+    {
+        "city_class": "MelbourneBikeShareCity", 
+        "city_name": "Melbourne", 
+        "latitude": -37.8174, 
+        "longitude": 144.966, 
+        "radius": 30000,
+        "service_name": "BikeShare", 
+		"update_url": "http://www.melbournebikeshare.com.au/stationmap/data"
+    },
+ 
+ 
+    {
+        "city_class": "OrleansVeloPlusCity", 
+        "city_name": "Orléans", 
+        "latitude": 47.908, 
+        "longitude": 1.908188, 
+        "radius": 10000,
+        "service_name": "Vélo’+", 
+		"update_url": "https://www.agglo-veloplus.fr/component/data_1.xml"
+    },
+ 
+ 
+    {
+        "city_class": "ParisVelibCity", 
+        "city_name": "Paris", 
+        "latitude": 48.856667, 
+        "longitude": 2.350833, 
+        "patches": {
+            "34003": {
+                "codePostal": "93400"
+            }, 
+            "34011": {
+                "codePostal": "93400"
+            }, 
+            "901": {
+                "codePostal": "75019"
+            }, 
+            "903": {
+                "codePostal": "75013"
+            }
+        }, 
+        "radius": 10000,
+        "service_name": "Vélib‘",
+		"station_details_url": "http://www.velib.paris.fr/service/stationdetails/paris/",
+		"update_url": "http://www.velib.paris.fr/service/carto"
+    },
+ 
+ 
+    {
+        "city_class": "RennesVeloStarCity", 
+        "city_name": "Rennes", 
+        "latitude": 48.1136, 
+        "longitude": -1.6752, 
+        "radius": 10000,
+        "service_name": "VéloStar", 
+		"update_url": "http://data.keolis-rennes.com/xml/?version=1.0&key=U3JFQO8IG7CUY28&cmd=getstation"
+    },
+
+ 
+     {
+        "city_class": "BixiCity", 
+        "city_name": "Montréal", 
+        "latitude": 45.513, 
+        "longitude": -73.578, 
+        "radius": 10000, 
+        "service_name": "BIXI", 
+        "update_url": "http://montreal.bixi.com/data/bikeStations.xml"
+    }, 
+    {
+        "city_class": "BixiCity", 
+        "city_name": "Toronto", 
+        "latitude": 43.639, 
+        "longitude": -79.379, 
+        "radius": 10000, 
+        "service_name": "BIXI", 
+        "update_url": "http://toronto.bixi.com/data/bikeStations.xml"
+    }, 
+    {
+        "city_class": "BixiCity", 
+        "city_name": "Ottawa", 
+        "latitude": 45.412, 
+        "longitude": -75.699, 
+        "radius": 20000, 
+        "service_name": "BIXI", 
+        "update_url": "http://capitale.bixi.com/data/bikeStations.xml"
+    }, 
+    {
+        "city_class": "BixiCity", 
+        "city_name": "London", 
+        "latitude": 51.50738, 
+        "longitude": -0.1105, 
+        "radius": 20000, 
+        "service_name": "Cycle Hire", 
+        "update_url": "http://www.tfl.gov.uk/tfl/syndication/feeds/cycle-hire/livecyclehireupdates.xml"
+    }, 
+    {
+        "city_class": "BixiCity", 
+        "city_name": "Washington", 
+        "latitude": 38.888, 
+        "longitude": -77.038, 
+        "radius": 10000, 
+        "service_name": "Capital Bike Share", 
+        "update_url": "http://capitalbikeshare.com/data/stations/bikeStations.xml"
+    }, 
+    {
+        "city_class": "BixiCity", 
+        "city_name": "Boston", 
+        "latitude": 42.329, 
+        "longitude": -71.058, 
+        "radius": 10000, 
+        "service_name": "Hubway", 
+        "update_url": "http://www.thehubway.com/data/stations/bikeStations.xml"
+    }, 
+    {
+        "city_class": "BixiCity", 
+        "city_name": "Minneapolis", 
+        "latitude": 44.981, 
+        "longitude": -93.264, 
+        "radius": 20000, 
+        "service_name": "Nice Ride", 
+        "update_url": "https://secure.niceridemn.org/data2/bikeStations.xml"
+	},
+
+ 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Amiens", 
+        "latitude": 49.8982, 
+        "longitude": 2.301, 
+        "radius": 10000, 
+        "service_name": "Vélam", 
+        "station_details_url": "http://www.velam.amiens.fr/service/stationdetails/amiens/", 
+        "update_url": "http://www.velam.amiens.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Besançon", 
+        "latitude": 47.2415, 
+        "longitude": 6.029, 
+        "radius": 5000, 
+        "service_name": "VéloCité", 
+        "station_details_url": "http://www.velocite.besancon.fr/service/stationdetails/besancon/", 
+        "update_url": "http://www.velocite.besancon.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Brisbane", 
+        "latitude": -27.481, 
+        "longitude": 153.031, 
+        "radius": 30000, 
+        "service_name": "CityCycle", 
+        "station_details_url": "http://www.citycycle.com.au/service/stationdetails/brisbane/", 
+        "update_url": "http://www.citycycle.com.au/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Bruxelles", 
+        "latitude": 50.8482, 
+        "longitude": 4.357, 
+        "radius": 20000, 
+        "service_name": "Villo!",
+        "station_details_url": "http://www.villo.be/service/stationdetails/bruxelles/", 
+        "update_url": "http://www.villo.be/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Cergy-Pontoise", 
+        "latitude": 49.0331, 
+        "longitude": 2.0783, 
+        "radius": 20000, 
+        "service_name": "VélO2", 
+        "station_details_url": "http://www.velo2.cergypontoise.fr/service/stationdetails/cergy/", 
+        "update_url": "http://www.velo2.cergypontoise.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Créteil", 
+        "latitude": 48.7842, 
+        "longitude": 2.4537, 
+        "radius": 5000, 
+        "service_name": "CristoLib", 
+        "station_details_url": "http://www.cristolib.fr/service/stationdetails/creteil/", 
+        "update_url": "http://www.cristolib.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Dublin", 
+        "latitude": 53.347, 
+        "longitude": -6.268, 
+        "radius": 20000, 
+        "service_name": "dublinbikes", 
+        "station_details_url": "http://www.dublinbikes.ie/service/stationdetails/dublin/", 
+        "update_url": "http://www.dublinbikes.ie/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Göteborg", 
+        "latitude": 57.708, 
+        "longitude": 11.974, 
+        "radius": 10000, 
+        "service_name": "Styr & Ställ", 
+        "station_details_url": "http://www.goteborgbikes.se/service/stationdetails/goteborg/", 
+        "update_url": "http://www.goteborgbikes.se/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Ljubljana", 
+        "latitude": 46.054, 
+        "longitude": 14.509, 
+        "radius": 10000, 
+        "service_name": "Bicike(LJ)", 
+        "station_details_url": "http://www.bicikelj.si/service/stationdetails/ljubljana/", 
+        "update_url": "http://www.bicikelj.si/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Luxembourg", 
+        "latitude": 49.6116, 
+        "longitude": 6.138, 
+        "radius": 10000, 
+        "service_name": "vel’oh",
+        "station_details_url": "http://www.veloh.lu/service/stationdetails/luxembourg/", 
+        "update_url": "http://www.veloh.lu/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Mulhouse", 
+        "latitude": 47.7476, 
+        "longitude": 7.3267, 
+        "radius": 5000, 
+        "service_name": "Vélocité", 
+        "station_details_url": "http://www.velocite.mulhouse.fr/service/stationdetails/mulhouse/", 
+        "update_url": "http://www.velocite.mulhouse.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Nancy", 
+        "latitude": 48.6915, 
+        "longitude": 6.1841, 
+        "radius": 5000, 
+        "service_name": "Vélostan", 
+        "station_details_url": "http://www.velostanlib.fr/service/stationdetails/nancy/", 
+        "update_url": "http://www.velostanlib.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Nantes", 
+        "latitude": 47.223, 
+        "longitude": -1.546, 
+        "radius": 20000, 
+        "service_name": "Bicloo", 
+        "station_details_url": "http://www.bicloo.nantesmetropole.fr/service/stationdetails/nantes/", 
+        "update_url": "http://www.bicloo.nantesmetropole.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Rouen", 
+        "latitude": 49.4429, 
+        "longitude": 1.0973, 
+        "radius": 10000, 
+        "service_name": "Cy’clic",
+        "station_details_url": "http://cyclic.rouen.fr/service/stationdetails/rouen/", 
+        "update_url": "http://cyclic.rouen.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Santander", 
+        "latitude": 43.4629, 
+        "longitude": -3.8085, 
+        "radius": 10000, 
+        "service_name": "TusBic", 
+        "station_details_url": "http://www.tusbic.es/service/stationdetails/santander/", 
+        "update_url": "http://www.tusbic.es/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Sevilla", 
+        "latitude": 37.3901, 
+        "longitude": -5.979, 
+        "radius": 10000, 
+        "service_name": "SEVici", 
+        "station_details_url": "http://www.sevici.es/service/stationdetails/seville/", 
+        "update_url": "http://www.sevici.es/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Toulouse", 
+        "latitude": 43.6048, 
+        "longitude": 1.445, 
+        "radius": 10000, 
+        "service_name": "VélÔ", 
+        "station_details_url": "http://www.velo.toulouse.fr/service/stationdetails/toulouse/", 
+        "update_url": "http://www.velo.toulouse.fr/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Toyama", 
+        "latitude": 36.6935, 
+        "longitude": 137.211, 
+        "radius": 10000, 
+        "service_name": "CyclOcity", 
+        "station_details_url": "http://www.cyclocity.jp/service/stationdetails/toyama/", 
+        "update_url": "http://www.cyclocity.jp/service/carto"
+    }, 
+    {
+        "city_class": "CyclocityCity", 
+        "city_name": "Valencia", 
+        "latitude": 39.47, 
+        "longitude": -0.366, 
+        "radius": 10000, 
+        "service_name": "Valenbisi", 
+        "station_details_url": "http://www.valenbisi.es/service/stationdetails/valence/", 
+        "update_url": "http://www.valenbisi.es/service/carto"
+    }
+]

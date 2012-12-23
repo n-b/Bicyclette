@@ -18,14 +18,18 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 @interface _BicycletteCity : CoreDataManager <Locatable>
 
 #pragma mark initialization
-- (id) init;
++ (NSArray*) allCities;
++ (instancetype) cityWithServiceInfo:(NSDictionary*)serviceInfo;
 
 #pragma mark General properties
-@property (readonly) NSDictionary* serviceInfo; //plist
-@property (readonly) CLRegion * hardcodedLimits;
+- (NSDictionary *) serviceInfo;
+- (NSString *) cityName;
+- (NSString *) serviceName;
+- (NSArray *) updateURLStrings;
+- (CLRegion *) hardcodedLimits;
 #if TARGET_OS_IPHONE
-@property (readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly) MKCoordinateRegion regionContainingData;
+- (CLLocationCoordinate2D) coordinate;
+- (MKCoordinateRegion) regionContainingData;
 #endif
 
 #pragma mark Fetch requests
@@ -55,7 +59,6 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 
 #pragma mark City Data Update
 @required
-- (NSArray*) updateURLStrings;
 - (BOOL) hasRegions;
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString
@@ -69,8 +72,6 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 
 #pragma mark Annotations
 @required
-- (NSString*) cityName;
-- (NSString*) serviceName;
 @optional
 - (NSString*) titleForStation:(Station*)station;
 - (NSString*) titleForRegion:(Region*)region;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCities.h"
+#import "BicycletteCity.h"
 #import "BicycletteCity.mogenerated.h"
 
 static void GrabDataForCity(BicycletteCity* city)
@@ -93,10 +93,10 @@ int main(int argc, const char * argv[])
         BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(NO);
         BicycletteCitySetStoresDirectory([[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent]);
         
-        for (BicycletteCity* city in BicycletteCities()) {
+        for (BicycletteCity* city in [_BicycletteCity allCities]) {
             [city erase];
         }
-        for (BicycletteCity* city in BicycletteCities()) {
+        for (BicycletteCity* city in [_BicycletteCity allCities]) {
             GrabDataForCity(city);
         }
     }

@@ -12,18 +12,8 @@
 
 @implementation ParisVelibCity
 
-#pragma mark City Data Update
-
-- (NSArray*) updateURLStrings { return @[ @"http://www.velib.paris.fr/service/carto" ]; }
-
-#pragma mark Stations Individual Data Updates
-
-- (NSString *) detailsURLStringForStation:(Station*)station { return [NSString stringWithFormat:@"http://www.velib.paris.fr/service/stationdetails/paris/%@",station.number]; }
-
 #pragma mark Annotations
 
-- (NSString *) cityName { return @"Paris"; };
-- (NSString *) serviceName { return @"Vélib"; }
 - (NSString *) titleForRegion:(Region*)region { return [region.number substringToIndex:2]; }
 - (NSString *) subtitleForRegion:(Region*)region { return [region.number substringFromIndex:2]; }
 

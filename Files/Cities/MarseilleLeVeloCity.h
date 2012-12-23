@@ -8,6 +8,6 @@
 
 #import "CyclocityCity.h"
 
-@interface MarseilleLeVeloCity : _CyclocityCity <CyclocityCity>
+@interface MarseilleLeVeloCity : CyclocityCity <CyclocityCity>
 
 @end

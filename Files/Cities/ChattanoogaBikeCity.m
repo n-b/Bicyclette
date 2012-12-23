@@ -14,12 +14,8 @@
 
 #pragma mark Annotations
 
-- (NSString *) cityName { return @"Chattanooga"; };
-- (NSString *) serviceName { return @"Bike"; }
+//#pragma mark City Data Update
 
-#pragma mark City Data Update
-
-- (NSArray *) updateURLStrings { return @[@"http://www.bikechattanooga.com/stations/json"]; }
 - (BOOL) hasRegions { return NO; }
 
 - (NSString*) keyPathToStationsLists
