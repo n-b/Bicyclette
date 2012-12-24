@@ -121,14 +121,3 @@
 }
 
 @end
-
-//+ (NSArray*) allBIXICities
-//{
-//    NSData * data = [NSData dataWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"BixiCities" ofType:@"json"]];
-//    NSArray * serviceInfoArrays = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//    NSMutableArray * cities = [NSMutableArray new];
-//    for (NSDictionary * serviceInfo in serviceInfoArrays) {
-//        [cities addObject:[[self alloc] initWithServiceInfo:serviceInfo]];
-//    }
-//    return cities;
-//}

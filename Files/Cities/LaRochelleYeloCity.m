@@ -12,7 +12,7 @@
 #import "NSObject+KVCMapping.h"
 #import "NSStringAdditions.h"
 
-@interface LaRochelleYeloCity () <NSXMLParserDelegate>
+@interface LaRochelleYeloCity ()
 @end
 
 @implementation LaRochelleYeloCity
