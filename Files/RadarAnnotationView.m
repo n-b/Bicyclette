@@ -38,18 +38,6 @@
     return (Radar*)self.annotation;
 }
 
-- (void) setAnnotation:(id<MKAnnotation>)annotation
-{
-    [super setAnnotation:annotation];
-    [self setNeedsDisplay];
-}
-
-- (void) prepareForReuse
-{
-    [super prepareForReuse];
-    self.annotation = nil;
-}
-
 /****************************************************************************/
 #pragma mark Interaction
 

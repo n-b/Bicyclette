@@ -32,6 +32,18 @@
     return NSStringFromClass([self class]);
 }
 
+- (void) setAnnotation:(id<MKAnnotation>)annotation
+{
+    [super setAnnotation:annotation];
+    [self setNeedsDisplay];
+}
+
+- (void) prepareForReuse
+{
+    [super prepareForReuse];
+    self.annotation = nil;
+}
+
 - (void) willMoveToWindow:(UIWindow *)newWindow
 {
     [super willMoveToWindow:newWindow];

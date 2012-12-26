@@ -62,22 +62,15 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, @"queuedForUpdate", @"updating", @"statusDataIsFresh" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, @"statusDataIsFresh" ];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == (__bridge void *)([StationAnnotationView class])) {
-        if([keyPath isEqual:@"queuedForUpdate"] || [keyPath isEqual:@"updating"])
-        {
-            [self displayLoadingLayer];
-        }
-        else
-        {
-            [self setNeedsDisplay];
-            if(change[NSKeyValueChangeOldKey] && ![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]])
-                [self pulse];
-        }
+        [self setNeedsDisplay];
+        if(change[NSKeyValueChangeOldKey] && ![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]])
+            [self pulse];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -95,38 +88,6 @@
                                           animations:^{ self.transform = CGAffineTransformIdentity; }
                                           completion:nil];
                      }];
-}
-
-- (void) displayLoadingLayer
-{
-    return;
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
-    
-    if([self station].updating)
-    {
-        CGFloat phase = 0;
-        if([self station].updating)
-        {
-            double integral;
-            phase = modf([[NSDate date] timeIntervalSinceReferenceDate], &integral);
-            phase = floorf(phase*10)/10;
-            [self performSelector:_cmd withObject:nil afterDelay:.1];
-        }
-        _loadingLayer.contents = (id) [self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                                       scale:_loadingLayer.contentsScale
-                                                                       shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                                  borderMode:BorderModeDashes
-                                                                   baseColor:nil
-                                                                       value:@""
-                                                                       phase:phase];
-        
-    }
-    else
-    {
-        
-        _loadingLayer.contents = nil;
-    }
-    
 }
 
 - (void) displayLayer:(CALayer *)layer
@@ -165,7 +126,6 @@
                                                            baseColor:baseColor
                                                                value:text
                                                                phase:0];
-    [self displayLoadingLayer];
 }
 
 - (void) drawRect:(CGRect)rect

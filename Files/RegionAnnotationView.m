@@ -32,7 +32,6 @@
 {
     [self.region removeObserver:self forKeyPath:RegionAttributes.number];
     [super setAnnotation:annotation];
-    [self setNeedsDisplay];
     [self.region addObserver:self forKeyPath:RegionAttributes.number options:0 context:(__bridge void *)([RegionAnnotationView class])];
 }
 
