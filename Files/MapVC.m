@@ -147,7 +147,7 @@
         else if(object==self.controller && [keyPath isEqualToString:@"currentCity"])
         {
             if(self.controller.currentCity)
-                [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"%@_NETWORK",nil),self.controller.currentCity.title]];
+                [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"%@_NETWORK",nil),self.controller.currentCity.title] sticky:NO];
         }
     }
     else
@@ -159,11 +159,11 @@
     if(note.object==self.controller.currentCity && [self isVisibleViewController])
     {
         if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
-            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : FETCHING", nil)]];
+            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : FETCHING", nil)] sticky:YES];
         else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
-            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : PARSING", nil)]];
+            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : PARSING", nil)] sticky:YES];
         else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
-            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : COMPLETED", nil)]];
+            [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : COMPLETED", nil)] sticky:NO];
     }
 }
 

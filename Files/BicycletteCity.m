@@ -183,7 +183,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     if(self.updater==nil)
     {
         self.updater = [[DataUpdater alloc] initWithURLStrings:[self updateURLStrings] delegate:self];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateBegan object:self];
+        [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:BicycletteCityNotifications.updateBegan object:self]
+                                                   postingStyle:NSPostASAP];
     }
 }
 

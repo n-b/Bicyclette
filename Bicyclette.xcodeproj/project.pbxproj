@@ -599,8 +599,6 @@
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
 				375760F11687D0DA0042FCF8 /* NextBikeCity.h */,
 				375760F21687D0DA0042FCF8 /* NextBikeCity.m */,
-				3722E0F6168AF8830069C6A8 /* VelowayCity.h */,
-				3722E0F7168AF8830069C6A8 /* VelowayCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -826,6 +824,8 @@
 				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
 				37F0923D1680E3D9001E8127 /* LaRochelleYeloCity.h */,
 				37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */,
+				3722E0F6168AF8830069C6A8 /* VelowayCity.h */,
+				3722E0F7168AF8830069C6A8 /* VelowayCity.m */,
 			);
 			name = SimpleStationsList;
 			sourceTree = "<group>";
