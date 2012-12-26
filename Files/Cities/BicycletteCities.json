@@ -1035,5 +1035,34 @@
         "radius": 10000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=216"
-    }
+    },
+ 
+    {
+        "city_class": "VelowayCity", 
+        "city_name": "Calais", 
+        "latitude": 50.9440296585055, 
+        "longitude": 1.86512508105466,
+        "radius": 10000,
+        "service_name": "Vel’In", 
+        "update_url": "http://www.vel-in.fr/cartoV2/libProxyCarto.asp"
+    }, 
+    {
+        "city_class": "VelowayCity", 
+        "city_name": "Nice",
+        "latitude": 43.7024895672004,
+        "longitude": 7.23606624316403,
+        "radius": 10000,
+        "service_name": "Vélo Bleu",
+        "update_url": "http://www.velobleu.org/cartoV2/libProxyCarto.asp"
+    }, 
+    {
+        "city_class": "VelowayCity", 
+        "city_name": "Vannes",
+        "latitude": 47.6628181616145, 
+        "longitude": -2.75553248215488, 
+        "radius": 10000,
+        "service_name": "Vélocéa", 
+        "update_url": "http://www.velocea.fr/cartoV2/libProxyCarto.asp"
+    }, 
+ 
 ]
