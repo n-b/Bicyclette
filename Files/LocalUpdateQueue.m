@@ -183,10 +183,14 @@
 @implementation NSArray (Locatable)
 - (instancetype) filteredArrayWithinDistance:(CLLocationDistance)distance fromLocation:(CLLocation*)location
 {
+    if(nil==location)
+        return [NSArray new];
     return [self filteredArrayUsingPredicate:
             [NSPredicate predicateWithBlock:
-             ^BOOL(id<Locatable> locatable, NSDictionary *bindings){
-                 return location && [location distanceFromLocation:locatable.location] < distance;
+             ^BOOL(id<Locatable> l, NSDictionary *bindings){
+                 CLLocationDistance d = [location distanceFromLocation:[l location]];
+                 if([l respondsToSelector:@selector(radius)]) d -= [l radius];
+                 return d < distance;
              }]];
 }
 
@@ -194,8 +198,11 @@
 {
     return [self sortedArrayUsingComparator:
             ^NSComparisonResult(id<Locatable> l1, id<Locatable> l2) {
-                CLLocationDistance d1 = [location distanceFromLocation:l1.location];
-                CLLocationDistance d2 = [location distanceFromLocation:l2.location];
+                CLLocationDistance d1 = [location distanceFromLocation:[l1 location]];
+                CLLocationDistance d2 = [location distanceFromLocation:[l2 location]];
+                if([l1 respondsToSelector:@selector(radius)]) d1 -= [l1 radius];
+                if([l2 respondsToSelector:@selector(radius)]) d2 -= [l2 radius];
+                
                 return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
             }];
 }

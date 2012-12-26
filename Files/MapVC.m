@@ -9,17 +9,15 @@
 #import "MapVC.h"
 #import "BicycletteApplicationDelegate.h"
 #import "BicycletteCity.h"
-#import "Station.h"
+#import "BicycletteCity.mogenerated.h"
 #import "Station+Update.h"
-#import "Region.h"
 #import "TransparentToolbar.h"
 #import "CollectionsAdditions.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
-#import "DrawingCache.h"
-#import "Radar.h"
+#import "CityAnnotationView.h"
 #import "RadarAnnotationView.h"
-#import "LocalUpdateQueue.h"
+#import "DrawingCache.h"
 #import "MKMapView+AttributionLogo.h"
 #import "UIViewController+Banner.h"
 #import "MapVC+DebugScreenshots.h"
@@ -128,8 +126,6 @@
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 
     self.userCoordinates = CLLocationCoordinate2DMake(0, 0);
-    // reload data
-    [self.controller reloadData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -143,7 +139,7 @@
     if (context == (__bridge void *)([MapVC class]))
     {
         if(object==[NSUserDefaults standardUserDefaults] && [keyPath isEqualToString:@"RadarDistance"])
-            [self updateRadarSizes];
+            [self updateAnnotationsSizes];
         else if(object==self.controller && [keyPath isEqualToString:@"currentCity"])
         {
             if(self.controller.currentCity)
@@ -234,15 +230,24 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [self.controller regionDidChange:self.mapView.region];
-    [self updateRadarSizes];
+    [self updateAnnotationsSizes];
 }
 
-- (void) updateRadarSizes
+- (void) updateAnnotationsSizes
 {
-    for (Radar * radar in [self.mapView.annotations filteredArrayWithValue:[Radar class] forKeyPath:@"class"])
+    for (id<MKAnnotation> annotation in self.mapView.annotations)
     {
-        RadarAnnotationView * radarView = (RadarAnnotationView *)[self.mapView viewForAnnotation:radar];
-        radarView.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:radar.radarRegion toRectToView:radarView].size};
+        if([annotation isKindOfClass:[Radar class]])
+        {
+            RadarAnnotationView * radarAV = (RadarAnnotationView *)[self.mapView viewForAnnotation:annotation];
+            radarAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:radarAV].size};
+        }
+        else if([annotation isKindOfClass:[_BicycletteCity class]])
+        {
+            CityAnnotationView * cityAV = (CityAnnotationView *)[self.mapView viewForAnnotation:annotation];
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
+            cityAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:region toRectToView:cityAV].size};
+        }
     }
 }
 
@@ -278,19 +283,28 @@
 
         return radarAV;
     }
+    else if([annotation isKindOfClass:[_BicycletteCity class]])
+    {
+        CityAnnotationView * cityAV = (CityAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[CityAnnotationView reuseIdentifier]];
+		if(nil==cityAV)
+			cityAV = [[CityAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
+        
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
+        CGSize citySize = [self.mapView convertRegion:region toRectToView:self.mapView].size;
+        cityAV.bounds = (CGRect){CGPointZero, citySize};
+        
+        return cityAV;
+    }
 	return nil;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     CLLocationCoordinate2D newCoord = userLocation.coordinate;
-    MKCoordinateRegion referenceRegion = self.controller.referenceRegion;
+    CLRegion * region = self.controller.currentCity.regionContainingData;
+    [region containsCoordinate:newCoord];
     if(self.userCoordinates.latitude == 0 && self.userCoordinates.longitude == 0
-       && newCoord.latitude != 0 && newCoord.longitude != 0
-       && newCoord.latitude > referenceRegion.center.latitude - referenceRegion.span.latitudeDelta
-       && newCoord.latitude < referenceRegion.center.latitude + referenceRegion.span.latitudeDelta
-       && newCoord.longitude > referenceRegion.center.longitude - referenceRegion.span.longitudeDelta
-       && newCoord.longitude < referenceRegion.center.longitude + referenceRegion.span.longitudeDelta)
+       && [region containsCoordinate:newCoord])
     {
         [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
         self.userCoordinates = newCoord;
@@ -300,7 +314,10 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
 	if([view.annotation isKindOfClass:[_BicycletteCity class]])
-        [self.mapView setRegion:[((BicycletteCity*)view.annotation) regionContainingData] animated:YES];
+    {
+        CLRegion * region = [((BicycletteCity*)view.annotation) regionContainingData];
+        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius*2, region.radius*2) animated:YES];
+    }
     else if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])

@@ -22,7 +22,7 @@ static void GrabDataForCity(BicycletteCity* city)
          BOOL logRegionsDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogRegionsDetails"];
          BOOL logStationsDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogStationsDetails"];
          BOOL logErrors = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogErrors"];
-
+         BOOL logMissingGeolocErrors = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogMissingGeolocErrors"];
          // Progress
          // BicycletteCity itself logs a lot of stuff during parsing regarding heuristics and hardcoded fixes
          if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
@@ -51,18 +51,8 @@ static void GrabDataForCity(BicycletteCity* city)
              
              if(logGeolocationDetails)
              {
-                 NSArray * stations = [city.moc executeFetchRequest:stationsRequest error:NULL];
-                 
-                 CLLocationCoordinate2D coordCenter = CLLocationCoordinate2DMake([[stations valueForKeyPath:@"@avg.latitude"] doubleValue],
-                                                                                 [[stations valueForKeyPath:@"@avg.longitude"] doubleValue]);
-                 
-                 CLLocationDistance maxDistance = 0;
-                 for (Station * station in stations)
-                 {
-                     maxDistance = MAX(maxDistance,
-                                       [station.location distanceFromLocation:city.location]);
-                 }
-                 [message appendFormat:@" actual center : (%f, %f) %.0fm\n", coordCenter.latitude, coordCenter.longitude, maxDistance];
+                 CLRegion * actualRegion = [city regionContainingData];
+                 [message appendFormat:@" data region : (%f, %f) %.0fm\n", actualRegion.center.latitude, actualRegion.center.longitude, actualRegion.radius];
              }
 
              // Log counts
@@ -94,7 +84,9 @@ static void GrabDataForCity(BicycletteCity* city)
                  {
                      [message appendFormat:@"\nErrors:\n"];
                      [saveErrors enumerateObjectsUsingBlock:^(NSError* error, NSUInteger idx, BOOL *stop) {
-                         [message appendFormat:@" %@ : %@\n",[error localizedDescription], [error localizedFailureReason]];
+                         CLLocation * l = error.userInfo[NSValidationValueErrorKey];
+                         if(l.coordinate.latitude!=0 || l.coordinate.longitude!=0 || logMissingGeolocErrors)
+                             [message appendFormat:@" %@ : %@ (%.0fm)\n",[error localizedDescription], [error localizedFailureReason],[l distanceFromLocation:city.location]];
                      }];
                  }
              }

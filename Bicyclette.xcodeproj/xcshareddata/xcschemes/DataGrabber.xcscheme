@@ -78,6 +78,10 @@
             argument = "-DataGrabberLogErrors YES"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-DataGrabberLogMissingGeolocErrors YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

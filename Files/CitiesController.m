@@ -71,21 +71,6 @@ typedef enum {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void) reloadData
-{
-    if(self.currentCity)
-        self.referenceRegion = self.currentCity.regionContainingData;
-    else
-    {
-        NSDictionary * dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"BicycletteLimits"];
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([dict[@"latitude"] doubleValue], [dict[@"longitude"] doubleValue]);
-        MKCoordinateSpan span = MKCoordinateSpanMake([dict[@"latitudeDelta"] doubleValue], [dict[@"longitudeDelta"] doubleValue]);
-        self.referenceRegion = MKCoordinateRegionMake(coord, span);
-    }
-        
-    [self addAndRemoveMapAnnotations];
-}
-
 - (void) setCurrentCity:(BicycletteCity *)currentCity_
 {
     if(_currentCity != currentCity_)
@@ -251,7 +236,7 @@ typedef enum {
 - (void) cityUpdated:(NSNotification*) note
 {
     if([note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue])
-        [self reloadData];
+        [self addAndRemoveMapAnnotations];
 }
 
 /****************************************************************************/

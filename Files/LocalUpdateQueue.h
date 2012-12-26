@@ -10,6 +10,8 @@
 // Locatable
 @protocol Locatable <NSObject>
 - (CLLocation *) location;
+@optional
+- (CLLocationDistance) radius;
 @end
 
 //

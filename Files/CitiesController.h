@@ -13,9 +13,7 @@
 @interface CitiesController : NSObject
 @property NSArray * cities;
 @property (readonly, nonatomic) BicycletteCity * currentCity;
-@property MKCoordinateRegion referenceRegion;
 @property (assign) id<CitiesControllerDelegate> delegate;
-- (void) reloadData;
 - (void) regionDidChange:(MKCoordinateRegion)region;
 - (void) handleLocalNotificaion:(UILocalNotification*)notification;
 @end

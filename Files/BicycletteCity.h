@@ -27,10 +27,10 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (NSString *) serviceName;
 - (NSArray *) updateURLStrings;
 - (CLRegion *) hardcodedLimits;
-#if TARGET_OS_IPHONE
-- (CLLocationCoordinate2D) coordinate;
-- (MKCoordinateRegion) regionContainingData;
-#endif
+- (CLRegion *) regionContainingData;
+- (CLLocation *) location; // Locatable
+- (CLLocationDistance) radius;  // Locatable
+- (CLLocationCoordinate2D) coordinate; // MKAnnotation
 
 #pragma mark Fetch requests
 - (Station*) stationWithNumber:(NSString*)number;

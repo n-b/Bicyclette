@@ -4,7 +4,7 @@
         "city_name": "Chattanooga", 
         "latitude": 35.056, 
         "longitude": -85.295, 
-        "radius": 20000,
+        "radius": 5000,
         "service_name": "Bike",
         "update_url": "http://www.bikechattanooga.com/stations/json"
     },
@@ -38,7 +38,7 @@
         "city_name": "Marseille", 
         "latitude": 43.296, 
         "longitude": 5.371, 
-        "radius": 30000,
+        "radius": 10000,
         "service_name": "Le Vélo", 
         "station_details_url": "http://www.levelo-mpm.fr/service/stationdetails/marseille/", 
 		"update_url": "http://www.levelo-mpm.fr/service/carto"
@@ -50,7 +50,7 @@
         "city_name": "Melbourne", 
         "latitude": -37.8174, 
         "longitude": 144.966, 
-        "radius": 30000,
+        "radius": 5000,
         "service_name": "BikeShare", 
 		"update_url": "http://www.melbournebikeshare.com.au/stationmap/data"
     },
@@ -61,7 +61,7 @@
         "city_name": "Orléans", 
         "latitude": 47.908, 
         "longitude": 1.908188, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "Vélo’+", 
 		"update_url": "https://www.agglo-veloplus.fr/component/data_1.xml"
     },
@@ -86,7 +86,7 @@
                 "codePostal": "75013"
             }
         }, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "Vélib‘",
 		"station_details_url": "http://www.velib.paris.fr/service/stationdetails/paris/",
 		"update_url": "http://www.velib.paris.fr/service/carto"
@@ -97,8 +97,8 @@
         "city_class": "RennesVeloStarCity", 
         "city_name": "Rennes", 
         "latitude": 48.1136, 
-        "longitude": -1.6752, 
-        "radius": 10000,
+        "longitude": -1.6752,
+        "radius": 5000,
         "service_name": "VéloStar", 
 		"update_url": "http://data.keolis-rennes.com/xml/?version=1.0&key=U3JFQO8IG7CUY28&cmd=getstation"
     },
@@ -118,7 +118,7 @@
         "city_name": "Toronto", 
         "latitude": 43.639, 
         "longitude": -79.379, 
-        "radius": 10000, 
+        "radius": 5000,
         "service_name": "BIXI", 
         "update_url": "http://toronto.bixi.com/data/bikeStations.xml"
     }, 
@@ -127,7 +127,7 @@
         "city_name": "Ottawa", 
         "latitude": 45.412, 
         "longitude": -75.699, 
-        "radius": 20000, 
+        "radius": 5000,
         "service_name": "BIXI", 
         "update_url": "http://capitale.bixi.com/data/bikeStations.xml"
     }, 
@@ -136,7 +136,7 @@
         "city_name": "London", 
         "latitude": 51.50738, 
         "longitude": -0.1105, 
-        "radius": 20000, 
+        "radius": 10000,
         "service_name": "Cycle Hire", 
         "update_url": "http://www.tfl.gov.uk/tfl/syndication/feeds/cycle-hire/livecyclehireupdates.xml"
     }, 
@@ -145,7 +145,7 @@
         "city_name": "Washington", 
         "latitude": 38.888, 
         "longitude": -77.038, 
-        "radius": 10000, 
+        "radius": 15000,
         "service_name": "Capital Bike Share", 
         "update_url": "http://capitalbikeshare.com/data/stations/bikeStations.xml"
     }, 
@@ -154,7 +154,7 @@
         "city_name": "Boston", 
         "latitude": 42.329, 
         "longitude": -71.058, 
-        "radius": 10000, 
+        "radius": 15000,
         "service_name": "Hubway", 
         "update_url": "http://www.thehubway.com/data/stations/bikeStations.xml"
     }, 
@@ -174,7 +174,7 @@
         "city_name": "Amiens", 
         "latitude": 49.8982, 
         "longitude": 2.301, 
-        "radius": 10000, 
+        "radius": 5000,
         "service_name": "Vélam", 
         "station_details_url": "http://www.velam.amiens.fr/service/stationdetails/amiens/", 
         "update_url": "http://www.velam.amiens.fr/service/carto"
@@ -194,7 +194,7 @@
         "city_name": "Brisbane", 
         "latitude": -27.481, 
         "longitude": 153.031, 
-        "radius": 30000, 
+        "radius": 5000,
         "service_name": "CityCycle", 
         "station_details_url": "http://www.citycycle.com.au/service/stationdetails/brisbane/", 
         "update_url": "http://www.citycycle.com.au/service/carto"
@@ -204,7 +204,7 @@
         "city_name": "Bruxelles", 
         "latitude": 50.8482, 
         "longitude": 4.357, 
-        "radius": 20000, 
+        "radius": 10000,
         "service_name": "Villo!",
         "station_details_url": "http://www.villo.be/service/stationdetails/bruxelles/", 
         "update_url": "http://www.villo.be/service/carto"
@@ -214,7 +214,7 @@
         "city_name": "Cergy-Pontoise", 
         "latitude": 49.0331, 
         "longitude": 2.0783, 
-        "radius": 20000, 
+        "radius": 10000,
         "service_name": "VélO2", 
         "station_details_url": "http://www.velo2.cergypontoise.fr/service/stationdetails/cergy/", 
         "update_url": "http://www.velo2.cergypontoise.fr/service/carto"
@@ -234,7 +234,7 @@
         "city_name": "Dublin", 
         "latitude": 53.347, 
         "longitude": -6.268, 
-        "radius": 20000, 
+        "radius": 5000,
         "service_name": "dublinbikes", 
         "station_details_url": "http://www.dublinbikes.ie/service/stationdetails/dublin/", 
         "update_url": "http://www.dublinbikes.ie/service/carto"
@@ -244,7 +244,7 @@
         "city_name": "Göteborg", 
         "latitude": 57.708, 
         "longitude": 11.974, 
-        "radius": 10000, 
+        "radius": 5000,
         "service_name": "Styr & Ställ", 
         "station_details_url": "http://www.goteborgbikes.se/service/stationdetails/goteborg/", 
         "update_url": "http://www.goteborgbikes.se/service/carto"
@@ -254,7 +254,7 @@
         "city_name": "Ljubljana", 
         "latitude": 46.054, 
         "longitude": 14.509, 
-        "radius": 10000, 
+        "radius": 5000,
         "service_name": "Bicike(LJ)", 
         "station_details_url": "http://www.bicikelj.si/service/stationdetails/ljubljana/", 
         "update_url": "http://www.bicikelj.si/service/carto"
@@ -294,7 +294,7 @@
         "city_name": "Nantes", 
         "latitude": 47.223, 
         "longitude": -1.546, 
-        "radius": 20000, 
+        "radius": 5000,
         "service_name": "Bicloo", 
         "station_details_url": "http://www.bicloo.nantesmetropole.fr/service/stationdetails/nantes/", 
         "update_url": "http://www.bicloo.nantesmetropole.fr/service/carto"
@@ -304,7 +304,7 @@
         "city_name": "Rouen", 
         "latitude": 49.4429, 
         "longitude": 1.0973, 
-        "radius": 10000, 
+        "radius": 5000,
         "service_name": "Cy’clic",
         "station_details_url": "http://cyclic.rouen.fr/service/stationdetails/rouen/", 
         "update_url": "http://cyclic.rouen.fr/service/carto"
@@ -344,7 +344,7 @@
         "city_name": "Toyama", 
         "latitude": 36.6935, 
         "longitude": 137.211, 
-        "radius": 10000, 
+        "radius": 5000,
         "service_name": "CyclOcity", 
         "station_details_url": "http://www.cyclocity.jp/service/stationdetails/toyama/", 
         "update_url": "http://www.cyclocity.jp/service/carto"
@@ -384,7 +384,7 @@
         "city_name": "Frankfurt", 
         "latitude": 50.1072, 
         "longitude": 8.66375, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=8"
     }, 
@@ -393,7 +393,7 @@
         "city_name": "Bielefeld", 
         "latitude": 52.0257, 
         "longitude": 8.53286, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=16"
     }, 
@@ -402,7 +402,7 @@
         "city_name": "Berlin", 
         "latitude": 52.5087, 
         "longitude": 13.3563, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=20"
     }, 
@@ -411,7 +411,7 @@
         "city_name": "Offenbach", 
         "latitude": 50.1093, 
         "longitude": 8.73825, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=32"
     }, 
@@ -420,7 +420,7 @@
         "city_name": "Magdeburg", 
         "latitude": 52.1268, 
         "longitude": 11.6342, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=42"
     }, 
@@ -437,7 +437,7 @@
         "city_class": "NextBikeCity", 
         "city_name": "D\u00fcsseldorf", 
         "latitude": 51.2243, 
-        "longitude": 6.77204, 
+        "longitude": 6.77204,
         "radius": 10000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=50"
@@ -447,7 +447,7 @@
         "city_name": "Coburg", 
         "latitude": 50.2583, 
         "longitude": 10.9651, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=72"
     }, 
@@ -456,7 +456,7 @@
         "city_name": "Erfurt", 
         "latitude": 50.9718, 
         "longitude": 11.0259, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=86"
     }, 
@@ -465,7 +465,7 @@
         "city_name": "Hannover", 
         "latitude": 52.3721, 
         "longitude": 9.73569, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=87"
     }, 
@@ -474,7 +474,7 @@
         "city_name": "T\u00fcbingen", 
         "latitude": 48.5203, 
         "longitude": 9.05591, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=101"
     }, 
@@ -498,10 +498,10 @@
     }, 
     {
         "city_class": "NextBikeCity", 
-        "city_name": "Offenburg", 
+        "city_name": "Offenburg",
         "latitude": 48.4721, 
         "longitude": 7.94243, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=155"
     }, 
@@ -519,7 +519,7 @@
         "city_name": "G\u00fctersloh", 
         "latitude": 51.9049, 
         "longitude": 8.39275, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=160"
     }, 
@@ -546,34 +546,34 @@
         "city_name": "Halensee", 
         "latitude": 52.4986, 
         "longitude": 13.3001, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=182"
-    }, 
+    },
     {
         "city_class": "NextBikeCity", 
         "city_name": "Burghausen", 
         "latitude": 48.1726, 
         "longitude": 12.8311, 
-        "radius": 10000,
-        "service_name": "NextBike", 
+        "radius": 5000,
+        "service_name": "NextBike",
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=201"
-    }, 
+    },
     {
         "city_class": "NextBikeCity", 
         "city_name": "Ober\u00f6sterreich", 
         "latitude": 48.199, 
         "longitude": 13.9362, 
-        "radius": 10000,
+        "radius": 75000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=189"
-    }, 
+    },
     {
         "city_class": "NextBikeCity", 
         "city_name": "Auckland", 
         "latitude": -36.8603, 
         "longitude": 174.763, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=34"
     }, 
@@ -582,7 +582,7 @@
         "city_name": "NeusiedlerSee", 
         "latitude": 47.839, 
         "longitude": 16.761, 
-        "radius": 10000,
+        "radius": 25000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=23"
     }, 
@@ -600,7 +600,7 @@
         "city_name": "St.P\u00f6lten", 
         "latitude": 48.2058, 
         "longitude": 15.6232, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=57"
     }, 
@@ -618,7 +618,7 @@
         "city_name": "Bregenzerwald", 
         "latitude": 47.3751, 
         "longitude": 9.93301, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=71"
     }, 
@@ -627,7 +627,7 @@
         "city_name": "Wachau", 
         "latitude": 48.3188, 
         "longitude": 15.4166, 
-        "radius": 10000,
+        "radius": 20000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=142"
     }, 
@@ -636,7 +636,7 @@
         "city_name": "Tulln", 
         "latitude": 48.3269, 
         "longitude": 16.0569, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=143"
     }, 
@@ -645,7 +645,7 @@
         "city_name": "Triestingtal", 
         "latitude": 47.9835, 
         "longitude": 16.0812, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=144"
     }, 
@@ -654,8 +654,8 @@
         "city_name": "Thermenregion", 
         "latitude": 47.9892, 
         "longitude": 16.2646, 
-        "radius": 10000,
-        "service_name": "NextBike", 
+        "radius": 15000,
+        "service_name": "NextBike",
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=146"
     }, 
     {
@@ -663,16 +663,16 @@
         "city_name": "R\u00f6merland", 
         "latitude": 48.0909, 
         "longitude": 16.853, 
-        "radius": 10000,
+        "radius": 25000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=149"
     }, 
     {
         "city_class": "NextBikeCity", 
-        "city_name": "\u00d6BB-Bahnh\u00f6fe", 
+        "city_name": "\u00d6BB-Bahnh\u00f6fe",
         "latitude": 48.0193, 
         "longitude": 16.3092, 
-        "radius": 10000,
+        "radius": 120000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=150"
     }, 
@@ -681,7 +681,7 @@
         "city_name": "Wieselburg", 
         "latitude": 48.1739, 
         "longitude": 15.1556, 
-        "radius": 10000,
+        "radius": 30000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=151"
     }, 
@@ -690,7 +690,7 @@
         "city_name": "Wr.Neustadt", 
         "latitude": 47.8221, 
         "longitude": 16.2498, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=156"
     }, 
@@ -708,7 +708,7 @@
         "city_name": "Neunkirchen", 
         "latitude": 47.7227, 
         "longitude": 16.0804, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=163"
     }, 
@@ -726,7 +726,7 @@
         "city_name": "Unteres", 
         "latitude": 48.3343, 
         "longitude": 15.6878, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=165"
     }, 
@@ -735,25 +735,25 @@
         "city_name": "Haag", 
         "latitude": 48.0643, 
         "longitude": 14.7368, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=167"
     }, 
     {
-        "city_class": "NextBikeCity", 
+        "city_class": "NextBikeCity",
         "city_name": "Piestingtal", 
         "latitude": 47.8841, 
         "longitude": 15.9467, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=168"
     }, 
     {
-        "city_class": "NextBikeCity", 
+        "city_class": "NextBikeCity",
         "city_name": "Mistelbach", 
         "latitude": 48.5674, 
         "longitude": 16.5722, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=169"
     }, 
@@ -762,7 +762,7 @@
         "city_name": "Marchfeld", 
         "latitude": 48.2741, 
         "longitude": 16.7116, 
-        "radius": 10000,
+        "radius": 20000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=170"
     }, 
@@ -771,25 +771,25 @@
         "city_name": "10vorWien", 
         "latitude": 48.3462, 
         "longitude": 16.2735, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=174"
     }, 
     {
-        "city_class": "NextBikeCity", 
+        "city_class": "NextBikeCity",
         "city_name": "Traisen-G\u00f6lsental", 
         "latitude": 47.9504, 
         "longitude": 15.6129, 
-        "radius": 10000,
+        "radius": 20000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=180"
     }, 
     {
-        "city_class": "NextBikeCity", 
+        "city_class": "NextBikeCity",
         "city_name": "Oberes", 
         "latitude": 47.8205, 
         "longitude": 15.0073, 
-        "radius": 10000,
+        "radius": 20000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=181"
     }, 
@@ -798,7 +798,7 @@
         "city_name": "Laa", 
         "latitude": 48.7196, 
         "longitude": 16.3878, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=184"
     }, 
@@ -807,7 +807,7 @@
         "city_name": "S\u00fcdheide", 
         "latitude": 48.1077, 
         "longitude": 16.3937, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=185"
     }, 
@@ -816,7 +816,7 @@
         "city_name": "Tullnerfeld", 
         "latitude": 48.2994, 
         "longitude": 15.9065, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=196"
     }, 
@@ -825,7 +825,7 @@
         "city_name": "Luzern", 
         "latitude": 47.0476, 
         "longitude": 8.3011, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=126"
     }, 
@@ -843,7 +843,7 @@
         "city_name": "Jurmala", 
         "latitude": 56.9732, 
         "longitude": 23.8225, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "balticbike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=140"
     }, 
@@ -852,7 +852,7 @@
         "city_name": "Wroc\u0142aw", 
         "latitude": 51.1097, 
         "longitude": 17.0485, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=148"
     }, 
@@ -897,7 +897,7 @@
         "city_name": "Bottrop", 
         "latitude": 51.5263, 
         "longitude": 6.94611, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "metroradruhr", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=131"
     }, 
@@ -933,7 +933,7 @@
         "city_name": "Hamm", 
         "latitude": 51.6775, 
         "longitude": 7.84836, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "metroradruhr", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=135"
     }, 
@@ -951,7 +951,7 @@
         "city_name": "M\u00fclheim", 
         "latitude": 51.4308, 
         "longitude": 6.87401, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "metroradruhr", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=137"
     }, 
@@ -967,9 +967,9 @@
     {
         "city_class": "NextBikeCity", 
         "city_name": "Limassol", 
-        "latitude": 34.6823, 
+        "latitude": 34.6823,
         "longitude": 33.0464, 
-        "radius": 10000,
+        "radius": 45000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=190"
     }, 
@@ -978,7 +978,7 @@
         "city_name": "Bemowo", 
         "latitude": 52.2425, 
         "longitude": 20.9149, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=197"
     }, 
@@ -987,7 +987,7 @@
         "city_name": "Poznan", 
         "latitude": 52.4077, 
         "longitude": 16.9323, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=192"
     }, 
@@ -996,7 +996,7 @@
         "city_name": "Opole", 
         "latitude": 50.6633, 
         "longitude": 17.9239, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=202"
     }, 
@@ -1005,7 +1005,7 @@
         "city_name": "Baku", 
         "latitude": 40.3605, 
         "longitude": 49.8426, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=205"
     }, 
@@ -1014,7 +1014,7 @@
         "city_name": "Warszawa", 
         "latitude": 52.2324, 
         "longitude": 21.0127, 
-        "radius": 10000,
+        "radius": 15000,
         "service_name": "veturilo", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=210"
     }, 
@@ -1023,7 +1023,7 @@
         "city_name": "Konya", 
         "latitude": 37.8715, 
         "longitude": 32.4957, 
-        "radius": 10000,
+        "radius": 20000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=183"
     }, 
@@ -1060,7 +1060,7 @@
         "city_name": "Vannes",
         "latitude": 47.6628181616145, 
         "longitude": -2.75553248215488, 
-        "radius": 10000,
+        "radius": 5000,
         "service_name": "Vélocéa", 
         "update_url": "http://www.velocea.fr/cartoV2/libProxyCarto.asp"
     }, 

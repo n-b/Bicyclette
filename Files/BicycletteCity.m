@@ -24,9 +24,7 @@
 @interface _BicycletteCity () <DataUpdaterDelegate>
 @property NSDictionary* serviceInfo;
 @property DataUpdater * updater;
-#if TARGET_OS_IPHONE
-@property (nonatomic, readwrite) MKCoordinateRegion regionContainingData;
-#endif
+@property (nonatomic, readwrite) CLRegion * regionContainingData;
 @end
 
 #pragma mark -
@@ -105,50 +103,43 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
                                                    radius:[self.serviceInfo[@"radius"] doubleValue] identifier:[self title]];
 }
 
-- (CLLocation *) location
+- (CLRegion*) regionContainingData
 {
-    return [[CLLocation alloc] initWithLatitude:[self.serviceInfo[@"latitude"] doubleValue] longitude:[self.serviceInfo[@"longitude"] doubleValue]];
+	if(nil==_regionContainingData)
+	{
+        NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
+		NSError * requestError = nil;
+		NSArray * stations = [self.moc executeFetchRequest:stationsRequest error:&requestError];
+        if([stations count]==0)
+            return [self hardcodedLimits];
+        
+        CLLocation * dataCenter = [[CLLocation alloc] initWithLatitude:[[stations valueForKeyPath:@"@avg.latitude"] doubleValue] longitude:[[stations valueForKeyPath:@"@avg.longitude"] doubleValue]];
+
+        CLLocationDistance distanceMax = 0;
+        for (Station * station in stations)
+            distanceMax = MAX(distanceMax, [station.location distanceFromLocation:dataCenter]);
+
+		self.regionContainingData = [[CLRegion alloc] initCircularRegionWithCenter:dataCenter.coordinate
+                                                                            radius:distanceMax
+                                                                        identifier:[self title]];
+	}
+	return _regionContainingData;
 }
 
-#if TARGET_OS_IPHONE
+- (CLLocation *) location
+{
+    return [[CLLocation alloc] initWithLatitude:self.regionContainingData.center.latitude longitude:self.regionContainingData.center.longitude];
+}
+
+- (CLLocationDistance) radius
+{
+    return self.regionContainingData.radius;
+}
+
 - (CLLocationCoordinate2D) coordinate
 {
     return self.regionContainingData.center;
 }
-
-- (MKCoordinateRegion) regionContainingData
-{
-	if(_regionContainingData.center.latitude == 0 &&
-	   _regionContainingData.center.longitude == 0 &&
-	   _regionContainingData.span.latitudeDelta == 0 &&
-	   _regionContainingData.span.longitudeDelta == 0 )
-	{
-		NSFetchRequest * regionsRequest = [NSFetchRequest new];
-		[regionsRequest setEntity:[Region entityInManagedObjectContext:self.moc]];
-		NSError * requestError = nil;
-		NSArray * regions = [self.moc executeFetchRequest:regionsRequest error:&requestError];
-        if([regions count]==0)
-        {
-            CLRegion * limits = [self hardcodedLimits];
-            return MKCoordinateRegionMakeWithDistance(limits.center, limits.radius*2, limits.radius*2);
-        }
-        
-		NSNumber * minLat = [regions valueForKeyPath:@"@min.minLatitude"];
-		NSNumber * maxLat = [regions valueForKeyPath:@"@max.maxLatitude"];
-		NSNumber * minLng = [regions valueForKeyPath:@"@min.minLongitude"];
-		NSNumber * maxLng = [regions valueForKeyPath:@"@max.maxLongitude"];
-		
-		CLLocationCoordinate2D center;
-		center.latitude = ([minLat doubleValue] + [maxLat doubleValue]) / 2.0f;
-		center.longitude = ([minLng doubleValue] + [maxLng doubleValue]) / 2.0f; // This is very wrong ! Do I really need a if?
-		MKCoordinateSpan span;
-		span.latitudeDelta = fabs([minLat doubleValue] - [maxLat doubleValue]);
-		span.longitudeDelta = fabs([minLng doubleValue] - [maxLng doubleValue]);
-		self.regionContainingData = MKCoordinateRegionMake(center, span);
-	}
-	return _regionContainingData;
-}
-#endif
 
 #pragma mark Fetch requests
 
