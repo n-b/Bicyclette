@@ -89,7 +89,7 @@ The data contains both the List of stations and the Status Details.
 ## Veloway (Veolia)
 No details yet on whether these services can be legally used in 3rd party apps.
 The data contains both the List of stations and the Status Details. It appears all those services are actually hosted on the same servers.
-Model : `http://{servicewebsite}/cartoV2/libProxyCarto.asp
+Model : http://{servicewebsite}/cartoV2/libProxyCarto.asp
 * Calais : http://www.vel-in.fr
 * Nice : http://www.velobleu.org
 * Vannes : http://www.velocea.fr
@@ -141,7 +141,9 @@ Of course, no terms of use are available.
 
 ## CityBike (aka Clear Channel)
 * Caen (List+Details) : https://www.veol.caen.fr/localizaciones/localizaciones.php
+	* Details Webservice : http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx
 * Dijon (List+Details) : https://www.velodi.net/localizaciones/localizaciones.php
+	* Details Webservice : http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx
 * Perpignan (List+Details) : https://www.bip-perpignan.fr/localizaciones/localizaciones.php
 * Milano (List+Details) : http://www.bikemi.com/localizaciones/localizaciones.php
 * Drammen (List+Details) : http://drammen.clearchannel.com/stationsmap

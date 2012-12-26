@@ -237,7 +237,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
                 
         // Delete Old Stations
         for (Station * oldStation in oldStations) {
-            NSLog(@"Note : old station deleted after update : %@", oldStation);
+            if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
+                NSLog(@"Note : old station deleted after update : %@", oldStation);
             [updateContext deleteObject:oldStation];
         }
         

@@ -17,12 +17,24 @@ static void GrabDataForCity(BicycletteCity* city)
     // Observe notifications
     [[NSNotificationCenter defaultCenter] addObserverForName:nil object:city queue:[NSOperationQueue currentQueue] usingBlock:^(NSNotification *note)
      {
+         BOOL logProgress = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogProgress"];
+         BOOL logGeolocationDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogGeolocationDetails"];
+         BOOL logRegionsDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogRegionsDetails"];
+         BOOL logStationsDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogStationsDetails"];
+         BOOL logErrors = [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogErrors"];
+
          // Progress
          // BicycletteCity itself logs a lot of stuff during parsing regarding heuristics and hardcoded fixes
          if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
-             printf("Updating...\n");
+         {
+             if(logProgress)
+                 printf("Updating...\n");
+         }
          else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
-             printf("Parsing...\n");
+         {
+             if(logProgress)
+                 printf("Parsing...\n");
+         }
          
          // Success
          else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
@@ -30,33 +42,61 @@ static void GrabDataForCity(BicycletteCity* city)
              BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
              NSCAssert(dataChanged, @"This is a build tool ! There should not be previously existing data !");
 
-             NSMutableString * message = [@"Completed\n" mutableCopy];
-             // How many stations were created ?
-             NSFetchRequest *stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-             [message appendFormat:@" %d Stations\n", (int)[city.moc countForFetchRequest:stationsRequest error:NULL]];
+             NSMutableString * message = [NSMutableString new];
+             if(logProgress)
+                 [message appendFormat:@"Completed\n"];
              
-             // Get Regions
-             NSFetchRequest *regionsRequest = [[NSFetchRequest alloc] initWithEntityName:[Region entityName]];
-             regionsRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:RegionAttributes.number ascending:YES]];
-             [message appendFormat:@" %d Regions:\n", (int)[city.moc countForFetchRequest:regionsRequest error:NULL]];
+             // region stats
+             NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
              
-             for (Region * region in [city.moc executeFetchRequest:regionsRequest error:NULL])
+             if(logGeolocationDetails)
              {
-                 [message appendFormat:@"  %@ : %d Stations, (%@-%@, %@-%@)\n",region.number, (int)[region.stations count], region.minLatitude, region.maxLatitude, region.minLongitude, region.maxLongitude];
-                 for (Station * station in region.stations)
+                 NSArray * stations = [city.moc executeFetchRequest:stationsRequest error:NULL];
+                 
+                 CLLocationCoordinate2D coordCenter = CLLocationCoordinate2DMake([[stations valueForKeyPath:@"@avg.latitude"] doubleValue],
+                                                                                 [[stations valueForKeyPath:@"@avg.longitude"] doubleValue]);
+                 
+                 CLLocationDistance maxDistance = 0;
+                 for (Station * station in stations)
                  {
-                     [message appendFormat:@"   \"%@\"->\"%@\"\n",station.name, [city titleForStation:station]];
+                     maxDistance = MAX(maxDistance,
+                                       [station.location distanceFromLocation:city.location]);
+                 }
+                 [message appendFormat:@" actual center : (%f, %f) %.0fm\n", coordCenter.latitude, coordCenter.longitude, maxDistance];
+             }
+
+             // Log counts
+             NSFetchRequest * regionsRequest = [[NSFetchRequest alloc] initWithEntityName:[Region entityName]];
+             regionsRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:RegionAttributes.number ascending:YES]];
+             if (logRegionsDetails)
+             {
+                 [message appendFormat:@" %d Stations\n", (int)[city.moc countForFetchRequest:stationsRequest error:NULL]];
+                 [message appendFormat:@" %d Regions:\n", (int)[city.moc countForFetchRequest:regionsRequest error:NULL]];
+             
+                 for (Region * region in [city.moc executeFetchRequest:regionsRequest error:NULL])
+                 {
+                     [message appendFormat:@"  %@ : %d Stations, (%@-%@, %@-%@)\n",region.number, (int)[region.stations count], region.minLatitude, region.maxLatitude, region.minLongitude, region.maxLongitude];
+                     if (logStationsDetails) {
+                         for (Station * station in region.stations)
+                         {
+                             [message appendFormat:@"   \"%@\"->\"%@\"\n",station.name, [city titleForStation:station]];
+                         }
+                     }
                  }
              }
              
-             // Were some
-             NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
-             if(nil!=saveErrors)
+             
+             // Errors ?
+             if(logErrors)
              {
-                 [message appendFormat:@"\nErrors:"];
-                 [saveErrors enumerateObjectsUsingBlock:^(NSError* error, NSUInteger idx, BOOL *stop) {
-                     [message appendFormat:@"\n %@ : %@",[error localizedDescription], [error localizedFailureReason]];
-                 }];
+                 NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
+                 if(nil!=saveErrors)
+                 {
+                     [message appendFormat:@"\nErrors:\n"];
+                     [saveErrors enumerateObjectsUsingBlock:^(NSError* error, NSUInteger idx, BOOL *stop) {
+                         [message appendFormat:@" %@ : %@\n",[error localizedDescription], [error localizedFailureReason]];
+                     }];
+                 }
              }
              
              printf("%s\n",[message UTF8String]);
@@ -96,8 +136,10 @@ int main(int argc, const char * argv[])
         for (BicycletteCity* city in [_BicycletteCity allCities]) {
             [city erase];
         }
+        NSString * cityFilter = [[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberCityFilter"];
         for (BicycletteCity* city in [_BicycletteCity allCities]) {
-            GrabDataForCity(city);
+            if(cityFilter==nil || [NSStringFromClass([city class]) rangeOfString:cityFilter].location!=NSNotFound)
+                GrabDataForCity(city);
         }
     }
 }

@@ -99,7 +99,7 @@
         }
         else
         {
-            if(oldStations.count)
+            if(oldStations.count && [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
                 NSLog(@"Note : new station found after update : %@", stationInfo);
             station = [Station insertInManagedObjectContext:context];
         }

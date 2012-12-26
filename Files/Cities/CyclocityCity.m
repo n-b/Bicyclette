@@ -102,7 +102,8 @@
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
 	if([elementName isEqualToString:@"marker"])
-	{        
+	{
+        BOOL logParsingDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"];
         // Find Existing Station
         Station * station = [_parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKeyPath:StationAttributes.number];
         if(station)
@@ -112,7 +113,7 @@
         }
         else
         {
-            if(_parsing_oldStations.count)
+            if(logParsingDetails && _parsing_oldStations.count)
                 NSLog(@"Note : new station found after update : %@", attributeDict);
             station = [Station insertInManagedObjectContext:_parsing_context];
         }
@@ -123,7 +124,8 @@
         BOOL hasDataPatches = patchs && ![[[patchs allKeys] arrayByRemovingObjectsInArray:[[self KVCMapping] allKeys]] isEqualToArray:[patchs allKeys]];
 		if(hasDataPatches)
 		{
-			NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, patchs);
+            if(logParsingDetails)
+                NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",attributeDict, patchs);
 			[station setValuesForKeysWithDictionary:patchs withMappingDictionary:[self KVCMapping]]; // Yay! again
 		}
         
@@ -135,7 +137,8 @@
             regionInfo = [self regionInfoFromStation:station patchs:patchs];
             if(nil==regionInfo)
             {
-                NSLog(@"Invalid data : %@",attributeDict);
+                if(logParsingDetails)
+                    NSLog(@"Invalid data : %@",attributeDict);
                 [_parsing_context deleteObject:station];
                 return;
             }
