@@ -29,7 +29,6 @@
         // location manager
         self.locationManager = [CLLocationManager new];
         self.locationManager.delegate = self;
-        self.locationManager.purpose = NSLocalizedString(@"LOCALIZATION_PURPOSE", nil);
         
         self.geofences = [NSMutableSet new];
     }

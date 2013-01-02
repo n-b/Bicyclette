@@ -41,7 +41,7 @@ const NSUInteger kBannerSuperviewViewTag = 42105;
         banner.backgroundColor = [UIColor colorWithHue:.65 saturation:.5 brightness:.7 alpha:.5];
         banner.font = [UIFont systemFontOfSize:20];
         banner.numberOfLines = 0;
-        banner.textAlignment = UITextAlignmentCenter;
+        banner.textAlignment = NSTextAlignmentCenter;
         banner.textColor = [UIColor colorWithWhite:1 alpha:.8];
         banner.shadowColor = [UIColor colorWithWhite:.67 alpha:1];
 

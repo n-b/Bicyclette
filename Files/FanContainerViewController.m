@@ -116,11 +116,6 @@
 /****************************************************************************/
 #pragma mark Rotation support
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation // iOS 5
-{
-    return [[self visibleViewController] shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
-}
-
 - (BOOL) shouldAutorotate // iOS 6
 {
     return [[self visibleViewController] shouldAutorotate];

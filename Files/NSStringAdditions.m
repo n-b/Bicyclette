@@ -45,10 +45,7 @@
 
 - (NSString*) capitalizedStringWithCurrentLocale
 {
-    if([self respondsToSelector:@selector(capitalizedStringWithLocale:)])
-        return [self capitalizedStringWithLocale:[NSLocale currentLocale]];
-    else
-        return [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length-1) withString:[[self substringFromIndex:1] lowercaseString]];
+    return [self capitalizedStringWithLocale:[NSLocale currentLocale]];
 }
 
 @end

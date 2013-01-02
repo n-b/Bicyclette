@@ -89,11 +89,11 @@
         
         [kAnnotationTitleTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationTitleShadowColor CGColor]);
-        [line1 drawInRect:rect1 withFont:kAnnotationTitleFont lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+        [line1 drawInRect:rect1 withFont:kAnnotationTitleFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
         
         [kAnnotationDetailTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationDetailShadowColor CGColor]);
-        [line2 drawInRect:rect2 withFont:kAnnotationDetailFont lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+        [line2 drawInRect:rect2 withFont:kAnnotationDetailFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
 }
 

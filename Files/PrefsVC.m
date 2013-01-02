@@ -111,12 +111,6 @@
 /****************************************************************************/
 #pragma mark Autorotation support
 
-// iOS 5
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return NO;
-}
-
 // iOS 6
 - (BOOL) shouldAutorotate
 {

@@ -23,8 +23,6 @@
 
 "UPDATING : FAILED" = "Échec de la mise à jour";
 
-"LOCALIZATION_PURPOSE" = "Bicyclette utilise le service de localisation pour interroger automatiquement les stations à proximité.";
-
 "LOCALIZATION_ERROR_UNAUTHORIZED_TITLE" = "Le service de localisation (GPS) est désactivé.";
 "LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "Vous pouvez autoriser Bicyclette à utiliser le service de localisation dans Réglages > Confidentialité.";
 

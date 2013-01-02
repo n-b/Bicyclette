@@ -107,6 +107,7 @@
 		377620E6167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */; };
 		377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */; };
 		377863A9169468990036A37C /* NSProcessInfo+HardwareMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */; };
+		377863AE1694769D0036A37C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 377863AD1694769D0036A37C /* InfoPlist.strings */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -339,6 +340,7 @@
 		377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrleansVeloPlusCity.m; sourceTree = "<group>"; };
 		377863A7169468990036A37C /* NSProcessInfo+HardwareMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+HardwareMachine.h"; sourceTree = "<group>"; };
 		377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+HardwareMachine.m"; sourceTree = "<group>"; };
+		377863AD1694769D0036A37C /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -359,7 +361,6 @@
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
 		37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
-		37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatibilityCategories.h; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		37B97574167779BD00B38AC4 /* BicycletteCity.mogenerated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteCity.mogenerated.h; sourceTree = "<group>"; };
 		37BE759A15E6BDE4001DABF6 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
@@ -664,8 +665,8 @@
 				3756EADE1298018A00113534 /* Info.plist */,
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
 				37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */,
+				377863AD1694769D0036A37C /* InfoPlist.strings */,
 				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
-				37B7ABE315E3D8D300268B70 /* CompatibilityCategories.h */,
 				3786E4E214825A7700814C10 /* Test Supporting Files */,
 			);
 			name = "Supporting Files";
@@ -1039,6 +1040,7 @@
 				37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */,
 				375760EE1687C6360042FCF8 /* Marseille_Le Vélo.coredata in Resources */,
 				375760EF1687C6360042FCF8 /* Paris_Vélib‘.coredata in Resources */,
+				377863AE1694769D0036A37C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,7 +1236,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Files/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = Bicyclette;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1244,7 +1246,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Files/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = Bicyclette;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

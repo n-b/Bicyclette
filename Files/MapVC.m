@@ -177,12 +177,6 @@
     [self.mapView relocateAttributionLogoIfNecessary];
 }
 
-// iOS 5
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
-
 // iOS 6
 - (BOOL) shouldAutorotate
 {
