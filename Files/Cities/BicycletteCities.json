@@ -876,96 +876,6 @@
     }, 
     {
         "city_class": "NextBikeCity", 
-        "city_name": "Dortmund", 
-        "latitude": 51.5141, 
-        "longitude": 7.46255, 
-        "radius": 10000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=129"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Bochum", 
-        "latitude": 51.4813, 
-        "longitude": 7.2133, 
-        "radius": 10000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=130"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Bottrop", 
-        "latitude": 51.5263, 
-        "longitude": 6.94611, 
-        "radius": 5000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=131"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Duisburg", 
-        "latitude": 51.4487, 
-        "longitude": 6.77513, 
-        "radius": 10000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=132"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Essen", 
-        "latitude": 51.4425, 
-        "longitude": 7.02301, 
-        "radius": 10000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=133"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Gelsenkirchen", 
-        "latitude": 51.5404, 
-        "longitude": 7.07039, 
-        "radius": 10000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=134"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Hamm", 
-        "latitude": 51.6775, 
-        "longitude": 7.84836, 
-        "radius": 5000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=135"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Herne", 
-        "latitude": 51.5233, 
-        "longitude": 7.14661, 
-        "radius": 10000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=136"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "M\u00fclheim", 
-        "latitude": 51.4308, 
-        "longitude": 6.87401, 
-        "radius": 5000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=137"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Oberhausen", 
-        "latitude": 51.4936, 
-        "longitude": 6.85169, 
-        "radius": 10000,
-        "service_name": "metroradruhr", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=138"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
         "city_name": "Limassol", 
         "latitude": 34.6823,
         "longitude": 33.0464, 
@@ -1027,20 +937,33 @@
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=183"
     }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "London", 
-        "latitude": 51.4959, 
-        "longitude": -0.126343, 
-        "radius": 10000,
-        "service_name": "NextBike", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=216"
-    },
  
+    {
+        "city_class": "MetroRadRuhrCity",
+        "city_name": "MetroRadRuhr", 
+        "latitude": 51.492122,
+        "longitude": 7.107475,
+        "radius": 65000,
+        "service_name": "metroradruhr", 
+        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=",
+		"regions": {
+			"129":"Dortmund",
+            "130":"Bochum",
+            "131":"Bottrop",
+            "132":"Duisburg",
+            "133":"Essen",
+            "134":"Gelsenkirchen",
+            "135":"Hamm",
+            "136":"Herne",
+            "137":"M\u00fclheim",
+            "138":"Oberhausen"
+		 }
+    },
+
     {
         "city_class": "VelowayCity", 
         "city_name": "Calais", 
-        "latitude": 50.9440296585055, 
+        "latitude": 50.9440296585055,
         "longitude": 1.86512508105466,
         "radius": 10000,
         "service_name": "Vel’In", 

@@ -9,5 +9,7 @@
 #import "BicycletteCity.h"
 
 @interface NextBikeCity : _BicycletteCity <BicycletteCity>
+@end
 
+@interface MetroRadRuhrCity : NextBikeCity
 @end

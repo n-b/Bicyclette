@@ -16,6 +16,10 @@
     return (BicycletteCity*)self.annotation;
 }
 
+- (BOOL)canShowCallout
+{
+    return YES;
+}
 
 - (void) setBounds:(CGRect)bounds
 {

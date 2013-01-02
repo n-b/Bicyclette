@@ -164,7 +164,7 @@ typedef enum {
 {
     NSMutableArray * newAnnotations = [NSMutableArray new];
     
-//    if (self.level == MapLevelNone)
+    if (self.level == MapLevelNone)
     {
         // City
         [newAnnotations addObjectsFromArray:self.cities];
