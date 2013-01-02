@@ -22,6 +22,7 @@
 #import "UIViewController+Banner.h"
 #import "MapVC+DebugScreenshots.h"
 #import "FanContainerViewController.h"
+#import "MapViewScaleView.h"
 
 @interface MapVC() <MKMapViewDelegate>
 // UI
@@ -29,6 +30,7 @@
 @property UIToolbar * mapVCToolbar; // Do not use the system toolbal to prevent its height from changing
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * modeControl;
+@property MapViewScaleView * scaleView;
 
 @property StationAnnotationMode stationMode;
 @property CLLocationCoordinate2D userCoordinates;
@@ -82,10 +84,12 @@
     // on iPhone, the toolbar is transparent and the mapview is visible beneath it.
     // on iPad, it's opaque.
 #define kToolbarHeight 44 // Strange. I was expecting to find a declared constant for it.
-    CGRect mapViewFrame, toolBarFrame;
-    CGRectDivide(self.view.bounds, &toolBarFrame, &mapViewFrame, kToolbarHeight, CGRectMaxYEdge);
+    CGRect mapViewFrame, toolBarFrame, frameAboveToolbar;
+    CGRectDivide(self.view.bounds, &toolBarFrame, &frameAboveToolbar, kToolbarHeight, CGRectMaxYEdge);
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         mapViewFrame = self.view.bounds;
+    else
+        mapViewFrame = frameAboveToolbar;
 
     // Create mapview
     self.mapView = [[MKMapView alloc]initWithFrame:mapViewFrame];
@@ -122,6 +126,41 @@
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         self.mapVCToolbar.translucent = YES; // means transparent actually
 
+    // Add Scale
+    CGRect scaleFrame = frameAboveToolbar;
+    
+    CGRect nothing;
+    CGFloat scaleViewMargin = 9;
+    CGFloat scaleViewWidth = 100;
+    CGFloat scaleViewHeight = 13;
+    CGRectEdge xEdge, yEdge;
+    UIViewAutoresizing resizingMask;
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        xEdge = CGRectMinXEdge;
+        yEdge = CGRectMinYEdge;
+        resizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+        CGRectDivide(scaleFrame, &nothing, &scaleFrame, [[UIScreen mainScreen] applicationFrame].origin.y, CGRectMinYEdge);
+    }
+    else
+    {
+        xEdge = CGRectMaxXEdge;
+        yEdge = CGRectMaxYEdge;
+        resizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin;
+    }
+
+    // Margins
+    CGRectDivide(scaleFrame, &nothing, &scaleFrame, scaleViewMargin, xEdge);
+    CGRectDivide(scaleFrame, &nothing, &scaleFrame, scaleViewMargin, yEdge);
+    // Contents
+    CGRectDivide(scaleFrame, &scaleFrame, &nothing, scaleViewWidth, xEdge);
+    CGRectDivide(scaleFrame, &scaleFrame, &nothing, scaleViewHeight, yEdge);
+
+    self.scaleView = [[MapViewScaleView alloc] initWithFrame:scaleFrame];
+    self.scaleView.autoresizingMask = resizingMask;
+    [self.view addSubview:self.scaleView];
+    self.scaleView.mapView = self.mapView;
+    
     // observe changes to the prefs
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 
@@ -223,6 +262,7 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [self.controller regionDidChange:self.mapView.region];
+    [self.scaleView setNeedsDisplay];
     [self updateAnnotationsSizes];
 }
 
@@ -276,18 +316,18 @@
 
         return radarAV;
     }
-    else if([annotation isKindOfClass:[_BicycletteCity class]])
-    {
-        CityAnnotationView * cityAV = (CityAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[CityAnnotationView reuseIdentifier]];
-		if(nil==cityAV)
-			cityAV = [[CityAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
-        
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
-        CGSize citySize = [self.mapView convertRegion:region toRectToView:self.mapView].size;
-        cityAV.bounds = (CGRect){CGPointZero, citySize};
-        
-        return cityAV;
-    }
+//    else if([annotation isKindOfClass:[_BicycletteCity class]])
+//    {
+//        CityAnnotationView * cityAV = (CityAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[CityAnnotationView reuseIdentifier]];
+//		if(nil==cityAV)
+//			cityAV = [[CityAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
+//        
+//        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
+//        CGSize citySize = [self.mapView convertRegion:region toRectToView:self.mapView].size;
+//        cityAV.bounds = (CGRect){CGPointZero, citySize};
+//        
+//        return cityAV;
+//    }
 	return nil;
 }
 
