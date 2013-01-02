@@ -19,6 +19,22 @@
     return self;
 }
 
+static double RoundedValue(double value)
+{
+    NSCAssert(value<10000.0 && value>1.0, nil);
+    double maxRoundedValue = 10000.0;
+    while (maxRoundedValue>1) {
+        if(value>maxRoundedValue)
+            return maxRoundedValue;
+        if(value>maxRoundedValue/2.0)
+            return maxRoundedValue/2.0;
+        if(value>maxRoundedValue/5.0)
+            return maxRoundedValue/5.0;
+        maxRoundedValue /= 10.0;
+    }
+    return 1.0;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -34,7 +50,8 @@
     CGFloat scaleMaxSize = self.bounds.size.width;// UI points
     CLLocationDistance distanceInScaleSize = meters/self.mapView.bounds.size.width*scaleMaxSize;
     
-    CLLocationDistance scaleMaxDistance = 50000; // In meters
+    BOOL useMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+    CLLocationDistance scaleMaxDistance = 50000000; // In meters
     
     // Compute text to display
     if(distanceInScaleSize>scaleMaxDistance)
@@ -44,33 +61,35 @@
     }
     else
     {
-        double roundDistance = 1.0;
-        while (scaleMaxDistance>1) {
-            if(distanceInScaleSize>scaleMaxDistance)
-            {
-                roundDistance = scaleMaxDistance; break;
+        NSString * unit;
+        double ratio;
+        if(useMetric)
+        {
+            if(distanceInScaleSize>1000){ // m in km
+                ratio = 1000;
+                unit = @"km";
             }
-
-            if(distanceInScaleSize>scaleMaxDistance/2.0)
-            {
-                roundDistance = scaleMaxDistance/2.0; break;
+            else{
+                ratio = 1;
+                unit = @"m";
             }
-
-            if(distanceInScaleSize>scaleMaxDistance/5.0)
-            {
-                roundDistance = scaleMaxDistance/5.0;
-                break;
-            }
-            
-            scaleMaxDistance /= 10.0;
         }
+        else
+        {
+            if(distanceInScaleSize>1609.344){ // m in mi
+                ratio = 1609.344;  // m in mi
+                unit = @"mi.";
+            }
+            else{
+                ratio = 0.3048; // m in ft
+                unit = @"ft.";
+            }
+        }
+        double roundDistance = RoundedValue(distanceInScaleSize/ratio);
         
         // Get final values
-        width = roundf(self.mapView.bounds.size.width/meters*roundDistance);
-        if(roundDistance>1000)
-            text = [NSString stringWithFormat:@"%.0f km",roundDistance/1000];
-        else
-            text = [NSString stringWithFormat:@"%.0f m",roundDistance];
+        width = roundf(self.mapView.bounds.size.width/meters*roundDistance*ratio);
+        text = [NSString stringWithFormat:@"%.0f %@",roundDistance, unit];
     }
     
     // Draw
