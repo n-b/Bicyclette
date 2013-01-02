@@ -1,3 +1,4 @@
+
 //
 //  MKMapView+AttributionLogo.m
 //  Bicyclette
@@ -34,7 +35,10 @@
         static CGFloat xMargin = 0;
         if(xMargin==0) xMargin = MIN(logo.frame.origin.x, self.bounds.size.width-CGRectGetMaxX(logo.frame));
         static CGFloat yMargin = 0;
-        if(yMargin==0) yMargin = MIN(logo.frame.origin.y, self.bounds.size.height-CGRectGetMaxY(logo.frame));
+        if(yMargin==0){
+            yMargin = MIN(logo.frame.origin.y, self.bounds.size.height-CGRectGetMaxY(logo.frame));
+            yMargin += [[UIScreen mainScreen] applicationFrame].origin.y;
+        }
 
         // top right corner
         logo.frame = (CGRect){CGPointMake(self.bounds.size.width - logo.frame.size.width - xMargin, yMargin),logo.frame.size};
