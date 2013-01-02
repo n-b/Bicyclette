@@ -106,6 +106,7 @@
 		377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
 		377620E6167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */; };
 		377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */; };
+		377863A9169468990036A37C /* NSProcessInfo+HardwareMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -336,6 +337,8 @@
 		3770B22E14E976C20003BBA8 /* Austerlitz.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Austerlitz.gpx; sourceTree = "<group>"; };
 		377620E4167BE61A004E9E3D /* OrleansVeloPlusCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrleansVeloPlusCity.h; sourceTree = "<group>"; };
 		377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrleansVeloPlusCity.m; sourceTree = "<group>"; };
+		377863A7169468990036A37C /* NSProcessInfo+HardwareMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+HardwareMachine.h"; sourceTree = "<group>"; };
+		377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+HardwareMachine.m"; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -813,6 +816,8 @@
 				37AA66181653E9EA001F9660 /* CollectionsAdditions.m */,
 				37149B9312624C15009CDE82 /* NSStringAdditions.h */,
 				37149B9412624C15009CDE82 /* NSStringAdditions.m */,
+				377863A7169468990036A37C /* NSProcessInfo+HardwareMachine.h */,
+				377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */,
 				3786E4E114825A7700814C10 /* Tests */,
 			);
 			name = Utility;
@@ -1145,6 +1150,7 @@
 				375760F41687D0DA0042FCF8 /* NextBikeCity.m in Sources */,
 				3722E0F9168AF8830069C6A8 /* VelowayCity.m in Sources */,
 				3722E0FF168B0FF60069C6A8 /* CityAnnotationView.m in Sources */,
+				377863A9169468990036A37C /* NSProcessInfo+HardwareMachine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
