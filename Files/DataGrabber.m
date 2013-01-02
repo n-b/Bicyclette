@@ -60,10 +60,10 @@ static void GrabDataForCity(BicycletteCity* city)
              regionsRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:RegionAttributes.number ascending:YES]];
              if (logRegionsDetails)
              {
-                 [message appendFormat:@" %d Stations\n", (int)[city.moc countForFetchRequest:stationsRequest error:NULL]];
-                 [message appendFormat:@" %d Regions:\n", (int)[city.moc countForFetchRequest:regionsRequest error:NULL]];
+                 [message appendFormat:@" %d Stations\n", (int)[city.mainContext countForFetchRequest:stationsRequest error:NULL]];
+                 [message appendFormat:@" %d Regions:\n", (int)[city.mainContext countForFetchRequest:regionsRequest error:NULL]];
              
-                 for (Region * region in [city.moc executeFetchRequest:regionsRequest error:NULL])
+                 for (Region * region in [city.mainContext executeFetchRequest:regionsRequest error:NULL])
                  {
                      [message appendFormat:@"  %@ : %d Stations, (%@-%@, %@-%@)\n",region.number, (int)[region.stations count], region.minLatitude, region.maxLatitude, region.minLongitude, region.maxLongitude];
                      if (logStationsDetails) {

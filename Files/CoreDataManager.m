@@ -15,10 +15,6 @@
 #pragma mark Private Methods
 
 @interface CoreDataManager ()
-@property NSManagedObjectModel *mom;
-@property NSPersistentStoreCoordinator *psc;
-@property NSManagedObjectContext *moc;
-@property NSOperationQueue *backgroundQueue;
 @end
 
 @interface NSManagedObjectContext (AssociatedManager_Private)
@@ -29,6 +25,13 @@
 #pragma mark -
 
 @implementation CoreDataManager
+{
+    NSString * _storeName;
+    NSManagedObjectModel * _mom;
+    NSPersistentStoreCoordinator * _psc;
+    NSManagedObjectContext *_mainContext;
+    NSOperationQueue * _backgroundQueue;
+}
 
 /****************************************************************************/
 #pragma mark Init
@@ -45,20 +48,35 @@
     return nil;
 }
 
-- (id) initWithStoreName:(NSString*)storeName
+- (id) initWithStoreName:(NSString*)storeName_
 {
     self = [super init];
     if (self) {
-        
+        _storeName = storeName_;
+    }
+    return self;
+}
+
+- (BOOL) isStoreLoaded
+{
+    return nil!=_mainContext;
+}
+
+- (void) loadStoreIfNeeded
+{
+    NSAssert([NSThread currentThread] == [NSThread mainThread], nil);
+    
+    if(nil==_mainContext)
+    {
         // Create mom. Look for mom and momd variants.
         NSURL * momURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"BicycletteCity" withExtension:@"mom"];
-		self.mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
+		_mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
         
         // Create psc
-		self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
+		_psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_mom];
 		NSError *error = nil;
         
-        NSString * storePath = [[self class] storePathForName:storeName];
+        NSString * storePath = [[self class] storePathForName:_storeName];
         if(storePath)
         {
             NSURL *storeURL = [NSURL fileURLWithPath:storePath];
@@ -67,8 +85,8 @@
                 [self copyBundledStoreIfAvailableToURL:storeURL];
             
             // Add Persistent Store
-            if (![self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL
-                                              options:nil error:&error])
+            if (![_psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL
+                                          options:nil error:&error])
             {
                 if( error.code == NSPersistentStoreIncompatibleVersionHashError )
                 {
@@ -81,7 +99,7 @@
                     [self copyBundledStoreIfAvailableToURL:storeURL];
                     
                     // Retry
-                    [self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
+                    [_psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
                 }
                 
                 if (error)
@@ -95,7 +113,7 @@
         else
         {
             // Create an inmemory store
-            [self.psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error];
+            [_psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error];
             if (error)
             {
                 NSLog(@"Unresolved error when creating memory store %@, %@", error, [error userInfo]);
@@ -105,16 +123,21 @@
         }
         
         // Create update queue
-        self.backgroundQueue = [NSOperationQueue new];
-        self.backgroundQueue.maxConcurrentOperationCount = 1;
+        _backgroundQueue = [NSOperationQueue new];
+        _backgroundQueue.maxConcurrentOperationCount = 1;
         
         // Create main moc
-        self.moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
-        self.moc.persistentStoreCoordinator = self.psc;
-
-        self.moc.coreDataManager = self;
+        _mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+        _mainContext.persistentStoreCoordinator = _psc;
+        
+        _mainContext.coreDataManager = self;
     }
-    return self;
+}
+
+- (NSManagedObjectContext *) mainContext
+{
+    [self loadStoreIfNeeded];
+    return _mainContext;
 }
 
 - (void) copyBundledStoreIfAvailableToURL:(NSURL*)storeURL
@@ -130,12 +153,13 @@
 
 - (void) erase
 {
-    NSURL * storeURL = [[[self.psc persistentStores] lastObject] URL];
+    NSURL * storeURL = [[[_psc persistentStores] lastObject] URL];
     [[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-    self.moc = nil;
-    [self.backgroundQueue cancelAllOperations];
-    self.backgroundQueue = nil;
-    self.psc = nil;
+    _mainContext = nil;
+    [_backgroundQueue cancelAllOperations];
+    _backgroundQueue = nil;
+    _psc = nil;
+    _mom = nil;
 }
 
 /******************************************************************************/
@@ -144,12 +168,14 @@
 - (void) performUpdates:(void(^)(NSManagedObjectContext* updateContext))updates
          saveCompletion:(void(^)(NSNotification* contextDidSaveNotification))completion
 {
+    [self loadStoreIfNeeded];
+    
     // Perform the update in a background queue
     __block NSOperation * updateOperation = [NSBlockOperation blockOperationWithBlock:^
      {
          // Create the context
          NSManagedObjectContext * updateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
-         updateContext.persistentStoreCoordinator = self.psc;
+         updateContext.persistentStoreCoordinator = _psc;
          updateContext.coreDataManager = self;
 
          // Observe save notification to forward to the completion block in the main queue.
@@ -165,7 +191,7 @@
               if(updateOperation.isCancelled) return ;
 
               // Merge changes
-              [self.moc mergeChangesFromContextDidSaveNotification:note];
+              [_mainContext mergeChangesFromContextDidSaveNotification:note];
 
               // Call completion
               if(completion)
@@ -186,7 +212,7 @@
          NSAssert(didSave || updateOperation.isCancelled,@"Failed to save :%@",finalSaveError);
      }];
                                      
-    [self.backgroundQueue addOperation:updateOperation];
+    [_backgroundQueue addOperation:updateOperation];
 }
 
 @end

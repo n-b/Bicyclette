@@ -107,9 +107,12 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 {
 	if(nil==_regionContainingData)
 	{
+        if( ![self isStoreLoaded] )
+            return [self hardcodedLimits];
+
         NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
 		NSError * requestError = nil;
-		NSArray * stations = [self.moc executeFetchRequest:stationsRequest error:&requestError];
+		NSArray * stations = [self.mainContext executeFetchRequest:stationsRequest error:&requestError];
         if([stations count]==0)
             return [self hardcodedLimits];
         
@@ -145,7 +148,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 - (Station*) stationWithNumber:(NSString*)number
 {
-    NSArray * stations = [Station fetchStationWithNumber:self.moc number:number];
+    NSArray * stations = [Station fetchStationWithNumber:self.mainContext number:number];
     return [stations lastObject];
 }
 
@@ -153,12 +156,12 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 - (NSArray*) radars
 {
     NSFetchRequest * radarsRequest = [NSFetchRequest fetchRequestWithEntityName:[Radar entityName]];
-    return [self.moc executeFetchRequest:radarsRequest error:NULL];
+    return [self.mainContext executeFetchRequest:radarsRequest error:NULL];
 }
 
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region
 {
-    NSArray * stations = [Station fetchStationsWithinRange:self.moc
+    NSArray * stations = [Station fetchStationsWithinRange:self.mainContext
                                                minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
                                                maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
                                               minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)

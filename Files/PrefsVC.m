@@ -216,7 +216,7 @@
             if([self isVisibleViewController])
             {
                 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-                NSUInteger count = [self.controller.currentCity.moc countForFetchRequest:request error:NULL];
+                NSUInteger count = [self.controller.currentCity.mainContext countForFetchRequest:request error:NULL];
                 NSString * title;
                 NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
                                       count,

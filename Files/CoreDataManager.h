@@ -13,8 +13,13 @@
 + (NSString*) storePathForName:(NSString*)storeName;
 - (id) initWithStoreName:(NSString*)storeName;
 
+// Returns wether the store is loaded.
+//
+// Store is lazy loaded the first time it's used (when mainContext or performUpdates:saveCompletion: is called)
+- (BOOL) isStoreLoaded;
+
 // The main context, to be used on the main thread.
-@property (readonly) NSManagedObjectContext *moc;
+- (NSManagedObjectContext *) mainContext;
 
 // Perform a batch of updates in the internal context, save it, merge the changes in the UI context, and notify when done.
 // Uses the "ValidateDeleteAndSave" mechanism to save. If an object is invalid, it's deleted and saving is retried.

@@ -86,7 +86,7 @@ typedef enum {
             [self.updateQueue addMonitoredGroup:radar];
         }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
-                                                     name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity.moc];
+                                                     name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity.mainContext];
 
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
@@ -174,14 +174,14 @@ typedef enum {
     {
         // Regions
         NSFetchRequest * regionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
-        [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:regionsRequest error:NULL]];
+        [newAnnotations addObjectsFromArray:[self.currentCity.mainContext executeFetchRequest:regionsRequest error:NULL]];
     }
     
     if (self.level == MapLevelRegionsAndRadars || self.level == MapLevelStationsAndRadars)
     {
         // Radars
         NSFetchRequest * radarsRequest = [NSFetchRequest fetchRequestWithEntityName:[Radar entityName]];
-        NSArray * radars = [self.currentCity.moc executeFetchRequest:radarsRequest error:NULL];
+        NSArray * radars = [self.currentCity.mainContext executeFetchRequest:radarsRequest error:NULL];
         [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:radars]];
     }
     
