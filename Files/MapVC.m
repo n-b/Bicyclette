@@ -177,7 +177,6 @@
     [self.mapView relocateAttributionLogoIfNecessary];
 }
 
-// iOS 6
 - (BOOL) shouldAutorotate
 {
     return YES;

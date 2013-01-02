@@ -116,12 +116,12 @@
 /****************************************************************************/
 #pragma mark Rotation support
 
-- (BOOL) shouldAutorotate // iOS 6
+- (BOOL) shouldAutorotate
 {
     return [[self visibleViewController] shouldAutorotate];
 }
 
-- (NSUInteger) supportedInterfaceOrientations // iOS 6
+- (NSUInteger) supportedInterfaceOrientations
 {
     return [[self visibleViewController] supportedInterfaceOrientations];
 }

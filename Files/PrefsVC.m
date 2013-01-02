@@ -111,7 +111,6 @@
 /****************************************************************************/
 #pragma mark Autorotation support
 
-// iOS 6
 - (BOOL) shouldAutorotate
 {
     return YES;
