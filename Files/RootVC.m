@@ -14,13 +14,6 @@
 #import "BicycletteCity.h"
 #import "CitiesController.h"
 
-@interface RootVC ()
-@property IBOutlet HelpVC *helpVC;
-
-@property IBOutlet UIToolbar *infoToolbar;
-@property IBOutlet UIButton *infoButton;
-@end
-
 /****************************************************************************/
 #pragma mark -
 
@@ -103,17 +96,20 @@
 
 - (IBAction)showHelp
 {
-    [self showFrontViewController];
-
-    self.helpVC.view.alpha = 1;
-    [self addChildViewController:self.helpVC];
-    [self.view addSubview:self.helpVC.view];
-    self.helpVC.view.frame = self.view.bounds;
-    [self.helpVC didMoveToParentViewController:self];
+    [self showFrontViewControllerAnimated:YES completion:^{
+        [self addChildViewController:self.helpVC];
+        [self.view addSubview:self.helpVC.view];
+        self.helpVC.view.frame = self.view.bounds;
+        self.helpVC.view.alpha = 0;
+        [self.helpVC didMoveToParentViewController:self];
+        [UIView animateWithDuration:.5 animations:^{
+            self.helpVC.view.alpha = 1;
+        }];
+    }];
 }
 
 
-- (IBAction)closeHelp:(id)sender
+- (void) helpFinished:(HelpVC *)helpVC
 {
     [UIView animateWithDuration:.5 animations:^{
         self.helpVC.view.alpha = 0;

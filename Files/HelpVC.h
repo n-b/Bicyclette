@@ -6,6 +6,12 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@interface HelpVC : UIViewController
+@protocol HelpVCDelegate;
 
+@interface HelpVC : UIViewController
+@property (weak) IBOutlet id<HelpVCDelegate> delegate;
+@end
+
+@protocol HelpVCDelegate <NSObject>
+- (void) helpFinished:(HelpVC*)helpVC;
 @end

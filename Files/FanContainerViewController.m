@@ -156,15 +156,30 @@
 /****************************************************************************/
 #pragma mark Switch Visible View Controller
 
-- (void)switchVisibleViewController
+- (IBAction) switchVisibleViewController
 {
-    if(self.visibleViewController==self.frontViewController)
-        [self showBackViewController];
-    else
-        [self showFrontViewController];
+    [self switchVisibleViewControllerAnimated:YES completion:nil];
 }
 
-- (void) showBackViewController
+- (IBAction) showBackViewController
+{
+    [self showBackViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction) showFrontViewController
+{
+    [self showFrontViewControllerAnimated:YES completion:nil];
+}
+
+- (void) switchVisibleViewControllerAnimated:(BOOL)animated completion:(void(^)(void)) completion
+{
+    if(self.visibleViewController==self.frontViewController)
+        [self showBackViewControllerAnimated:animated completion:completion];
+    else
+        [self showFrontViewControllerAnimated:animated completion:completion];
+}
+
+- (void) showBackViewControllerAnimated:(BOOL)animated completion:(void(^)(void)) completion
 {
     self.frontViewController.view.userInteractionEnabled = NO;
     self.visibleViewController = self.backViewController;
@@ -172,10 +187,10 @@
     CGFloat fromAngle = 0;
     CGFloat toAngle = kFanOpenAngle;
     
-    [self animateMapsVCFromAngle:fromAngle toAngle:toAngle];
+    [self rotateFrontVCFromAngle:fromAngle toAngle:toAngle animated:animated completion:completion];
 }
 
-- (void) showFrontViewController
+- (void) showFrontViewControllerAnimated:(BOOL)animated completion:(void(^)(void)) completion
 {
     self.frontViewController.view.userInteractionEnabled = YES;
     self.visibleViewController = self.frontViewController;
@@ -183,10 +198,11 @@
     CGFloat fromAngle = kFanOpenAngle;
     CGFloat toAngle = 0;
     
-    [self animateMapsVCFromAngle:fromAngle toAngle:toAngle];
+    [self rotateFrontVCFromAngle:fromAngle toAngle:toAngle animated:animated completion:completion];
 }
 
-- (void) animateMapsVCFromAngle:(CGFloat)fromAngle toAngle:(CGFloat)toAngle
+
+- (void) rotateFrontVCFromAngle:(CGFloat)fromAngle toAngle:(CGFloat)toAngle animated:(BOOL)animated completion:(void(^)(void)) completion
 {
     // We can't animate on transform.rotation.z, because the view already has a transform
     // and we couldn't get the presentation value for transform.rotation.z.
@@ -204,14 +220,22 @@
     animation.toValue = [NSValue valueWithCATransform3D:CATransform3DRotate([modelValue CATransform3DValue], toAngle, 0, 0, 1)];
     
     // ... for a fraction of the duration, depending on the actual angle we must animate
-    animation.duration = kFanAnimationDuration*((toAngle-currentAngle)/(toAngle-fromAngle));
+    if(animated)
+        animation.duration = kFanAnimationDuration*((toAngle-currentAngle)/(toAngle-fromAngle));
+    else
+        animation.duration = 0;
     
     // We never remove this animation. It actually makes things easier because the frontViewController's model layer geometry is left untouched.
     animation.removedOnCompletion = NO;
 
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     animation.fillMode = kCAFillModeBoth;
+    
+    [CATransaction begin];
+    if(completion)
+        [CATransaction setCompletionBlock:completion];
     [self.frontViewController.view.layer addAnimation:animation forKey:@"rotation"];
+    [CATransaction commit];
 }
 
 @end

@@ -7,12 +7,17 @@
 //
 
 #import "FanContainerViewController.h"
+#import "HelpVC.h"
 
 @class Station;
 @class CitiesController;
 
-// Autorotation Management for iOS 6
-@interface RootVC : FanContainerViewController
+@interface RootVC : FanContainerViewController  <HelpVCDelegate>
+
+// Make outlets public, because they are set in MainWindow.nib
+@property IBOutlet HelpVC *helpVC;
+@property IBOutlet UIToolbar *infoToolbar;
+@property IBOutlet UIButton *infoButton;
 
 @property (nonatomic) CitiesController * citiesController;
 

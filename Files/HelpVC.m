@@ -135,7 +135,6 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     self.pageControl.currentPage = lround(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width);
-    [self enableCloseButtonIfNeeded];
 }
 
 - (IBAction)changePage:(UIPageControl *)sender
@@ -143,16 +142,21 @@
     CGPoint offset = self.scrollView.contentOffset;
     offset.x = self.pageControl.currentPage * self.scrollView.bounds.size.width;
     [self.scrollView setContentOffset:offset animated:YES];
-    [self enableCloseButtonIfNeeded];
 }
 
-- (void) enableCloseButtonIfNeeded
+/****************************************************************************/
+#pragma mark -
+
+- (IBAction)advanceHelp:(id)sender
 {
-    if(self.pageControl.currentPage==self.pageControl.numberOfPages-1)
+    if(self.pageControl.currentPage == self.pageControl.numberOfPages-1)
     {
-        self.outCloseButton.enabled = YES;
-        [self.contentView bringSubviewToFront:self.inCloseButton];
-        self.inCloseButton.enabled = YES;
+        [self.delegate helpFinished:self];
+    }
+    else
+    {
+        self.pageControl.currentPage ++;
+        [self changePage:self.pageControl];
     }
 }
 

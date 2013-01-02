@@ -15,10 +15,13 @@
 
 @property (readonly) UIViewController * visibleViewController;
 
+- (IBAction) switchVisibleViewController;
 - (IBAction) showBackViewController;
 - (IBAction) showFrontViewController;
-- (IBAction) switchVisibleViewController;
 
+- (void) switchVisibleViewControllerAnimated:(BOOL)animated completion:(void(^)(void)) completion;
+- (void) showBackViewControllerAnimated:(BOOL)animated completion:(void(^)(void)) completion;
+- (void) showFrontViewControllerAnimated:(BOOL)animated completion:(void(^)(void)) completion;
 @end
 
 
