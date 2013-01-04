@@ -6,8 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "MelbourneBikeShareCity.h"
+#import "_CityWithJSONFlatListOfStations.h"
 #import "BicycletteCity.mogenerated.h"
+
+@interface MelbourneBikeShareCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
+@end
 
 @implementation MelbourneBikeShareCity
 
@@ -26,6 +29,8 @@
              };
     
 }
+
+#pragma mark - override
 
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data
 {

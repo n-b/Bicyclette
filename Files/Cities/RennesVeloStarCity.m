@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "XMLCityWithStationDataInSubnodes.h"
+#import "_XMLCityWithStationDataInSubnodes.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
@@ -21,6 +21,16 @@
 
 #pragma mark City Data Update
 
+- (NSString*) stationElementName
+{
+    return @"station";
+}
+
+- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
+{
+    return values[@"number"];
+}
+
 - (NSDictionary*) KVCMapping
 {
     return @{@"number" : StationAttributes.number,
@@ -32,16 +42,6 @@
              @"bikesavailable": StationAttributes.status_available,
              @"pos":StationAttributes.status_ticket,
              };
-}
-
-- (NSString*) stationElementName
-{
-    return @"station";
-}
-
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
-{
-    return values[@"number"];
 }
 
 - (NSString *)regionNumberFromStationValues:(NSDictionary *)values

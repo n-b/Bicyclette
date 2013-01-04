@@ -6,8 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "MarseilleLeVeloCity.h"
+#import "CyclocityCity.h"
 #import "BicycletteCity.mogenerated.h"
+
+@interface MarseilleLeVeloCity : CyclocityCity
+@end
 
 @implementation MarseilleLeVeloCity
 
@@ -18,12 +21,10 @@
 
 #pragma mark CyclocityCity
 
-- (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
+- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs;
 {
-    RegionInfo * regionInfo = [RegionInfo new];
-    regionInfo.number = [station.name substringToIndex:1];
-    regionInfo.name = [station.name substringToIndex:1];
-    return regionInfo;
+    return [RegionInfo infoWithName:[station.name substringToIndex:1]
+                             number:[station.name substringToIndex:1]];
 }
 
 @end

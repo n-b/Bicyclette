@@ -13,6 +13,9 @@
 #import "NSObject+KVCMapping.h"
 #import "CyclocityStationParse.h"
 
+// JSON
+// Region from url
+
 @implementation LyonVelovCity
 
 #pragma mark Annotations

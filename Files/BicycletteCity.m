@@ -255,6 +255,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 - (NSString*) title { return [NSString stringWithFormat:@"%@ %@",[self cityName],[self serviceName]]; }
 - (NSString *) titleForStation:(Station *)station { return station.name; }
+- (NSString *) titleForRegion:(Region*)region { return region.name; }
+- (NSString *) subtitleForRegion:(Region*)region { return @""; }
 
 @end
 

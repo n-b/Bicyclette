@@ -1,18 +1,28 @@
 //
-//  XMLCityWithStationDataInSubnodes.m
+//  _XMLCityWithStationDataInSubnodes
 //  Bicyclette
 //
 //  Created by Nicolas on 04/01/13.
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "XMLCityWithStationDataInSubnodes.h"
+#import "_XMLCityWithStationDataInSubnodes.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
 
 // Allow me to call methods of subclasses
 @interface _XMLCityWithStationDataInSubnodes (XMLCityWithStationDataInSubnodes) <XMLCityWithStationDataInSubnodes>
+@end
+
+@implementation RegionInfo
++ (instancetype) infoWithName:(NSString*)name_ number:(NSString*)number_
+{
+    RegionInfo * info = [self new];
+    info.name = name_;
+    info.number = number_;
+    return info;
+}
 @end
 
 #pragma mark -
@@ -47,7 +57,12 @@
 
 - (BOOL) hasRegions
 {
-    return [self respondsToSelector:@selector(regionNumberFromStationValues:)];
+    return [self respondsToSelector:@selector(regionInfoFromStation:values:patchs:)];
+}
+
+- (NSDictionary*) patches
+{
+	return self.serviceInfo[@"patches"];
 }
 
 #pragma mark -
@@ -69,13 +84,8 @@
     if([elementName isEqualToString:[self stationElementName]]) // End of station dict
     {
         NSString * stationNumber = [self stationNumberFromStationValues:_parsing_currentValues];
-        NSString * regionNumber;
-        if([self respondsToSelector:@selector(regionNumberFromStationValues:)])
-            regionNumber = [self regionNumberFromStationValues:_parsing_currentValues];
-        else
-            regionNumber = @"anonymousregion";
 
-        [self setValues:_parsing_currentValues toStationWithNumber:stationNumber regionNumber:regionNumber];
+        [self setValues:_parsing_currentValues toStationWithNumber:stationNumber];
         
         // Clear values
         _parsing_currentValues = nil;
@@ -92,8 +102,10 @@
 
 #pragma mark -
 
-- (void) setValues:(NSDictionary*)values toStationWithNumber:(NSString*)stationNumber regionNumber:(NSString*)regionNumber
+- (void) setValues:(NSDictionary*)values toStationWithNumber:(NSString*)stationNumber
 {
+    BOOL logParsingDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"];
+
     //
     // Find Existing Station
     Station * station = [_parsing_oldStations firstObjectWithValue:values[stationNumber] forKeyPath:StationAttributes.number];
@@ -112,6 +124,17 @@
     //
     // Set Values
     [station setValuesForKeysWithDictionary:values withMappingDictionary:[self KVCMapping]]; // Yay!
+    
+    //
+    // Set patches
+    NSDictionary * patchs = [self patches][station.number];
+    BOOL hasDataPatches = patchs && ![[[patchs allKeys] arrayByRemovingObjectsInArray:[[self KVCMapping] allKeys]] isEqualToArray:[patchs allKeys]];
+    if(hasDataPatches)
+    {
+        if(logParsingDetails)
+            NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",values, patchs);
+        [station setValuesForKeysWithDictionary:patchs withMappingDictionary:[self KVCMapping]]; // Yay! again
+    }
     
     //
     // Build missing status, if needed
@@ -134,17 +157,36 @@
 
     //
     // Set Region
-    Region * region = _parsing_regionsByNumber[regionNumber];
+    RegionInfo * regionInfo;
+    if([self hasRegions])
+    {
+        regionInfo = [self regionInfoFromStation:station values:values patchs:patchs];
+        if(nil==regionInfo)
+        {
+            if(logParsingDetails)
+                NSLog(@"Invalid data : %@",values);
+            [_parsing_context deleteObject:station];
+            return;
+        }
+    }
+    else
+    {
+        regionInfo = [RegionInfo new];
+        regionInfo.number = @"anonymousregion";
+        regionInfo.name = @"anonymousregion";
+    }
+
+    Region * region = _parsing_regionsByNumber[regionInfo.number];
     if(nil==region)
     {
-        region = [[Region fetchRegionWithNumber:_parsing_context number:regionNumber] lastObject];
+        region = [[Region fetchRegionWithNumber:_parsing_context number:regionInfo.number] lastObject];
         if(region==nil)
         {
             region = [Region insertInManagedObjectContext:_parsing_context];
-            region.number = regionNumber;
-            region.name = regionNumber;
+            region.number = regionInfo.number;
+            region.name = regionInfo.number;
         }
-        _parsing_regionsByNumber[regionNumber] = region;
+        _parsing_regionsByNumber[regionInfo.number] = region;
     }
     station.region = region;
 }

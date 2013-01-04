@@ -1,5 +1,5 @@
 //
-//  SimpleStationsListBicycletteCity.h
+//  _CityWithFlatListOfStations.m
 //  Bicyclette
 //
 //  Created by Nicolas on 21/12/12.
@@ -9,27 +9,20 @@
 #import "BicycletteCity.h"
 
 // Common code for webservices returning a flat list of stations attributes.
-@interface _SimpleStationsListBicycletteCity : _BicycletteCity
-// BicycletteCity protocol
+@interface _CityWithFlatListOfStations : _BicycletteCity
+
+- (BOOL) hasRegions; //NO
+
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context
        oldStations:(NSMutableArray*)oldStations;
+
 @end
 
 // To be implemented by subclasses
-@protocol SimpleStationsListBicycletteCity <BicycletteCity>
+@protocol CityWithFlatListOfStations <BicycletteCity>
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data;
 - (NSDictionary*) KVCMapping;
 @end
 
-// JSON
-@interface _SimpleJSONStationsListBicycletteCity : _SimpleStationsListBicycletteCity
-- (NSArray*) stationAttributesArraysFromData:(NSData*)data; // basic JSON deserialize
-@end
-
-
-@protocol SimpleJSONStationsListBicycletteCity <SimpleStationsListBicycletteCity>
-@optional
-- (NSString*) keyPathToStationsLists;
-@end

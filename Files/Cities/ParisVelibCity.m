@@ -6,9 +6,13 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "ParisVelibCity.h"
+#import "CyclocityCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
+
+
+@interface ParisVelibCity : CyclocityCity
+@end
 
 @implementation ParisVelibCity
 
@@ -33,7 +37,7 @@
 
 #pragma mark CyclocityCity
 
-- (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs
+- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs;
 {
     if( ! [station.fullAddress hasPrefix:station.address] )
         return nil;

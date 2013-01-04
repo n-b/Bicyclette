@@ -6,20 +6,16 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "LaRochelleYeloCity.h"
+#import "_CityWithFlatListOfStations.h"
 #import "BicycletteCity.mogenerated.h"
-#import "CollectionsAdditions.h"
-#import "NSObject+KVCMapping.h"
 #import "NSStringAdditions.h"
 
-@interface LaRochelleYeloCity ()
+@interface LaRochelleYeloCity : _CityWithFlatListOfStations <CityWithFlatListOfStations>
 @end
 
 @implementation LaRochelleYeloCity
 
 #pragma mark City Data Update
-
-- (BOOL) hasRegions { return NO; }
 
 - (NSDictionary*) KVCMapping
 {

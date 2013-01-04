@@ -6,13 +6,16 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "OrleansVeloPlusCity.h"
+#import "_XMLCityWithStationDataInAttributes.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 
-#pragma mark Stations Individual Data Updates
+#pragma mark -
+
+@interface OrleansVeloPlusCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+@end
 
 @interface OrleansVeloPlusStationParse : NSObject
 + (void) parseData:(NSData*)data forStation:(Station*)station;
@@ -20,15 +23,7 @@
 
 #pragma mark -
 
-@interface OrleansVeloPlusCity () <NSXMLParserDelegate>
-@end
-
 @implementation OrleansVeloPlusCity
-{
-    NSManagedObjectContext * _parsing_context;
-    NSMutableArray * _parsing_oldStations;
-    Region * _parsing_region;
-}
 
 #pragma mark Annotations
 
@@ -36,33 +31,15 @@
 
 #pragma mark City Data Update
 
-- (BOOL) hasRegions { return NO; }
 
-- (void) parseData:(NSData *)data
-     fromURLString:(NSString*)urlString
-         inContext:(NSManagedObjectContext*)context
-       oldStations:(NSMutableArray*)oldStations
+- (NSString*) stationElementName
 {
-    _parsing_context = context;
-    _parsing_oldStations = oldStations;
-    
-    // Create an anonymous region
-    _parsing_region = [[Region fetchRegionWithNumber:_parsing_context number:@"anonymousregion"] lastObject];
-    if(_parsing_region==nil)
-    {
-        _parsing_region = [Region insertInManagedObjectContext:_parsing_context];
-        _parsing_region.number = @"anonymousregion";
-        _parsing_region.name = @"anonymousregion";
-    }
+    return @"marker";
+}
 
-    // Parse stations XML
-    NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
-    parser.delegate = self;
-    [parser parse];
-    
-    _parsing_region = nil;
-    _parsing_context = nil;
-    _parsing_oldStations = nil;
+- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
+{
+    return values[@"id"];
 }
 
 - (NSDictionary*) KVCMapping
@@ -72,32 +49,6 @@
              @"lng": StationAttributes.longitude,
              @"name" : StationAttributes.name,
              @"name" : StationAttributes.address};
-}
-
-- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if([elementName isEqualToString:@"marker"])
-    {
-        // Find Existing Station
-        Station * station = [_parsing_oldStations firstObjectWithValue:attributeDict[@"number"] forKeyPath:StationAttributes.number];
-        if(station)
-        {
-            // found existing
-            [_parsing_oldStations removeObject:station];
-        }
-        else
-        {
-            if(_parsing_oldStations.count && [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-                NSLog(@"Note : new station found after update : %@", attributeDict);
-            station = [Station insertInManagedObjectContext:_parsing_context];
-        }
-
-        // Set Values
-		[station setValuesForKeysWithDictionary:attributeDict withMappingDictionary:[self KVCMapping]]; // Yay!
-
-        // Set Station
-        station.region = _parsing_region;
-    }
 }
 
 #pragma mark Stations Individual Data Updates

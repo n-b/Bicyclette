@@ -6,28 +6,12 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
+#import "_XMLCityWithStationDataInAttributes.h"
 
 // Common code for all Cyclocity systems (except Velov)
-@interface CyclocityCity : _BicycletteCity
-- (BOOL) hasRegions;
-- (void) parseData:(NSData *)data
-     fromURLString:(NSString*)urlString
-         inContext:(NSManagedObjectContext*)context
-       oldStations:(NSMutableArray*)oldStations;
-
-- (NSString*) titleForStation:(Station*)station;
+@interface CyclocityCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+- (NSString*) stationElementName;
+- (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
+- (NSDictionary*) KVCMapping;
 @end
 
-
-// Cities with multiple Regions
-@class RegionInfo;
-@protocol CyclocityCity <BicycletteCity>
-@optional
-- (RegionInfo*) regionInfoFromStation:(Station*)station patchs:(NSDictionary*)patchs;
-@end
-
-@interface RegionInfo : NSObject // Just a struct, actually
-@property NSString * number;
-@property NSString * name;
-@end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "XMLCityWithStationDataInSubnodes.h"
+#import "_XMLCityWithStationDataInSubnodes.h"
 #import "BicycletteCity.mogenerated.h"
 
 /****************************************************************************/

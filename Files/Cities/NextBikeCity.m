@@ -6,13 +6,14 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "NextBikeCity.h"
+#import "BicycletteCity.h"
+
 #import "BicycletteCity.mogenerated.h"
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 
-@interface NextBikeCity () <NSXMLParserDelegate>
+@interface NextBikeCity : _BicycletteCity <BicycletteCity,NSXMLParserDelegate>
 @end
 
 @implementation NextBikeCity
@@ -87,6 +88,7 @@
 
 - (BOOL) hasRegions { return self.serviceInfo[@"regions"]!=nil;
 }
+
 - (NSString*) titleForRegion:(Region*)region { return region.name; }
 - (NSString*) subtitleForRegion:(Region*)region { return nil; }
 

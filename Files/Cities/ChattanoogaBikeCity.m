@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "ChattanoogaBikeCity.h"
+#import "_CityWithJSONFlatListOfStations.h"
 #import "BicycletteCity.mogenerated.h"
 
+@interface ChattanoogaBikeCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
+@end
 
 @implementation ChattanoogaBikeCity
 
-#pragma mark Annotations
-
-//#pragma mark City Data Update
+#pragma mark City Data Update
 
 - (BOOL) hasRegions { return NO; }
 

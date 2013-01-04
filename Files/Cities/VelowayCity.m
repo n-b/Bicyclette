@@ -6,17 +6,36 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "VelowayCity.h"
+#import "_CityWithJSONFlatListOfStations.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
+@interface VelowayCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
+@end
+
 @implementation VelowayCity
 
-- (BOOL)hasRegions { return NO; }
+#pragma mark Annotations
 
-- (NSString *)keyPathToStationsLists { return @"stand"; }
+- (NSString*) titleForStation:(Station *)station {
+    NSString * title;
+    if([station.address length])
+        title = station.address;
+    else
+        title = station.name;
+    title = [title stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    title = [title stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    title = [title capitalizedStringWithCurrentLocale];
+    return title;
+}
 
-- (NSDictionary *)KVCMapping
+#pragma mark City Data Update
+
+- (BOOL) hasRegions { return NO; }
+
+- (NSString*) keyPathToStationsLists { return @"stand"; }
+
+- (NSDictionary*) KVCMapping
 {
     return @{@"id": StationAttributes.number,
              @"name": StationAttributes.name,
@@ -29,15 +48,4 @@
              };
 }
 
-- (NSString *) titleForStation:(Station *)station {
-    NSString * title;
-    if([station.address length])
-        title = station.address;
-    else
-        title = station.name;
-    title = [title stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    title = [title stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    title = [title capitalizedStringWithCurrentLocale];
-    return title;
-}
 @end
