@@ -61,12 +61,12 @@ A Keolis/EFFIA network, with its own webservices.
 
 ## BIXI
 The data contains both the List of stations and the Status Details.
-* Canada
-	* (hosted on the same servers)
-	* Model : https://{city}.bixi.com/data/bikeStations.xml
-	* Toronto : toronto.bixi.com
-	* Montréal : montreal.bixi.com
-	* Ottawa : capitale.bixi.com
+- Canada
+	- (hosted on the same servers)
+	- Model : https://{city}.bixi.com/data/bikeStations.xml
+	- Toronto : toronto.bixi.com
+	- Montréal : montreal.bixi.com
+	- Ottawa : capitale.bixi.com
 * London : http://www.tfl.gov.uk/tfl/syndication/feeds/cycle-hire/livecyclehireupdates.xml
 * Washington : http://capitalbikeshare.com/data/stations/bikeStations.xml
 * Boston : http://www.thehubway.com/data/stations/bikeStations.xml
@@ -97,7 +97,7 @@ Model : http://{servicewebsite}/cartoV2/libProxyCarto.asp
 ## OYBike
 No details yet on whether these services can be legally used in 3rd party apps. The API key used is used in the "official" website.
 The data contains both the List of stations and the Status Details. 
-* Reading & Cardiff : http://www.oybike.com/oybike/stands.nsf/getSite?openagent&site={city}&format=json&cache=no&extended=yes&key=7A407C7C8DD673BD9A635ECFAB612C95
+- Reading & Cardiff : http://www.oybike.com/oybike/stands.nsf/getSite?openagent&site={city}&format=json&cache=no&extended=yes&key=7A407C7C8DD673BD9A635ECFAB612C95
 
 ## TOBike
 Originally the "Torino" service, also used in Switzerland (as "Velopass"). A WSDL documentation is available at service.tobike.it. No word on wether it can be used in 3rd party apps.
@@ -113,7 +113,7 @@ No Licence information.
 
 ## Montpellier
 No Licence information.
-* List+Details: http://cli-velo-montpellier.gir.fr/vcstations.xml
+- List+Details: http://cli-velo-montpellier.gir.fr/vcstations.xml
 
 ## Barcelona
 A Citybike network, with its own webservice. No Licence Info.
