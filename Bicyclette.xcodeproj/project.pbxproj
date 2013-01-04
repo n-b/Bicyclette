@@ -59,8 +59,6 @@
 		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
-		3717AA70162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
-		3717AA71162A1F39005EC7BD /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */; };
 		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
 		371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D90C9158FE19900E509E6 /* TransparentToolbar.m */; };
 		37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
@@ -114,6 +112,10 @@
 		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		3786E4F21482EB2E00814C10 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */; };
+		3791306816971C110054FECA /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306716971C100054FECA /* ParisVelibCity.m */; };
+		3791306916971C110054FECA /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306716971C100054FECA /* ParisVelibCity.m */; };
+		3791306F16971FD30054FECA /* XMLCityWithStationDataInSubnodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306E16971FD30054FECA /* XMLCityWithStationDataInSubnodes.m */; };
+		3791307016971FD30054FECA /* XMLCityWithStationDataInSubnodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306E16971FD30054FECA /* XMLCityWithStationDataInSubnodes.m */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
@@ -285,8 +287,6 @@
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParisVelibCity.h; path = ../ParisVelibCity.h; sourceTree = "<group>"; };
-		3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParisVelibCity.m; path = ../ParisVelibCity.m; sourceTree = "<group>"; };
 		371982BF16451F92006CF77D /* FanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanContainerViewController.h; sourceTree = "<group>"; };
 		371982C016451F92006CF77D /* FanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanContainerViewController.m; sourceTree = "<group>"; };
 		371D90C8158FE19900E509E6 /* TransparentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentToolbar.h; sourceTree = "<group>"; };
@@ -351,6 +351,10 @@
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationAnnotationView.h; sourceTree = "<group>"; };
 		378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationAnnotationView.m; sourceTree = "<group>"; };
+		3791306616971C100054FECA /* ParisVelibCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParisVelibCity.h; sourceTree = "<group>"; };
+		3791306716971C100054FECA /* ParisVelibCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParisVelibCity.m; sourceTree = "<group>"; };
+		3791306D16971FD30054FECA /* XMLCityWithStationDataInSubnodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLCityWithStationDataInSubnodes.h; sourceTree = "<group>"; };
+		3791306E16971FD30054FECA /* XMLCityWithStationDataInSubnodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLCityWithStationDataInSubnodes.m; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -430,7 +434,6 @@
 		37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LocalAlerts.m"; sourceTree = "<group>"; };
 		37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RennesVeloStarCity.h; sourceTree = "<group>"; };
 		37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RennesVeloStarCity.m; sourceTree = "<group>"; };
-		37F827E6167C0827001D85D8 /* BixiCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BixiCity.h; sourceTree = "<group>"; };
 		37F827E7167C0827001D85D8 /* BixiCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BixiCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -604,7 +607,7 @@
 			children = (
 				3739609A167917CE005F0672 /* BicycletteCities.json */,
 				376D0E4F1678B587006F321D /* Cyclocity */,
-				37F092271680BF36001E8127 /* BIXI */,
+				37F092271680BF36001E8127 /* XML with subnodes */,
 				377620E4167BE61A004E9E3D /* OrleansVeloPlusCity.h */,
 				377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */,
 				37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */,
@@ -701,8 +704,8 @@
 				373960AA16794634005F0672 /* LyonVelovCity.m */,
 				37D9DFDC162A2BF60000F263 /* MarseilleLeVeloCity.h */,
 				37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */,
-				3717AA6E162A1F38005EC7BD /* ParisVelibCity.h */,
-				3717AA6F162A1F38005EC7BD /* ParisVelibCity.m */,
+				3791306616971C100054FECA /* ParisVelibCity.h */,
+				3791306716971C100054FECA /* ParisVelibCity.m */,
 			);
 			name = Cyclocity;
 			sourceTree = "<group>";
@@ -872,13 +875,14 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		37F092271680BF36001E8127 /* BIXI */ = {
+		37F092271680BF36001E8127 /* XML with subnodes */ = {
 			isa = PBXGroup;
 			children = (
-				37F827E6167C0827001D85D8 /* BixiCity.h */,
+				3791306D16971FD30054FECA /* XMLCityWithStationDataInSubnodes.h */,
+				3791306E16971FD30054FECA /* XMLCityWithStationDataInSubnodes.m */,
 				37F827E7167C0827001D85D8 /* BixiCity.m */,
 			);
-			name = BIXI;
+			name = "XML with subnodes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1137,7 +1141,6 @@
 				37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */,
 				37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */,
 				37513B6316173FAB00388FF3 /* RootVC.m in Sources */,
-				3717AA70162A1F39005EC7BD /* ParisVelibCity.m in Sources */,
 				37D9DFDE162A2BF60000F263 /* MarseilleLeVeloCity.m in Sources */,
 				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
@@ -1164,6 +1167,8 @@
 				377863A9169468990036A37C /* NSProcessInfo+HardwareMachine.m in Sources */,
 				377863B11694996C0036A37C /* MapViewScaleView.m in Sources */,
 				37BF7FEB1694481C00FED27F /* MontpellierVelomaggCity.m in Sources */,
+				3791306916971C110054FECA /* ParisVelibCity.m in Sources */,
+				3791307016971FD30054FECA /* XMLCityWithStationDataInSubnodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,7 +1182,6 @@
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
 				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
 				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
-				3717AA71162A1F39005EC7BD /* ParisVelibCity.m in Sources */,
 				37D9DFDF162A2BF60000F263 /* MarseilleLeVeloCity.m in Sources */,
 				37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
@@ -1197,6 +1201,8 @@
 				375760F31687D0DA0042FCF8 /* NextBikeCity.m in Sources */,
 				3722E0F8168AF8830069C6A8 /* VelowayCity.m in Sources */,
 				37BF7FEA1694481C00FED27F /* MontpellierVelomaggCity.m in Sources */,
+				3791306816971C110054FECA /* ParisVelibCity.m in Sources */,
+				3791306F16971FD30054FECA /* XMLCityWithStationDataInSubnodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
