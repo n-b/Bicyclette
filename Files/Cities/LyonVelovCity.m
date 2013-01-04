@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
+#import "_CityWithJSONFlatListOfStations.h"
 
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
@@ -14,7 +14,7 @@
 #import "NSObject+KVCMapping.h"
 #import "CyclocityStationParse.h"
 
-@interface LyonVelovCity : _BicycletteCity <BicycletteCity>
+@interface LyonVelovCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
 @end
 
 @implementation LyonVelovCity
@@ -63,6 +63,16 @@
     return urlStrings;
 }
 
+- (NSString*) keyPathToStationsLists
+{
+    return @"markers";
+}
+
+- (NSString *)stationNumberFromStationValues:(NSDictionary *)values
+{
+    return values[@"numStation"];
+}
+
 - (NSDictionary*) KVCMapping
 {
     return @{
@@ -72,45 +82,6 @@
              @"x": StationAttributes.latitude, // yes. x,y for lat,long. (not even x,y for long,lat !)
              @"y": StationAttributes.longitude,
              };
-}
-
-- (void) parseData:(NSData*)data
-     fromURLString:(NSString*)urlString
-         inContext:(NSManagedObjectContext*)context
-       oldStations:(NSMutableArray*)oldStations
-{
-    NSString * regionNumber = [urlString substringFromIndex:[urlString length]-1];
-    // Create Region
-    Region * region = [[Region fetchRegionWithNumber:context number:regionNumber] lastObject];
-    if(region==nil)
-    {
-        region = [Region insertInManagedObjectContext:context];
-        region.number = regionNumber;
-        region.name = regionNumber;
-    }
-
-    NSDictionary * json = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-    for (NSDictionary * stationInfo in json[@"markers"])
-    {
-        // Find Existing Stations
-        Station * station = [oldStations firstObjectWithValue:stationInfo[@"numStation"] forKeyPath:StationAttributes.number];
-        if(station)
-        {
-            // found existing
-            [oldStations removeObject:station];
-        }
-        else
-        {
-            if(oldStations.count && [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-                NSLog(@"Note : new station found after update : %@", stationInfo);
-            station = [Station insertInManagedObjectContext:context];
-        }
-        
-        // Set Values
-        [station setValuesForKeysWithDictionary:stationInfo withMappingDictionary:[self KVCMapping]]; // Yay!
-        
-        station.region = region;
-    }
 }
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString

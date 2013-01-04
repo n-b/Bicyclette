@@ -200,9 +200,13 @@
             ^NSComparisonResult(id<Locatable> l1, id<Locatable> l2) {
                 CLLocationDistance d1 = [location distanceFromLocation:[l1 location]];
                 CLLocationDistance d2 = [location distanceFromLocation:[l2 location]];
-                if([l1 respondsToSelector:@selector(radius)]) d1 -= [l1 radius];
-                if([l2 respondsToSelector:@selector(radius)]) d2 -= [l2 radius];
+                CLLocationDistance r1 = [l1 respondsToSelector:@selector(radius)] ? [l1 radius] : 0.0;
+                CLLocationDistance r2 = [l2 respondsToSelector:@selector(radius)] ? [l2 radius] : 0.0;
                 
+                if(d1>r1 || d2>r2){
+                    d1 -= r1;
+                    d2 -= r2;
+                }
                 return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
             }];
 }

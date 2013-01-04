@@ -8,7 +8,7 @@
 
 #import "CyclocityStationParse.h"
 #import "NSObject+KVCMapping.h"
-#import "Station.h"
+#import "BicycletteCity.mogenerated.h"
 
 @interface CyclocityStationParse() <NSXMLParserDelegate>
 @end

@@ -8,8 +8,6 @@
 
 #import "CyclocityCity.h"
 #import "BicycletteCity.mogenerated.h"
-#import "NSObject+KVCMapping.h"
-#import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 #import "CyclocityStationParse.h"
 

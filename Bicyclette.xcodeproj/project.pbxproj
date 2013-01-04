@@ -609,7 +609,6 @@
 				3739609A167917CE005F0672 /* BicycletteCities.json */,
 				3788EC79169754CA00836A60 /* XML */,
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
-				373960AA16794634005F0672 /* LyonVelovCity.m */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -763,6 +762,7 @@
 				37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */,
 				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
 				3722E0F7168AF8830069C6A8 /* VelowayCity.m */,
+				373960AA16794634005F0672 /* LyonVelovCity.m */,
 			);
 			name = "Flat JSON list";
 			sourceTree = "<group>";

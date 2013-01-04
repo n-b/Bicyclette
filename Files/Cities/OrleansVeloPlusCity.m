@@ -9,7 +9,6 @@
 #import "_XMLCityWithStationDataInAttributes.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSObject+KVCMapping.h"
-#import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 
 #pragma mark -

@@ -7,9 +7,6 @@
 //
 
 #import "_CityWithFlatListOfStations.h"
-#import "BicycletteCity.mogenerated.h"
-#import "NSObject+KVCMapping.h"
-#import "CollectionsAdditions.h"
 
 // Allow me to call methods of subclasses
 @interface _CityWithFlatListOfStations (CityWithFlatListOfStations) <CityWithFlatListOfStations>

@@ -9,9 +9,6 @@
 #import "_XMLCityWithStationDataInSubnodes.h"
 #import "BicycletteCity.mogenerated.h"
 
-/****************************************************************************/
-#pragma mark -
-
 @interface BixiCity : _XMLCityWithStationDataInSubnodes <XMLCityWithStationDataInSubnodes>
 @end
 
