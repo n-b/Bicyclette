@@ -23,7 +23,7 @@
     NSMutableArray * _parsing_oldStations;
     NSMutableDictionary * _parsing_currentValues;
     NSMutableString * _parsing_currentString;
-    Region * _parsing_region;
+    NSMutableDictionary * _parsing_regionsByNumber;
 }
 
 - (void) parseData:(NSData *)data
@@ -33,24 +33,21 @@
 {
     _parsing_context = context;
     _parsing_oldStations = oldStations;
-    
-    // Create an anonymous region
-    _parsing_region = [[Region fetchRegionWithNumber:_parsing_context number:@"anonymousregion"] lastObject];
-    if(_parsing_region==nil)
-    {
-        _parsing_region = [Region insertInManagedObjectContext:_parsing_context];
-        _parsing_region.number = @"anonymousregion";
-        _parsing_region.name = @"anonymousregion";
-    }
-    
+    _parsing_regionsByNumber = [NSMutableDictionary new];
+
     // Parse stations XML
     NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
     parser.delegate = self;
     [parser parse];
     
-    _parsing_region = nil;
     _parsing_context = nil;
     _parsing_oldStations = nil;
+    _parsing_regionsByNumber = nil;
+}
+
+- (BOOL) hasRegions
+{
+    return [self respondsToSelector:@selector(regionNumberFromStationValues:)];
 }
 
 #pragma mark -
@@ -71,26 +68,55 @@
 {
     if([elementName isEqualToString:[self stationElementName]]) // End of station dict
     {
-        NSString * keyForNumber = [[self KVCMapping] allKeysForObject:StationAttributes.number][0]; // There *must* be a key mapping to "number" in the KVCMapping dictionary.
-        
-        // Find Existing Station
-        Station * station = [_parsing_oldStations firstObjectWithValue:_parsing_currentValues[keyForNumber] forKeyPath:StationAttributes.number];
-        if(station)
-        {
-            // found existing
-            [_parsing_oldStations removeObject:station];
-        }
+        NSString * stationNumber = [self stationNumberFromStationValues:_parsing_currentValues];
+        NSString * regionNumber;
+        if([self respondsToSelector:@selector(regionNumberFromStationValues:)])
+            regionNumber = [self regionNumberFromStationValues:_parsing_currentValues];
         else
-        {
-            if(_parsing_oldStations.count && [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-                NSLog(@"Note : new station found after update : %@", _parsing_currentValues);
-            station = [Station insertInManagedObjectContext:_parsing_context];
-        }
+            regionNumber = @"anonymousregion";
+
+        [self setValues:_parsing_currentValues toStationWithNumber:stationNumber regionNumber:regionNumber];
         
-        // Set Values
-		[station setValuesForKeysWithDictionary:_parsing_currentValues withMappingDictionary:[self KVCMapping]]; // Yay!
-        
-        // Build missing status, if needed
+        // Clear values
+        _parsing_currentValues = nil;
+    }
+    else
+    {
+        // Accumulate values
+        NSString * value = [_parsing_currentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if(value)
+            [_parsing_currentValues setObject:value forKey:elementName];
+        _parsing_currentString = nil;
+    }
+}
+
+#pragma mark -
+
+- (void) setValues:(NSDictionary*)values toStationWithNumber:(NSString*)stationNumber regionNumber:(NSString*)regionNumber
+{
+    //
+    // Find Existing Station
+    Station * station = [_parsing_oldStations firstObjectWithValue:values[stationNumber] forKeyPath:StationAttributes.number];
+    if(station)
+    {
+        // found existing
+        [_parsing_oldStations removeObject:station];
+    }
+    else
+    {
+        if(_parsing_oldStations.count && [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
+            NSLog(@"Note : new station found after update : %@", values);
+        station = [Station insertInManagedObjectContext:_parsing_context];
+    }
+    
+    //
+    // Set Values
+    [station setValuesForKeysWithDictionary:values withMappingDictionary:[self KVCMapping]]; // Yay!
+    
+    //
+    // Build missing status, if needed
+    if([[[self KVCMapping] allKeysForObject:StationAttributes.status_available] count])
+    {
         if([[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]==0)
         {
             // "Total" is not in data
@@ -104,21 +130,23 @@
         
         // Set Date to now
         station.status_date = [NSDate date];
-        
-        // Set Region to "anonymous"
-        station.region = _parsing_region;
-        
-        // Clear values
-        _parsing_currentValues = nil;
     }
-    else
+
+    //
+    // Set Region
+    Region * region = _parsing_regionsByNumber[regionNumber];
+    if(nil==region)
     {
-        // Accumulate values
-        NSString * value = [_parsing_currentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if(value)
-            [_parsing_currentValues setObject:value forKey:elementName];
-        _parsing_currentString = nil;
+        region = [[Region fetchRegionWithNumber:_parsing_context number:regionNumber] lastObject];
+        if(region==nil)
+        {
+            region = [Region insertInManagedObjectContext:_parsing_context];
+            region.number = regionNumber;
+            region.name = regionNumber;
+        }
+        _parsing_regionsByNumber[regionNumber] = region;
     }
+    station.region = region;
 }
 
 @end

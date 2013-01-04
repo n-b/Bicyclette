@@ -432,7 +432,6 @@
 		37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MapVC+DebugScreenshots.m"; sourceTree = "<group>"; };
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
 		37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LocalAlerts.m"; sourceTree = "<group>"; };
-		37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RennesVeloStarCity.h; sourceTree = "<group>"; };
 		37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RennesVeloStarCity.m; sourceTree = "<group>"; };
 		37F827E7167C0827001D85D8 /* BixiCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BixiCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -610,8 +609,6 @@
 				37F092271680BF36001E8127 /* XML with subnodes */,
 				377620E4167BE61A004E9E3D /* OrleansVeloPlusCity.h */,
 				377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */,
-				37F827DD167BF9D4001D85D8 /* RennesVeloStarCity.h */,
-				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
 				375760F11687D0DA0042FCF8 /* NextBikeCity.h */,
 				375760F21687D0DA0042FCF8 /* NextBikeCity.m */,
@@ -881,6 +878,7 @@
 				3791306D16971FD30054FECA /* XMLCityWithStationDataInSubnodes.h */,
 				3791306E16971FD30054FECA /* XMLCityWithStationDataInSubnodes.m */,
 				37F827E7167C0827001D85D8 /* BixiCity.m */,
+				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 			);
 			name = "XML with subnodes";
 			sourceTree = "<group>";

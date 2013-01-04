@@ -19,9 +19,14 @@
 
 #pragma mark City Data Update
 
-- (BOOL) hasRegions
+- (NSString*) stationElementName
 {
-    return NO;
+    return @"station";
+}
+
+- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
+{
+    return values[@"id"];
 }
 
 - (NSDictionary*) KVCMapping
@@ -33,11 +38,6 @@
              @"nbBikes": StationAttributes.status_available,
              @"nbEmptyDocks": StationAttributes.status_free,
              };
-}
-
-- (NSString*) stationElementName
-{
-    return @"station";
 }
 
 @end

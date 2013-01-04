@@ -13,10 +13,14 @@
      fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context
        oldStations:(NSMutableArray*)oldStations;
+- (BOOL) hasRegions;
 @end
 
 // To be implemented by subclasses
 @protocol XMLCityWithStationDataInSubnodes <BicycletteCity>
 - (NSString*) stationElementName;
+- (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
 - (NSDictionary*) KVCMapping;
+@optional
+- (NSString*) regionNumberFromStationValues:(NSDictionary*)values;
 @end
