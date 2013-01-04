@@ -17,8 +17,6 @@
 
 @implementation _CityWithFlatListOfStations
 
-- (BOOL) hasRegions { return NO; }
-
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context

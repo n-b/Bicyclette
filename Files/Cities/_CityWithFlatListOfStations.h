@@ -11,8 +11,6 @@
 // Common code for webservices returning a flat list of stations attributes.
 @interface _CityWithFlatListOfStations : _BicycletteCity
 
-- (BOOL) hasRegions; //NO
-
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context

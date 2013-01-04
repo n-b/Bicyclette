@@ -16,8 +16,6 @@
 
 #pragma mark City Data Update
 
-- (BOOL) hasRegions { return NO; }
-
 - (NSDictionary*) KVCMapping
 {
     return @{@"id": StationAttributes.number,

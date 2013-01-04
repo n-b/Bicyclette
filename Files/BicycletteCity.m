@@ -144,6 +144,11 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return self.regionContainingData.center;
 }
 
+- (BOOL) hasRegions
+{
+    return [self respondsToSelector:@selector(regionInfoFromStation:values:patchs:requestURL:)];
+}
+
 #pragma mark Fetch requests
 
 - (Station*) stationWithNumber:(NSString*)number
@@ -260,6 +265,20 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 @end
 
+/****************************************************************************/
+#pragma mark -
+
+@implementation RegionInfo
++ (instancetype) infoWithName:(NSString*)name_ number:(NSString*)number_
+{
+    RegionInfo * info = [self new];
+    info.name = name_;
+    info.number = number_;
+    return info;
+}
+@end
+
+/****************************************************************************/
 #pragma mark -
 
 @implementation NSManagedObject (BicycletteCity)
@@ -270,7 +289,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 }
 @end
 
-#pragma mark Update Notifications
+/****************************************************************************/
+#pragma mark - Update Notifications
 
 const struct BicycletteCityNotifications BicycletteCityNotifications = {
     .canRequestLocation = @"BicycletteCityNotifications.canRequestLocation",

@@ -15,16 +15,6 @@
 @interface _XMLCityWithStationDataInSubnodes (XMLCityWithStationDataInSubnodes) <XMLCityWithStationDataInSubnodes>
 @end
 
-@implementation RegionInfo
-+ (instancetype) infoWithName:(NSString*)name_ number:(NSString*)number_
-{
-    RegionInfo * info = [self new];
-    info.name = name_;
-    info.number = number_;
-    return info;
-}
-@end
-
 #pragma mark -
 
 @implementation _XMLCityWithStationDataInSubnodes
@@ -56,11 +46,6 @@
     _parsing_context = nil;
     _parsing_oldStations = nil;
     _parsing_regionsByNumber = nil;
-}
-
-- (BOOL) hasRegions
-{
-    return [self respondsToSelector:@selector(regionInfoFromStation:values:patchs:requestURL:)];
 }
 
 - (NSDictionary*) patches
@@ -108,7 +93,7 @@
 - (void) setValues:(NSDictionary*)values toStationWithNumber:(NSString*)stationNumber
 {
     BOOL logParsingDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"];
-
+    
     //
     // Find Existing Station
     Station * station = [_parsing_oldStations firstObjectWithValue:values[stationNumber] forKeyPath:StationAttributes.number];
@@ -157,7 +142,7 @@
         // Set Date to now
         station.status_date = [NSDate date];
     }
-
+    
     //
     // Set Region
     RegionInfo * regionInfo;
@@ -178,7 +163,7 @@
         regionInfo.number = @"anonymousregion";
         regionInfo.name = @"anonymousregion";
     }
-
+    
     Region * region = _parsing_regionsByNumber[regionInfo.number];
     if(nil==region)
     {

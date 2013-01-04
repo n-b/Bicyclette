@@ -48,11 +48,6 @@
     _parsing_regionsByNumber = nil;
 }
 
-- (BOOL) hasRegions
-{
-    return [self respondsToSelector:@selector(regionInfoFromStation:values:patchs:requestURL:)];
-}
-
 - (NSDictionary*) patches
 {
 	return self.serviceInfo[@"patches"];

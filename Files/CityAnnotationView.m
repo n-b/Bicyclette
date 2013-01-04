@@ -16,6 +16,11 @@
     return (BicycletteCity*)self.annotation;
 }
 
+- (BOOL)isOpaque
+{
+    return NO;
+}
+
 - (BOOL)canShowCallout
 {
     return YES;
@@ -32,20 +37,13 @@
         [self setNeedsDisplay];
 }
 
-- (void)displayLayer:(CALayer *)layer
-{
-    self.layer.contents = (id)[self.drawingCache sharedImageWithSize:self.bounds.size
-                                                               scale:self.layer.contentsScale
-                                                               shape:BackgroundShapeOval
-                                                          borderMode:BorderModeSolid
-                                                           baseColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:.4]
-                                                               value:@""
-                                                               phase:0];
-}
-
 - (void)drawRect:(CGRect)rect
 {
-    // implemented just so that displayLayer: is called
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor colorWithHue:.5 saturation:.5 brightness:.5 alpha:.5].CGColor);
+    CGContextFillEllipseInRect(ctx, rect);
+    CGContextStrokeEllipseInRect(ctx, rect);
 }
 
 @end

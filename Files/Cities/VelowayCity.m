@@ -31,8 +31,6 @@
 
 #pragma mark City Data Update
 
-- (BOOL) hasRegions { return NO; }
-
 - (NSString*) keyPathToStationsLists { return @"stand"; }
 
 - (NSDictionary*) KVCMapping
