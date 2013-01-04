@@ -22,8 +22,6 @@
     Region * _parsing_region;
 }
 
-- (BOOL) hasRegions { return NO; }
-
 - (void) parseData:(NSData *)data
      fromURLString:(NSString*)urlString
          inContext:(NSManagedObjectContext*)context
@@ -43,18 +41,6 @@
     _parsing_region = nil;
     _parsing_context = nil;
     _parsing_oldStations = nil;
-}
-
-- (Region*) regionForDataFromURL:(NSString*)urlString inContext:(NSManagedObjectContext*)context
-{
-    Region * region = [[Region fetchRegionWithNumber:context number:@"anonymousregion"] lastObject];
-    if(region==nil)
-    {
-        region = [Region insertInManagedObjectContext:context];
-        region.number = @"anonymousregion";
-        region.name = @"anonymousregion";
-    }
-    return region;
 }
 
 - (NSDictionary*) KVCMapping
@@ -96,38 +82,46 @@
     }
 }
 
-@end
+/****************************************************************************/
+#pragma mark Regions
 
-
-@implementation MetroRadRuhrCity
-
-- (BOOL) hasRegions { return YES; }
+- (BOOL) hasRegions { return self.serviceInfo[@"regions"]!=nil;
+}
 - (NSString*) titleForRegion:(Region*)region { return region.name; }
 - (NSString*) subtitleForRegion:(Region*)region { return nil; }
 
 - (Region*) regionForDataFromURL:(NSString*)urlString inContext:(NSManagedObjectContext*)context
 {
-    NSString * number = [urlString stringByDeletingPrefix:self.serviceInfo[@"update_url"]];
+    NSString * number = [self hasRegions] ? [urlString stringByDeletingPrefix:self.serviceInfo[@"update_url"]] : @"anonymousregion";
+    NSString * name = [self hasRegions] ? self.serviceInfo[@"regions"][number] : @"anonymousregion";
+    
     Region * region = [[Region fetchRegionWithNumber:context number:number] lastObject];
     if(region==nil)
     {
         region = [Region insertInManagedObjectContext:context];
         region.number = number;
-        region.name = self.serviceInfo[@"regions"][number];
+        region.name = name;
     }
     return region;
 }
 
-
 - (NSArray *)updateURLStrings
 {
-    NSString * baseURL = self.serviceInfo[@"update_url"];
-    NSDictionary * regions = self.serviceInfo[@"regions"];
-    NSMutableArray * result = [NSMutableArray new];
-    for (NSString * regionID in regions) {
-        [result addObject:[baseURL stringByAppendingString:regionID]];
+    if( self.serviceInfo[@"regions"] == nil)
+    {
+        return [super updateURLStrings];
     }
-    return result;
+    else
+    {
+        NSString * baseURL = self.serviceInfo[@"update_url"];
+        NSDictionary * regions = self.serviceInfo[@"regions"];
+        NSMutableArray * result = [NSMutableArray new];
+        for (NSString * regionID in regions) {
+            [result addObject:[baseURL stringByAppendingString:regionID]];
+        }
+        return result;
+    }
 }
+
 
 @end

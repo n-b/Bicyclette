@@ -381,39 +381,12 @@
     }, 
     {
         "city_class": "NextBikeCity", 
-        "city_name": "Frankfurt", 
-        "latitude": 50.1072, 
-        "longitude": 8.66375, 
-        "radius": 15000,
-        "service_name": "NextBike", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=8"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
         "city_name": "Bielefeld", 
         "latitude": 52.0257, 
         "longitude": 8.53286, 
         "radius": 5000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=16"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Berlin", 
-        "latitude": 52.5087, 
-        "longitude": 13.3563, 
-        "radius": 15000,
-        "service_name": "NextBike", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=20"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Offenbach", 
-        "latitude": 50.1093, 
-        "longitude": 8.73825, 
-        "radius": 5000,
-        "service_name": "NextBike", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=32"
     }, 
     {
         "city_class": "NextBikeCity", 
@@ -541,15 +514,6 @@
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=178"
     }, 
-    {
-        "city_class": "NextBikeCity", 
-        "city_name": "Halensee", 
-        "latitude": 52.4986, 
-        "longitude": 13.3001, 
-        "radius": 5000,
-        "service_name": "NextBike", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=182"
-    },
     {
         "city_class": "NextBikeCity", 
         "city_name": "Burghausen", 
@@ -885,15 +849,6 @@
     }, 
     {
         "city_class": "NextBikeCity", 
-        "city_name": "Bemowo", 
-        "latitude": 52.2425, 
-        "longitude": 20.9149, 
-        "radius": 5000,
-        "service_name": "NextBike", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=197"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
         "city_name": "Poznan", 
         "latitude": 52.4077, 
         "longitude": 16.9323, 
@@ -921,15 +876,6 @@
     }, 
     {
         "city_class": "NextBikeCity", 
-        "city_name": "Warszawa", 
-        "latitude": 52.2324, 
-        "longitude": 21.0127, 
-        "radius": 15000,
-        "service_name": "veturilo", 
-        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=210"
-    }, 
-    {
-        "city_class": "NextBikeCity", 
         "city_name": "Konya", 
         "latitude": 37.8715, 
         "longitude": 32.4957, 
@@ -939,12 +885,25 @@
     }, 
  
     {
-        "city_class": "MetroRadRuhrCity",
-        "city_name": "MetroRadRuhr", 
+        "city_class": "NextBikeCity", 
+        "city_name": "Berlin", 
+        "latitude": 52.5087, 
+        "longitude": 13.3563, 
+        "radius": 15000,
+        "service_name": "NextBike", 
+        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=",
+		"regions": {
+			"20":"Berlin",
+            "182":"Halensee",
+ 		}
+    }, 
+    {
+        "city_class": "NextBikeCity",
+        "city_name": "Ruhr", 
         "latitude": 51.492122,
         "longitude": 7.107475,
         "radius": 65000,
-        "service_name": "metroradruhr", 
+        "service_name": "metropolradruhr", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=",
 		"regions": {
 			"129":"Dortmund",
@@ -959,10 +918,32 @@
             "138":"Oberhausen"
 		 }
     },
+    {
+        "city_class": "NextBikeCity", 
+        "city_name": "Frankfurt", 
+        "latitude": 50.1072, 
+        "longitude": 8.66375, 
+        "radius": 15000,
+        "service_name": "NextBike", 
+        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=",
+    }, 
+    {
+        "city_class": "NextBikeCity", 
+        "city_name": "Warszawa", 
+        "latitude": 52.2324, 
+        "longitude": 21.0127, 
+        "radius": 15000,
+        "service_name": "veturilo", 
+        "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=",
+		"regions": {
+			"210":"Warszawa",
+            "197":"Bemowo"
+		 }
+    }, 
 
     {
-        "city_class": "VelowayCity", 
-        "city_name": "Calais", 
+        "city_class": "VelowayCity",
+        "city_name": "Calais",
         "latitude": 50.9440296585055,
         "longitude": 1.86512508105466,
         "radius": 10000,
