@@ -926,6 +926,10 @@
         "radius": 15000,
         "service_name": "NextBike", 
         "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=",
+		"regions": {
+			"8":"Frankfurt",
+            "32":"Offenbach"
+		 }
     }, 
     {
         "city_class": "NextBikeCity", 
