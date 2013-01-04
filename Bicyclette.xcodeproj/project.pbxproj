@@ -40,7 +40,6 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
-		370220D9165525B100350AD1 /* BicycletteCity.mogenerated in Resources */ = {isa = PBXBuildFile; fileRef = 370220D7165525B100350AD1 /* BicycletteCity.mogenerated */; };
 		370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220E4165527D000350AD1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
@@ -1020,7 +1019,6 @@
 				3724BC6D15E4C50200790869 /* Default-Portrait@2x.png in Resources */,
 				37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */,
 				377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */,
-				370220D9165525B100350AD1 /* BicycletteCity.mogenerated in Resources */,
 				3739609B167917CE005F0672 /* BicycletteCities.json in Resources */,
 				37E43DB41684D7A30085EC4F /* Amiens_Vélam.coredata in Resources */,
 				37E43DB51684D7A30085EC4F /* Besançon_VéloCité.coredata in Resources */,
