@@ -34,6 +34,7 @@
     NSMutableDictionary * _parsing_currentValues;
     NSMutableString * _parsing_currentString;
     NSMutableDictionary * _parsing_regionsByNumber;
+    NSString * _parsing_urlString;
 }
 
 - (void) parseData:(NSData *)data
@@ -41,6 +42,7 @@
          inContext:(NSManagedObjectContext*)context
        oldStations:(NSMutableArray*)oldStations
 {
+    _parsing_urlString = urlString;
     _parsing_context = context;
     _parsing_oldStations = oldStations;
     _parsing_regionsByNumber = [NSMutableDictionary new];
@@ -50,6 +52,7 @@
     parser.delegate = self;
     [parser parse];
     
+    _parsing_urlString = nil;
     _parsing_context = nil;
     _parsing_oldStations = nil;
     _parsing_regionsByNumber = nil;
@@ -57,7 +60,7 @@
 
 - (BOOL) hasRegions
 {
-    return [self respondsToSelector:@selector(regionInfoFromStation:values:patchs:)];
+    return [self respondsToSelector:@selector(regionInfoFromStation:values:patchs:requestURL:)];
 }
 
 - (NSDictionary*) patches
@@ -160,7 +163,7 @@
     RegionInfo * regionInfo;
     if([self hasRegions])
     {
-        regionInfo = [self regionInfoFromStation:station values:values patchs:patchs];
+        regionInfo = [self regionInfoFromStation:station values:values patchs:patchs requestURL:_parsing_urlString];
         if(nil==regionInfo)
         {
             if(logParsingDetails)

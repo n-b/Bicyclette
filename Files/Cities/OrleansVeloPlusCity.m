@@ -31,7 +31,6 @@
 
 #pragma mark City Data Update
 
-
 - (NSString*) stationElementName
 {
     return @"marker";

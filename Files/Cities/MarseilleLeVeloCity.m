@@ -21,7 +21,7 @@
 
 #pragma mark CyclocityCity
 
-- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs;
+- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString;
 {
     return [RegionInfo infoWithName:[station.name substringToIndex:1]
                              number:[station.name substringToIndex:1]];

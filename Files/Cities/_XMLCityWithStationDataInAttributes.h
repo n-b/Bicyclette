@@ -23,7 +23,7 @@
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
 - (NSDictionary*) KVCMapping;
 @optional
-- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs;
+- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString;
 @end
 
 @interface RegionInfo : NSObject // Just a struct, actually

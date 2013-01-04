@@ -37,7 +37,7 @@
 
 #pragma mark CyclocityCity
 
-- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs;
+- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString
 {
     if( ! [station.fullAddress hasPrefix:station.address] )
         return nil;
