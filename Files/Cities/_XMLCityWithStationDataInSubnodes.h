@@ -8,17 +8,15 @@
 
 #import "BicycletteCity.h"
 
-@interface _XMLCityWithStationDataInSubnodes : _BicycletteCity <NSXMLParserDelegate>
-- (void) parseData:(NSData *)data
-     fromURLString:(NSString*)urlString
-         inContext:(NSManagedObjectContext*)context
-       oldStations:(NSMutableArray*)oldStations;
+#import "_FuckCity.h"
+
+@interface _XMLCityWithStationDataInSubnodes : _FuckCity
+- (void) fuckParseData:(NSData*)data;
 @end
 
 // To be implemented by subclasses
-@protocol XMLCityWithStationDataInSubnodes <BicycletteCity>
+@protocol XMLCityWithStationDataInSubnodes <FuckCity>
 - (NSString*) stationElementName;
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
-- (NSDictionary*) KVCMapping;
 @end
 

@@ -63,8 +63,6 @@
     return urlStrings;
 }
 
-- (BOOL) hasRegions { return YES; }
-
 - (NSDictionary*) KVCMapping
 {
     return @{
@@ -113,6 +111,12 @@
         
         station.region = region;
     }
+}
+
+- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString
+{
+    NSString * regionNumber = [urlString substringFromIndex:[urlString length]-1];
+    return [RegionInfo infoWithName:regionNumber number:regionNumber];
 }
 
 @end

@@ -16,6 +16,11 @@
 
 #pragma mark City Data Update
 
+- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
+{
+    return values[@"id"];
+}
+
 - (NSDictionary*) KVCMapping
 {
     return @{@"id": StationAttributes.number,

@@ -26,6 +26,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (NSString *) cityName;
 - (NSString *) serviceName;
 - (NSArray *) updateURLStrings;
+- (NSDictionary*) patches;
 - (CLRegion *) hardcodedLimits;
 - (CLRegion *) regionContainingData;
 - (CLLocation *) location; // Locatable

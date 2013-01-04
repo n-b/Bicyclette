@@ -95,6 +95,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 - (NSString *) serviceName { return _serviceInfo[@"service_name"]; }
 - (NSArray *) updateURLStrings { return @[_serviceInfo[@"update_url"]]; }
 - (NSString *) detailsURLStringForStation:(Station*)station { return [self.serviceInfo[@"station_details_url"] stringByAppendingString:station.number]; }
+- (NSDictionary*) patches { return self.serviceInfo[@"patches"]; }
 
 - (CLRegion *) hardcodedLimits
 {
