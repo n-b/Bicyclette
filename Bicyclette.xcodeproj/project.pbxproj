@@ -312,7 +312,6 @@
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
 		3739609A167917CE005F0672 /* BicycletteCities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BicycletteCities.json; sourceTree = "<group>"; };
-		373960A916794634005F0672 /* LyonVelovCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyonVelovCity.h; sourceTree = "<group>"; };
 		373960AA16794634005F0672 /* LyonVelovCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyonVelovCity.m; sourceTree = "<group>"; };
 		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
 		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
@@ -607,7 +606,6 @@
 				379130791697341A0054FECA /* XML with attributes */,
 				37F092271680BF36001E8127 /* XML with subnodes */,
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
-				373960A916794634005F0672 /* LyonVelovCity.h */,
 				373960AA16794634005F0672 /* LyonVelovCity.m */,
 			);
 			path = Cities;

@@ -6,15 +6,16 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "LyonVelovCity.h"
+#import "BicycletteCity.h"
+
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
 #import "NSObject+KVCMapping.h"
 #import "CyclocityStationParse.h"
 
-// JSON
-// Region from url
+@interface LyonVelovCity : _BicycletteCity <BicycletteCity>
+@end
 
 @implementation LyonVelovCity
 
