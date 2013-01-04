@@ -275,12 +275,12 @@
             RadarAnnotationView * radarAV = (RadarAnnotationView *)[self.mapView viewForAnnotation:annotation];
             radarAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:radarAV].size};
         }
-        else if([annotation isKindOfClass:[_BicycletteCity class]])
-        {
-            CityAnnotationView * cityAV = (CityAnnotationView *)[self.mapView viewForAnnotation:annotation];
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
-            cityAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:region toRectToView:cityAV].size};
-        }
+//        else if([annotation isKindOfClass:[_BicycletteCity class]])
+//        {
+//            CityAnnotationView * cityAV = (CityAnnotationView *)[self.mapView viewForAnnotation:annotation];
+//            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
+//            cityAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:region toRectToView:cityAV].size};
+//        }
     }
 }
 
