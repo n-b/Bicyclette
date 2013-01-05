@@ -60,10 +60,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-DataGrabberLogProgress YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter Miami"
+            argument = "-DataGrabberCityFilter Barcelona"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -993,4 +993,13 @@
         "update_url": "http://www.decobike.com/playmoves.xml"
     }, 
 
+     {
+        "city_class": "BarcelonaCityBikeCity", 
+        "city_name": "Barcelona",
+        "latitude": 41.396662,
+        "longitude": 2.169662,
+        "radius": 10000,
+        "service_name": "Bicing",
+        "update_url": "https://www.bicing.cat/localizaciones/getJsonObject.php"
+    }, 
 ]
