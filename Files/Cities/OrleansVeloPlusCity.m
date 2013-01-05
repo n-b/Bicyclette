@@ -40,8 +40,7 @@
     return @{@"id" : StationAttributes.number,
              @"lat" : StationAttributes.latitude,
              @"lng": StationAttributes.longitude,
-             @"name" : StationAttributes.name,
-             @"name" : StationAttributes.address};
+             @"name" : StationAttributes.name};
 }
 
 #pragma mark Stations Individual Data Updates

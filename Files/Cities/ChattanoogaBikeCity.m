@@ -24,13 +24,13 @@
 - (NSDictionary*) KVCMapping
 {
     return @{@"id" : StationAttributes.number,
-    @"landMark" : StationAttributes.name,
-    @"latitude" : StationAttributes.latitude,
-    @"longitude": StationAttributes.longitude,
-    @"stAddress1": StationAttributes.address,
-    @"availableDocks": StationAttributes.status_free,
-    @"availableBikes": StationAttributes.status_available,
-    };
+             @"landMark" : StationAttributes.name,
+             @"latitude" : StationAttributes.latitude,
+             @"longitude": StationAttributes.longitude,
+             @"stAddress1": StationAttributes.address,
+             @"availableDocks": StationAttributes.status_free,
+             @"availableBikes": StationAttributes.status_available,
+             };
 }
 
 @end
