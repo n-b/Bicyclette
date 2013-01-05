@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_FuckCity.h"
+#import "BicycletteCity.h"
 
-@interface _XMLCityWithStationDataInAttributes : _FuckCity
-- (void) fuckParseData:(NSData*)data;
+@interface _XMLCityWithStationDataInAttributes : _BicycletteCity
+- (void) parseData:(NSData*)data;
 @end
 
 // To be implemented by subclasses
-@protocol XMLCityWithStationDataInAttributes <FuckCity>
+@protocol XMLCityWithStationDataInAttributes <BicycletteCity>
 - (NSString*) stationElementName;
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
 @end

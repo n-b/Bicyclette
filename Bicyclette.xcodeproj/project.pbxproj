@@ -111,8 +111,6 @@
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		3786E4F21482EB2E00814C10 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		3788EC741697531400836A60 /* _FuckCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788EC731697531400836A60 /* _FuckCity.m */; };
-		3788EC751697531400836A60 /* _FuckCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788EC731697531400836A60 /* _FuckCity.m */; };
 		378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */; };
 		3791306816971C110054FECA /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306716971C100054FECA /* ParisVelibCity.m */; };
 		3791306916971C110054FECA /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306716971C100054FECA /* ParisVelibCity.m */; };
@@ -350,8 +348,6 @@
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3788EC721697531400836A60 /* _FuckCity.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = _FuckCity.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
-		3788EC731697531400836A60 /* _FuckCity.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = _FuckCity.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationAnnotationView.h; sourceTree = "<group>"; };
 		378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationAnnotationView.m; sourceTree = "<group>"; };
 		3791306716971C100054FECA /* ParisVelibCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParisVelibCity.m; sourceTree = "<group>"; };
@@ -607,7 +603,8 @@
 			isa = PBXGroup;
 			children = (
 				3739609A167917CE005F0672 /* BicycletteCities.json */,
-				3788EC79169754CA00836A60 /* XML */,
+				379130791697341A0054FECA /* XML with attributes */,
+				37F092271680BF36001E8127 /* XML with subnodes */,
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
 			);
 			path = Cities;
@@ -728,17 +725,6 @@
 			);
 			name = "Test Supporting Files";
 			path = ../LogicTests;
-			sourceTree = "<group>";
-		};
-		3788EC79169754CA00836A60 /* XML */ = {
-			isa = PBXGroup;
-			children = (
-				3788EC721697531400836A60 /* _FuckCity.h */,
-				3788EC731697531400836A60 /* _FuckCity.m */,
-				379130791697341A0054FECA /* XML with attributes */,
-				37F092271680BF36001E8127 /* XML with subnodes */,
-			);
-			name = XML;
 			sourceTree = "<group>";
 		};
 		379130791697341A0054FECA /* XML with attributes */ = {
@@ -1191,7 +1177,6 @@
 				3791307016971FD30054FECA /* _XMLCityWithStationDataInSubnodes.m in Sources */,
 				37913078169733E00054FECA /* _XMLCityWithStationDataInAttributes.m in Sources */,
 				3791307D16973C730054FECA /* _CityWithJSONFlatListOfStations.m in Sources */,
-				3788EC751697531400836A60 /* _FuckCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,7 +1213,6 @@
 				3791306F16971FD30054FECA /* _XMLCityWithStationDataInSubnodes.m in Sources */,
 				37913077169733E00054FECA /* _XMLCityWithStationDataInAttributes.m in Sources */,
 				3791307C16973C730054FECA /* _CityWithJSONFlatListOfStations.m in Sources */,
-				3788EC741697531400836A60 /* _FuckCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

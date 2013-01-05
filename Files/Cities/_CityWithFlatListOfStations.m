@@ -14,7 +14,7 @@
 
 @implementation _CityWithFlatListOfStations
 
-- (void) fuckParseData:(NSData*)data
+- (void) parseData:(NSData*)data
 {
     id attributesArray = [self stationAttributesArraysFromData:data];
     

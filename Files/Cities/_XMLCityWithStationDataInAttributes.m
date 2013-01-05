@@ -21,7 +21,7 @@
 
 @implementation _XMLCityWithStationDataInAttributes
 
-- (void) fuckParseData:(NSData*)data
+- (void) parseData:(NSData*)data
 {
     // Parse stations XML
     NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];

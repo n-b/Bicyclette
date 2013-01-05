@@ -45,6 +45,10 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (void) update;
 + (BOOL) canUpdateIndividualStations;
 
+// Call during parsing
+- (void) setValues:(NSDictionary*)values
+toStationWithNumber:(NSString*)stationNumber;
+
 // Annotations
 - (NSString*) title;
 
@@ -66,10 +70,8 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 
 // City Data Updates
 @required
-- (void) parseData:(NSData *)data
-     fromURLString:(NSString*)urlString
-         inContext:(NSManagedObjectContext*)context
-       oldStations:(NSMutableArray*)oldStations;
+- (void) parseData:(NSData*)data;
+- (NSDictionary*) KVCMapping;
 
 // Wether City has regions
 @optional

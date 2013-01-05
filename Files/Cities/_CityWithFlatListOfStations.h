@@ -6,15 +6,14 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_FuckCity.h"
+#import "BicycletteCity.h"
 
-// Common code for webservices returning a flat list of stations attributes.
-@interface _CityWithFlatListOfStations : _FuckCity
-- (void) fuckParseData:(NSData*)data;
+@interface _CityWithFlatListOfStations : _BicycletteCity
+- (void) parseData:(NSData*)data;
 @end
 
 // To be implemented by subclasses
-@protocol CityWithFlatListOfStations <FuckCity>
+@protocol CityWithFlatListOfStations <BicycletteCity>
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data;
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
 @end
