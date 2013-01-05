@@ -24,8 +24,6 @@
     NSMutableDictionary * _parsing_currentValues;
 }
 
-#pragma mark -
-
 - (void) parseData:(NSData*)data
 {
     // Parse stations XML
@@ -50,9 +48,7 @@
 {
     if([elementName isEqualToString:[self stationElementName]]) // End of station dict
     {
-        NSString * stationNumber = [self stationNumberFromStationValues:_parsing_currentValues];
-
-        [self setValues:_parsing_currentValues toStationWithNumber:stationNumber];
+        [self insertStationAttributes:_parsing_currentValues];
         
         // Clear values
         _parsing_currentValues = nil;
@@ -66,8 +62,6 @@
         _parsing_currentString = nil;
     }
 }
-
-#pragma mark -
 
 @end
 

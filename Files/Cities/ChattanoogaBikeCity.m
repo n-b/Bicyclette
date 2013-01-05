@@ -16,11 +16,6 @@
 
 #pragma mark City Data Update
 
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
-{
-    return values[@"id"];
-}
-
 - (NSString*) keyPathToStationsLists
 {
     return @"stationBeanList";

@@ -19,8 +19,7 @@
     id attributesArray = [self stationAttributesArraysFromData:data];
     
     for (NSDictionary * attributeDict in attributesArray) {
-        NSString * stationNumber = [self stationNumberFromStationValues:attributeDict];
-        [self setValues:attributeDict toStationWithNumber:stationNumber];
+        [self insertStationAttributes:attributeDict];
     }
 }
 

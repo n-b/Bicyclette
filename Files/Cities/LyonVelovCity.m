@@ -68,11 +68,6 @@
     return @"markers";
 }
 
-- (NSString *)stationNumberFromStationValues:(NSDictionary *)values
-{
-    return values[@"numStation"];
-}
-
 - (NSDictionary*) KVCMapping
 {
     return @{

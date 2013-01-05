@@ -15,6 +15,5 @@
 // To be implemented by subclasses
 @protocol CityWithFlatListOfStations <BicycletteCity>
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data;
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
 @end
 

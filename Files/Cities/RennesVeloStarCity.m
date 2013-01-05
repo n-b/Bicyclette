@@ -26,11 +26,6 @@
     return @"station";
 }
 
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
-{
-    return values[@"number"];
-}
-
 - (NSDictionary*) KVCMapping
 {
     return @{@"number" : StationAttributes.number,

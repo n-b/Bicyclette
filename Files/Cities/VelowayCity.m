@@ -31,12 +31,10 @@
 
 #pragma mark City Data Update
 
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
+- (NSString*) keyPathToStationsLists
 {
-    return values[@"id"];
+    return @"stand";
 }
-
-- (NSString*) keyPathToStationsLists { return @"stand"; }
 
 - (NSDictionary*) KVCMapping
 {

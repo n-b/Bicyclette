@@ -15,6 +15,5 @@
 // To be implemented by subclasses
 @protocol XMLCityWithStationDataInSubnodes <BicycletteCity>
 - (NSString*) stationElementName;
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
 @end
 

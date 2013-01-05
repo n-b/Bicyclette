@@ -267,13 +267,21 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     self.updater = nil;
 }
 
-- (void) setValues:(NSDictionary*)values toStationWithNumber:(NSString*)stationNumber
+- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
 {
+    NSString * keyForNumber = [[self KVCMapping] allKeysForObject:StationAttributes.number][0]; // There *must* be a key mapping to "number" in the KVCMapping dictionary.
+    return values[keyForNumber];
+}
+
+- (void) insertStationAttributes:(NSDictionary*)stationAttributes
+{
+    NSString * stationNumber = [self stationNumberFromStationValues:stationAttributes];
+
     BOOL logParsingDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"];
     
     //
     // Find Existing Station
-    Station * station = [_parsing_oldStations firstObjectWithValue:values[stationNumber] forKeyPath:StationAttributes.number];
+    Station * station = [_parsing_oldStations firstObjectWithValue:stationAttributes[stationNumber] forKeyPath:StationAttributes.number];
     if(station)
     {
         // found existing
@@ -282,13 +290,13 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     else
     {
         if(_parsing_oldStations.count && [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-            NSLog(@"Note : new station found after update : %@", values);
+            NSLog(@"Note : new station found after update : %@", stationAttributes);
         station = [Station insertInManagedObjectContext:_parsing_context];
     }
     
     //
     // Set Values
-    [station setValuesForKeysWithDictionary:values withMappingDictionary:[self KVCMapping]]; // Yay!
+    [station setValuesForKeysWithDictionary:stationAttributes withMappingDictionary:[self KVCMapping]]; // Yay!
     
     //
     // Set patches
@@ -297,7 +305,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     if(hasDataPatches)
     {
         if(logParsingDetails)
-            NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",values, patchs);
+            NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",stationAttributes, patchs);
         [station setValuesForKeysWithDictionary:patchs withMappingDictionary:[self KVCMapping]]; // Yay! again
     }
     
@@ -325,11 +333,11 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     RegionInfo * regionInfo;
     if([self hasRegions])
     {
-        regionInfo = [self regionInfoFromStation:station values:values patchs:patchs requestURL:_parsing_urlString];
+        regionInfo = [self regionInfoFromStation:station values:stationAttributes patchs:patchs requestURL:_parsing_urlString];
         if(nil==regionInfo)
         {
             if(logParsingDetails)
-                NSLog(@"Invalid data : %@",values);
+                NSLog(@"Invalid data : %@",stationAttributes);
             [_parsing_context deleteObject:station];
             return;
         }

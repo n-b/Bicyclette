@@ -16,6 +16,7 @@
 @end
 
 #pragma mark -
+
 @interface _XMLCityWithStationDataInAttributes () <NSXMLParserDelegate>
 @end
 
@@ -33,10 +34,8 @@
 {
     if([elementName isEqualToString:[self stationElementName]]) // End of station dict
     {
-        NSString * stationNumber = [self stationNumberFromStationValues:attributeDict];
-        [self setValues:attributeDict toStationWithNumber:stationNumber];
+        [self insertStationAttributes:attributeDict];
     }
 }
-
 
 @end

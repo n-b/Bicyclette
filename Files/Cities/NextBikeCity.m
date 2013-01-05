@@ -40,11 +40,6 @@
     return @"place";
 }
 
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values
-{
-    return values[@"uid"];
-}
-
 - (NSDictionary*) KVCMapping
 {
     return @{@"uid" : StationAttributes.number,

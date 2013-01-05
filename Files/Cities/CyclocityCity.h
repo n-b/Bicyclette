@@ -11,7 +11,6 @@
 // Common code for all Cyclocity systems (except Velov)
 @interface CyclocityCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
 - (NSString*) stationElementName;
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values;
 - (NSDictionary*) KVCMapping;
 @end
 
