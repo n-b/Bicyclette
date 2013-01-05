@@ -63,16 +63,16 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter Next"
-            isEnabled = "NO">
+            argument = "-DataGrabberCityFilter Miami"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogGeolocationDetails YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogStationsDetails YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogRegionsDetails YES"
@@ -84,7 +84,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogMissingGeolocErrors YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

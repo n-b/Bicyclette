@@ -973,7 +973,7 @@
         "update_url": "http://www.velocea.fr/cartoV2/libProxyCarto.asp"
     }, 
  
-     {
+    {
         "city_class": "MontpellierVelomaggCity", 
         "city_name": "Montpellier",
         "latitude": 43.611789,
@@ -981,6 +981,16 @@
         "radius": 10000,
         "service_name": "Vélomagg'", 
         "update_url": "http://cli-velo-montpellier.gir.fr/vcstations.xml"
+    }, 
+
+     {
+        "city_class": "MiamiDecobikeCity", 
+        "city_name": "Miami",
+        "latitude": 25.800081,
+        "longitude": -80.133197,
+        "radius": 15000,
+        "service_name": "DECOBIKE", 
+        "update_url": "http://www.decobike.com/playmoves.xml"
     }, 
 
 ]
