@@ -983,7 +983,7 @@
         "update_url": "http://cli-velo-montpellier.gir.fr/vcstations.xml"
     }, 
 
-     {
+    {
         "city_class": "MiamiDecobikeCity", 
         "city_name": "Miami",
         "latitude": 25.800081,
@@ -993,7 +993,7 @@
         "update_url": "http://www.decobike.com/playmoves.xml"
     }, 
 
-     {
+    {
         "city_class": "BarcelonaCityBikeCity", 
         "city_name": "Barcelona",
         "latitude": 41.396662,
@@ -1002,4 +1002,15 @@
         "service_name": "Bicing",
         "update_url": "https://www.bicing.cat/localizaciones/getJsonObject.php"
     }, 
+
+    {
+        "city_class": "WienCitybikeCity", 
+        "city_name": "Wien",
+        "latitude": 48.207685,
+        "longitude": 16.357668,
+        "radius": 10000,
+        "service_name": "CitybikeCity",
+        "update_url": "http://dynamisch.citybikewien.at/citybike_xml.php"
+    }, 
+
 ]
