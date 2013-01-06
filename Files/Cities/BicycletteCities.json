@@ -1013,4 +1013,14 @@
         "update_url": "http://dynamisch.citybikewien.at/citybike_xml.php"
     }, 
 
+    {
+        "city_class": "AvignonPopCity", 
+        "city_name": "Avignon",
+        "latitude": 43.949018,
+        "longitude": 4.805381,
+        "radius": 5000,
+        "service_name": "Vélopop",
+        "update_url": "http://www.velopop.fr/stations.html"
+    }, 
+
 ]

@@ -182,6 +182,8 @@
 		37E43DC81684D7A30085EC4F /* Toulouse_VélÔ.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB11684D7A30085EC4F /* Toulouse_VélÔ.coredata */; };
 		37E43DC91684D7A30085EC4F /* Toyama_CyclOcity.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */; };
 		37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */; };
+		37E4B8C51699024D00CF61CB /* AvignonPopCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E4B8C41699024D00CF61CB /* AvignonPopCity.m */; };
+		37E4B8C61699024D00CF61CB /* AvignonPopCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E4B8C41699024D00CF61CB /* AvignonPopCity.m */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37EC535215BAFB0400F45C09 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534815BAFB0400F45C09 /* Default.png */; };
@@ -417,6 +419,7 @@
 		37E43DB11684D7A30085EC4F /* Toulouse_VélÔ.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Toulouse_VélÔ.coredata"; sourceTree = "<group>"; };
 		37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Toyama_CyclOcity.coredata; sourceTree = "<group>"; };
 		37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Valencia_Valenbisi.coredata; sourceTree = "<group>"; };
+		37E4B8C41699024D00CF61CB /* AvignonPopCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvignonPopCity.m; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -615,6 +618,7 @@
 				379130791697341A0054FECA /* XML with attributes */,
 				37F092271680BF36001E8127 /* XML with subnodes */,
 				37E43D941684B3830085EC4F /* SimpleStationsList */,
+				37E4B8CA1699025400CF61CB /* Custom HTML Parsing */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -867,6 +871,14 @@
 				3791307E16973D080054FECA /* Flat JSON list */,
 			);
 			name = SimpleStationsList;
+			sourceTree = "<group>";
+		};
+		37E4B8CA1699025400CF61CB /* Custom HTML Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				37E4B8C41699024D00CF61CB /* AvignonPopCity.m */,
+			);
+			name = "Custom HTML Parsing";
 			sourceTree = "<group>";
 		};
 		37EC534315BAFB0400F45C09 /* Images */ = {
@@ -1192,6 +1204,7 @@
 				3788EC7C1697AB1300836A60 /* MiamiDecobikeCity.m in Sources */,
 				3788EC7F1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */,
 				3788EC821697B1A300836A60 /* WienCitybikeCity.m in Sources */,
+				37E4B8C61699024D00CF61CB /* AvignonPopCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1231,6 +1244,7 @@
 				3788EC7B1697AB1300836A60 /* MiamiDecobikeCity.m in Sources */,
 				3788EC7E1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */,
 				3788EC811697B1A300836A60 /* WienCitybikeCity.m in Sources */,
+				37E4B8C51699024D00CF61CB /* AvignonPopCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
