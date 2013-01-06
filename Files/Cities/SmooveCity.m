@@ -1,5 +1,5 @@
 //
-//  MontpellierVelomaggCity.m
+//  SmooveCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 02/01/13.
@@ -12,10 +12,10 @@
 
 #pragma mark -
 
-@interface MontpellierVelomaggCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+@interface SmooveCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
 @end
 
-@implementation MontpellierVelomaggCity
+@implementation SmooveCity
 
 #pragma mark Annotations
 

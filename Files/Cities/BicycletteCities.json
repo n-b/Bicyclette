@@ -974,16 +974,6 @@
     }, 
  
     {
-        "city_class": "MontpellierVelomaggCity", 
-        "city_name": "Montpellier",
-        "latitude": 43.611789,
-        "longitude": 3.874925,
-        "radius": 10000,
-        "service_name": "Vélomagg'", 
-        "update_url": "http://cli-velo-montpellier.gir.fr/vcstations.xml"
-    }, 
-
-    {
         "city_class": "MiamiDecobikeCity", 
         "city_name": "Miami",
         "latitude": 25.800081,
@@ -1014,13 +1004,63 @@
     }, 
 
     {
-        "city_class": "AvignonPopCity", 
+        "city_class": "SmooveCity", 
+        "city_name": "Montpellier",
+        "latitude": 43.611789,
+        "longitude": 3.874925,
+        "radius": 10000,
+        "service_name": "Vélomagg'", 
+        "update_url": "http://cli-velo-montpellier.gir.fr/vcstations.xml"
+    }, 
+
+    {
+        "city_class": "SmooveCity", 
         "city_name": "Avignon",
-        "latitude": 43.949018,
-        "longitude": 4.805381,
+        "latitude": 43.946125,
+        "longitude": 4.811157,
         "radius": 5000,
         "service_name": "Vélopop",
-        "update_url": "http://www.velopop.fr/stations.html"
+        "update_url": "http://www.velopop.fr/vcstations.xml"
+    }, 
+
+    {
+        "city_class": "SmooveCity", 
+        "city_name": "Valence",
+        "latitude": 44.929567,
+        "longitude": 4.891845,
+        "radius": 5000,
+        "service_name": "Libélo",
+        "update_url": "http://www.velo-libelo.fr/vcstations.xml"
+    }, 
+
+    {
+        "city_class": "SmooveCity", 
+        "city_name": "Saint-Étienne",
+        "latitude": 45.445476,
+        "longitude": 4.418198,
+        "radius": 25000,
+        "service_name": "VéliVert",
+        "update_url": "http://www.velivert.fr/vcstations.xml"
+    }, 
+
+    {
+        "city_class": "SmooveCity", 
+        "city_name": "Grenoble",
+        "latitude": 45.183425,
+        "longitude": 5.721910,
+        "radius": 15000,
+        "service_name": "Métrovélo",
+        "update_url": "http://vms.metrovelo.fr/vcstations.xml"
+    }, 
+
+    {
+        "city_class": "SmooveCity", 
+        "city_name": "Strasbourg",
+        "latitude": 48.578462,
+        "longitude": 7.749776,
+        "radius": 10000,
+        "service_name": "Vélhop",
+        "update_url": "http://www.velhop.strasbourg.eu/vcstations.xml"
     }, 
 
 ]

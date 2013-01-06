@@ -111,9 +111,14 @@ Networks for a dozen of US cities, with relatively small coverage. Unfortunately
 No Licence information.
 * List+Details: http://www.decobike.com/playmoves.xml
 
-## Montpellier
+## Smoove
 No Licence information.
-- List+Details: http://cli-velo-montpellier.gir.fr/vcstations.xml
+* Montpellier : http://cli-velo-montpellier.gir.fr/vcstations.xml
+* Avignon : http://www.velopop.fr/vcstations.xml
+* Valence : http://www.velo-libelo.fr/vcstations.xml
+* Strasbourg : http://www.velhop.strasbourg.eu/vcstations.xml
+* Saint-Etienne : http://www.velivert.fr/vcstations.xml
+* Grenoble : http://vms.metrovelo.fr/vcstations.xml
 
 ## Barcelona
 A Citybike network, with its own webservice. No Licence Info.
@@ -131,13 +136,7 @@ Of course, no terms of use are available.
 
 ## La Rochelle
 - List+Details : http://www.rtcr.fr/ct_93_297__Carte_du_libre_service_velos.html
-
-## Smoove
-- Avignon : http://www.velopop.fr/stations.html
-- Strasbourg : http://www.velhop.strasbourg.eu/sag_vls_stations.html (Only bikes availability, no parking info.)
-- Valence : http://www.velo-libelo.fr/sag_stations_vls.html
-- Saint Etienne : http://www.velivert.fr/sag_vls_stations.html
-- Grenoble : http://vms.metrovelo.fr/sag_location_carte.html
+- http://flexbike.l-rd.fr/yelo-stations.php  ???
 
 ## CityBike (aka Clear Channel)
 - Caen (List+Details) : https://www.veol.caen.fr/localizaciones/localizaciones.php
