@@ -380,6 +380,20 @@ fromOldState:(MKAnnotationViewDragState)oldState
         NSFetchRequest * regionsRequest = [NSFetchRequest new];
         regionsRequest.entity = [Region entityInManagedObjectContext:self.currentCity.moc];
         [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:regionsRequest error:NULL]];
+
+        // Favorite Stations
+        NSFetchRequest * stationsRequest = [NSFetchRequest new];
+		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.currentCity.moc]];
+        MKCoordinateRegion mapRegion = self.mapView.region;
+		stationsRequest.predicate = [NSPredicate predicateWithFormat:@"isFavorite = YES AND latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
+                                     mapRegion.center.latitude - mapRegion.span.latitudeDelta/2,
+                                     mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
+                                     mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
+                                     mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
+        NSArray *newStations = [self.currentCity.moc executeFetchRequest:stationsRequest error:NULL];
+        [newAnnotations addObjectsFromArray:newStations];
+        NSArray *favoriteRegions = [[NSSet setWithArray:[newStations valueForKey:@"region"]] allObjects];
+        [newAnnotations removeObjectsInArray:favoriteRegions];
     }
     
     if (self.level == MapLevelRegionsAndRadars || self.level == MapLevelStationsAndRadars)
