@@ -316,7 +316,18 @@ typedef enum {
 	if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
-        [self refreshStation:(Station*)view.annotation]; 
+        [self refreshStation:(Station*)view.annotation];
+
+    if([view.annotation isKindOfClass:[Station class]])
+    {
+        UIButton *callout = [UIButton buttonWithType:UIButtonTypeCustom];
+        callout.frame = (CGRect){CGPointZero, [UIImage imageNamed:@"Favorite_off.png"].size};
+        [callout setImage:[UIImage imageNamed:@"Favorite_off.png"] forState:UIControlStateNormal];
+        [callout setImage:[UIImage imageNamed:@"Favorite_on.png"] forState:UIControlStateSelected];
+        [callout addTarget:self action:@selector(toogleFavorite:) forControlEvents:UIControlEventTouchUpInside];
+        callout.selected = [(Station*)view.annotation isFavoriteValue];
+        view.rightCalloutAccessoryView = callout;
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
@@ -369,6 +380,20 @@ fromOldState:(MKAnnotationViewDragState)oldState
         NSFetchRequest * regionsRequest = [NSFetchRequest new];
         regionsRequest.entity = [Region entityInManagedObjectContext:self.currentCity.moc];
         [newAnnotations addObjectsFromArray:[self.currentCity.moc executeFetchRequest:regionsRequest error:NULL]];
+
+        // Favorite Stations
+        NSFetchRequest * stationsRequest = [NSFetchRequest new];
+		[stationsRequest setEntity:[Station entityInManagedObjectContext:self.currentCity.moc]];
+        MKCoordinateRegion mapRegion = self.mapView.region;
+		stationsRequest.predicate = [NSPredicate predicateWithFormat:@"isFavorite = YES AND latitude>%f AND latitude<%f AND longitude>%f AND longitude<%f",
+                                     mapRegion.center.latitude - mapRegion.span.latitudeDelta/2,
+                                     mapRegion.center.latitude + mapRegion.span.latitudeDelta/2,
+                                     mapRegion.center.longitude - mapRegion.span.longitudeDelta/2,
+                                     mapRegion.center.longitude + mapRegion.span.longitudeDelta/2];
+        NSArray *newStations = [self.currentCity.moc executeFetchRequest:stationsRequest error:NULL];
+        [newAnnotations addObjectsFromArray:newStations];
+        NSArray *favoriteRegions = [[NSSet setWithArray:[newStations valueForKey:@"region"]] allObjects];
+        [newAnnotations removeObjectsInArray:favoriteRegions];
     }
     
     if (self.level == MapLevelRegionsAndRadars || self.level == MapLevelStationsAndRadars)
@@ -529,6 +554,18 @@ fromOldState:(MKAnnotationViewDragState)oldState
             stationAV.mode = self.stationMode;
     }
 }
+
+#pragma mark Actions
+
+- (void) toogleFavorite:(id)sender
+{
+    if (self.mapView.selectedAnnotations.count) {
+        Station *station = [self.mapView.selectedAnnotations objectAtIndex:0];
+        station.isFavoriteValue = !station.isFavoriteValue;
+        [(UIButton*)sender setSelected:[station isFavoriteValue]];
+    }
+}
+
 
 /****************************************************************************/
 #pragma mark -

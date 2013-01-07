@@ -126,6 +126,14 @@
     // make the list
     for (Radar * radar in radarsToRefresh)
         [stationsList addObjectsFromArray:radar.stationsWithinRadarRegion];
+
+    // Favorite Stations
+    NSFetchRequest * stationsRequest = [NSFetchRequest new];
+    [stationsRequest setEntity:[Station entityInManagedObjectContext:self.frc.managedObjectContext]];
+    stationsRequest.predicate = [NSPredicate predicateWithFormat:@"isFavorite = YES"];
+    NSArray *newStations = [self.frc.managedObjectContext executeFetchRequest:stationsRequest error:NULL];
+    [stationsList addObjectsFromArray:newStations];
+
     self.stationsToRefresh = [stationsList array];
 }
 

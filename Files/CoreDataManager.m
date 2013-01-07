@@ -52,7 +52,7 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
     if (self) {
         
         // Create mom
-		self.mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:modelName ofType:@"mom"]]]; 
+		self.mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:modelName ofType:@"momd"]]]; 
         
         // Create psc
 		self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.mom];
@@ -75,7 +75,12 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
         }
         
         // Create PSC
-		if (![self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+        //Turn on automatic store migration
+        NSMutableDictionary *optionsDictionary = [NSMutableDictionary dictionary];
+        [optionsDictionary setObject:[NSNumber numberWithBool:YES]
+                              forKey:NSMigratePersistentStoresAutomaticallyOption];
+
+		if (![self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:optionsDictionary error:&error])
         {
 			NSLog(@"Unresolved error when opening store %@, %@", error, [error userInfo]);
 			if( error.code == NSPersistentStoreIncompatibleVersionHashError )
@@ -83,7 +88,7 @@ NSString * const BicycletteErrorDomain = @"BicycletteErrorDomain";
                 // This happens a lot during development. Just dump the old store and create a new one.
 				NSLog(@"trying to remove the existing db");
 				[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
-				[self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];	
+				[self.psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:optionsDictionary error:&error];	
             }
 			else
                 // shit.

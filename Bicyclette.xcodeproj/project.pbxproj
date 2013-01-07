@@ -13,6 +13,12 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		2D5850C5169AA4C50080D3C1 /* Favorite_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D5850C1169AA4C50080D3C1 /* Favorite_off.png */; };
+		2D5850C6169AA4C50080D3C1 /* Favorite_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D5850C2169AA4C50080D3C1 /* Favorite_off@2x.png */; };
+		2D5850C7169AA4C50080D3C1 /* Favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D5850C3169AA4C50080D3C1 /* Favorite_on.png */; };
+		2D5850C8169AA4C50080D3C1 /* Favorite_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D5850C4169AA4C50080D3C1 /* Favorite_on@2x.png */; };
+		2D5850CD169AA8FD0080D3C1 /* BicycletteCity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D5850CA169AA8FD0080D3C1 /* BicycletteCity.xcdatamodeld */; };
+		2D5850CF169AA9E70080D3C1 /* AddFavorite.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2D5850CE169AA9E70080D3C1 /* AddFavorite.xcmappingmodel */; };
 		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
 		37038A1115E3A6280043504A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		37038A1415E3A6290043504A /* BicycletteDataGrab.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* BicycletteDataGrab.m */; };
@@ -46,7 +52,6 @@
 		371E1BF4137FCF7C007EFBFF /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
 		371E1BF5137FCF7C007EFBFF /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
 		371E1BF6137FCF7C007EFBFF /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF2137FCF7C007EFBFF /* _Station.m */; };
-		37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
 		37216BC712611C5400A2695A /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
 		3724BC6A15E4C50200790869 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6415E4C50200790869 /* Default-Landscape.png */; };
 		3724BC6B15E4C50200790869 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6515E4C50200790869 /* Default-Landscape@2x.png */; };
@@ -85,7 +90,6 @@
 		37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
-		37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
 		37B7ABF815E3DE4500268B70 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BEB137FCF7C007EFBFF /* Region.m */; };
 		37B7ABF915E3DE4500268B70 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BED137FCF7C007EFBFF /* Station.m */; };
 		37B7ABFB15E3DF1F00268B70 /* _Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E1BF0137FCF7C007EFBFF /* _Region.m */; };
@@ -160,6 +164,13 @@
 		28A0AAE50D9B0CCF005BE974 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D5850C1169AA4C50080D3C1 /* Favorite_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favorite_off.png; sourceTree = "<group>"; };
+		2D5850C2169AA4C50080D3C1 /* Favorite_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite_off@2x.png"; sourceTree = "<group>"; };
+		2D5850C3169AA4C50080D3C1 /* Favorite_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favorite_on.png; sourceTree = "<group>"; };
+		2D5850C4169AA4C50080D3C1 /* Favorite_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Favorite_on@2x.png"; sourceTree = "<group>"; };
+		2D5850CB169AA8FD0080D3C1 /* BicycletteCity2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BicycletteCity2.xcdatamodel; sourceTree = "<group>"; };
+		2D5850CC169AA8FD0080D3C1 /* BicycletteCity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BicycletteCity.xcdatamodel; sourceTree = "<group>"; };
+		2D5850CE169AA9E70080D3C1 /* AddFavorite.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = AddFavorite.xcmappingmodel; sourceTree = "<group>"; };
 		3700F8511594A806007CF99E /* RegionAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
 		37038A0F15E3A6280043504A /* BicycletteDataGrab */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BicycletteDataGrab; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,7 +213,6 @@
 		371E1BF0137FCF7C007EFBFF /* _Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Region.m; sourceTree = "<group>"; };
 		371E1BF1137FCF7C007EFBFF /* _Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
 		371E1BF2137FCF7C007EFBFF /* _Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
-		37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BicycletteCity.xcdatamodel; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* BicycletteCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BicycletteCity.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		37216BC612611C5400A2695A /* BicycletteCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BicycletteCity.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3724BC6415E4C50200790869 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
@@ -620,7 +630,8 @@
 			children = (
 				37216BC512611C5400A2695A /* BicycletteCity.h */,
 				37216BC612611C5400A2695A /* BicycletteCity.m */,
-				37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */,
+				2D5850CA169AA8FD0080D3C1 /* BicycletteCity.xcdatamodeld */,
+				2D5850CE169AA9E70080D3C1 /* AddFavorite.xcmappingmodel */,
 				37A346B5128C9D68000A2540 /* BicycletteCity */,
 				3717AA65162A1C11005EC7BD /* Cities */,
 			);
@@ -672,6 +683,10 @@
 				373A780515E40EF70057E241 /* Icon~settings.png */,
 				373A780615E40EF70057E241 /* Icon~settings@2x.png */,
 				373A780915E40F060057E241 /* Icon~appstore.png */,
+				2D5850C1169AA4C50080D3C1 /* Favorite_off.png */,
+				2D5850C2169AA4C50080D3C1 /* Favorite_off@2x.png */,
+				2D5850C3169AA4C50080D3C1 /* Favorite_on.png */,
+				2D5850C4169AA4C50080D3C1 /* Favorite_on@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -797,6 +812,10 @@
 				37D9DFEA162A374F0000F263 /* ToulouseVeloCity.sqlite in Resources */,
 				370E3A42162E17990010E454 /* AmiensVelamCity.plist in Resources */,
 				370E3A45162E189D0010E454 /* AmiensVelamCity.sqlite in Resources */,
+				2D5850C5169AA4C50080D3C1 /* Favorite_off.png in Resources */,
+				2D5850C6169AA4C50080D3C1 /* Favorite_off@2x.png in Resources */,
+				2D5850C7169AA4C50080D3C1 /* Favorite_on.png in Resources */,
+				2D5850C8169AA4C50080D3C1 /* Favorite_on@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,7 +841,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/BicycletteCity.xcdatamodel --template-var arc=true --machine-dir Files/BicycletteCity/Machine --human-dir Files/BicycletteCity/Human\n";
+			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/BicycletteCity.xcdatamodeld/BicycletteCity2.xcdatamodel --template-var arc=true --machine-dir Files/BicycletteCity/Machine --human-dir Files/BicycletteCity/Human\n";
 			showEnvVarsInLog = 0;
 		};
 		3786E4DA14825A7700814C10 /* ShellScript */ = {
@@ -850,7 +869,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/BicycletteCity.xcdatamodel --template-var arc=true --machine-dir Files/BicycletteCity/Machine --human-dir Files/BicycletteCity/Human\n";
+			shellScript = "PATH=$PATH:/usr/local/bin mogenerator --model Files/BicycletteCity.xcdatamodeld/BicycletteCity2.xcdatamodel --template-var arc=true --machine-dir Files/BicycletteCity/Machine --human-dir Files/BicycletteCity/Human\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -865,7 +884,6 @@
 				37216BC712611C5400A2695A /* BicycletteCity.m in Sources */,
 				37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */,
 				37149BBC126250D7009CDE82 /* NSArrayAdditions.m in Sources */,
-				37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				372BC7E1132ECB2000D12CBE /* NSData+SHA1.m in Sources */,
 				371E1BF3137FCF7C007EFBFF /* Region.m in Sources */,
@@ -904,6 +922,8 @@
 				37D9DFE2162A318E0000F263 /* ToulouseVeloCity.m in Sources */,
 				370E3A3F162E17880010E454 /* AmiensVelamCity.m in Sources */,
 				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
+				2D5850CD169AA8FD0080D3C1 /* BicycletteCity.xcdatamodeld in Sources */,
+				2D5850CF169AA9E70080D3C1 /* AddFavorite.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,7 +935,6 @@
 				37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */,
 				37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */,
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
-				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
 				37B7ABF815E3DE4500268B70 /* Region.m in Sources */,
 				37B7ABF915E3DE4500268B70 /* Station.m in Sources */,
 				37B7ABFB15E3DF1F00268B70 /* _Region.m in Sources */,
@@ -1161,6 +1180,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		2D5850CA169AA8FD0080D3C1 /* BicycletteCity.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2D5850CB169AA8FD0080D3C1 /* BicycletteCity2.xcdatamodel */,
+				2D5850CC169AA8FD0080D3C1 /* BicycletteCity.xcdatamodel */,
+			);
+			currentVersion = 2D5850CB169AA8FD0080D3C1 /* BicycletteCity2.xcdatamodel */;
+			path = BicycletteCity.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		371D4FC31483727F00A6DF77 /* NSObject+KVCMapping_Tests.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
