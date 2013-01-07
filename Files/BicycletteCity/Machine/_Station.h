@@ -9,6 +9,7 @@ extern const struct StationAttributes {
 	__unsafe_unretained NSString *bonus;
 	__unsafe_unretained NSString *color;
 	__unsafe_unretained NSString *fullAddress;
+	__unsafe_unretained NSString *isFavorite;
 	__unsafe_unretained NSString *latitude;
 	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *name;
@@ -33,6 +34,7 @@ extern const struct StationFetchedProperties {
 
 
 @class UIColor;
+
 
 
 
@@ -89,6 +91,18 @@ extern const struct StationFetchedProperties {
 
 
 //- (BOOL)validateFullAddress:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSNumber* isFavorite;
+
+
+@property BOOL isFavoriteValue;
+- (BOOL)isFavoriteValue;
+- (void)setIsFavoriteValue:(BOOL)value_;
+
+//- (BOOL)validateIsFavorite:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -252,6 +266,15 @@ extern const struct StationFetchedProperties {
 
 - (NSString*)primitiveFullAddress;
 - (void)setPrimitiveFullAddress:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveIsFavorite;
+- (void)setPrimitiveIsFavorite:(NSNumber*)value;
+
+- (BOOL)primitiveIsFavoriteValue;
+- (void)setPrimitiveIsFavoriteValue:(BOOL)value_;
 
 
 
