@@ -316,7 +316,18 @@ typedef enum {
 	if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
-        [self refreshStation:(Station*)view.annotation]; 
+        [self refreshStation:(Station*)view.annotation];
+
+    if([view.annotation isKindOfClass:[Station class]])
+    {
+        UIButton *callout = [UIButton buttonWithType:UIButtonTypeCustom];
+        callout.frame = (CGRect){CGPointZero, [UIImage imageNamed:@"Favorite_off.png"].size};
+        [callout setImage:[UIImage imageNamed:@"Favorite_off.png"] forState:UIControlStateNormal];
+        [callout setImage:[UIImage imageNamed:@"Favorite_on.png"] forState:UIControlStateSelected];
+        [callout addTarget:self action:@selector(toogleFavorite:) forControlEvents:UIControlEventTouchUpInside];
+        callout.selected = [(Station*)view.annotation isFavoriteValue];
+        view.rightCalloutAccessoryView = callout;
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
@@ -529,6 +540,18 @@ fromOldState:(MKAnnotationViewDragState)oldState
             stationAV.mode = self.stationMode;
     }
 }
+
+#pragma mark Actions
+
+- (void) toogleFavorite:(id)sender
+{
+    if (self.mapView.selectedAnnotations.count) {
+        Station *station = [self.mapView.selectedAnnotations objectAtIndex:0];
+        station.isFavoriteValue = !station.isFavoriteValue;
+        [(UIButton*)sender setSelected:[station isFavoriteValue]];
+    }
+}
+
 
 /****************************************************************************/
 #pragma mark -
