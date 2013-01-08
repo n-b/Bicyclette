@@ -281,7 +281,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     
     //
     // Find Existing Station
-    Station * station = [_parsing_oldStations firstObjectWithValue:stationAttributes[stationNumber] forKeyPath:StationAttributes.number];
+    Station * station = [_parsing_oldStations firstObjectWithValue:stationNumber forKeyPath:StationAttributes.number];
     if(station)
     {
         // found existing
