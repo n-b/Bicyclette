@@ -84,7 +84,7 @@
         <userInfo/>
     </entity>
     <fetchRequest name="regionWithNumber" entity="Region" predicateString="number == $number"/>
-    <fetchRequest name="stationsWithinRange" entity="Station" predicateString="open == 1 AND latitude > $minLatitude AND latitude &lt; $maxLatitude AND longitude > $minLongitude AND longitude &lt; $maxLongitude"/>
+    <fetchRequest name="stationsWithinRange" entity="Station" predicateString="latitude > $minLatitude AND latitude &lt; $maxLatitude AND longitude > $minLongitude AND longitude &lt; $maxLongitude"/>
     <fetchRequest name="stationWithNumber" entity="Station" predicateString="number == $number"/>
     <elements>
         <element name="Radar" positionX="160" positionY="192" width="128" height="90"/>

@@ -96,7 +96,7 @@
     UIColor * baseColor;
     NSString * text;
     
-    if([[self station] statusDataIsFresh])
+    if([[self station] statusDataIsFresh] && [[self station] openValue])
     {
         int16_t value;
         if(self.mode==StationAnnotationModeBikes)
