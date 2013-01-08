@@ -1,3 +1,6 @@
 [submodule "submodules/KVCMapping"]
 	path = submodules/KVCMapping
 	url = https://github.com/n-b/KVCMapping.git
+[submodule "submodules/TransformerKit"]
+	path = submodules/TransformerKit
+	url = https://github.com/n-b/TransformerKit.git

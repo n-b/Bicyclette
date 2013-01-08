@@ -63,7 +63,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter Smoo"
+            argument = "-DataGrabberCityFilter VCub"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

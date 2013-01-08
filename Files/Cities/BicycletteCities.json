@@ -1066,4 +1066,13 @@
         "update_url": "http://www.velhop.strasbourg.eu/vcstations.xml"
     }, 
 
+    {
+        "city_class": "BordeauxVCubCity",
+        "city_name": "Bordeaux",
+        "latitude": 44.837311,
+        "longitude": -0.585180,
+        "radius": 15000,
+        "service_name": "VCub",
+        "update_url": "http://data.lacub.fr/wfs?key=3JXUPQJXUA&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326"
+    }, 
 ]

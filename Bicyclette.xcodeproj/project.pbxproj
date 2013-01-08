@@ -126,8 +126,12 @@
 		37913078169733E00054FECA /* _XMLCityWithStationDataInAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 37913076169733E00054FECA /* _XMLCityWithStationDataInAttributes.m */; };
 		3791307C16973C730054FECA /* _CityWithJSONFlatListOfStations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791307B16973C730054FECA /* _CityWithJSONFlatListOfStations.m */; };
 		3791307D16973C730054FECA /* _CityWithJSONFlatListOfStations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791307B16973C730054FECA /* _CityWithJSONFlatListOfStations.m */; };
+		37920167169C252B008E35C3 /* BordeauxVCubCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37920166169C252B008E35C3 /* BordeauxVCubCity.m */; };
+		37920168169C252B008E35C3 /* BordeauxVCubCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37920166169C252B008E35C3 /* BordeauxVCubCity.m */; };
 		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
+		37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F56169C2B0700ED2DCF /* libTransformerKit-ios.a */; };
+		37999F5A169C2B1B00ED2DCF /* libTransformerKit-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F58169C2B0700ED2DCF /* libTransformerKit-osx.a */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
@@ -236,6 +240,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 37235E741662BCCB00F33BF1;
 			remoteInfo = "KVCMapping-osx";
+		};
+		37999F55169C2B0700ED2DCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37A80DEE150B8CE800B9B6E1;
+			remoteInfo = "TransformerKit-ios";
+		};
+		37999F57169C2B0700ED2DCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37235E741662BCCB00F33BF1;
+			remoteInfo = "TransformerKit-osx";
 		};
 		37B4C1F61659521600DE4756 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -366,10 +384,12 @@
 		37913076169733E00054FECA /* _XMLCityWithStationDataInAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMLCityWithStationDataInAttributes.m; sourceTree = "<group>"; };
 		3791307A16973C730054FECA /* _CityWithJSONFlatListOfStations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CityWithJSONFlatListOfStations.h; sourceTree = "<group>"; };
 		3791307B16973C730054FECA /* _CityWithJSONFlatListOfStations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CityWithJSONFlatListOfStations.m; sourceTree = "<group>"; };
+		37920166169C252B008E35C3 /* BordeauxVCubCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BordeauxVCubCity.m; sourceTree = "<group>"; };
 		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
+		37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TransformerKit.xcodeproj; path = submodules/TransformerKit/TransformerKit.xcodeproj; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
@@ -448,6 +468,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */,
 				37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */,
 				3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -464,6 +485,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37999F5A169C2B1B00ED2DCF /* libTransformerKit-osx.a in Frameworks */,
 				37235E8C1662BDB200F33BF1 /* libKVCMapping-osx.a in Frameworks */,
 				37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */,
 				37038A1115E3A6280043504A /* Foundation.framework in Frameworks */,
@@ -547,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */,
+				37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */,
 				37D188381170A5FA00950D52 /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -763,6 +786,15 @@
 			name = "Flat JSON list";
 			sourceTree = "<group>";
 		};
+		37999F4E169C2B0700ED2DCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37999F56169C2B0700ED2DCF /* libTransformerKit-ios.a */,
+				37999F58169C2B0700ED2DCF /* libTransformerKit-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		37B4C1EF1659521600DE4756 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -899,6 +931,7 @@
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 				3788EC7A1697AB1300836A60 /* MiamiDecobikeCity.m */,
 				3788EC801697B1A300836A60 /* WienCitybikeCity.m */,
+				37920166169C252B008E35C3 /* BordeauxVCubCity.m */,
 			);
 			name = "XML with subnodes";
 			sourceTree = "<group>";
@@ -988,6 +1021,10 @@
 					ProductGroup = 37B4C1EF1659521600DE4756 /* Products */;
 					ProjectRef = 37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */;
 				},
+				{
+					ProductGroup = 37999F4E169C2B0700ED2DCF /* Products */;
+					ProjectRef = 37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1006,6 +1043,20 @@
 			fileType = archive.ar;
 			path = "libKVCMapping-osx.a";
 			remoteRef = 37235E8A1662BDB200F33BF1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37999F56169C2B0700ED2DCF /* libTransformerKit-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libTransformerKit-ios.a";
+			remoteRef = 37999F55169C2B0700ED2DCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37999F58169C2B0700ED2DCF /* libTransformerKit-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libTransformerKit-osx.a";
+			remoteRef = 37999F57169C2B0700ED2DCF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		37B4C1F71659521600DE4756 /* libKVCMapping-ios.a */ = {
@@ -1192,6 +1243,7 @@
 				3788EC7C1697AB1300836A60 /* MiamiDecobikeCity.m in Sources */,
 				3788EC7F1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */,
 				3788EC821697B1A300836A60 /* WienCitybikeCity.m in Sources */,
+				37920168169C252B008E35C3 /* BordeauxVCubCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1231,6 +1283,7 @@
 				3788EC7B1697AB1300836A60 /* MiamiDecobikeCity.m in Sources */,
 				3788EC7E1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */,
 				3788EC811697B1A300836A60 /* WienCitybikeCity.m in Sources */,
+				37920167169C252B008E35C3 /* BordeauxVCubCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
