@@ -19,11 +19,7 @@
 
 - (NSArray *) updateURLStrings
 {
-    if( ! [self hasRegions] )
-    {
-        return [super updateURLStrings];
-    }
-    else
+    if( self.serviceInfo[@"regions"] )
     {
         NSString * baseURL = self.serviceInfo[@"update_url"];
         NSDictionary * regions = self.serviceInfo[@"regions"];
@@ -32,6 +28,10 @@
             [result addObject:[baseURL stringByAppendingString:regionID]];
         }
         return result;
+    }
+    else
+    {
+        return [super updateURLStrings];
     }
 }
 
@@ -49,27 +49,5 @@
              @"bikes": StationAttributes.status_available
              };
 }
-
-#pragma mark Regions
-
-- (BOOL) hasRegions
-{
-    return self.serviceInfo[@"regions"]!=nil;
-}
-
-- (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString
-{
-    if([self hasRegions])
-    {
-        NSString * number = [urlString stringByDeletingPrefix:self.serviceInfo[@"update_url"]];
-        return [RegionInfo infoWithName:number
-                                 number:self.serviceInfo[@"regions"][number]];
-    }
-    else
-    {
-        return [RegionInfo infoWithName:@"anonymousregion" number:@"anonymousregion"];
-    }
-}
-
 
 @end
