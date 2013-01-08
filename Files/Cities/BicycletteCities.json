@@ -34,7 +34,7 @@
  
  
     {
-        "city_class": "MarseilleLeVeloCity", 
+        "city_class": "CyclocityCity",
         "city_name": "Marseille", 
         "latitude": 43.296, 
         "longitude": 5.371, 
@@ -70,7 +70,7 @@
     {
         "city_class": "ParisVelibCity", 
         "city_name": "Paris", 
-        "latitude": 48.856667, 
+        "latitude": 48.856667,
         "longitude": 2.350833, 
         "patches": {
             "34003": {
@@ -504,8 +504,20 @@
         "longitude": 2.169662,
         "radius": 10000,
         "service_name": "Bicing",
-        "update_url": "https://www.bicing.cat/localizaciones/getJsonObject.php"
-    }, 
+        "update_url": "https://www.bicing.cat/localizaciones/getJsonObject.php",
+        "districts_patchs": {
+			"5":"1",
+            "1":"2",
+            "93":"3",
+            "193":"4",
+            "101":"5",
+            "106":"6",
+            "276":"7",
+            "275":"8",
+            "238":"9",
+			"26":"10"
+        }
+    },
 
     {
         "city_class": "WienCitybikeCity", 

@@ -161,8 +161,6 @@
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
 		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
-		37D9DFDE162A2BF60000F263 /* MarseilleLeVeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */; };
-		37D9DFDF162A2BF60000F263 /* MarseilleLeVeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */; };
 		37E43D8F1684AEAA0085EC4F /* _CityWithFlatListOfStations.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* _CityWithFlatListOfStations.m */; };
 		37E43D901684AEAA0085EC4F /* _CityWithFlatListOfStations.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* _CityWithFlatListOfStations.m */; };
 		37E43DB41684D7A30085EC4F /* Amiens_Vélam.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43D9D1684D7A30085EC4F /* Amiens_Vélam.coredata */; };
@@ -414,7 +412,6 @@
 		37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
 		37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarseilleLeVeloCity.m; sourceTree = "<group>"; };
 		37E43D8D1684AEAA0085EC4F /* _CityWithFlatListOfStations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CityWithFlatListOfStations.h; sourceTree = "<group>"; };
 		37E43D8E1684AEAA0085EC4F /* _CityWithFlatListOfStations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CityWithFlatListOfStations.m; sourceTree = "<group>"; };
 		37E43D9D1684D7A30085EC4F /* Amiens_Vélam.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amiens_Vélam.coredata"; sourceTree = "<group>"; };
@@ -721,7 +718,6 @@
 			children = (
 				376D0E4B1678B56D006F321D /* CyclocityCity.h */,
 				376D0E4C1678B56D006F321D /* CyclocityCity.m */,
-				37D9DFDD162A2BF60000F263 /* MarseilleLeVeloCity.m */,
 				3791306716971C100054FECA /* ParisVelibCity.m */,
 				3709F579167B7DCD00F865E3 /* CyclocityStationParse.h */,
 				3709F57A167B7DCD00F865E3 /* CyclocityStationParse.m */,
@@ -1212,7 +1208,6 @@
 				37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */,
 				37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */,
 				37513B6316173FAB00388FF3 /* RootVC.m in Sources */,
-				37D9DFDE162A2BF60000F263 /* MarseilleLeVeloCity.m in Sources */,
 				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
@@ -1259,7 +1254,6 @@
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
 				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
 				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
-				37D9DFDF162A2BF60000F263 /* MarseilleLeVeloCity.m in Sources */,
 				37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,

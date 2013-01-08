@@ -28,10 +28,18 @@
              };
 }
 
-- (RegionInfo *)regionInfoFromStation:(Station *)station values:(NSDictionary *)values patchs:(NSDictionary *)patchs requestURL:(NSString *)urlString
+- (RegionInfo *) regionInfoFromStation:(Station *)station values:(NSDictionary *)values patchs:(NSDictionary *)patchs requestURL:(NSString *)urlString
 {
     NSString * districtCode = values[@"DisctrictCode"];
+    NSString * patchedCode = self.serviceInfo[@"districts_patchs"][districtCode];
+    if(patchedCode)
+        districtCode = patchedCode;
     return [RegionInfo infoWithName:districtCode number:districtCode];
 }
+
+#pragma mark Annotations
+
+- (NSString *) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
+- (NSString *) subtitleForRegion:(Region*)region { return @"dte."; }
 
 @end
