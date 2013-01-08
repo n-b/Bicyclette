@@ -105,7 +105,7 @@
     if(![self.currentCity hasRegions])
         return YES;
     else
-        return [self regionSpanMeters] < [self.currentCity radius] * [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CurrentCityZoomThreshold"] / 2;
+        return [self regionSpanMeters] < [self.currentCity radius] * [[self.currentCity prefForKey:@"CitiesController.StationsZoomThreshold"] doubleValue];
 }
 
 - (void) regionDidChange:(MKCoordinateRegion)viewRegion
@@ -122,11 +122,11 @@
     CLLocationDistance distanceToCity = [nearestCity.location distanceFromLocation:center];
     
     // Are we actually near from the city ?
-    if(distanceToCity > [nearestCity radius] * [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CurrentCityDistanceThreshold"])
+    if(distanceToCity > [nearestCity radius] * [[nearestCity prefForKey:@"CitiesController.CurrentCityDistanceThreshold"] doubleValue])
         nearestCity = nil;
 
     // Are we zooming enough ?
-    if(viewSpanMeters > [nearestCity radius] * [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CurrentCityZoomThreshold"])
+    if(viewSpanMeters > [nearestCity radius] * [[nearestCity prefForKey:@"CitiesController.CurrentCityZoomThreshold"] doubleValue])
         nearestCity = nil;
     
     if(self.currentCity!=nearestCity)
@@ -140,7 +140,7 @@
     [self.screenCenterUpdateGroup setRegion:self.viewRegion];
     
     // In the same vein, only set the updater reference location if we're down enough
-    CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    CLLocationDistance distance = [[self.currentCity prefForKey:@"RadarDistance"] doubleValue];
     [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(self.viewRegion.center, distance, distance)];
 
     if([self showCurrentCityStations])
@@ -284,7 +284,7 @@
     if(city && number)
     {
         self.currentCity = city;
-        CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
+        CLLocationDistance meters = [[city prefForKey:@"CitiesController.MapRegionZoomDistance"] doubleValue];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
         [self.delegate controller:self setRegion:region];
         [self.delegate controller:self selectAnnotation:station];

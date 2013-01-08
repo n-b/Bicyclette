@@ -22,8 +22,10 @@
 	<integer>4</integer>
 	<key>CitiesController.CurrentCityZoomThreshold</key>
 	<integer>4</integer>
+	<key>CitiesController.StationsZoomThreshold</key>
+	<integer>1</integer>
 	<key>MaxRefreshDistance</key>
-	<integer>2000</integer>
+	<integer>2</integer>
 	<key>DataUpdaterDelayBetweenQueues</key>
 	<integer>25</integer>
 	<key>StationStatusStalenessInterval</key>

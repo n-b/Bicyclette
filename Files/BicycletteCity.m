@@ -106,6 +106,15 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 - (NSString *) detailsURLStringForStation:(Station*)station { return [self.serviceInfo[@"station_details_url"] stringByAppendingString:station.number]; }
 - (NSDictionary*) patches { return self.serviceInfo[@"patches"]; }
 
+- (NSDictionary*) prefs { return self.serviceInfo[@"prefs"]; }
+- (id) prefForKey:(NSString*)key
+{
+    id res = [self prefs][key];
+    if(res)
+        return res;
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
 - (CLRegion *) hardcodedLimits
 {
     return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([self.serviceInfo[@"latitude"] doubleValue],

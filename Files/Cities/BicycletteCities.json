@@ -92,7 +92,10 @@
         "radius": 15000,
         "service_name": "Vélib‘",
 		"station_details_url": "http://www.velib.paris.fr/service/stationdetails/paris/",
-		"update_url": "http://www.velib.paris.fr/service/carto"
+		"update_url": "http://www.velib.paris.fr/service/carto",
+		"prefs":{
+			"CitiesController.StationsZoomThreshold": 0.5
+		}
     },
  
  
