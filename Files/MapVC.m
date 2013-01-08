@@ -239,11 +239,6 @@
     [self.mapView selectAnnotation:annotation animated:YES];
 }
 
-- (MKCoordinateRegion)regionForController:(CitiesController*)controller
-{
-    return self.mapView.region;
-}
-
 - (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations
 {
     NSArray * oldAnnotations = self.mapView.annotations;
@@ -335,7 +330,6 @@
 {
     CLLocationCoordinate2D newCoord = userLocation.coordinate;
     CLRegion * region = self.controller.currentCity.regionContainingData;
-    [region containsCoordinate:newCoord];
     if(self.userCoordinates.latitude == 0 && self.userCoordinates.longitude == 0
        && [region containsCoordinate:newCoord])
     {
@@ -349,7 +343,7 @@
 	if([view.annotation isKindOfClass:[_BicycletteCity class]])
     {
         CLRegion * region = [((BicycletteCity*)view.annotation) regionContainingData];
-        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius*2, region.radius*2) animated:YES];
+        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius) animated:YES];
     }
     else if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];

@@ -200,14 +200,37 @@
             ^NSComparisonResult(id<Locatable> l1, id<Locatable> l2) {
                 CLLocationDistance d1 = [location distanceFromLocation:[l1 location]];
                 CLLocationDistance d2 = [location distanceFromLocation:[l2 location]];
-                CLLocationDistance r1 = [l1 respondsToSelector:@selector(radius)] ? [l1 radius] : 0.0;
-                CLLocationDistance r2 = [l2 respondsToSelector:@selector(radius)] ? [l2 radius] : 0.0;
-                
-                if(d1>r1 || d2>r2){
-                    d1 -= r1;
-                    d2 -= r2;
-                }
                 return d1<d2 ? NSOrderedAscending : d1>d2 ? NSOrderedDescending : NSOrderedSame;
             }];
+}
+
+- (id<Locatable>) nearestLocatableFrom:(CLLocation*)location
+{
+    __block id<Locatable> result = nil;
+    [self enumerateObjectsUsingBlock:^(id<Locatable> obj, NSUInteger idx, BOOL *stop) {
+        if(!result)
+        {
+            result = obj;
+            return;
+        }
+        
+        CLLocationDistance d1 = [location distanceFromLocation:[result location]];
+        CLLocationDistance d2 = [location distanceFromLocation:[obj location]];
+        
+        // The radius is used to weigh the distance, in order to favor larger objects.
+        //
+        // The idea is that a big object should be considered "nearer" than a very small object.
+        // If location is 1500m from from a big object (r=1000m), and 500m from a small object (r=10m),
+        // The "distances" are : 1.5 to the big object, and 50 to the small object.
+        //
+        // Basically, I want Vélib to be more important than Cristolib.
+        d1 /= [result radius];
+        d2 /= [obj radius];
+
+        if(d2<d1)
+            result = obj;
+    }];
+    
+    return result;
 }
 @end

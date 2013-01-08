@@ -126,7 +126,12 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         if([stations count]==0)
             return [self hardcodedLimits];
         
-        CLLocation * dataCenter = [[CLLocation alloc] initWithLatitude:[[stations valueForKeyPath:@"@avg.latitude"] doubleValue] longitude:[[stations valueForKeyPath:@"@avg.longitude"] doubleValue]];
+        CLLocationDegrees maxLatitude = [[stations valueForKeyPath:@"@max.latitude"] doubleValue];
+        CLLocationDegrees minLatitude = [[stations valueForKeyPath:@"@min.latitude"] doubleValue];
+        CLLocationDegrees maxLongitude = [[stations valueForKeyPath:@"@max.longitude"] doubleValue];
+        CLLocationDegrees minLongitude = [[stations valueForKeyPath:@"@min.longitude"] doubleValue];
+        CLLocation * dataCenter = [[CLLocation alloc] initWithLatitude:(minLatitude+maxLatitude)/2.0
+                                                             longitude:(minLongitude+maxLongitude)/2.0];
 
         CLLocationDistance distanceMax = 0;
         for (Station * station in stations)
@@ -177,10 +182,10 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region
 {
     NSArray * stations = [Station fetchStationsWithinRange:self.mainContext
-                                               minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
-                                               maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
-                                              minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
-                                              maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)];
+                                               minLatitude:@(region.center.latitude - region.span.latitudeDelta)
+                                               maxLatitude:@(region.center.latitude + region.span.latitudeDelta)
+                                              minLongitude:@(region.center.longitude - region.span.longitudeDelta)
+                                              maxLongitude:@(region.center.longitude + region.span.longitudeDelta)];
     return stations;
 }
 #endif

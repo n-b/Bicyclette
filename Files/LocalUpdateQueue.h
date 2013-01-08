@@ -32,6 +32,8 @@
 @interface NSArray (Locatable)
 - (instancetype) filteredArrayWithinDistance:(CLLocationDistance)distance fromLocation:(CLLocation*)location;
 - (instancetype) sortedArrayByDistanceFromLocation:(CLLocation*)location;
+// Not strictly the nearest : the locatables' radius is used to weigh in favor of the larger objects.
+- (id<Locatable>) nearestLocatableFrom:(CLLocation*)location;
 @end
 
 

@@ -15,20 +15,14 @@
 #import "GeoFencesMonitor.h"
 #import "UIApplication+LocalAlerts.h"
 
-typedef enum {
-	MapLevelNone = 0,
-	MapLevelRegions,
-	MapLevelRegionsAndRadars,
-	MapLevelStationsAndRadars
-}  MapLevel;
-
-
 @interface CitiesController () <CLLocationManagerDelegate, LocalUpdateQueueDelegate, GeoFencesMonitorDelegate>
 @property GeoFencesMonitor * fenceMonitor;
 @property LocalUpdateQueue * updateQueue;
-@property MapLevel level;
+
 @property CityRegionUpdateGroup * userLocationUpdateGroup;
 @property CityRegionUpdateGroup * screenCenterUpdateGroup;
+
+@property MKCoordinateRegion viewRegion;
 @end
 
 /****************************************************************************/
@@ -60,8 +54,6 @@ typedef enum {
 
         self.userLocationUpdateGroup = [CityRegionUpdateGroup new];
         self.screenCenterUpdateGroup = [CityRegionUpdateGroup new];
-        [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
-        [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
 
     }
     return self;
@@ -96,102 +88,111 @@ typedef enum {
     }
 }
 
+- (CLLocationDistance) regionSpanMeters
+{
+    CLLocation * northLocation = [[CLLocation alloc] initWithLatitude:self.viewRegion.center.latitude+self.viewRegion.span.latitudeDelta/2 longitude:self.viewRegion.center.longitude];
+    CLLocation * southLocation = [[CLLocation alloc] initWithLatitude:self.viewRegion.center.latitude-self.viewRegion.span.latitudeDelta/2 longitude:self.viewRegion.center.longitude];
+    CLLocation * westLocation = [[CLLocation alloc] initWithLatitude:self.viewRegion.center.latitude longitude:self.viewRegion.center.latitude-self.viewRegion.span.longitudeDelta/2];
+    CLLocation * eastLocation = [[CLLocation alloc] initWithLatitude:self.viewRegion.center.latitude longitude:self.viewRegion.center.latitude+self.viewRegion.span.longitudeDelta/2];
+    CLLocationDistance viewSpanMeters = ([northLocation distanceFromLocation:southLocation]+[eastLocation distanceFromLocation:westLocation])/2;
+    return viewSpanMeters;
+}
+
+- (BOOL) showCurrentCityStations
+{
+    if(nil==self.currentCity)
+        return NO;
+    if(![self.currentCity hasRegions])
+        return YES;
+    else
+        return [self regionSpanMeters] < [self.currentCity radius] * [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CurrentCityZoomThreshold"] / 2;
+}
+
 - (void) regionDidChange:(MKCoordinateRegion)viewRegion
 {
-    // Compute coordinates
-    // center
-    CLLocationCoordinate2D centerCoord = viewRegion.center;
-    CLLocation * center = [[CLLocation alloc] initWithLatitude:centerCoord.latitude longitude:centerCoord.longitude];
+    self.viewRegion = viewRegion;
+    
+    // center & span
+    CLLocation * center = [[CLLocation alloc] initWithLatitude:self.viewRegion.center.latitude longitude:self.viewRegion.center.longitude];
+    CLLocationDistance viewSpanMeters = [self regionSpanMeters];
 
-    // bounds
-    CLLocation * northLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude+viewRegion.span.latitudeDelta longitude:viewRegion.center.longitude/2];
-    CLLocation * southLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude-viewRegion.span.latitudeDelta longitude:viewRegion.center.longitude/2];
-    CLLocation * westLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude longitude:viewRegion.center.latitude-viewRegion.span.longitudeDelta/2];
-    CLLocation * eastLocation = [[CLLocation alloc] initWithLatitude:viewRegion.center.latitude longitude:viewRegion.center.latitude+viewRegion.span.longitudeDelta/2];
-    CLLocationDistance latDistance = [northLocation distanceFromLocation:southLocation];
-    CLLocationDistance longDistance = [eastLocation distanceFromLocation:westLocation];
-    CLLocationDistance avgDistance = (latDistance+longDistance)/2;
+    // Get the nearest city
+    BicycletteCity * nearestCity = nil;
+    nearestCity = (BicycletteCity*)[self.cities nearestLocatableFrom:center];
+    CLLocationDistance distanceToCity = [nearestCity.location distanceFromLocation:center];
+    
+    // Are we actually near from the city ?
+    if(distanceToCity > [nearestCity radius] * [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CurrentCityDistanceThreshold"])
+        nearestCity = nil;
 
-    // Change level according to bounds
-    MapLevel mapLevel;
-    if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegions"])
-		mapLevel = MapLevelNone;
-	else if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelRegionsAndRadars"])
-		mapLevel = MapLevelRegions;
-    else if(avgDistance > [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapLevelStationsAndRadars"])
-		mapLevel = MapLevelRegionsAndRadars;
-	else
-		mapLevel = MapLevelStationsAndRadars;
-        
-    // Change to nearest city
-    BicycletteCity * newCity = nil;;
-    if(mapLevel != MapLevelNone)
-        newCity = [self.cities sortedArrayByDistanceFromLocation:center][0];
-    if(self.currentCity!=newCity)
-        self.currentCity = newCity;
-
-    // Skip Regions Level if the City is too small
-    if((mapLevel==MapLevelRegions || mapLevel==MapLevelRegionsAndRadars) && [self.currentCity hasRegions]==NO)
-        mapLevel = MapLevelStationsAndRadars;
-
-    self.level = mapLevel;
+    // Are we zooming enough ?
+    if(viewSpanMeters > [nearestCity radius] * [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CurrentCityZoomThreshold"])
+        nearestCity = nil;
+    
+    if(self.currentCity!=nearestCity)
+        self.currentCity = nearestCity;
 
     // Update annotations
     [self addAndRemoveMapAnnotations];
 
     // Keep the screen center Radar centered
     // And make it as big as the screen, but only if the stations are actually visible
-    if(self.level==MapLevelStationsAndRadars)
-        [self.screenCenterUpdateGroup setRegion:[self.delegate regionForController:self]];
-    else
-        [self.screenCenterUpdateGroup setRegion:
-         MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(0, 0), 0, 0)];
+    [self.screenCenterUpdateGroup setRegion:self.viewRegion];
     
     // In the same vein, only set the updater reference location if we're down enough
-    if([[self.currentCity class] canUpdateIndividualStations] && (self.level==MapLevelRegionsAndRadars || self.level==MapLevelStationsAndRadars))
+    CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
+    [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(self.viewRegion.center, distance, distance)];
+
+    if([self showCurrentCityStations])
     {
-        self.updateQueue.referenceLocation = center;
-        CLLocationDistance distance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"RadarDistance"];
-        [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(center.coordinate,
-                                                                                   distance, distance)];
+        [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
+        [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
     }
+    else
+    {
+        [self.updateQueue removeMonitoredGroup:self.screenCenterUpdateGroup];
+        [self.updateQueue removeMonitoredGroup:self.userLocationUpdateGroup];
+    }
+
+    if(self.currentCity)
+        self.updateQueue.referenceLocation = center;
     else
         self.updateQueue.referenceLocation = nil;
 }
-
 
 - (void) addAndRemoveMapAnnotations
 {
     NSMutableArray * newAnnotations = [NSMutableArray new];
     
-    if (self.level == MapLevelNone)
+    if (self.currentCity==nil)
     {
-        // City
+        // World Cities
         [newAnnotations addObjectsFromArray:self.cities];
     }
-    
-    if (self.level == MapLevelRegions || self.level == MapLevelRegionsAndRadars)
-    {
-        // Regions
-        NSFetchRequest * regionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
-        [newAnnotations addObjectsFromArray:[self.currentCity.mainContext executeFetchRequest:regionsRequest error:NULL]];
-    }
-    
-    if (self.level == MapLevelRegionsAndRadars || self.level == MapLevelStationsAndRadars)
+    else
     {
         // Radars
         NSFetchRequest * radarsRequest = [NSFetchRequest fetchRequestWithEntityName:[Radar entityName]];
         NSArray * radars = [self.currentCity.mainContext executeFetchRequest:radarsRequest error:NULL];
         [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:radars]];
-    }
-    
-    if (self.level == MapLevelStationsAndRadars)
-    {
+
         // Stations
-        MKCoordinateRegion mapRegion = [self.delegate regionForController:self];
-        [newAnnotations addObjectsFromArray:[self.currentCity stationsWithinRegion:mapRegion]];
+        if([self showCurrentCityStations])
+        {
+            MKCoordinateRegion mapRegion = self.viewRegion;
+            mapRegion.span.latitudeDelta *= 1.25; // Add stations that are just off screen limits
+            mapRegion.span.longitudeDelta *= 1.25;
+            [newAnnotations addObjectsFromArray:[self.currentCity stationsWithinRegion:mapRegion]];
+        }
+        else // Regions
+        {
+            NSAssert([self.currentCity hasRegions], nil);
+            // Regions
+            NSFetchRequest * regionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
+            [newAnnotations addObjectsFromArray:[self.currentCity.mainContext executeFetchRequest:regionsRequest error:NULL]];
+        }
     }
-    
+
     [self.delegate controller:self setAnnotations:newAnnotations];
 }
 

@@ -18,12 +18,10 @@
 	<integer>50</integer>
 	<key>MapRegionZoomDistance</key>
 	<integer>900</integer>
-	<key>MapLevelStationsAndRadars</key>
-	<integer>3000</integer>
-	<key>MapLevelRegionsAndRadars</key>
-	<integer>15000</integer>
-	<key>MapLevelRegions</key>
-	<integer>63000</integer>
+	<key>CitiesController.CurrentCityDistanceThreshold</key>
+	<integer>4</integer>
+	<key>CitiesController.CurrentCityZoomThreshold</key>
+	<integer>4</integer>
 	<key>MaxRefreshDistance</key>
 	<integer>2000</integer>
 	<key>DataUpdaterDelayBetweenQueues</key>
