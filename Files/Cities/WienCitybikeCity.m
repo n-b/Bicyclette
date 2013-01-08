@@ -30,8 +30,8 @@
              @"latitude" : StationAttributes.latitude,
              @"longitude": StationAttributes.longitude,
              @"boxes": StationAttributes.status_total,
-             @"free_bikes": StationAttributes.status_free,
-             @"free_boxes": StationAttributes.status_available,
+             @"free_bikes": StationAttributes.status_available,
+             @"free_boxes": StationAttributes.status_free,
              };
 }
 
