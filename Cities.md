@@ -11,6 +11,10 @@
 A Keolis/EFFIA network, with its own **Official** open-data webservice.
 - http://data.keolis-rennes.com/{xml,json}/?version=1.0&key={APIKEY}&cmd=getstation
  
+## Bordeaux
+A Keolis/EFFIA network, with its own **Official** open-data webservice.
+- http://data.lacub.fr/wfs?key={APIKEY}&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326
+
 ## Wien
 A Cyclocity network, with its own **official** webservice. Terms of use : http://www.citybikewien.at/cms/dynimages/mb/files/Terms_of_Use_XML.pdf.
 - List+Details: http://dynamisch.citybikewien.at/citybike_xml.php 
@@ -140,9 +144,9 @@ Of course, no terms of use are available.
 
 ## CityBike (aka Clear Channel)
 - Caen (List+Details) : https://www.veol.caen.fr/localizaciones/localizaciones.php
-	- Details Webservice : http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx
+	- Webservice (station status only, no geoloc) : http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx
 - Dijon (List+Details) : https://www.velodi.net/localizaciones/localizaciones.php
-	- Details Webservice : http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx
+	- Webservice (station status only, no geoloc) : http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx
 - Perpignan (List+Details) : https://www.bip-perpignan.fr/localizaciones/localizaciones.php
 * Milano (List+Details) : http://www.bikemi.com/localizaciones/localizaciones.php
 * Drammen (List+Details) : http://drammen.clearchannel.com/stationsmap
@@ -154,7 +158,6 @@ Of course, no terms of use are available.
 	* Details : curl -F "idStation=27" https://www.bizizaragoza.com/CallWebService/StationBussinesStatus.php
 
 ## Keolis (Effia)
-- Bordeaux (List+Details) : http://www.vcub.fr/stations/plan
 - Pau (List+Details) : http://www.idecycle.com/stations/plan
 - Lille (List+Details) : http://vlille.fr/stations/les-stations-vlille.aspx
 - Laval
