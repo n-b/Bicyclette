@@ -71,7 +71,7 @@ static void GrabDataForCity(BicycletteCity* city)
                      if (logStationsDetails) {
                          for (Station * station in region.stations)
                          {
-                             [message appendFormat:@"   \"%@\"->\"%@\"",station.name, [city titleForStation:station]];
+                             [message appendFormat:@"   \"%@\"->\"%@\"\n",station.name, [city titleForStation:station]];
                          }
                      }
                  }

@@ -142,24 +142,11 @@ Of course, no terms of use are available.
 - List+Details : http://www.rtcr.fr/ct_93_297__Carte_du_libre_service_velos.html
 - http://flexbike.l-rd.fr/yelo-stations.php  ???
 
-## CityBike (aka Clear Channel)
-- Caen (List+Details) : https://www.veol.caen.fr/localizaciones/localizaciones.php
-	- Webservice (station status only, no geoloc) : http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx
-- Dijon (List+Details) : https://www.velodi.net/localizaciones/localizaciones.php
-	- Webservice (station status only, no geoloc) : http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx
-- Perpignan (List+Details) : https://www.bip-perpignan.fr/localizaciones/localizaciones.php
-* Milano (List+Details) : http://www.bikemi.com/localizaciones/localizaciones.php
-* Drammen (List+Details) : http://drammen.clearchannel.com/stationsmap
-* Mexico City : 
-	* List : https://www.ecobici.df.gob.mx/localizaciones/localizaciones.php
-	* Details : curl -F "idStation=27" https://www.ecobici.df.gob.mx/CallWebService/StationBussinesStatus.php
-* Zaragoza
-	* List : https://www.bizizaragoza.com/localizaciones/station_map.php
-	* Details : curl -F "idStation=27" https://www.bizizaragoza.com/CallWebService/StationBussinesStatus.php
-
 ## Keolis (Effia)
 - Pau (List+Details) : http://www.idecycle.com/stations/plan
-- Lille (List+Details) : http://vlille.fr/stations/les-stations-vlille.aspx
+- Lille (List+Details) :
+	* http://vlille.fr/stations/xml-stations.aspx
+	* http://vlille.fr/stations/xml-station.aspx?borne=<ID>
 - Laval
 	- List : http://www.tul-laval.fr/velitul-stations.asp
 	- Details of all stations : http://www.tul-laval.fr/velitul-disponibilites.asp
@@ -171,6 +158,38 @@ Of course, no terms of use are available.
 # Oslo
     * List (HTML parsing required) : http://www.adshel.no/js/
     * Details (real webservice) : http://www.adshel.no/js/getracknr.php?id=34
+
+## CityBike (aka Clear Channel)
+
+## Modèle 1 
+The stations listing is only available on the webpage, which is not easy to scrape. Maybe later.
+The "official" webservices are basically useless because they won't give you the list of stations or the geolocation, so you have to rely on the webpage anyway.
+- Caen
+	* site web carto: https://www.veol.caen.fr/localizaciones/localizaciones.php 
+	* Webservice "autorisé" (Seulement les status des statiosn, pas de liste, pas de geoloc) : http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx
+- Dijon
+	* site web carto: https://www.velodi.net/localizaciones/localizaciones.php
+	* Webservice "autorisé" (Seulement les status des statiosn, pas de liste, pas de geoloc) : http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx
+- Perpignan
+	* site web carto: https://www.bip-perpignan.fr/localizaciones/localizaciones.php
+	* pas de Webservice "autorisé"
+* Milano
+	* site web carto: http://www.bikemi.com/localizaciones/localizaciones.php
+	* pas de Webservice "autorisé"
+
+## Modèle 2
+Way too dirty to scrape.
+* Drammen (List+Details) : http://drammen.clearchannel.com/stationsmap
+ appelle en xmlhttprequest  : curl -X POST -H "Cache-Control: max-age=0" -H "Content-Length: 0" -H "Cookie: ASP.NET_SessionId=55i5wltwt2nj5llwwqxowj4t" -H "Content-Type: application/json; charset=UTF-8" http://drammen.clearchannel.com/WS/GService.asmx/GetGoogleObject
+  fermé pour l'hiver de toute façon.
+## Modèle 3
+Way too dirty to scrape. Similar to Drammen, with an added step to get the station status.
+* Mexico City : 
+	* List : https://www.ecobici.df.gob.mx/localizaciones/localizaciones.php
+	* Details : curl -F "idStation=27" https://www.ecobici.df.gob.mx/CallWebService/StationBussinesStatus.php
+* Zaragoza
+	* List : https://www.bizizaragoza.com/localizaciones/station_map.php
+	* Details : curl -F "idStation=27" https://www.bizizaragoza.com/CallWebService/StationBussinesStatus.php
 
 # Data unavailable
 

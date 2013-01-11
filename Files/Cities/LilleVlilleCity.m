@@ -1,34 +1,39 @@
 //
-//  OrleansVeloPlusCity.m
+//  LilleVlilleCity.m
 //  Bicyclette
 //
-//  Created by Nicolas on 14/12/12.
+//  Created by Nicolas on 24/12/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
 #import "_XMLCityWithStationDataInAttributes.h"
 #import "BicycletteCity.mogenerated.h"
-#import "NSObject+KVCMapping.h"
 #import "NSStringAdditions.h"
+#import "NSObject+KVCMapping.h"
 
-#pragma mark -
-
-@interface OrleansVeloPlusCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
-@end
-
-@interface OrleansVeloPlusStationParse : NSObject
+@interface LilleVlilleCityStationParse : NSObject
 + (void) parseData:(NSData*)data forStation:(Station*)station;
 @end
 
-#pragma mark -
+@interface LilleVlilleCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+@end
 
-@implementation OrleansVeloPlusCity
-
-#pragma mark Annotations
-
-- (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
+@implementation LilleVlilleCity
 
 #pragma mark City Data Update
+
+- (void) parseData:(NSData*)data
+{
+    // As of 2013-01-11, the data returned is utf-8, even if the xml specifies utf-16. I try to convert.
+    NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([str length])
+    {
+        // if str is not nil, it means data *is* utf8.
+        str = [str stringByReplacingOccurrencesOfString:@"encoding=\"utf-16\"" withString:@"encoding=\"utf-8\""];
+        data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    [super parseData:data];
+}
 
 - (NSString*) stationElementName
 {
@@ -38,23 +43,31 @@
 - (NSDictionary*) KVCMapping
 {
     return @{@"id" : StationAttributes.number,
+             @"name" : StationAttributes.name,
              @"lat" : StationAttributes.latitude,
-             @"lng": StationAttributes.longitude,
-             @"name" : StationAttributes.name};
+             @"lng": StationAttributes.longitude
+             };
 }
 
 #pragma mark Stations Individual Data Updates
 
-- (void) parseData:(NSData *)data forStation:(Station *)station { [OrleansVeloPlusStationParse parseData:data forStation:station]; }
+- (void) parseData:(NSData *)data forStation:(Station *)station {
+    NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([str length])
+    {
+        // if str is not nil, it means data *is* utf8.
+        str = [str stringByReplacingOccurrencesOfString:@"encoding=\"utf-16\"" withString:@"encoding=\"utf-8\""];
+        data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    [LilleVlilleCityStationParse parseData:data forStation:station];
+}
 
 @end
 
-#pragma mark Stations Individual Data Updates
-
-@interface OrleansVeloPlusStationParse() <NSXMLParserDelegate>
+@interface LilleVlilleCityStationParse() <NSXMLParserDelegate>
 @end
 
-@implementation OrleansVeloPlusStationParse
+@implementation LilleVlilleCityStationParse
 {
     Station * _station;
     NSMutableString * _currentString;
@@ -84,8 +97,7 @@
 - (NSDictionary*) KVCMapping
 {
     return @{@"bikes" : StationAttributes.status_available,
-             @"attachs" : StationAttributes.status_free,
-             @"total" : StationAttributes.status_total};
+             @"attachs" : StationAttributes.status_free};
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
@@ -98,13 +110,13 @@
     }
     else if([elementName isEqualToString:@"status"])
     {
-        _station.openValue = [_currentString isEqualToString:@"En service"];
+        _station.openValue =  ! [[_currentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] boolValue];
     }
     else if([elementName isEqualToString:@"station"])
     {
         _station.status_totalValue = _station.status_freeValue + _station.status_availableValue;
     }
-
+    
     _currentString = [NSMutableString string];
 }
 

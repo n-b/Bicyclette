@@ -63,7 +63,19 @@
         "longitude": 1.908188, 
         "radius": 5000,
         "service_name": "Vélo’+", 
-		"update_url": "https://www.agglo-veloplus.fr/component/data_1.xml"
+		"update_url": "https://www.agglo-veloplus.fr/component/data_1.xml",
+		"station_details_url": "https://www.agglo-veloplus.fr/getStatusBorne?idBorne="
+    },
+ 
+    {
+        "city_class": "LilleVlilleCity", 
+        "city_name": "Lille",
+        "latitude": 50.673600,
+        "longitude": 3.114125, 
+        "radius": 10000,
+        "service_name": "V’Lille",
+		"update_url": "http://vlille.fr/stations/xml-stations.aspx",
+		"station_details_url": "http://vlille.fr/stations/xml-station.aspx?borne="
     },
  
  
