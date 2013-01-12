@@ -7,8 +7,7 @@
 //
 
 #import "CitiesController.h"
-#import "BicycletteCity.h"
-#import "BicycletteCity.mogenerated.h"
+#import "BicycletteCity+Update.h"
 #import "CollectionsAdditions.h"
 #import "LocalUpdateQueue.h"
 #import "CityRegionUpdateGroup.h"
@@ -37,7 +36,7 @@
         // Create cities
         BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(YES);
         BicycletteCitySetStoresDirectory([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
-        self.cities = [_BicycletteCity allCities];
+        self.cities = [BicycletteCity allCities];
 
         self.fenceMonitor = [GeoFencesMonitor new];
         self.fenceMonitor.delegate = self;

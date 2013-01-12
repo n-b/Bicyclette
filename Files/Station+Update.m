@@ -7,8 +7,7 @@
 //
 
 #import "Station+Update.h"
-#import "Station.h"
-#import "BicycletteCity.h"
+#import "BicycletteCity+Update.h"
 #import "DataUpdater.h"
 #import "_StationParse.h"
 

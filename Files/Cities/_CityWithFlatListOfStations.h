@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
+#import "BicycletteCity+Update.h"
 
-@interface _CityWithFlatListOfStations : _BicycletteCity
+@interface _CityWithFlatListOfStations : BicycletteCity
 - (void) parseData:(NSData*)data;
 @end
 

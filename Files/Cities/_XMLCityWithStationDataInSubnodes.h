@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
+#import "BicycletteCity+Update.h"
 
-@interface _XMLCityWithStationDataInSubnodes : _BicycletteCity
+@interface _XMLCityWithStationDataInSubnodes : BicycletteCity
 - (void) parseData:(NSData*)data;
 @end
 

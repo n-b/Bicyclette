@@ -7,7 +7,7 @@
 //
 
 #import "_CityWithJSONFlatListOfStations.h"
-#import "BicycletteCity.mogenerated.h"
+#import "BicycletteCity+Update.h"
 #import "NSStringAdditions.h"
 
 @interface BarcelonaCityBikeCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>

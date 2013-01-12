@@ -127,11 +127,11 @@ int main(int argc, const char * argv[])
         BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(NO);
         BicycletteCitySetStoresDirectory([[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent]);
         
-        for (BicycletteCity* city in [_BicycletteCity allCities]) {
+        for (BicycletteCity* city in [BicycletteCity allCities]) {
             [city erase];
         }
         NSString * cityFilter = [[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberCityFilter"];
-        for (BicycletteCity* city in [_BicycletteCity allCities]) {
+        for (BicycletteCity* city in [BicycletteCity allCities]) {
             if(cityFilter==nil || [NSStringFromClass([city class]) rangeOfString:cityFilter].location!=NSNotFound)
                 GrabDataForCity(city);
         }

@@ -270,7 +270,7 @@
             RadarAnnotationView * radarAV = (RadarAnnotationView *)[self.mapView viewForAnnotation:annotation];
             radarAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:radarAV].size};
         }
-//        else if([annotation isKindOfClass:[_BicycletteCity class]])
+//        else if([annotation isKindOfClass:[BicycletteCity class]])
 //        {
 //            CityAnnotationView * cityAV = (CityAnnotationView *)[self.mapView viewForAnnotation:annotation];
 //            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
@@ -311,7 +311,7 @@
 
         return radarAV;
     }
-//    else if([annotation isKindOfClass:[_BicycletteCity class]])
+//    else if([annotation isKindOfClass:[BicycletteCity class]])
 //    {
 //        CityAnnotationView * cityAV = (CityAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[CityAnnotationView reuseIdentifier]];
 //		if(nil==cityAV)
@@ -340,7 +340,7 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-	if([view.annotation isKindOfClass:[_BicycletteCity class]])
+	if([view.annotation isKindOfClass:[BicycletteCity class]])
     {
         CLRegion * region = [((BicycletteCity*)view.annotation) regionContainingData];
         [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius) animated:YES];

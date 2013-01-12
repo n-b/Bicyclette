@@ -7,9 +7,8 @@
 //
 
 #import "PrefsVC.h"
-#import "BicycletteCity.h"
+#import "BicycletteCity+Update.h"
 #import "Store.h"
-#import "Station.h"
 #import "CitiesController.h"
 #import "FanContainerViewController.h"
 #import "NSProcessInfo+HardwareMachine.h"

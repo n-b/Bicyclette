@@ -8,7 +8,6 @@
 
 #import "_CityWithJSONFlatListOfStations.h"
 
-#import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
 #import "NSObject+KVCMapping.h"

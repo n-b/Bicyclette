@@ -100,6 +100,8 @@
 		376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* CityRegionUpdateGroup.m */; };
 		376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 376088161676333300B1161E /* LocalUpdateQueueTests.m */; };
 		376088181676333600B1161E /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
+		3763582516A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3763582416A17A0C00C29B56 /* BicycletteCity+Update.m */; };
+		3763582616A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3763582416A17A0C00C29B56 /* BicycletteCity+Update.m */; };
 		376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
 		376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
 		377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
@@ -359,6 +361,8 @@
 		376087F41675E27400B1161E /* CityRegionUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityRegionUpdateGroup.h; sourceTree = "<group>"; };
 		376087F51675E27400B1161E /* CityRegionUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityRegionUpdateGroup.m; sourceTree = "<group>"; };
 		376088161676333300B1161E /* LocalUpdateQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueueTests.m; sourceTree = "<group>"; };
+		3763582316A17A0B00C29B56 /* BicycletteCity+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+Update.h"; sourceTree = "<group>"; };
+		3763582416A17A0C00C29B56 /* BicycletteCity+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+Update.m"; sourceTree = "<group>"; };
 		376D0E4B1678B56D006F321D /* CyclocityCity.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = CyclocityCity.h; path = Files/Cities/CyclocityCity.h; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		376D0E4C1678B56D006F321D /* CyclocityCity.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = CyclocityCity.m; path = Files/Cities/CyclocityCity.m; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
@@ -626,8 +630,6 @@
 				3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */,
 				376087F41675E27400B1161E /* CityRegionUpdateGroup.h */,
 				376087F51675E27400B1161E /* CityRegionUpdateGroup.m */,
-				3709F573167B755600F865E3 /* Station+Update.h */,
-				3709F574167B755600F865E3 /* Station+Update.m */,
 			);
 			name = "Station Updates";
 			sourceTree = "<group>";
@@ -860,6 +862,10 @@
 			children = (
 				37216BC512611C5400A2695A /* BicycletteCity.h */,
 				37216BC612611C5400A2695A /* BicycletteCity.m */,
+				3763582316A17A0B00C29B56 /* BicycletteCity+Update.h */,
+				3763582416A17A0C00C29B56 /* BicycletteCity+Update.m */,
+				3709F573167B755600F865E3 /* Station+Update.h */,
+				3709F574167B755600F865E3 /* Station+Update.m */,
 				37410ADA16A0CDD000F2E958 /* _StationParse.h */,
 				37410ADB16A0CDD000F2E958 /* _StationParse.m */,
 				37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */,
@@ -1246,6 +1252,7 @@
 				37920168169C252B008E35C3 /* BordeauxVCubCity.m in Sources */,
 				37410AD416A0C04900F2E958 /* LilleVlilleCity.m in Sources */,
 				37410ADD16A0CDD100F2E958 /* _StationParse.m in Sources */,
+				3763582616A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1293,7 @@
 				37920167169C252B008E35C3 /* BordeauxVCubCity.m in Sources */,
 				37410AD316A0C04900F2E958 /* LilleVlilleCity.m in Sources */,
 				37410ADC16A0CDD100F2E958 /* _StationParse.m in Sources */,
+				3763582516A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,15 +7,27 @@
 //
 
 #import "CoreDataManager.h"
+#import "DataUpdater.h"
 #import "LocalUpdateQueue.h"
-@class Station, Region, Radar;
+#import "BicycletteCity.mogenerated.h"
 
 void BicycletteCitySetStoresDirectory(NSString* directory);
 void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 
 /****************************************************************************/
 #pragma mark - Semi-Abstract superclass.
-@interface _BicycletteCity : CoreDataManager <Locatable>
+
+@interface BicycletteCity : CoreDataManager <Locatable
+#if TARGET_OS_IPHONE
+,MKAnnotation
+#endif
+>
+{
+    NSManagedObjectContext * _parsing_context;
+    NSMutableArray * _parsing_oldStations;
+    NSMutableDictionary * _parsing_regionsByNumber;
+    NSString * _parsing_urlString;
+}
 
 // initialization
 + (NSArray*) allCities;
@@ -36,6 +48,12 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (CLLocationCoordinate2D) coordinate; // MKAnnotation
 - (BOOL) hasRegions; // returns yes if regionInfoFromStation: is implemented
 
+// Annotations - override if necessary
+- (NSString*) title;
+- (NSString*) titleForStation:(Station*)station;
+- (NSString*) titleForRegion:(Region*)region;
+- (NSString*) subtitleForRegion:(Region*)region;
+
 // Fetch requests
 - (Station*) stationWithNumber:(NSString*)number;
 #if TARGET_OS_IPHONE
@@ -43,58 +61,8 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
 #endif
 
-// Data Updates
-- (void) update;
+@property DataUpdater * updater;
 
-// Parsing
-- (NSString*) stationNumberFromStationValues:(NSDictionary*)values; // override if necessary
-- (void) insertStationWithAttributes:(NSDictionary*)stationAttributes;// Call from subclass during parsing
-- (void) setStation:(Station*)station attributes:(NSDictionary*)stationAttributes;
-
-+ (BOOL) canUpdateIndividualStations; // returns yes if stationStatusParsingClass is implemented
-
-// Annotations
-- (NSString*) title;
-
-@end
-
-/****************************************************************************/
-#pragma mark - Methods to be reimplementend by concrete subclasses
-@class RegionInfo;
-@protocol BicycletteCity
-#if TARGET_OS_IPHONE
-							<MKAnnotation>
-#endif
-
-// Annotations
-@optional
-- (NSString*) titleForStation:(Station*)station;
-- (NSString*) titleForRegion:(Region*)region;
-- (NSString*) subtitleForRegion:(Region*)region;
-
-// City Data Updates
-@required
-- (void) parseData:(NSData*)data;
-- (NSDictionary*) KVCMapping;
-
-// Wether City has regions
-@optional
-- (RegionInfo*) regionInfoFromStation:(Station*)station
-                               values:(NSDictionary*)values
-                               patchs:(NSDictionary*)patchs
-                           requestURL:(NSString*)urlString;
-
-// Stations Individual Data Updates
-@optional
-- (NSString*) detailsURLStringForStation:(Station*)station_;
-- (Class) stationStatusParsingClass;
-
-@end
-
-@interface RegionInfo : NSObject // Just a struct, actually
-+ (instancetype) infoWithName:(NSString*)name number:(NSString*)number;
-@property NSString * number;
-@property NSString * name;
 @end
 
 /****************************************************************************/
@@ -112,12 +80,6 @@ extern const struct BicycletteCityNotifications {
         __unsafe_unretained NSString * failureError;
     } keys;
 } BicycletteCityNotifications;
-
-/****************************************************************************/
-#pragma mark - BicycletteCity
-// This class does not really exist. It serves as an abstract class that responds to all the <BicycletteCity> methods for the rest of the app.
-@interface BicycletteCity : _BicycletteCity < BicycletteCity >
-@end
 
 // Obtain the City from any Station, Region, or Radar.
 @interface NSManagedObject (BicycletteCity)

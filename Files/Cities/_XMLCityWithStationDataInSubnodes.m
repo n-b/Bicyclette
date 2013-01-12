@@ -7,7 +7,6 @@
 //
 
 #import "_XMLCityWithStationDataInSubnodes.h"
-#import "BicycletteCity.mogenerated.h"
 
 // Allow me to call methods of subclasses
 @interface _XMLCityWithStationDataInSubnodes (XMLCityWithStationDataInSubnodes) <XMLCityWithStationDataInSubnodes>
