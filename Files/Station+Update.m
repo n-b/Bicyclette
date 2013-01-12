@@ -10,7 +10,7 @@
 #import "Station.h"
 #import "BicycletteCity.h"
 #import "DataUpdater.h"
-#import "NSObject+KVCMapping.h"
+#import "_StationParse.h"
 
 #pragma mark -
 
@@ -87,10 +87,11 @@ static char kStation_associatedQueuedforUpdateKey;
     [self.city performUpdates:^(NSManagedObjectContext *updateContext) {
         Station * station = (Station*)[updateContext objectWithID:self.objectID];
         
+        Class parsingClass = [station.city stationStatusParsingClass];
         for (NSData * data in [datas allValues]) {
-            [self.city parseData:data forStation:station];
+            NSDictionary * attributes = [parsingClass stationAttributesWithData:data];
+            [self.city setStation:station attributes:attributes];
         }
-        station.status_date = [NSDate date];
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
         NSAssert([[[contextDidSaveNotification.userInfo[NSUpdatedObjectsKey] anyObject] objectID] isEqual:self.objectID], nil);
         self.updater = nil;

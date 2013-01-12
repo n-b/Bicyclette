@@ -12,7 +12,7 @@
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
 #import "NSObject+KVCMapping.h"
-#import "CyclocityStationParse.h"
+#import "_StationParse.h"
 
 @interface LyonVelovCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
 @end
@@ -39,7 +39,7 @@
 
 #pragma mark Stations Individual Data Updates
 
-- (void) parseData:(NSData *)data forStation:(Station *)station { [CyclocityStationParse parseData:data forStation:station]; }
+- (Class) stationStatusParsingClass { return [XMLSubnodesStationParse class]; }
 
 #pragma mark City Data Update
 
@@ -76,6 +76,11 @@
              @"numStation": StationAttributes.number,
              @"x": StationAttributes.latitude, // yes. x,y for lat,long. (not even x,y for long,lat !)
              @"y": StationAttributes.longitude,
+
+             @"available" : StationAttributes.status_available,
+             @"free" : StationAttributes.status_free,
+             @"ticket": StationAttributes.status_ticket,
+             @"total" : StationAttributes.status_total
              };
 }
 

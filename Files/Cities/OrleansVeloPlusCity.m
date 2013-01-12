@@ -8,16 +8,13 @@
 
 #import "_XMLCityWithStationDataInAttributes.h"
 #import "BicycletteCity.mogenerated.h"
-#import "NSObject+KVCMapping.h"
+#import "_StationParse.h"
 #import "NSStringAdditions.h"
+#import "NSValueTransformer+TransformerKit.h"
 
 #pragma mark -
 
 @interface OrleansVeloPlusCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
-@end
-
-@interface OrleansVeloPlusStationParse : NSObject
-+ (void) parseData:(NSData*)data forStation:(Station*)station;
 @end
 
 #pragma mark -
@@ -37,75 +34,30 @@
 
 - (NSDictionary*) KVCMapping
 {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [NSValueTransformer registerValueTransformerWithName:@"OrleansStationStatusTransformer" transformedValueClass:[NSString class]
+                          returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
+                              if([value isKindOfClass:[NSString class]])
+                              {
+                                  return @(![value isEqualToString:@"En maintenance"]);
+                              }
+                              return @YES;
+                          }];
+    });
+
     return @{@"id" : StationAttributes.number,
              @"lat" : StationAttributes.latitude,
              @"lng": StationAttributes.longitude,
-             @"name" : StationAttributes.name};
-}
-
-#pragma mark Stations Individual Data Updates
-
-- (void) parseData:(NSData *)data forStation:(Station *)station { [OrleansVeloPlusStationParse parseData:data forStation:station]; }
-
-@end
-
-#pragma mark Stations Individual Data Updates
-
-@interface OrleansVeloPlusStationParse() <NSXMLParserDelegate>
-@end
-
-@implementation OrleansVeloPlusStationParse
-{
-    Station * _station;
-    NSMutableString * _currentString;
-}
-
-+ (void) parseData:(NSData*)data forStation:(Station*)station
-{
-    [[self new] parseData:data inStation:station];
-}
-
-- (void) parseData:(NSData*)data inStation:(Station*)station
-{
-    _station = station;
-    NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
-    parser.delegate = self;
-    _currentString = [NSMutableString string];
-    [parser parse];
-    _currentString = nil;
-    _station = nil;
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    [_currentString appendString:string];
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"bikes" : StationAttributes.status_available,
+             @"name" : StationAttributes.name,
+             
+             @"bikes" : StationAttributes.status_available,
              @"attachs" : StationAttributes.status_free,
-             @"total" : StationAttributes.status_total};
+             @"status" : @"OrleansStationStatusTransformer:open"};
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    NSString * value = [_currentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if([[[self KVCMapping] allKeys] containsObject:elementName])
-    {
-        if([value length])
-            [_station setValue:value forKey:elementName withMappingDictionary:[self KVCMapping]];
-    }
-    else if([elementName isEqualToString:@"status"])
-    {
-        _station.openValue = [_currentString isEqualToString:@"En service"];
-    }
-    else if([elementName isEqualToString:@"station"])
-    {
-        _station.status_totalValue = _station.status_freeValue + _station.status_availableValue;
-    }
+#pragma mark Stations Individual Data Updates
 
-    _currentString = [NSMutableString string];
-}
+- (Class) stationStatusParsingClass { return [XMLSubnodesStationParse class]; }
 
 @end

@@ -15,6 +15,7 @@
 #import "CollectionsAdditions.h"
 #import "NSObject+KVCMapping.h"
 #import "BicycletteCity.mogenerated.h"
+#import "_StationParse.h"
 #if TARGET_OS_IPHONE
 #import "Radar.h"
 #import "LocalUpdateQueue.h"
@@ -287,7 +288,48 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return values[keyForNumber];
 }
 
-- (void) insertStationAttributes:(NSDictionary*)stationAttributes
+- (void) setStation:(Station*)station attributes:(NSDictionary*)stationAttributes
+{
+    BOOL logParsingDetails = [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"];
+
+    //
+    // Set Values
+    [station setValuesForKeysWithDictionary:stationAttributes withMappingDictionary:[self KVCMapping]]; // Yay!
+    
+    //
+    // Set patches
+    NSDictionary * patchs = [self patches][station.number];
+    BOOL hasDataPatches = patchs && ![[[patchs allKeys] arrayByRemovingObjectsInArray:[[self KVCMapping] allKeys]] isEqualToArray:[patchs allKeys]];
+    if(hasDataPatches)
+    {
+        if(logParsingDetails)
+            NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",stationAttributes, patchs);
+        [station setValuesForKeysWithDictionary:patchs withMappingDictionary:[self KVCMapping]]; // Yay! again
+    }
+    
+    //
+    // Build missing status, if needed
+    NSArray * keysForStatusAvailable = [[self KVCMapping] allKeysForObject:StationAttributes.status_available];
+    NSAssert([keysForStatusAvailable count]==1, nil);
+    if([[stationAttributes allKeys] containsObject:keysForStatusAvailable[0]])
+    {
+        if([[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]==0)
+        {
+            // "Total" is not in data
+            station.status_totalValue = station.status_freeValue + station.status_availableValue;
+        }
+        else if ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]==0)
+        {
+            // "Free" is not in data
+            station.status_freeValue = station.status_totalValue - station.status_availableValue;
+        }
+        
+        // Set Date to now
+        station.status_date = [NSDate date];
+    }
+}
+
+- (void) insertStationWithAttributes:(NSDictionary*)stationAttributes
 {
     NSString * stationNumber = [self stationNumberFromStationValues:stationAttributes];
 
@@ -308,45 +350,15 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         station = [Station insertInManagedObjectContext:_parsing_context];
     }
     
-    //
-    // Set Values
-    [station setValuesForKeysWithDictionary:stationAttributes withMappingDictionary:[self KVCMapping]]; // Yay!
-    
-    //
-    // Set patches
-    NSDictionary * patchs = [self patches][station.number];
-    BOOL hasDataPatches = patchs && ![[[patchs allKeys] arrayByRemovingObjectsInArray:[[self KVCMapping] allKeys]] isEqualToArray:[patchs allKeys]];
-    if(hasDataPatches)
-    {
-        if(logParsingDetails)
-            NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",stationAttributes, patchs);
-        [station setValuesForKeysWithDictionary:patchs withMappingDictionary:[self KVCMapping]]; // Yay! again
-    }
-    
-    //
-    // Build missing status, if needed
-    if([[[self KVCMapping] allKeysForObject:StationAttributes.status_available] count])
-    {
-        if([[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]==0)
-        {
-            // "Total" is not in data
-            station.status_totalValue = station.status_freeValue + station.status_availableValue;
-        }
-        else if ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]==0)
-        {
-            // "Free" is not in data
-            station.status_freeValue = station.status_totalValue - station.status_availableValue;
-        }
-        
-        // Set Date to now
-        station.status_date = [NSDate date];
-    }
+    // Do it !
+    [self setStation:station attributes:stationAttributes];
     
     //
     // Set Region
     RegionInfo * regionInfo;
     if([self hasRegions])
     {
+        NSDictionary * patchs = [self patches][station.number];
         regionInfo = [self regionInfoFromStation:station values:stationAttributes patchs:patchs requestURL:_parsing_urlString];
         if(nil==regionInfo)
         {
@@ -380,7 +392,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 + (BOOL) canUpdateIndividualStations
 {
-    return [self instancesRespondToSelector:@selector(parseData:forStation:)];
+    return [self instancesRespondToSelector:@selector(stationStatusParsingClass)];
 }
 
 

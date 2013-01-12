@@ -34,7 +34,7 @@
 {
     if([elementName isEqualToString:[self stationElementName]]) // End of station dict
     {
-        [self insertStationAttributes:attributeDict];
+        [self insertStationWithAttributes:attributeDict];
     }
 }
 

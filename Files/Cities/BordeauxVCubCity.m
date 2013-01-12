@@ -27,7 +27,7 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [NSValueTransformer registerValueTransformerWithName:@"firstComponent" transformedValueClass:[NSString class]
+        [NSValueTransformer registerValueTransformerWithName:@"FirstComponent" transformedValueClass:[NSString class]
                           returningTransformedValueWithBlock:^NSString*(NSString* value) {
                               if([value isKindOfClass:[NSString class]])
                               {
@@ -37,7 +37,7 @@
                               }
                               return nil;
                           }];
-        [NSValueTransformer registerValueTransformerWithName:@"secondComponent" transformedValueClass:[NSString class]
+        [NSValueTransformer registerValueTransformerWithName:@"SecondComponent" transformedValueClass:[NSString class]
                           returningTransformedValueWithBlock:^NSString*(NSString* value) {
                               if([value isKindOfClass:[NSString class]])
                               {
@@ -51,7 +51,7 @@
 
     return @{@"ms:IDENT" : StationAttributes.number,
              @"ms:NOM" : StationAttributes.name,
-             @"gml:pos" : @[@"firstComponent:latitude",@"secondComponent:longitude"],
+             @"gml:pos" : @[@"FirstComponent:latitude",@"SecondComponent:longitude"],
              @"ms:NBPLACES": StationAttributes.status_free,
              @"ms:NBVELOS": StationAttributes.status_available,
              };

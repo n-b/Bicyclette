@@ -19,7 +19,7 @@
     id attributesArray = [self stationAttributesArraysFromData:data];
     
     for (NSDictionary * attributeDict in attributesArray) {
-        [self insertStationAttributes:attributeDict];
+        [self insertStationWithAttributes:attributeDict];
     }
 }
 

@@ -9,7 +9,7 @@
 #import "CyclocityCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
-#import "CyclocityStationParse.h"
+#import "_StationParse.h"
 
 @implementation CyclocityCity
 #pragma mark Annotations
@@ -29,7 +29,7 @@
 
 #pragma mark Stations Individual Data Updates
 
-- (void) parseData:(NSData *)data forStation:(Station *)station { [CyclocityStationParse parseData:data forStation:station]; }
+- (Class) stationStatusParsingClass { return [XMLSubnodesStationParse class]; }
 
 #pragma mark City Data Updates
 
@@ -41,16 +41,20 @@
 - (NSDictionary*) KVCMapping
 {
     return @{
-        @"address" : StationAttributes.address,
-        @"bonus" : StationAttributes.bonus,
-        @"fullAddress" : StationAttributes.fullAddress,
-        @"name" : StationAttributes.name,
-        @"number" : StationAttributes.number,
-        @"open" : StationAttributes.open,
-        
-        @"lat" : StationAttributes.latitude,
-        @"lng" : StationAttributes.longitude,
-        };
+             @"address" : StationAttributes.address,
+             @"bonus" : StationAttributes.bonus,
+             @"fullAddress" : StationAttributes.fullAddress,
+             @"name" : StationAttributes.name,
+             @"number" : StationAttributes.number,
+             @"open" : StationAttributes.open,
+             @"lat" : StationAttributes.latitude,
+             @"lng" : StationAttributes.longitude,
+             
+             @"available" : StationAttributes.status_available,
+             @"free" : StationAttributes.status_free,
+             @"ticket": StationAttributes.status_ticket,
+             @"total" : StationAttributes.status_total
+             };
 }
 
 @end

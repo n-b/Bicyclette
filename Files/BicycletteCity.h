@@ -48,9 +48,10 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 
 // Parsing
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values; // override if necessary
-- (void) insertStationAttributes:(NSDictionary*)stationAttributes;// Call from subclass during parsing
+- (void) insertStationWithAttributes:(NSDictionary*)stationAttributes;// Call from subclass during parsing
+- (void) setStation:(Station*)station attributes:(NSDictionary*)stationAttributes;
 
-+ (BOOL) canUpdateIndividualStations; // returns yes if parseData:forStation: is implemented
++ (BOOL) canUpdateIndividualStations; // returns yes if stationStatusParsingClass is implemented
 
 // Annotations
 - (NSString*) title;
@@ -86,7 +87,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 // Stations Individual Data Updates
 @optional
 - (NSString*) detailsURLStringForStation:(Station*)station_;
-- (void) parseData:(NSData *)data forStation:(Station *)station;
+- (Class) stationStatusParsingClass;
 
 @end
 

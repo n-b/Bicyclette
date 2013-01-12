@@ -48,7 +48,7 @@
 {
     if([elementName isEqualToString:[self stationElementName]]) // End of station dict
     {
-        [self insertStationAttributes:_parsing_currentValues];
+        [self insertStationWithAttributes:_parsing_currentValues];
         
         // Clear values
         _parsing_currentValues = nil;
