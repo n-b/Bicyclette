@@ -158,7 +158,6 @@
 		37E43DC51684D7A30085EC4F /* Rouen_Cy’clic.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DAE1684D7A30085EC4F /* Rouen_Cy’clic.coredata */; };
 		37E43DC61684D7A30085EC4F /* Santander_TusBic.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DAF1684D7A30085EC4F /* Santander_TusBic.coredata */; };
 		37E43DC71684D7A30085EC4F /* Sevilla_SEVici.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */; };
-		37E43DC81684D7A30085EC4F /* Toulouse_VélÔ.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB11684D7A30085EC4F /* Toulouse_VélÔ.coredata */; };
 		37E43DC91684D7A30085EC4F /* Toyama_CyclOcity.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */; };
 		37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
@@ -390,7 +389,6 @@
 		37E43DAE1684D7A30085EC4F /* Rouen_Cy’clic.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rouen_Cy’clic.coredata"; sourceTree = "<group>"; };
 		37E43DAF1684D7A30085EC4F /* Santander_TusBic.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Santander_TusBic.coredata; sourceTree = "<group>"; };
 		37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sevilla_SEVici.coredata; sourceTree = "<group>"; };
-		37E43DB11684D7A30085EC4F /* Toulouse_VélÔ.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Toulouse_VélÔ.coredata"; sourceTree = "<group>"; };
 		37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Toyama_CyclOcity.coredata; sourceTree = "<group>"; };
 		37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Valencia_Valenbisi.coredata; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
@@ -640,7 +638,6 @@
 				37E43DAE1684D7A30085EC4F /* Rouen_Cy’clic.coredata */,
 				37E43DAF1684D7A30085EC4F /* Santander_TusBic.coredata */,
 				37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */,
-				37E43DB11684D7A30085EC4F /* Toulouse_VélÔ.coredata */,
 				37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */,
 				37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */,
 			);
@@ -1075,7 +1072,6 @@
 				37E43DC51684D7A30085EC4F /* Rouen_Cy’clic.coredata in Resources */,
 				37E43DC61684D7A30085EC4F /* Santander_TusBic.coredata in Resources */,
 				37E43DC71684D7A30085EC4F /* Sevilla_SEVici.coredata in Resources */,
-				37E43DC81684D7A30085EC4F /* Toulouse_VélÔ.coredata in Resources */,
 				37E43DC91684D7A30085EC4F /* Toyama_CyclOcity.coredata in Resources */,
 				37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */,
 				375760EE1687C6360042FCF8 /* Marseille_Le Vélo.coredata in Resources */,
