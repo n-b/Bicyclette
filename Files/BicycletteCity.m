@@ -170,10 +170,10 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region
 {
     NSArray * stations = [Station fetchStationsWithinRange:self.mainContext
-                                               minLatitude:@(region.center.latitude - region.span.latitudeDelta)
-                                               maxLatitude:@(region.center.latitude + region.span.latitudeDelta)
-                                              minLongitude:@(region.center.longitude - region.span.longitudeDelta)
-                                              maxLongitude:@(region.center.longitude + region.span.longitudeDelta)];
+                                               minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
+                                               maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
+                                              minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
+                                              maxLongitude:@(region.center.longitude + region.span.longitudeDelta/2)];
     return stations;
 }
 #endif
