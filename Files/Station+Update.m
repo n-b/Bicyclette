@@ -53,7 +53,7 @@ static char kStation_associatedQueuedforUpdateKey;
 	if(self.updating)
 		return;
     
-    if([[self.city class] canUpdateIndividualStations])
+    if([self.city canUpdateIndividualStations])
     {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
         self.completionBlock = completion_;
