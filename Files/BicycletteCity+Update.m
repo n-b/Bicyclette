@@ -16,6 +16,9 @@
 
 #pragma mark Data Updates
 
+- (NSArray *) updateURLStrings { return @[self.serviceInfo[@"update_url"]]; }
+- (NSString *) detailsURLStringForStation:(Station*)station { return [self.serviceInfo[@"station_details_url"] stringByAppendingString:station.number]; }
+
 - (void) update
 {
     if(self.updater==nil)

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteCity.h"
-#import "BicycletteCity.mogenerated.h"
+#import "BicycletteCity+Update.h"
+#import "BicycletteCity+ServiceDescription.h"
 
 static void GrabDataForCity(BicycletteCity* city)
 {
@@ -127,13 +127,26 @@ int main(int argc, const char * argv[])
         BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(NO);
         BicycletteCitySetStoresDirectory([[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent]);
         
-        for (BicycletteCity* city in [BicycletteCity allCities]) {
-            [city erase];
-        }
         NSString * cityFilter = [[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberCityFilter"];
         for (BicycletteCity* city in [BicycletteCity allCities]) {
             if(cityFilter==nil || [NSStringFromClass([city class]) rangeOfString:cityFilter].location!=NSNotFound)
+            {
+                [city erase];
                 GrabDataForCity(city);
+            }
+        }
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogServiceInfo"])
+        {
+            NSMutableArray * infos = [NSMutableArray new];
+            for (BicycletteCity* city in [BicycletteCity allCities]) {
+                [infos addObject:[city fullServiceInfo]];
+            }
+            NSData * data = [NSJSONSerialization dataWithJSONObject:infos
+                                                            options:NSJSONWritingPrettyPrinted
+                                                              error:NULL];
+            NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"BicycletteCities_fullServiceInfo.json"];
+            [data writeToFile:path atomically:NO];
+
         }
     }
 }

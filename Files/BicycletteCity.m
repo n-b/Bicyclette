@@ -83,8 +83,6 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 - (NSString *) cityName { return _serviceInfo[@"city_name"]; }
 - (NSString *) serviceName { return _serviceInfo[@"service_name"]; }
-- (NSArray *) updateURLStrings { return @[_serviceInfo[@"update_url"]]; }
-- (NSString *) detailsURLStringForStation:(Station*)station { return [self.serviceInfo[@"station_details_url"] stringByAppendingString:station.number]; }
 - (NSDictionary*) patches { return self.serviceInfo[@"patches"]; }
 
 - (NSDictionary*) prefs { return self.serviceInfo[@"prefs"]; }
@@ -183,7 +181,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 #pragma mark Annotations
 
-- (NSString*) title { return [NSString stringWithFormat:@"%@ %@",[self cityName],[self serviceName]]; }
+- (NSString *) title { return [NSString stringWithFormat:@"%@ %@",[self cityName],[self serviceName]]; }
 - (NSString *) titleForStation:(Station *)station { return station.name; }
 - (NSString *) titleForRegion:(Region*)region { return region.name; }
 - (NSString *) subtitleForRegion:(Region*)region { return @""; }

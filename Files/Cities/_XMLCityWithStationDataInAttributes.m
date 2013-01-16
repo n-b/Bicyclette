@@ -9,6 +9,7 @@
 #import "_XMLCityWithStationDataInAttributes.h"
 #import "NSObject+KVCMapping.h"
 #import "CollectionsAdditions.h"
+#import "BicycletteCity+ServiceDescription.h"
 
 // Allow me to call methods of subclasses
 @interface _XMLCityWithStationDataInAttributes (XMLCityWithStationDataInAttributes) <XMLCityWithStationDataInAttributes>
@@ -35,6 +36,18 @@
     {
         [self insertStationWithAttributes:attributeDict];
     }
+}
+
+@end
+
+
+@implementation _XMLCityWithStationDataInAttributes (ServiceDescription)
+
+- (NSMutableDictionary *)fullServiceInfo
+{
+    NSMutableDictionary * info = [super fullServiceInfo];
+    [info setObject:[self stationElementName] forKey:@"station_element_name"];
+    return info;
 }
 
 @end

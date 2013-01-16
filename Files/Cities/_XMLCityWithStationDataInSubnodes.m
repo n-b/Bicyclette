@@ -7,6 +7,7 @@
 //
 
 #import "_XMLCityWithStationDataInSubnodes.h"
+#import "BicycletteCity+ServiceDescription.h"
 
 // Allow me to call methods of subclasses
 @interface _XMLCityWithStationDataInSubnodes (XMLCityWithStationDataInSubnodes) <XMLCityWithStationDataInSubnodes>
@@ -60,6 +61,17 @@
             [_parsing_currentValues setObject:value forKey:elementName];
         _parsing_currentString = nil;
     }
+}
+
+@end
+
+@implementation _XMLCityWithStationDataInSubnodes (ServiceDescription)
+
+- (NSMutableDictionary *)fullServiceInfo
+{
+    NSMutableDictionary * info = [super fullServiceInfo];
+    [info setObject:[self stationElementName] forKey:@"station_element_name"];
+    return info;
 }
 
 @end

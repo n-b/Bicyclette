@@ -11,6 +11,10 @@
 
 @interface BicycletteCity (Update)  <DataUpdaterDelegate>
 
+- (NSArray *) updateURLStrings;
+- (NSString*) detailsURLStringForStation:(Station*)station_;
++ (BOOL) canUpdateIndividualStations; // returns yes if stationStatusParsingClass is implemented
+
 // Data Updates
 - (void) update;
 
@@ -19,7 +23,6 @@
 - (void) insertStationWithAttributes:(NSDictionary*)stationAttributes;// Call from subclass during parsing
 - (void) setStation:(Station*)station attributes:(NSDictionary*)stationAttributes;
 
-+ (BOOL) canUpdateIndividualStations; // returns yes if stationStatusParsingClass is implemented
 
 @end
 
@@ -43,7 +46,6 @@
 
 // Stations Individual Data Updates
 @optional
-- (NSString*) detailsURLStringForStation:(Station*)station_;
 - (Class) stationStatusParsingClass;
 
 @end
