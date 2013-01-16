@@ -28,7 +28,7 @@
     [info setObject:[self KVCMapping] forKey:@"KVCMapping"];
     
     // station parsing class
-    if([[self class] canUpdateIndividualStations])
+    if([self stationStatusParsingClass])
         [info setObject:NSStringFromClass([self stationStatusParsingClass]) forKey:@"station_status_parsing_class"];
     
     return info;

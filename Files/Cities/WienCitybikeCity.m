@@ -10,29 +10,9 @@
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface WienCitybikeCity : _XMLCityWithStationDataInSubnodes <XMLCityWithStationDataInSubnodes>
+@interface WienCitybikeCity : _XMLCityWithStationDataInSubnodes
 @end
 
 @implementation WienCitybikeCity
-
-#pragma mark City Data Update
-
-- (NSString*) stationElementName
-{
-    return @"station";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"id" : StationAttributes.number,
-             @"name" : StationAttributes.name,
-             @"description" : StationAttributes.address,
-             @"latitude" : StationAttributes.latitude,
-             @"longitude": StationAttributes.longitude,
-             @"boxes": StationAttributes.status_total,
-             @"free_bikes": StationAttributes.status_available,
-             @"free_boxes": StationAttributes.status_free,
-             };
-}
 
 @end

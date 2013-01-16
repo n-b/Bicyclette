@@ -11,50 +11,35 @@
 #import "NSStringAdditions.h"
 #import "NSValueTransformer+TransformerKit.h"
 
-@interface BordeauxVCubCity : _XMLCityWithStationDataInSubnodes <XMLCityWithStationDataInSubnodes>
+@interface BordeauxVCubCity : _XMLCityWithStationDataInSubnodes
 @end
 
 @implementation BordeauxVCubCity
 
 #pragma mark City Data Update
 
-- (NSString*) stationElementName
++ (void) initialize
 {
-    return @"ms:CI_VCUB_P";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [NSValueTransformer registerValueTransformerWithName:@"FirstComponent" transformedValueClass:[NSString class]
-                          returningTransformedValueWithBlock:^NSString*(NSString* value) {
-                              if([value isKindOfClass:[NSString class]])
-                              {
-                                  NSArray * words = [value componentsSeparatedByString:@" "];
-                                  if( [words count] > 0 )
-                                      return words[0];
-                              }
-                              return nil;
-                          }];
-        [NSValueTransformer registerValueTransformerWithName:@"SecondComponent" transformedValueClass:[NSString class]
-                          returningTransformedValueWithBlock:^NSString*(NSString* value) {
-                              if([value isKindOfClass:[NSString class]])
-                              {
-                                  NSArray * words = [value componentsSeparatedByString:@" "];
-                                  if( [words count] > 1 )
-                                      return words[1];
-                              }
-                              return nil;
-                          }];
-    });
-
-    return @{@"ms:IDENT" : StationAttributes.number,
-             @"ms:NOM" : StationAttributes.name,
-             @"gml:pos" : @[@"FirstComponent:latitude",@"SecondComponent:longitude"],
-             @"ms:NBPLACES": StationAttributes.status_free,
-             @"ms:NBVELOS": StationAttributes.status_available,
-             };
+    [NSValueTransformer registerValueTransformerWithName:@"FirstComponent" transformedValueClass:[NSString class]
+                      returningTransformedValueWithBlock:^NSString*(NSString* value) {
+                          if([value isKindOfClass:[NSString class]])
+                          {
+                              NSArray * words = [value componentsSeparatedByString:@" "];
+                              if( [words count] > 0 )
+                                  return words[0];
+                          }
+                          return nil;
+                      }];
+    [NSValueTransformer registerValueTransformerWithName:@"SecondComponent" transformedValueClass:[NSString class]
+                      returningTransformedValueWithBlock:^NSString*(NSString* value) {
+                          if([value isKindOfClass:[NSString class]])
+                          {
+                              NSArray * words = [value componentsSeparatedByString:@" "];
+                              if( [words count] > 1 )
+                                  return words[1];
+                          }
+                          return nil;
+                      }];
 }
 
 @end

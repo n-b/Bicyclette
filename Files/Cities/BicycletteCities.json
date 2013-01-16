@@ -1,7 +1,17 @@
 [
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "availableBikes" : "status_available",
+      "longitude" : "longitude",
+      "id" : "number",
+      "landMark" : "name",
+      "availableDocks" : "status_free",
+      "latitude" : "latitude",
+      "stAddress1" : "address"
+    },
     "longitude" : -85.295,
+    "keypath_to_stations_lists" : "stationBeanList",
     "city_class" : "ChattanoogaBikeCity",
     "service_name" : "Bike",
     "latitude" : 35.056,
@@ -10,6 +20,14 @@
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "lockCount" : "status_total",
+      "num" : "number",
+      "lat" : "latitude",
+      "lon" : "longitude",
+      "name" : "name",
+      "bikeCount" : "status_available"
+    },
     "longitude" : -1.151,
     "city_class" : "LaRochelleYeloCity",
     "service_name" : "Yélo",
@@ -19,26 +37,63 @@
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "x" : "latitude",
+      "ticket" : "status_ticket",
+      "nomStation" : "name",
+      "y" : "longitude",
+      "available" : "status_available",
+      "infoStation" : "address",
+      "total" : "status_total",
+      "free" : "status_free",
+      "numStation" : "number"
+    },
     "longitude" : 4.835,
+    "keypath_to_stations_lists" : "markers",
     "city_class" : "LyonVelovCity",
     "service_name" : "Vélo’v",
     "latitude" : 45.7611,
     "station_details_url" : "http:\/\/www.velov.grandlyon.com\/velovmap\/zhp\/inc\/DispoStationsParId.php?id=",
     "update_url" : "http:\/\/www.velov.grandlyon.com\/velovmap\/zhp\/inc\/StationsParArrondissement.php?arrondissement=",
-    "city_name" : "Lyon"
+    "city_name" : "Lyon",
+    "station_status_parsing_class" : "XMLSubnodesStationParse"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 5.371,
     "city_class" : "CyclocityCity",
     "service_name" : "Le Vélo",
     "latitude" : 43.296,
     "station_details_url" : "http:\/\/www.levelo-mpm.fr\/service\/stationdetails\/marseille\/",
     "update_url" : "http:\/\/www.levelo-mpm.fr\/service\/carto",
-    "city_name" : "Marseille"
+    "city_name" : "Marseille",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : 144.966,
     "city_class" : "MelbourneBikeShareCity",
     "service_name" : "BikeShare",
@@ -48,30 +103,73 @@
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "status" : "OrleansStationStatusTransformer:open",
+      "id" : "number",
+      "bikes" : "status_available",
+      "lat" : "latitude",
+      "lng" : "longitude",
+      "name" : "name",
+      "attachs" : "status_free"
+    },
     "longitude" : 1.908188,
     "city_class" : "OrleansVeloPlusCity",
     "service_name" : "Vélo’+",
     "latitude" : 47.908,
     "update_url" : "https:\/\/www.agglo-veloplus.fr\/component\/data_1.xml",
     "station_details_url" : "https:\/\/www.agglo-veloplus.fr\/getStatusBorne?idBorne=",
-    "city_name" : "Orléans"
+    "city_name" : "Orléans",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "status" : "VlilleStationStatusTransformer:open",
+      "id" : "number",
+      "bikes" : "status_available",
+      "lat" : "latitude",
+      "lng" : "longitude",
+      "name" : "name",
+      "attachs" : "status_free"
+    },
     "longitude" : 3.114125,
     "city_class" : "LilleVlilleCity",
     "service_name" : "V’Lille",
     "latitude" : 50.6736,
     "update_url" : "http:\/\/vlille.fr\/stations\/xml-stations.aspx",
     "station_details_url" : "http:\/\/vlille.fr\/stations\/xml-station.aspx?borne=",
-    "city_name" : "Lille"
+    "city_name" : "Lille",
+    "station_status_parsing_class" : "FixedUTF8EncodingXMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
+    "prefs" : {
+      "CitiesController.StationsZoomThreshold" : 0.5
+    },
     "radius" : 15000,
-    "longitude" : 2.350833,
-    "city_class" : "ParisVelibCity",
+    "station_details_url" : "http:\/\/www.velib.paris.fr\/service\/stationdetails\/paris\/",
     "service_name" : "Vélib‘",
+    "longitude" : 2.350833,
     "latitude" : 48.856667,
+    "city_class" : "ParisVelibCity",
+    "update_url" : "http:\/\/www.velib.paris.fr\/service\/carto",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
+    "city_name" : "Paris",
     "patches" : {
       "34003" : {
         "codePostal" : "93400"
@@ -89,354 +187,799 @@
         "codePostal" : "75019"
       }
     },
-    "station_details_url" : "http:\/\/www.velib.paris.fr\/service\/stationdetails\/paris\/",
-    "city_name" : "Paris",
-    "update_url" : "http:\/\/www.velib.paris.fr\/service\/carto",
-    "prefs" : {
-      "CitiesController.StationsZoomThreshold" : 0.5
-    }
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "number" : "number",
+      "pos" : "status_ticket",
+      "longitude" : "longitude",
+      "latitude" : "latitude",
+      "slotsavailable" : "status_free",
+      "bikesavailable" : "status_available",
+      "name" : "name",
+      "state" : "open"
+    },
     "longitude" : -1.6752,
     "city_class" : "RennesVeloStarCity",
     "service_name" : "VéloStar",
     "latitude" : 48.1136,
     "update_url" : "http:\/\/data.keolis-rennes.com\/xml\/?version=1.0&key=U3JFQO8IG7CUY28&cmd=getstation",
+    "station_element_name" : "station",
     "city_name" : "Rennes"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : -73.578,
     "city_class" : "BixiCity",
     "service_name" : "BIXI",
     "latitude" : 45.513,
     "update_url" : "http:\/\/montreal.bixi.com\/data\/bikeStations.xml",
+    "station_element_name" : "station",
     "city_name" : "Montréal"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : -79.379,
     "city_class" : "BixiCity",
     "service_name" : "BIXI",
     "latitude" : 43.639,
     "update_url" : "http:\/\/toronto.bixi.com\/data\/bikeStations.xml",
+    "station_element_name" : "station",
     "city_name" : "Toronto"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : -75.699,
     "city_class" : "BixiCity",
     "service_name" : "BIXI",
     "latitude" : 45.412,
     "update_url" : "http:\/\/capitale.bixi.com\/data\/bikeStations.xml",
+    "station_element_name" : "station",
     "city_name" : "Ottawa"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : -0.1105,
     "city_class" : "BixiCity",
     "service_name" : "Cycle Hire",
     "latitude" : 51.50738,
     "update_url" : "http:\/\/www.tfl.gov.uk\/tfl\/syndication\/feeds\/cycle-hire\/livecyclehireupdates.xml",
+    "station_element_name" : "station",
     "city_name" : "London"
   },
   {
     "radius" : 15000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : -77.038,
     "city_class" : "BixiCity",
     "service_name" : "Capital Bike Share",
     "latitude" : 38.888,
     "update_url" : "http:\/\/capitalbikeshare.com\/data\/stations\/bikeStations.xml",
+    "station_element_name" : "station",
     "city_name" : "Washington"
   },
   {
     "radius" : 15000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : -71.05800000000001,
     "city_class" : "BixiCity",
     "service_name" : "Hubway",
     "latitude" : 42.329,
     "update_url" : "http:\/\/www.thehubway.com\/data\/stations\/bikeStations.xml",
+    "station_element_name" : "station",
     "city_name" : "Boston"
   },
   {
     "radius" : 20000,
+    "KVCMapping" : {
+      "id" : "number",
+      "lat" : "latitude",
+      "long" : "longitude",
+      "name" : "name",
+      "nbEmptyDocks" : "status_free",
+      "nbBikes" : "status_available"
+    },
     "longitude" : -93.264,
     "city_class" : "BixiCity",
     "service_name" : "Nice Ride",
     "latitude" : 44.981,
     "update_url" : "https:\/\/secure.niceridemn.org\/data2\/bikeStations.xml",
+    "station_element_name" : "station",
     "city_name" : "Minneapolis"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 2.301,
     "city_class" : "CyclocityCity",
     "service_name" : "Vélam",
     "latitude" : 49.8982,
     "station_details_url" : "http:\/\/www.velam.amiens.fr\/service\/stationdetails\/amiens\/",
     "update_url" : "http:\/\/www.velam.amiens.fr\/service\/carto",
-    "city_name" : "Amiens"
+    "city_name" : "Amiens",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 6.029,
     "city_class" : "CyclocityCity",
     "service_name" : "VéloCité",
     "latitude" : 47.2415,
     "station_details_url" : "http:\/\/www.velocite.besancon.fr\/service\/stationdetails\/besancon\/",
     "update_url" : "http:\/\/www.velocite.besancon.fr\/service\/carto",
-    "city_name" : "Besançon"
+    "city_name" : "Besançon",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 153.031,
     "city_class" : "CyclocityCity",
     "service_name" : "CityCycle",
     "latitude" : -27.481,
     "station_details_url" : "http:\/\/www.citycycle.com.au\/service\/stationdetails\/brisbane\/",
     "update_url" : "http:\/\/www.citycycle.com.au\/service\/carto",
-    "city_name" : "Brisbane"
+    "city_name" : "Brisbane",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 4.357,
     "city_class" : "CyclocityCity",
     "service_name" : "Villo!",
     "latitude" : 50.8482,
     "station_details_url" : "http:\/\/www.villo.be\/service\/stationdetails\/bruxelles\/",
     "update_url" : "http:\/\/www.villo.be\/service\/carto",
-    "city_name" : "Bruxelles"
+    "city_name" : "Bruxelles",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 2.0783,
     "city_class" : "CyclocityCity",
     "service_name" : "VélO2",
     "latitude" : 49.0331,
     "station_details_url" : "http:\/\/www.velo2.cergypontoise.fr\/service\/stationdetails\/cergy\/",
     "update_url" : "http:\/\/www.velo2.cergypontoise.fr\/service\/carto",
-    "city_name" : "Cergy-Pontoise"
+    "city_name" : "Cergy-Pontoise",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 2.4537,
     "city_class" : "CyclocityCity",
     "service_name" : "CristoLib",
     "latitude" : 48.7842,
     "station_details_url" : "http:\/\/www.cristolib.fr\/service\/stationdetails\/creteil\/",
     "update_url" : "http:\/\/www.cristolib.fr\/service\/carto",
-    "city_name" : "Créteil"
+    "city_name" : "Créteil",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : -6.268,
     "city_class" : "CyclocityCity",
     "service_name" : "dublinbikes",
     "latitude" : 53.347,
     "station_details_url" : "http:\/\/www.dublinbikes.ie\/service\/stationdetails\/dublin\/",
     "update_url" : "http:\/\/www.dublinbikes.ie\/service\/carto",
-    "city_name" : "Dublin"
+    "city_name" : "Dublin",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 11.974,
     "city_class" : "CyclocityCity",
     "service_name" : "Styr & Ställ",
     "latitude" : 57.708,
     "station_details_url" : "http:\/\/www.goteborgbikes.se\/service\/stationdetails\/goteborg\/",
     "update_url" : "http:\/\/www.goteborgbikes.se\/service\/carto",
-    "city_name" : "Göteborg"
+    "city_name" : "Göteborg",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 14.509,
     "city_class" : "CyclocityCity",
     "service_name" : "Bicike(LJ)",
     "latitude" : 46.054,
     "station_details_url" : "http:\/\/www.bicikelj.si\/service\/stationdetails\/ljubljana\/",
     "update_url" : "http:\/\/www.bicikelj.si\/service\/carto",
-    "city_name" : "Ljubljana"
+    "city_name" : "Ljubljana",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 6.138,
     "city_class" : "CyclocityCity",
     "service_name" : "vel’oh",
     "latitude" : 49.6116,
     "station_details_url" : "http:\/\/www.veloh.lu\/service\/stationdetails\/luxembourg\/",
     "update_url" : "http:\/\/www.veloh.lu\/service\/carto",
-    "city_name" : "Luxembourg"
+    "city_name" : "Luxembourg",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 7.3267,
     "city_class" : "CyclocityCity",
     "service_name" : "Vélocité",
     "latitude" : 47.7476,
     "station_details_url" : "http:\/\/www.velocite.mulhouse.fr\/service\/stationdetails\/mulhouse\/",
     "update_url" : "http:\/\/www.velocite.mulhouse.fr\/service\/carto",
-    "city_name" : "Mulhouse"
+    "city_name" : "Mulhouse",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 6.1841,
     "city_class" : "CyclocityCity",
     "service_name" : "Vélostan",
     "latitude" : 48.6915,
     "station_details_url" : "http:\/\/www.velostanlib.fr\/service\/stationdetails\/nancy\/",
     "update_url" : "http:\/\/www.velostanlib.fr\/service\/carto",
-    "city_name" : "Nancy"
+    "city_name" : "Nancy",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : -1.546,
     "city_class" : "CyclocityCity",
     "service_name" : "Bicloo",
     "latitude" : 47.223,
     "station_details_url" : "http:\/\/www.bicloo.nantesmetropole.fr\/service\/stationdetails\/nantes\/",
     "update_url" : "http:\/\/www.bicloo.nantesmetropole.fr\/service\/carto",
-    "city_name" : "Nantes"
+    "city_name" : "Nantes",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 1.0973,
     "city_class" : "CyclocityCity",
     "service_name" : "Cy’clic",
     "latitude" : 49.4429,
     "station_details_url" : "http:\/\/cyclic.rouen.fr\/service\/stationdetails\/rouen\/",
     "update_url" : "http:\/\/cyclic.rouen.fr\/service\/carto",
-    "city_name" : "Rouen"
+    "city_name" : "Rouen",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : -3.8085,
     "city_class" : "CyclocityCity",
     "service_name" : "TusBic",
     "latitude" : 43.4629,
     "station_details_url" : "http:\/\/www.tusbic.es\/service\/stationdetails\/santander\/",
     "update_url" : "http:\/\/www.tusbic.es\/service\/carto",
-    "city_name" : "Santander"
+    "city_name" : "Santander",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : -5.979,
     "city_class" : "CyclocityCity",
     "service_name" : "SEVici",
     "latitude" : 37.3901,
     "station_details_url" : "http:\/\/www.sevici.es\/service\/stationdetails\/seville\/",
     "update_url" : "http:\/\/www.sevici.es\/service\/carto",
-    "city_name" : "Sevilla"
+    "city_name" : "Sevilla",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 1.445,
     "city_class" : "CyclocityCity",
     "service_name" : "VélÔ",
     "latitude" : 43.6048,
     "station_details_url" : "http:\/\/www.velo.toulouse.fr\/service\/stationdetails\/toulouse\/",
     "update_url" : "http:\/\/www.velo.toulouse.fr\/service\/carto",
-    "city_name" : "Toulouse"
+    "city_name" : "Toulouse",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : 137.211,
     "city_class" : "CyclocityCity",
     "service_name" : "CyclOcity",
     "latitude" : 36.6935,
     "station_details_url" : "http:\/\/www.cyclocity.jp\/service\/stationdetails\/toyama\/",
     "update_url" : "http:\/\/www.cyclocity.jp\/service\/carto",
-    "city_name" : "Toyama"
+    "city_name" : "Toyama",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
     "longitude" : -0.366,
     "city_class" : "CyclocityCity",
     "service_name" : "Valenbisi",
     "latitude" : 39.47,
     "station_details_url" : "http:\/\/www.valenbisi.es\/service\/stationdetails\/valence\/",
     "update_url" : "http:\/\/www.valenbisi.es\/service\/carto",
-    "city_name" : "Valencia"
+    "city_name" : "Valencia",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 8.392749999999999,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 51.9049,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=160",
+    "station_element_name" : "place",
     "city_name" : "Gütersloh"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 10.8916,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 48.3647,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=178",
+    "station_element_name" : "place",
     "city_name" : "Augsburg"
   },
   {
     "radius" : 75000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 13.9362,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 48.199,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=189",
+    "station_element_name" : "place",
     "city_name" : "Oberösterreich"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 15.6232,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 48.2058,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=57",
+    "station_element_name" : "place",
     "city_name" : "St.Pölten"
   },
   {
     "radius" : 15000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 9.933009999999999,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 47.3751,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=71",
+    "station_element_name" : "place",
     "city_name" : "Bregenzerwald"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 11.0814,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 49.4479,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=6",
+    "station_element_name" : "place",
     "city_name" : "Nürnberg"
   },
   {
     "radius" : 45000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 33.0464,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 34.6823,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=190",
+    "station_element_name" : "place",
     "city_name" : "Limassol"
   },
   {
     "radius" : 20000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 32.4957,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 37.8715,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=183",
+    "station_element_name" : "place",
     "city_name" : "Konya"
   },
   {
     "radius" : 65000,
+    "KVCMapping" : {
+      "lng" : "longitude",
+      "lat" : "latitude",
+      "uid" : "number",
+      "name" : "name",
+      "bikes" : "status_available"
+    },
     "longitude" : 7.107475,
     "city_class" : "NextBikeCity",
     "service_name" : "metropolradruhr",
     "latitude" : 51.492122,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
+    "station_element_name" : "place",
     "city_name" : "Ruhr",
     "regions" : {
       "135" : "Hamm",
@@ -453,7 +996,18 @@
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "ac" : "status_total",
+      "ap" : "status_free",
+      "id" : "number",
+      "wcom" : "address",
+      "lat" : "latitude",
+      "lng" : "longitude",
+      "name" : "name",
+      "ab" : "status_available"
+    },
     "longitude" : 1.86512508105466,
+    "keypath_to_stations_lists" : "stand",
     "city_class" : "VelowayCity",
     "service_name" : "Vel’In",
     "latitude" : 50.9440296585055,
@@ -462,7 +1016,18 @@
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "ac" : "status_total",
+      "ap" : "status_free",
+      "id" : "number",
+      "wcom" : "address",
+      "lat" : "latitude",
+      "lng" : "longitude",
+      "name" : "name",
+      "ab" : "status_available"
+    },
     "longitude" : 7.23606624316403,
+    "keypath_to_stations_lists" : "stand",
     "city_class" : "VelowayCity",
     "service_name" : "Vélo Bleu",
     "latitude" : 43.7024895672004,
@@ -471,7 +1036,18 @@
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "ac" : "status_total",
+      "ap" : "status_free",
+      "id" : "number",
+      "wcom" : "address",
+      "lat" : "latitude",
+      "lng" : "longitude",
+      "name" : "name",
+      "ab" : "status_available"
+    },
     "longitude" : -2.75553248215488,
+    "keypath_to_stations_lists" : "stand",
     "city_class" : "VelowayCity",
     "service_name" : "Vélocéa",
     "latitude" : 47.6628181616145,
@@ -480,23 +1056,40 @@
   },
   {
     "radius" : 15000,
+    "KVCMapping" : {
+      "Latitude" : "latitude",
+      "Address" : "name",
+      "Longitude" : "longitude",
+      "Bikes" : "status_available",
+      "Dockings" : "status_free",
+      "Id" : "number"
+    },
     "longitude" : -80.133197,
     "city_class" : "MiamiDecobikeCity",
     "service_name" : "DECOBIKE",
     "latitude" : 25.800081,
     "update_url" : "http:\/\/www.decobike.com\/playmoves.xml",
+    "station_element_name" : "location",
     "city_name" : "Miami"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "AddressGmapsLatitude" : "latitude",
+      "StationAvailableBikes" : "status_available",
+      "AddressStreet1" : "name",
+      "StationID" : "number",
+      "AddressGmapsLongitude" : "longitude",
+      "StationFreeSlot" : "status_free"
+    },
     "longitude" : 2.169662,
     "city_class" : "BarcelonaCityBikeCity",
     "service_name" : "Bicing",
     "latitude" : 41.396662,
     "update_url" : "https:\/\/www.bicing.cat\/localizaciones\/getJsonObject.php",
     "districts_patchs" : {
-      "275" : "8",
       "26" : "10",
+      "106" : "6",
       "193" : "4",
       "238" : "9",
       "101" : "5",
@@ -504,80 +1097,162 @@
       "1" : "2",
       "276" : "7",
       "93" : "3",
-      "106" : "6"
+      "275" : "8"
     },
     "city_name" : "Barcelona"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "longitude" : "longitude",
+      "id" : "number",
+      "boxes" : "status_total",
+      "latitude" : "latitude",
+      "free_boxes" : "status_free",
+      "description" : "address",
+      "free_bikes" : "status_available",
+      "name" : "name"
+    },
     "longitude" : 16.357668,
     "city_class" : "WienCitybikeCity",
     "service_name" : "CitybikeCity",
     "latitude" : 48.207685,
     "update_url" : "http:\/\/dynamisch.citybikewien.at\/citybike_xml.php",
+    "station_element_name" : "station",
     "city_name" : "Wien"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fr" : "status_free",
+      "id" : "number",
+      "na" : "name",
+      "av" : "status_available",
+      "la" : "latitude",
+      "to" : "status_total",
+      "lg" : "longitude"
+    },
     "longitude" : 3.874925,
     "city_class" : "SmooveCity",
     "service_name" : "Vélomagg'",
     "latitude" : 43.611789,
     "update_url" : "http:\/\/cli-velo-montpellier.gir.fr\/vcstations.xml",
+    "station_element_name" : "si",
     "city_name" : "Montpellier"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fr" : "status_free",
+      "id" : "number",
+      "na" : "name",
+      "av" : "status_available",
+      "la" : "latitude",
+      "to" : "status_total",
+      "lg" : "longitude"
+    },
     "longitude" : 4.811157,
     "city_class" : "SmooveCity",
     "service_name" : "Vélopop",
     "latitude" : 43.946125,
     "update_url" : "http:\/\/www.velopop.fr\/vcstations.xml",
+    "station_element_name" : "si",
     "city_name" : "Avignon"
   },
   {
     "radius" : 5000,
+    "KVCMapping" : {
+      "fr" : "status_free",
+      "id" : "number",
+      "na" : "name",
+      "av" : "status_available",
+      "la" : "latitude",
+      "to" : "status_total",
+      "lg" : "longitude"
+    },
     "longitude" : 4.891845,
     "city_class" : "SmooveCity",
     "service_name" : "Libélo",
     "latitude" : 44.929567,
     "update_url" : "http:\/\/www.velo-libelo.fr\/vcstations.xml",
+    "station_element_name" : "si",
     "city_name" : "Valence"
   },
   {
     "radius" : 25000,
+    "KVCMapping" : {
+      "fr" : "status_free",
+      "id" : "number",
+      "na" : "name",
+      "av" : "status_available",
+      "la" : "latitude",
+      "to" : "status_total",
+      "lg" : "longitude"
+    },
     "longitude" : 4.418198,
     "city_class" : "SmooveCity",
     "service_name" : "VéliVert",
     "latitude" : 45.445476,
     "update_url" : "http:\/\/www.velivert.fr\/vcstations.xml",
+    "station_element_name" : "si",
     "city_name" : "Saint-Étienne"
   },
   {
     "radius" : 15000,
+    "KVCMapping" : {
+      "fr" : "status_free",
+      "id" : "number",
+      "na" : "name",
+      "av" : "status_available",
+      "la" : "latitude",
+      "to" : "status_total",
+      "lg" : "longitude"
+    },
     "longitude" : 5.72191,
     "city_class" : "SmooveCity",
     "service_name" : "Métrovélo",
     "latitude" : 45.183425,
     "update_url" : "http:\/\/vms.metrovelo.fr\/vcstations.xml",
+    "station_element_name" : "si",
     "city_name" : "Grenoble"
   },
   {
     "radius" : 10000,
+    "KVCMapping" : {
+      "fr" : "status_free",
+      "id" : "number",
+      "na" : "name",
+      "av" : "status_available",
+      "la" : "latitude",
+      "to" : "status_total",
+      "lg" : "longitude"
+    },
     "longitude" : 7.749776,
     "city_class" : "SmooveCity",
     "service_name" : "Vélhop",
     "latitude" : 48.578462,
     "update_url" : "http:\/\/www.velhop.strasbourg.eu\/vcstations.xml",
+    "station_element_name" : "si",
     "city_name" : "Strasbourg"
   },
   {
     "radius" : 15000,
+    "KVCMapping" : {
+      "ms:NBVELOS" : "status_available",
+      "gml:pos" : [
+        "FirstComponent:latitude",
+        "SecondComponent:longitude"
+      ],
+      "ms:IDENT" : "number",
+      "ms:NBPLACES" : "status_free",
+      "ms:NOM" : "name"
+    },
     "longitude" : -0.58518,
     "city_class" : "BordeauxVCubCity",
     "service_name" : "VCub",
     "latitude" : 44.837311,
     "update_url" : "http:\/\/data.lacub.fr\/wfs?key=3JXUPQJXUA&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326",
+    "station_element_name" : "ms:CI_VCUB_P",
     "city_name" : "Bordeaux"
   }
 ]

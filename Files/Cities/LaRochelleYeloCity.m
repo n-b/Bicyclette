@@ -17,17 +17,6 @@
 
 #pragma mark City Data Update
 
-- (NSDictionary*) KVCMapping
-{
-    return @{@"num": StationAttributes.number,
-             @"lat" : StationAttributes.latitude,
-             @"lon": StationAttributes.longitude,
-             @"name" : StationAttributes.name,
-             @"bikeCount" : StationAttributes.status_available,
-             @"lockCount" : StationAttributes.status_total,
-             };
-}
-
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data;
 {
     NSString * string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];

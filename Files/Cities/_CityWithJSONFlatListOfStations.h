@@ -11,9 +11,6 @@
 // JSON
 @interface _CityWithJSONFlatListOfStations : _CityWithFlatListOfStations
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data; // basic JSON deserialize
+- (NSString*) keyPathToStationsLists; // override if necessary
 @end
 
-@protocol CityWithJSONFlatListOfStations <CityWithFlatListOfStations>
-@optional
-- (NSString*) keyPathToStationsLists;
-@end

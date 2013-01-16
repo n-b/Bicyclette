@@ -7,9 +7,7 @@
 //
 
 #import "CyclocityCity.h"
-#import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
-
 
 @interface ParisVelibCity : CyclocityCity
 @end

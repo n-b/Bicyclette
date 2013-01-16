@@ -7,17 +7,28 @@
 //
 
 #import "_XMLCityWithStationDataInAttributes.h"
-#import "BicycletteCity.mogenerated.h"
 #import "_StationParse.h"
 #import "NSValueTransformer+TransformerKit.h"
 
 @interface FixedUTF8EncodingXMLSubnodesStationParse : XMLSubnodesStationParse
 @end
 
-@interface LilleVlilleCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+@interface LilleVlilleCity : _XMLCityWithStationDataInAttributes
 @end
 
 @implementation LilleVlilleCity
+
++ (void)initialize
+{
+    [NSValueTransformer registerValueTransformerWithName:@"VlilleStationStatusTransformer" transformedValueClass:[NSString class]
+                      returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
+                          if([value isKindOfClass:[NSString class]])
+                          {
+                              return @(![value boolValue]);
+                          }
+                          return @YES;
+                      }];
+}
 
 #pragma mark City Data Update
 
@@ -34,41 +45,7 @@
     [super parseData:data];
 }
 
-- (NSString*) stationElementName
-{
-    return @"marker";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [NSValueTransformer registerValueTransformerWithName:@"VlilleStationStatusTransformer" transformedValueClass:[NSString class]
-                          returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
-                              if([value isKindOfClass:[NSString class]])
-                              {
-                                  return @(![value boolValue]);
-                              }
-                              return @YES;
-                          }];
-    });
-    return @{@"id": StationAttributes.number,
-             @"name": StationAttributes.name,
-             @"lat": StationAttributes.latitude,
-             @"lng": StationAttributes.longitude,
-             
-             @"bikes": StationAttributes.status_available,
-             @"attachs": StationAttributes.status_free,
-             @"status": @"VlilleStationStatusTransformer:open",
-             };
-}
-
-#pragma mark Stations Individual Data Updates
-
-- (Class) stationStatusParsingClass { return [FixedUTF8EncodingXMLSubnodesStationParse class]; }
-
 @end
-
 
 @implementation FixedUTF8EncodingXMLSubnodesStationParse
 

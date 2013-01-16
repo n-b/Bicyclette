@@ -9,27 +9,8 @@
 #import "_XMLCityWithStationDataInSubnodes.h"
 #import "BicycletteCity.mogenerated.h"
 
-@interface BixiCity : _XMLCityWithStationDataInSubnodes <XMLCityWithStationDataInSubnodes>
+@interface BixiCity : _XMLCityWithStationDataInSubnodes
 @end
 
 @implementation BixiCity
-
-#pragma mark City Data Update
-
-- (NSString*) stationElementName
-{
-    return @"station";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"id" : StationAttributes.number,
-             @"name" : StationAttributes.name,
-             @"lat" : StationAttributes.latitude,
-             @"long": StationAttributes.longitude,
-             @"nbBikes": StationAttributes.status_available,
-             @"nbEmptyDocks": StationAttributes.status_free,
-             };
-}
-
 @end

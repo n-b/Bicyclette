@@ -10,7 +10,7 @@
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface NextBikeCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+@interface NextBikeCity : _XMLCityWithStationDataInAttributes
 @end
 
 @implementation NextBikeCity
@@ -33,21 +33,6 @@
     {
         return [super updateURLStrings];
     }
-}
-
-- (NSString*) stationElementName
-{
-    return @"place";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"uid" : StationAttributes.number,
-             @"name" : StationAttributes.name,
-             @"lat" : StationAttributes.latitude,
-             @"lng": StationAttributes.longitude,
-             @"bikes": StationAttributes.status_available
-             };
 }
 
 @end

@@ -36,7 +36,7 @@
 /****************************************************************************/
 #pragma mark Init
 
-+ (NSString*) storePathForName:(NSString*)storeName
+- (NSString*) storePathForName:(NSString*)storeName
 {
     NSString * documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     return [documentsDirectory stringByAppendingPathComponent:[storeName stringByAppendingPathExtension:@"coredata"]];
@@ -76,7 +76,7 @@
 		_psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_mom];
 		NSError *error = nil;
         
-        NSString * storePath = [[self class] storePathForName:_storeName];
+        NSString * storePath = [self storePathForName:_storeName];
         if(storePath)
         {
             NSURL *storeURL = [NSURL fileURLWithPath:storePath];

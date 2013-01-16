@@ -7,10 +7,9 @@
 //
 
 #import "_XMLCityWithStationDataInSubnodes.h"
-#import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface MiamiDecobikeCity : _XMLCityWithStationDataInSubnodes <XMLCityWithStationDataInSubnodes>
+@interface MiamiDecobikeCity : _XMLCityWithStationDataInSubnodes
 @end
 
 @implementation MiamiDecobikeCity
@@ -20,24 +19,6 @@
 - (NSString *)titleForStation:(Station *)station
 {
     return [NSString stringWithFormat:@"%@ - %@",station.number, station.name];
-}
-
-#pragma mark City Data Update
-
-- (NSString*) stationElementName
-{
-    return @"location";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"Id" : StationAttributes.number,
-             @"Address" : StationAttributes.name,
-             @"Latitude" : StationAttributes.latitude,
-             @"Longitude": StationAttributes.longitude,
-             @"Dockings": StationAttributes.status_free,
-             @"Bikes": StationAttributes.status_available,
-             };
 }
 
 @end

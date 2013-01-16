@@ -9,8 +9,6 @@
 #import "_XMLCityWithStationDataInAttributes.h"
 
 // Common code for all Cyclocity systems (except Velov)
-@interface CyclocityCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
-- (NSString*) stationElementName;
-- (NSDictionary*) KVCMapping;
+@interface CyclocityCity : _XMLCityWithStationDataInAttributes
 @end
 

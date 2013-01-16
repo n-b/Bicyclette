@@ -41,7 +41,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 @implementation BicycletteCity
 
-+ (NSString*) storePathForName:(NSString*)storeName
+- (NSString*) storePathForName:(NSString*)storeName
 {
     if(!BicycletteCitySaveStationsWithNoIndividualStatonUpdates() && ![self canUpdateIndividualStations])
         return nil;

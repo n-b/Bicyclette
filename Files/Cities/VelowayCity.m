@@ -10,7 +10,7 @@
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface VelowayCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
+@interface VelowayCity : _CityWithJSONFlatListOfStations
 @end
 
 @implementation VelowayCity
@@ -27,26 +27,6 @@
     title = [title stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     title = [title capitalizedStringWithCurrentLocale];
     return title;
-}
-
-#pragma mark City Data Update
-
-- (NSString*) keyPathToStationsLists
-{
-    return @"stand";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"id": StationAttributes.number,
-             @"name": StationAttributes.name,
-             @"wcom": StationAttributes.address,
-             @"lat": StationAttributes.latitude,
-             @"lng": StationAttributes.longitude,
-             @"ab": StationAttributes.status_available,
-             @"ac": StationAttributes.status_total,
-             @"ap": StationAttributes.status_free
-             };
 }
 
 @end

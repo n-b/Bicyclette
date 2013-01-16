@@ -9,11 +9,8 @@
 #import "_CityWithJSONFlatListOfStations.h"
 #import "BicycletteCity+ServiceDescription.h"
 
-// Allow me to call methods of subclasses
-@interface _CityWithJSONFlatListOfStations (CityWithJSONFlatListOfStations) <CityWithJSONFlatListOfStations>
-@end
-
 @implementation _CityWithJSONFlatListOfStations
+
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data
 {
     NSError * error;
@@ -41,14 +38,19 @@
     }
     return res;
 }
-@end
 
-@implementation _CityWithJSONFlatListOfStations (ServiceDescription)
+- (NSString*) keyPathToStationsLists
+{
+    return self.serviceInfo[@"keypath_to_stations_lists"];
+}
+
+/****************************************************************************/
+#pragma mark Service Description
 
 - (NSMutableDictionary *)fullServiceInfo
 {
     NSMutableDictionary * info = [super fullServiceInfo];
-    if([self respondsToSelector:@selector(keyPathToStationsLists)])
+    if([self keyPathToStationsLists])
         [info setObject:[self keyPathToStationsLists] forKey:@"keypath_to_stations_lists"];
     return info;
 }

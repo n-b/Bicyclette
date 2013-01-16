@@ -9,10 +9,6 @@
 #import "_XMLCityWithStationDataInSubnodes.h"
 #import "BicycletteCity+ServiceDescription.h"
 
-// Allow me to call methods of subclasses
-@interface _XMLCityWithStationDataInSubnodes (XMLCityWithStationDataInSubnodes) <XMLCityWithStationDataInSubnodes>
-@end
-
 #pragma mark -
 
 @interface _XMLCityWithStationDataInSubnodes () <NSXMLParserDelegate>
@@ -63,9 +59,13 @@
     }
 }
 
-@end
+- (NSString*) stationElementName
+{
+    return self.serviceInfo[@"station_element_name"];
+}
 
-@implementation _XMLCityWithStationDataInSubnodes (ServiceDescription)
+/****************************************************************************/
+#pragma mark Service Description
 
 - (NSMutableDictionary *)fullServiceInfo
 {
@@ -75,4 +75,3 @@
 }
 
 @end
-

@@ -9,24 +9,10 @@
 #import "_CityWithJSONFlatListOfStations.h"
 #import "BicycletteCity.mogenerated.h"
 
-@interface MelbourneBikeShareCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
+@interface MelbourneBikeShareCity : _CityWithJSONFlatListOfStations
 @end
 
 @implementation MelbourneBikeShareCity
-
-#pragma mark City Data Update
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"id": StationAttributes.number,
-             @"lat" : StationAttributes.latitude,
-             @"long": StationAttributes.longitude,
-             @"name" : StationAttributes.name,
-             @"nbBikes" : StationAttributes.status_available,
-             @"nbEmptyDocks" : StationAttributes.status_free,
-             };
-    
-}
 
 #pragma mark - override
 

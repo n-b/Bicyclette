@@ -10,7 +10,7 @@
 // Core Data Standard Machinery
 @interface CoreDataManager : NSObject
 
-+ (NSString*) storePathForName:(NSString*)storeName;
+- (NSString*) storePathForName:(NSString*)storeName;
 - (id) initWithStoreName:(NSString*)storeName;
 
 // Returns wether the store is loaded.

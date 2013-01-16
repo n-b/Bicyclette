@@ -7,10 +7,9 @@
 //
 
 #import "_XMLCityWithStationDataInSubnodes.h"
-#import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface RennesVeloStarCity : _XMLCityWithStationDataInSubnodes <XMLCityWithStationDataInSubnodes>
+@interface RennesVeloStarCity : _XMLCityWithStationDataInSubnodes
 @end
 
 @implementation RennesVeloStarCity
@@ -20,24 +19,6 @@
 - (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
 
 #pragma mark City Data Update
-
-- (NSString*) stationElementName
-{
-    return @"station";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"number" : StationAttributes.number,
-             @"name" : StationAttributes.name,
-             @"state" : StationAttributes.open,
-             @"latitude" : StationAttributes.latitude,
-             @"longitude": StationAttributes.longitude,
-             @"slotsavailable": StationAttributes.status_free,
-             @"bikesavailable": StationAttributes.status_available,
-             @"pos":StationAttributes.status_ticket,
-             };
-}
 
 - (NSString *)regionNumberFromStationValues:(NSDictionary *)values
 {

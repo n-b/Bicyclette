@@ -19,6 +19,21 @@
 - (NSArray *) updateURLStrings { return @[self.serviceInfo[@"update_url"]]; }
 - (NSString *) detailsURLStringForStation:(Station*)station { return [self.serviceInfo[@"station_details_url"] stringByAppendingString:station.number]; }
 
+- (NSDictionary*) KVCMapping
+{
+    return self.serviceInfo[@"KVCMapping"];
+}
+
+- (Class) stationStatusParsingClass
+{
+    return NSClassFromString(self.serviceInfo[@"station_status_parsing_class"]);
+}
+
+- (BOOL) canUpdateIndividualStations
+{
+    return [self stationStatusParsingClass] != nil;
+}
+
 - (void) update
 {
     if(self.updater==nil)
@@ -205,11 +220,6 @@
         _parsing_regionsByNumber[regionInfo.number] = region;
     }
     station.region = region;
-}
-
-+ (BOOL) canUpdateIndividualStations
-{
-    return [self instancesRespondToSelector:@selector(stationStatusParsingClass)];
 }
 
 @end

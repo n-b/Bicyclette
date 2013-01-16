@@ -10,9 +10,6 @@
 
 @interface _XMLCityWithStationDataInAttributes : BicycletteCity
 - (void) parseData:(NSData*)data;
+- (NSString*) stationElementName; // override if necessary
 @end
 
-// To be implemented by subclasses
-@protocol XMLCityWithStationDataInAttributes <BicycletteCity>
-- (NSString*) stationElementName;
-@end

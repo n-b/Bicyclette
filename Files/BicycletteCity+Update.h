@@ -13,7 +13,11 @@
 
 - (NSArray *) updateURLStrings;
 - (NSString*) detailsURLStringForStation:(Station*)station_;
-+ (BOOL) canUpdateIndividualStations; // returns yes if stationStatusParsingClass is implemented
+
+- (NSDictionary*) KVCMapping;
+- (Class) stationStatusParsingClass;
+
+- (BOOL) canUpdateIndividualStations; // returns yes if stationStatusParsingClass is not nil
 
 // Data Updates
 - (void) update;
@@ -22,7 +26,6 @@
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values; // override if necessary
 - (void) insertStationWithAttributes:(NSDictionary*)stationAttributes;// Call from subclass during parsing
 - (void) setStation:(Station*)station attributes:(NSDictionary*)stationAttributes;
-
 
 @end
 
@@ -35,7 +38,6 @@
 // City Data Updates
 @required
 - (void) parseData:(NSData*)data;
-- (NSDictionary*) KVCMapping;
 
 // Wether City has regions
 @optional
@@ -43,10 +45,6 @@
                                values:(NSDictionary*)values
                                patchs:(NSDictionary*)patchs
                            requestURL:(NSString*)urlString;
-
-// Stations Individual Data Updates
-@optional
-- (Class) stationStatusParsingClass;
 
 @end
 

@@ -9,28 +9,9 @@
 #import "_CityWithJSONFlatListOfStations.h"
 #import "BicycletteCity.mogenerated.h"
 
-@interface ChattanoogaBikeCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
+@interface ChattanoogaBikeCity : _CityWithJSONFlatListOfStations
 @end
 
 @implementation ChattanoogaBikeCity
-
-#pragma mark City Data Update
-
-- (NSString*) keyPathToStationsLists
-{
-    return @"stationBeanList";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"id" : StationAttributes.number,
-             @"landMark" : StationAttributes.name,
-             @"latitude" : StationAttributes.latitude,
-             @"longitude": StationAttributes.longitude,
-             @"stAddress1": StationAttributes.address,
-             @"availableDocks": StationAttributes.status_free,
-             @"availableBikes": StationAttributes.status_available,
-             };
-}
 
 @end

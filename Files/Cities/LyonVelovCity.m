@@ -7,13 +7,10 @@
 //
 
 #import "_CityWithJSONFlatListOfStations.h"
-
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
-#import "NSObject+KVCMapping.h"
-#import "_StationParse.h"
 
-@interface LyonVelovCity : _CityWithJSONFlatListOfStations <CityWithJSONFlatListOfStations>
+@interface LyonVelovCity : _CityWithJSONFlatListOfStations
 @end
 
 @implementation LyonVelovCity
@@ -36,10 +33,6 @@
 - (NSString*) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
 - (NSString*) subtitleForRegion:(Region*)region { return @"arr."; }
 
-#pragma mark Stations Individual Data Updates
-
-- (Class) stationStatusParsingClass { return [XMLSubnodesStationParse class]; }
-
 #pragma mark City Data Update
 
 - (NSArray*) updateURLStrings
@@ -60,27 +53,6 @@
         [urlStrings addObject:[baseURL stringByAppendingString:zip]];
     }
     return urlStrings;
-}
-
-- (NSString*) keyPathToStationsLists
-{
-    return @"markers";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{
-             @"infoStation": StationAttributes.address,
-             @"nomStation": StationAttributes.name,
-             @"numStation": StationAttributes.number,
-             @"x": StationAttributes.latitude, // yes. x,y for lat,long. (not even x,y for long,lat !)
-             @"y": StationAttributes.longitude,
-
-             @"available" : StationAttributes.status_available,
-             @"free" : StationAttributes.status_free,
-             @"ticket": StationAttributes.status_ticket,
-             @"total" : StationAttributes.status_total
-             };
 }
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString

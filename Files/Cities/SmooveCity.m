@@ -7,12 +7,11 @@
 //
 
 #import "_XMLCityWithStationDataInAttributes.h"
-#import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
 #pragma mark -
 
-@interface SmooveCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+@interface SmooveCity : _XMLCityWithStationDataInAttributes
 @end
 
 @implementation SmooveCity
@@ -20,23 +19,5 @@
 #pragma mark Annotations
 
 - (NSString *) titleForStation:(Station *)station { return [[[station.name stringByTrimmingZeros] stringByDeletingPrefix:station.number] stringByTrimmingWhitespace]; }
-
-#pragma mark City Data Update
-
-- (NSString*) stationElementName
-{
-    return @"si";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{@"id" : StationAttributes.number,
-             @"la" : StationAttributes.latitude,
-             @"lg": StationAttributes.longitude,
-             @"na" : StationAttributes.name,
-             @"av" : StationAttributes.status_available,
-             @"fr" : StationAttributes.status_free,
-             @"to" : StationAttributes.status_total};
-}
 
 @end

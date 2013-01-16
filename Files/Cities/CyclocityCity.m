@@ -7,9 +7,7 @@
 //
 
 #import "CyclocityCity.h"
-#import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
-#import "_StationParse.h"
 
 @implementation CyclocityCity
 #pragma mark Annotations
@@ -25,36 +23,6 @@
     title = [title stringByTrimmingWhitespace];
     title = [title capitalizedStringWithCurrentLocale];
     return title;
-}
-
-#pragma mark Stations Individual Data Updates
-
-- (Class) stationStatusParsingClass { return [XMLSubnodesStationParse class]; }
-
-#pragma mark City Data Updates
-
-- (NSString*) stationElementName
-{
-    return @"marker";
-}
-
-- (NSDictionary*) KVCMapping
-{
-    return @{
-             @"address" : StationAttributes.address,
-             @"bonus" : StationAttributes.bonus,
-             @"fullAddress" : StationAttributes.fullAddress,
-             @"name" : StationAttributes.name,
-             @"number" : StationAttributes.number,
-             @"open" : StationAttributes.open,
-             @"lat" : StationAttributes.latitude,
-             @"lng" : StationAttributes.longitude,
-             
-             @"available" : StationAttributes.status_available,
-             @"free" : StationAttributes.status_free,
-             @"ticket": StationAttributes.status_ticket,
-             @"total" : StationAttributes.status_total
-             };
 }
 
 @end

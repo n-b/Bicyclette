@@ -7,17 +7,11 @@
 //
 
 #import "_XMLCityWithStationDataInAttributes.h"
-#import "BicycletteCity.mogenerated.h"
-#import "_StationParse.h"
 #import "NSStringAdditions.h"
 #import "NSValueTransformer+TransformerKit.h"
 
-#pragma mark -
-
-@interface OrleansVeloPlusCity : _XMLCityWithStationDataInAttributes <XMLCityWithStationDataInAttributes>
+@interface OrleansVeloPlusCity : _XMLCityWithStationDataInAttributes
 @end
-
-#pragma mark -
 
 @implementation OrleansVeloPlusCity
 
@@ -27,37 +21,16 @@
 
 #pragma mark City Data Update
 
-- (NSString*) stationElementName
++ (void)initialize
 {
-    return @"marker";
+    [NSValueTransformer registerValueTransformerWithName:@"OrleansStationStatusTransformer" transformedValueClass:[NSString class]
+                      returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
+                          if([value isKindOfClass:[NSString class]])
+                          {
+                              return @(![value isEqualToString:@"En maintenance"]);
+                          }
+                          return @YES;
+                      }];
 }
-
-- (NSDictionary*) KVCMapping
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [NSValueTransformer registerValueTransformerWithName:@"OrleansStationStatusTransformer" transformedValueClass:[NSString class]
-                          returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
-                              if([value isKindOfClass:[NSString class]])
-                              {
-                                  return @(![value isEqualToString:@"En maintenance"]);
-                              }
-                              return @YES;
-                          }];
-    });
-
-    return @{@"id" : StationAttributes.number,
-             @"lat" : StationAttributes.latitude,
-             @"lng": StationAttributes.longitude,
-             @"name" : StationAttributes.name,
-             
-             @"bikes" : StationAttributes.status_available,
-             @"attachs" : StationAttributes.status_free,
-             @"status" : @"OrleansStationStatusTransformer:open"};
-}
-
-#pragma mark Stations Individual Data Updates
-
-- (Class) stationStatusParsingClass { return [XMLSubnodesStationParse class]; }
 
 @end
