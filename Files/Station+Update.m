@@ -50,15 +50,17 @@ static char kStation_associatedQueuedforUpdateKey;
 
 - (void) updateWithCompletionBlock:(void (^)(NSError *))completion_
 {
-	if(self.updating)
-		return;
+    NSAssert([self.city canUpdateIndividualStations],nil);
     
-    if([self.city canUpdateIndividualStations])
+    if(self.updating)
     {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
-        self.completionBlock = completion_;
-        self.updater = [[DataUpdater alloc] initWithURLStrings:@[[self.city detailsURLStringForStation:self]] delegate:self];
+        completion_(nil);
+        return;
     }
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
+    self.completionBlock = completion_;
+    self.updater = [[DataUpdater alloc] initWithURLStrings:@[[self.city detailsURLStringForStation:self]] delegate:self];
 }
 
 @end

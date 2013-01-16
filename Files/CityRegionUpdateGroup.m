@@ -7,7 +7,7 @@
 //
 
 #import "CityRegionUpdateGroup.h"
-#import "BicycletteCity.h"
+#import "BicycletteCity+Update.h"
 
 @interface CityRegionUpdateGroup ()
 @property MKCoordinateRegion region;
@@ -20,6 +20,9 @@
 }
 - (NSArray*) pointsToUpdate
 {
+    if( ! [self.city canUpdateIndividualStations])
+        return @[];
+    
     // Sort from center
     NSArray * stations = [self.city stationsWithinRegion:self.region];
     stations = [stations sortedArrayByDistanceFromLocation:[[CLLocation alloc] initWithLatitude:self.region.center.latitude longitude:self.region.center.longitude]];
