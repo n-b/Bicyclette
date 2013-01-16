@@ -6,32 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		370220C7165500CC00350AD1 /* GrabData */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 370220C8165500CC00350AD1 /* Build configuration list for PBXAggregateTarget "GrabData" */;
-			buildPhases = (
-				370220CF165500EB00350AD1 /* ShellScript */,
-			);
-			dependencies = (
-				370220CC165500D700350AD1 /* PBXTargetDependency */,
-			);
-			name = GrabData;
-			productName = GrabData;
-		};
-		370220D0165502DD00350AD1 /* Mogenerate */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 370220D1165502DE00350AD1 /* Build configuration list for PBXAggregateTarget "Mogenerate" */;
-			buildPhases = (
-				370220D4165502F600350AD1 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Mogenerate;
-			productName = mogenerate;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* BicycletteApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* BicycletteApplicationDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -205,27 +179,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		370220CB165500D700350AD1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 37038A0E15E3A6280043504A;
-			remoteInfo = BicycletteDataGrab;
-		};
-		370220D5165503AB00350AD1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 370220D0165502DD00350AD1;
-			remoteInfo = Mogenerate;
-		};
-		370220DC1655270500350AD1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 370220D0165502DD00350AD1;
-			remoteInfo = Mogenerate;
-		};
 		371D4FB71482F66700A6DF77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -463,6 +416,7 @@
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
 		37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LocalAlerts.m"; sourceTree = "<group>"; };
 		37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RennesVeloStarCity.m; sourceTree = "<group>"; };
+		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -702,6 +656,7 @@
 				377863AD1694769D0036A37C /* InfoPlist.strings */,
 				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
 				3786E4E214825A7700814C10 /* Test Supporting Files */,
+				94B07A8A16A7190C00F6331F /* mogenerate.sh */,
 			);
 			name = "Supporting Files";
 			path = Files;
@@ -948,6 +903,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Bicyclette" */;
 			buildPhases = (
+				94B07A8B16A7193900F6331F /* Mogenerate */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -955,7 +911,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				370220D6165503AB00350AD1 /* PBXTargetDependency */,
 			);
 			name = Bicyclette;
 			productName = Velib;
@@ -966,6 +921,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37038A1915E3A6290043504A /* Build configuration list for PBXNativeTarget "DataGrabber" */;
 			buildPhases = (
+				94B07A8C16A71A0300F6331F /* Mogenerate */,
 				37038A0B15E3A6280043504A /* Sources */,
 				37038A0C15E3A6280043504A /* Frameworks */,
 				37038A0D15E3A6280043504A /* CopyFiles */,
@@ -973,7 +929,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				370220DD1655270500350AD1 /* PBXTargetDependency */,
 			);
 			name = DataGrabber;
 			productName = BicycletteDataGrab;
@@ -1034,8 +989,6 @@
 			projectRoot = "";
 			targets = (
 				37038A0E15E3A6280043504A /* DataGrabber */,
-				370220C7165500CC00350AD1 /* GrabData */,
-				370220D0165502DD00350AD1 /* Mogenerate */,
 				1D6058900D05DD3D006BFB54 /* Bicyclette */,
 				3786E4DB14825A7700814C10 /* BicycletteLogicTests */,
 			);
@@ -1142,34 +1095,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		370220CF165500EB00350AD1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/_DataGrabTempFolder/DataGrabber";
-		};
-		370220D4165502F600350AD1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Files/BicycletteCity.xcdatamodel",
-			);
-			outputPaths = (
-				"${SRCROOT}/Files/BicycletteCity/BicycletteCity.mogenerated.m",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin\\\n\tmogenerator\\\n\t--model \"${SRCROOT}/Files/BicycletteCity.xcdatamodel\"\\\n\t--template-var arc=true\\\n\t--machine-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/_machine\"\\\n\t--human-dir \"${SRCROOT}/Files/BicycletteCity.mogenerated/\"\\\n\t--includem \"${SRCROOT}/Files/BicycletteCity.mogenerated.m\"\\\n\t--includeh \"${SRCROOT}/Files/BicycletteCity.mogenerated.h\"\n";
-		};
 		3786E4DA14825A7700814C10 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1182,6 +1107,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		94B07A8B16A7193900F6331F /* Mogenerate */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Files/BicycletteCity.xcdatamodel",
+			);
+			name = Mogenerate;
+			outputPaths = (
+				"${SRCROOT}/Files/BicycletteCity/BicycletteCity.mogenerated.m",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Files/mogenerate.sh\"";
+		};
+		94B07A8C16A71A0300F6331F /* Mogenerate */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Files/BicycletteCity.xcdatamodel",
+			);
+			name = Mogenerate;
+			outputPaths = (
+				"${SRCROOT}/Files/BicycletteCity/BicycletteCity.mogenerated.m",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Files/mogenerate.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1312,21 +1269,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		370220CC165500D700350AD1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 37038A0E15E3A6280043504A /* DataGrabber */;
-			targetProxy = 370220CB165500D700350AD1 /* PBXContainerItemProxy */;
-		};
-		370220D6165503AB00350AD1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 370220D0165502DD00350AD1 /* Mogenerate */;
-			targetProxy = 370220D5165503AB00350AD1 /* PBXContainerItemProxy */;
-		};
-		370220DD1655270500350AD1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 370220D0165502DD00350AD1 /* Mogenerate */;
-			targetProxy = 370220DC1655270500350AD1 /* PBXContainerItemProxy */;
-		};
 		371D4FB81482F66700A6DF77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* Bicyclette */;
@@ -1350,34 +1292,6 @@
 				INFOPLIST_FILE = Files/Info.plist;
 				PRODUCT_NAME = Bicyclette;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		370220C9165500CC00350AD1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		370220CA165500CC00350AD1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		370220D2165502DE00350AD1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		370220D3165502DE00350AD1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1550,24 +1464,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		370220C8165500CC00350AD1 /* Build configuration list for PBXAggregateTarget "GrabData" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				370220C9165500CC00350AD1 /* Debug */,
-				370220CA165500CC00350AD1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		370220D1165502DE00350AD1 /* Build configuration list for PBXAggregateTarget "Mogenerate" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				370220D2165502DE00350AD1 /* Debug */,
-				370220D3165502DE00350AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
