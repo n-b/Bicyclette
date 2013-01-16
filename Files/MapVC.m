@@ -32,7 +32,7 @@
 @property MapViewScaleView * scaleView;
 
 @property StationAnnotationMode stationMode;
-@property CLLocationCoordinate2D userCoordinates;
+@property BOOL shouldZoomToUserWhenLocationFound;
 
 // Radar creation
 @property Radar * droppedRadar;
@@ -57,7 +57,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateBegan object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+
     _drawingCache = [DrawingCache new];
 }
 
@@ -162,14 +164,23 @@
     
     // observe changes to the prefs
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
-
-    self.userCoordinates = CLLocationCoordinate2DMake(0, 0);
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.mapView relocateAttributionLogoIfNecessary];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.shouldZoomToUserWhenLocationFound = YES;
+}
+
+- (void) appDidBecomeActive
+{
+    self.shouldZoomToUserWhenLocationFound = YES;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -269,6 +280,7 @@
     [self.controller regionDidChange:self.mapView.region];
     [self.scaleView setNeedsDisplay];
     [self updateAnnotationsSizes];
+    self.shouldZoomToUserWhenLocationFound = NO;
 }
 
 - (void) updateAnnotationsSizes
@@ -338,14 +350,16 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    CLLocationCoordinate2D newCoord = userLocation.coordinate;
-    CLRegion * region = self.controller.currentCity.regionContainingData;
-    if(self.userCoordinates.latitude == 0 && self.userCoordinates.longitude == 0
-       && [region containsCoordinate:newCoord])
+    if( self.shouldZoomToUserWhenLocationFound )
     {
-        [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-        self.userCoordinates = newCoord;
+        // This is the first location update we get : if the user hasn't moved the map, and he is physically inside a city, let's zoom.
+        BicycletteCity * nearestCity = (BicycletteCity*)[self.controller.cities nearestLocatableFrom:userLocation.location];
+        if([[nearestCity regionContainingData] containsCoordinate:userLocation.location.coordinate])
+        {
+            [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+        }
     }
+    self.shouldZoomToUserWhenLocationFound = NO;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view

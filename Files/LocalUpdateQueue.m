@@ -230,8 +230,11 @@
         // The "distances" are : 1.5 to the big object, and 50 to the small object.
         //
         // Basically, I want Vélib to be more important than Cristolib.
-        d1 /= [result radius];
-        d2 /= [obj radius];
+        if([result respondsToSelector:@selector(radius)] && [obj respondsToSelector:@selector(radius)])
+        {
+            d1 /= [result radius];
+            d2 /= [obj radius];
+        }
 
         if(d2<d1)
             result = obj;
