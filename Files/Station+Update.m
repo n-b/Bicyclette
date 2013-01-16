@@ -95,7 +95,7 @@ static char kStation_associatedQueuedforUpdateKey;
             [self.city setStation:station attributes:attributes];
         }
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        NSManagedObject* updatedObject = [contextDidSaveNotification.userInfo[NSUpdatedObjectsKey] anyObject];
+        __unused NSManagedObject* updatedObject = [contextDidSaveNotification.userInfo[NSUpdatedObjectsKey] anyObject];
         NSAssert(updatedObject==nil || [updatedObject.objectID isEqual:self.objectID], nil);
         self.updater = nil;
         if(self.completionBlock)
