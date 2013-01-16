@@ -21,7 +21,12 @@
 - (NSArray*) pointsToUpdate
 {
     if( ! [self.city canUpdateIndividualStations])
-        return @[];
+    {
+        if(self.city)
+            return @[self.city];
+        else
+            return @[];
+    }
     
     // Sort from center
     NSArray * stations = [self.city stationsWithinRegion:self.region];

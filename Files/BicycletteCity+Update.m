@@ -40,25 +40,39 @@
             || [[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]!=0);
 }
 
-- (void) update
+- (void) updateWithCompletionBlock:(void (^)(NSError *))completion_
 {
     if(self.updater==nil)
     {
         self.updater = [[DataUpdater alloc] initWithURLStrings:[self updateURLStrings] delegate:self];
+        _updateCompletionBlock = [completion_ copy];
         [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:BicycletteCityNotifications.updateBegan object:self]
                                                    postingStyle:NSPostASAP];
     }
+    else if(completion_)
+            completion_(nil);
+}
+
+- (void) update
+{
+    [self updateWithCompletionBlock:nil];
 }
 
 - (void) updater:(DataUpdater *)updater didFailWithError:(NSError *)error
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateFailed object:self userInfo:@{BicycletteCityNotifications.keys.failureError : error}];
+    if(_updateCompletionBlock)
+        _updateCompletionBlock(error);
+    _updateCompletionBlock = nil;
     self.updater = nil;
 }
 
 - (void) updaterDidFinishWithNoNewData:(DataUpdater *)updater
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self userInfo:@{BicycletteCityNotifications.keys.dataChanged : @(NO)}];
+    if(_updateCompletionBlock)
+        _updateCompletionBlock(nil);
+    _updateCompletionBlock = nil;
     self.updater = nil;
 }
 
@@ -116,6 +130,9 @@
             userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
         [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
                                                           userInfo:userInfo];
+        if(_updateCompletionBlock)
+            _updateCompletionBlock(nil);
+        _updateCompletionBlock = nil;
     }];
     self.updater = nil;
 }

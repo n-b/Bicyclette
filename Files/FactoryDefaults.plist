@@ -27,7 +27,7 @@
 	<key>MaxRefreshDistance</key>
 	<integer>2</integer>
 	<key>DataUpdaterDelayBetweenQueues</key>
-	<integer>25</integer>
+	<integer>45</integer>
 	<key>StationStatusStalenessInterval</key>
 	<integer>600</integer>
 	<key>DisplayHelpAtLaunch</key>

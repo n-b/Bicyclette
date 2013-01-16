@@ -23,6 +23,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 #endif
 >
 {
+    void(^_updateCompletionBlock)(NSError*) ;
     NSManagedObjectContext * _parsing_context;
     NSMutableArray * _parsing_oldStations;
     NSMutableDictionary * _parsing_regionsByNumber;

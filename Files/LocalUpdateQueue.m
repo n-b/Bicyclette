@@ -121,8 +121,14 @@
     NSArray * pointsToUpdate = [pointsSet array];
     
     // queuedForUpdate is used by the UI to display progress indicators
-    [[self.pointsInQueue arrayByRemovingObjectsInArray:pointsToUpdate] setValue:@NO forKey:@"queuedForUpdate"];
-    [[pointsToUpdate arrayByRemovingObjectsInArray:self.pointsInQueue] setValue:@YES forKey:@"queuedForUpdate"];
+    for (id<LocalUpdatePoint>point in [self.pointsInQueue arrayByRemovingObjectsInArray:pointsToUpdate]) {
+        if([point respondsToSelector:@selector(setQueuedForUpdate:)])
+            [point setQueuedForUpdate:NO];
+    }
+    for (id<LocalUpdatePoint>point in [pointsToUpdate arrayByRemovingObjectsInArray:self.pointsInQueue]) {
+        if([point respondsToSelector:@selector(setQueuedForUpdate:)])
+            [point setQueuedForUpdate:YES];
+    }
     self.pointsInQueue = pointsToUpdate;
     
     if([self.pointsUpdated count]==0)

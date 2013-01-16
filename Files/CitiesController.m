@@ -81,9 +81,6 @@
 
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
-
-        if( ! [_currentCity canUpdateIndividualStations])
-            [_currentCity update];
     }
 }
 

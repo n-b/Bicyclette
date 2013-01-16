@@ -54,7 +54,8 @@ static char kStation_associatedQueuedforUpdateKey;
     
     if(self.updating)
     {
-        completion_(nil);
+        if(completion_)
+            completion_(nil);
         return;
     }
     

@@ -22,6 +22,7 @@
 - (BOOL) canShowFreeSlots; // returns yes if either status_free or both status_total and status_available are in the KVCMapping
 
 // Data Updates
+- (void) updateWithCompletionBlock:(void(^)(NSError* error))completion;
 - (void) update;
 
 // Parsing
