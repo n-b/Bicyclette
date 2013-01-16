@@ -18,7 +18,7 @@
     if(!res)
         NSLog(@"Error parsing JSON in %@ : %@",self,error);
     
-    if([self respondsToSelector:@selector(keyPathToStationsLists)])
+    if([self keyPathToStationsLists])
     {
         if([res isKindOfClass:[NSDictionary class]])
         {
