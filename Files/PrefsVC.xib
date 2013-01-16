@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C3006</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3083</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -382,10 +382,11 @@
 										<nil key="IBUIHighlightedColor"/>
 										<reference key="IBUIShadowColor" ref="270056430"/>
 										<int key="IBUIBaselineAdjustment">0</int>
+										<float key="IBUIMinimumScaleFactor">0.69999998807907104</float>
+										<bool key="IBUIAdjustsLetterSpacingToFitWidth">YES</bool>
 										<int key="IBUITextAlignment">2</int>
 										<reference key="IBUIFontDescription" ref="589148854"/>
 										<reference key="IBUIFont" ref="1046389045"/>
-										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 									<object class="IBUIToolbar" id="350320797">
 										<reference key="NSNextResponder" ref="387906994"/>
@@ -393,6 +394,7 @@
 										<string key="NSFrame">{{160, 102}, {160, 44}}</string>
 										<reference key="NSSuperview" ref="387906994"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -464,7 +466,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="67725001">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="134001759">
@@ -476,7 +478,6 @@
 								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{4, 3}, {200, 16}}</string>
 								<reference key="NSSuperview" ref="134001759"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -495,7 +496,6 @@
 						</array>
 						<string key="NSFrameSize">{296, 23}</string>
 						<reference key="NSSuperview" ref="67725001"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1017269682"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="323200375"/>
@@ -507,8 +507,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{316, 24}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="134001759"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -516,7 +514,7 @@
 				<reference key="IBUIContentView" ref="134001759"/>
 			</object>
 			<object class="IBUITableViewCell" id="906559009">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="309529695">
@@ -528,7 +526,6 @@
 								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{4, 3}, {148, 16}}</string>
 								<reference key="NSSuperview" ref="309529695"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -547,7 +544,6 @@
 						</array>
 						<string key="NSFrameSize">{296, 23}</string>
 						<reference key="NSSuperview" ref="906559009"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="370131339"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="323200375"/>
@@ -559,8 +555,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{316, 24}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="309529695"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -669,6 +663,14 @@
 						<reference key="destination" ref="1060569230"/>
 					</object>
 					<int key="connectionID">89</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">updateButtonBar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="95816489"/>
+					</object>
+					<int key="connectionID">90</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -976,7 +978,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">89</int>
+			<int key="maxID">90</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -991,6 +993,7 @@
 						<string key="storeIndicator">UIActivityIndicatorView</string>
 						<string key="storeLabel">UILabel</string>
 						<string key="updateButton">UIBarButtonItem</string>
+						<string key="updateButtonBar">UIToolbar</string>
 						<string key="updateIndicator">UIActivityIndicatorView</string>
 						<string key="updateLabel">UILabel</string>
 					</dictionary>
@@ -1022,6 +1025,10 @@
 						<object class="IBToOneOutletInfo" key="updateButton">
 							<string key="name">updateButton</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="updateButtonBar">
+							<string key="name">updateButtonBar</string>
+							<string key="candidateClassName">UIToolbar</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="updateIndicator">
 							<string key="name">updateIndicator</string>
