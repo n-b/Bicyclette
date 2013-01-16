@@ -124,10 +124,14 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool
     {
+        NSString * workingPath = [[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent];
         BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(NO);
-        BicycletteCitySetStoresDirectory([[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent]);
+        BicycletteCitySetStoresDirectory(workingPath);
         
-        NSMutableArray * infos = [NSMutableArray new];
+        
+        NSArray * serviceInfos = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[workingPath stringByAppendingPathComponent:@"BicycletteCities.json"]]
+                                                                 options:0 error:NULL];
+        NSMutableArray * fullServiceInfos = [NSMutableArray new];
 
         NSString * cityFilter = [[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberCityFilter"];
         for (BicycletteCity* city in [BicycletteCity allCities]) {
@@ -135,16 +139,17 @@ int main(int argc, const char * argv[])
             {
                 [city erase];
                 GrabDataForCity(city);
-                [infos addObject:[city fullServiceInfo]];
+                [fullServiceInfos addObject:[city fullServiceInfo]];
             }
         }
         
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogServiceInfo"])
+        if(![serviceInfos isEqualToArray:fullServiceInfos])
         {
-            NSData * data = [NSJSONSerialization dataWithJSONObject:infos
+            NSLog(@"SERVICE INFO HAVE CHANGED");
+            NSData * data = [NSJSONSerialization dataWithJSONObject:fullServiceInfos
                                                             options:NSJSONWritingPrettyPrinted
                                                               error:NULL];
-            NSString * path = [[[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"BicycletteCities_fullServiceInfo.json"];
+            NSString * path = [workingPath stringByAppendingPathComponent:@"BicycletteCities.json"];
             [data writeToFile:path atomically:NO];
 
         }
