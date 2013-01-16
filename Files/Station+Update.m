@@ -87,12 +87,14 @@ static char kStation_associatedQueuedforUpdateKey;
         Station * station = (Station*)[updateContext objectWithID:self.objectID];
         
         Class parsingClass = [station.city stationStatusParsingClass];
+        NSAssert(parsingClass, nil);
         for (NSData * data in [datas allValues]) {
             NSDictionary * attributes = [parsingClass stationAttributesWithData:data];
             [self.city setStation:station attributes:attributes];
         }
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        NSAssert([[[contextDidSaveNotification.userInfo[NSUpdatedObjectsKey] anyObject] objectID] isEqual:self.objectID], nil);
+        NSManagedObject* updatedObject = [contextDidSaveNotification.userInfo[NSUpdatedObjectsKey] anyObject];
+        NSAssert(updatedObject==nil || [updatedObject.objectID isEqual:self.objectID], nil);
         self.updater = nil;
         if(self.completionBlock)
             self.completionBlock(nil);

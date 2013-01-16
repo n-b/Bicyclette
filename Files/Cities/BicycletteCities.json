@@ -752,32 +752,6 @@
     "station_element_name" : "marker"
   },
   {
-    "radius" : 10000,
-    "KVCMapping" : {
-      "fullAddress" : "fullAddress",
-      "ticket" : "status_ticket",
-      "total" : "status_total",
-      "lat" : "latitude",
-      "address" : "address",
-      "open" : "open",
-      "number" : "number",
-      "available" : "status_available",
-      "lng" : "longitude",
-      "free" : "status_free",
-      "name" : "name",
-      "bonus" : "bonus"
-    },
-    "longitude" : 1.445,
-    "city_class" : "CyclocityCity",
-    "service_name" : "VélÔ",
-    "latitude" : 43.6048,
-    "station_details_url" : "http:\/\/www.velo.toulouse.fr\/service\/stationdetails\/toulouse\/",
-    "update_url" : "http:\/\/www.velo.toulouse.fr\/service\/carto",
-    "city_name" : "Toulouse",
-    "station_status_parsing_class" : "XMLSubnodesStationParse",
-    "station_element_name" : "marker"
-  },
-  {
     "radius" : 5000,
     "KVCMapping" : {
       "fullAddress" : "fullAddress",
