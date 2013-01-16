@@ -138,6 +138,7 @@
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F56169C2B0700ED2DCF /* libTransformerKit-ios.a */; };
 		37999F5A169C2B1B00ED2DCF /* libTransformerKit-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F58169C2B0700ED2DCF /* libTransformerKit-osx.a */; };
+		37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
@@ -400,6 +401,7 @@
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TransformerKit.xcodeproj; path = submodules/TransformerKit/TransformerKit.xcodeproj; sourceTree = "<group>"; };
+		37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lille_V’Lille.coredata"; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 				37E43DA21684D7A30085EC4F /* Créteil_CristoLib.coredata */,
 				37E43DA31684D7A30085EC4F /* Dublin_dublinbikes.coredata */,
 				37E43DA41684D7A30085EC4F /* Göteborg_Styr & Ställ.coredata */,
+				37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */,
 				37E43DA51684D7A30085EC4F /* Ljubljana_Bicike(LJ).coredata */,
 				37E43DA61684D7A30085EC4F /* Luxembourg_vel’oh.coredata */,
 				37E43DA71684D7A30085EC4F /* Lyon_Vélo’v.coredata */,
@@ -1137,6 +1140,7 @@
 				375760EE1687C6360042FCF8 /* Marseille_Le Vélo.coredata in Resources */,
 				375760EF1687C6360042FCF8 /* Paris_Vélib‘.coredata in Resources */,
 				377863AE1694769D0036A37C /* InfoPlist.strings in Resources */,
+				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
