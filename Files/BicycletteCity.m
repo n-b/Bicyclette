@@ -94,7 +94,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
-- (CLRegion *) hardcodedLimits
+- (CLRegion *) knownRegion
 {
     return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([self.serviceInfo[@"latitude"] doubleValue],
                                                                                      [self.serviceInfo[@"longitude"] doubleValue])
@@ -106,13 +106,13 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 	if(nil==_regionContainingData)
 	{
         if( ![self isStoreLoaded] )
-            return [self hardcodedLimits];
-
+            return [self knownRegion];
+        
         NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
 		NSError * requestError = nil;
 		NSArray * stations = [self.mainContext executeFetchRequest:stationsRequest error:&requestError];
         if([stations count]==0)
-            return [self hardcodedLimits];
+            return [self knownRegion];
         
         CLLocationDegrees maxLatitude = [[stations valueForKeyPath:@"@max.latitude"] doubleValue];
         CLLocationDegrees minLatitude = [[stations valueForKeyPath:@"@min.latitude"] doubleValue];
@@ -120,16 +120,16 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         CLLocationDegrees minLongitude = [[stations valueForKeyPath:@"@min.longitude"] doubleValue];
         CLLocation * dataCenter = [[CLLocation alloc] initWithLatitude:(minLatitude+maxLatitude)/2.0
                                                              longitude:(minLongitude+maxLongitude)/2.0];
-
+        
         CLLocationDistance distanceMax = 0;
         for (Station * station in stations)
             distanceMax = MAX(distanceMax, [station.location distanceFromLocation:dataCenter]);
-
+        
 		self.regionContainingData = [[CLRegion alloc] initCircularRegionWithCenter:dataCenter.coordinate
                                                                             radius:distanceMax
                                                                         identifier:[self title]];
 	}
-	return _regionContainingData;
+    return _regionContainingData;
 }
 
 - (CLLocation *) location

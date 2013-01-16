@@ -60,7 +60,9 @@
 
 - (BOOL)validateConsistency:(NSError **)error
 {
-    if([[self city].hardcodedLimits containsCoordinate:self.location.coordinate])
+    CLRegion* knownRegion = self.city.knownRegion;
+    CLLocation * center = [[CLLocation alloc] initWithLatitude:knownRegion.center.latitude longitude:knownRegion.center.longitude];
+    if([center distanceFromLocation:self.location] < knownRegion.radius * 1.5)
         return YES;
 
     if (error != NULL) {

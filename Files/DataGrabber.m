@@ -11,7 +11,7 @@
 
 static void GrabDataForCity(BicycletteCity* city)
 {
-    printf("%s: (%f, %f) %.0fm\n",[[city title] UTF8String], [city hardcodedLimits].center.latitude, [city hardcodedLimits].center.longitude, [city hardcodedLimits].radius );
+    printf("%s: (%f, %f) %.0fm\n",[[city title] UTF8String], [city knownRegion].center.latitude, [city knownRegion].center.longitude, [city knownRegion].radius );
 
     __block BOOL finished = NO;
     // Observe notifications
