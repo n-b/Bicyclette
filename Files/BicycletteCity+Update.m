@@ -34,6 +34,12 @@
     return [self stationStatusParsingClass] != nil;
 }
 
+- (BOOL) canShowFreeSlots
+{
+    return ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]!=0
+            || [[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]!=0);
+}
+
 - (void) update
 {
     if(self.updater==nil)
@@ -145,14 +151,16 @@
     NSAssert([keysForStatusAvailable count]==1, nil);
     if([[stationAttributes allKeys] containsObject:keysForStatusAvailable[0]])
     {
-        if([[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]==0)
+        if([[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]==0
+           && [[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]!=0)
         {
-            // "Total" is not in data
+            // "Total" is not in data but "Free" is
             station.status_totalValue = station.status_freeValue + station.status_availableValue;
         }
-        else if ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]==0)
+        else if ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]==0
+                 && [[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]!=0)
         {
-            // "Free" is not in data
+            // "Free" is not in data but "Total" is
             station.status_freeValue = station.status_totalValue - station.status_availableValue;
         }
         

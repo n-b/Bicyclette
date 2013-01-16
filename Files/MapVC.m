@@ -8,8 +8,7 @@
 
 #import "MapVC.h"
 #import "BicycletteApplicationDelegate.h"
-#import "BicycletteCity.h"
-#import "BicycletteCity.mogenerated.h"
+#import "BicycletteCity+Update.h"
 #import "Station+Update.h"
 #import "TransparentToolbar.h"
 #import "CollectionsAdditions.h"
@@ -181,6 +180,7 @@
             [self updateAnnotationsSizes];
         else if(object==self.controller && [keyPath isEqualToString:@"currentCity"])
         {
+            [self updateModeControl];
             if(self.controller.currentCity)
                 [self displayBanner:[NSString stringWithFormat:NSLocalizedString(@"%@_NETWORK",nil),self.controller.currentCity.title] sticky:NO];
         }
@@ -205,6 +205,16 @@
 - (void) canRequestLocation
 {
     self.mapView.showsUserLocation = YES;
+}
+
+- (void) updateModeControl
+{
+    if(self.controller.currentCity==nil || [self.controller.currentCity canShowFreeSlots]) {
+        self.modeControl.hidden = NO;
+    } else {
+        self.modeControl.hidden = YES;
+        self.stationMode = StationAnnotationModeBikes;
+    }
 }
 
 /****************************************************************************/
