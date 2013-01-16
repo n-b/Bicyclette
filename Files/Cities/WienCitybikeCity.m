@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInSubnodes.h"
+#import "XMLSubnodesCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface WienCitybikeCity : _XMLCityWithStationDataInSubnodes
+@interface WienCitybikeCity : XMLSubnodesCity
 @end
 
 @implementation WienCitybikeCity

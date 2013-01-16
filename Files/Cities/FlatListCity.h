@@ -1,5 +1,5 @@
 //
-//  _CityWithFlatListOfStations.m
+//  FlatListCity.h
 //  Bicyclette
 //
 //  Created by Nicolas on 21/12/12.
@@ -8,7 +8,7 @@
 
 #import "BicycletteCity+Update.h"
 
-@interface _CityWithFlatListOfStations : BicycletteCity
+@interface FlatListCity : BicycletteCity
 - (void) parseData:(NSData*)data;
 @end
 

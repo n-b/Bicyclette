@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInAttributes.h"
+#import "XMLAttributesCity.h"
 #import "_StationParse.h"
 #import "NSValueTransformer+TransformerKit.h"
 
 @interface FixedUTF8EncodingXMLSubnodesStationParse : XMLSubnodesStationParse
 @end
 
-@interface LilleVlilleCity : _XMLCityWithStationDataInAttributes
+@interface LilleVlilleCity : XMLAttributesCity
 @end
 
 @implementation LilleVlilleCity

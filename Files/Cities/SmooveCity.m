@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInAttributes.h"
+#import "XMLAttributesCity.h"
 #import "NSStringAdditions.h"
 
 #pragma mark -
 
-@interface SmooveCity : _XMLCityWithStationDataInAttributes
+@interface SmooveCity : XMLAttributesCity
 @end
 
 @implementation SmooveCity

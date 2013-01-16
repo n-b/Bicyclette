@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_CityWithFlatListOfStations.h"
+#import "FlatListCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface LaRochelleYeloCity : _CityWithFlatListOfStations <CityWithFlatListOfStations>
+@interface LaRochelleYeloCity : FlatListCity <CityWithFlatListOfStations>
 @end
 
 @implementation LaRochelleYeloCity

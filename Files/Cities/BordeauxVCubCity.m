@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInSubnodes.h"
+#import "XMLSubnodesCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 #import "NSValueTransformer+TransformerKit.h"
 
-@interface BordeauxVCubCity : _XMLCityWithStationDataInSubnodes
+@interface BordeauxVCubCity : XMLSubnodesCity
 @end
 
 @implementation BordeauxVCubCity

@@ -1,20 +1,20 @@
 //
-//  _XMLCityWithStationDataInSubnodes
+//  XMLSubnodesCity
 //  Bicyclette
 //
 //  Created by Nicolas on 04/01/13.
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInSubnodes.h"
+#import "XMLSubnodesCity.h"
 #import "BicycletteCity+ServiceDescription.h"
 
 #pragma mark -
 
-@interface _XMLCityWithStationDataInSubnodes () <NSXMLParserDelegate>
+@interface XMLSubnodesCity () <NSXMLParserDelegate>
 @end
 
-@implementation _XMLCityWithStationDataInSubnodes
+@implementation XMLSubnodesCity
 {
     NSMutableString * _parsing_currentString;
     NSMutableDictionary * _parsing_currentValues;

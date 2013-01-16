@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_CityWithJSONFlatListOfStations.h"
+#import "FlatJSONListCity.h"
 #import "BicycletteCity+Update.h"
 #import "NSStringAdditions.h"
 
-@interface BarcelonaCityBikeCity : _CityWithJSONFlatListOfStations
+@interface BarcelonaCityBikeCity : FlatJSONListCity
 @end
 
 @implementation BarcelonaCityBikeCity

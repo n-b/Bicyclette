@@ -1,5 +1,5 @@
 //
-//  _XMLCityWithStationDataInSubnodes
+//  XMLSubnodesCity
 //  Bicyclette
 //
 //  Created by Nicolas on 04/01/13.
@@ -8,7 +8,7 @@
 
 #import "BicycletteCity+Update.h"
 
-@interface _XMLCityWithStationDataInSubnodes : BicycletteCity
+@interface XMLSubnodesCity : BicycletteCity
 - (void) parseData:(NSData*)data;
 - (NSString*) stationElementName; // override if necessary
 @end

@@ -1,15 +1,15 @@
 //
-//  _CityWithJSONFlatListOfStations
+//  FlatJSONListCity
 //  Bicyclette
 //
 //  Created by Nicolas on 04/01/13.
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_CityWithJSONFlatListOfStations.h"
+#import "FlatJSONListCity.h"
 #import "BicycletteCity+ServiceDescription.h"
 
-@implementation _CityWithJSONFlatListOfStations
+@implementation FlatJSONListCity
 
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data
 {

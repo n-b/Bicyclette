@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_CityWithJSONFlatListOfStations.h"
+#import "FlatJSONListCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface VelowayCity : _CityWithJSONFlatListOfStations
+@interface VelowayCity : FlatJSONListCity
 @end
 
 @implementation VelowayCity

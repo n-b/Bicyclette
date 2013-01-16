@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_CityWithJSONFlatListOfStations.h"
+#import "FlatJSONListCity.h"
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
 
-@interface LyonVelovCity : _CityWithJSONFlatListOfStations
+@interface LyonVelovCity : FlatJSONListCity
 @end
 
 @implementation LyonVelovCity

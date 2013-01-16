@@ -1,5 +1,5 @@
 //
-//  _XMLCityWithStationDataInAttributes.h
+//  XMLAttributesCity.h
 //  Bicyclette
 //
 //  Created by Nicolas on 04/01/13.
@@ -8,7 +8,7 @@
 
 #import "BicycletteCity+Update.h"
 
-@interface _XMLCityWithStationDataInAttributes : BicycletteCity
+@interface XMLAttributesCity : BicycletteCity
 - (void) parseData:(NSData*)data;
 - (NSString*) stationElementName; // override if necessary
 @end

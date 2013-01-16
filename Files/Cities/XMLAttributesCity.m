@@ -1,20 +1,20 @@
 //
-//  _XMLCityWithStationDataInAttributes.m
+//  XMLAttributesCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 04/01/13.
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInAttributes.h"
+#import "XMLAttributesCity.h"
 #import "BicycletteCity+ServiceDescription.h"
 
 #pragma mark -
 
-@interface _XMLCityWithStationDataInAttributes () <NSXMLParserDelegate>
+@interface XMLAttributesCity () <NSXMLParserDelegate>
 @end
 
-@implementation _XMLCityWithStationDataInAttributes
+@implementation XMLAttributesCity
 
 - (void) parseData:(NSData*)data
 {

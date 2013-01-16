@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInAttributes.h"
+#import "XMLAttributesCity.h"
 #import "NSStringAdditions.h"
 #import "NSValueTransformer+TransformerKit.h"
 
-@interface OrleansVeloPlusCity : _XMLCityWithStationDataInAttributes
+@interface OrleansVeloPlusCity : XMLAttributesCity
 @end
 
 @implementation OrleansVeloPlusCity

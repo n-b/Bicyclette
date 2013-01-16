@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_CityWithJSONFlatListOfStations.h"
+#import "FlatJSONListCity.h"
 #import "BicycletteCity.mogenerated.h"
 
-@interface MelbourneBikeShareCity : _CityWithJSONFlatListOfStations
+@interface MelbourneBikeShareCity : FlatJSONListCity
 @end
 
 @implementation MelbourneBikeShareCity

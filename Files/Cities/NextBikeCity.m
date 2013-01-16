@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInAttributes.h"
+#import "XMLAttributesCity.h"
 #import "BicycletteCity.mogenerated.h"
 #import "NSStringAdditions.h"
 
-@interface NextBikeCity : _XMLCityWithStationDataInAttributes
+@interface NextBikeCity : XMLAttributesCity
 @end
 
 @implementation NextBikeCity

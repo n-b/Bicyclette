@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInSubnodes.h"
+#import "XMLSubnodesCity.h"
 #import "NSStringAdditions.h"
 
-@interface RennesVeloStarCity : _XMLCityWithStationDataInSubnodes
+@interface RennesVeloStarCity : XMLSubnodesCity
 @end
 
 @implementation RennesVeloStarCity

@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "_XMLCityWithStationDataInSubnodes.h"
+#import "XMLSubnodesCity.h"
 #import "BicycletteCity.mogenerated.h"
 
-@interface BixiCity : _XMLCityWithStationDataInSubnodes
+@interface BixiCity : XMLSubnodesCity
 @end
 
 @implementation BixiCity
