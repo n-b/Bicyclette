@@ -20,9 +20,9 @@
 
 #pragma mark City Data Update
 
-- (NSString *)regionNumberFromStationValues:(NSDictionary *)values
+- (RegionInfo *)regionInfoFromStation:(Station *)station values:(NSDictionary *)values patchs:(NSDictionary *)patchs requestURL:(NSString *)urlString
 {
-    return values[@"district"];
+    return [RegionInfo infoWithName:values[@"district"] number:values[@"district"]];
 }
 
 @end

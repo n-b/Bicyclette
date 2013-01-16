@@ -12,7 +12,7 @@
     },
     "longitude" : -85.295,
     "keypath_to_stations_lists" : "stationBeanList",
-    "city_class" : "ChattanoogaBikeCity",
+    "city_class" : "FlatJSONListCity",
     "service_name" : "Bike",
     "latitude" : 35.056,
     "update_url" : "http:\/\/www.bikechattanooga.com\/stations\/json",
@@ -220,7 +220,7 @@
       "nbBikes" : "status_available"
     },
     "longitude" : -73.578,
-    "city_class" : "BixiCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "BIXI",
     "latitude" : 45.513,
     "update_url" : "http:\/\/montreal.bixi.com\/data\/bikeStations.xml",
@@ -238,7 +238,7 @@
       "nbBikes" : "status_available"
     },
     "longitude" : -79.379,
-    "city_class" : "BixiCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "BIXI",
     "latitude" : 43.639,
     "update_url" : "http:\/\/toronto.bixi.com\/data\/bikeStations.xml",
@@ -256,7 +256,7 @@
       "nbBikes" : "status_available"
     },
     "longitude" : -75.699,
-    "city_class" : "BixiCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "BIXI",
     "latitude" : 45.412,
     "update_url" : "http:\/\/capitale.bixi.com\/data\/bikeStations.xml",
@@ -274,7 +274,7 @@
       "nbBikes" : "status_available"
     },
     "longitude" : -0.1105,
-    "city_class" : "BixiCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "Cycle Hire",
     "latitude" : 51.50738,
     "update_url" : "http:\/\/www.tfl.gov.uk\/tfl\/syndication\/feeds\/cycle-hire\/livecyclehireupdates.xml",
@@ -292,7 +292,7 @@
       "nbBikes" : "status_available"
     },
     "longitude" : -77.038,
-    "city_class" : "BixiCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "Capital Bike Share",
     "latitude" : 38.888,
     "update_url" : "http:\/\/capitalbikeshare.com\/data\/stations\/bikeStations.xml",
@@ -310,7 +310,7 @@
       "nbBikes" : "status_available"
     },
     "longitude" : -71.05800000000001,
-    "city_class" : "BixiCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "Hubway",
     "latitude" : 42.329,
     "update_url" : "http:\/\/www.thehubway.com\/data\/stations\/bikeStations.xml",
@@ -328,7 +328,7 @@
       "nbBikes" : "status_available"
     },
     "longitude" : -93.264,
-    "city_class" : "BixiCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "Nice Ride",
     "latitude" : 44.981,
     "update_url" : "https:\/\/secure.niceridemn.org\/data2\/bikeStations.xml",
@@ -1114,7 +1114,7 @@
       "name" : "name"
     },
     "longitude" : 16.357668,
-    "city_class" : "WienCitybikeCity",
+    "city_class" : "XMLSubnodesCity",
     "service_name" : "CitybikeCity",
     "latitude" : 48.207685,
     "update_url" : "http:\/\/dynamisch.citybikewien.at\/citybike_xml.php",

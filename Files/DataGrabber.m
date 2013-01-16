@@ -127,20 +127,20 @@ int main(int argc, const char * argv[])
         BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(NO);
         BicycletteCitySetStoresDirectory([[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent]);
         
+        NSMutableArray * infos = [NSMutableArray new];
+
         NSString * cityFilter = [[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberCityFilter"];
         for (BicycletteCity* city in [BicycletteCity allCities]) {
             if(cityFilter==nil || [NSStringFromClass([city class]) rangeOfString:cityFilter].location!=NSNotFound)
             {
                 [city erase];
                 GrabDataForCity(city);
-            }
-        }
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogServiceInfo"])
-        {
-            NSMutableArray * infos = [NSMutableArray new];
-            for (BicycletteCity* city in [BicycletteCity allCities]) {
                 [infos addObject:[city fullServiceInfo]];
             }
+        }
+        
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberLogServiceInfo"])
+        {
             NSData * data = [NSJSONSerialization dataWithJSONObject:infos
                                                             options:NSJSONWritingPrettyPrinted
                                                               error:NULL];

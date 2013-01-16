@@ -121,8 +121,6 @@
 		3788EC7C1697AB1300836A60 /* MiamiDecobikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788EC7A1697AB1300836A60 /* MiamiDecobikeCity.m */; };
 		3788EC7E1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788EC7D1697AF0400836A60 /* BarcelonaCityBikeCity.m */; };
 		3788EC7F1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788EC7D1697AF0400836A60 /* BarcelonaCityBikeCity.m */; };
-		3788EC811697B1A300836A60 /* WienCitybikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788EC801697B1A300836A60 /* WienCitybikeCity.m */; };
-		3788EC821697B1A300836A60 /* WienCitybikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788EC801697B1A300836A60 /* WienCitybikeCity.m */; };
 		378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */; };
 		3791306816971C110054FECA /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306716971C100054FECA /* ParisVelibCity.m */; };
 		3791306916971C110054FECA /* ParisVelibCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791306716971C100054FECA /* ParisVelibCity.m */; };
@@ -162,8 +160,6 @@
 		37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37BE759C15E6BDE4001DABF6 /* HelpVC.xib */; };
 		37BF7FEA1694481C00FED27F /* SmooveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF7FE91694481C00FED27F /* SmooveCity.m */; };
 		37BF7FEB1694481C00FED27F /* SmooveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF7FE91694481C00FED27F /* SmooveCity.m */; };
-		37C535861684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */; };
-		37C535871684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */; };
 		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
 		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
@@ -206,8 +202,6 @@
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
 		37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
 		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
-		37F827E8167C0827001D85D8 /* BixiCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827E7167C0827001D85D8 /* BixiCity.m */; };
-		37F827E9167C09D4001D85D8 /* BixiCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827E7167C0827001D85D8 /* BixiCity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,7 +378,6 @@
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3788EC7A1697AB1300836A60 /* MiamiDecobikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiamiDecobikeCity.m; sourceTree = "<group>"; };
 		3788EC7D1697AF0400836A60 /* BarcelonaCityBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcelonaCityBikeCity.m; sourceTree = "<group>"; };
-		3788EC801697B1A300836A60 /* WienCitybikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WienCitybikeCity.m; sourceTree = "<group>"; };
 		378C6BFA169C362E009DDC84 /* UnusedCities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UnusedCities.json; sourceTree = "<group>"; };
 		378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationAnnotationView.h; sourceTree = "<group>"; };
 		378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationAnnotationView.m; sourceTree = "<group>"; };
@@ -418,7 +411,6 @@
 		37BE759B15E6BDE4001DABF6 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
 		37BE759C15E6BDE4001DABF6 /* HelpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpVC.xib; sourceTree = "<group>"; };
 		37BF7FE91694481C00FED27F /* SmooveCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmooveCity.m; sourceTree = "<group>"; };
-		37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattanoogaBikeCity.m; sourceTree = "<group>"; };
 		37C56FD115B1A0E700795961 /* PrefsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsVC.h; sourceTree = "<group>"; };
 		37C56FD215B1A0E700795961 /* PrefsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsVC.m; sourceTree = "<group>"; };
 		37C56FD315B1A0E700795961 /* PrefsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsVC.xib; sourceTree = "<group>"; };
@@ -471,7 +463,6 @@
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
 		37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LocalAlerts.m"; sourceTree = "<group>"; };
 		37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RennesVeloStarCity.m; sourceTree = "<group>"; };
-		37F827E7167C0827001D85D8 /* BixiCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BixiCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -786,7 +777,6 @@
 			children = (
 				3791307A16973C730054FECA /* FlatJSONListCity.h */,
 				3791307B16973C730054FECA /* FlatJSONListCity.m */,
-				37C535851684A2FC00E4327C /* ChattanoogaBikeCity.m */,
 				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
 				3722E0F7168AF8830069C6A8 /* VelowayCity.m */,
 				373960AA16794634005F0672 /* LyonVelovCity.m */,
@@ -944,10 +934,8 @@
 			children = (
 				3791306D16971FD30054FECA /* XMLSubnodesCity.h */,
 				3791306E16971FD30054FECA /* XMLSubnodesCity.m */,
-				37F827E7167C0827001D85D8 /* BixiCity.m */,
 				37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */,
 				3788EC7A1697AB1300836A60 /* MiamiDecobikeCity.m */,
-				3788EC801697B1A300836A60 /* WienCitybikeCity.m */,
 				37920166169C252B008E35C3 /* BordeauxVCubCity.m */,
 			);
 			name = "XML with subnodes";
@@ -1240,11 +1228,9 @@
 				3709F575167B755600F865E3 /* Station+Update.m in Sources */,
 				377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
 				37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
-				37F827E8167C0827001D85D8 /* BixiCity.m in Sources */,
 				37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */,
 				37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 				370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
-				37C535871684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */,
 				37E43D901684AEAA0085EC4F /* FlatListCity.m in Sources */,
 				375760F41687D0DA0042FCF8 /* NextBikeCity.m in Sources */,
 				3722E0F9168AF8830069C6A8 /* VelowayCity.m in Sources */,
@@ -1258,7 +1244,6 @@
 				3791307D16973C730054FECA /* FlatJSONListCity.m in Sources */,
 				3788EC7C1697AB1300836A60 /* MiamiDecobikeCity.m in Sources */,
 				3788EC7F1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */,
-				3788EC821697B1A300836A60 /* WienCitybikeCity.m in Sources */,
 				37920168169C252B008E35C3 /* BordeauxVCubCity.m in Sources */,
 				37410AD416A0C04900F2E958 /* LilleVlilleCity.m in Sources */,
 				37410ADD16A0CDD100F2E958 /* _StationParse.m in Sources */,
@@ -1286,10 +1271,8 @@
 				377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */,
 				377620E6167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
 				37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
-				37F827E9167C09D4001D85D8 /* BixiCity.m in Sources */,
 				37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 				370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
-				37C535861684A2FC00E4327C /* ChattanoogaBikeCity.m in Sources */,
 				37E43D8F1684AEAA0085EC4F /* FlatListCity.m in Sources */,
 				375760F31687D0DA0042FCF8 /* NextBikeCity.m in Sources */,
 				3722E0F8168AF8830069C6A8 /* VelowayCity.m in Sources */,
@@ -1300,7 +1283,6 @@
 				3791307C16973C730054FECA /* FlatJSONListCity.m in Sources */,
 				3788EC7B1697AB1300836A60 /* MiamiDecobikeCity.m in Sources */,
 				3788EC7E1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */,
-				3788EC811697B1A300836A60 /* WienCitybikeCity.m in Sources */,
 				37920167169C252B008E35C3 /* BordeauxVCubCity.m in Sources */,
 				37410AD316A0C04900F2E958 /* LilleVlilleCity.m in Sources */,
 				37410ADC16A0CDD100F2E958 /* _StationParse.m in Sources */,
