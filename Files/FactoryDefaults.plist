@@ -21,7 +21,7 @@
 	<key>CitiesController.CurrentCityDistanceThreshold</key>
 	<integer>4</integer>
 	<key>CitiesController.CurrentCityZoomThreshold</key>
-	<integer>4</integer>
+	<integer>6</integer>
 	<key>CitiesController.StationsZoomThreshold</key>
 	<integer>1</integer>
 	<key>MaxRefreshDistance</key>

@@ -343,7 +343,7 @@
 	if([view.annotation isKindOfClass:[BicycletteCity class]])
     {
         CLRegion * region = [((BicycletteCity*)view.annotation) regionContainingData];
-        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius) animated:YES];
+        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius*2) animated:YES];
     }
     else if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];
