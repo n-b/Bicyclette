@@ -139,7 +139,7 @@
     CLLocationDistance distance = [[self.currentCity prefForKey:@"RadarDistance"] doubleValue];
     [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(self.viewRegion.center, distance, distance)];
 
-    if([self showCurrentCityStations])
+    if([self showCurrentCityStations] || ![self.currentCity canUpdateIndividualStations])
     {
         [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
         [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
