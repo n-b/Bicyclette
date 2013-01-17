@@ -26,11 +26,11 @@
 #define kRegionFrame2Color				[UIColor colorWithHue:0.01 saturation:1 brightness:.84 alpha:1]
 #define kRegionFrame3Color				[UIColor colorWithWhite:.95 alpha:1]
 
-#define kGoodValueColor					[UIColor colorWithHue:0.31 saturation:.8 brightness:.8 alpha:1]
-#define kWarningValueColor				[UIColor colorWithHue:0.09 saturation:1 brightness:1 alpha:1]
-#define kCriticalValueColor				[UIColor colorWithHue:0.03 saturation:1 brightness:1 alpha:1]
+#define kGoodValueColor					[UIColor colorWithHue:0.356 saturation:0.853 brightness:0.745 alpha:1.000]
+#define kWarningValueColor				[UIColor colorWithHue:0.058 saturation:0.885 brightness:0.851 alpha:1.000]
+#define kCriticalValueColor				[UIColor colorWithHue:0.008 saturation:0.917 brightness:0.710 alpha:1.000]
 
-#define kUnknownValueColor				[UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
+#define kUnknownValueColor				[UIColor colorWithHue:0 saturation:.02 brightness:.8 alpha:1]
 
 #define kAnnotationTextColor			[UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
 
@@ -44,7 +44,7 @@
 
 #define kAnnotationValueTextColor		[kAnnotationTextColor colorWithBrightness:.07]
 #define kAnnotationValueShadowColor		[kAnnotationTextColor colorWithBrightness:1]
-#define kAnnotationValueFont			[UIFont fontWithName:@"Futura-Medium" size:19]
+#define kAnnotationValueFont			[UIFont fontWithName:@"AvenirNext-Medium" size:18]
 
 #define kRadarAnnotationHandleSize		20
 #define kRadarAnnotationDefaultColor	[UIColor colorWithHue:0 saturation:0 brightness:1 alpha:1]

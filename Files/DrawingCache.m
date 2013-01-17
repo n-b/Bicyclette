@@ -98,7 +98,7 @@ typedef enum {
                     CGPathRelease(path);
                     
                     [self drawSimpleGradientFromPoint1:CGPointZero toPoint2:CGPointMake(0, rect.size.height)
-                                                color1:baseColor color2:[baseColor colorByAddingBrightness:-.2]];
+                                                color1:[baseColor colorByAddingBrightness:.1] color2:[baseColor colorByAddingBrightness:-.1]];
                     
                     CGContextRestoreGState(c);
                 }
@@ -153,7 +153,6 @@ typedef enum {
                     CGSize textSize = [text sizeWithFont:kAnnotationValueFont];
                     CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
                     [text drawAtPoint:point withFont:kAnnotationValueFont];
-                    
                 }
             }
             UIGraphicsPopContext();
