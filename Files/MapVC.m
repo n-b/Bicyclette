@@ -372,7 +372,10 @@
     else if([view.annotation isKindOfClass:[Region class]])
 		[self zoomInRegion:(Region*)view.annotation];
     else if([view.annotation isKindOfClass:[Station class]])
-        [(Station*)view.annotation updateWithCompletionBlock:nil];
+    {
+        if([self.controller.currentCity canUpdateIndividualStations])
+            [(Station*)view.annotation updateWithCompletionBlock:nil];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
