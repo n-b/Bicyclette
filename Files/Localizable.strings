@@ -16,6 +16,8 @@
 "UPDATING : PARSING" = "Mise à jour…";
 "%@_NETWORK" = "Réseau %@";
 
+"STATION_STATUS_CLOSED" = "Station fermée";
+
 "UPDATING : NO NEW DATA" = "Liste à jour";
 "UPDATING : COMPLETED" = "Mise à jour terminée";
 

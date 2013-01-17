@@ -19,6 +19,11 @@
     return [[self city] titleForStation:self];
 }
 
+- (NSString *) subtitle
+{
+    return [[self city] subtitleForStation:self];
+}
+
 - (CLLocationCoordinate2D) coordinate
 {
 	return CLLocationCoordinate2DMake(self.latitudeValue, self.longitudeValue);

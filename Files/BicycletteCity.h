@@ -51,6 +51,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 // Annotations - override if necessary
 - (NSString*) title;
 - (NSString*) titleForStation:(Station*)station;
+- (NSString *) subtitleForStation:(Station *)station;
 - (NSString*) titleForRegion:(Region*)region;
 - (NSString*) subtitleForRegion:(Region*)region;
 
