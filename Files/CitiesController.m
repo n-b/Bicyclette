@@ -138,8 +138,13 @@
     // In the same vein, only set the updater reference location if we're down enough
     CLLocationDistance distance = [[self.currentCity prefForKey:@"RadarDistance"] doubleValue];
     [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(self.viewRegion.center, distance, distance)];
+    
+    if(self.currentCity)
+        [self.updateQueue setReferenceLocation:center andStartIfNecessary:[self.currentCity canUpdateIndividualStations]];
+    else
+        self.updateQueue.referenceLocation = nil;
 
-    if([self showCurrentCityStations] || ![self.currentCity canUpdateIndividualStations])
+    if([self showCurrentCityStations] || (self.currentCity && ![self.currentCity canUpdateIndividualStations]))
     {
         [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
         [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
@@ -149,11 +154,6 @@
         [self.updateQueue removeMonitoredGroup:self.screenCenterUpdateGroup];
         [self.updateQueue removeMonitoredGroup:self.userLocationUpdateGroup];
     }
-
-    if(self.currentCity)
-        self.updateQueue.referenceLocation = center;
-    else
-        self.updateQueue.referenceLocation = nil;
 }
 
 - (void) addAndRemoveMapAnnotations

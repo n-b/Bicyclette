@@ -45,6 +45,7 @@
 // Queue
 @interface LocalUpdateQueue : NSObject
 @property (nonatomic) CLLocation * referenceLocation;
+- (void) setReferenceLocation:(CLLocation *)referenceLocation andStartIfNecessary:(BOOL)startIfNecessary_;
 @property NSTimeInterval delayBetweenPointUpdates;
 
 // Monitored Update Groups

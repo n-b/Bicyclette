@@ -37,8 +37,13 @@
 
 - (void) setReferenceLocation:(CLLocation *)referenceLocation
 {
+    [self setReferenceLocation:referenceLocation andStartIfNecessary:YES];
+}
+
+- (void) setReferenceLocation:(CLLocation *)referenceLocation andStartIfNecessary:(BOOL)startIfNecessary_
+{
     _referenceLocation = referenceLocation;
-    [self buildUpdateQueue];
+    [self buildUpdateQueueAndStartIfNecessary:startIfNecessary_];
 }
 
 - (void) setMonitoringPaused:(BOOL)monitoringPaused_
@@ -91,7 +96,7 @@
 {
     if (context == (__bridge void *)([LocalUpdateQueue class]))
         // An Update Group has changed its points
-        [self buildUpdateQueue];
+        [self buildUpdateQueueAndStartIfNecessary:NO];
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
@@ -99,6 +104,12 @@
 #pragma mark Data
 
 - (void) buildUpdateQueue
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+    [self buildUpdateQueueAndStartIfNecessary:YES];
+}
+
+- (void) buildUpdateQueueAndStartIfNecessary:(BOOL)startIfNecessary_
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
 
@@ -131,7 +142,7 @@
     }
     self.pointsInQueue = pointsToUpdate;
     
-    if([self.pointsUpdated count]==0)
+    if(startIfNecessary_ && [self.pointsUpdated count]==0)
         [self updateNext];
 }
 
