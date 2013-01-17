@@ -18,11 +18,4 @@
 
 - (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
 
-#pragma mark City Data Update
-
-- (RegionInfo *)regionInfoFromStation:(Station *)station values:(NSDictionary *)values patchs:(NSDictionary *)patchs requestURL:(NSString *)urlString
-{
-    return [RegionInfo infoWithName:values[@"district"] number:values[@"district"]];
-}
-
 @end

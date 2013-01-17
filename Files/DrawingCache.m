@@ -88,6 +88,16 @@ typedef enum {
                 
                 CGRect rect = (CGRect){CGPointZero, size};
                 
+                // Draw background
+                if(border!=BorderModeNone)
+                {
+                    CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, .5/scale, .5/scale)];
+                    [borderColor1 set];
+                    CGContextAddPath(c, path);
+                    CGContextDrawPath(c, kCGPathFillStroke);
+                    CGPathRelease(path);
+                }
+                
                 // Draw gradient
                 if(baseColor)
                 {
@@ -137,7 +147,6 @@ typedef enum {
                     {
                         CGContextSetLineWidth(c, borderWidth/scale);
                         
-                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*.5/scale, borderWidth*.5/scale) withStrokeColor:borderColor1];
                         [self drawShape:shape inRect:CGRectInset(rect, borderWidth*1.5/scale, borderWidth*1.5/scale) withStrokeColor:borderColor2];
                         [self drawShape:shape inRect:CGRectInset(rect, borderWidth*2.5/scale, borderWidth*2.5/scale) withStrokeColor:borderColor3];
                     }
