@@ -16,6 +16,7 @@
 @property (assign) id<CitiesControllerDelegate> delegate;
 - (void) regionDidChange:(MKCoordinateRegion)region;
 - (void) handleLocalNotificaion:(UILocalNotification*)notification;
+- (void) selectCity:(BicycletteCity*)city_;
 @end
 
 

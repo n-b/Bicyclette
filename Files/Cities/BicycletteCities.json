@@ -187,7 +187,8 @@
         "codePostal" : "75019"
       }
     },
-    "station_element_name" : "marker"
+    "station_element_name" : "marker",
+ 	"city_group" : "Paris",
   },
   {
     "radius" : 3809.805449669309,
@@ -463,7 +464,8 @@
     "update_url" : "http:\/\/www.velo2.cergypontoise.fr\/service\/carto",
     "city_name" : "Cergy-Pontoise",
     "station_status_parsing_class" : "XMLSubnodesStationParse",
-    "station_element_name" : "marker"
+    "station_element_name" : "marker",
+    "city_group" : "Paris",
   },
   {
     "radius" : 2043.163881067344,
@@ -489,7 +491,8 @@
     "update_url" : "http:\/\/www.cristolib.fr\/service\/carto",
     "city_name" : "Créteil",
     "station_status_parsing_class" : "XMLSubnodesStationParse",
-    "station_element_name" : "marker"
+    "station_element_name" : "marker",
+    "city_group" : "Paris",
   },
   {
     "radius" : 1705.185823190039,

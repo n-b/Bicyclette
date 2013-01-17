@@ -14,7 +14,6 @@
 #import "CollectionsAdditions.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
-#import "CityAnnotationView.h"
 #import "RadarAnnotationView.h"
 #import "DrawingCache.h"
 #import "MKMapView+AttributionLogo.h"
@@ -255,9 +254,16 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void) controller:(CitiesController*)controller selectAnnotation:(id<MKAnnotation>)annotation
+- (void) controller:(CitiesController*)controller selectAnnotation:(id<MKAnnotation>)annotation_
 {
-    [self.mapView selectAnnotation:annotation animated:YES];
+    if(annotation_)
+        [self.mapView selectAnnotation:annotation_ animated:YES];
+    else
+    {
+        for (id<MKAnnotation>annotation in [self.mapView selectedAnnotations]) {
+            [self.mapView deselectAnnotation:annotation animated:YES];
+        }
+    }
 }
 
 - (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations
@@ -292,12 +298,6 @@
             RadarAnnotationView * radarAV = (RadarAnnotationView *)[self.mapView viewForAnnotation:annotation];
             radarAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:radarAV].size};
         }
-//        else if([annotation isKindOfClass:[BicycletteCity class]])
-//        {
-//            CityAnnotationView * cityAV = (CityAnnotationView *)[self.mapView viewForAnnotation:annotation];
-//            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
-//            cityAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:region toRectToView:cityAV].size};
-//        }
     }
 }
 
@@ -333,18 +333,6 @@
 
         return radarAV;
     }
-//    else if([annotation isKindOfClass:[BicycletteCity class]])
-//    {
-//        CityAnnotationView * cityAV = (CityAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[CityAnnotationView reuseIdentifier]];
-//		if(nil==cityAV)
-//			cityAV = [[CityAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
-//        
-//        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, ((BicycletteCity*)annotation).radius*2, ((BicycletteCity*)annotation).radius*2);
-//        CGSize citySize = [self.mapView convertRegion:region toRectToView:self.mapView].size;
-//        cityAV.bounds = (CGRect){CGPointZero, citySize};
-//        
-//        return cityAV;
-//    }
 	return nil;
 }
 
@@ -366,11 +354,12 @@
 {
 	if([view.annotation isKindOfClass:[BicycletteCity class]])
     {
-        CLRegion * region = [((BicycletteCity*)view.annotation) regionContainingData];
-        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius*2) animated:YES];
+        [self.controller selectCity:(BicycletteCity*)view.annotation];
     }
     else if([view.annotation isKindOfClass:[Region class]])
+    {
 		[self zoomInRegion:(Region*)view.annotation];
+    }
     else if([view.annotation isKindOfClass:[Station class]])
     {
         if([self.controller.currentCity canUpdateIndividualStations])

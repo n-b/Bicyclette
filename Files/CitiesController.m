@@ -163,7 +163,11 @@
     if (self.currentCity==nil)
     {
         // World Cities
-        [newAnnotations addObjectsFromArray:self.cities];
+        BOOL groupCities = [self regionSpanMeters] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CityGroupZoomMeters"];
+        NSArray * cities = self.cities;
+        if(groupCities)
+            cities = [cities filteredArrayWithValue:@YES forKeyPath:@"isMainCityGroup"];
+        [newAnnotations addObjectsFromArray:cities];
     }
     else
     {
@@ -190,6 +194,22 @@
     }
 
     [self.delegate controller:self setAnnotations:newAnnotations];
+}
+
+
+- (void) selectCity:(BicycletteCity*)city_
+{
+    CLLocationDistance threshold = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CityGroupZoomMeters"];
+    BOOL groupCities = [self regionSpanMeters] > threshold;
+    if([[city_ cityGroup] length]!=0 && groupCities) {
+        // zoom around the group
+        [self.delegate controller:self setRegion:MKCoordinateRegionMakeWithDistance(city_.coordinate, (threshold/2)*.8, (threshold/2)*.8)];
+        [self.delegate controller:self selectAnnotation:nil];
+    } else {
+        // Zoom directly to city
+        CLRegion * region = [city_ regionContainingData];
+        [self.delegate controller:self setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius)];
+    }
 }
 
 /****************************************************************************/

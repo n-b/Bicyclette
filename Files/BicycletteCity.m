@@ -82,6 +82,10 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 #pragma mark General properties
 
 - (NSString *) cityName { return _serviceInfo[@"city_name"]; }
+- (NSString *) cityGroup { return _serviceInfo[@"city_group"]; }
+- (BOOL) isMainCityGroup {
+    return [self.cityGroup length]==0 || [self.cityName isEqualToString:self.cityGroup];
+}
 - (NSString *) serviceName { return _serviceInfo[@"service_name"]; }
 - (NSDictionary*) patches { return self.serviceInfo[@"patches"]; }
 
