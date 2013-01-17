@@ -174,6 +174,8 @@
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
 		37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
 		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
+		942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D480116A841F100F6CD12 /* UIView+NibLoading.m */; };
+		942D480416A8427D00F6CD12 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942D480316A8427D00F6CD12 /* BannerView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -414,6 +416,9 @@
 		942D47F816A82DD700F6CD12 /* Barcelone.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Barcelone.gpx; sourceTree = "<group>"; };
 		942D47F916A82DD700F6CD12 /* Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lyon.gpx; sourceTree = "<group>"; };
 		942D47FA16A82DD700F6CD12 /* Rennes.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Rennes.gpx; sourceTree = "<group>"; };
+		942D480016A841F100F6CD12 /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
+		942D480116A841F100F6CD12 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
+		942D480316A8427D00F6CD12 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -554,10 +559,13 @@
 				371982C016451F92006CF77D /* FanContainerViewController.m */,
 				37F092351680D671001E8127 /* UIViewController+Banner.h */,
 				37F092361680D671001E8127 /* UIViewController+Banner.m */,
+				942D480316A8427D00F6CD12 /* BannerView.xib */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
 				37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */,
+				942D480016A841F100F6CD12 /* UIView+NibLoading.h */,
+				942D480116A841F100F6CD12 /* UIView+NibLoading.m */,
 				37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */,
 				37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */,
 				371D90C8158FE19900E509E6 /* TransparentToolbar.h */,
@@ -1079,6 +1087,7 @@
 				375760EF1687C6360042FCF8 /* Paris_Vélib‘.coredata in Resources */,
 				377863AE1694769D0036A37C /* InfoPlist.strings in Resources */,
 				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
+				942D480416A8427D00F6CD12 /* BannerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,6 +1211,7 @@
 				37410ADD16A0CDD100F2E958 /* _StationParse.m in Sources */,
 				3763582616A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */,
 				3763582A16A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m in Sources */,
+				942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

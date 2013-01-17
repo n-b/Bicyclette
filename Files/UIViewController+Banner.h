@@ -8,5 +8,6 @@
 
 @interface UIViewController (Banner)
 extern const NSUInteger kBannerViewID;
-- (void) displayBanner:(NSString*)message sticky:(BOOL)sticky;
+- (void) displayBannerTitle:(NSString*)title subtitle:(NSString*)subtitle sticky:(BOOL)sticky;
+- (void) dismissBanner;
 @end

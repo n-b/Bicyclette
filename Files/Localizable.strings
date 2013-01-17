@@ -14,7 +14,6 @@
 "UPDATE_STATIONS_LIST_BUTTON" = "Mettre à jour";
 "UPDATING : FETCHING" = "Téléchargement…";
 "UPDATING : PARSING" = "Mise à jour…";
-"%@_NETWORK" = "Réseau %@";
 
 "STATION_STATUS_CLOSED" = "Station fermée";
 
