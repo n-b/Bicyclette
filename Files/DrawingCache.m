@@ -24,14 +24,14 @@ typedef enum {
 
 @implementation DrawingCache
 {
-    NSMutableDictionary * _cache;
+    NSCache * _cache;
 }
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        _cache = [NSMutableDictionary new];
+        _cache = [NSCache new];
     }
     return self;
 }
@@ -42,11 +42,12 @@ typedef enum {
                        borderMode:(BorderMode)border
                         baseColor:(UIColor*)baseColor
                             value:(NSString *)text
+                        textColor:(UIColor*)textColor
                             phase:(CGFloat)phase
 {
     return [self sharedImageWithSize:size scale:scale shape:shape borderMode:border baseColor:baseColor
                         borderColor1:kAnnotationFrame1Color borderColor2:kAnnotationFrame2Color borderColor3:kAnnotationFrame3Color borderWidth:1
-                               value:text phase:phase];
+                               value:text textColor:textColor phase:phase];
 }
 
 - (CGImageRef)sharedImageWithSize:(CGSize)size
@@ -59,6 +60,7 @@ typedef enum {
                      borderColor3:(UIColor*)borderColor3
                       borderWidth:(CGFloat)borderWidth
                             value:(NSString *)text
+                        textColor:(UIColor*)textColor
                             phase:(CGFloat)phase
 {
     NSString * key = [NSString stringWithFormat:@"image%d_%d_%f_%d_%d_%@_%@_%@_%@_%f_%@_%f",
@@ -67,11 +69,11 @@ typedef enum {
                       [borderColor1 hsbString], [borderColor2 hsbString], [borderColor3 hsbString], borderWidth,
                       text, phase];
     
-    CGImageRef result = (__bridge CGImageRef)_cache[key];
+    CGImageRef result = (__bridge CGImageRef)[_cache objectForKey:key];
     if(result) return result;
     @synchronized(self)
     {
-        if (_cache[key]==nil)
+        if ([_cache objectForKey:key]==nil)
         {
             CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
             CGContextRef c = CGBitmapContextCreate(NULL, size.width*scale, size.height*scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast);
@@ -148,7 +150,7 @@ typedef enum {
                 {
                     
                     // Make c the current GraphicsContext
-                    [kAnnotationValueTextColor setFill];
+                    [textColor setFill];
                     CGContextSetShadowWithColor(c, CGSizeMake(0, -1/scale), 0, [kAnnotationValueShadowColor CGColor]);
                     CGSize textSize = [text sizeWithFont:kAnnotationValueFont];
                     CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
@@ -158,10 +160,10 @@ typedef enum {
             UIGraphicsPopContext();
             
             CGImageRef image = CGBitmapContextCreateImage(c);
-            _cache[key] = CFBridgingRelease(image);
+            [_cache setObject:CFBridgingRelease(image) forKey:key];
             CGContextRelease(c);
         }
-        return (__bridge CGImageRef)_cache[key];
+        return (__bridge CGImageRef)[_cache objectForKey:key];
     }
 }
 

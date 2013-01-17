@@ -74,7 +74,8 @@
                                                       borderColor2:kRegionFrame2Color
                                                       borderColor3:kRegionFrame3Color
                                                        borderWidth:2
-                                                             value:@""
+                                                             value:nil
+                                                         textColor:nil
                                                              phase:0];
     
     

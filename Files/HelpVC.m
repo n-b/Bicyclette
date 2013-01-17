@@ -85,6 +85,7 @@
                                     borderMode:BorderModeSolid
                                      baseColor:kGoodValueColor
                                          value:@"12"
+                                     textColor:kAnnotationValueTextColor
                                          phase:0];
     
     if(layer==self.legendViewForParking.layer)
@@ -95,6 +96,7 @@
                                     borderMode:BorderModeSolid
                                      baseColor:kGoodValueColor
                                          value:@"7"
+                                     textColor:kAnnotationValueTextColor
                                          phase:0];
     
     if(layer==self.legendViewForStaleData.layer)
@@ -105,6 +107,7 @@
                                     borderMode:BorderModeSolid
                                      baseColor:kUnknownValueColor
                                          value:@"32"
+                                     textColor:kAnnotationValueTextColorAlt
                                          phase:0];
     
     if(layer==self.legendViewForRadar.layer)
@@ -114,7 +117,8 @@
                                          shape:BackgroundShapeOval
                                     borderMode:BorderModeDashes
                                      baseColor:nil
-                                         value:@""
+                                         value:nil
+                                     textColor:nil
                                          phase:0];
     
     if(layer==self.legendViewForRadarHandle.layer)
@@ -124,7 +128,8 @@
                                          shape:BackgroundShapeOval
                                     borderMode:BorderModeSolid
                                      baseColor:kRadarAnnotationSelectedColor
-                                         value:@""
+                                         value:nil
+                                     textColor:nil
                                          phase:0];
 }
 

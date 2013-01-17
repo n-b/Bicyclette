@@ -43,6 +43,7 @@
 #define kAnnotationDetailFont			[UIFont fontWithName:@"GillSans" size:16]
 
 #define kAnnotationValueTextColor		[kAnnotationTextColor colorWithBrightness:.07]
+#define kAnnotationValueTextColorAlt	[kAnnotationTextColor colorWithBrightness:.4]
 #define kAnnotationValueShadowColor		[kAnnotationTextColor colorWithBrightness:1]
 #define kAnnotationValueFont			[UIFont fontWithName:@"AvenirNext-Medium" size:18]
 

@@ -93,7 +93,7 @@
 - (void) displayLayer:(CALayer *)layer
 {
     // Prepare Value
-    UIColor * baseColor;
+    UIColor * baseColor, * textColor;
     NSString * text;
     
     if([[self station] statusDataIsFresh] && [[self station] openValue])
@@ -109,6 +109,7 @@
         else baseColor = kGoodValueColor;
         
         text = [NSString stringWithFormat:@"%d",value];
+        textColor = kAnnotationValueTextColor;
     }
     else
     {
@@ -117,6 +118,7 @@
             text = [NSString stringWithFormat:@"%d",[self station].status_totalValue];
         else
             text = @"-";
+        textColor = kAnnotationValueTextColorAlt;
     }
     
     self.layer.contents = (id)[self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
@@ -125,6 +127,7 @@
                                                           borderMode:BorderModeSolid
                                                            baseColor:baseColor
                                                                value:text
+                                                           textColor:textColor
                                                                phase:0];
 }
 

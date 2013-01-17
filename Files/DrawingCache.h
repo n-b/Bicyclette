@@ -33,6 +33,7 @@ typedef enum {
                        borderMode:(BorderMode)border
                         baseColor:(UIColor*)baseColor
                             value:(NSString*)text
+                        textColor:(UIColor*)textColor
                             phase:(CGFloat)phase;
 - (CGImageRef)sharedImageWithSize:(CGSize)size
                             scale:(CGFloat)scale
@@ -44,5 +45,6 @@ typedef enum {
                      borderColor3:(UIColor*)borderColor3
                       borderWidth:(CGFloat)borderWidth
                             value:(NSString *)text
+                        textColor:(UIColor*)textColor
                             phase:(CGFloat)phase;
 @end

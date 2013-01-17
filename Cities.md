@@ -74,6 +74,8 @@ The data contains both the List of stations and the Status Details.
 * London : http://www.tfl.gov.uk/tfl/syndication/feeds/cycle-hire/livecyclehireupdates.xml
 * Washington : http://capitalbikeshare.com/data/stations/bikeStations.xml
 * Boston : http://www.thehubway.com/data/stations/bikeStations.xml
+	* http://hubwaydatachallenge.org/api/v1/stationstatus/?format=json&username=n-b&api_key=10f6a298f1155b29a13648d66fac42ef7af4487e&station=33&update__lte=2011-08-27T1:10&order_by=-update
+	* http://hubwaydatachallenge.org/api/v1/station/?format=json&username=n-b&api_key=10f6a298f1155b29a13648d66fac42ef7af4487e
 * Minneapolis : https://secure.niceridemn.org/data2/bikeStations.xml 
 
 ## Melbourne

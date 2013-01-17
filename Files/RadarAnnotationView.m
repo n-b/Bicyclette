@@ -130,7 +130,8 @@
                                                                       shape:BackgroundShapeOval
                                                                  borderMode:BorderModeSolid
                                                                   baseColor:color
-                                                                      value:@""
+                                                                      value:nil
+                                                                  textColor:nil
                                                                       phase:0];
     }
 }
@@ -142,7 +143,8 @@
                                                                shape:BackgroundShapeOval
                                                           borderMode:BorderModeDashes
                                                            baseColor:nil
-                                                               value:@""
+                                                               value:nil
+                                                           textColor:nil
                                                                phase:0];
     [self displayHandleLayer];
 }
