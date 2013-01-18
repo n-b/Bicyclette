@@ -132,7 +132,7 @@
     self.authorizationAlertView = nil;
     if(status==kCLAuthorizationStatusDenied || status==kCLAuthorizationStatusRestricted)
     {
-        NSString * message = NSLocalizedString(@"LOCALIZATION_PURPOSE", nil);
+        NSString * message = NSLocalizedStringFromTable(@"NSLocationUsageDescription", @"InfoPlist", nil);
         if (status==kCLAuthorizationStatusDenied) {
             message = [message stringByAppendingFormat:@"\n%@",NSLocalizedString(@"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE", nil)];
         }

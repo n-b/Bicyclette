@@ -1,0 +1,67 @@
+/* 
+  Localizable.strings
+  Bicyclette
+
+  Created by Nicolas Bouilleaud on 15/07/12.
+  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
+*/
+
+/* Main chrome */
+
+"BIKE" = "Vélos";
+"PARKING" = "Places";
+
+"STATION_STATUS_CLOSED" = "Station fermée";
+
+/* Localization */
+
+"LOCALIZATION_ERROR_UNAUTHORIZED_TITLE" = "Le service de localisation (GPS) est désactivé.";
+"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "Vous pouvez autoriser Bicyclette à utiliser le service de localisation dans Réglages > Confidentialité.";
+
+/* Notification text */
+
+"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d vélos, %3$d places à %1$@";
+
+/* Prefs chrome */
+
+"DESIGN_AND_CODE" = "Design & Code Nicolas Bouilleaud";
+"CONTACT_EMAIL_SUPPORT" = "Une suggestion, un bug ?";
+
+"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version : %1$@<br>Modèle : %2$@<br>OS : %3$@";
+
+"STORE_PLEASE_HELP_LABEL" = "Vous aimez ?";
+"STORE_PLEASE_HELP_BUTTON" = "Dire merci !";
+
+"SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, la meilleure appli pour les vélos en libre service !";
+"SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, la meilleure appli pour %@ !";
+
+"APPSTORE_RATINGS_BUTTON" = "Noter sur l’App Store";
+
+"SEE_HELP_LABEL" = "Un problème ?";
+"SEE_HELP_BUTTON" = "Revoir l’aide";
+
+"STATIONS_LIST_CITY_%@" = "Liste des stations %@ :";
+"UPDATE_STATIONS_LIST_BUTTON" = "Mettre à jour";
+
+/* Store */
+
+"STORE_UNAVAILABLE_TITLE" = "Achat impossible";
+"STORE_UNAVAILABLE_MESSAGE" = "Les achats intégrés sont désactivés.";
+
+"STORE_SHEET_TITLE" = "Cette appli vous est utile ?\nVotre aide est la bienvenue !\n\nPayez ce que vous voulez :";
+"STORE_SHEET_CANCEL" = "Annuler";
+
+"STORE_THANK_YOU_LABEL" = "Merci !";
+"STORE_REWARD_1" = "☺";
+"STORE_REWARD_2" = "☺☺";
+"STORE_REWARD_3" = "☺☺☺";
+
+/* Updates */
+
+"UPDATING : FETCHING" = "Téléchargement…";
+"UPDATING : PARSING" = "Mise à jour…";
+"UPDATING : NO NEW DATA" = "Liste à jour";
+"UPDATING : COMPLETED" = "Mise à jour terminée";
+"%d STATION COUNT OF TYPE %@" = "%d stations %@";
+"UPDATING : FAILED" = "Échec de la mise à jour";
+"UPDATING : COMPLETED WITH ERRORS" = "Des stations mal géolocalisées ont été ignorées :";

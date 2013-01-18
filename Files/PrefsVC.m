@@ -17,13 +17,19 @@
 @property IBOutletCollection(UITableViewCell) NSArray *cells;
 
 @property IBOutlet UIImageView *logoView;
+@property IBOutlet UILabel *designAndCodeLabel;
+@property IBOutlet UILabel *contactSupportButton;
 
-@property IBOutlet UIToolbar *tweetBar;
-
-@property IBOutlet UIActivityIndicatorView *storeIndicator;
 @property IBOutlet UILabel *storeLabel;
+@property IBOutlet UIActivityIndicatorView *storeIndicator;
 @property IBOutlet UIBarButtonItem *storeButton;
 @property IBOutlet UILabel *rewardLabel;
+
+@property IBOutlet UIToolbar *tweetBar;
+@property IBOutlet UIBarButtonItem *appstoreRatingsButton;
+
+@property IBOutlet UILabel *seeHelpLabel;
+@property IBOutlet UIBarButtonItem *seeHelpButton;
 
 @property IBOutlet UIView *updateView;
 @property IBOutlet UIActivityIndicatorView *updateIndicator;
@@ -82,6 +88,14 @@
     [super viewDidLoad];
     self.logoView.layer.cornerRadius = 9;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetButton) name:ACAccountStoreDidChangeNotification object:nil];
+
+    self.designAndCodeLabel.text = NSLocalizedString(@"DESIGN_AND_CODE", nil);
+    self.contactSupportButton.text = NSLocalizedString(@"CONTACT_EMAIL_SUPPORT", nil);
+    
+    self.appstoreRatingsButton.title = NSLocalizedString(@"APPSTORE_RATINGS_BUTTON", nil);
+
+    self.seeHelpLabel.text = NSLocalizedString(@"SEE_HELP_LABEL", nil);
+    self.seeHelpButton.title = NSLocalizedString(@"SEE_HELP_BUTTON", nil);
 }
 
 - (void) viewWillAppear:(BOOL)animated{

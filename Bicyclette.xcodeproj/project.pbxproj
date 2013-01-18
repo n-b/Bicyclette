@@ -83,7 +83,6 @@
 		377620E6167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */; };
 		377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */; };
 		377863A9169468990036A37C /* NSProcessInfo+HardwareMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */; };
-		377863AE1694769D0036A37C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 377863AD1694769D0036A37C /* InfoPlist.strings */; };
 		377863B11694996C0036A37C /* MapViewScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 377863B01694996C0036A37C /* MapViewScaleView.m */; };
 		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
@@ -118,7 +117,6 @@
 		37AEB5A916778822000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
 		37AEB5AA16778823000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
 		37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */; };
-		37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */; };
 		37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
 		37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
 		37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
@@ -180,6 +178,8 @@
 		94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC616A99A6000EB6C84 /* twitter@2x.png */; };
 		94E45DC916A99A6000EB6C84 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC716A99A6000EB6C84 /* twitter.png */; };
 		94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DCA16A9A5F500EB6C84 /* Accounts.framework */; };
+		94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DCE16A9B1E200EB6C84 /* Localizable.strings */; };
+		94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,7 +324,6 @@
 		377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrleansVeloPlusCity.m; sourceTree = "<group>"; };
 		377863A7169468990036A37C /* NSProcessInfo+HardwareMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+HardwareMachine.h"; sourceTree = "<group>"; };
 		377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+HardwareMachine.m"; sourceTree = "<group>"; };
-		377863AD1694769D0036A37C /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		377863AF1694996C0036A37C /* MapViewScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewScaleView.h; sourceTree = "<group>"; };
 		377863B01694996C0036A37C /* MapViewScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewScaleView.m; sourceTree = "<group>"; };
 		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -356,7 +355,6 @@
 		37AEB5A316777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+ValidateDeleteAndSave.h"; sourceTree = "<group>"; };
 		37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+ValidateDeleteAndSave.m"; sourceTree = "<group>"; };
 		37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditionsTests.m; sourceTree = "<group>"; };
-		37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
 		37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
 		37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
@@ -428,6 +426,10 @@
 		94E45DC616A99A6000EB6C84 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 		94E45DC716A99A6000EB6C84 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		94E45DCA16A9A5F500EB6C84 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		94E45DCD16A9B1E200EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		94E45DCF16A9B1E700EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		94E45DD116A9B3A400EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		94E45DD316A9B3A800EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -669,8 +671,8 @@
 			children = (
 				3756EADE1298018A00113534 /* Info.plist */,
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
-				37AFC0EE15B2F0AC00E3E940 /* Localizable.strings */,
-				377863AD1694769D0036A37C /* InfoPlist.strings */,
+				94E45DCE16A9B1E200EB6C84 /* Localizable.strings */,
+				94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */,
 				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
 				3786E4E214825A7700814C10 /* Test Supporting Files */,
 				94B07A8A16A7190C00F6331F /* mogenerate.sh */,
@@ -1061,7 +1063,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
 				37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */,
-				37AFC0EF15B2F0AC00E3E940 /* Localizable.strings in Resources */,
+				94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */,
 				37EC535215BAFB0400F45C09 /* Default.png in Resources */,
 				37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */,
 				37EC535515BAFB0400F45C09 /* Icon.png in Resources */,
@@ -1099,7 +1101,7 @@
 				37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */,
 				375760EE1687C6360042FCF8 /* Marseille_Le Vélo.coredata in Resources */,
 				375760EF1687C6360042FCF8 /* Paris_Vélib‘.coredata in Resources */,
-				377863AE1694769D0036A37C /* InfoPlist.strings in Resources */,
+				94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */,
 				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
 				942D480416A8427D00F6CD12 /* BannerView.xib in Resources */,
 				94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */,
@@ -1297,6 +1299,27 @@
 			targetProxy = 371D4FB71482F66700A6DF77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		94E45DCE16A9B1E200EB6C84 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94E45DCD16A9B1E200EB6C84 /* fr */,
+				94E45DCF16A9B1E700EB6C84 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94E45DD116A9B3A400EB6C84 /* fr */,
+				94E45DD316A9B3A800EB6C84 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
