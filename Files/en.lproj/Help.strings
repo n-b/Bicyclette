@@ -1,0 +1,22 @@
+/* 
+  Help.strings
+  Bicyclette
+
+  Created by Nicolas @ bou.io on 18/01/13.
+  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
+*/
+
+"HELP_TITLE" = "Hello!";
+"HELP_FOREWORD" = "A few words before we begin.\
+\
+Bicyclette shows you in real time the available bikes and docks:";
+"HELP_BIKES" = "Available bikes";
+"HELP_PARKING" = "Empty docks";
+"HELP_STALE" = "A gray symbol indicates the total of docks in the station";
+"HELP_PLEASE_HELP" = "If you like this app, your help is most welcome!";
+"HELP_PAY_WHAT_YOU_WANT" = "It’s entirely optional, and you pay what you want.";
+"HELP_EPILOGUE" = "That’s all !\
+\
+Be careful on a bike, and always park before you use your iPhone.\
+\
+Have a nice ride!";

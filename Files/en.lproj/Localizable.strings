@@ -30,15 +30,15 @@
 "SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@";
 
 "STORE_PLEASE_HELP_LABEL" = "Like this app?";
-"STORE_PLEASE_HELP_BUTTON" = "Make it better!";
+"STORE_PLEASE_HELP_BUTTON" = "Help Me Make It Better!";
 
 "SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, the best app for bike-sharing!";
 "SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, la meilleure appli pour %@!";
 
 "APPSTORE_RATINGS_BUTTON" = "Rate on the App Store";
 
-"SEE_HELP_LABEL" = "Something wrong?";
-"SEE_HELP_BUTTON" = "View the instructions again";
+"SEE_HELP_LABEL" = "Need some help?";
+"SEE_HELP_BUTTON" = "View the Instructions";
 
 "STATIONS_LIST_CITY_%@" = "“%@” stations:";
 "UPDATE_STATIONS_LIST_BUTTON" = "Update";
@@ -48,7 +48,7 @@
 "STORE_UNAVAILABLE_TITLE" = "Unable to make the purchase";
 "STORE_UNAVAILABLE_MESSAGE" = "In-App Purchases are disabled.";
 
-"STORE_SHEET_TITLE" = "Is this app useful to you?\nYour help is most welcome!\n\nPay what you want:";
+"STORE_SHEET_TITLE" = "Is this app useful to you?\nYour help is most welcome!\n\nGive what you want:";
 "STORE_SHEET_CANCEL" = "Cancel";
 
 "STORE_THANK_YOU_LABEL" = "Thank you!";

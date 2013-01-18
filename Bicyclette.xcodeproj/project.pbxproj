@@ -180,6 +180,7 @@
 		94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DCA16A9A5F500EB6C84 /* Accounts.framework */; };
 		94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DCE16A9B1E200EB6C84 /* Localizable.strings */; };
 		94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */; };
+		94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD816A9C2D200EB6C84 /* Help.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -430,6 +431,8 @@
 		94E45DCF16A9B1E700EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94E45DD116A9B3A400EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94E45DD316A9B3A800EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		94E45DD716A9C2D200EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/Help.strings; sourceTree = "<group>"; };
+		94E45DD916A9C2D500EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Help.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,6 +676,7 @@
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
 				94E45DCE16A9B1E200EB6C84 /* Localizable.strings */,
 				94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */,
+				94E45DD816A9C2D200EB6C84 /* Help.strings */,
 				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
 				3786E4E214825A7700814C10 /* Test Supporting Files */,
 				94B07A8A16A7190C00F6331F /* mogenerate.sh */,
@@ -1106,6 +1110,7 @@
 				942D480416A8427D00F6CD12 /* BannerView.xib in Resources */,
 				94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */,
 				94E45DC916A99A6000EB6C84 /* twitter.png in Resources */,
+				94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1317,6 +1322,15 @@
 				94E45DD316A9B3A800EB6C84 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		94E45DD816A9C2D200EB6C84 /* Help.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94E45DD716A9C2D200EB6C84 /* fr */,
+				94E45DD916A9C2D500EB6C84 /* en */,
+			);
+			name = Help.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

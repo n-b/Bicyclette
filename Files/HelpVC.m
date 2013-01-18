@@ -22,6 +22,15 @@
 @property IBOutlet UIView *legendViewForStaleData;
 @property IBOutlet UIView *legendViewForRadar;
 @property IBOutlet UIView *legendViewForRadarHandle;
+
+@property IBOutlet UILabel * titleLabel;
+@property IBOutlet UILabel * forewordLabel;
+@property IBOutlet UILabel * bikesLabel;
+@property IBOutlet UILabel * parkingLabel;
+@property IBOutlet UILabel * staleLabel;
+@property IBOutlet UILabel * pleaseHelpLabel;
+@property IBOutlet UILabel * payWhatYouWantLabel;
+@property IBOutlet UILabel * epilogueLabel;
 @end
 
 /****************************************************************************/
@@ -54,6 +63,16 @@
     
     self.legendViewForRadarHandle.layer.shadowOpacity = .4f;
     self.legendViewForRadarHandle.layer.shadowOffset = CGSizeMake(0, .5*self.legendViewForRadarHandle.bounds.size.height);
+    
+    
+    self.titleLabel.text = NSLocalizedStringFromTable(@"HELP_TITLE", @"Help", nil);
+    self.forewordLabel.text = NSLocalizedStringFromTable(@"HELP_FOREWORD", @"Help", nil);
+    self.bikesLabel.text = NSLocalizedStringFromTable(@"HELP_BIKES", @"Help", nil);
+    self.parkingLabel.text = NSLocalizedStringFromTable(@"HELP_PARKING", @"Help", nil);
+    self.staleLabel.text = NSLocalizedStringFromTable(@"HELP_STALE", @"Help", nil);
+    self.pleaseHelpLabel.text = NSLocalizedStringFromTable(@"HELP_PLEASE_HELP", @"Help", nil);
+    self.payWhatYouWantLabel.text = NSLocalizedStringFromTable(@"HELP_PAY_WHAT_YOU_WANT", @"Help", nil);
+    self.epilogueLabel.text = NSLocalizedStringFromTable(@"HELP_EPILOGUE", @"Help", nil);
 }
 
 - (void) viewWillAppear:(BOOL)animated

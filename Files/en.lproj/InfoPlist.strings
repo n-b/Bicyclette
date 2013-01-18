@@ -6,4 +6,4 @@
   Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 */
 
-"NSLocationUsageDescription" = "Bicyclette uses the Location Services to automatically update nearby stations."
+"NSLocationUsageDescription" = "Bicyclette uses the Location Services to automatically update nearby stations.";
