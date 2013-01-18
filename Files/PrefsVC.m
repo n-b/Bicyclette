@@ -16,17 +16,20 @@
 @interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property IBOutletCollection(UITableViewCell) NSArray *cells;
 
-@property IBOutlet UISegmentedControl *radarDistanceSegmentedControl;
+@property IBOutlet UIImageView *logoView;
 
-@property IBOutlet UIActivityIndicatorView *updateIndicator;
-@property IBOutlet UILabel *updateLabel;
-@property IBOutlet UIBarButtonItem *updateButton;
-@property IBOutlet UIToolbar *updateButtonBar;
+@property IBOutlet UIToolbar *tweetBar;
+
 @property IBOutlet UIActivityIndicatorView *storeIndicator;
 @property IBOutlet UILabel *storeLabel;
 @property IBOutlet UIBarButtonItem *storeButton;
 @property IBOutlet UILabel *rewardLabel;
-@property IBOutlet UIImageView *logoView;
+
+@property IBOutlet UIView *updateView;
+@property IBOutlet UIActivityIndicatorView *updateIndicator;
+@property IBOutlet UILabel *updateLabel;
+@property IBOutlet UIBarButtonItem *updateButton;
+@property IBOutlet UIToolbar *updateButtonBar;
 
 @property Store * store;
 @property NSArray * products;
@@ -78,12 +81,12 @@
 {
     [super viewDidLoad];
     self.logoView.layer.cornerRadius = 9;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetButton) name:ACAccountStoreDidChangeNotification object:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self updateUpdateLabel];
-    [self updateRadarDistancesSegmentedControl];
     if(![self.updateIndicator isAnimating])
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
     [self updateStoreButton];
@@ -94,22 +97,7 @@
     self.updateLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),self.controller.currentCity.serviceName];
     
     // If the city can't update stations individually, it will update the whole list automatically.
-    self.updateLabel.hidden = self.updateButtonBar.hidden = ! [self.controller.currentCity canUpdateIndividualStations];
-}
-
-- (void) updateRadarDistancesSegmentedControl
-{
-    [self.radarDistanceSegmentedControl removeAllSegments];
-    
-    NSNumber * radarDistance = [[NSUserDefaults standardUserDefaults] objectForKey:@"RadarDistance"];
-    
-    NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
-    [distances enumerateObjectsUsingBlock:^(NSNumber * d, NSUInteger index, BOOL *stop) {
-        [self.radarDistanceSegmentedControl insertSegmentWithTitle:[NSString stringWithFormat:@"%@ m",d]
-                                                           atIndex:index animated:NO];
-        if([radarDistance isEqualToNumber:d])
-            self.radarDistanceSegmentedControl.selectedSegmentIndex = index;
-    }];
+    self.updateView.hidden = ! [self.controller.currentCity canUpdateIndividualStations];
 }
 
 /****************************************************************************/
@@ -171,12 +159,6 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailLink]];
 }
 
-- (IBAction)changeRadarDistance {
-    NSArray * distances = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RadarDistances"];
-    NSNumber * d = distances[self.radarDistanceSegmentedControl.selectedSegmentIndex];
-    [[NSUserDefaults standardUserDefaults] setObject:d forKey:@"RadarDistance"];
-}
-
 /****************************************************************************/
 #pragma mark City updates
 
@@ -185,16 +167,18 @@
     [self.controller.currentCity update];
 }
 
-- (void) cityDataUpdated:(NSNotification*)note
+- (void)cityDataUpdated:(NSNotification*)note
 {
     if(note.object!=self.controller.currentCity)
+        return;
+    if(! [note.object canUpdateIndividualStations])
         return;
     
     if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
     {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil)];
         [self.updateIndicator startAnimating];
-        self.updateLabel.alpha = 0;
+        self.updateLabel.hidden = YES;
         self.updateButton.enabled = NO;
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
@@ -204,7 +188,7 @@
     else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
     {
         [self.updateIndicator stopAnimating];
-        self.updateLabel.alpha = 1;
+        self.updateLabel.hidden = NO;
         self.updateButton.enabled = YES;
         BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
         NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
@@ -241,7 +225,7 @@
     else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
     {
         [self.updateIndicator stopAnimating];
-        self.updateLabel.alpha = 1;
+        self.updateLabel.hidden = NO;
         self.updateButton.enabled = YES;
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
         NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
@@ -249,6 +233,43 @@
                                    message:[error localizedDescription]
                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
+}
+
+/****************************************************************************/
+#pragma mark - Share and Rate
+
+- (NSURL*) appURLOnStore
+{
+    return [NSURL URLWithString:@"https://itunes.apple.com/us/app/bicyclette/id546171712?l=fr&ls=1&mt=8"];
+}
+
+- (void) updateTweetButton
+{
+    self.tweetBar.hidden = ! [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
+}
+
+- (IBAction)tweet:(id)sender
+{
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController * socialVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        NSString * message;
+        if(self.controller.currentCity)
+            message = [NSString stringWithFormat:NSLocalizedString(@"SHARE_BICYCLETTE_MESSAGE_CITY_%@", nil),self.controller.currentCity.serviceName];
+        else
+            message = NSLocalizedString(@"SHARE_BICYCLETTE_MESSAGE_GENERIC", nil);
+        
+        [socialVC setInitialText:message];
+        [socialVC addImage:[UIImage imageNamed:@"Icon"]];
+        [socialVC addURL:[self appURLOnStore]];
+        [self presentViewController:socialVC animated:YES completion:nil];
+    }
+}
+
+- (IBAction)rate:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=546171712"]];
 }
 
 /****************************************************************************/
@@ -269,7 +290,8 @@
     return [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ProductsAndRewards"];
 }
 
-// Begin Store Action
+#pragma mark - // Begin Store Action
+
 - (IBAction)donate {
     self.products = nil;
     BOOL didRequest = [self.store requestProducts:[[self productsAndRewards] allKeys]];
@@ -340,6 +362,7 @@
     self.products = nil;
 }
 
+#pragma mark -
 // Transaction end
 - (void) store:(Store*)store purchaseSucceeded:(NSString*)productIdentifier
 {

@@ -149,7 +149,7 @@
     },
     "radius" : 9837.786945405222,
     "station_details_url" : "http:\/\/www.velib.paris.fr\/service\/stationdetails\/paris\/",
-    "service_name" : "Vélib‘",
+    "service_name" : "Vélib’",
     "longitude" : 2.351331172680326,
     "latitude" : 48.8607308057246,
     "city_class" : "ParisVelibCity",

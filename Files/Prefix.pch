@@ -10,6 +10,8 @@
 	#import <UIKit/UIKit.h>
 	#import <MapKit/MapKit.h>
 	#import <StoreKit/StoreKit.h>
+	#import <Social/Social.h>
+	#import <Accounts/Accounts.h>
 #else
 	#import <Cocoa/Cocoa.h>
 #endif
