@@ -45,7 +45,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIBarStyle">2</int>
-						<array class="NSMutableArray" key="IBUIItems"/>
+						<array key="IBUIItems" id="0"/>
 					</object>
 					<object class="IBUILabel" id="966180113">
 						<reference key="NSNextResponder" ref="457716314"/>
@@ -116,7 +116,7 @@
 					<object class="IBUILabel" id="816291544">
 						<reference key="NSNextResponder" ref="457716314"/>
 						<int key="NSvFlags">282</int>
-						<string key="NSFrame">{{0, 23}, {320, 21}}</string>
+						<string key="NSFrame">{{0, 21}, {320, 21}}</string>
 						<reference key="NSSuperview" ref="457716314"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -190,7 +190,7 @@
 				<array key="orderedObjects">
 					<object class="IBObjectRecord">
 						<int key="objectID">0</int>
-						<array key="object" id="0"/>
+						<reference key="object" ref="0"/>
 						<reference key="children" ref="1000"/>
 						<nil key="parent"/>
 					</object>

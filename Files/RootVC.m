@@ -13,6 +13,10 @@
 #import "UIView+Screenshot.h"
 #import "BicycletteCity.h"
 #import "CitiesController.h"
+#import "UIViewController+Banner.h"
+
+@interface RootVC () <UIAlertViewDelegate>
+@end
 
 /****************************************************************************/
 #pragma mark -
@@ -24,7 +28,10 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationDidFinishLaunching:) name:UIApplicationDidFinishLaunchingNotification
+                                                 selector:@selector(showHelpIfNeeded) name:UIApplicationDidFinishLaunchingNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(askForDonationIfNeeded) name:UIApplicationDidBecomeActiveNotification
                                                    object:nil];
     }
     return self;
@@ -44,23 +51,6 @@
     ((MapVC*)self.frontViewController).controller = self.citiesController;
     ((PrefsVC*)self.backViewController).controller = self.citiesController;
     citiesController.delegate = ((MapVC*)self.frontViewController);
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (void) applicationDidFinishLaunching:(NSNotification*)note
-{
-    // Show help at first launch
-    if([NSUserDefaults.standardUserDefaults boolForKey:@"DisplayHelpAtLaunch"]||
-       [NSUserDefaults.standardUserDefaults boolForKey:@"DebugDisplayHelpAtLaunch"])
-    {
-        [self showHelp];
-    }
-    else
-    {
-        [self notifyCanRequestLocation];
-    }
 }
 
 /****************************************************************************/
@@ -87,12 +77,28 @@
     [self.view bringSubviewToFront:self.infoButton];
 }
 
--(CGPoint) rotationCenter
+- (CGPoint) rotationCenter
 {
     return self.infoButton.center;
 }
+
 /****************************************************************************/
 #pragma mark -
+
+
+- (void) showHelpIfNeeded
+{
+    // Show help at first launch
+    if([NSUserDefaults.standardUserDefaults boolForKey:@"DisplayHelpAtLaunch"]||
+       [NSUserDefaults.standardUserDefaults boolForKey:@"DebugDisplayHelpAtLaunch"])
+    {
+        [self showHelp];
+    }
+    else
+    {
+        [self notifyCanRequestLocation];
+    }
+}
 
 - (IBAction)showHelp
 {
@@ -125,6 +131,68 @@
 - (void) notifyCanRequestLocation
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
+}
+
+/****************************************************************************/
+#pragma mark Donation Request Alert
+
+- (void) askForDonationIfNeeded
+{
+    NSMutableArray * lastLaunches = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bicyclette.App.LastLaunches"]];
+    NSTimeInterval intervalBetweenTwoLaunches = 24*60*60;
+    NSUInteger minCountInDonationInterval = 3;
+    NSTimeInterval donationInterval = 24*60*60*10;
+
+    NSDate * now = [NSDate date];
+    if([now timeIntervalSinceReferenceDate] - [[lastLaunches lastObject] timeIntervalSinceReferenceDate] > intervalBetweenTwoLaunches)
+    {
+        [lastLaunches addObject:now];
+    }
+    if( [lastLaunches count] > minCountInDonationInterval)
+    {
+        [lastLaunches removeObjectAtIndex:0];
+    }
+    
+    BOOL shouldAsk = NO;
+    if([lastLaunches count] == minCountInDonationInterval && [[lastLaunches lastObject] timeIntervalSinceReferenceDate] - [[lastLaunches objectAtIndex:0] timeIntervalSinceReferenceDate] < donationInterval)
+    {
+        shouldAsk = YES;
+        lastLaunches = [NSArray array];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:lastLaunches forKey:@"Bicyclette.App.LastLaunches"];
+    
+    if(shouldAsk)
+    {
+#if DEBUG
+        NSString * purchasedProduct = [[NSUserDefaults standardUserDefaults] objectForKey:@"DebugPurchasedProductsIdentifier"];
+#else
+        NSString * purchasedProduct = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
+#endif
+        if([purchasedProduct length] != 0)
+        {
+            NSString * reward = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ProductsAndRewards"][purchasedProduct];
+            [self.frontViewController displayBannerTitle:NSLocalizedString(@"STORE_THANK_YOU_LABEL", nil) subtitle:NSLocalizedString(reward, nil) sticky:NO];
+        }
+        else
+        {
+            UIAlertView * storeAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
+                                                                  message:NSLocalizedString(@"STORE_ALERT_MESSAGE", nil)
+                                                                 delegate:self
+                                                        cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCEL", nil)
+                                                        otherButtonTitles:NSLocalizedString(@"STORE_ALERT_OK", nil), nil];
+            [storeAlert show];
+        }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==alertView.firstOtherButtonIndex)
+    {
+        [self showBackViewControllerAnimated:YES completion:^{
+            [((PrefsVC*)self.backViewController) donate];
+        }];
+    }
 }
 
 @end

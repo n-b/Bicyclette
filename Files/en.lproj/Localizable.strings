@@ -45,6 +45,11 @@
 
 /* Store */
 
+"STORE_ALERT_TITLE" = "Is this app useful to you?\nYour help is most welcome!";
+"STORE_ALERT_MESSAGE" = "You can give what you want.";
+"STORE_ALERT_CANCEL" = "Not now";
+"STORE_ALERT_OK" = "Yes!";
+
 "STORE_UNAVAILABLE_TITLE" = "Unable to make the purchase";
 "STORE_UNAVAILABLE_MESSAGE" = "In-App Purchases are disabled.";
 
@@ -52,9 +57,9 @@
 "STORE_SHEET_CANCEL" = "Cancel";
 
 "STORE_THANK_YOU_LABEL" = "Thank you!";
-"STORE_REWARD_1" = "☺";
-"STORE_REWARD_2" = "☺☺";
-"STORE_REWARD_3" = "☺☺☺";
+"STORE_REWARD_1" = "😀";
+"STORE_REWARD_2" = "😀😀";
+"STORE_REWARD_3" = "😀😀😀";
 
 /* Updates */
 

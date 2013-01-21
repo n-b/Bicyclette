@@ -45,6 +45,11 @@
 
 /* Store */
 
+"STORE_ALERT_TITLE" = "Cette appli vous est utile ?\nVotre aide est la bienvenue !";
+"STORE_ALERT_MESSAGE" = "Vous donnez ce que vous voulez.";
+"STORE_ALERT_CANCEL" = "Pas maintenant";
+"STORE_ALERT_OK" = "Oui !";
+
 "STORE_UNAVAILABLE_TITLE" = "Achat impossible";
 "STORE_UNAVAILABLE_MESSAGE" = "Les achats intégrés sont désactivés.";
 
@@ -52,9 +57,9 @@
 "STORE_SHEET_CANCEL" = "Annuler";
 
 "STORE_THANK_YOU_LABEL" = "Merci !";
-"STORE_REWARD_1" = "☺";
-"STORE_REWARD_2" = "☺☺";
-"STORE_REWARD_3" = "☺☺☺";
+"STORE_REWARD_1" = "😀";
+"STORE_REWARD_2" = "😀😀";
+"STORE_REWARD_3" = "😀😀😀";
 
 /* Updates */
 

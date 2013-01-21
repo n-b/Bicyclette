@@ -221,13 +221,11 @@
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUITextAlignment">1</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">ArialMT</string>
-											<string key="family">Arial</string>
-											<int key="traits">0</int>
+											<int key="type">1</int>
 											<double key="pointSize">28</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">ArialMT</string>
+											<string key="NSName">Helvetica</string>
 											<double key="NSSize">28</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -452,7 +450,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="67725001">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="134001759">
@@ -464,7 +462,6 @@
 								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{4, 5}, {200, 16}}</string>
 								<reference key="NSSuperview" ref="134001759"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -483,7 +480,6 @@
 						</array>
 						<string key="NSFrameSize">{296, 27}</string>
 						<reference key="NSSuperview" ref="67725001"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1017269682"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="323200375"/>
@@ -495,8 +491,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{316, 28}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="134001759"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -504,7 +498,7 @@
 				<reference key="IBUIContentView" ref="134001759"/>
 			</object>
 			<object class="IBUITableViewCell" id="906559009">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="309529695">
@@ -516,7 +510,6 @@
 								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{4, 5}, {272, 16}}</string>
 								<reference key="NSSuperview" ref="309529695"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -535,7 +528,6 @@
 						</array>
 						<string key="NSFrameSize">{296, 27}</string>
 						<reference key="NSSuperview" ref="906559009"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="370131339"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="323200375"/>
@@ -547,8 +539,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{316, 28}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="309529695"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1055,6 +1045,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">PrefsVC</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">donate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">donate</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">donate</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="appstoreRatingsButton">UIBarButtonItem</string>
 						<string key="contactSupportButton">UILabel</string>
