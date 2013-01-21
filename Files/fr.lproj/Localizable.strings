@@ -32,8 +32,8 @@
 "STORE_PLEASE_HELP_LABEL" = "Vous aimez ?";
 "STORE_PLEASE_HELP_BUTTON" = "Dire merci !";
 
-"SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, la meilleure appli pour les vélos en libre service !";
-"SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, la meilleure appli pour %@ !";
+"SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, la meilleure appli pour les vélos en libre service ! @bicycletteapp";
+"SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, la meilleure appli pour %@ ! @bicycletteapp";
 
 "APPSTORE_RATINGS_BUTTON" = "Noter sur l’App Store";
 

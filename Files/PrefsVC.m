@@ -275,7 +275,6 @@
             message = NSLocalizedString(@"SHARE_BICYCLETTE_MESSAGE_GENERIC", nil);
         
         [socialVC setInitialText:message];
-        [socialVC addImage:[UIImage imageNamed:@"Icon"]];
         [socialVC addURL:[self appURLOnStore]];
         [self presentViewController:socialVC animated:YES completion:nil];
     }
