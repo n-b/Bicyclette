@@ -25,16 +25,25 @@ const NSUInteger kBannerViewTag = 42105;
 
 - (BannerView*)bannerView {
     BannerView * banner = (BannerView*)[self.view viewWithTag:kBannerViewTag];
+    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect appFrameInView = [self.view convertRect:appFrame fromView:nil];
     if(banner==nil)
     {
-        CGRect f = self.view.bounds;
-        f.size.height = 44;
-        f = CGRectOffset(f, 0, 20);
-        banner = [[BannerView alloc] initWithFrame:f];
+        banner = [BannerView new];
+        CGRect f = banner.frame;
+        f.origin.x = 0;
+        f.origin.y = appFrameInView.origin.y;
+        f.size.width = appFrameInView.size.width;
+        banner.frame = f;
         banner.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
         banner.tag = kBannerViewTag;
         [self.view addSubview:banner];
     }
+    
+    CGRect f = banner.frame;
+    f.origin.y = appFrameInView.origin.y;
+    banner.frame = f;
+
     return banner;
 }
 
