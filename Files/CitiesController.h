@@ -7,6 +7,7 @@
 //
 
 @class BicycletteCity;
+@class Station;
 
 @protocol CitiesControllerDelegate;
 
@@ -17,11 +18,12 @@
 - (void) regionDidChange:(MKCoordinateRegion)region;
 - (void) handleLocalNotificaion:(UILocalNotification*)notification;
 - (void) selectCity:(BicycletteCity*)city_;
+- (void) switchStarredStation:(Station*)station;
 @end
 
 
 @protocol CitiesControllerDelegate <NSObject>
 - (void) controller:(CitiesController*)controller setRegion:(MKCoordinateRegion)region;
-- (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations;
+- (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations overlays:(NSArray*)newOverlays;
 - (void) controller:(CitiesController*)controller selectAnnotation:(id<MKAnnotation>)annotation;
 @end

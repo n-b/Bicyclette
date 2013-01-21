@@ -27,10 +27,7 @@
 @end
 
 
-@interface Geofence : NSObject <MKAnnotation>
+@interface Geofence : NSObject <MKOverlay>
 @property CLRegion * region;
-@property NSString * identifier;
-// To remove (used in MapVC)
-@property (nonatomic,readonly) MKCoordinateRegion radarRegion;
 @end
 

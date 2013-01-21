@@ -74,7 +74,8 @@
         _currentCity = currentCity_;
         for (Geofence * fence in [_currentCity geofences]) {
             [self.fenceMonitor addFence:fence];
-            [self.updateQueue addMonitoredGroup:fence];
+            if([_currentCity canUpdateIndividualStations])
+                [self.updateQueue addMonitoredGroup:fence];
         }
 
         self.screenCenterUpdateGroup.city = _currentCity;
@@ -157,6 +158,7 @@
 - (void) addAndRemoveMapAnnotations
 {
     NSMutableArray * newAnnotations = [NSMutableArray new];
+    NSMutableArray * newOverlays = [NSMutableArray new];
     
     if (self.currentCity==nil)
     {
@@ -170,8 +172,8 @@
     else
     {
         // Radars
-        NSArray * radars = [self.currentCity geofences];
-        [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:radars]];
+        NSArray * fences = [self.currentCity geofences];
+        [newOverlays addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:fences]];
 
         // Stations
         if([self showCurrentCityStations])
@@ -194,7 +196,7 @@
         }
     }
 
-    [self.delegate controller:self setAnnotations:newAnnotations];
+    [self.delegate controller:self setAnnotations:newAnnotations overlays:newOverlays];
 }
 
 
@@ -209,8 +211,19 @@
     } else {
         // Zoom directly to city
         CLRegion * region = [city_ regionContainingData];
-        [self.delegate controller:self setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius)];
+        [self.delegate controller:self setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius)]; // should be radius*2, but I want to zoom more
     }
+}
+
+- (void) switchStarredStation:(Station*)station
+{
+    [station.city performUpdates:^(NSManagedObjectContext *updateContext) {
+        Station * lstation = (Station*)[updateContext objectWithID:station.objectID];
+        lstation.starredValue = !lstation.starredValue;
+    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
+        [station.city updateFences];
+        [self addAndRemoveMapAnnotations];
+    }];
 }
 
 /****************************************************************************/
@@ -256,26 +269,6 @@
     if([note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue])
         [self addAndRemoveMapAnnotations];
 }
-
-/****************************************************************************/
-#pragma mark -
-
-//- (void) objectsChanged:(NSNotification*)note
-//{
-//    for (id object in note.userInfo[NSInsertedObjectsKey]) {
-//        if([object conformsToProtocol:@protocol(Geofence)])
-//            [self.fenceMonitor addFence:object];
-//        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
-//            [self.updateQueue addMonitoredGroup:object];
-//    }
-//
-//    for (id object in note.userInfo[NSDeletedObjectsKey]) {
-//        if([object conformsToProtocol:@protocol(Geofence)])
-//            [self.fenceMonitor removeFence:object];
-//        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
-//            [self.updateQueue removeMonitoredGroup:object];
-//    }
-//}
 
 /****************************************************************************/
 #pragma mark -

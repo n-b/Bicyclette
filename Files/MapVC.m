@@ -14,13 +14,13 @@
 #import "CollectionsAdditions.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
-#import "RadarAnnotationView.h"
 #import "DrawingCache.h"
 #import "MKMapView+AttributionLogo.h"
 #import "UIViewController+Banner.h"
 #import "MapVC+DebugScreenshots.h"
 #import "FanContainerViewController.h"
 #import "MapViewScaleView.h"
+#import "GeofencesMonitor.h"
 
 @interface MapVC() <MKMapViewDelegate>
 // UI
@@ -265,16 +265,15 @@
     }
 }
 
-- (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations
+- (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations overlays:(NSArray*)newOverlays
 {
-    NSArray * oldAnnotations = self.mapView.annotations;
-    oldAnnotations = [oldAnnotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
+    NSArray * oldAnnotations = [self.mapView.annotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
+    [self.mapView removeAnnotations:[oldAnnotations arrayByRemovingObjectsInArray:newAnnotations]];
+    [self.mapView addAnnotations:[newAnnotations arrayByRemovingObjectsInArray:oldAnnotations]];
     
-    NSArray * annotationsToRemove = [oldAnnotations arrayByRemovingObjectsInArray:newAnnotations];
-    NSArray * annotationsToAdd = [newAnnotations arrayByRemovingObjectsInArray:oldAnnotations];
-    
-    [self.mapView removeAnnotations:annotationsToRemove];
-    [self.mapView addAnnotations:annotationsToAdd];
+    NSArray * oldOverlays = self.mapView.overlays;
+    [self.mapView removeOverlays:[oldOverlays arrayByRemovingObjectsInArray:newOverlays]];
+    [self.mapView addOverlays:[newOverlays arrayByRemovingObjectsInArray:oldOverlays]];
 }
 
 /****************************************************************************/
@@ -309,6 +308,17 @@
 		return stationAV;
 	}
 	return nil;
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MKCircle*)circle
+{
+    NSAssert([circle isKindOfClass:[Geofence class]], nil);
+    MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:circle];
+
+    circleView.strokeColor = [UIColor grayColor];
+    circleView.fillColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
+
+    return circleView;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -347,10 +357,7 @@
     NSAssert([view isKindOfClass:[StationAnnotationView class]], nil);
     NSAssert([view.annotation isKindOfClass:[Station class]],nil);
     Station * station = (Station*)view.annotation;
-    [station.city performUpdates:^(NSManagedObjectContext *updateContext) {
-        Station * lstation = (Station*)[updateContext objectWithID:station.objectID];
-        lstation.starredValue = !lstation.starredValue;
-    } saveCompletion:nil];
+    [self.controller switchStarredStation:station];
 }
 
 /****************************************************************************/

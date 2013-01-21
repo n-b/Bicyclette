@@ -11,7 +11,9 @@
 
 @interface BicycletteCity (Geofences)
 @property (readonly) NSArray* geofences;
+- (void) updateFences;
 @end
 
 @interface Geofence (LocalUpdateGroup) <LocalUpdateGroup>
+@property NSArray * pointsToUpdate;
 @end

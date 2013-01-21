@@ -45,7 +45,6 @@
     if(![self.geofences containsObject:fence])
     {
         [self monitorFence:fence];
-        [fence addObserver:self forKeyPath:@"region" options:0 context:(__bridge void *)([GeofencesMonitor class])];
         [self.geofences addObject:fence];
     }
 }
@@ -54,7 +53,6 @@
 {
     if([self.geofences containsObject:fence])
     {
-        [fence removeObserver:self forKeyPath:@"region" context:(__bridge void *)([GeofencesMonitor class])];
         [self.locationManager stopMonitoringForRegion:fence.region];
     }
 }
@@ -77,18 +75,6 @@
 {
     // the radar.region always has the same identifier, so that the CLLocationManager knows it's the same region
     [self.locationManager startMonitoringForRegion:fence.region];
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == (__bridge void *)([GeofencesMonitor class])) {
-        [self monitorFence:object];
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
 }
 
 /****************************************************************************/
@@ -152,5 +138,29 @@
 
 @implementation Geofence
 
+- (CLLocationCoordinate2D) coordinate
+{
+    return self.region.center;
+}
+
+- (MKMapRect)boundingMapRect
+{
+    MKCoordinateRegion coordinateRegion = MKCoordinateRegionMakeWithDistance(self.region.center, self.region.radius*2.0, self.region.radius*2.0);
+    CLLocationCoordinate2D topLeftCoordinate = CLLocationCoordinate2DMake(coordinateRegion.center.latitude + (coordinateRegion.span.latitudeDelta/2.0),
+                                                                          coordinateRegion.center.longitude - (coordinateRegion.span.longitudeDelta/2.0));
+    
+    
+    CLLocationCoordinate2D bottomRightCoordinate = CLLocationCoordinate2DMake(coordinateRegion.center.latitude - (coordinateRegion.span.latitudeDelta/2.0),
+                                                                              coordinateRegion.center.longitude + (coordinateRegion.span.longitudeDelta/2.0));
+    
+    MKMapPoint topLeftMapPoint = MKMapPointForCoordinate(topLeftCoordinate);
+    MKMapPoint bottomRightMapPoint = MKMapPointForCoordinate(bottomRightCoordinate);
+    MKMapRect mapRect = MKMapRectMake(topLeftMapPoint.x,
+                                      topLeftMapPoint.y,
+                                      fabs(bottomRightMapPoint.x-topLeftMapPoint.x),
+                                      fabs(bottomRightMapPoint.y-topLeftMapPoint.y));
+
+    return mapRect;
+}
 @end
 
