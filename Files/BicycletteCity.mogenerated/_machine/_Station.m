@@ -13,6 +13,7 @@ const struct StationAttributes StationAttributes = {
 	.name = @"name",
 	.number = @"number",
 	.open = @"open",
+	.starred = @"starred",
 	.status_available = @"status_available",
 	.status_date = @"status_date",
 	.status_free = @"status_free",
@@ -70,6 +71,11 @@ const struct StationFetchedProperties StationFetchedProperties = {
 	}
 	if ([key isEqualToString:@"openValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"open"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"starredValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"starred"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -239,6 +245,32 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
+@dynamic starred;
+
+
+
+- (BOOL)starredValue {
+	NSNumber *result = [self starred];
+	return [result boolValue];
+}
+
+- (void)setStarredValue:(BOOL)value_ {
+	[self setStarred:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveStarredValue {
+	NSNumber *result = [self primitiveStarred];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveStarredValue:(BOOL)value_ {
+	[self setPrimitiveStarred:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
 @dynamic status_available;
 
 
@@ -356,6 +388,37 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
+
+
+
++ (NSArray*)fetchStarredStations:(NSManagedObjectContext*)moc_ {
+	NSError *error = nil;
+	NSArray *result = [self fetchStarredStations:moc_ error:&error];
+	if (error) {
+#ifdef NSAppKitVersionNumber10_0
+		[NSApp presentError:error];
+#else
+		NSLog(@"error: %@", error);
+#endif
+	}
+	return result;
+}
++ (NSArray*)fetchStarredStations:(NSManagedObjectContext*)moc_ error:(NSError**)error_ {
+	NSParameterAssert(moc_);
+	NSError *error = nil;
+
+	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
+	
+	NSDictionary *substitutionVariables = [NSDictionary dictionary];
+	
+	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"starredStations"
+													 substitutionVariables:substitutionVariables];
+	NSAssert(fetchRequest, @"Can't find fetch request named \"starredStations\".");
+
+	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
+	if (error_) *error_ = error;
+	return result;
+}
 
 
 

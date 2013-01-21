@@ -33,8 +33,6 @@
 @property StationAnnotationMode stationMode;
 @property BOOL shouldZoomToUserWhenLocationFound;
 
-// Radar creation
-@property Radar * droppedRadar;
 @end
 
 
@@ -99,10 +97,6 @@
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
     
-    // Add gesture recognizer for menu
-    UIGestureRecognizer * longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addRadar:)];
-    [self.mapView addGestureRecognizer:longPressRecognizer];
-
     // prepare toolbar items
     self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     
@@ -160,9 +154,6 @@
     self.scaleView.autoresizingMask = resizingMask;
     [self.view addSubview:self.scaleView];
     self.scaleView.mapView = self.mapView;
-    
-    // observe changes to the prefs
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"RadarDistance" options:0 context:(__bridge void *)([MapVC class])];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -186,9 +177,7 @@
 {
     if (context == (__bridge void *)([MapVC class]))
     {
-        if(object==[NSUserDefaults standardUserDefaults] && [keyPath isEqualToString:@"RadarDistance"])
-            [self updateAnnotationsSizes];
-        else if(object==self.controller && [keyPath isEqualToString:@"currentCity"])
+        if(object==self.controller && [keyPath isEqualToString:@"currentCity"])
         {
             [self updateModeControl];
             if(self.controller.currentCity)
@@ -295,20 +284,7 @@
 {
     [self.controller regionDidChange:self.mapView.region];
     [self.scaleView setNeedsDisplay];
-    [self updateAnnotationsSizes];
     self.shouldZoomToUserWhenLocationFound = NO;
-}
-
-- (void) updateAnnotationsSizes
-{
-    for (id<MKAnnotation> annotation in self.mapView.annotations)
-    {
-        if([annotation isKindOfClass:[Radar class]])
-        {
-            RadarAnnotationView * radarAV = (RadarAnnotationView *)[self.mapView viewForAnnotation:annotation];
-            radarAV.bounds = (CGRect){CGPointZero, [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:radarAV].size};
-        }
-    }
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView_ viewForAnnotation:(id <MKAnnotation>)annotation
@@ -332,17 +308,6 @@
         stationAV.mode = self.stationMode;
 		return stationAV;
 	}
-    else if([annotation isKindOfClass:[Radar class]])
-    {
-        RadarAnnotationView * radarAV = (RadarAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RadarAnnotationView reuseIdentifier]];
-		if(nil==radarAV)
-			radarAV = [[RadarAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
-        
-        CGSize radarSize = [self.mapView convertRegion:((Radar*)annotation).radarRegion toRectToView:self.mapView].size;
-        radarAV.bounds = (CGRect){CGPointZero, radarSize};
-
-        return radarAV;
-    }
 	return nil;
 }
 
@@ -377,100 +342,14 @@
     }
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+- (void)mapView:(MKMapView *)mapView annotationView:(StationAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSAssert([view.annotation isKindOfClass:[Radar class]],nil);
-
-    [self.mapView selectAnnotation:view.annotation animated:YES];
-    if(newState==MKAnnotationViewDragStateCanceling)
-        [self showDeleteRadarMenu:(Radar*)view.annotation];
-}
-
-/****************************************************************************/
-#pragma mark UILongPressGestureRecognizer Action
-
-- (void) addRadar:(UILongPressGestureRecognizer*)longPressRecognizer
-{
-    if (self.controller.currentCity == nil)
-        return; // prevent creating radars from high level
-    
-    CGPoint pointInMapView = [longPressRecognizer locationInView:self.mapView];
-    switch (longPressRecognizer.state)
-    {
-        case UIGestureRecognizerStatePossible:
-            break;
-        case UIGestureRecognizerStateBegan:
-        {
-            [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
-                Radar * radar = [Radar insertInManagedObjectContext:updateContext];
-                // just use a timestamp as the id
-                radar.identifier = [NSString stringWithFormat:@"%lld",(long long)(100*[NSDate timeIntervalSinceReferenceDate])];
-                radar.coordinate = [self.mapView convertPoint:pointInMapView
-                                         toCoordinateFromView:self.mapView];
-            } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-                NSManagedObjectID * radarID = [[[contextDidSaveNotification userInfo][NSInsertedObjectsKey] anyObject] objectID];
-                self.droppedRadar = (Radar*)[self.controller.currentCity.mainContext objectWithID:radarID];
-                [self.mapView addAnnotation:self.droppedRadar];
-                [self performSelector:@selector(selectDroppedRadar) withObject:nil afterDelay:.2]; // Strangely, the mapview does not return the annotation view before a delay
-            }];
-            break;
-        }
-        case UIGestureRecognizerStateChanged:
-        {
-            [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
-                Radar * radar = (Radar*)[updateContext objectWithID:self.droppedRadar.objectID];
-                radar.coordinate = [self.mapView convertPoint:pointInMapView
-                                                     toCoordinateFromView:self.mapView];
-            } saveCompletion:nil];
-            break;
-        }
-        case UIGestureRecognizerStateEnded:
-            [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateEnding animated:YES];
-            break;
-            
-        case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateFailed:
-            [self.mapView removeAnnotation:self.droppedRadar];
-            [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
-                [updateContext deleteObject:[updateContext objectWithID:self.droppedRadar.objectID]];
-            } saveCompletion:nil];
-            self.droppedRadar = nil;
-            break;
-    }
-}
-
-- (void) selectDroppedRadar
-{
-    [self.mapView selectAnnotation:self.droppedRadar animated:YES];
-    [[self.mapView viewForAnnotation:self.droppedRadar] setDragState:MKAnnotationViewDragStateStarting animated:YES];
-}
-
-/****************************************************************************/
-#pragma mark UIMenuController
-
-- (BOOL) canBecomeFirstResponder
-{
-    return YES;
-}
-
-- (void) showDeleteRadarMenu:(Radar*)radar
-{
-    [self becomeFirstResponder];
-    UIMenuController * menu = [UIMenuController sharedMenuController];
-    
-    CGPoint point = [self.mapView convertCoordinate:radar.coordinate toPointToView:self.mapView];
-    [menu setTargetRect:(CGRect){point,CGSizeZero} inView:self.mapView];
-    [menu setMenuVisible:YES animated:YES];
-}
-
-- (void) delete:(id)sender // From UIMenuController
-{
-    Radar * radar = [self.mapView.selectedAnnotations lastObject];
-    NSAssert([radar isKindOfClass:[Radar class]],nil);
-
-    [self.mapView removeAnnotation:radar];
-    [self.controller.currentCity performUpdates:^(NSManagedObjectContext *updateContext) {
-        [updateContext deleteObject:[updateContext objectWithID:radar.objectID]];
+    NSAssert([view isKindOfClass:[StationAnnotationView class]], nil);
+    NSAssert([view.annotation isKindOfClass:[Station class]],nil);
+    Station * station = (Station*)view.annotation;
+    [station.city performUpdates:^(NSManagedObjectContext *updateContext) {
+        Station * lstation = (Station*)[updateContext objectWithID:station.objectID];
+        lstation.starredValue = !lstation.starredValue;
     } saveCompletion:nil];
 }
 

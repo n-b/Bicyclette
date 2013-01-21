@@ -1,5 +1,3 @@
-#import "Radar.m"
-#import "_Radar.m"
 #import "Region.m"
 #import "_Region.m"
 #import "Station.m"

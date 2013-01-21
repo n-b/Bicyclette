@@ -139,17 +139,6 @@
                                          value:nil
                                      textColor:nil
                                          phase:0];
-    
-    if(layer==self.legendViewForRadarHandle.layer)
-        layer.contents =
-        (id)[_drawingCache sharedImageWithSize:self.legendViewForRadarHandle.bounds.size
-                                         scale:scale
-                                         shape:BackgroundShapeOval
-                                    borderMode:BorderModeSolid
-                                     baseColor:kRadarAnnotationSelectedColor
-                                         value:nil
-                                     textColor:nil
-                                         phase:0];
 }
 
 

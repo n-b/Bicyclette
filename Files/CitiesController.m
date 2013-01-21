@@ -11,11 +11,12 @@
 #import "CollectionsAdditions.h"
 #import "LocalUpdateQueue.h"
 #import "CityRegionUpdateGroup.h"
-#import "GeoFencesMonitor.h"
+#import "BicycletteCity+Geofences.h"
+#import "GeofencesMonitor.h"
 #import "UIApplication+LocalAlerts.h"
 
-@interface CitiesController () <CLLocationManagerDelegate, LocalUpdateQueueDelegate, GeoFencesMonitorDelegate>
-@property GeoFencesMonitor * fenceMonitor;
+@interface CitiesController () <CLLocationManagerDelegate, LocalUpdateQueueDelegate, GeofencesMonitorDelegate>
+@property GeofencesMonitor * fenceMonitor;
 @property LocalUpdateQueue * updateQueue;
 
 @property CityRegionUpdateGroup * userLocationUpdateGroup;
@@ -38,7 +39,7 @@
         BicycletteCitySetStoresDirectory([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
         self.cities = [BicycletteCity allCities];
 
-        self.fenceMonitor = [GeoFencesMonitor new];
+        self.fenceMonitor = [GeofencesMonitor new];
         self.fenceMonitor.delegate = self;
         self.updateQueue = [LocalUpdateQueue new];
         self.updateQueue.delayBetweenPointUpdates = [[NSUserDefaults standardUserDefaults] doubleForKey:@"DataUpdaterDelayBetweenQueues"];
@@ -66,18 +67,15 @@
 {
     if(_currentCity != currentCity_)
     {
-        for (Radar * radar in [_currentCity radars]) {
-            [self.updateQueue removeMonitoredGroup:radar];
+        for (Geofence * fence in [_currentCity geofences]) {
+            [self.updateQueue removeMonitoredGroup:fence];
         }
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity];
         
         _currentCity = currentCity_;
-        for (Radar * radar in [_currentCity radars]) {
-            [self.fenceMonitor addFence:radar];
-            [self.updateQueue addMonitoredGroup:radar];
+        for (Geofence * fence in [_currentCity geofences]) {
+            [self.fenceMonitor addFence:fence];
+            [self.updateQueue addMonitoredGroup:fence];
         }
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsChanged:)
-                                                     name:NSManagedObjectContextObjectsDidChangeNotification object:self.currentCity.mainContext];
 
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
@@ -172,8 +170,7 @@
     else
     {
         // Radars
-        NSFetchRequest * radarsRequest = [NSFetchRequest fetchRequestWithEntityName:[Radar entityName]];
-        NSArray * radars = [self.currentCity.mainContext executeFetchRequest:radarsRequest error:NULL];
+        NSArray * radars = [self.currentCity geofences];
         [newAnnotations addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:radars]];
 
         // Stations
@@ -190,6 +187,10 @@
             // Regions
             NSFetchRequest * regionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
             [newAnnotations addObjectsFromArray:[self.currentCity.mainContext executeFetchRequest:regionsRequest error:NULL]];
+            
+            // Starred (always show)
+            NSArray * starred = [Station fetchStarredStations:self.currentCity.mainContext];
+            [newAnnotations addObjectsFromArray:starred];
         }
     }
 
@@ -226,23 +227,23 @@
 /****************************************************************************/
 #pragma mark -
 
-- (void) monitor:(GeoFencesMonitor*)monitor fenceWasEntered:(Radar*)radar
+- (void) monitor:(GeofencesMonitor*)monitor fenceWasEntered:(Geofence*)fence
 {
-    [self.updateQueue addOneshotGroup:radar];
+    [self.updateQueue addOneshotGroup:fence];
 }
 
-- (void) monitor:(GeoFencesMonitor*)monitor fenceWasExited:(Radar*)radar
+- (void) monitor:(GeofencesMonitor*)monitor fenceWasExited:(Geofence*)fence
 {
-    [self.updateQueue removeOneshotGroup:radar];
+    [self.updateQueue removeOneshotGroup:fence];
 }
 
 /****************************************************************************/
 #pragma mark -
 
-- (void) updateQueue:(LocalUpdateQueue *)queue didUpdateOneshotPoint:(Station*)station ofGroup:(Radar*)radar
+- (void) updateQueue:(LocalUpdateQueue *)queue didUpdateOneshotPoint:(Station*)station ofGroup:(Geofence*)fence
 {
     NSAssert([station isKindOfClass:[Station class]],nil);
-    NSAssert([radar isKindOfClass:[Radar class]],nil);
+    NSAssert([fence isKindOfClass:[Geofence class]],nil);
     [[UIApplication sharedApplication] presentLocalNotificationMessage:station.localizedSummary userInfo:(@{@"city": NSStringFromClass([station.city class]) ,
                                                                                                           @"stationNumber": station.number})];
 }
@@ -259,22 +260,22 @@
 /****************************************************************************/
 #pragma mark -
 
-- (void) objectsChanged:(NSNotification*)note
-{
-    for (id object in note.userInfo[NSInsertedObjectsKey]) {
-        if([object conformsToProtocol:@protocol(GeoFence)])
-            [self.fenceMonitor addFence:object];
-        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
-            [self.updateQueue addMonitoredGroup:object];
-    }
-
-    for (id object in note.userInfo[NSDeletedObjectsKey]) {
-        if([object conformsToProtocol:@protocol(GeoFence)])
-            [self.fenceMonitor removeFence:object];
-        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
-            [self.updateQueue removeMonitoredGroup:object];
-    }
-}
+//- (void) objectsChanged:(NSNotification*)note
+//{
+//    for (id object in note.userInfo[NSInsertedObjectsKey]) {
+//        if([object conformsToProtocol:@protocol(Geofence)])
+//            [self.fenceMonitor addFence:object];
+//        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
+//            [self.updateQueue addMonitoredGroup:object];
+//    }
+//
+//    for (id object in note.userInfo[NSDeletedObjectsKey]) {
+//        if([object conformsToProtocol:@protocol(Geofence)])
+//            [self.fenceMonitor removeFence:object];
+//        if([object conformsToProtocol:@protocol(LocalUpdateGroup)])
+//            [self.updateQueue removeMonitoredGroup:object];
+//    }
+//}
 
 /****************************************************************************/
 #pragma mark -

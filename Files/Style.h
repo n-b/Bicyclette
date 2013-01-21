@@ -46,7 +46,3 @@
 #define kAnnotationValueTextColorAlt	[kAnnotationTextColor colorWithBrightness:.4]
 #define kAnnotationValueShadowColor		[kAnnotationTextColor colorWithBrightness:1]
 #define kAnnotationValueFont			[UIFont fontWithName:@"AvenirNext-Medium" size:18]
-
-#define kRadarAnnotationHandleSize		20
-#define kRadarAnnotationDefaultColor	[UIColor colorWithHue:0 saturation:0 brightness:1 alpha:1]
-#define kRadarAnnotationSelectedColor	[UIColor colorWithHue:0 saturation:0 brightness:.9 alpha:1]

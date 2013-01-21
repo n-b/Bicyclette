@@ -14,6 +14,7 @@ extern const struct StationAttributes {
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *number;
 	__unsafe_unretained NSString *open;
+	__unsafe_unretained NSString *starred;
 	__unsafe_unretained NSString *status_available;
 	__unsafe_unretained NSString *status_date;
 	__unsafe_unretained NSString *status_free;
@@ -33,6 +34,7 @@ extern const struct StationFetchedProperties {
 
 
 @class UIColor;
+
 
 
 
@@ -164,6 +166,20 @@ extern const struct StationFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* starred;
+
+
+
+@property BOOL starredValue;
+- (BOOL)starredValue;
+- (void)setStarredValue:(BOOL)value_;
+
+//- (BOOL)validateStarred:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* status_available;
 
 
@@ -234,6 +250,11 @@ extern const struct StationFetchedProperties {
 
 //- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
 
+
+
+
++ (NSArray*)fetchStarredStations:(NSManagedObjectContext*)moc_ ;
++ (NSArray*)fetchStarredStations:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
 
 
 
@@ -319,6 +340,15 @@ extern const struct StationFetchedProperties {
 
 - (BOOL)primitiveOpenValue;
 - (void)setPrimitiveOpenValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveStarred;
+- (void)setPrimitiveStarred:(NSNumber*)value;
+
+- (BOOL)primitiveStarredValue;
+- (void)setPrimitiveStarredValue:(BOOL)value_;
 
 
 

@@ -29,7 +29,6 @@
 		3709F575167B755600F865E3 /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
 		370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
 		370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
-		370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
@@ -162,7 +161,7 @@
 		37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534915BAFB0400F45C09 /* Default@2x.png */; };
 		37EC535515BAFB0400F45C09 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534B15BAFB0400F45C09 /* Icon.png */; };
 		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
-		37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */; };
+		37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeofencesMonitor.m */; };
 		37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F092361680D671001E8127 /* UIViewController+Banner.m */; };
 		37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
 		37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
@@ -174,6 +173,7 @@
 		942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D480116A841F100F6CD12 /* UIView+NibLoading.m */; };
 		942D480416A8427D00F6CD12 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942D480316A8427D00F6CD12 /* BannerView.xib */; };
 		94DE16D316AD57ED00C0FB64 /* Paris_Vélib’.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */; };
+		94DE16DC16AD7A2000C0FB64 /* BicycletteCity+Geofences.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE16DB16AD7A2000C0FB64 /* BicycletteCity+Geofences.m */; };
 		94E45DC516A995F800EB6C84 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DC416A995F800EB6C84 /* Social.framework */; };
 		94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC616A99A6000EB6C84 /* twitter@2x.png */; };
 		94E45DC916A99A6000EB6C84 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC716A99A6000EB6C84 /* twitter.png */; };
@@ -264,8 +264,6 @@
 		3709F573167B755600F865E3 /* Station+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Station+Update.h"; sourceTree = "<group>"; };
 		3709F574167B755600F865E3 /* Station+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Station+Update.m"; sourceTree = "<group>"; };
 		370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelbourneBikeShareCity.m; sourceTree = "<group>"; };
-		370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAnnotationView.h; sourceTree = "<group>"; };
-		370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarAnnotationView.m; sourceTree = "<group>"; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
@@ -399,8 +397,8 @@
 		37EC534915BAFB0400F45C09 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		37EC534B15BAFB0400F45C09 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		37EC534C15BAFB0400F45C09 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFencesMonitor.h; sourceTree = "<group>"; };
-		37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFencesMonitor.m; sourceTree = "<group>"; };
+		37EE011715BC87E4008376A1 /* GeofencesMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeofencesMonitor.h; sourceTree = "<group>"; };
+		37EE011815BC87E4008376A1 /* GeofencesMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeofencesMonitor.m; sourceTree = "<group>"; };
 		37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Beaubourg.gpx; sourceTree = "<group>"; };
 		37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Gare de Lyon.gpx"; sourceTree = "<group>"; };
 		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
@@ -423,6 +421,8 @@
 		942D480316A8427D00F6CD12 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
 		94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paris_Vélib’.coredata"; sourceTree = "<group>"; };
+		94DE16DA16AD7A2000C0FB64 /* BicycletteCity+Geofences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+Geofences.h"; sourceTree = "<group>"; };
+		94DE16DB16AD7A2000C0FB64 /* BicycletteCity+Geofences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+Geofences.m"; sourceTree = "<group>"; };
 		94E45DC416A995F800EB6C84 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		94E45DC616A99A6000EB6C84 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 		94E45DC716A99A6000EB6C84 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
@@ -628,8 +628,7 @@
 				37D131FC163F32DE00AABEE4 /* Model */,
 				3717AA65162A1C11005EC7BD /* Cities */,
 				3709F572167B752300F865E3 /* Station Updates */,
-				37EE011715BC87E4008376A1 /* GeoFencesMonitor.h */,
-				37EE011815BC87E4008376A1 /* GeoFencesMonitor.m */,
+				94DE16DD16AD7A2A00C0FB64 /* GeoFences */,
 				3724BC7115E4CA1200790869 /* Store.h */,
 				3724BC7215E4CA1200790869 /* Store.m */,
 				3760881416762BF300B1161E /* Tests */,
@@ -794,8 +793,6 @@
 				3700F8521594A806007CF99E /* RegionAnnotationView.m */,
 				378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */,
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
-				370D2ABC15A3A4300019F36E /* RadarAnnotationView.h */,
-				370D2ABD15A3A4300019F36E /* RadarAnnotationView.m */,
 			);
 			name = AnnotationViews;
 			sourceTree = "<group>";
@@ -920,6 +917,17 @@
 				37920166169C252B008E35C3 /* BordeauxVCubCity.m */,
 			);
 			name = "XML with subnodes";
+			sourceTree = "<group>";
+		};
+		94DE16DD16AD7A2A00C0FB64 /* GeoFences */ = {
+			isa = PBXGroup;
+			children = (
+				37EE011715BC87E4008376A1 /* GeofencesMonitor.h */,
+				37EE011815BC87E4008376A1 /* GeofencesMonitor.m */,
+				94DE16DA16AD7A2000C0FB64 /* BicycletteCity+Geofences.h */,
+				94DE16DB16AD7A2000C0FB64 /* BicycletteCity+Geofences.m */,
+			);
+			name = GeoFences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1189,13 +1197,12 @@
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
 				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
-				370D2ABE15A3A4300019F36E /* RadarAnnotationView.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
 				3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */,
 				3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */,
 				3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */,
-				37EE011915BC87E4008376A1 /* GeoFencesMonitor.m in Sources */,
+				37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */,
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
 				3724BC7315E4CA1200790869 /* Store.m in Sources */,
 				37BE759D15E6BDE4001DABF6 /* HelpVC.m in Sources */,
@@ -1235,6 +1242,7 @@
 				3763582616A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */,
 				3763582A16A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m in Sources */,
 				942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */,
+				94DE16DC16AD7A2000C0FB64 /* BicycletteCity+Geofences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

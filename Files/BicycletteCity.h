@@ -60,7 +60,6 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 // Fetch requests
 - (Station*) stationWithNumber:(NSString*)number;
 #if TARGET_OS_IPHONE
-- (NSArray*) radars;
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region;
 #endif
 

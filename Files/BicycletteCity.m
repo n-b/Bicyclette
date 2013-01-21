@@ -165,12 +165,6 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 }
 
 #if TARGET_OS_IPHONE
-- (NSArray*) radars
-{
-    NSFetchRequest * radarsRequest = [NSFetchRequest fetchRequestWithEntityName:[Radar entityName]];
-    return [self.mainContext executeFetchRequest:radarsRequest error:NULL];
-}
-
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region
 {
     NSArray * stations = [Station fetchStationsWithinRange:self.mainContext

@@ -1,23 +1,23 @@
 //
-//  GeoFencesMonitor.m
+//  GeofencesMonitor.m
 //  Bicyclette
 //
 //  Created by Nicolas Bouilleaud on 22/07/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "GeoFencesMonitor.h"
+#import "GeofencesMonitor.h"
 #import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 #import "BicycletteCity.h"
 
-@interface GeoFencesMonitor () <CLLocationManagerDelegate>
+@interface GeofencesMonitor () <CLLocationManagerDelegate>
 @property (nonatomic) NSMutableSet * geofences;
 @property CLLocationManager * locationManager;
 @property UIAlertView * authorizationAlertView;
 @end
 
-@implementation GeoFencesMonitor
+@implementation GeofencesMonitor
 
 - (id)init
 {
@@ -40,28 +40,28 @@
     [self.locationManager startUpdatingLocation];
 }
 
-- (void) addFence:(NSObject<GeoFence>*)fence
+- (void) addFence:(Geofence*)fence
 {
     if(![self.geofences containsObject:fence])
     {
         [self monitorFence:fence];
-        [fence addObserver:self forKeyPath:@"fenceRegion" options:0 context:(__bridge void *)([GeoFencesMonitor class])];
+        [fence addObserver:self forKeyPath:@"region" options:0 context:(__bridge void *)([GeofencesMonitor class])];
         [self.geofences addObject:fence];
     }
 }
 
-- (void) removeFence:(NSObject<GeoFence>*)fence
+- (void) removeFence:(Geofence*)fence
 {
     if([self.geofences containsObject:fence])
     {
-        [fence removeObserver:self forKeyPath:@"fenceRegion" context:(__bridge void *)([GeoFencesMonitor class])];
-        [self.locationManager stopMonitoringForRegion:fence.fenceRegion];
+        [fence removeObserver:self forKeyPath:@"region" context:(__bridge void *)([GeofencesMonitor class])];
+        [self.locationManager stopMonitoringForRegion:fence.region];
     }
 }
 
 - (void) setFences:(NSSet *)geofences_
 {
-    for (NSObject<GeoFence>* fence in self.geofences)
+    for (Geofence* fence in self.geofences)
         [self removeFence:fence];
 
     for (CLRegion * region in self.locationManager.monitoredRegions)
@@ -69,14 +69,14 @@
     
     self.geofences = [geofences_ mutableCopy];
     
-    for (NSObject<GeoFence>* fence in self.geofences)
+    for (Geofence* fence in self.geofences)
         [self addFence:fence];
 }
 
-- (void) monitorFence:(NSObject<GeoFence>*)fence
+- (void) monitorFence:(Geofence*)fence
 {
-    // the radar.fenceRegion always has the same identifier, so that the CLLocationManager knows it's the same region
-    [self.locationManager startMonitoringForRegion:fence.fenceRegion];
+    // the radar.region always has the same identifier, so that the CLLocationManager knows it's the same region
+    [self.locationManager startMonitoringForRegion:fence.region];
 }
 
 /****************************************************************************/
@@ -84,7 +84,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == (__bridge void *)([GeoFencesMonitor class])) {
+    if (context == (__bridge void *)([GeofencesMonitor class])) {
         [self monitorFence:object];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -103,7 +103,7 @@
 {
     NSLog(@"did enter region %@",region);
     
-    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region.identifier forKeyPath:@"fenceRegion.identifier"];
+    Geofence* fence = [self.geofences anyObjectWithValue:region.identifier forKeyPath:@"region.identifier"];
     if(fence)
         [self.delegate monitor:self fenceWasEntered:fence];
 }
@@ -112,7 +112,7 @@
 {
     NSLog(@"did exit region %@",region);
     
-    NSObject<GeoFence>* fence = [self.geofences anyObjectWithValue:region.identifier forKeyPath:@"fenceRegion.identifier"];
+    Geofence* fence = [self.geofences anyObjectWithValue:region.identifier forKeyPath:@"region.identifier"];
     [self.delegate monitor:self fenceWasExited:fence];
 }
 
@@ -143,5 +143,14 @@
     }
 }
 
+@end
+
+
+/****************************************************************************/
+#pragma mark Geofence struct
+
+
+@implementation Geofence
 
 @end
+

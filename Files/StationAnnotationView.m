@@ -13,6 +13,7 @@
 @implementation StationAnnotationView
 {
     CALayer * _loadingLayer;
+    UIButton * _starButton;
 }
 
 - (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache;
@@ -42,6 +43,7 @@
     
     for (NSString * property in [[self class] stationObservedProperties])
         [self.station addObserver:self forKeyPath:property options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:(__bridge void *)([StationAnnotationView class])];
+
 }
 
 - (void) prepareForReuse
@@ -58,19 +60,51 @@
 }
 
 /****************************************************************************/
+#pragma mark Favorites
+
+- (UIButton*) starButton
+{
+    if(_starButton==nil)
+    {
+        _starButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_starButton setTitle:@"☆" forState:UIControlStateNormal];
+        [_starButton setTitle:@"★" forState:UIControlStateSelected];
+        _starButton.titleLabel.font = [UIFont systemFontOfSize:24];
+        [_starButton setTitleColor:[UIColor colorWithWhite:1 alpha:.9] forState:UIControlStateNormal];
+        [_starButton setTitleShadowColor:[UIColor colorWithWhite:.2 alpha:1] forState:UIControlStateNormal];
+        _starButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
+        [_starButton sizeToFit];
+    }
+    return _starButton;
+}
+
+- (UIView *)rightCalloutAccessoryView
+{
+    return self.starButton;
+}
+
+/****************************************************************************/
 #pragma mark KVO
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, @"statusDataIsFresh" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, StationAttributes.starred, @"statusDataIsFresh" ];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == (__bridge void *)([StationAnnotationView class])) {
-        [self setNeedsDisplay];
-        if(change[NSKeyValueChangeOldKey] && ![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]])
-            [self pulse];
+    if (context == (__bridge void *)([StationAnnotationView class]))
+    {
+        if([keyPath isEqualToString:StationAttributes.starred])
+        {
+            self.starButton.selected = self.station.starredValue;
+        }
+        else
+        {
+            [self setNeedsDisplay];
+            if(change[NSKeyValueChangeOldKey] && ![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]])
+                [self pulse];
+        }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
