@@ -1,0 +1,22 @@
+/* 
+  Help.strings
+  Bicyclette
+
+  Created by Nicolas @ bou.io on 18/01/13.
+  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
+*/
+
+"HELP_TITLE" = "Hallo!";
+"HELP_FOREWORD" = "Bevor wir beginnen ...\
+\
+Bicyclette zeigt verfügbare Räder und Ständer, in Echtzeit:";
+"HELP_BIKES" = "Verfügbare Räder";
+"HELP_PARKING" = "Freie Ständer";
+"HELP_STALE" = "Das graue Symbol zeigt die Anzahl der Ständer in der Station";
+"HELP_PLEASE_HELP" = "Wenn Sie die App mögen, ist Ihre Hilfe höchst willkommen!";
+"HELP_PAY_WHAT_YOU_WANT" = "Es ist komplett freiwillig, und Sie zahlen, wieviel Sie wollen.";
+"HELP_EPILOGUE" = "Das ist alles!\
+\
+Seien Sie vorsichtig beim fahren und halten Sie immer an, bevor Sie Ihr iPhone nutzen.\
+\
+Gute Fahrt!";

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Bicyclette
+
+  Created by Nicolas on 02/01/13.
+  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
+*/
+
+"NSLocationUsageDescription" = "Bicyclette benutzt die Ortungsdienst, um automatisch Stationen in der Umgebung zu aktualisieren.";

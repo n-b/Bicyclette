@@ -419,6 +419,9 @@
 		942D480016A841F100F6CD12 /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
 		942D480116A841F100F6CD12 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		942D480316A8427D00F6CD12 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
+		94962DCA16B0394100BB2E8C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Help.strings; sourceTree = "<group>"; };
+		94962DD016B0394800BB2E8C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		94962DD116B0394F00BB2E8C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
 		94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paris_Vélib’.coredata"; sourceTree = "<group>"; };
 		94DE16DA16AD7A2000C0FB64 /* BicycletteCity+Geofences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+Geofences.h"; sourceTree = "<group>"; };
@@ -1007,6 +1010,7 @@
 				French,
 				German,
 				en,
+				de,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1319,6 +1323,7 @@
 			children = (
 				94E45DCD16A9B1E200EB6C84 /* fr */,
 				94E45DCF16A9B1E700EB6C84 /* en */,
+				94962DD116B0394F00BB2E8C /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1328,6 +1333,7 @@
 			children = (
 				94E45DD116A9B3A400EB6C84 /* fr */,
 				94E45DD316A9B3A800EB6C84 /* en */,
+				94962DD016B0394800BB2E8C /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1337,6 +1343,7 @@
 			children = (
 				94E45DD716A9C2D200EB6C84 /* fr */,
 				94E45DD916A9C2D500EB6C84 /* en */,
+				94962DCA16B0394100BB2E8C /* de */,
 			);
 			name = Help.strings;
 			sourceTree = "<group>";
