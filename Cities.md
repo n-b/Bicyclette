@@ -286,6 +286,6 @@ Way too dirty to scrape. Similar to Drammen, with an added step to get the stati
 ---
 # Data unavailable on the web
 
-* Chalon (Reflex)
+- Chalon (Reflex)
 * Angers (only 1 station)
 * Montélimar (only 1 station)
