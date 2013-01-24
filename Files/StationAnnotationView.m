@@ -74,6 +74,10 @@
         [_starButton setTitleShadowColor:[UIColor colorWithWhite:.2 alpha:1] forState:UIControlStateNormal];
         _starButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
         [_starButton sizeToFit];
+        CGRect f = _starButton.frame;
+        f.size.height = MAX(f.size.height,32);
+        f.size.width = MAX(f.size.width,32);
+        _starButton.frame = f;
     }
     return _starButton;
 }
