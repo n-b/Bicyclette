@@ -59,7 +59,7 @@
         Geofence* fence = [self.fences firstObjectWithValue:region.identifier forKeyPath:@"region.identifier"];
         if(fence==nil)
         {
-            NSLog(@"delete unexpected monitored region %@",region.identifier);
+            DebugLog(@"delete unexpected monitored region %@",region.identifier);
             [_locationManager stopMonitoringForRegion:region];
         }
         else
@@ -72,7 +72,7 @@
         CLRegion * monitoredRegion = [_locationManager.monitoredRegions anyObjectWithValue:fence.region.identifier forKeyPath:@"identifier"];
         if(monitoredRegion==nil)
         {
-            NSLog(@"add missing expected monitored region %@",fence.region.identifier);
+            DebugLog(@"add missing expected monitored region %@",fence.region.identifier);
             [_locationManager startMonitoringForRegion:fence.region];
         }
             
@@ -182,7 +182,7 @@
     
     [self setFences:newFences];
 
-    NSLog(@"monitored regions : %@",[_locationManager.monitoredRegions valueForKeyPath:@"identifier"]);
+    DebugLog(@"monitored regions : %@",[_locationManager.monitoredRegions valueForKeyPath:@"identifier"]);
 }
 
 - (NSArray*) geofencesInCity:(BicycletteCity*)city
@@ -197,7 +197,7 @@
 {
     Geofence* fence = [self.fences firstObjectWithValue:identifier forKeyPath:@"region.identifier"];
     if(fence==nil)
-        NSLog(@"no known fence found for identifier %@",identifier);
+        DebugLog(@"no known fence found for identifier %@",identifier);
     return fence;
 }
 
@@ -206,19 +206,19 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"location manager did fail: %@",error);
+    DebugLog(@"location manager did fail: %@",error);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
-    NSLog(@"start monitored regions : %@",[_locationManager.monitoredRegions valueForKeyPath:@"identifier"]);
+    DebugLog(@"start monitored regions : %@",[_locationManager.monitoredRegions valueForKeyPath:@"identifier"]);
     Geofence* fence = [self fenceWithIdentifier:region.identifier];
     fence.monitored = YES;
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
-    NSLog(@"monitoring for region %@ did fail: %@",region, error);
+    DebugLog(@"monitoring for region %@ did fail: %@",region, error);
     Geofence* fence = [self fenceWithIdentifier:region.identifier];
     fence.monitored = NO;
     [self.delegate monitor:self fenceMonitoringFailed:fence withError:error];
@@ -226,14 +226,14 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    NSLog(@"did enter region %@",region);
+    DebugLog(@"did enter region %@",region);
     Geofence* fence = [self fenceWithIdentifier:region.identifier];
     [self.delegate monitor:self fenceWasEntered:fence];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    NSLog(@"did exit region %@",region);
+    DebugLog(@"did exit region %@",region);
     Geofence* fence = [self fenceWithIdentifier:region.identifier];
     [self.delegate monitor:self fenceWasExited:fence];
 }

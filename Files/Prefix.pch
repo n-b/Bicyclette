@@ -23,3 +23,5 @@
 #if TESTING
 	#import <SenTestingKit/SenTestingKit.h>
 #endif
+
+#import "DebugLog.h"

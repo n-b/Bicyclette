@@ -329,6 +329,7 @@
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3788EC7A1697AB1300836A60 /* MiamiDecobikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiamiDecobikeCity.m; sourceTree = "<group>"; };
 		3788EC7D1697AF0400836A60 /* BarcelonaCityBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcelonaCityBikeCity.m; sourceTree = "<group>"; };
+		378B2FEF16B1700C00BB5355 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		378C6BFA169C362E009DDC84 /* UnusedCities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UnusedCities.json; sourceTree = "<group>"; };
 		378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationAnnotationView.h; sourceTree = "<group>"; };
 		378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationAnnotationView.m; sourceTree = "<group>"; };
@@ -677,6 +678,7 @@
 				94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */,
 				94E45DD816A9C2D200EB6C84 /* Help.strings */,
 				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
+				378B2FEF16B1700C00BB5355 /* DebugLog.h */,
 				3786E4E214825A7700814C10 /* Test Supporting Files */,
 				94B07A8A16A7190C00F6331F /* mogenerate.sh */,
 			);

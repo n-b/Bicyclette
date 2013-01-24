@@ -16,7 +16,7 @@
     NSError * error;
     id res = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if(!res)
-        NSLog(@"Error parsing JSON in %@ : %@",self,error);
+        DebugLog(@"Error parsing JSON in %@ : %@",self,error);
     
     if([self keyPathToStationsLists])
     {
@@ -26,14 +26,14 @@
         }
         else
         {
-            NSLog(@"Error parsing JSON in %@ : result should be a dictionary",self);
+            DebugLog(@"Error parsing JSON in %@ : result should be a dictionary",self);
             res = nil;
         }
     }
     
     if(![res isKindOfClass:[NSArray class]])
     {
-        NSLog(@"Error parsing JSON in %@ : result should be an array",self);
+        DebugLog(@"Error parsing JSON in %@ : result should be an array",self);
         res = nil;
     }
     return res;

@@ -120,7 +120,7 @@
         // Delete Old Stations
         for (Station * oldStation in oldStations) {
             if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-                NSLog(@"Note : old station deleted after update : %@", oldStation);
+                DebugLog(@"Note : old station deleted after update : %@", oldStation);
             [updateContext deleteObject:oldStation];
         }
         
@@ -158,7 +158,7 @@
     if(hasDataPatches)
     {
         if(logParsingDetails)
-            NSLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",stationAttributes, patchs);
+            DebugLog(@"Note : Used hardcoded fixes %@. Fixes : %@.",stationAttributes, patchs);
         [station setValuesForKeysWithDictionary:patchs withMappingDictionary:[self KVCMapping]]; // Yay! again
     }
     
@@ -203,7 +203,7 @@
     else
     {
         if(_parsing_oldStations.count && [[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-            NSLog(@"Note : new station found after update : %@", stationAttributes);
+            DebugLog(@"Note : new station found after update : %@", stationAttributes);
         station = [Station insertInManagedObjectContext:_parsing_context];
     }
     
@@ -220,7 +220,7 @@
         if(nil==regionInfo)
         {
             if(logParsingDetails)
-                NSLog(@"Invalid data : %@",stationAttributes);
+                DebugLog(@"Invalid data : %@",stationAttributes);
             [_parsing_context deleteObject:station];
             return;
         }
