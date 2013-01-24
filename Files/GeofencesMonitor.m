@@ -17,8 +17,6 @@
 @interface Geofence () <NSCoding>
 @property (nonatomic) BicycletteCity * city;
 
-@property BOOL monitored;
-
 @property NSString * cityName;
 @property NSArray * stationsNumbers;
 @property (nonatomic) NSArray * stations;
@@ -61,10 +59,6 @@
         {
             DebugLog(@"delete unexpected monitored region %@",region.identifier);
             [_locationManager stopMonitoringForRegion:region];
-        }
-        else
-        {
-            fence.monitored = YES;
         }
     }
     
@@ -212,15 +206,12 @@
 - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
     DebugLog(@"start monitored regions : %@",[_locationManager.monitoredRegions valueForKeyPath:@"identifier"]);
-    Geofence* fence = [self fenceWithIdentifier:region.identifier];
-    fence.monitored = YES;
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
     DebugLog(@"monitoring for region %@ did fail: %@",region, error);
     Geofence* fence = [self fenceWithIdentifier:region.identifier];
-    fence.monitored = NO;
     [self.delegate monitor:self fenceMonitoringFailed:fence withError:error];
 }
 

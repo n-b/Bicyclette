@@ -36,6 +36,5 @@
 @property CLRegion * region;
 @property (nonatomic, readonly) BicycletteCity * city;
 @property (readonly) NSArray * stations;
-@property (readonly) BOOL monitored;
 @end
 

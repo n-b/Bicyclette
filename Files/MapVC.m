@@ -326,14 +326,9 @@
 {
     NSAssert([fence isKindOfClass:[Geofence class]], nil);
     MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:fence];
-
-    if(fence.monitored) {
-        circleView.strokeColor = [UIColor greenColor];
-        circleView.fillColor = [[UIColor greenColor] colorWithAlphaComponent:0.4];
-    } else {
-        circleView.strokeColor = [UIColor grayColor];
-        circleView.fillColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
-    }
+    circleView.strokeColor = [UIColor blueColor];
+    circleView.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+    circleView.lineWidth = 1;
 
     return circleView;
 }
