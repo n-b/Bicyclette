@@ -21,6 +21,7 @@
 #import "FanContainerViewController.h"
 #import "MapViewScaleView.h"
 #import "GeofencesMonitor.h"
+#import "Style.h"
 
 @interface MapVC() <MKMapViewDelegate>
 // UI
@@ -309,14 +310,15 @@
 	}
 	else if([annotation isKindOfClass:[BicycletteCity class]])
 	{
-        MKPinAnnotationView * pinAV = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pin"];
+        BOOL hasFences = [self.controller cityHasFences:(BicycletteCity*)annotation];
+        NSString * reuseID = hasFences ? @"purplepin" : @"redpin";
+        MKPinAnnotationView * pinAV = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseID];
         if(nil==pinAV)
-            pinAV = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
-        if([self.controller cityHasFences:(BicycletteCity*)annotation])
-            pinAV.pinColor = MKPinAnnotationColorGreen;
+            pinAV = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseID];
         else
-            pinAV.pinColor = MKPinAnnotationColorRed;
-        
+            pinAV.annotation = annotation;
+
+        pinAV.pinColor = hasFences ? MKPinAnnotationColorPurple : MKPinAnnotationColorRed;
         return pinAV;
 	}
 	return nil;
@@ -326,9 +328,10 @@
 {
     NSAssert([fence isKindOfClass:[Geofence class]], nil);
     MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:fence];
-    circleView.strokeColor = [UIColor blueColor];
-    circleView.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
-    circleView.lineWidth = 1;
+    circleView.fillColor = kFenceBackgroundColor;
+    circleView.strokeColor = kAnnotationDash1Color;
+    circleView.lineWidth = 3;
+    circleView.lineDashPattern = @[@20, @20];
 
     return circleView;
 }
