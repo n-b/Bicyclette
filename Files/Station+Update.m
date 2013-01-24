@@ -58,6 +58,13 @@ static char kStation_associatedQueuedforUpdateKey;
             completion_(nil);
         return;
     }
+
+    if([[NSDate date] timeIntervalSinceDate:self.status_date] < [[NSUserDefaults standardUserDefaults] doubleForKey:@"DataUpdaterDelayBetweenQueues"])
+    {
+        if(completion_)
+            completion_(nil);
+        return;
+    }
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
     self.completionBlock = completion_;
