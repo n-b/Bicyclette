@@ -172,7 +172,7 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 	- List+Details : `http://www.velo-libelo.fr/vcstations.xml`
 - **Strasbourg**
 	- List+Details : `http://www.velhop.strasbourg.eu/vcstations.xml`
-- **Saint**-Étienne
+- **Saint-Étienne**
 	- List+Details : `http://www.velivert.fr/vcstations.xml`
 - **Grenoble**
 	- List+Details : `http://vms.metrovelo.fr/vcstations.xml`
@@ -253,7 +253,7 @@ HTML Scraping needed.
 
 ## CityBike (aka Clear Channel) 1
 The stations listing is only available on the webpage.
-The "official" webservices are basically useless because they won't give you the list of stations or the geolocation, so you have to rely on the webpage anyway.
+The "official" webservices are less useful because they won't give you the list of stations or the geolocation, so you have to rely on the webpage anyway.
 
 - **Caen**
 	* maps website: https://www.veol.caen.fr/localizaciones/localizaciones.php 
