@@ -118,7 +118,6 @@
     {
         // if the app is active, update the monitored groups
         NSArray * sortedGroups = self.monitoredGroups;
-        sortedGroups = [sortedGroups filteredArrayWithinDistance:self.moniteredGroupsMaximumDistance fromLocation:self.referenceLocation];
         sortedGroups = [sortedGroups sortedArrayByDistanceFromLocation:self.referenceLocation];
         groupsToRefresh = sortedGroups;
     }
