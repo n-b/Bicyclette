@@ -142,7 +142,7 @@
     [fences makeObjectsPerformSelector:@selector(initializeRegion)];
     
     // reuse old objects if they are identical
-    NSArray * oldFences = [self geofencesInCity:city];
+    NSArray * oldFences = self.fences;
     NSMutableArray * newFences = [NSMutableArray new];
     for (Geofence* oldFence in oldFences)
     {
@@ -177,6 +177,7 @@
     [self setFences:newFences];
 
     DebugLog(@"monitored regions : %@",[_locationManager.monitoredRegions valueForKeyPath:@"identifier"]);
+    DebugLog(@"monitored fences : %@",[newFences valueForKeyPath:@"region.identifier"]);
 }
 
 - (NSArray*) geofencesInCity:(BicycletteCity*)city
