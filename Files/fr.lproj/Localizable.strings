@@ -70,3 +70,8 @@
 "%d STATION COUNT OF TYPE %@" = "%d stations %@";
 "UPDATING : FAILED" = "Échec de la mise à jour";
 "UPDATING : COMPLETED WITH ERRORS" = "Des stations mal géolocalisées ont été ignorées :";
+
+/* Favorites / Geofences */
+"FENCE_MONITORING_ERROR_TITLE" = "Impossible d’ajouter cette station aux favoris";
+"FENCE_MONITORING_ERROR_MESSAGE" = "iOS n’autorise qu’un nombre limité d’alertes géolocalisées (environ 20). Essayez de retirer d’autres stations favorites.";
+"FENCE_MONITORING_ERROR_OK" = "OK";

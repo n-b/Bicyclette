@@ -254,10 +254,10 @@
             station.starredValue = NO;
         }
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        [[[UIAlertView alloc]initWithTitle:@"Can't Add Fence"
-                                   message:[NSString stringWithFormat:@"%@\n%@", error.localizedDescription, error.localizedFailureReason]
+        [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"FENCE_MONITORING_ERROR_TITLE",nil)
+                                   message:NSLocalizedString(@"FENCE_MONITORING_ERROR_MESSAGE",nil)
                                   delegate:nil
-                         cancelButtonTitle:@"Cancel"
+                         cancelButtonTitle:NSLocalizedString(@"FENCE_MONITORING_ERROR_OK",nil)
                          otherButtonTitles:nil]
          show];
         NSArray * starredStation = [Station fetchStarredStations:fence.city.mainContext];

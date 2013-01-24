@@ -70,3 +70,8 @@
 "%d STATION COUNT OF TYPE %@" = "%d %@ stations";
 "UPDATING : FAILED" = "Update failure";
 "UPDATING : COMPLETED WITH ERRORS" = "Stations with erroneous geolocation have been rejected:";
+
+/* Favorites / Geofences */
+"FENCE_MONITORING_ERROR_TITLE" = "Can not set add this stations to your favorites";
+"FENCE_MONITORING_ERROR_MESSAGE" = "iOS only allows a limited number of geolocated alerts (about 20). Pleast try to remove other stations from your favorites.";
+"FENCE_MONITORING_ERROR_OK" = "OK";
