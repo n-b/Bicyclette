@@ -307,16 +307,33 @@
         stationAV.mode = self.stationMode;
 		return stationAV;
 	}
+	else if([annotation isKindOfClass:[BicycletteCity class]])
+	{
+        MKPinAnnotationView * pinAV = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pin"];
+        if(nil==pinAV)
+            pinAV = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+        if([self.controller cityHasFences:(BicycletteCity*)annotation])
+            pinAV.pinColor = MKPinAnnotationColorGreen;
+        else
+            pinAV.pinColor = MKPinAnnotationColorRed;
+        
+        return pinAV;
+	}
 	return nil;
 }
 
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MKCircle*)circle
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(Geofence*)fence
 {
-    NSAssert([circle isKindOfClass:[Geofence class]], nil);
-    MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:circle];
+    NSAssert([fence isKindOfClass:[Geofence class]], nil);
+    MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:fence];
 
-    circleView.strokeColor = [UIColor grayColor];
-    circleView.fillColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
+    if(fence.monitored) {
+        circleView.strokeColor = [UIColor greenColor];
+        circleView.fillColor = [[UIColor greenColor] colorWithAlphaComponent:0.4];
+    } else {
+        circleView.strokeColor = [UIColor grayColor];
+        circleView.fillColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
+    }
 
     return circleView;
 }

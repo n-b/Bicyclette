@@ -129,7 +129,7 @@
     // Prepare Value
     UIColor * baseColor, * textColor;
     NSString * text;
-    
+
     if([[self station] statusDataIsFresh] && [[self station] openValue])
     {
         int16_t value;
@@ -154,11 +154,11 @@
             text = @"-";
         textColor = kAnnotationValueTextColorAlt;
     }
-    
+        
     self.layer.contents = (id)[self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
                                                                scale:self.layer.contentsScale
                                                                shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                          borderMode:BorderModeSolid
+                                                          borderMode:[[self station] starredValue]? BorderModeDashes : BorderModeSolid
                                                            baseColor:baseColor
                                                                value:text
                                                            textColor:textColor

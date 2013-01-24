@@ -10,8 +10,8 @@
 #import "CollectionsAdditions.h"
 
 @interface LocalUpdateQueue () <NSFetchedResultsControllerDelegate>
-@property NSMutableSet * monitoredGroups;
-@property NSMutableSet * oneshotGroups;
+@property NSMutableArray * monitoredGroups;
+@property NSMutableArray * oneshotGroups;
 @property NSArray * pointsInQueue;
 @property NSMutableArray * pointsUpdated;
 @end
@@ -25,8 +25,8 @@
 {
     self = [super init];
     if (self) {
-        self.monitoredGroups = [NSMutableSet new];
-        self.oneshotGroups = [NSMutableSet new];
+        self.monitoredGroups = [NSMutableArray new];
+        self.oneshotGroups = [NSMutableArray new];
         self.pointsUpdated = [NSMutableArray new];
     }
     return self;
@@ -55,7 +55,7 @@
 /****************************************************************************/
 #pragma mark Groups Lists
 
-- (void) addGroup:(NSObject<LocalUpdateGroup>*)group toArray:(NSMutableSet*)list
+- (void) addGroup:(NSObject<LocalUpdateGroup>*)group toArray:(NSMutableArray*)list
 {
     if([list containsObject:group])
         return;
@@ -65,7 +65,7 @@
     [self buildUpdateQueue];
 }
 
-- (void) removeGroup:(NSObject<LocalUpdateGroup>*)group fromArray:(NSMutableSet*)list
+- (void) removeGroup:(NSObject<LocalUpdateGroup>*)group fromArray:(NSMutableArray*)list
 {
     if(![list containsObject:group])
         return;
@@ -117,13 +117,13 @@
     if(!self.monitoringPaused)
     {
         // if the app is active, update the monitored groups
-        NSArray * sortedGroups = [self.monitoredGroups allObjects];
+        NSArray * sortedGroups = self.monitoredGroups;
         sortedGroups = [sortedGroups filteredArrayWithinDistance:self.moniteredGroupsMaximumDistance fromLocation:self.referenceLocation];
         sortedGroups = [sortedGroups sortedArrayByDistanceFromLocation:self.referenceLocation];
         groupsToRefresh = sortedGroups;
     }
 
-    groupsToRefresh = [groupsToRefresh arrayByAddingObjectsFromArray:[self.oneshotGroups allObjects]];
+    groupsToRefresh = [groupsToRefresh arrayByAddingObjectsFromArray:self.oneshotGroups];
     
     // make the list
     NSMutableOrderedSet * pointsSet = [NSMutableOrderedSet new]; // use an orderedset to make sure each station is added only once
@@ -164,7 +164,7 @@
             {
                 // Call delegate if it's for a oneshot group
                 __block id<LocalUpdateGroup> oneshotGroup = nil;
-                [self.oneshotGroups enumerateObjectsUsingBlock:^(id<LocalUpdateGroup> group, BOOL *stop) {
+                [self.oneshotGroups enumerateObjectsUsingBlock:^(id<LocalUpdateGroup> group, NSUInteger idx, BOOL *stop) {
                     if([[group pointsToUpdate] containsObject:point])
                     {
                         oneshotGroup = group;
@@ -186,7 +186,7 @@
         self.pointsUpdated = [NSMutableArray new];
         
         // clear the oneshot groups and restart after a delay
-        self.oneshotGroups = [NSMutableSet new];
+        self.oneshotGroups = [NSMutableArray new];
         [self performSelector:@selector(buildUpdateQueue) withObject:nil afterDelay:self.delayBetweenPointUpdates];
     }
 }

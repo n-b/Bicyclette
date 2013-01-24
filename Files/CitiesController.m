@@ -11,7 +11,6 @@
 #import "CollectionsAdditions.h"
 #import "LocalUpdateQueue.h"
 #import "CityRegionUpdateGroup.h"
-#import "BicycletteCity+Geofences.h"
 #import "GeofencesMonitor.h"
 #import "UIApplication+LocalAlerts.h"
 
@@ -67,13 +66,13 @@
 {
     if(_currentCity != currentCity_)
     {
-        for (Geofence * fence in [_currentCity geofences]) {
+        for (Geofence * fence in [self.fenceMonitor geofencesInCity:_currentCity]) {
             [self.updateQueue removeMonitoredGroup:fence];
         }
         
         _currentCity = currentCity_;
-        for (Geofence * fence in [_currentCity geofences]) {
-            [self.fenceMonitor addFence:fence];
+
+        for (Geofence * fence in [self.fenceMonitor geofencesInCity:_currentCity]) {
             if([_currentCity canUpdateIndividualStations])
                 [self.updateQueue addMonitoredGroup:fence];
         }
@@ -171,9 +170,9 @@
     }
     else
     {
-        // Radars
-        NSArray * fences = [self.currentCity geofences];
-        [newOverlays addObjectsFromArray:[newAnnotations arrayByAddingObjectsFromArray:fences]];
+        // Fences
+        NSArray * fences = [self.fenceMonitor geofencesInCity:_currentCity];
+        [newOverlays addObjectsFromArray:fences];
 
         // Stations
         if([self showCurrentCityStations])
@@ -221,9 +220,15 @@
         Station * lstation = (Station*)[updateContext objectWithID:station.objectID];
         lstation.starredValue = !lstation.starredValue;
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        [station.city updateFences];
+        NSArray * starredStation = [Station fetchStarredStations:station.city.mainContext];
+        [self.fenceMonitor setStarredStations:starredStation inCity:station.city];
         [self addAndRemoveMapAnnotations];
     }];
+}
+
+- (BOOL) cityHasFences:(BicycletteCity*)city_
+{
+    return [[self.fenceMonitor geofencesInCity:city_] count]!=0;
 }
 
 /****************************************************************************/
@@ -239,6 +244,28 @@
 
 /****************************************************************************/
 #pragma mark -
+
+- (void)monitor:(GeofencesMonitor *)monitor fenceMonitoringFailed:(Geofence *)fence withError:(NSError *)error
+{
+    NSArray * objectIDs = [fence.stations valueForKeyPath:@"objectID"];
+    [fence.city performUpdates:^(NSManagedObjectContext *updateContext) {
+        for (NSManagedObjectID * stationID in objectIDs) {
+            Station * station = (Station *)[updateContext objectWithID:stationID];
+            station.starredValue = NO;
+        }
+    } saveCompletion:^(NSNotification *contextDidSaveNotification) {
+        [[[UIAlertView alloc]initWithTitle:@"Can't Add Fence"
+                                   message:[NSString stringWithFormat:@"%@\n%@", error.localizedDescription, error.localizedFailureReason]
+                                  delegate:nil
+                         cancelButtonTitle:@"Cancel"
+                         otherButtonTitles:nil]
+         show];
+        NSArray * starredStation = [Station fetchStarredStations:fence.city.mainContext];
+        [self.fenceMonitor setStarredStations:starredStation inCity:fence.city];
+        [self addAndRemoveMapAnnotations];
+    }];
+    
+}
 
 - (void) monitor:(GeofencesMonitor*)monitor fenceWasEntered:(Geofence*)fence
 {

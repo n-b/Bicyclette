@@ -8,13 +8,17 @@
 
 @class Geofence;
 @protocol GeofencesMonitorDelegate;
+@class BicycletteCity;
+
+#import "LocalUpdateQueue.h"
 
 // GeofencesMonitor
 //
 // observe a list of geofences
 @interface GeofencesMonitor : NSObject
-- (void) addFence:(Geofence*)fence;
-- (void) removeFence:(Geofence*)fence;
+
+- (void) setStarredStations:(NSArray*)stations inCity:(BicycletteCity*)city;
+- (NSArray*) geofencesInCity:(BicycletteCity*)city;
 
 @property (weak) id<GeofencesMonitorDelegate> delegate;
 @end
@@ -23,11 +27,15 @@
 
 - (void) monitor:(GeofencesMonitor*)monitor fenceWasEntered:(Geofence*)fence;
 - (void) monitor:(GeofencesMonitor*)monitor fenceWasExited:(Geofence*)fence;
+- (void) monitor:(GeofencesMonitor*)monitor fenceMonitoringFailed:(Geofence*)fence withError:(NSError*)error;
 
 @end
 
 
-@interface Geofence : NSObject <MKOverlay>
+@interface Geofence : NSObject <MKOverlay, LocalUpdateGroup>
 @property CLRegion * region;
+@property (nonatomic, readonly) BicycletteCity * city;
+@property (readonly) NSArray * stations;
+@property (readonly) BOOL monitored;
 @end
 

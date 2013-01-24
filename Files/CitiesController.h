@@ -19,6 +19,7 @@
 - (void) handleLocalNotificaion:(UILocalNotification*)notification;
 - (void) selectCity:(BicycletteCity*)city_;
 - (void) switchStarredStation:(Station*)station;
+- (BOOL) cityHasFences:(BicycletteCity*)city_;
 @end
 
 
