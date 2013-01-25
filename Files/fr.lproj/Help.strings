@@ -7,14 +7,21 @@
 */
 
 "HELP_TITLE" = "Bonjour !";
-"HELP_FOREWORD" = "Quelques mots avant de commencer.\
-\
-Bicyclette affiche en temps réel les vélos et les places libres :";
+"HELP_FOREWORD" = "Quelques mots avant de commencer.";
+
+"HELP_BICYCLETTE_DISPLAYS" = "Bicyclette affiche en temps réel les vélos et les places libres :";
 "HELP_BIKES" = "Vélos disponibles";
 "HELP_PARKING" = "Places libres";
 "HELP_STALE" = "Un symbole gris indique le nombre total de bornes.";
+
+"HELP_STARRED_STATIONS" = "Marquez vos stations préférées d’une étoile pour les repérer plus vite.";
+"HELP_GEOFENCES" = "Bicyclette crée alors une alerte « Geofence » (« Barrière virtuelle »).";
+
+"HELP_NOTIFICATIONS_BEHAVIOUR" = "Dès que vous approchez d’une Geofence, les disponibilités des stations s’affichent sur l’écran de l’iPhone.";
+
 "HELP_PLEASE_HELP" = "Si cette app vous plaît, les remerciements sont appréciés !";
 "HELP_PAY_WHAT_YOU_WANT" = "C’est entièrement facultatif, et vous payez ce que vous voulez !";
+
 "HELP_EPILOGUE" = "C’est tout !\
 \
 Faites attention à vélo, et rangez-vous avant de sortir votre iPhone.\

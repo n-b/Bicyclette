@@ -7,14 +7,21 @@
 */
 
 "HELP_TITLE" = "Hello!";
-"HELP_FOREWORD" = "A few words before we begin.\
-\
-Bicyclette display the available bikes and docks,  in real time:";
+"HELP_FOREWORD" = "A few words before we begin.";
+
+"HELP_BICYCLETTE_DISPLAYS" = "Bicyclette display the available bikes and docks,  in real time:";
 "HELP_BIKES" = "Available Bikes";
 "HELP_PARKING" = "Empty Docks";
-"HELP_STALE" = "A gray symbol indicates the number of docks in the station";
+"HELP_STALE" = "A gray symbol indicates the number of docks in the station.";
+
+"HELP_STARRED_STATIONS" = "You can star your favorite stations to find them faster.";
+"HELP_GEOFENCES" = "Bicyclette then sets up a “Geofence” alert around it.";
+
+"HELP_NOTIFICATIONS_BEHAVIOUR" = "As soon as you near it, the availability in your stations shows up on your iPhone screen.";
+
 "HELP_PLEASE_HELP" = "If you like this app, your help is most welcome!";
 "HELP_PAY_WHAT_YOU_WANT" = "It’s entirely optional, and you pay what you want.";
+
 "HELP_EPILOGUE" = "That’s all !\
 \
 Be careful on a bike, and always park before you use your iPhone.\

@@ -330,8 +330,8 @@
     MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:fence];
     circleView.fillColor = kFenceBackgroundColor;
     circleView.strokeColor = kAnnotationDash1Color;
-    circleView.lineWidth = 3;
-    circleView.lineDashPattern = @[@20, @20];
+    circleView.lineWidth = kDashedBorderWidth;
+    circleView.lineDashPattern = @[@(kDashLength), @(kDashLength)];
 
     return circleView;
 }

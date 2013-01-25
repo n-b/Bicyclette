@@ -20,7 +20,7 @@
 
 /* Notification text */
 
-"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d bikes, %3$d empty docks à %1$@";
+"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d bikes, %3$d empty docks at %1$@";
 
 /* Prefs chrome */
 

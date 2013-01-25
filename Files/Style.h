@@ -17,8 +17,6 @@
 #define kAnnotationFrame2Color			[UIColor colorWithWhite:.1 alpha:1]
 #define kAnnotationFrame3Color			[UIColor colorWithWhite:.7 alpha:1]
 
-#define kAnnotationDash1Color			[UIColor colorWithHue:0.714 saturation:0.753 brightness:0.536 alpha:1.000]
-#define kAnnotationDash2Color			[UIColor clearColor]
 
 #define kRegionColor					[UIColor colorWithHue:0 saturation:.02 brightness:1 alpha:1]
 
@@ -31,6 +29,11 @@
 #define kCriticalValueColor				[UIColor colorWithHue:0.008 saturation:0.920 brightness:0.710 alpha:1.000]
 
 #define kFenceBackgroundColor			[UIColor colorWithHue:0.714 saturation:0.753 brightness:0.536 alpha:0.500]
+
+#define kAnnotationDash1Color			[UIColor colorWithHue:0.714 saturation:0.753 brightness:0.536 alpha:1.000]
+#define kAnnotationDash2Color			[UIColor whiteColor]
+#define kDashedBorderWidth				2
+#define kDashLength						4
 
 #define kUnknownValueColor				[UIColor colorWithHue:0 saturation:.02 brightness:.8 alpha:1]
 

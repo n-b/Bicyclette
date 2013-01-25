@@ -122,21 +122,17 @@ typedef enum {
                     
                     if(border==BorderModeDashes)
                     {
-                        CGFloat lineWidth = 3;
-                        CGFloat perimeter = (rect.size.width-lineWidth/2/scale) * M_PI;
-                        CGFloat expectedDashes = 20; // pixels
-                        int count = perimeter/expectedDashes;
-                        CGFloat dash = perimeter/(count*2);
-                        CGFloat lengths[] = {dash,dash};
+                        CGFloat lineWidth = kDashedBorderWidth;
+                        CGFloat lengths[] = {kDashLength,kDashLength};
                         CGContextSetLineWidth(c, lineWidth/scale);
                         CGPathRef path = [self newShape:shape inRect:CGRectInset(rect, (lineWidth/2)/scale, (lineWidth/2)/scale)];
                         
-                        CGContextSetLineDash(c, -phase*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
+                        CGContextSetLineDash(c, -phase*kDashLength*2, lengths, sizeof(lengths)/sizeof(CGFloat));
                         [kAnnotationDash1Color setStroke];
                         CGContextAddPath(c, path);
                         CGContextStrokePath(c);
                         
-                        CGContextSetLineDash(c, -(phase+.5)*dash*2, lengths, sizeof(lengths)/sizeof(CGFloat));
+                        CGContextSetLineDash(c, -(phase+.5)*kDashLength*2, lengths, sizeof(lengths)/sizeof(CGFloat));
                         [kAnnotationDash2Color setStroke];
                         CGContextAddPath(c, path);
                         CGContextStrokePath(c);

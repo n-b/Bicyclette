@@ -7,14 +7,21 @@
 */
 
 "HELP_TITLE" = "Hallo!";
-"HELP_FOREWORD" = "Bevor wir beginnen ...\
-\
-Bicyclette zeigt verfügbare Räder und Ständer, in Echtzeit:";
+"HELP_FOREWORD" = "Bevor wir beginnen…";
+
+"HELP_BICYCLETTE_DISPLAYS" = "Bicyclette zeigt verfügbare Räder und Ständer, in Echtzeit:";
 "HELP_BIKES" = "Verfügbare Räder";
 "HELP_PARKING" = "Freie Ständer";
 "HELP_STALE" = "Das graue Symbol zeigt die Anzahl der Ständer in der Station";
+
+"HELP_STARRED_STATIONS" = "Star your favorite stations to find them faster.";
+"HELP_GEOFENCES" = "Bicyclette sets up a “Geofence” alert around it.";
+
+"HELP_NOTIFICATIONS_BEHAVIOUR" = "As soon as you near it, the availabilities in your stations show up on screen.";
+
 "HELP_PLEASE_HELP" = "Wenn Sie die App mögen, ist Ihre Hilfe höchst willkommen!";
 "HELP_PAY_WHAT_YOU_WANT" = "Es ist komplett freiwillig, und Sie zahlen, wieviel Sie wollen.";
+
 "HELP_EPILOGUE" = "Das ist alles!\
 \
 Seien Sie vorsichtig beim fahren und halten Sie immer an, bevor Sie Ihr iPhone nutzen.\

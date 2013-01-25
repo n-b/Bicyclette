@@ -5,7 +5,7 @@
 	<key>DebugDisplayLocalNotificationsAsAlerts</key>
 	<false/>
 	<key>DebugDisplayHelpAtLaunch</key>
-	<false/>
+	<true/>
 	<key>RadarDistance</key>
 	<integer>150</integer>
 	<key>RadarDistances</key>
