@@ -181,7 +181,9 @@
         "name" : "Raymond Losserand"
       },
       "903" : {
-        "codePostal" : "75013"
+        "codePostal" : "75013",
+		"lat" : 48.837164,
+		"lng" : 2.374232
       },
       "901" : {
         "codePostal" : "75019"
