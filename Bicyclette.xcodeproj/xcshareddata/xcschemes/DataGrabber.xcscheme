@@ -60,7 +60,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-DataGrabberLogProgress YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-BicycletteLogParsingDetails YES"
@@ -92,6 +92,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogServiceInfo YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-DataGrabberSkipGrabbing YES"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
