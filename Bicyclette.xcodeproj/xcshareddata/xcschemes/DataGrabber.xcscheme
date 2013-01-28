@@ -60,7 +60,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-DataGrabberLogProgress YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-BicycletteLogParsingDetails YES"
@@ -80,7 +80,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogRegionsDetails YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogErrors YES"
@@ -92,11 +92,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogServiceInfo YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberSkipGrabbing YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
