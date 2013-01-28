@@ -66,6 +66,7 @@
     self.box.layer.shadowOffset = CGSizeMake(0, 1);
     self.box.layer.shadowRadius = 2;
     self.box.layer.shadowColor = [UIColor colorWithWhite:0 alpha:1].CGColor;
+    self.box.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.box.bounds cornerRadius:13].CGPath;
 
     [self.scrollView addSubview:self.contentView];
     self.scrollView.contentSize = self.contentView.bounds.size;
@@ -87,6 +88,7 @@
     self.notificationView.layer.shadowOffset = CGSizeMake(0, 3);
     self.notificationView.layer.shadowRadius = 4;
     self.notificationView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.notificationView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.notificationView.bounds cornerRadius:10].CGPath;
     self.notificationView.layer.borderWidth = 1;
     
     self.notificationIconView.layer.cornerRadius = 4;

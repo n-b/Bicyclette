@@ -79,7 +79,7 @@
 
 - (void) setupFrontLayerShadowPath
 {
-    self.frontViewController.view.layer.shadowPath = (__bridge CGPathRef)(CFBridgingRelease(CGPathCreateWithRect(self.frontViewController.view.layer.bounds, NULL)));
+    self.frontViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.frontViewController.view.layer.bounds].CGPath;
 }
 
 - (void) setupRotationCenter
