@@ -24,6 +24,7 @@
         userLocalNotif.hasAction = NO;
         userLocalNotif.soundName = UILocalNotificationDefaultSoundName;
         userLocalNotif.userInfo = userInfo;
+        userLocalNotif.soundName = @"bell.wav";
         [self presentLocalNotificationNow:userLocalNotif];
     }
     else

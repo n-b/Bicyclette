@@ -156,6 +156,7 @@
 		37E43DC71684D7A30085EC4F /* Sevilla_SEVici.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */; };
 		37E43DC91684D7A30085EC4F /* Toyama_CyclOcity.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */; };
 		37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */; };
+		37E7AC3716B67B2600135570 /* bell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37E7AC3616B67B2600135570 /* bell.wav */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37EC535215BAFB0400F45C09 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534815BAFB0400F45C09 /* Default.png */; };
@@ -393,6 +394,7 @@
 		37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sevilla_SEVici.coredata; sourceTree = "<group>"; };
 		37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Toyama_CyclOcity.coredata; sourceTree = "<group>"; };
 		37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Valencia_Valenbisi.coredata; sourceTree = "<group>"; };
+		37E7AC3616B67B2600135570 /* bell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bell.wav; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -910,6 +912,7 @@
 				373A780915E40F060057E241 /* Icon~appstore.png */,
 				94E45DC616A99A6000EB6C84 /* twitter@2x.png */,
 				94E45DC716A99A6000EB6C84 /* twitter.png */,
+				37E7AC3616B67B2600135570 /* bell.wav */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1125,6 +1128,7 @@
 				94E45DC916A99A6000EB6C84 /* twitter.png in Resources */,
 				94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */,
 				94DE16D316AD57ED00C0FB64 /* Paris_Vélib’.coredata in Resources */,
+				37E7AC3716B67B2600135570 /* bell.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
