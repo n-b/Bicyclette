@@ -60,14 +60,14 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-DataGrabberLogProgress YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-BicycletteLogParsingDetails YES"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter Paris"
+            argument = "-DataGrabberCityFilter Toulouse"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -80,19 +80,19 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogRegionsDetails YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogErrors YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogMissingGeolocErrors YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogServiceInfo YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberSkipGrabbing YES"

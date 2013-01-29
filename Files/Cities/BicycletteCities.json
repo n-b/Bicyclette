@@ -443,6 +443,32 @@
     "station_element_name" : "marker"
   },
   {
+    "radius" : 1883,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
+    "longitude" : 4.865725,
+    "city_class" : "CyclocityCity",
+    "service_name" : "Li bia velo",
+    "latitude" : 50.463626,
+    "station_details_url" : "http:\/\/www.libiavelo.be\/service\/stationdetails\/namur\/",
+    "update_url" : "http:\/\/www.libiavelo.be\/service\/carto",
+    "city_name" : "Namur",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
+  },
+  {
     "radius" : 4220.608362013249,
     "KVCMapping" : {
       "fullAddress" : "fullAddress",
@@ -701,6 +727,32 @@
     "station_details_url" : "http:\/\/cyclic.rouen.fr\/service\/stationdetails\/rouen\/",
     "update_url" : "http:\/\/cyclic.rouen.fr\/service\/carto",
     "city_name" : "Rouen",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "station_element_name" : "marker"
+  },
+  {
+    "radius" : 5030,
+    "KVCMapping" : {
+      "fullAddress" : "fullAddress",
+      "ticket" : "status_ticket",
+      "total" : "status_total",
+      "lat" : "latitude",
+      "address" : "address",
+      "open" : "open",
+      "number" : "number",
+      "available" : "status_available",
+      "lng" : "longitude",
+      "free" : "status_free",
+      "name" : "name",
+      "bonus" : "bonus"
+    },
+    "longitude" : 1.445061,
+    "city_class" : "CyclocityCity",
+    "service_name" : "VélôToulouse",
+    "latitude" : 43.600039,
+    "station_details_url" : "http:\/\/www.velo.toulouse.fr\/service\/stationdetails\/toulouse\/",
+    "update_url" : "http:\/\/www.velo.toulouse.fr\/service\/carto",
+    "city_name" : "Toulouse",
     "station_status_parsing_class" : "XMLSubnodesStationParse",
     "station_element_name" : "marker"
   },
