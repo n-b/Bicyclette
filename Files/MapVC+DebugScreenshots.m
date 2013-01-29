@@ -1,95 +1,201 @@
-////
-////  MapVC+DebugScreenshots.m
-////  Bicyclette
-////
-////  Created by Nicolas Bouilleaud on 29/09/12.
-////  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
-////
 //
-//#import "MapVC+DebugScreenshots.h"
-//#import "UIApplication+screenshot.h"
-//#import "Radar.h"
-//#import "BicycletteCity.h"
+//  MapVC+DebugScreenshots.m
+//  Bicyclette
 //
-//@interface MapVC(Protected)
-//@property MKMapView * mapView;
-//- (void) createRadarAtPoint:(CGPoint)pointInMapView;
-//@end
+//  Created by Nicolas Bouilleaud on 29/09/12.
+//  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
-//@implementation MapVC (DebugScreenshots)
-//
-//- (void) saveScreenshotNamed:(NSString*)name
-//{
-//    UIImage * screenshot = [[UIApplication sharedApplication] screenshot];
-//    NSString * path = [NSUserDefaults.standardUserDefaults stringForKey:@"DebugScreenshotPath"];
-//    path = [[path stringByAppendingPathComponent:name] stringByAppendingPathExtension:@"png"];
-//    NSLog(@"Saving screenshot to %@",path);
-//    [UIImagePNGRepresentation(screenshot) writeToFile:path atomically:NO];
-//}
-//
-//- (void) takeScreenshotForDefaultAndExit
-//{
-//    CGFloat height = self.view.frame.size.height * [[UIScreen mainScreen] scale];
-//    NSDictionary * names = (@{@460 : @"Default",
-//                            @920 : @"Default@2x",
-//                            @1096 : @"Default-568h@2x",
-//                            @748 : @"Default-Landscape",
-//                            @1496 : @"Default-Landscape@2x",
-//                            @1004 : @"Default-Portrait",
-//                            @2008 : @"Default-Portrait@2x",
-//                            });
-//    
-//    [self saveScreenshotNamed:names[@(height)]];
-//    
-//    exit(0);
-//}
-//
-//- (void) takeScreenshotsForITCAndExit
-//{
-//    // zoom in user
-//    BOOL isIpad = [[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad;
-//    CGFloat meters = isIpad?800:300;
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, meters, meters);
-//    [self.mapView setRegion:region animated:NO];
-//    
-//    // delete any remaining radar
-//    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:[Radar entityName]];
-//    request.predicate = [NSPredicate predicateWithFormat:@"%K == YES",RadarAttributes.manualRadar];
-//    NSArray * radars = [self.currentCity.moc executeFetchRequest:request error:NULL];
-//    for (Radar * radar in radars) {
-//        [self.mapView removeAnnotation:radar];
-//        [self.currentCity.moc deleteObject:radar];
-//    }
-//
-//    // wait for the map to load
-//    [self performSelector:@selector(_takeScreenshotsForITCAndExit_step2) withObject:nil afterDelay:4.5];
-//}
-//
-//- (void) _takeScreenshotsForITCAndExit_step2
-//{
-//    // take a first screenshot
-//    BOOL isIpad = [[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad;
-//    NSString * name = isIpad?@"saintmichel~ipad":@"saintmichel";
-//    [self saveScreenshotNamed:name];
-//    
-//    // create a radar
-//    CGPoint radarPoint = self.mapView.center;
-//    radarPoint.x -= 35;
-//    radarPoint.y += 66;
-//    [self createRadarAtPoint:radarPoint];
-//    
-//    // wait for the animation
-//    [self performSelector:@selector(_takeScreenshotsForITCAndExit_step3) withObject:nil afterDelay:1];
-//}
-//
-//- (void) _takeScreenshotsForITCAndExit_step3
-//{
-//    BOOL isIpad = [[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad;
-//    NSString * name = isIpad?@"radar2~ipad":@"radar2";
-//    [self saveScreenshotNamed:name];
-//    
-//    exit(0);
-//}
-//
-//
-//@end
+
+#if SCREENSHOTS
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
+
+#import "MapVC+DebugScreenshots.h"
+#import "UIApplication+screenshot.h"
+#import "BicycletteCity.h"
+#import "CollectionsAdditions.h"
+#import "UIApplication+LocalAlerts.h"
+
+@interface MapVC(Protected)
+@property MKMapView * mapView;
+@property UISegmentedControl * modeControl;
+@end
+
+@implementation MapVC (DebugScreenshots)
+
+static BOOL gShouldShowAnnotations = NO;
+
+// Override methods from MapVC.m
+- (void) controller:(CitiesController*)controller setAnnotations:(NSArray*)newAnnotations overlays:(NSArray*)newOverlays
+{
+    NSArray * oldAnnotations = [self.mapView.annotations arrayByRemovingObjectsInArray:@[ self.mapView.userLocation ]];
+    [self.mapView removeAnnotations:[oldAnnotations arrayByRemovingObjectsInArray:newAnnotations]];
+
+    if(gShouldShowAnnotations)
+        [self.mapView addAnnotations:[newAnnotations arrayByRemovingObjectsInArray:oldAnnotations]];
+    
+    NSArray * oldOverlays = self.mapView.overlays;
+    [self.mapView removeOverlays:[oldOverlays arrayByRemovingObjectsInArray:newOverlays]];
+    if(gShouldShowAnnotations)
+        [self.mapView addOverlays:[newOverlays arrayByRemovingObjectsInArray:oldOverlays]];
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) saveScreenshotWithNameTemplate:(NSString*)name localized:(BOOL)localized
+{
+    NSDictionary * suffixes = @{@480 : @"",
+                                @960 : @"@2x",
+                                @1136 : @"-568h@2x",
+                                @768 : @"-Landscape",
+                                @1536 : @"-Landscape@2x",
+                                @1024 : @"-Portrait",
+                                @2048 : @"-Portrait@2x",
+                                };
+    CGFloat height = self.view.frame.size.height * [[UIScreen mainScreen] scale];
+    NSString * suffix = suffixes[@(height)];
+    NSAssert(suffix, @"invalid screenshot height : %f",height);
+    [self saveScreenshotNamed:[NSString stringWithFormat:@"%@%@",name,suffix] localized:localized];
+}
+
+- (NSString*) screenshotsPathLocalized:(BOOL)localized
+{
+    NSString * path = [NSUserDefaults.standardUserDefaults stringForKey:@"DebugScreenshotPath"];
+    path = [path stringByExpandingTildeInPath];
+    if(localized)
+        path = [path stringByAppendingPathComponent:[NSLocale preferredLanguages][0]];
+    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
+    return path;
+}
+
+- (void) saveScreenshotNamed:(NSString*)name localized:(BOOL)localized
+{
+    UIImage * screenshot = [[UIApplication sharedApplication] screenshot];
+    NSString * savePath = [[[self screenshotsPathLocalized:localized] stringByAppendingPathComponent:name] stringByAppendingPathExtension:@"png"];
+    NSLog(@"Saving screenshot %@",savePath);
+    [UIImagePNGRepresentation(screenshot) writeToFile:savePath atomically:NO];
+}
+
+- (void) revealScreenshotsFolder
+{
+    NSString *openCommand = [NSString stringWithFormat:@"/usr/bin/open \"%@\"", [self screenshotsPathLocalized:NO]];
+	system([openCommand fileSystemRepresentation]);
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) takeScreenshots
+{
+    [self revealScreenshotsFolder];
+
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"TakeDefaultScreenshot"])
+    {
+        [self takeScreenshotForDefault];
+    }
+    else if([[NSUserDefaults standardUserDefaults] boolForKey:@"TakeUIScreenshots"])
+    {
+        gShouldShowAnnotations = YES;
+        [self takeScreenshotForEurope];
+    }
+}
+
+/****************************************************************************/
+#pragma mark -
+
+- (void) takeScreenshotForDefault
+{
+    self.modeControl.selectedSegmentIndex = UISegmentedControlNoSegment;
+    [self.modeControl setTitle:@"" forSegmentAtIndex:0];
+    [self.modeControl setTitle:@"" forSegmentAtIndex:1];
+    [self saveScreenshotWithNameTemplate:@"Default" localized:NO];
+    exit(0);
+}
+
+- (void) takeScreenshotForEurope
+{
+    MKCoordinateRegion europe = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(46.892686, 3.520008),
+                                                       2000000, 2000000);
+    [self.mapView setRegion:europe animated:NO];
+    [self performSelector:@selector(takeScreenshotForEurope_2) withObject:nil afterDelay:4];
+}
+
+- (void) takeScreenshotForEurope_2
+{
+    [self saveScreenshotWithNameTemplate:@"Europe" localized:YES];
+
+    [self performSelector:@selector(takeScreenshotForNotreDame) withObject:nil afterDelay:1];
+}
+
+- (CLLocationDistance) distanceForNotreDame
+{
+    if([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad)
+        return 2000.;
+    else
+        return 1000.;
+}
+
+- (void) takeScreenshotForNotreDame
+{
+    MKCoordinateRegion cite = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(48.857015, 2.348206),
+                                                       self.distanceForNotreDame,self.distanceForNotreDame);
+    [self.mapView setRegion:cite animated:NO];
+    [self.controller selectStationNumber:@"4001" inCityNamed:@"Paris" changeRegion:NO];
+    Station * notredame = [[self.controller cityNamed:@"Paris"] stationWithNumber:@"4001"];
+    if(! notredame.starredValue)
+        [self.controller switchStarredStation:notredame];
+    [self performSelector:@selector(takeScreenshotForNotreDame_2) withObject:nil afterDelay:5];
+}
+
+- (void) takeScreenshotForNotreDame_2
+{
+    [self saveScreenshotWithNameTemplate:@"NotreDame" localized:YES];
+    [self performSelector:@selector(takeScreenshotForLincolnMemorial) withObject:nil afterDelay:1];
+}
+
+- (CLLocationDistance) distanceForLincolnMemorial
+{
+    if([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad)
+        return 4000.;
+    else
+        return 3000.;
+}
+
+- (void) takeScreenshotForLincolnMemorial
+{
+    MKCoordinateRegion washington = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(38.880661, -77.033085),
+                                                           self.distanceForLincolnMemorial,self.distanceForLincolnMemorial);
+    [self.mapView setRegion:washington animated:NO];
+    [self.controller selectStationNumber:@"204" inCityNamed:@"Washington" changeRegion:NO];
+    [self performSelector:@selector(takeScreenshotForLincolnMemorial_2) withObject:nil afterDelay:4];
+}
+
+- (void) takeScreenshotForLincolnMemorial_2
+{
+    [self saveScreenshotWithNameTemplate:@"LincolnMemorial" localized:YES];
+    [self performSelector:@selector(takeLockedScreenshot) withObject:nil afterDelay:1];
+}
+
+- (void) takeLockedScreenshot
+{
+
+    UILocalNotification * userLocalNotif = [UILocalNotification new];
+    userLocalNotif.alertBody = [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
+                                @"Notre Dame",
+                                10, 13];
+    userLocalNotif.hasAction = NO;
+    userLocalNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+    [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
+
+    // Lock. I'm basically dead now.
+    system("osascript -e \"tell application id \\\"com.apple.iphonesimulator\\\" to activate\" -e \"tell application \\\"System Events\\\" to keystroke \\\"l\\\" using command down\"");
+    
+    exit(0);
+}
+@end
+
+#pragma clang diagnostic pop
+
+#endif

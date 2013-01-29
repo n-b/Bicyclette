@@ -62,8 +62,10 @@ const NSUInteger kBannerViewTag = 42105;
     self.bannerView.alpha = 1;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissBanner) object:nil];
 
+#if ! SCREENSHOTS
     if(!sticky)
         [self performSelector:@selector(dismissBanner) withObject:nil afterDelay:3];
+#endif
 }
 
 - (void) dismissBanner

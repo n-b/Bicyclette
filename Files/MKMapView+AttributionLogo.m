@@ -13,13 +13,14 @@
 
 - (void) relocateAttributionLogoIfNecessary
 {
+#if SCREENSHOTS
     // Debug for screenshot (Default.png)
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugScreenshotForDefault"])
     {
         self.googleLogo.hidden = YES;
         self.attributionLabel.hidden = YES;
         return;
     }
+#endif
 
     // We only relocate on iPhone, not on iPad
     if([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPhone)

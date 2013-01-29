@@ -88,6 +88,7 @@
 
 - (void) showHelpIfNeeded
 {
+#if ! SCREENSHOTS
     // Show help at first launch
     if([NSUserDefaults.standardUserDefaults boolForKey:@"DisplayHelpAtLaunch"]||
        [NSUserDefaults.standardUserDefaults boolForKey:@"DebugDisplayHelpAtLaunch"])
@@ -98,6 +99,7 @@
     {
         [self notifyCanRequestLocation];
     }
+#endif
 }
 
 - (IBAction)showHelp

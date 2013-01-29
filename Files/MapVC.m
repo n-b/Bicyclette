@@ -22,8 +22,9 @@
 #import "MapViewScaleView.h"
 #import "GeofencesMonitor.h"
 #import "Style.h"
+#import "MapVC+DebugScreenshots.h"
 
-@interface MapVC() <MKMapViewDelegate>
+@interface MapVC()
 // UI
 @property MKMapView * mapView;
 @property UIToolbar * mapVCToolbar; // Do not use the system toolbal to prevent its height from changing
@@ -166,6 +167,11 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+#if SCREENSHOTS
+    // Debug for screenshot (Default.png)
+    [self takeScreenshots];
+#endif
+    
     self.shouldZoomToUserWhenLocationFound = YES;
 }
 

@@ -11,7 +11,7 @@
 @class BicycletteCity;
 @class Station;
 
-@interface MapVC : UIViewController  <CitiesControllerDelegate>
+@interface MapVC : UIViewController  <MKMapViewDelegate, CitiesControllerDelegate>
 
 @property (nonatomic) CitiesController * controller;
 
