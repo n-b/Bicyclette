@@ -1,0 +1,77 @@
+/*
+ Localizable.strings
+ Bicyclette
+ 
+ Created by Nicolas Bouilleaud on 15/07/12.
+ Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
+ */
+
+/* Main chrome */
+
+"BIKE" = "Rowery";
+"PARKING" = "Stojaki";
+
+"STATION_STATUS_CLOSED" = "Stacja nieczynna";
+
+/* Lokalizacje */
+
+"LOCALIZATION_ERROR_UNAUTHORIZED_TITLE" = "Usługi lokalizacji(GPS) sš wyłšczone.";
+"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "Zezwól Bicyclette na używanie usług lokalizacji w UstawieniachÂ >Â Prywatnoć.";
+
+/* Zawiadomienie */
+
+"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d rowery, %3$d puste stojaki Ă  %1$@";
+
+/* Prefs chrome */
+
+"DESIGN_AND_CODE" = "Projekt & Kody Nicolas Bouilleaud";
+"CONTACT_EMAIL_SUPPORT" = "Masz pomysł? Znalazłe błšd?";
+
+"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@";
+
+"STORE_PLEASE_HELP_LABEL" = "Lubisz tę aplikację?";
+"STORE_PLEASE_HELP_BUTTON" = "Pomóż mi jš ulepszyć!";
+
+"SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, najlepsza aplikacja dla miejskich rowerów! @bicycletteapp";
+"SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, najepsza aplikacja dla %@! @bicycletteapp";
+
+"APPSTORE_RATINGS_BUTTON" = "Oceń na AppÂ Store";
+
+"SEE_HELP_LABEL" = "Potrzebujesz pomocy?";
+"SEE_HELP_BUTTON" = "Zobacz Instrukcje";
+
+"STATIONS_LIST_CITY_%@" = "«%@» stacje:";
+"UPDATE_STATIONS_LIST_BUTTON" = "Aktualizuj";
+
+/* Sklep */
+
+"STORE_ALERT_TITLE" = "Czy ta aplikacja jest przydatna?\nTwoje wskazówki sš mile widziane!";
+"STORE_ALERT_MESSAGE" = "Wyra swojš opinię.";
+"STORE_ALERT_CANCEL" = "Nie teraz";
+"STORE_ALERT_OK" = "Tak!";
+
+"STORE_UNAVAILABLE_TITLE" = "Nie można dokonać zakupu";
+"STORE_UNAVAILABLE_MESSAGE" = "Zakupy sš wyłšczone";
+
+"STORE_SHEET_TITLE" = "Czy ta aplikacja jest przydatna?\nTwoje wskazówki sš mile widziane!\n\nWyra swojš opinię:";
+"STORE_SHEET_CANCEL" = "Anulowanie";
+
+"STORE_THANK_YOU_LABEL" = "Dziękujemy!";
+"STORE_REWARD_1" = "😀";
+"STORE_REWARD_2" = "😀😀";
+"STORE_REWARD_3" = "😀😀😀";
+
+/* Updates */
+
+"UPDATING : FETCHING" = "PobieranieâŚ";
+"UPDATING : PARSING" = "AktualizowanieâŚ";
+"UPDATING : NO NEW DATA" = "Lista jest bieżšca.";
+"UPDATING : COMPLETED" = "Aktualizacja ukończona";
+"%d STATION COUNT OF TYPE %@" = "%d %@ stacja/i";
+"UPDATING : FAILED" = "Update failure";
+"UPDATING : COMPLETED WITH ERRORS" = "Stacje z błędnej lokalizacji zostały usunięte:";
+
+/* Favorites / Geofences */
+"FENCE_MONITORING_ERROR_TITLE" = "Can not add this station to your favorites";
+"FENCE_MONITORING_ERROR_MESSAGE" = "iOS only allows a limited number of geolocated alerts (about 20). Pleast try to remove other stations from your favorites.";
+"FENCE_MONITORING_ERROR_OK" = "OK";

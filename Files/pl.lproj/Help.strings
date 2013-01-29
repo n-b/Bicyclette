@@ -1,0 +1,29 @@
+/* 
+  Help.strings
+  Bicyclette
+
+  Created by Nicolas @ bou.io on 18/01/13.
+  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
+*/
+
+"HELP_TITLE" = "Witamy!";
+"HELP_FOREWORD" = "Kilka słów zanim rozpoczniemy.";
+
+"HELP_BICYCLETTE_DISPLAYS" = "Bicyclette wyświetla dostępne rowery w stacjach dokujących, w czasie rzeczywistym:";
+"HELP_BIKES" = "Rowery są dostępne";
+"HELP_PARKING" = "Puste stojaki";
+"HELP_STALE" = "Kolor szary wskazuje liczbę wolnych stojaków w stacji";
+
+"HELP_STARRED_STATIONS" = "You can star your favorite stations to find them faster.";
+"HELP_GEOFENCES" = "Bicyclette then sets up a “Geofence” alert around it.";
+
+"HELP_NOTIFICATIONS_BEHAVIOUR" = "As soon as you near it, the availability in your stations shows up on your iPhone screen.";
+
+"HELP_PLEASE_HELP" = "Jeżeli lubisz tę aplikację, Twoja pomoc jest mile widziana!";
+"HELP_PAY_WHAT_YOU_WANT" = "Jest całkowicie opcjonalna i płacisz za co chcesz.";
+
+"HELP_EPILOGUE" = "To wszystko!\
+\
+Jedź ostrożnie i najpierw zaparkuj zanim użyjesz swojego iPhone'a.\
+\
+Miłej podróży!";
