@@ -13,10 +13,12 @@
 
 @interface CitiesController : NSObject
 @property NSArray * cities;
+- (BicycletteCity*) cityNamed:(NSString*)cityName;
 @property (readonly, nonatomic) BicycletteCity * currentCity;
 @property (assign) id<CitiesControllerDelegate> delegate;
 - (void) regionDidChange:(MKCoordinateRegion)region;
 - (void) handleLocalNotificaion:(UILocalNotification*)notification;
+- (void) selectStationNumber:(NSString*)stationNumber inCityNamed:(NSString*)cityName changeRegion:(BOOL)changeRegion;
 - (void) selectCity:(BicycletteCity*)city_;
 - (void) switchStarredStation:(Station*)station;
 - (BOOL) cityHasFences:(BicycletteCity*)city_;

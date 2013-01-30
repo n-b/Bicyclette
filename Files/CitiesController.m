@@ -62,6 +62,11 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (BicycletteCity*) cityNamed:(NSString*)cityName
+{
+    return [self.cities firstObjectWithValue:cityName forKeyPath:@"cityName"];
+}
+
 - (void) setCurrentCity:(BicycletteCity *)currentCity_
 {
     if(_currentCity != currentCity_)
@@ -284,7 +289,7 @@
 {
     NSAssert([station isKindOfClass:[Station class]],nil);
     NSAssert([fence isKindOfClass:[Geofence class]],nil);
-    [[UIApplication sharedApplication] presentLocalNotificationMessage:station.localizedSummary userInfo:(@{@"city": NSStringFromClass([station.city class]) ,
+    [[UIApplication sharedApplication] presentLocalNotificationMessage:station.localizedSummary userInfo:(@{@"city": station.city.cityName ,
                                                                                                           @"stationNumber": station.number})];
 }
 
@@ -302,28 +307,28 @@
 
 - (void) handleLocalNotificaion:(UILocalNotification*)notification
 {
-    NSString * cityClassName = notification.userInfo[@"city"];
-    BicycletteCity * city;
-    for (BicycletteCity * aCity in self.cities) {
-        if([NSStringFromClass([aCity class]) isEqualToString:cityClassName])
-        {
-            city = aCity;
-            break;
-        }
-    }
-    NSString * number = notification.userInfo[@"stationNumber"];
-    Station * station = nil;
-    if(number)
-    {
-        station = [city stationWithNumber:number];
-    }
+    [self selectStationNumber:notification.userInfo[@"stationNumber"] inCityNamed:notification.userInfo[@"city"] changeRegion:YES];
+}
 
-    if(city && number)
+- (void) selectStationNumber:(NSString*)stationNumber inCityNamed:(NSString*)cityName changeRegion:(BOOL)changeRegion
+{
+    BicycletteCity * city = [self cityNamed:cityName];
+    
+    Station * station = nil;
+    if(stationNumber)
+    {
+        station = [city stationWithNumber:stationNumber];
+    }
+    
+    if(city && stationNumber)
     {
         self.currentCity = city;
-        CLLocationDistance meters = [[city prefForKey:@"CitiesController.MapRegionZoomDistance"] doubleValue];
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
-        [self.delegate controller:self setRegion:region];
+        if(changeRegion)
+        {
+            CLLocationDistance meters = [[city prefForKey:@"CitiesController.MapRegionZoomDistance"] doubleValue];
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(station.coordinate, meters, meters);
+            [self.delegate controller:self setRegion:region];
+        }
         [self.delegate controller:self selectAnnotation:station];
     }
 }
