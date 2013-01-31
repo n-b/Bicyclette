@@ -1,0 +1,92 @@
+/* Fonts */
+@import url(http://fonts.googleapis.com/css?family=Chivo:900);
+
+/* global */
+html,body {
+	overflow-x: hidden;
+	background-color: #f1f0f0;
+	font-family: 'Chivo', helvetica, arial, clean, sans-serif;
+	font-size: 92%;
+}
+
+img,object,embed {
+	max-width: 100%;
+}
+
+/* Hyphenation */
+p {
+	hyphens: auto;
+	-webkit-hyphens: auto;
+	-webkit-hyphenate-character: "\2010";
+	-webkit-hyphenate-limit-after: 1;
+	-webkit-hyphenate-limit-before: 3;
+	-moz-hyphens: auto;
+	text-align: justify;
+}
+
+/* Wrapper */
+#wrapper {
+	margin-top: 3em;
+	margin-bottom: 3em;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.5em;
+	width: 100%;
+	max-width: 490px;
+}
+@media only screen and (max-width: 767px) {
+	#wrapper {
+		margin-top: 0em;
+		margin-bottom: 0em;
+		max-width: none;
+	}
+}
+
+/* Links */
+
+a {
+	color: #1430b8;
+	text-decoration: none;
+}
+a:hover {
+	color: #b83014;
+}
+
+/* Lists */
+
+ol, ul {
+	margin-left: 1em;
+	padding-left: 1em;
+}
+
+/* Header */
+
+#header {
+	margin-bottom: 45px;
+	font-family: 'Chivo', sans-serif;
+	font-weight: bold;
+	font-size: 400%;
+}
+#header a {
+	color: #004;
+}
+@media only screen and (max-width: 767px) {
+	#header {
+		margin-top:12px;
+		margin-bottom: 0px;
+		font-size: 315%;
+		float:left;
+		width: 100%;
+	}
+}
+
+/* Container */
+#container {
+	width:100%;
+	float:right;
+}
+@media only screen and (max-width: 767px) {
+	#container {
+		margin-top:10px;
+	}
+}

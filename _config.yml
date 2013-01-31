@@ -1,0 +1,10 @@
+domain: bicyclette-app.fr
+title: Bicyclette
+author: Nicolas Bouilleaud
+email: contact@bicyclette.fr
+
+github:
+ username: n-b
+
+markdown: kramdown
+pygments: true

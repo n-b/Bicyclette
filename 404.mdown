@@ -1,0 +1,7 @@
+---
+layout: base
+---
+
+# Four-Oh-Four
+
+Are you [lost](mailto:{{ site.email }}) ?
