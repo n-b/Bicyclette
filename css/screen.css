@@ -1,12 +1,17 @@
 /* Fonts */
-@import url(http://fonts.googleapis.com/css?family=Chivo:900);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+@import url(http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic);
 
 /* global */
 html,body {
 	overflow-x: hidden;
 	background-color: #f1f0f0;
-	font-family: 'Chivo', helvetica, arial, clean, sans-serif;
+	font-family: 'gentium book basic', serif;
 	font-size: 92%;
+}
+
+h1 {
+	font-family: 'open sans', serif;
 }
 
 img,object,embed {
@@ -63,12 +68,6 @@ ol, ul {
 
 #header {
 	margin-bottom: 45px;
-	font-family: 'Chivo', sans-serif;
-	font-weight: bold;
-	font-size: 400%;
-}
-#header a {
-	color: #004;
 }
 @media only screen and (max-width: 767px) {
 	#header {
@@ -89,4 +88,15 @@ ol, ul {
 	#container {
 		margin-top:10px;
 	}
+}
+
+/* images */
+
+img {
+  border-radius:9px;
+  box-shadow: 0px 1px 3px #555;
+}
+
+p,ul {
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
