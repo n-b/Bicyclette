@@ -1,40 +1,40 @@
-Une carte, juste une carte. Pas de conseils, de vidéos, de trucs.
+Bicyclette is the **best** iOS app for Bike-Sharing systems. It’s ultra-fast and ultra-simple. It works in more than 50 cities in the world.
 
-Ultra-réactive : Bicyclette rafraichit en permanence le nombre de places et de vélos disponibles dans vos stations.
+Just a map. With stations. Nothing else.
 
-Pas de liste ou de favoris : créez des Zones Radars pour automatiquement être prévenu à l'approche de vos stations préférées.
-L'application utilise le "geofencing" pour être automatiquement redémarrée en tâche de fond par votre iPhone, et vous donner un résumé des stations environnantes.
+You don’t even have to launch the app : Bicyclette automatically fetches the number of bikes available when you approach your favorite station and shows a notification on the Lock Screen.
 
-Notes sur le projet
-===================
+See [bicyclette-app.fr](http://bicyclette-app.fr) for details.
 
-DataGrab
---------
+# Development Notes
 
-Bicyclette préembarque une base de données avec la liste des stations. L'idée est de fonctionner tout de suite au premier lancement. 
-Cette base est créée sur le mac de développement, par un outil associé, **BicycletteDataGrab**. Il doit être executé au moins une fois avant de lancer Bicyclette.
+## DataGrabber
 
-BicycletteDataGrab télécharge la liste des stations et la sauvegarde dans `_DataGrabTempFolder/VelibModel.sqlite`. Ce fichier fait partie des ressources de Bicyclette.
+For some cities, Bicyclette embeds the list of stations of the network. The point is that at first launch, you don’t have to wait for the station to load anything. The tool responsible for this is *DataGrabber*. It fetches the data for every system, and saves the database for a few dozens of these. This data is then copied as resources of the app.
 
-BicycletteDataGrab utilise exactement le même backend que Bicyclette. En fait, le seul code spécifique est la fonction `main()`.
+Although it’s a mac tol, *DataGrabber* uses the same backend code as the app. It must be run at least once before compiling Bicyclette.
 
-Une fois installée, Bicyclette peut mettre à jour sa base elle-même.
+DataGrabber can be run with several options, controlled by userdefaults/command line arguments. Look into the *DataGrabber* scheme run options for details.
 
-Screenshots
------------
+## Mapping
 
-Deux schemes supplémentaires servent à mécaniser (un tant soit peu) la prise de screenshot pour les Default.png et les captures pour le site web et l'Appstore.
+The single most important file in the app is [BicycletteCities.json](blob/master/Files/Cities/BicycletteCities.json). It contains Keys-Mapping definitions, urls, general info, and other specific tidbits for every city of Bicyclette.
 
-HardcodedFixes
---------------
+Also important is [Cities.md](blob/master/Cities.md) where I listed implementation notes for each system.
 
-Debug Flags
------------
+Bicyclette uses another of my projects, [KVCMapping](https://github.com/n-b/KVCMapping) to make importing into the DB very easy.
 
-Reusable code
--------------
+## Screenshots
 
-* CoreDataManager
-* DataUpdater
-* Store
-* KVCMapping
+There’s another run scheme that tries to make easier the whole process of making screenshots for the appstore (and for the Default.png). Again, look for the options in the Run Arguments of the *Screenshots* scheme.
+
+## Contributions
+
+are most welcome. Just [contact me](nico@bou.io) before you start something big, I may have some idea about it.
+
+## Reusing code and compontents
+
+The code is BSD-licensed. However : 
+
+* If you want to adapt it to another platform, tell me about it.
+* Don’t publish a clone on the iOS appstore. Hell, it’s a free and open-source app, what would be the point ?
