@@ -208,7 +208,8 @@
     "city_class" : "RennesVeloStarCity",
     "service_name" : "VéloStar",
     "latitude" : 48.1095485,
-    "update_url" : "http:\/\/data.keolis-rennes.com\/xml\/?version=1.0&key=U3JFQO8IG7CUY28&cmd=getstation",
+    "update_url" : "http:\/\/data.keolis-rennes.com\/xml\/?version=1.0&key={APIKEY}&cmd=getstation",
+    "apikey" : "U3JFQO8IG7CUY28",
     "station_element_name" : "station",
     "city_name" : "Rennes"
   },
@@ -1282,7 +1283,8 @@
     "city_class" : "BordeauxVCubCity",
     "service_name" : "VCub",
     "latitude" : 44.845415,
-    "update_url" : "http:\/\/data.lacub.fr\/wfs?key=3JXUPQJXUA&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326",
+    "update_url" : "http:\/\/data.lacub.fr\/wfs?key={APIKEY}&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326",
+    "apikey" : "3JXUPQJXUA",
     "station_element_name" : "ms:CI_VCUB_P",
     "city_name" : "Bordeaux"
   }

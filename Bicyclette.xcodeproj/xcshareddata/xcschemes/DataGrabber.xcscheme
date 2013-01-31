@@ -67,7 +67,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter Toulouse"
+            argument = "-DataGrabberCityFilter Paris"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -84,15 +84,15 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogErrors YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogMissingGeolocErrors YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogServiceInfo YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberSkipGrabbing YES"

@@ -42,4 +42,13 @@
                       }];
 }
 
+- (NSArray *)updateURLStrings
+{
+    NSString * urlstring = [super updateURLStrings][0];
+    NSString * key = self.serviceInfo[@"apikey"];
+    urlstring = [urlstring stringByReplacingOccurrencesOfString:@"{APIKEY}"
+                                                     withString:key];
+    return @[urlstring];
+}
+
 @end
