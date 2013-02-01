@@ -2,6 +2,290 @@
 layout: base
 ---
 
-Bicyclette uses the data from the various Bike-Sharing Systems.
+Autant que possible, Bicyclette utilise les données provenant de WebServices *officiels*, ou de sources de données autorisées par les gestionnaires des réseaux.
 
-(List and status of each and every service.)
+Malheureusement, les villes qui mettent effectivement à disposition du public les données sont une minorité. L'*opendata* a du chemin devant lui.
+
+# Services déjà disponibles dans Bicyclette
+
+## Rennes
+
+* Géré par Keolis.
+* Plateforme opendata officielle
+* Liste des stations et Disponibilité: `http://data.keolis-rennes.com/{xml,json}/?version=1.0&key={APIKEY}&cmd=getstation`
+ 
+## Bordeaux
+
+* Géré par Keolis.
+* Plateforme opendata officielle
+* Liste des stations et Disponibilité: `http://data.lacub.fr/wfs?key={APIKEY}&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326`
+
+## Wien
+
+* Géré par Cyclocity
+* Webservice officiel. Voir [les conditions](http://www.citybikewien.at/cms/dynimages/mb/files/Terms_of_Use_XML.pdf).
+* Liste des stations et Disponibilité: `http://dynamisch.citybikewien.at/citybike_xml.php `
+
+## Réseaux Cyclocity/JCDecaux
+
+* L'usage de ces webservices est, de source officieuse, dorénavant *toléré* par Cyclocity. Cyclocity a pendant quelque temps explicitement *interdit* leur utilisation par des applis tierces. Des réflexions sur l'opendata sont en cours, et Cyclocity ne demande plus le retrait des applications tierces.
+* Les applis iOS "officielles" à Paris (celle de JCDecaux et celle de la ville de Paris) utilisent [*d'autres* webservices](http://blog.velib.paris.fr/blog/2012/12/17/des-stations-jusqua-votre-ecran-le-circuit-des-donnees-velib-2/).
+* Tous ces services sont en fait hébergés sur les mêmes serveurs.
+* Enfin, il y a quelques erreurs dans les données, en particulier sur la géolocalisation des stations, parfois complètement fausse.
+* **Modèle :**
+	* Liste des stations : `http://{servicewebsite}/service/carto`
+	* Disponibilié : `http://{servicewebsite}/service/stationdetails/{city_name}/{station_id}`
+* **Amiens** : www.velam.amiens.fr
+* **Besancon** : www.velocite.besancon.fr
+* **Brisbane** : www.citycycle.com.au
+* **Bruxelles** : www.villo.be
+* **CergyPointoise** : www.velo2.cergypontoise.fr
+* **Creteil** : www.cristolib.fr (The CristoLib list also contains stations of the CergyPointoise service. That's an error.)
+* **DublinBikes** : www.dublinbikes.ie
+* **Goteborg** : www.goteborgbikes.se
+* **Ljubljana** : www.bicikelj.si
+* **Luxembourg** : www.veloh.lu
+* **Marseille** : www.levelo-mpm.fr
+* **Mulhouse** : www.velocite.mulhouse.fr
+* **Nancy** : www.velostanlib.fr
+* **Nantes** : www.bicloo.nantesmetropole.fr
+* **Paris** : www.velib.paris.fr
+* **Rouen** : cyclic.rouen.fr
+* **Santander** : www.tusbic.es
+* **Sevilla** : www.sevici.es
+* **Toulouse** : www.velo.toulouse.fr
+* **Toyama** : www.cyclocity.jp
+* **Valencia** : www.valenbisi.es
+
+## Lyon
+
+* Géré par Cyclocity, mais les webservices sont différent. (Il s'agit en fait du premier réseau Cyclocity/JCDecaux)
+* Liste des stations :  `http://www.velov.grandlyon.com/velovmap/zhp/inc/StationsParArrondissement.php?arrondissement={69381,69382,69383,69384,69385,69386,69387,69388,69389}`
+* Disponibilité : `http://www.velov.grandlyon.com/velovmap/zhp/inc/DispoStationsParId.php?id={station_id}`
+
+## Lille
+
+* Géré par Keolis
+* Pas de politique officielle, mais le gestionnaire "*ne s'oppose pas aux applications concurrentes*".
+* Liste des stations : `http://vlille.fr/stations/xml-stations.aspx``
+* Disponibilité : `http://vlille.fr/stations/xml-station.aspx?borne={station_id}`
+
+## Orléans
+
+* Géré par Keolis
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Liste des stations : `https://www.agglo-veloplus.fr/component/data_1.xml`
+* Disponibilité : `https://www.agglo-veloplus.fr/getStatusBorne?idBorne={station_id}`
+
+## Réseaux BIXI
+
+BIXI est le système de Montréal, qui a été repris dans plusieurs villes au Canada, aux USA, et en Australie.
+
+Seul Washington a répondu à mes demandes d'information.
+
+* Canada (Hosted on the same servers.)
+	* Modèle : Liste des stations et Disponiblités : `https://{servicewebsite.bixi.com}/data/bikeStations.xml`
+	* **Toronto** : toronto.bixi.com
+	* **Montréal** : montreal.bixi.com
+	* **Ottawa** : capitale.bixi.com
+* **London** : `http://www.tfl.gov.uk/tfl/syndication/feeds/cycle-hire/livecyclehireupdates.xml`
+* **Washington** : `http://capitalbikeshare.com/data/stations/bikeStations.xml`
+* **Minneapolis** : `https://secure.niceridemn.org/data2/bikeStations.xml`
+* **Boston** : `http://www.thehubway.com/data/stations/bikeStations.xml`
+	* Boston a une plateforme opendata (http://hubwaydatachallenge.org). Bicyclette utilise pour le moment l'autre service.
+
+## Melbourne
+
+* Réseau BIXI, mais webservice différent.
+* D'après le gestionnaire, l'usage de ces données n'est pas réglementé.
+* Liste des stations et Disponiblités : `http://www.melbournebikeshare.com.au/stationmap/data`
+
+## Chattanooga
+
+* Réseau BIXI, mais webservice différent.
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Liste des stations et Disponiblités : http://www.bikechattanooga.com/stations/json
+
+## Réseau Nextbike
+
+* Nextbike gère un réseau sur ~75 villes, principalement en Allemagne, Pologne, et en Europe de l'est. Le fonctionnement est différent des "Vélib" : un vélo peut être rendu à n'importe quelle station, y compris si elle est "pleine", simplement en le verrouillant.
+* L'usage des services est autorisé, la documentation est disponible en contactant nextbike.
+* Liste des stations et Disponiblités :  `http://www.nextbike.de/maps/nextbike-official.xml?city={uid}`
+	
+## Nice
+
+* Réseau Veloway (Veolia)
+* Veloway gère aussi les réseaux de Vannes et Calais. Les webservices de ces trois réseaux sont hébergés sur les mêmes serveurs.
+* D'après le gestionnaire, l'usage de ces données n'est pas réglementé.
+* Liste des stations et Disponiblités : `http://www.velobleu.org/cartoV2/libProxyCarto.asp`
+
+## Réseaux Veloway (Veolia)
+
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Veloway gère aussi les réseaux de Nice. Les webservices de ces trois réseaux sont hébergés sur les mêmes serveurs.
+
+* **Calais** : `http://www.vel-in.fr/cartoV2/libProxyCarto.asp`
+* **Vannes** : `http://www.velocea.fr/cartoV2/libProxyCarto.asp`
+
+## Miami beach (Decobike)
+
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* *Decobike Miami Beach* et *Decobike Surfside* sont en fait le même réseau. Le webservice retourne les données pour l'ensemble des stations.
+* Liste des stations et Disponiblités : `http://www.decobike.com/playmoves.xml`
+
+## Réseaux Smoove
+
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Les webservices de ces réseaux sont hébergés sur les mêmes serveurs.
+* Liste des stations et Disponiblités :
+	* **Montpellier** : `http://cli-velo-montpellier.gir.fr/vcstations.xml`
+	* **Avignon** : `http://www.velopop.fr/vcstations.xml`
+	* **Valence** : `http://www.velo-libelo.fr/vcstations.xml`
+	* **Strasbourg** : `http://www.velhop.strasbourg.eu/vcstations.xml`
+	* **Saint-Étienne** : `http://www.velivert.fr/vcstations.xml`
+	* **Grenoble** : `http://vms.metrovelo.fr/vcstations.xml`
+
+## Barcelona
+
+* Réseau Citybike (Clear Channel)
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Liste des stations et Disponiblités : `https://www.bicing.cat/localizaciones/getJsonObject.php`
+
+## La Rochelle
+
+* Réseau Yélo.
+* Pas de webservice officiel, Bicyclette récupère les données sur la page web.
+* Pas de réponse *officielle* à ma demande d'info.
+* Liste des stations et Disponiblités : `http://www.rtcr.fr/ct_93_297__Carte_du_libre_service_velos.html`
+
+---
+
+# Réseaux pas (encore) gérés par Bicyclette
+
+## Long beach NY (Decobike)
+
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Liste des stations et Disponiblités: `http://decobikelbny.com/playmoves.xml`
+
+## New York (Données indicatives)
+
+* Le service de vélos de New York (Citi Bike NYC) devrait ouvrir au printemps 2013.
+* Des données indicatives sur l'emplacement des stations sont disponibles : 
+	* Liste des stations: `http://a841-tfpweb.nyc.gov/bikeshare/get_tentative_bikeshare_points`
+	* Détails: `http://a841-tfpweb.nyc.gov/bikeshare/get_point_info?point=13897``
+
+## Réseaux Vélopass (Suisse)
+
+* Vélopass est un des deux principaux système en suisse; il a fusionné avec l'autre, Publibike. Publibike fonctionne sur un mécanisme différent de location, avec en général une seule station par ville.
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* L'application iOS officielle utilise un webservice SOAP à l'adresse `service.tobike.it`, c'est à dire le même service que *TOBike*.
+
+## TOBike (Torino)
+
+* Conditions d'utilisation inconnues. Pas de webservice connu.
+* Curieusement, l'application iOS TOBike n'utilise pas le service SOAP à `service.tobike.it`, mais récupère les données du site web.
+
+## Réseaux BCycle
+
+* Réseaux dans une douzaine de villes aux USA, avec une couverture assez modeste en général. (Notons cependant le réseau de Chicago.)
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Le webservice retourne la liste de *toutes* les stations BCycle, dans toutes les villes, sans hiérarchie, et avec des erreurs. Apparemment, le seul moyen de faire le tri est de se baser sur la géolocalisation des stations.
+* Liste des stations et Disponiblités :  `http://api.bcycle.com/services/mobile.svc/ListKiosks`
+	* specs : `http://api.bcycle.com/services/mobile.svc?wsdl`
+
+## Reading (OYBike)
+
+* OYBike gérait aussi un réseau à Reading qui a été fermé en décembre 2011.
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Liste des stations et Disponiblités :  `http://www.oybike.com/oybike/stands.nsf/getSite?openagent&site={city}&format=json&cache=no&extended=yes&key=7A407C7C8DD673BD9A635ECFAB612C95`
+	* (Il s'agit de la clé d’API utilisée *en clair* sur le site web.)
+
+## Laval
+
+* Géré par Keolis.
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Pas de webservice connu.
+* Liste des stations (HTML) : `http://www.tul-laval.fr/velitul-stations.asp`
+* Disponibilité de toutes les stations (HTML) : `http://www.tul-laval.fr/velitul-disponibilites.asp`
+
+## Pau
+
+* Géré par Keolis.
+* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Pas de webservice connu.
+* Liste des stations et Disponiblités (HTML) : `http://www.idecycle.com/stations/plan`
+
+## Oslo
+
+* Conditions d'utilisation inconnues.
+* Liste des stations (HTML) : http://www.adshel.no/js/
+* Disponibilité (webservice json): http://www.adshel.no/js/getracknr.php?id=34
+
+## Réseaux Mobilicidata (Brésil)
+
+* Conditions d'utilisation inconnues.
+* Pas de webservice connu.
+* Liste des stations et Disponiblités (HTML) :
+	* **Sao Paulo** : `http://ww2.mobilicidade.com.br/bikesampa/mapaestacao.asp`
+	* **Rio** : `http://ww2.mobilicidade.com.br/sambarjpt/mapaestacao.asp`
+
+## CityBike (Clear Channel)
+
+### France
+
+* L'usage des webservices de disponibilité à Caen et Dijon est *autorisé*, mais CleanChannel se réserve la possibilité de *cesser d'exposer ces web services [en cas de surchage serveur].*
+* Il n'y a pas de webservice de disponibilité à Perpignan.
+* La liste des stations n'est pas disponible en webservice. Bicyclette devra soit l'embarquer, soit la récupérer sur *la page web*.
+* **Caen**
+	* Liste des stations et disponibilité (HTML) : `https://www.veol.caen.fr/localizaciones/localizaciones.php`
+	* Disponibilité (webservice autorisé) : `http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx`
+* **Dijon**
+	* Liste des stations et disponibilité (HTML) : `https://www.velodi.net/localizaciones/localizaciones.php`
+	* Disponibilité (webservice autorisé) : `http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx`
+* **Perpignan**
+	* Liste des stations et disponibilité (HTML) : `https://www.bip-perpignan.fr/localizaciones/localizaciones.php`
+
+### Milan
+
+* Conditions d'utilisation inconnues.
+* Pas de webservice connu.
+* Liste des stations et disponibilité (HTML) : ` `http://www.bikemi.com/localizaciones/localizaciones.php
+
+### Drammen
+
+* Conditions d'utilisation inconnues.
+* Pas de webservice connu.
+* Liste des stations (HTML) : `http://drammen.clearchannel.com/stationsmap`
+* Disponibilité (appelé sur le site web via XHR) : `curl -X POST -H "Cache-Control: max-age=0" -H "Content-Length: 0" -H "Cookie: ASP.NET_SessionId=55i5wltwt2nj5llwwqxowj4t" -H "Content-Type: application/json; charset=UTF-8" http://drammen.clearchannel.com/WS/GService.asmx/GetGoogleObject`
+
+### Mexico City
+
+* Conditions d'utilisation inconnues.
+* Pas de webservice connu.
+* Liste des stations (HTML) : `https://www.ecobici.df.gob.mx/localizaciones/localizaciones.php`
+* Details : `curl -F "idStation=27" https://www.ecobici.df.gob.mx/CallWebService/StationBussinesStatus.php`
+
+### Zaragoza
+
+* Conditions d'utilisation inconnues.
+* Pas de webservice connu.
+* Liste des stations (HTML) : `https://www.bizizaragoza.com/localizaciones/station_map.php`
+* Details : `curl -F "idStation=27" https://www.bizizaragoza.com/CallWebService/StationBussinesStatus.php`
+
+
+---
+
+# Réseaux non envisagés
+
+## Chalon (Reflex)
+
+* L'agglomération de Chalon est en train de changer son système de VLS pour adopter *Smoove*.
+
+## Angers
+
+* Une seule station de VLS à Angers.
+
+## Montélimar
+
+* Une seule station de VLS à Angers.
+

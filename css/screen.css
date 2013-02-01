@@ -40,13 +40,13 @@ section {
 	-webkit-column-gap: 8px;
  	column-gap: 8px;
 }
-h1, h2 {
+h1, h2, h3 {
 	margin-top: 8px;
 	padding: 0px;
 }
 
 /* Default fonts */
-h1, h2 {
+h1, h2, h3 {
 	font-family: 'open sans', sans-serif;
 }
 h1 {
@@ -55,6 +55,10 @@ h1 {
 }
 h2 {
 	font-weight: 600;
+	font-size : 100%;
+}
+h3 {
+	font-weight: 400;
 	font-size : 100%;
 }
 p, ul {
@@ -69,6 +73,14 @@ p, ul {
 	h2 {
 		font-size: 90%;
 	}
+	h2 {
+		font-size: 85%;
+	}
+}
+
+ul {
+    margin-left: 0em;
+    padding-left: 1em;
 }
 
 /* Hyphenation */
@@ -215,7 +227,6 @@ section#cities ul {
     margin-left: 8px;
     padding-left: 0em;
 }
-
 section#cities ul li:before{
 	content: "• ";
 }
