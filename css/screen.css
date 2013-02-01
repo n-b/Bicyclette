@@ -100,16 +100,6 @@ section:before {
     visibility: hidden;
 }
 
-/* Shadows */
-article section.description img {
-  border-radius:9px;
-  box-shadow: 0px 1px 3px #555;
-  display:block;
-  width:auto;
-  margin-left:auto;
-  margin-right:auto;  
-}
-
 img#logo {
     border-radius: 18%;
     box-shadow: 0px 2px 3px #555;
@@ -177,6 +167,21 @@ header:after {
     height: 0;
     clear: both;
     visibility: hidden;
+}
+
+/* Screenshots (shadows and centering) */
+article section.description img {
+	border-radius:9px;
+	box-shadow: 0px 1px 3px #555;
+	display:block;
+	width:320px;
+	margin-left:auto;
+	margin-right:auto;  
+}
+@media only screen and (max-width: 320px) {
+	article section.description img {
+		width:auto;
+	}
 }
 
 /* Beta section */
@@ -255,9 +260,10 @@ section#techdetails ul li:before{
 /* Footer */
 footer {
     background: #a7a7a7;
-	font-family: ;
 }
 footer p {
+	color: #333;
+	text-shadow: 0 1px #ddd; 
 	font-family: 'open sans', sans-serif;
 	font-weight: 600;
 	font-size: 90%;

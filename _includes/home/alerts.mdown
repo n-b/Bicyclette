@@ -4,4 +4,4 @@ Indiquez vos stations favorites, et Bicyclette vérifiera les places disponibles
 
 ***Vous n'avez même à ouvrir l'appli !***
 
-![](images/screenshots/en/Notification.png)
+![](images/screenshots/fr/Notification@2x.png)

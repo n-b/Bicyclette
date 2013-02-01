@@ -2,7 +2,7 @@
 
 Bicyclette est compatible avec les vélos en libre-service dans plus de 50 villes dans le monde.
 
-![](images/screenshots/en/Europe.png)
+![](images/screenshots/fr/Europe@2x.png)
 
 ## En France :
 
