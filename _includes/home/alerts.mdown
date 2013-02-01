@@ -1,0 +1,7 @@
+# Alertes géolocalisées
+
+Indiquez vos stations favorites, et Bicyclette vérifiera les places disponibles dès que vous en approcherez ! 
+
+***Vous n'avez même à ouvrir l'appli !***
+
+![](images/screenshots/en/Notification.png)

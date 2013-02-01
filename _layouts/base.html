@@ -10,13 +10,13 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div id="container">
+		<div id="content">
 			{{ content }}
 		</div>
-		<footer>
-			{% capture footer %}{% include footer.mdown %}{% endcapture %} {{ footer | markdownify }}
-		</footer>
 	</div>
+	<footer>
+		{% capture footer %}{% include footer.mdown %}{% endcapture %} {{ footer | markdownify }}
+	</footer>
 	{% include google_analytics.html %}
 </body>
 </html>
