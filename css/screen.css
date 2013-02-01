@@ -135,12 +135,13 @@ header div#title {
 	text-align: left;
 	margin-left: 8px;
 }
-header div#appstore a{
+header div#appstore img{
 	text-align: left;
 	margin-left: 12px;
 }
 header div#title h1{
-	margin-top: 4px;
+	font-size: 150%;
+	margin-top: 1px;
 	margin-bottom: 0px;
 }
 header div#title h2{
@@ -151,11 +152,22 @@ header div#title h2{
 	/* iPhone, portrait */
 	header div#title {
 		margin-top: 2px;
+		max-width: 57%;
+	}
+	header div#appstore{
+	    clear: both;
 	}
 	header div#appstore a{
+		float: none;
+	    clear: both;
+		width: 100%;
+	}
+	header div#appstore img{
+	    width: auto;
+	    margin-left:auto;
+	    margin-right:auto;  
 	    display: block;
 	    clear: both;
-		text-align: center;
 		padding-top: 16px;
 	}
 }
