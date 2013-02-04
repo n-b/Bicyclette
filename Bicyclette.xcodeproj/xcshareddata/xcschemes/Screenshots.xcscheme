@@ -64,7 +64,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLanguages &apos;(fr)&apos;"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLanguages &apos;(en)&apos;"
@@ -72,7 +72,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLanguages &apos;(de)&apos;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-TakeDefaultScreenshot YES"

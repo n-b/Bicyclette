@@ -423,8 +423,8 @@
 		37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaRochelleYeloCity.m; sourceTree = "<group>"; };
 		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+screenshot.h"; sourceTree = "<group>"; };
 		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+screenshot.m"; sourceTree = "<group>"; };
-		37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapVC+DebugScreenshots.h"; sourceTree = "<group>"; };
-		37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MapVC+DebugScreenshots.m"; sourceTree = "<group>"; };
+		37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MapVC+DebugScreenshots.h"; path = "../Files/MapVC+DebugScreenshots.h"; sourceTree = "<group>"; };
+		37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MapVC+DebugScreenshots.m"; path = "../Files/MapVC+DebugScreenshots.m"; sourceTree = "<group>"; };
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
 		37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LocalAlerts.m"; sourceTree = "<group>"; };
 		37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RennesVeloStarCity.m; sourceTree = "<group>"; };
@@ -734,6 +734,8 @@
 				942D47F816A82DD700F6CD12 /* Barcelone.gpx */,
 				942D47F916A82DD700F6CD12 /* Lyon.gpx */,
 				942D47FA16A82DD700F6CD12 /* Rennes.gpx */,
+				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
+				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -842,8 +844,6 @@
 				37E9531512AA29FB00C1D21C /* MapVC.m */,
 				377863AF1694996C0036A37C /* MapViewScaleView.h */,
 				377863B01694996C0036A37C /* MapViewScaleView.m */,
-				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
-				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";

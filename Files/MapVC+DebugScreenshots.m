@@ -78,19 +78,11 @@ static BOOL gShouldShowAnnotations = NO;
     [UIImagePNGRepresentation(screenshot) writeToFile:savePath atomically:NO];
 }
 
-- (void) revealScreenshotsFolder
-{
-    NSString *openCommand = [NSString stringWithFormat:@"/usr/bin/open \"%@\"", [self screenshotsPathLocalized:NO]];
-	system([openCommand fileSystemRepresentation]);
-}
-
 /****************************************************************************/
 #pragma mark -
 
 - (void) takeScreenshots
 {
-    [self revealScreenshotsFolder];
-
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"TakeDefaultScreenshot"])
     {
         [self takeScreenshotForDefault];
@@ -180,14 +172,21 @@ static BOOL gShouldShowAnnotations = NO;
 
 - (void) takeLockedScreenshot
 {
-
-    UILocalNotification * userLocalNotif = [UILocalNotification new];
-    userLocalNotif.alertBody = [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
+    UILocalNotification * ndNotif = [UILocalNotification new];
+    ndNotif.alertBody = [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
                                 @"Notre Dame",
-                                10, 13];
-    userLocalNotif.hasAction = NO;
-    userLocalNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
-    [[UIApplication sharedApplication] scheduleLocalNotification:userLocalNotif];
+                                10, 0];
+    ndNotif.hasAction = NO;
+    ndNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:.7];
+    [[UIApplication sharedApplication] scheduleLocalNotification:ndNotif];
+
+    UILocalNotification * mfNotif = [UILocalNotification new];
+    mfNotif.alertBody = [NSString stringWithFormat:NSLocalizedString(@"STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d", nil),
+                                @"Marché aux Fleurs",
+                                4, 8];
+    mfNotif.hasAction = NO;
+    mfNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:.6];
+    [[UIApplication sharedApplication] scheduleLocalNotification:mfNotif];
 
     // Lock. I'm basically dead now.
     system("osascript -e \"tell application id \\\"com.apple.iphonesimulator\\\" to activate\" -e \"tell application \\\"System Events\\\" to keystroke \\\"l\\\" using command down\"");
