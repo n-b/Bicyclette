@@ -185,13 +185,31 @@ Seul Washington a répondu à mes demandes d'information.
 * Conditions d'utilisation inconnues. Pas de webservice connu.
 * Curieusement, l'application iOS TOBike n'utilise pas le service SOAP à `service.tobike.it`, mais récupère les données du site web.
 
-## Réseaux BCycle
+## Réseaux B-cycle
 
-* Réseaux dans une douzaine de villes aux USA, avec une couverture assez modeste en général. (Notons cependant le réseau de Chicago.)
-* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
+* Réseaux dans plusieurs villes aux USA :
+	* Boulder, Colorado
+	* Broward County, Florida
+	* Charlotte, North Carolina
+	* Chicago, Illinois
+	* Denver, Colorado
+	* Des Moines, Iowa
+	* Kailua (Honolulu County), Hawaii
+	* Houston, Texas
+	* Louisville, Kentucky
+	* Madison, Wisconsin
+	* Omaha, Nebraska
+	* San Antonio, Texas
+	* Spartanburg, South Carolina.
+* Webservice officiel, utilisable avec les conditions suivantes :
+
+>	1. You cannot brand the application as B-cycle.
+>	2. The app has to be free.
+
 * Le webservice retourne la liste de *toutes* les stations BCycle, dans toutes les villes, sans hiérarchie, et avec des erreurs. Apparemment, le seul moyen de faire le tri est de se baser sur la géolocalisation des stations.
 * Liste des stations et Disponiblités :  `http://api.bcycle.com/services/mobile.svc/ListKiosks`
 	* specs : `http://api.bcycle.com/services/mobile.svc?wsdl`
+* De nouveaux webservices, sécurisés et plus simples à utiliser, sont en développement.
 
 ## Reading (OYBike)
 
