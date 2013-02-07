@@ -14,10 +14,10 @@
 "HELP_PARKING" = "Freie Ständer";
 "HELP_STALE" = "Das graue Symbol zeigt die Anzahl der Ständer in der Station";
 
-"HELP_STARRED_STATIONS" = "Star your favorite stations to find them faster.";
-"HELP_GEOFENCES" = "Bicyclette sets up a “Geofence” alert around it.";
+"HELP_STARRED_STATIONS" = "Markieren Sie Ihre Lieblingsstationen, um sie schneller zu finden.";
+"HELP_GEOFENCES" = "Bicyclette setzt einen “Geofencing” Alarm um die Station.";
 
-"HELP_NOTIFICATIONS_BEHAVIOUR" = "As soon as you near it, the availabilities in your stations show up on screen.";
+"HELP_NOTIFICATIONS_BEHAVIOUR" = "Sobald Sie sich ihr nähern, werden die Verfügbarkeiten auf dem Bildschirm angezeigt.";
 
 "HELP_PLEASE_HELP" = "Wenn Sie die App mögen, ist Ihre Hilfe höchst willkommen!";
 "HELP_PAY_WHAT_YOU_WANT" = "Es ist komplett freiwillig, und Sie zahlen, wieviel Sie wollen.";
