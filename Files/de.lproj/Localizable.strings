@@ -73,5 +73,5 @@
 
 /* Favorites / Geofences */
 "FENCE_MONITORING_ERROR_TITLE" = "Can not add this station to your favorites";
-"FENCE_MONITORING_ERROR_MESSAGE" = "iOS only allows a limited number of geolocated alerts (about 20). Pleast try to remove other stations from your favorites.";
+"FENCE_MONITORING_ERROR_MESSAGE" = "iOS only allows a limited number of geolocated alerts (about 20). Please try to remove other stations from your favorites.";
 "FENCE_MONITORING_ERROR_OK" = "OK";
