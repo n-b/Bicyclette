@@ -2,8 +2,8 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C3006</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3083</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -234,6 +234,16 @@
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<double key="preferredMaxLayoutWidth">250</double>
+							</object>
+							<object class="IBUIView" id="857121200">
+								<reference key="NSNextResponder" ref="751763793"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{117, 20}, {57, 57}}</string>
+								<reference key="NSSuperview" ref="751763793"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<reference key="IBUIBackgroundColor" ref="974997585"/>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 							<object class="IBUIImageView" id="240608439">
 								<reference key="NSNextResponder" ref="751763793"/>
@@ -764,6 +774,16 @@ wqAhCg</string>
 						<reference key="NSNextResponder" ref="945951847"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIView" id="444702206">
+								<reference key="NSNextResponder" ref="777262681"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{116, 20}, {57, 57}}</string>
+								<reference key="NSSuperview" ref="777262681"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<reference key="IBUIBackgroundColor" ref="974997585"/>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
 							<object class="IBUIImageView" id="323482296">
 								<reference key="NSNextResponder" ref="777262681"/>
 								<int key="NSvFlags">292</int>
@@ -1081,6 +1101,22 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 					<int key="connectionID">123</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logoShadowView2</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="444702206"/>
+					</object>
+					<int key="connectionID">126</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logoShadowView1</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="857121200"/>
+					</object>
+					<int key="connectionID">127</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">changePage:</string>
 						<reference key="source" ref="932872395"/>
@@ -1253,6 +1289,7 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 						<array class="NSMutableArray" key="children">
 							<reference ref="323482296"/>
 							<reference ref="357840640"/>
+							<reference ref="444702206"/>
 						</array>
 						<reference key="parent" ref="945951847"/>
 						<string key="objectName">Page 5</string>
@@ -1387,6 +1424,7 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 							<reference ref="240608439"/>
 							<reference ref="805204316"/>
 							<reference ref="138438185"/>
+							<reference ref="857121200"/>
 						</array>
 						<reference key="parent" ref="945951847"/>
 						<string key="objectName">Page 0</string>
@@ -1406,6 +1444,16 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 						<reference key="object" ref="240608439"/>
 						<reference key="parent" ref="751763793"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">124</int>
+						<reference key="object" ref="857121200"/>
+						<reference key="parent" ref="751763793"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">125</int>
+						<reference key="object" ref="444702206"/>
+						<reference key="parent" ref="777262681"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1419,6 +1467,8 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 				<string key="117.CustomClassName">VerticallyAlignedLabel</string>
 				<string key="117.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="121.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="124.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="125.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1468,13 +1518,27 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">123</int>
+			<int key="maxID">127</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">HelpVC</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="advanceHelp:">id</string>
+						<string key="changePage:">UIPageControl</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="advanceHelp:">
+							<string key="name">advanceHelp:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="changePage:">
+							<string key="name">changePage:</string>
+							<string key="candidateClassName">UIPageControl</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bicycletteDisplaysLabel">UILabel</string>
 						<string key="bikesLabel">UILabel</string>
@@ -1492,6 +1556,8 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 						<string key="legendViewForStarredStation1">UIView</string>
 						<string key="legendViewForStarredStation2">UIView</string>
 						<string key="legendViewForStarredStation3">UIView</string>
+						<string key="logoShadowView1">UIView</string>
+						<string key="logoShadowView2">UIView</string>
 						<string key="logoView1">UIImageView</string>
 						<string key="logoView2">UIImageView</string>
 						<string key="notificationBehaviourLabel">UILabel</string>
@@ -1572,6 +1638,14 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="legendViewForStarredStation3">
 							<string key="name">legendViewForStarredStation3</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="logoShadowView1">
+							<string key="name">logoShadowView1</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="logoShadowView2">
+							<string key="name">logoShadowView2</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="logoView1">

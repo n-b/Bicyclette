@@ -16,6 +16,8 @@
 @property IBOutlet UIPageControl *pageControl;
 @property IBOutlet UIImageView *logoView1;
 @property IBOutlet UIImageView *logoView2;
+@property IBOutlet UIView *logoShadowView1;
+@property IBOutlet UIView *logoShadowView2;
 @property IBOutlet UIButton *outCloseButton;
 @property IBOutlet UIButton *inCloseButton;
 @property IBOutlet UIView *legendViewForBikes;
@@ -72,6 +74,14 @@
     self.scrollView.contentSize = self.contentView.bounds.size;
     self.logoView1.layer.cornerRadius = 9;
     self.logoView2.layer.cornerRadius = 9;
+    for (UIView * logoShadowView in @[self.logoShadowView1, self.logoShadowView2])
+    {
+        logoShadowView.layer.shadowOpacity = 1;
+        logoShadowView.layer.shadowOffset = CGSizeMake(0, 1);
+        logoShadowView.layer.shadowRadius = 1;
+        logoShadowView.layer.shadowColor = [UIColor colorWithWhite:0 alpha:1].CGColor;
+        logoShadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:logoShadowView.bounds cornerRadius:9].CGPath;
+    }
 
     self.legendViewForBikes.layer.delegate = self;
     self.legendViewForParking.layer.delegate = self;

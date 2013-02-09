@@ -17,6 +17,7 @@
 @property IBOutletCollection(UITableViewCell) NSArray *cells;
 
 @property IBOutlet UIImageView *logoView;
+@property IBOutlet UIView *logoShadowView;
 @property IBOutlet UILabel *designAndCodeLabel;
 @property IBOutlet UILabel *contactSupportButton;
 
@@ -86,8 +87,14 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    self.logoView.layer.cornerRadius = 9;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetButton) name:ACAccountStoreDidChangeNotification object:nil];
+
+    self.logoView.layer.cornerRadius = 9;
+    self.logoShadowView.layer.shadowOpacity = 1;
+    self.logoShadowView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.logoShadowView.layer.shadowRadius = 1;
+    self.logoShadowView.layer.shadowColor = [UIColor colorWithWhite:0 alpha:1].CGColor;
+    self.logoShadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.logoShadowView.bounds cornerRadius:9].CGPath;
 
     self.designAndCodeLabel.text = NSLocalizedString(@"DESIGN_AND_CODE", nil);
     self.contactSupportButton.text = NSLocalizedString(@"CONTACT_EMAIL_SUPPORT", nil);
