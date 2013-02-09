@@ -387,7 +387,7 @@
 - (void) zoomInRegion:(Region*)region
 {
     MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
-    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MapRegionZoomDistance"];
+    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
     cregion = MKCoordinateRegionMakeWithDistance(cregion.center, meters, meters);
 	[self.mapView setRegion:cregion animated:YES];
 }

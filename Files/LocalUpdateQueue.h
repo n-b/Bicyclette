@@ -65,5 +65,6 @@
 // delegate
 @protocol LocalUpdateQueueDelegate <NSObject>
 - (void) updateQueue:(LocalUpdateQueue *)queue didUpdateOneshotPoint:(id<LocalUpdatePoint>)point ofGroup:(id<LocalUpdateGroup>)group;
+- (void) updateQueueDidComplete:(LocalUpdateQueue *)queue;
 @end
 

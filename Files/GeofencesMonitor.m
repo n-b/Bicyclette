@@ -349,10 +349,11 @@
 {
     NSAssert(self.city!=nil, nil);
     __block BOOL near = NO;
+    CLLocationDistance radarDistance = [[self.city prefForKey:@"RadarDistance"] doubleValue];
     [self.stations enumerateObjectsUsingBlock:
      ^(Station* stationInFence, NSUInteger idx2, BOOL *stop) {
          CLLocationDistance distance = [stationInFence.location distanceFromLocation:station.location];
-         if(distance < 150)
+         if(distance < radarDistance)
          {
              near = YES;
              *stop = YES;

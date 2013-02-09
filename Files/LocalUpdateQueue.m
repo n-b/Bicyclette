@@ -186,6 +186,8 @@
         
         // clear the oneshot groups and restart after a delay
         self.oneshotGroups = [NSMutableArray new];
+        [self.delegate updateQueueDidComplete:self];
+
         [self performSelector:@selector(buildUpdateQueue) withObject:nil afterDelay:self.delayBetweenPointUpdates];
     }
 }

@@ -22,6 +22,8 @@
 @property CityRegionUpdateGroup * screenCenterUpdateGroup;
 
 @property MKCoordinateRegion viewRegion;
+
+@property UILocalNotification * updateInProgressNotification;
 @end
 
 /****************************************************************************/
@@ -259,8 +261,11 @@
             station.starredValue = NO;
         }
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
+        NSString * message = [NSString stringWithFormat:@"%@\n%@",
+                              NSLocalizedString(@"FENCE_MONITORING_ERROR_MESSAGE",nil),
+                              [error localizedDescription]];
         [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"FENCE_MONITORING_ERROR_TITLE",nil)
-                                   message:NSLocalizedString(@"FENCE_MONITORING_ERROR_MESSAGE",nil)
+                                   message:message
                                   delegate:nil
                          cancelButtonTitle:NSLocalizedString(@"FENCE_MONITORING_ERROR_OK",nil)
                          otherButtonTitles:nil]
@@ -274,6 +279,12 @@
 
 - (void) monitor:(GeofencesMonitor*)monitor fenceWasEntered:(Geofence*)fence
 {
+    if(self.updateInProgressNotification)
+        [[UIApplication sharedApplication] cancelLocalNotification:self.updateInProgressNotification];
+    
+    self.updateInProgressNotification = [[UIApplication sharedApplication] presentLocalNotificationMessage:NSLocalizedString(@"UPDATING : PARSING", nil)
+                                                                                         soundName:nil userInfo:nil];
+
     [self.updateQueue addOneshotGroup:fence];
 }
 
@@ -289,8 +300,14 @@
 {
     NSAssert([station isKindOfClass:[Station class]],nil);
     NSAssert([fence isKindOfClass:[Geofence class]],nil);
-    [[UIApplication sharedApplication] presentLocalNotificationMessage:station.localizedSummary userInfo:(@{@"city": station.city.cityName ,
-                                                                                                          @"stationNumber": station.number})];
+    [[UIApplication sharedApplication] presentLocalNotificationForStationSummary:station];
+}
+
+- (void) updateQueueDidComplete:(LocalUpdateQueue *)queue
+{
+    if(self.updateInProgressNotification)
+        [[UIApplication sharedApplication] cancelLocalNotification:self.updateInProgressNotification];
+    self.updateInProgressNotification = nil;
 }
 
 /****************************************************************************/

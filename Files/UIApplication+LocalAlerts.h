@@ -6,9 +6,12 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
+@class Station;
+
 @interface UIApplication (LocalAlerts)
 
-- (void) presentLocalNotificationMessage:(NSString*)message;
-- (void) presentLocalNotificationMessage:(NSString*)message userInfo:(NSDictionary*)userInfo;
+- (UILocalNotification*) presentLocalNotificationMessage:(NSString*)message soundName:(NSString*)soundName userInfo:(NSDictionary*)userInfo;
+
+- (UILocalNotification*) presentLocalNotificationForStationSummary:(Station*)station;
 
 @end

@@ -7,25 +7,21 @@
 //
 
 #import "UIApplication+LocalAlerts.h"
+#import "BicycletteCity.h"
 
 @implementation UIApplication (LocalAlerts)
 
-- (void) presentLocalNotificationMessage:(NSString*)message
-{
-    [self presentLocalNotificationMessage:message userInfo:nil];
-}
-
-- (void) presentLocalNotificationMessage:(NSString*)message userInfo:(NSDictionary*)userInfo
+- (UILocalNotification*) presentLocalNotificationMessage:(NSString*)message soundName:(NSString*)soundName userInfo:(NSDictionary*)userInfo
 {
     if([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
     {
         UILocalNotification * userLocalNotif = [UILocalNotification new];
         userLocalNotif.alertBody = message;
         userLocalNotif.hasAction = NO;
-        userLocalNotif.soundName = UILocalNotificationDefaultSoundName;
         userLocalNotif.userInfo = userInfo;
-        userLocalNotif.soundName = @"bell.wav";
+        userLocalNotif.soundName = soundName;
         [self presentLocalNotificationNow:userLocalNotif];
+        return userLocalNotif;
     }
     else
     {
@@ -35,8 +31,16 @@
                                         message:message delegate:nil
                               cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
-        
+        return nil;
     }
+}
+
+- (UILocalNotification*) presentLocalNotificationForStationSummary:(Station*)station
+{
+    return [self presentLocalNotificationMessage:station.localizedSummary
+                                       soundName:@"bell.wav"
+                                        userInfo:(@{@"city": station.city.cityName ,
+                                                  @"stationNumber": station.number})];
 }
 
 @end

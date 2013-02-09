@@ -43,6 +43,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Clear all notifications.
+    // The idea is we're being relaunched from zero, and any remaining notifications are deprecate stuff.
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     // Must not do it automatically, otherwise the UI is broken vertically, initially, on iPad on iOS 5
     self.window.rootViewController = self.rootVC;
 	return YES;
