@@ -99,6 +99,9 @@
 
 - (void) setStarredStations:(NSArray*)starredStations inCity:(BicycletteCity*)city
 {
+    if(![CLLocationManager regionMonitoringAvailable]) // If region monitoring isn't available, do nothing.
+        return;
+
     NSMutableArray * fences = [NSMutableArray new];
     for (Station * station in starredStations)
     {
