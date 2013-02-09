@@ -11,36 +11,36 @@
 
 @implementation UIApplication (LocalAlerts)
 
-- (UILocalNotification*) presentLocalNotificationMessage:(NSString*)message soundName:(NSString*)soundName userInfo:(NSDictionary*)userInfo
+- (UILocalNotification*) presentLocalNotificationMessage:(NSString*)message
+                                             alertAction:(NSString*)alertAction
+                                               soundName:(NSString*)soundName
+                                                userInfo:(NSDictionary*)userInfo
+                                                fireDate:(NSDate*)fireDate
 {
-    if([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
-    {
-        UILocalNotification * userLocalNotif = [UILocalNotification new];
-        userLocalNotif.alertBody = message;
-        userLocalNotif.hasAction = NO;
-        userLocalNotif.userInfo = userInfo;
-        userLocalNotif.soundName = soundName;
+    UILocalNotification * userLocalNotif = [UILocalNotification new];
+    userLocalNotif.alertBody = message;
+    userLocalNotif.hasAction = YES;
+    userLocalNotif.alertAction = alertAction;
+    userLocalNotif.userInfo = userInfo;
+    userLocalNotif.soundName = soundName;
+    if(fireDate) {
+        userLocalNotif.fireDate = fireDate;
+        [self scheduleLocalNotification:userLocalNotif];
+    } else {
         [self presentLocalNotificationNow:userLocalNotif];
-        return userLocalNotif;
     }
-    else
-    {
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"DebugDisplayLocalNotificationsAsAlerts"])
-        {
-            [[[UIAlertView alloc] initWithTitle:@"Notification"
-                                        message:message delegate:nil
-                              cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        }
-        return nil;
-    }
+    return userLocalNotif;
 }
 
 - (UILocalNotification*) presentLocalNotificationForStationSummary:(Station*)station
 {
     return [self presentLocalNotificationMessage:station.localizedSummary
+                                     alertAction:nil
                                        soundName:@"bell.wav"
-                                        userInfo:(@{@"city": station.city.cityName ,
-                                                  @"stationNumber": station.number})];
+                                        userInfo:(@{@"type": @"stationsummary",
+                                                  @"city": station.city.cityName ,
+                                                  @"stationNumber": station.number})
+                                        fireDate:nil];
 }
 
 @end

@@ -52,9 +52,17 @@
 	return YES;
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    [self.citiesController handleLocalNotificaion:notification];
+    if([notification.userInfo[@"type"] isEqualToString:@"stationsummary"])
+        [self.citiesController handleLocalNotificaion:notification];
+    else
+        [self.rootVC handleDonationNotification:notification];
 }
 
 @end

@@ -14,6 +14,7 @@
 #import "BicycletteCity.h"
 #import "CitiesController.h"
 #import "UIViewController+Banner.h"
+#import "UIApplication+LocalAlerts.h"
 
 @interface RootVC () <UIAlertViewDelegate>
 @end
@@ -150,7 +151,7 @@
     {
         [lastLaunches addObject:now];
     }
-    if( [lastLaunches count] > minCountInDonationInterval)
+    while( [lastLaunches count] > minCountInDonationInterval)
     {
         [lastLaunches removeObjectAtIndex:0];
     }
@@ -177,14 +178,24 @@
         }
         else
         {
-            UIAlertView * storeAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
-                                                                  message:NSLocalizedString(@"STORE_ALERT_MESSAGE", nil)
-                                                                 delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCEL", nil)
-                                                        otherButtonTitles:NSLocalizedString(@"STORE_ALERT_OK", nil), nil];
-            [storeAlert show];
+            NSTimeInterval donationDelay = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Store.DonationAlertDelay"];
+            [[UIApplication sharedApplication] presentLocalNotificationMessage:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
+                                                                   alertAction:NSLocalizedString(@"STORE_ALERT_OK", nil)
+                                                                     soundName:nil
+                                                                      userInfo:@{@"type": @"donationrequest"}
+                                                                      fireDate:[NSDate dateWithTimeIntervalSinceNow:donationDelay]];
         }
     }
+}
+
+- (void) handleDonationNotification:(UILocalNotification*)notification
+{
+    UIAlertView * storeAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
+                                                          message:NSLocalizedString(@"STORE_ALERT_MESSAGE", nil)
+                                                         delegate:self
+                                                cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCEL", nil)
+                                                otherButtonTitles:NSLocalizedString(@"STORE_ALERT_OK", nil), nil];
+    [storeAlert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

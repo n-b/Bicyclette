@@ -283,7 +283,10 @@
         [[UIApplication sharedApplication] cancelLocalNotification:self.updateInProgressNotification];
     
     self.updateInProgressNotification = [[UIApplication sharedApplication] presentLocalNotificationMessage:NSLocalizedString(@"UPDATING : PARSING", nil)
-                                                                                         soundName:nil userInfo:nil];
+                                                                                               alertAction:nil
+                                                                                                 soundName:nil
+                                                                                                  userInfo:nil
+                                                                                                  fireDate:nil];
 
     [self.updateQueue addOneshotGroup:fence];
 }

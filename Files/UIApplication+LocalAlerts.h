@@ -10,7 +10,11 @@
 
 @interface UIApplication (LocalAlerts)
 
-- (UILocalNotification*) presentLocalNotificationMessage:(NSString*)message soundName:(NSString*)soundName userInfo:(NSDictionary*)userInfo;
+- (UILocalNotification*) presentLocalNotificationMessage:(NSString*)message
+                                             alertAction:(NSString*)alertAction
+                                               soundName:(NSString*)soundName
+                                                userInfo:(NSDictionary*)userInfo
+                                                fireDate:(NSDate*)fireDate;
 
 - (UILocalNotification*) presentLocalNotificationForStationSummary:(Station*)station;
 
