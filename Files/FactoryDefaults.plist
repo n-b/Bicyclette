@@ -44,6 +44,6 @@
 	<key>Store.DonationAlertDelay</key>
 	<string>2100</string>
 	<key>MapViewScaleView.MaxDistance</key>
-	<integer>50</integer>
+	<integer>50000</integer>
 </dict>
 </plist>
