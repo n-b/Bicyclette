@@ -14,10 +14,10 @@
 "HELP_PARKING" = "Puste stojaki";
 "HELP_STALE" = "Kolor szary wskazuje liczbę wolnych stojaków w stacji";
 
-"HELP_STARRED_STATIONS" = "You can star your favorite stations to find them faster.";
-"HELP_GEOFENCES" = "Bicyclette then sets up a “Geofence” alert around it.";
+"HELP_STARRED_STATIONS" = "Oznacz swoje ulubione stacje, by odnaleźć je szybciej.";
+"HELP_GEOFENCES" = "Bicyclette konfiguruje “Geofence” alert wokół stacji.";
 
-"HELP_NOTIFICATIONS_BEHAVIOUR" = "As soon as you near it, the availability in your stations shows up on your iPhone screen.";
+"HELP_NOTIFICATIONS_BEHAVIOUR" = "Jak tylko znajdziesz się w pobliżu, na ekranie wyświetli się dostępność twoich stacji.";
 
 "HELP_PLEASE_HELP" = "Jeżeli lubisz tę aplikację, Twoja pomoc jest mile widziana!";
 "HELP_PAY_WHAT_YOU_WANT" = "Jest całkowicie opcjonalna i płacisz za co chcesz.";

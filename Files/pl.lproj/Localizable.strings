@@ -35,7 +35,7 @@
 "SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, najlepsza aplikacja dla miejskich rowerów! @bicycletteapp";
 "SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, najepsza aplikacja dla %@! @bicycletteapp";
 
-"APPSTORE_RATINGS_BUTTON" = "Oceń na AppÂ Store";
+"APPSTORE_RATINGS_BUTTON" = "Oceń na App Store";
 
 "SEE_HELP_LABEL" = "Potrzebujesz pomocy?";
 "SEE_HELP_BUTTON" = "Zobacz Instrukcje";
@@ -72,6 +72,6 @@
 "UPDATING : COMPLETED WITH ERRORS" = "Stacje z błędnej lokalizacji zostały usunięte:";
 
 /* Favorites / Geofences */
-"FENCE_MONITORING_ERROR_TITLE" = "Can not add this station to your favorites";
-"FENCE_MONITORING_ERROR_MESSAGE" = "iOS only allows a limited number of geolocated alerts (about 20). Please try to remove other stations from your favorites.";
+"FENCE_MONITORING_ERROR_TITLE" = "Niemożliwe jest dodanie tej stacji do ulubionych.";
+"FENCE_MONITORING_ERROR_MESSAGE" = "iOS pozwala na przechowywanie, w ulubionych, określonej liczby stacji (około 20). Proszę spróbować usunąć inne stacje.";
 "FENCE_MONITORING_ERROR_OK" = "OK";
