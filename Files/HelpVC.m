@@ -10,6 +10,13 @@
 #import "DrawingCache.h"
 
 @interface HelpVC () <UIScrollViewDelegate>
+@property IBOutlet UIView *page0;
+@property IBOutlet UIView *page1;
+@property IBOutlet UIView *page2;
+@property IBOutlet UIView *page3;
+@property IBOutlet UIView *page4;
+@property IBOutlet UIView *page5;
+
 @property IBOutlet UIView *box;
 @property IBOutlet UIScrollView *scrollView;
 @property IBOutlet UIView *contentView;
@@ -63,6 +70,8 @@
 {
     [super viewDidLoad];
     _drawingCache = [DrawingCache new];
+    
+    // Box Shadow
     self.box.layer.cornerRadius = 13;
     self.box.layer.shadowOpacity = 1;
     self.box.layer.shadowOffset = CGSizeMake(0, 1);
@@ -70,8 +79,30 @@
     self.box.layer.shadowColor = [UIColor colorWithWhite:0 alpha:1].CGColor;
     self.box.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.box.bounds cornerRadius:13].CGPath;
 
+    // Content Layout
+    NSArray * views;
+    if([CLLocationManager regionMonitoringAvailable]) {
+        views = @[self.page0,self.page1,self.page2,self.page3,self.page4,self.page5];
+        self.geofencesLabel.hidden = NO;
+    } else {
+        views = @[self.page0,self.page1,self.page2,self.page4,self.page5];
+        self.geofencesLabel.hidden = YES;
+    }
+
+    self.pageControl.numberOfPages = [views count];
+    CGRect f = self.contentView.bounds;
+    for (UIView * view in views){
+        view.frame = f;
+        [self.contentView addSubview:view];
+        f.origin.x += f.size.width;
+    }
+    f.size.width += f.origin.x;
+    f.origin.x = 0;
+    self.contentView.frame = f;
     [self.scrollView addSubview:self.contentView];
     self.scrollView.contentSize = self.contentView.bounds.size;
+    
+    // Logos
     self.logoView1.layer.cornerRadius = 9;
     self.logoView2.layer.cornerRadius = 9;
     for (UIView * logoShadowView in @[self.logoShadowView1, self.logoShadowView2])
@@ -83,6 +114,7 @@
         logoShadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:logoShadowView.bounds cornerRadius:9].CGPath;
     }
 
+    // Drawing delegates
     self.legendViewForBikes.layer.delegate = self;
     self.legendViewForParking.layer.delegate = self;
     self.legendViewForStaleData.layer.delegate = self;
@@ -92,6 +124,7 @@
     self.legendViewForStarredStation2.layer.delegate = self;
     self.legendViewForStarredStation3.layer.delegate = self;
     
+    // Notification View
     self.notificationView.layer.cornerRadius = 10;
     self.notificationView.layer.borderColor = [UIColor blackColor].CGColor;
     self.notificationView.layer.shadowOpacity = 1;
@@ -100,9 +133,9 @@
     self.notificationView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.notificationView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.notificationView.bounds cornerRadius:10].CGPath;
     self.notificationView.layer.borderWidth = 1;
-    
     self.notificationIconView.layer.cornerRadius = 4;
     
+    // Text
     self.titleLabel.text = NSLocalizedStringFromTable(@"HELP_TITLE", @"Help", nil);
     self.forewordLabel.text = NSLocalizedStringFromTable(@"HELP_FOREWORD", @"Help", nil);
 
