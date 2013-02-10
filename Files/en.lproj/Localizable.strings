@@ -40,6 +40,8 @@
 "SEE_HELP_LABEL" = "Need some help?";
 "SEE_HELP_BUTTON" = "View the Instructions";
 
+"ENABLE_GEOFENCES" = "Automatic “Geofence” Alerts:";
+
 "STATIONS_LIST_CITY_%@" = "“%@” stations:";
 "UPDATE_STATIONS_LIST_BUTTON" = "Update";
 

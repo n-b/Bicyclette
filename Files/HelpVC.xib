@@ -1525,20 +1525,6 @@ YW50IGRlIHNvcnRpciB2b3RyZSBpUGhvbmUuCgpCb25uZSByb3V0ZcKgIQ</string>
 				<object class="IBPartialClassDescription">
 					<string key="className">HelpVC</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="advanceHelp:">id</string>
-						<string key="changePage:">UIPageControl</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="advanceHelp:">
-							<string key="name">advanceHelp:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="changePage:">
-							<string key="name">changePage:</string>
-							<string key="candidateClassName">UIPageControl</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bicycletteDisplaysLabel">UILabel</string>
 						<string key="bikesLabel">UILabel</string>

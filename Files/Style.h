@@ -9,6 +9,7 @@
 
 #import "UIColor+hsb.h"
 
+#define kBicycletteBlue					[UIColor colorWithHue:0.611 saturation:1.000 brightness:0.600 alpha:1.000]
 #define kRegionAnnotationViewSize 		40
 
 #define kStationAnnotationViewSize		30

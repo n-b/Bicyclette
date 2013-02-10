@@ -12,8 +12,11 @@
 #import "CitiesController.h"
 #import "FanContainerViewController.h"
 #import "NSProcessInfo+HardwareMachine.h"
+#import "Style.h"
 
 @interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@property IBOutlet UIScrollView *scrollView;
+@property IBOutlet UIView *contentView;
 @property IBOutletCollection(UITableViewCell) NSArray *cells;
 
 @property IBOutlet UIImageView *logoView;
@@ -31,6 +34,9 @@
 
 @property IBOutlet UILabel *seeHelpLabel;
 @property IBOutlet UIBarButtonItem *seeHelpButton;
+
+@property IBOutlet UILabel *enableGeofencesLabel;
+@property IBOutlet UISwitch *geofencesSwitch;
 
 @property IBOutlet UIView *updateView;
 @property IBOutlet UIActivityIndicatorView *updateIndicator;
@@ -89,6 +95,8 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetButton) name:ACAccountStoreDidChangeNotification object:nil];
 
+    [self updateViewAlignment:self.interfaceOrientation];
+
     self.logoView.layer.cornerRadius = 9;
     self.logoShadowView.layer.shadowOpacity = 1;
     self.logoShadowView.layer.shadowOffset = CGSizeMake(0, 1);
@@ -103,6 +111,15 @@
 
     self.seeHelpLabel.text = NSLocalizedString(@"SEE_HELP_LABEL", nil);
     self.seeHelpButton.title = NSLocalizedString(@"SEE_HELP_BUTTON", nil);
+    
+    self.enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
+    self.geofencesSwitch.tintColor = [UIColor colorWithWhite:.1 alpha:1];
+    self.geofencesSwitch.onTintColor = kBicycletteBlue;
+    self.geofencesSwitch.layer.shadowOpacity = 1;
+    self.geofencesSwitch.layer.shadowOffset = CGSizeMake(0, 1);
+    self.geofencesSwitch.layer.shadowRadius = 0;
+    self.geofencesSwitch.layer.shadowColor = [UIColor colorWithWhite:1 alpha:.5].CGColor;
+    self.geofencesSwitch.layer.shouldRasterize = 1;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -133,6 +150,30 @@
 {
     return UIInterfaceOrientationMaskAll;
 }
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+{
+    [self updateViewAlignment:toInterfaceOrientation];
+}
+
+- (void) updateViewAlignment:(UIInterfaceOrientation)interfaceOrientation
+{
+    self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX(self.contentView.frame),self.scrollView.bounds.size.width);
+    CGFloat yMargin;
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+            yMargin = 300;
+        else
+            yMargin = 200;
+    } else {
+        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
+            yMargin = 80;
+        else
+            yMargin = 40;
+    }
+    self.scrollView.contentInset = UIEdgeInsetsMake(yMargin, 0, yMargin, 0);
+}
+
 
 /****************************************************************************/
 #pragma mark TableView
@@ -318,13 +359,14 @@
     if(didRequest)
     {
         [self.storeIndicator startAnimating];
+        self.storeLabel.hidden = YES;
         self.storeButton.enabled = NO;
     }
     else
     {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_UNAVAILABLE_TITLE", nil)
                                     message:NSLocalizedString(@"STORE_UNAVAILABLE_MESSAGE", nil)
-                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                                   delegate:nil cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCELx", nil) otherButtonTitles:nil] show];
     }
 }
 
@@ -332,6 +374,7 @@
 - (void) store:(Store*)store productsRequestDidFailWithError:(NSError*)error
 {
     [self.storeIndicator stopAnimating];
+    self.storeLabel.hidden = NO;
     self.storeButton.enabled = YES;
     [[[UIAlertView alloc] initWithTitle:error.localizedDescription
                                 message:error.localizedFailureReason
@@ -378,6 +421,7 @@
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
     [self.storeIndicator stopAnimating];
+    self.storeLabel.hidden = NO;
     self.storeButton.enabled = YES;
     self.products = nil;
 }
@@ -388,6 +432,7 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:productIdentifier forKey:@"PurchasedProductsIdentifier"];
     [self.storeIndicator stopAnimating];
+    self.storeLabel.hidden = NO;
     self.storeButton.enabled = YES;
     self.products = nil;
     [self updateStoreButton];
@@ -396,6 +441,7 @@
 - (void) store:(Store*)store purchaseCancelled:(NSString*)productIdentifier
 {
     [self.storeIndicator stopAnimating];
+    self.storeLabel.hidden = NO;
     self.storeButton.enabled = YES;
     self.products = nil;
 }
@@ -403,6 +449,7 @@
 - (void) store:(Store*)store purchaseFailed:(NSString*)productIdentifier withError:(NSError*)error
 {
     [self.storeIndicator stopAnimating];
+    self.storeLabel.hidden = NO;
     self.storeButton.enabled = YES;
     self.products = nil;
     // StoreKit already presents the error, it's useless to display another alert
