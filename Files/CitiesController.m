@@ -53,6 +53,9 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationWillEnterForegroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appStateChanged:) name:UIApplicationDidEnterBackgroundNotification object:nil];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:)
+                                                     name:NSUserDefaultsDidChangeNotification object:nil];
+
         self.userLocationUpdateGroup = [CityRegionUpdateGroup new];
         self.screenCenterUpdateGroup = [CityRegionUpdateGroup new];
 
@@ -60,9 +63,18 @@
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void) defaultsChanged:(NSNotification*)note
+{
+    [self addAndRemoveMapAnnotations];
+}
+
+/****************************************************************************/
+#pragma mark -
 
 - (BicycletteCity*) cityNamed:(NSString*)cityName
 {
@@ -141,7 +153,7 @@
     [self.screenCenterUpdateGroup setRegion:self.viewRegion];
     
     // In the same vein, only set the updater reference location if we're down enough
-    CLLocationDistance distance = [[self.currentCity prefForKey:@"RadarDistance"] doubleValue];
+    CLLocationDistance distance = [[self.currentCity prefForKey:@"RegionMonitoring.FenceDistance"] doubleValue];
     [self.userLocationUpdateGroup setRegion:MKCoordinateRegionMakeWithDistance(self.viewRegion.center, distance, distance)];
     
     if(self.currentCity)
@@ -178,8 +190,11 @@
     else
     {
         // Fences
-        NSArray * fences = [self.fenceMonitor geofencesInCity:_currentCity];
-        [newOverlays addObjectsFromArray:fences];
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"])
+        {
+            NSArray * fences = [self.fenceMonitor geofencesInCity:_currentCity];
+            [newOverlays addObjectsFromArray:fences];
+        }
 
         // Stations
         if([self showCurrentCityStations])

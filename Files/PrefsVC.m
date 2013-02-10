@@ -137,6 +137,7 @@
     if(![self.updateIndicator isAnimating])
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
     [self updateStoreButton];
+    self.geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
 }
 
 - (void) updateUpdateLabel
@@ -340,6 +341,14 @@
 - (IBAction)rate:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=546171712"]];
+}
+
+/****************************************************************************/
+#pragma mark Prefs
+
+- (IBAction)switchRegionMonitoring:(UISwitch*)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"RegionMonitoring.Enabled"];
 }
 
 /****************************************************************************/

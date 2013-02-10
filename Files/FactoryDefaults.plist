@@ -6,7 +6,9 @@
 	<false/>
 	<key>DebugDisplayHelpAtLaunch</key>
 	<false/>
-	<key>RadarDistance</key>
+	<key>RegionMonitoring.Enabled</key>
+	<true/>
+	<key>RegionMonitoring.FenceDistance</key>
 	<integer>200</integer>
 	<key>CitiesController.MapRegionZoomDistance</key>
 	<integer>900</integer>

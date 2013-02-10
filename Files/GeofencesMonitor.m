@@ -39,7 +39,10 @@
 {
     self = [super init];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startMonitoring)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:)
+                                                     name:NSUserDefaultsDidChangeNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetMonitoring)
                                                      name:BicycletteCityNotifications.canRequestLocation object:nil];
 
         // location manager
@@ -49,29 +52,41 @@
     return self;
 }
 
-- (void) startMonitoring
+- (void) resetMonitoring
 {
-    //Check the monitored regions and the fences match
-    for (CLRegion * region in _locationManager.monitoredRegions)
-    {
-        Geofence* fence = [self.fences firstObjectWithValue:region.identifier forKeyPath:@"region.identifier"];
-        if(fence==nil)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"]){
+        //Check the monitored regions and the fences match
+        for (CLRegion * region in _locationManager.monitoredRegions)
         {
-            DebugLog(@"delete unexpected monitored region %@",region.identifier);
+            Geofence* fence = [self.fences firstObjectWithValue:region.identifier forKeyPath:@"region.identifier"];
+            if(fence==nil)
+            {
+                DebugLog(@"delete unexpected monitored region %@",region.identifier);
+                [_locationManager stopMonitoringForRegion:region];
+            }
+        }
+        
+        for (Geofence * fence in self.fences) {
+            CLRegion * monitoredRegion = [_locationManager.monitoredRegions anyObjectWithValue:fence.region.identifier forKeyPath:@"identifier"];
+            if(monitoredRegion==nil)
+            {
+                DebugLog(@"add missing monitored region %@",fence.region.identifier);
+                [_locationManager startMonitoringForRegion:fence.region];
+            }
+        }
+    } else {
+        for (CLRegion * region in _locationManager.monitoredRegions)
+        {
             [_locationManager stopMonitoringForRegion:region];
         }
     }
-    
-    for (Geofence * fence in self.fences) {
-        CLRegion * monitoredRegion = [_locationManager.monitoredRegions anyObjectWithValue:fence.region.identifier forKeyPath:@"identifier"];
-        if(monitoredRegion==nil)
-        {
-            DebugLog(@"add missing expected monitored region %@",fence.region.identifier);
-            [_locationManager startMonitoringForRegion:fence.region];
-        }
-            
-    }
 }
+
+- (void) defaultsChanged:(NSNotification*)note
+{
+    [self resetMonitoring];
+}
+
 
 /****************************************************************************/
 #pragma mark Archiving
@@ -99,9 +114,6 @@
 
 - (void) setStarredStations:(NSArray*)starredStations inCity:(BicycletteCity*)city
 {
-    if(![CLLocationManager regionMonitoringAvailable]) // If region monitoring isn't available, do nothing.
-        return;
-
     NSMutableArray * fences = [NSMutableArray new];
     for (Station * station in starredStations)
     {
@@ -160,7 +172,8 @@
             else
             {
                 // STOP MONITORING
-                [_locationManager stopMonitoringForRegion:oldFence.region];
+                if([CLLocationManager regionMonitoringAvailable])
+                    [_locationManager stopMonitoringForRegion:oldFence.region];
             }
         }
         else
@@ -173,7 +186,8 @@
     // New ones
     for (Geofence * fence in fences) {
         // START MONITORING
-        [_locationManager startMonitoringForRegion:fence.region];
+        if([CLLocationManager regionMonitoringAvailable])
+            [_locationManager startMonitoringForRegion:fence.region];
         [newFences addObject:fence];
     }
     
@@ -352,7 +366,7 @@
 {
     NSAssert(self.city!=nil, nil);
     __block BOOL near = NO;
-    CLLocationDistance radarDistance = [[self.city prefForKey:@"RadarDistance"] doubleValue];
+    CLLocationDistance radarDistance = [[self.city prefForKey:@"RegionMonitoring.FenceDistance"] doubleValue];
     [self.stations enumerateObjectsUsingBlock:
      ^(Station* stationInFence, NSUInteger idx2, BOOL *stop) {
          CLLocationDistance distance = [stationInFence.location distanceFromLocation:station.location];
