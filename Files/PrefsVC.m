@@ -37,6 +37,7 @@
 
 @property IBOutlet UILabel *enableGeofencesLabel;
 @property IBOutlet UISwitch *geofencesSwitch;
+@property IBOutlet UILabel *geofenceUnavailableLabel;
 
 @property IBOutlet UIView *updateView;
 @property IBOutlet UIActivityIndicatorView *updateIndicator;
@@ -120,6 +121,14 @@
     self.geofencesSwitch.layer.shadowRadius = 0;
     self.geofencesSwitch.layer.shadowColor = [UIColor colorWithWhite:1 alpha:.5].CGColor;
     self.geofencesSwitch.layer.shouldRasterize = 1;
+    self.geofenceUnavailableLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
+    
+    if([CLLocationManager regionMonitoringAvailable]){
+        self.geofenceUnavailableLabel.hidden = YES;
+    } else {
+        self.geofencesSwitch.hidden = YES;
+        self.enableGeofencesLabel.hidden = YES;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated{

@@ -453,7 +453,7 @@
 												<string key="NSFrame">{{0, 3}, {158, 37}}</string>
 												<reference key="NSSuperview" ref="914937777"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="1039979564"/>
+												<reference key="NSNextKeyView" ref="556194576"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIOpaque">NO</bool>
 												<bool key="IBUIClipsSubviews">YES</bool>
@@ -488,6 +488,41 @@
 												<int key="IBUIContentHorizontalAlignment">0</int>
 												<int key="IBUIContentVerticalAlignment">0</int>
 												<bool key="IBUIOn">YES</bool>
+											</object>
+											<object class="IBUILabel" id="556194576">
+												<reference key="NSNextResponder" ref="914937777"/>
+												<int key="NSvFlags">292</int>
+												<string key="NSFrame">{{8, 3}, {304, 37}}</string>
+												<reference key="NSSuperview" ref="914937777"/>
+												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView" ref="1039979564"/>
+												<string key="NSReuseIdentifierKey">_NS:9</string>
+												<bool key="IBUIOpaque">NO</bool>
+												<bool key="IBUIClipsSubviews">YES</bool>
+												<int key="IBUIContentMode">7</int>
+												<bool key="IBUIUserInteractionEnabled">NO</bool>
+												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+												<string key="IBUIText">Votre iPod Touch ne permet pas de créer d’alertes géographiques autour des favoris.</string>
+												<object class="NSColor" key="IBUITextColor">
+													<int key="NSColorSpace">1</int>
+													<bytes key="NSRGB">MSAxIDEgMC44NQA</bytes>
+												</object>
+												<nil key="IBUIHighlightedColor"/>
+												<reference key="IBUIShadowColor" ref="270056430"/>
+												<int key="IBUIBaselineAdjustment">0</int>
+												<float key="IBUIMinimumScaleFactor">1</float>
+												<int key="IBUINumberOfLines">2</int>
+												<int key="IBUITextAlignment">1</int>
+												<object class="IBUIFontDescription" key="IBUIFontDescription">
+													<int key="type">1</int>
+													<double key="pointSize">12</double>
+												</object>
+												<object class="NSFont" key="IBUIFont">
+													<string key="NSName">Helvetica</string>
+													<double key="NSSize">12</double>
+													<int key="NSfFlags">16</int>
+												</object>
+												<double key="preferredMaxLayoutWidth">304</double>
 											</object>
 										</array>
 										<string key="NSFrame">{{0, 239}, {320, 44}}</string>
@@ -533,7 +568,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="67725001">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="134001759">
@@ -545,6 +580,7 @@
 								<int key="NSvFlags">298</int>
 								<string key="NSFrame">{{4, 5}, {220, 16}}</string>
 								<reference key="NSSuperview" ref="134001759"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -564,6 +600,7 @@
 						</array>
 						<string key="NSFrameSize">{224, 27}</string>
 						<reference key="NSSuperview" ref="67725001"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1017269682"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="323200375"/>
@@ -575,6 +612,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{244, 28}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="134001759"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -582,7 +621,7 @@
 				<reference key="IBUIContentView" ref="134001759"/>
 			</object>
 			<object class="IBUITableViewCell" id="906559009">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="309529695">
@@ -594,6 +633,7 @@
 								<int key="NSvFlags">298</int>
 								<string key="NSFrame">{{4, 5}, {220, 16}}</string>
 								<reference key="NSSuperview" ref="309529695"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -613,6 +653,7 @@
 						</array>
 						<string key="NSFrameSize">{224, 27}</string>
 						<reference key="NSSuperview" ref="906559009"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="370131339"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="323200375"/>
@@ -624,6 +665,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{244, 28}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="309529695"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -822,6 +865,14 @@
 					<int key="connectionID">135</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">geofenceUnavailableLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="556194576"/>
+					</object>
+					<int key="connectionID">137</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">updateStationsList</string>
 						<reference key="source" ref="723946906"/>
@@ -958,6 +1009,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="1039979564"/>
 							<reference ref="565147999"/>
+							<reference ref="556194576"/>
 						</array>
 						<reference key="parent" ref="960457486"/>
 						<string key="objectName">Update Row</string>
@@ -1142,6 +1194,11 @@
 						<reference key="object" ref="56056297"/>
 						<reference key="parent" ref="199674437"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">136</int>
+						<reference key="object" ref="556194576"/>
+						<reference key="parent" ref="914937777"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1161,6 +1218,7 @@
 				<string key="126.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="130.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="136.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.CustomClassName">TransparentToolbar</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1194,30 +1252,39 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">135</int>
+			<int key="maxID">137</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">PrefsVC</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">donate</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">donate</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="donate">id</string>
+						<string key="rate:">id</string>
+						<string key="tweet:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="donate">
 							<string key="name">donate</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="rate:">
+							<string key="name">rate:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tweet:">
+							<string key="name">tweet:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="appstoreRatingsButton">UIBarButtonItem</string>
 						<string key="contactSupportButton">UILabel</string>
 						<string key="contentView">UIView</string>
 						<string key="designAndCodeLabel">UILabel</string>
 						<string key="enableGeofencesLabel">UILabel</string>
+						<string key="geofenceUnavailableLabel">UILabel</string>
 						<string key="geofencesSwitch">UISwitch</string>
 						<string key="logoShadowView">UIView</string>
 						<string key="logoView">UIImageView</string>
@@ -1254,6 +1321,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="enableGeofencesLabel">
 							<string key="name">enableGeofencesLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="geofenceUnavailableLabel">
+							<string key="name">geofenceUnavailableLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="geofencesSwitch">

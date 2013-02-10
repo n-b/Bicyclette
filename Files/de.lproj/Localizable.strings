@@ -41,6 +41,7 @@
 "SEE_HELP_BUTTON" = "Anleitung anschauen";
 
 "ENABLE_GEOFENCES" = "Automatic “Geofence” Alerts:";
+"GEOFENCES_UNAVAILABLE" = "Your device does not have support for Automatic Alerts (Geofences) near stations.";
 
 "STATIONS_LIST_CITY_%@" = "“%@” Stationen:";
 "UPDATE_STATIONS_LIST_BUTTON" = "Aktualisieren";
