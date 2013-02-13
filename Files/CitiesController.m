@@ -190,7 +190,7 @@
     else
     {
         // Fences
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"])
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager regionMonitoringAvailable])
         {
             NSArray * fences = [self.fenceMonitor geofencesInCity:_currentCity];
             [newOverlays addObjectsFromArray:fences];

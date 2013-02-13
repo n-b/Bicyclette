@@ -11,6 +11,16 @@
 #import "NSStringAdditions.h"
 #import "BicycletteCity.h"
 
+#define DEBUG_REGION_MONITORING_UNAVAILABLE 0
+#if DEBUG && DEBUG_REGION_MONITORING_UNAVAILABLE
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
+@implementation CLLocationManager (toto)
++ (BOOL)regionMonitoringAvailable { return NO; }
+@end
+#pragma clang diagnostic pop
+#endif
+
 @interface GeofencesMonitor () <CLLocationManagerDelegate>
 @end
 
@@ -54,7 +64,7 @@
 
 - (void) resetMonitoring
 {
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"]){
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager regionMonitoringAvailable]){
         //Check the monitored regions and the fences match
         for (CLRegion * region in _locationManager.monitoredRegions)
         {
