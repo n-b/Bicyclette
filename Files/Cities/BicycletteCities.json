@@ -21,12 +21,12 @@
   {
     "radius" : 4210.032631933091,
     "KVCMapping" : {
-      "bikeCount" : "status_available",
+      "lon" : "longitude",
       "num" : "number",
       "lat" : "latitude",
+      "name" : "name",
       "lockCount" : "status_total",
-      "lon" : "longitude",
-      "name" : "name"
+      "bikeCount" : "status_available"
     },
     "longitude" : -1.1712500278,
     "city_class" : "LaRochelleYeloCity",
@@ -147,11 +147,11 @@
     "prefs" : {
       "CitiesController.StationsZoomThreshold" : 0.5
     },
-    "radius" : 9837.786945405222,
+    "radius" : 9848.360525140888,
     "station_details_url" : "http:\/\/www.velib.paris.fr\/service\/stationdetails\/paris\/",
     "service_name" : "Vélib’",
-    "longitude" : 2.351331172680326,
-    "latitude" : 48.8607308057246,
+    "longitude" : 2.351206658273064,
+    "latitude" : 48.86078932636721,
     "city_class" : "ParisVelibCity",
     "update_url" : "http:\/\/www.velib.paris.fr\/service\/carto",
     "station_status_parsing_class" : "XMLSubnodesStationParse",
@@ -170,6 +170,7 @@
       "bonus" : "bonus"
     },
     "city_name" : "Paris",
+    "city_group" : "Paris",
     "patches" : {
       "34003" : {
         "codePostal" : "93400"
@@ -181,16 +182,15 @@
         "name" : "Raymond Losserand"
       },
       "903" : {
-        "codePostal" : "75013",
-		"lat" : 48.837164,
-		"lng" : 2.374232
+        "lat" : 48.837164,
+        "lng" : 2.374232,
+        "codePostal" : "75013"
       },
       "901" : {
         "codePostal" : "75019"
       }
     },
-    "station_element_name" : "marker",
- 	"city_group" : "Paris",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 3809.805449669309,
@@ -205,16 +205,16 @@
       "name" : "name"
     },
     "longitude" : -1.6738135,
+    "apikey" : "U3JFQO8IG7CUY28",
     "city_class" : "RennesVeloStarCity",
     "service_name" : "VéloStar",
     "latitude" : 48.1095485,
     "update_url" : "http:\/\/data.keolis-rennes.com\/xml\/?version=1.0&key={APIKEY}&cmd=getstation",
-    "apikey" : "U3JFQO8IG7CUY28",
     "station_element_name" : "station",
     "city_name" : "Rennes"
   },
   {
-    "radius" : 8058.567674239853,
+    "radius" : 7592.664164047152,
     "KVCMapping" : {
       "id" : "number",
       "lat" : "latitude",
@@ -223,10 +223,10 @@
       "nbEmptyDocks" : "status_free",
       "nbBikes" : "status_available"
     },
-    "longitude" : -73.57850000000001,
+    "longitude" : -73.57570000000001,
     "city_class" : "XMLSubnodesCity",
     "service_name" : "BIXI",
-    "latitude" : 45.5106035,
+    "latitude" : 45.5123785,
     "update_url" : "http:\/\/montreal.bixi.com\/data\/bikeStations.xml",
     "station_element_name" : "station",
     "city_name" : "Montréal"
@@ -286,7 +286,7 @@
     "city_name" : "London"
   },
   {
-    "radius" : 9125.356440382469,
+    "radius" : 9610.806071707226,
     "KVCMapping" : {
       "id" : "number",
       "lat" : "latitude",
@@ -298,7 +298,7 @@
     "longitude" : -77.028965,
     "city_class" : "XMLSubnodesCity",
     "service_name" : "Capital Bike Share",
-    "latitude" : 38.875449,
+    "latitude" : 38.878968,
     "update_url" : "http:\/\/capitalbikeshare.com\/data\/stations\/bikeStations.xml",
     "station_element_name" : "station",
     "city_name" : "Washington"
@@ -366,7 +366,7 @@
     "station_element_name" : "marker"
   },
   {
-    "radius" : 1309.662607820401,
+    "radius" : 1325.552274936522,
     "KVCMapping" : {
       "fullAddress" : "fullAddress",
       "ticket" : "status_ticket",
@@ -381,10 +381,10 @@
       "name" : "name",
       "bonus" : "bonus"
     },
-    "longitude" : 6.020929020105174,
+    "longitude" : 6.020912891018471,
     "city_class" : "CyclocityCity",
     "service_name" : "VéloCité",
-    "latitude" : 47.23905701869464,
+    "latitude" : 47.23904860751522,
     "station_details_url" : "http:\/\/www.velocite.besancon.fr\/service\/stationdetails\/besancon\/",
     "update_url" : "http:\/\/www.velocite.besancon.fr\/service\/carto",
     "city_name" : "Besançon",
@@ -444,7 +444,7 @@
     "station_element_name" : "marker"
   },
   {
-    "radius" : 1883,
+    "radius" : 1882.794800346814,
     "KVCMapping" : {
       "fullAddress" : "fullAddress",
       "ticket" : "status_ticket",
@@ -459,7 +459,7 @@
       "name" : "name",
       "bonus" : "bonus"
     },
-    "longitude" : 4.865725,
+    "longitude" : 4.865724999999999,
     "city_class" : "CyclocityCity",
     "service_name" : "Li bia velo",
     "latitude" : 50.463626,
@@ -471,6 +471,13 @@
   },
   {
     "radius" : 4220.608362013249,
+    "station_details_url" : "http:\/\/www.velo2.cergypontoise.fr\/service\/stationdetails\/cergy\/",
+    "service_name" : "VélO2",
+    "longitude" : 2.056483557236783,
+    "latitude" : 49.03175665340726,
+    "city_class" : "CyclocityCity",
+    "update_url" : "http:\/\/www.velo2.cergypontoise.fr\/service\/carto",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
     "KVCMapping" : {
       "fullAddress" : "fullAddress",
       "ticket" : "status_ticket",
@@ -485,19 +492,19 @@
       "name" : "name",
       "bonus" : "bonus"
     },
-    "longitude" : 2.056483557236783,
-    "city_class" : "CyclocityCity",
-    "service_name" : "VélO2",
-    "latitude" : 49.03175665340726,
-    "station_details_url" : "http:\/\/www.velo2.cergypontoise.fr\/service\/stationdetails\/cergy\/",
-    "update_url" : "http:\/\/www.velo2.cergypontoise.fr\/service\/carto",
     "city_name" : "Cergy-Pontoise",
-    "station_status_parsing_class" : "XMLSubnodesStationParse",
-    "station_element_name" : "marker",
     "city_group" : "Paris",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 2043.163881067344,
+    "station_details_url" : "http:\/\/www.cristolib.fr\/service\/stationdetails\/creteil\/",
+    "service_name" : "CristoLib",
+    "longitude" : 2.458781753692186,
+    "latitude" : 48.78243633050243,
+    "city_class" : "CyclocityCity",
+    "update_url" : "http:\/\/www.cristolib.fr\/service\/carto",
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
     "KVCMapping" : {
       "fullAddress" : "fullAddress",
       "ticket" : "status_ticket",
@@ -512,16 +519,9 @@
       "name" : "name",
       "bonus" : "bonus"
     },
-    "longitude" : 2.458781753692186,
-    "city_class" : "CyclocityCity",
-    "service_name" : "CristoLib",
-    "latitude" : 48.78243633050243,
-    "station_details_url" : "http:\/\/www.cristolib.fr\/service\/stationdetails\/creteil\/",
-    "update_url" : "http:\/\/www.cristolib.fr\/service\/carto",
     "city_name" : "Créteil",
-    "station_status_parsing_class" : "XMLSubnodesStationParse",
-    "station_element_name" : "marker",
     "city_group" : "Paris",
+    "station_element_name" : "marker"
   },
   {
     "radius" : 1705.185823190039,
@@ -732,7 +732,7 @@
     "station_element_name" : "marker"
   },
   {
-    "radius" : 5030,
+    "radius" : 5029.893257265326,
     "KVCMapping" : {
       "fullAddress" : "fullAddress",
       "ticket" : "status_ticket",
@@ -747,10 +747,10 @@
       "name" : "name",
       "bonus" : "bonus"
     },
-    "longitude" : 1.445061,
+    "longitude" : 1.445061147887675,
     "city_class" : "CyclocityCity",
     "service_name" : "VélôToulouse",
-    "latitude" : 43.600039,
+    "latitude" : 43.60003863246521,
     "station_details_url" : "http:\/\/www.velo.toulouse.fr\/service\/stationdetails\/toulouse\/",
     "update_url" : "http:\/\/www.velo.toulouse.fr\/service\/carto",
     "city_name" : "Toulouse",
@@ -879,7 +879,7 @@
     "city_name" : "Gütersloh"
   },
   {
-    "radius" : 5639.608590873851,
+    "radius" : 5504.805768357992,
     "KVCMapping" : {
       "lng" : "longitude",
       "lat" : "latitude",
@@ -887,7 +887,7 @@
       "name" : "name",
       "bikes" : "status_available"
     },
-    "longitude" : 10.9097966551781,
+    "longitude" : 10.90494185686115,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
     "latitude" : 48.3563169896061,
@@ -998,7 +998,7 @@
     "city_name" : "Konya"
   },
   {
-    "radius" : 43411.38502220761,
+    "radius" : 42410.91973510325,
     "KVCMapping" : {
       "lng" : "longitude",
       "lat" : "latitude",
@@ -1009,7 +1009,7 @@
     "longitude" : 7.32313334941864,
     "city_class" : "NextBikeCity",
     "service_name" : "metropolradruhr",
-    "latitude" : 51.5340131318121,
+    "latitude" : 51.55576250306795,
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "station_element_name" : "place",
     "city_name" : "Ruhr",
@@ -1087,7 +1087,7 @@
     "city_name" : "Vannes"
   },
   {
-    "radius" : 6632.866344351203,
+    "radius" : 6618.941392261788,
     "KVCMapping" : {
       "Latitude" : "latitude",
       "Address" : "name",
@@ -1096,10 +1096,10 @@
       "Dockings" : "status_free",
       "Id" : "number"
     },
-    "longitude" : -80.13418999999999,
+    "longitude" : -80.13407515,
     "city_class" : "MiamiDecobikeCity",
     "service_name" : "DECOBIKE",
-    "latitude" : 25.82441375,
+    "latitude" : 25.82435375,
     "update_url" : "http:\/\/www.decobike.com\/playmoves.xml",
     "station_element_name" : "location",
     "city_name" : "Miami"
@@ -1121,7 +1121,7 @@
     "update_url" : "https:\/\/www.bicing.cat\/localizaciones\/getJsonObject.php",
     "districts_patchs" : {
       "26" : "10",
-      "275" : "8",
+      "106" : "6",
       "193" : "4",
       "238" : "9",
       "101" : "5",
@@ -1129,7 +1129,7 @@
       "1" : "2",
       "276" : "7",
       "93" : "3",
-      "106" : "6"
+      "275" : "8"
     },
     "city_name" : "Barcelona"
   },
@@ -1270,21 +1270,21 @@
   {
     "radius" : 9710.149262997607,
     "KVCMapping" : {
-      "ms:NOM" : "name",
+      "ms:NBVELOS" : "status_available",
       "gml:pos" : [
         "FirstComponent:latitude",
         "SecondComponent:longitude"
       ],
       "ms:IDENT" : "number",
-      "ms:NBVELOS" : "status_available",
-      "ms:NBPLACES" : "status_free"
+      "ms:NBPLACES" : "status_free",
+      "ms:NOM" : "name"
     },
     "longitude" : -0.613745,
+    "apikey" : "3JXUPQJXUA",
     "city_class" : "BordeauxVCubCity",
     "service_name" : "VCub",
     "latitude" : 44.845415,
     "update_url" : "http:\/\/data.lacub.fr\/wfs?key={APIKEY}&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326",
-    "apikey" : "3JXUPQJXUA",
     "station_element_name" : "ms:CI_VCUB_P",
     "city_name" : "Bordeaux"
   }
