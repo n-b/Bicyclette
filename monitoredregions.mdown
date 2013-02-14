@@ -16,9 +16,9 @@ Bicyclette est relancée automatiquement par votre iPhone&nbsp;: il n'y a pas de
 
 Les barrières virtuelles n'utilisent le GPS, mais la géolocalisation par antennes de téléphone et réseaux Wifi environnants&nbsp;: c'est un peu moins précis, mais beaucoup plus rapide, et surtout, beaucoup moins gourmand en énergie.
 
-## Les iPod Touch ne sont pas compatibles.
+## Certaines appareils ne sont pas compatibles.
 
-Pour cette raison, les iPod Touch ne peuvent pas utiliser cette fonctionnalité. Bicyclette permet quand même de marquer vos stations favorites pour les voir plus rapidement.
+En particulier, la plupart des **iPod Touch** ne peuvent pas utiliser les barrières virtuelles. C'est une limite matérielle, imposée par Apple. Mais bicyclette permet quand même de marquer vos stations favorites pour les voir plus rapidement.
 
 ## Un iPhone ne peut enregistrer plus de 20 régions.
 
