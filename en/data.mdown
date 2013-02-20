@@ -2,9 +2,7 @@
 layout: base
 ---
 
-<header>
-	{% include en/header.html %}
-</header>
+{% include en/header.html %}
 
 Autant que possible, Bicyclette utilise les données provenant de WebServices *officiels*, ou de sources de données autorisées par les gestionnaires des réseaux.
 

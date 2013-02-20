@@ -2,9 +2,7 @@
 layout: base
 ---
 
-<header>
-	{% include en/header.html %}
-</header>
+{% include en/header.html %}
 
 # Les Barrières Virtuelles
 
