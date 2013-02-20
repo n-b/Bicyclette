@@ -1,0 +1,47 @@
+---
+layout: base
+---
+
+<header>
+	{% include en/header.html %}
+</header>
+
+# Les Barrières Virtuelles
+
+> Les "barrières virtuelles" (ou "geofences", ou "monitored regions") sont une des fonctions les plus intéressantes disponibles sur iPhone : elles permettent de relancer automatiquement, *à l'approche d'un lieu*, une application et de lui faire effectuer une tâche de fond. C'est ce que Bicyclette utilise pour afficher les disponibilités dans vos stations favorites quand vous y arrivez, directement sur l'écran d'accueil.
+
+Quelques détails techniques : 
+
+## Il ne s'agit pas de Notifications Push.
+
+Bicyclette est relancée automatiquement par votre iPhone&nbsp;: il n'y a pas de message en provenance d'un serveur. D'ailleurs, Bicyclette ne vous demande pas l'autorisation de vous envoyer des notifications Push.
+
+## La consommation de batterie est (en théorie) minime
+
+Les barrières virtuelles n'utilisent le GPS, mais la géolocalisation par antennes de téléphone et réseaux Wifi environnants&nbsp;: c'est un peu moins précis, mais beaucoup plus rapide, et surtout, beaucoup moins gourmand en énergie.
+
+## Certaines appareils ne sont pas compatibles.
+
+En particulier, la plupart des **iPod Touch** ne peuvent pas utiliser les barrières virtuelles. C'est une limite matérielle, imposée par Apple. Mais bicyclette permet quand même de marquer vos stations favorites pour les voir plus rapidement.
+
+## Un iPhone ne peut enregistrer plus de 20 régions.
+
+La limite est *globale* pour l'appareil, et pas par application. Si vous la dépassez, Bicyclette ne vous permettra plus d'ajouter de nouveaux favoris. (Mais vous pouvez supprimer les précédents.)
+
+## Avec le wifi, la géolocalisation est beaucoup plus rapide.
+
+Les iPhone embarquent une base d'identifiants de réseaux wifi géolocalisés, mise à jour régulièrement. Cela permet à un iPhone de connaître sa position *dès qu'il détecte un réseau wifi*, sans même avoir à s'y connecter. 
+
+## Bicyclette doit aussi se connecter à Internet avant d'afficher les disponibilités.
+
+Le scénario complet d'une notification est le suivant : 
+
+1. Au moment où un favori est ajouté, Bicyclette enregistre une zone à surveiller auprès du composant iOS,
+2. Plus tard, lorsque l'iPhone détecte l'entrée dans la zone, il démarre Bicyclette en tâche de fond,
+3. Bicyclette affiche une première notification "Chargement en cours", et se connecte au webservice pour mettre à jour l'état des stations demandées.
+4. Cette connection peut prendre du temps : si votre iPhone était en veille, il faut redémarrer tout le réseau, ce qui peut prendre plus d'une minute sur un réseau 3G ou edge.
+5. Une fois les données à jour obtenues, elles sont affichées avec une nouvelle notification sur l'écran d'accueil.
+
+Si les notifications ne s'affichent pas, il peut y avoir plusieurs raisons : typiquement, en sortant d'un batiment ou d'un tunnel, l'iPhone va devoir se reconnecter à un nouveau réseau et retrouver sa position. Si la connection réseau prend vraiment trop de temps, ou si vous ressortez de la zone avant que la notification soit affichée, Bicyclette annule la procédure.
+	
+En cas de problème, n'hésitez pas à me contacter par mail à [support@bicyclette-app.fr](mailto:support@bicyclette-app.fr) ou sur Twitter : [@bicycletteapp](http://twitter.com/bicycletteapp).

@@ -4,6 +4,6 @@ Indiquez vos stations favorites, et Bicyclette vérifiera les places disponibles
 
 ***Vous n'avez même plus à ouvrir l'appli !***
 
-![](images/screenshots/fr/Notification@2x.png)
+![](images/screenshots/Notification@2x.png)
 
 Comment ça marche ? Il s'agit de "barrières virtuelles", aussi appelées "geofences" ou "monitored regions". [Tous les détails techniques ici](monitoredregions.html)

@@ -1,0 +1,66 @@
+# Des vélos partout&nbsp;!
+
+Bicyclette est compatible avec les vélos en libre-service dans plus de 50 villes dans le monde.
+
+![](images/screenshots/Europe@2x.png)
+
+## En France :
+
+* **Vélib’** à Paris
+* **Vélo’v** à Lyon
+* **V’Lille** à Lille
+* **Le Vélo** à Marseille
+* **Bicloo** à Nantes
+* **VéloStar** à Rennes
+* **Vélam** à Amiens
+* **VéliVert** à Saint-Étienne
+* **Métrovélo** à Grenoble
+* **Vélhop** à Strasbourg
+* **VCub** à Bordeaux
+* **Vélo’+** à Orléans
+* **Yélo** à La Rochelle
+* **VéloCité** à Besançon
+* **VélO2** à Cergy-Pontoise
+* **VélôToulouse** à Toulouse
+* **CristoLib** à Créteil
+* **Vélocité** à Mulhouse
+* **Vélostan** à Nancy
+* **Cy’clic** à Rouen
+* **Vel’In** à Calais
+* **Vélo Bleu** à Nice
+* **Vélocéa** à Vannes
+* **Vélomagg'** à Montpellier
+* **Vélopop** à Avignon
+* **Libélo** à Valence
+
+## En Europe :
+
+* **TusBic** à Santander
+* **SEVici** à Sevilla
+* **Valenbisi** à Valencia
+* **Bicing** à Barcelona
+* **dublinbikes** à Dublin
+* **Cycle Hire** à London
+* **vel’oh** à Luxembourg
+* **Villo!** à Bruxelles
+* **Li bia velo** à Namur
+* **Styr & Ställ** à Göteborg
+* **Bicike(LJ)** à Ljubljana
+* Réseaux **NextBike** et **metropolradruhr** en Allemagne
+* **CitybikeCity** à Wien
+
+## Dans le monde :
+
+* **BIXI** à Montréal
+* **BIXI** à Toronto
+* **BIXI** à Ottawa
+* **Capital Bike Share** à Washington
+* **Hubway** à Boston
+* **Nice Ride** à Minneapolis
+* **ChattanoogaBike** à Chattanooga
+* **DECOBIKE** à Miami
+* **CyclOcity** à Toyama
+* **CityCycle** à Brisbane
+* **BikeShare** à Melbourne
+
+Bicyclette utilise les données des prestataires de vélos en libre-service, disponibles sur leurs sites respectifs ou plateformes open-data. [Plus de détails sur les sources de données.](data.html)

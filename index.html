@@ -1,31 +1,12 @@
 ---
-layout: base
 ---
 
-<article>
-<section id="beta"> {% capture section %}
-{% include home/beta.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-<section class="description"> {% capture section %}
-{% include home/justamap.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-<section class="description"> {% capture section %}{% include home/alerts.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-
-<section class="description" id="cities"> {% capture section %}
-{% include home/cities.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-
-<section id="paywhatyouwant"> {% capture section %}
-{% include home/paywhatyouwant.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-
-<section id="opensource">
-{% include home/opensource.html %}
-</section>
-
-<section id="techdetails"> {% capture section %}
-{% include home/techdetails.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-
-</article>
+<script type="text/javascript">
+var language = navigator.language ? navigator.language : navigator.userLanguage
+if (language.substr(0, 2) == "fr") {
+	window.location.replace("fr")
+}
+else {
+	window.location.replace("en")
+}
+</script>

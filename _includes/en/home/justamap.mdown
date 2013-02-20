@@ -1,6 +1,6 @@
 # Une carte, juste un carte
 
-![](images/screenshots/fr/NotreDame@2x.png)
+![](images/screenshots/NotreDame@2x.png)
 
 ***Bicyclette*** se résume à une carte, avec les positions des stations de vélos indiquées par des puces, dont la couleur symbolise le nombre de vélos ou de places disponibles.
 

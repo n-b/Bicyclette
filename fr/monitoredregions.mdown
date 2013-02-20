@@ -2,6 +2,10 @@
 layout: base
 ---
 
+<header>
+	{% include fr/header.html %}
+</header>
+
 # Les Barrières Virtuelles
 
 > Les "barrières virtuelles" (ou "geofences", ou "monitored regions") sont une des fonctions les plus intéressantes disponibles sur iPhone : elles permettent de relancer automatiquement, *à l'approche d'un lieu*, une application et de lui faire effectuer une tâche de fond. C'est ce que Bicyclette utilise pour afficher les disponibilités dans vos stations favorites quand vous y arrivez, directement sur l'écran d'accueil.

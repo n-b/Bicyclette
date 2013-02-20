@@ -1,0 +1,32 @@
+---
+layout: base
+---
+
+<header>
+	{% include fr/header.html %}
+</header>
+
+<article>
+<section class="description"> {% capture section %}
+{% include fr/home/justamap.mdown %}
+{% endcapture %} {{ section | markdownify }} </section>
+<section class="description"> {% capture section %}{% include fr/home/alerts.mdown %}
+{% endcapture %} {{ section | markdownify }} </section>
+
+<section class="description" id="cities"> {% capture section %}
+{% include fr/home/cities.mdown %}
+{% endcapture %} {{ section | markdownify }} </section>
+
+<section id="paywhatyouwant"> {% capture section %}
+{% include fr/home/paywhatyouwant.mdown %}
+{% endcapture %} {{ section | markdownify }} </section>
+
+<section id="opensource">
+{% include fr/home/opensource.html %}
+</section>
+
+<section id="techdetails"> {% capture section %}
+{% include fr/home/techdetails.mdown %}
+{% endcapture %} {{ section | markdownify }} </section>
+
+</article>

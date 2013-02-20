@@ -2,6 +2,10 @@
 layout: base
 ---
 
+<header>
+	{% include en/home/header.html %}
+</header>
+
 # Four-Oh-Four
 
 Are you [lost](mailto:{{ site.email }}) ?
