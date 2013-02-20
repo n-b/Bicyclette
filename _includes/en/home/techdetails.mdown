@@ -1,8 +1,8 @@
-# Une suggestion, un bug ?
+# Bugs and remarks
 
-* Par mail : [support@bicyclette-app.fr](mailto:support@bicyclette-app.fr) 
-* Sur Twitter : [@bicycletteapp](http://twitter.com/bicycletteapp)
+* By email : [support@bicyclette-app.fr](mailto:support@bicyclette-app.fr) 
+* On Twitter : [@bicycletteapp](http://twitter.com/bicycletteapp)
 
-J'essaie de répondre à tout le monde… mais n'oubliez pas que c'est une appli gratuite&nbsp;!
+I try to answer to everyone… but don't forget it's a free app!
 
-Bicyclette est compatible iPhone et iPad, et nécessite iOS 6.0 minimum.
+Bicyclette is available on iPhone and iPad, and requires iOS 6.0.

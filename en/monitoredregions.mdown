@@ -4,42 +4,43 @@ layout: base
 
 {% include en/header.html %}
 
-# Les Barrières Virtuelles
+# Geofences
 
-> Les "barrières virtuelles" (ou "geofences", ou "monitored regions") sont une des fonctions les plus intéressantes disponibles sur iPhone : elles permettent de relancer automatiquement, *à l'approche d'un lieu*, une application et de lui faire effectuer une tâche de fond. C'est ce que Bicyclette utilise pour afficher les disponibilités dans vos stations favorites quand vous y arrivez, directement sur l'écran d'accueil.
+> Geofences (or "Monitored Regions") are one of the most interesting features available on iPhone : their job is to automatically restart an app, when approaching a predefined location, and have it perform a background task. That's what Bicyclette uses to display how many bikes and spots are available in your favorite stations, when you arrive, right on the Lock Screen. 
 
-Quelques détails techniques : 
+A few technical details:
 
-## Il ne s'agit pas de Notifications Push.
+## These are not Push Notifications
 
-Bicyclette est relancée automatiquement par votre iPhone&nbsp;: il n'y a pas de message en provenance d'un serveur. D'ailleurs, Bicyclette ne vous demande pas l'autorisation de vous envoyer des notifications Push.
+Bicyclette is automatically restarted by your iPhone: there's no incoming communication from any server. By the way, Bicyclette never asks for Push Notification authorization.
 
-## La consommation de batterie est (en théorie) minime
+## Battery consumption is (theorically) minimal
 
-Les barrières virtuelles n'utilisent le GPS, mais la géolocalisation par antennes de téléphone et réseaux Wifi environnants&nbsp;: c'est un peu moins précis, mais beaucoup plus rapide, et surtout, beaucoup moins gourmand en énergie.
+Geofences don't use the GPS, but locate you using the cell network and nearby WiFi networks. It's a little less accurate, but a lot faster, and most importantly, it requires a lot less power from the battery.
 
-## Certaines appareils ne sont pas compatibles.
+## Some devices are not compatible
 
-En particulier, la plupart des **iPod Touch** ne peuvent pas utiliser les barrières virtuelles. C'est une limite matérielle, imposée par Apple. Mais bicyclette permet quand même de marquer vos stations favorites pour les voir plus rapidement.
+In particular, most **iPod Touch** can't use Geofences. This is a hardware limit, enforced by Apple. Howver, you can still star your favorites stations to find them quickly.
 
-## Un iPhone ne peut enregistrer plus de 20 régions.
+## Only 20 Regions can be monitored on an iPhone
 
-La limite est *globale* pour l'appareil, et pas par application. Si vous la dépassez, Bicyclette ne vous permettra plus d'ajouter de nouveaux favoris. (Mais vous pouvez supprimer les précédents.)
+This is a *global* limit for the device, not per app. If you go over, Bicyclette won't allow you to add new favorite stations. (You can always remove old favorites.)
 
-## Avec le wifi, la géolocalisation est beaucoup plus rapide.
+## Using Wifi, Geolocation is much faster
 
-Les iPhone embarquent une base d'identifiants de réseaux wifi géolocalisés, mise à jour régulièrement. Cela permet à un iPhone de connaître sa position *dès qu'il détecte un réseau wifi*, sans même avoir à s'y connecter. 
+iPhones use an offline, regularly updated, database of geolocated Wifi network identifiers. Using this, your iPhone can know its position *as soon as it detects a Wifi network*, without even needing to connect to it.
 
-## Bicyclette doit aussi se connecter à Internet avant d'afficher les disponibilités.
+## Bicyclette has to make a network connection before displaying the occupancy
 
-Le scénario complet d'une notification est le suivant : 
+The whole scenario of a notification looks like this:
 
-1. Au moment où un favori est ajouté, Bicyclette enregistre une zone à surveiller auprès du composant iOS,
-2. Plus tard, lorsque l'iPhone détecte l'entrée dans la zone, il démarre Bicyclette en tâche de fond,
-3. Bicyclette affiche une première notification "Chargement en cours", et se connecte au webservice pour mettre à jour l'état des stations demandées.
-4. Cette connection peut prendre du temps : si votre iPhone était en veille, il faut redémarrer tout le réseau, ce qui peut prendre plus d'une minute sur un réseau 3G ou edge.
-5. Une fois les données à jour obtenues, elles sont affichées avec une nouvelle notification sur l'écran d'accueil.
 
-Si les notifications ne s'affichent pas, il peut y avoir plusieurs raisons : typiquement, en sortant d'un batiment ou d'un tunnel, l'iPhone va devoir se reconnecter à un nouveau réseau et retrouver sa position. Si la connection réseau prend vraiment trop de temps, ou si vous ressortez de la zone avant que la notification soit affichée, Bicyclette annule la procédure.
-	
-En cas de problème, n'hésitez pas à me contacter par mail à [support@bicyclette-app.fr](mailto:support@bicyclette-app.fr) ou sur Twitter : [@bicycletteapp](http://twitter.com/bicycletteapp).
+1. When a station is starred, Bicyclette registers a "Monitored Region" to iOS,
+2. Later, when the iPhone detects that it enters the region, it starts Bicyclette in the background,
+3. Bicyclette displays a first notification then ("Loading…") and attempts to connect to the bikesharing system webservice to update the status of the station,
+4. This network request may take some time: if your iPhone was off, the whole network stack must be restarted. On a 3G/Edge network, it can take more than a minute.
+5. Once the data have been retrieved, a new notification is displayed with the occupancy details, directly on the Home or Lock Screen.
+
+There can be several causes that would prevent notifications from showing up. Typically, when leaving a building or a tunnel, your iPhone has to switch networks and find its position again. If it takes too long, or if you get out of the monitored region before the notification is displayed, Bicyclette cancels the whole procedure.
+
+If you need more help, please contact me by email at [support@bicyclette-app.fr](mailto:support@bicyclette-app.fr) or on Twitter: [@bicycletteapp](http://twitter.com/bicycletteapp).

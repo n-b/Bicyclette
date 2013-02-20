@@ -1,8 +1,8 @@
-# Une carte, juste un carte
+# A map, that's all.
 
 ![](images/screenshots/NotreDame@2x.png)
 
-***Bicyclette*** se résume à une carte, avec les positions des stations de vélos indiquées par des puces, dont la couleur symbolise le nombre de vélos ou de places disponibles.
+***Bicyclette*** is only a map, with pins showing the bike stations, whose color changes with the number of available bikes and spots.
 
-C'est tout&nbsp;? Non, c'est déjà trop&nbsp;!
+That's all? Actually, that's already too much!
 

@@ -1,9 +1,9 @@
-# Notifications Géolocalisées
+# Geolocated Notifications
 
-Indiquez vos stations favorites, et Bicyclette vérifiera les places disponibles dès que vous en approcherez ! 
+Just mark your favorite stations with a star, and Bicyclette will check for available spots as soon as you'll near it!
 
-***Vous n'avez même plus à ouvrir l'appli !***
+***You don't even have to launch the app!***
 
 ![](images/screenshots/Notification@2x.png)
 
-Comment ça marche ? Il s'agit de "barrières virtuelles", aussi appelées "geofences" ou "monitored regions". [Tous les détails techniques ici](monitoredregions.html)
+How does this work? These are "Geofences", or "Monitored Regions". [Read the technical details over here.](monitoredregions.html)

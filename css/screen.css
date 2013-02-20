@@ -51,7 +51,7 @@ h1, h2, h3 {
 }
 h1 {
 	font-weight: 800;
-	font-size : 140%;
+	font-size : 200%;
 }
 h2 {
 	font-weight: 600;
@@ -68,7 +68,7 @@ p, ul {
 }
 @media only screen and (max-width: 490px) {
 	h1 {
-		font-size: 130%;
+		font-size: 160%;
 	}
 	h2 {
 		font-size: 90%;
@@ -125,14 +125,19 @@ h1, h2, p, ul{
 
 /* Header */
 header {
-	margin-bottom:8px;
+	margin-bottom:80px;
+}
+@media only screen and (max-width: 490px) {
+	header {
+		margin-bottom:40px;
+	}
 }
 header img#logo {
 	float: left;
 	max-width: 38%;
 }
 header div#title {
-	float: right;
+	float: left;
 	max-width: 59%;
 	text-align: left;
 	margin-left: 8px;
@@ -216,6 +221,10 @@ section#beta p {
 	font-family: 'open sans', sans-serif;
 	font-weight: 400;
 	font-size: 90%;
+}
+
+section h1 {
+	text-align:center;
 }
 
 /* Cities sections */
