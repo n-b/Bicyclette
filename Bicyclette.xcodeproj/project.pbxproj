@@ -428,6 +428,7 @@
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
 		37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LocalAlerts.m"; sourceTree = "<group>"; };
 		37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RennesVeloStarCity.m; sourceTree = "<group>"; };
+		37FF34C116D65C1A008D8880 /* Toulouse.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Toulouse.gpx; sourceTree = "<group>"; };
 		942D47F816A82DD700F6CD12 /* Barcelone.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Barcelone.gpx; sourceTree = "<group>"; };
 		942D47F916A82DD700F6CD12 /* Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lyon.gpx; sourceTree = "<group>"; };
 		942D47FA16A82DD700F6CD12 /* Rennes.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Rennes.gpx; sourceTree = "<group>"; };
@@ -734,6 +735,7 @@
 				942D47F816A82DD700F6CD12 /* Barcelone.gpx */,
 				942D47F916A82DD700F6CD12 /* Lyon.gpx */,
 				942D47FA16A82DD700F6CD12 /* Rennes.gpx */,
+				37FF34C116D65C1A008D8880 /* Toulouse.gpx */,
 				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
 				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
 			);
