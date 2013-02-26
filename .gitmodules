@@ -4,3 +4,6 @@
 [submodule "submodules/TransformerKit"]
 	path = submodules/TransformerKit
 	url = https://github.com/n-b/TransformerKit.git
+[submodule "submodules/CoreDataModel"]
+	path = submodules/CoreDataModel
+	url = git://github.com/n-b/CoreDataModel.git

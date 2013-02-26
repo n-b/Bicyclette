@@ -6,7 +6,7 @@
 //  Copyright 2010 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "CoreDataManager.h"
+#import "CoreDataModel.h"
 #import "DataUpdater.h"
 #import "LocalUpdateQueue.h"
 #import "BicycletteCity.mogenerated.h"
@@ -17,7 +17,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 /****************************************************************************/
 #pragma mark - Semi-Abstract superclass.
 
-@interface BicycletteCity : CoreDataManager <Locatable
+@interface BicycletteCity : CoreDataModel <Locatable
 #if TARGET_OS_IPHONE
 ,MKAnnotation
 #endif

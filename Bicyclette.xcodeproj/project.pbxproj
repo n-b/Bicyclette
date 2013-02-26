@@ -20,7 +20,6 @@
 		370220E5165530CD00350AD1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		370220E6165530E900350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
-		370220E81655310D00350AD1 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		370220E91655311000350AD1 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37038A1115E3A6280043504A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
@@ -103,7 +102,6 @@
 		3791307D16973C730054FECA /* FlatJSONListCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3791307B16973C730054FECA /* FlatJSONListCity.m */; };
 		37920167169C252B008E35C3 /* BordeauxVCubCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37920166169C252B008E35C3 /* BordeauxVCubCity.m */; };
 		37920168169C252B008E35C3 /* BordeauxVCubCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37920166169C252B008E35C3 /* BordeauxVCubCity.m */; };
-		3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		3793DE2213802E6100B50118 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F56169C2B0700ED2DCF /* libTransformerKit-ios.a */; };
 		37999F5A169C2B1B00ED2DCF /* libTransformerKit-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F58169C2B0700ED2DCF /* libTransformerKit-osx.a */; };
@@ -114,14 +112,7 @@
 		37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37ACE96C16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37ACE96B16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata */; };
 		37ACE97316B7EAB100E07A00 /* Namur_Li bia velo.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37ACE97216B7EAB100E07A00 /* Namur_Li bia velo.coredata */; };
-		37AEB5A516777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
-		37AEB5A916778822000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
-		37AEB5AA16778823000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */; };
 		37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */; };
-		37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
-		37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
-		37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */; };
-		37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE1E1380295400B50118 /* CoreDataManager.m */; };
 		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
 		37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
@@ -176,6 +167,8 @@
 		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
 		942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D480116A841F100F6CD12 /* UIView+NibLoading.m */; };
 		942D480416A8427D00F6CD12 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942D480316A8427D00F6CD12 /* BannerView.xib */; };
+		94A30ABA16DD24B40043ACFC /* libCoreDataModel-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A30AB216DD24870043ACFC /* libCoreDataModel-MacOS.a */; };
+		94A30ABB16DD24C20043ACFC /* libCoreDataModel-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A30AB416DD24870043ACFC /* libCoreDataModel-iOS.a */; };
 		94DE16D316AD57ED00C0FB64 /* Paris_Vélib’.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */; };
 		94E45DC516A995F800EB6C84 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DC416A995F800EB6C84 /* Social.framework */; };
 		94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC616A99A6000EB6C84 /* twitter@2x.png */; };
@@ -228,6 +221,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 37A80DFE150B8CE800B9B6E1;
 			remoteInfo = KVCMappingTests;
+		};
+		94A30AB116DD24870043ACFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37B997E616D37D7200E70E6E;
+			remoteInfo = "CoreDataModel-MacOS";
+		};
+		94A30AB316DD24870043ACFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAEC6DA114875C66000587CA;
+			remoteInfo = "CoreDataModel-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -350,8 +357,6 @@
 		3791307A16973C730054FECA /* FlatJSONListCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatJSONListCity.h; sourceTree = "<group>"; };
 		3791307B16973C730054FECA /* FlatJSONListCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatJSONListCity.m; sourceTree = "<group>"; };
 		37920166169C252B008E35C3 /* BordeauxVCubCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BordeauxVCubCity.m; sourceTree = "<group>"; };
-		3793DE1D1380295400B50118 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
-		3793DE1E1380295400B50118 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2013802E6100B50118 /* DataUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = DataUpdater.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3793DE2113802E6100B50118 /* DataUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DataUpdater.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TransformerKit.xcodeproj; path = submodules/TransformerKit/TransformerKit.xcodeproj; sourceTree = "<group>"; };
@@ -364,12 +369,8 @@
 		37ACE97416B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37ACE97516B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37ACE97616B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Help.strings; sourceTree = "<group>"; };
-		37AEB5A316777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+ValidateDeleteAndSave.h"; sourceTree = "<group>"; };
-		37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+ValidateDeleteAndSave.m"; sourceTree = "<group>"; };
 		37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditionsTests.m; sourceTree = "<group>"; };
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
-		37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MultipleErrorsCombined.h"; sourceTree = "<group>"; };
-		37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MultipleErrorsCombined.m"; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		37B97574167779BD00B38AC4 /* BicycletteCity.mogenerated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteCity.mogenerated.h; sourceTree = "<group>"; };
 		37BE759A15E6BDE4001DABF6 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
@@ -435,6 +436,7 @@
 		942D480016A841F100F6CD12 /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
 		942D480116A841F100F6CD12 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		942D480316A8427D00F6CD12 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
+		94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataModel.xcodeproj; path = submodules/CoreDataModel/CoreDataModel.xcodeproj; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
 		94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paris_Vélib’.coredata"; sourceTree = "<group>"; };
 		94E45DC416A995F800EB6C84 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -454,9 +456,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */,
+				94A30ABB16DD24C20043ACFC /* libCoreDataModel-iOS.a in Frameworks */,
 				37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */,
 				37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */,
+				94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */,
 				3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -473,6 +476,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A30ABA16DD24B40043ACFC /* libCoreDataModel-MacOS.a in Frameworks */,
 				37999F5A169C2B1B00ED2DCF /* libTransformerKit-osx.a in Frameworks */,
 				37235E8C1662BDB200F33BF1 /* libKVCMapping-osx.a in Frameworks */,
 				37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */,
@@ -556,6 +560,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */,
 				37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */,
 				37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */,
 				37D188381170A5FA00950D52 /* CoreLocation.framework */,
@@ -874,12 +879,6 @@
 		37D131FD163F32FC00AABEE4 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				3793DE1D1380295400B50118 /* CoreDataManager.h */,
-				3793DE1E1380295400B50118 /* CoreDataManager.m */,
-				37AEB5A316777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.h */,
-				37AEB5A416777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m */,
-				37B4C1FB1659532900DE4756 /* NSError+MultipleErrorsCombined.h */,
-				37B4C1FC1659532900DE4756 /* NSError+MultipleErrorsCombined.m */,
 				3793DE2013802E6100B50118 /* DataUpdater.h */,
 				3793DE2113802E6100B50118 /* DataUpdater.m */,
 				37AA66171653E9EA001F9660 /* CollectionsAdditions.h */,
@@ -938,6 +937,15 @@
 				37920166169C252B008E35C3 /* BordeauxVCubCity.m */,
 			);
 			name = "XML with subnodes";
+			sourceTree = "<group>";
+		};
+		94A30AAD16DD24870043ACFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94A30AB216DD24870043ACFC /* libCoreDataModel-MacOS.a */,
+				94A30AB416DD24870043ACFC /* libCoreDataModel-iOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		94DE16DD16AD7A2A00C0FB64 /* GeoFences */ = {
@@ -1033,6 +1041,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 94A30AAD16DD24870043ACFC /* Products */;
+					ProjectRef = 94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */;
+				},
+				{
 					ProductGroup = 37B4C1EF1659521600DE4756 /* Products */;
 					ProjectRef = 37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */;
 				},
@@ -1084,6 +1096,20 @@
 			fileType = wrapper.cfbundle;
 			path = KVCMappingTests.octest;
 			remoteRef = 37B4C1F81659521600DE4756 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		94A30AB216DD24870043ACFC /* libCoreDataModel-MacOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCoreDataModel-MacOS.a";
+			remoteRef = 94A30AB116DD24870043ACFC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		94A30AB416DD24870043ACFC /* libCoreDataModel-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCoreDataModel-iOS.a";
+			remoteRef = 94A30AB316DD24870043ACFC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1214,7 +1240,6 @@
 				37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */,
 				37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
-				3793DE1F1380295400B50118 /* CoreDataManager.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
 				371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */,
 				3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */,
@@ -1237,9 +1262,7 @@
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
-				37B4C1FE1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */,
-				37AEB5A516777CEF000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 				376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */,
 				373960AC16794635005F0672 /* LyonVelovCity.m in Sources */,
 				3709F575167B755600F865E3 /* Station+Update.m in Sources */,
@@ -1275,15 +1298,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				37038A1415E3A6290043504A /* DataGrabber.m in Sources */,
-				37B7ABEC15E3DC4900268B70 /* CoreDataManager.m in Sources */,
 				37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */,
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
 				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
 				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
 				37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
-				37B4C1FD1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
-				37AEB5A916778822000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 				376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */,
 				373960AB16794635005F0672 /* LyonVelovCity.m in Sources */,
 				377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */,
@@ -1316,14 +1336,11 @@
 				37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220E6165530E900350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				370220E7165530FA00350AD1 /* BicycletteCity.m in Sources */,
-				370220E81655310D00350AD1 /* CoreDataManager.m in Sources */,
 				370220E91655311000350AD1 /* DataUpdater.m in Sources */,
 				37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */,
-				37B4C1FF1659532900DE4756 /* NSError+MultipleErrorsCombined.m in Sources */,
 				376088171676333300B1161E /* LocalUpdateQueueTests.m in Sources */,
 				376088181676333600B1161E /* LocalUpdateQueue.m in Sources */,
 				3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */,
-				37AEB5AA16778823000A0B65 /* NSManagedObjectContext+ValidateDeleteAndSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

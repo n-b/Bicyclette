@@ -41,11 +41,17 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 @implementation BicycletteCity
 
-- (NSString*) storePathForName:(NSString*)storeName
++ (NSString*) storePathForServiceInfo:(NSDictionary*)serviceInfo_
 {
-    if(!BicycletteCitySaveStationsWithNoIndividualStatonUpdates() && ![self canUpdateIndividualStations])
-        return nil;
+    // Used in DataGrabber
+    if(!BicycletteCitySaveStationsWithNoIndividualStatonUpdates())
+    {
+        BOOL canUpdateIndividualStations = NSClassFromString(serviceInfo_[@"station_status_parsing_class"])!=Nil;
+        if(!canUpdateIndividualStations)
+            return nil;
+    }
 
+    NSString * storeName = [NSString stringWithFormat:@"%@_%@.coredata",serviceInfo_[@"city_name"], serviceInfo_[@"service_name"]];
     return [BicycletteCityStoresDirectory() stringByAppendingPathComponent:storeName];
 }
 
@@ -71,7 +77,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 - (id) initWithServiceInfo:(NSDictionary*)serviceInfo_
 {
-    self = [super initWithStoreName:[NSString stringWithFormat:@"%@_%@.coredata",serviceInfo_[@"city_name"], serviceInfo_[@"service_name"]]];
+    NSString * storePath = [[self class] storePathForServiceInfo:serviceInfo_];
+    self = [super initWithModelName:@"BicycletteCity" storePath:storePath];
     if(self!=nil)
     {
         self.serviceInfo = serviceInfo_;
@@ -195,7 +202,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 @implementation NSManagedObject (BicycletteCity)
 - (BicycletteCity *) city
 {
-    BicycletteCity * city = (BicycletteCity *)[self.managedObjectContext coreDataManager];
+    BicycletteCity * city = (BicycletteCity *)[self.managedObjectContext coreDataModel];
     return city;
 }
 @end
