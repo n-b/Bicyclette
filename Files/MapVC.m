@@ -156,6 +156,8 @@
     self.scaleView.autoresizingMask = resizingMask;
     [self.view addSubview:self.scaleView];
     self.scaleView.mapView = self.mapView;
+    
+    [self forceFrontmost];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -285,6 +287,15 @@
 
 /****************************************************************************/
 #pragma mark MapView Delegate
+
+- (void) forceFrontmost
+{
+    // Force the userlocation annotation to be frontmost
+    UIView * locationView = [self.mapView viewForAnnotation:self.mapView.userLocation];
+    [locationView.superview bringSubviewToFront:locationView];
+
+    [self performSelector:@selector(forceFrontmost) withObject:nil afterDelay:.5];
+}
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
