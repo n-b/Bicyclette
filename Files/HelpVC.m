@@ -96,8 +96,9 @@
         [self.contentView addSubview:view];
         f.origin.x += f.size.width;
     }
-    f.size.width += f.origin.x;
+
     f.origin.x = 0;
+    f.size.width = [views count]*f.size.width;
     self.contentView.frame = f;
     [self.scrollView addSubview:self.contentView];
     self.scrollView.contentSize = self.contentView.bounds.size;
