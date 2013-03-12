@@ -5,7 +5,11 @@
 #import "NSError+MultipleErrorsCombined.h"
 
 @implementation Station
-
+{
+    CLLocationCoordinate2D _coordinate;
+    BOOL _coordinateCached;
+    CLLocation * _location;
+}
 - (void)dealloc
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
@@ -26,12 +30,26 @@
 
 - (CLLocationCoordinate2D) coordinate
 {
-	return CLLocationCoordinate2DMake(self.latitudeValue, self.longitudeValue);
+    if(!_coordinateCached) {
+        _coordinate = CLLocationCoordinate2DMake(self.latitudeValue, self.longitudeValue);
+        _coordinateCached = YES;
+    }
+	return _coordinate;
 }
 
 - (CLLocation*) location
 {
-    return [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
+    if(!_location){
+        _location = [[CLLocation alloc] initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
+    }
+    return _location;
+}
+
+- (void)didSave
+{
+    [super didSave];
+    _location = nil;
+    _coordinateCached = NO;
 }
 
 /****************************************************************************/
