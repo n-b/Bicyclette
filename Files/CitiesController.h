@@ -16,6 +16,7 @@
 - (BicycletteCity*) cityNamed:(NSString*)cityName;
 @property (readonly, nonatomic) BicycletteCity * currentCity;
 @property (assign) id<CitiesControllerDelegate> delegate;
+@property (nonatomic) BOOL mapViewIsMoving;
 - (void) regionDidChange:(MKCoordinateRegion)region;
 - (void) handleLocalNotificaion:(UILocalNotification*)notification;
 - (void) selectStationNumber:(NSString*)stationNumber inCityNamed:(NSString*)cityName changeRegion:(BOOL)changeRegion;

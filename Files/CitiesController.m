@@ -258,10 +258,15 @@
 
 - (void) appStateChanged:(NSNotification*)note
 {
-    if([note.name isEqualToString:UIApplicationDidEnterBackgroundNotification])
-        self.updateQueue.monitoringPaused = YES;
-    else if([note.name isEqualToString:UIApplicationWillEnterForegroundNotification])
-        self.updateQueue.monitoringPaused = NO;
+    BOOL background = [note.name isEqualToString:UIApplicationDidEnterBackgroundNotification];
+    self.updateQueue.monitoringPaused = (background || self.mapViewIsMoving);
+}
+
+- (void) setMapViewIsMoving:(BOOL)moving
+{
+    _mapViewIsMoving = moving;
+    BOOL background = [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground;
+    self.updateQueue.monitoringPaused = (background || self.mapViewIsMoving);
 }
 
 /****************************************************************************/
