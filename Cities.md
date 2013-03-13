@@ -71,6 +71,9 @@ The geolocation of the stations is sometimes very wrong.
 Although it's very similar to other services by Cyclocity, webservices are different. The structure of the Station Details data is the same.
 
 - List : `http://www.velov.grandlyon.com/velovmap/zhp/inc/StationsParArrondissement.php?arrondissement={69381,69382,69383,69384,69385,69386,69387,69388,69389}`
+- Villeurbanne : 69266
+- Caluire : 69034 (2 stations) 
+- Vaulx-en-Velin : 69256 (1 station)
 - Details : `http://www.velov.grandlyon.com/velovmap/zhp/inc/DispoStationsParId.php?id={station_id}`
 
 ## Lille

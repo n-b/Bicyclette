@@ -297,8 +297,14 @@
     [self performSelector:@selector(forceFrontmost) withObject:nil afterDelay:.5];
 }
 
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    self.controller.mapViewIsMoving = YES;
+}
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+    self.controller.mapViewIsMoving = NO;
     [self.controller regionDidChange:self.mapView.region];
     [self.scaleView setNeedsDisplay];
     self.shouldZoomToUserWhenLocationFound = NO;

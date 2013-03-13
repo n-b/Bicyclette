@@ -78,6 +78,7 @@
         f.size.height = MAX(f.size.height,32);
         f.size.width = MAX(f.size.width,32);
         _starButton.frame = f;
+        _starButton.selected = self.station.starredValue;
     }
     return _starButton;
 }
@@ -101,7 +102,7 @@
     {
         if([keyPath isEqualToString:StationAttributes.starred])
         {
-            self.starButton.selected = self.station.starredValue;
+            _starButton.selected = self.station.starredValue;
         }
         else
         {
