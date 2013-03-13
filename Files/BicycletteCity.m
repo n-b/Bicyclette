@@ -86,6 +86,19 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return self;
 }
 
+- (BOOL) shouldCopyEmbeddedStore
+{
+    BOOL shouldCopy = [super shouldCopyEmbeddedStore];
+    if(!shouldCopy)
+    {
+        // Copy if the embedded store is more recent than the one in Documents
+        NSDate * storeDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.storePath error:NULL] fileModificationDate];
+        NSDate * embeddedDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.embeddedStorePath error:NULL] fileModificationDate];
+        shouldCopy = shouldCopy || [embeddedDate compare:storeDate] == NSOrderedDescending;
+    }
+    return shouldCopy;
+}
+
 #pragma mark General properties
 
 - (NSString *) cityName { return _serviceInfo[@"city_name"]; }
