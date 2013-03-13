@@ -30,25 +30,34 @@
     return title;
 }
 
-- (NSString*) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
-- (NSString*) subtitleForRegion:(Region*)region { return @"arr."; }
+- (NSString*) titleForRegion:(Region*)region {
+    if([region.name length]==1) {
+        return [NSString stringWithFormat:@"%@°",region.name];
+    } else if([region.name length]) {
+        return [region.name substringToIndex:1];
+    } else {
+        return @"";
+    }
+}
+
+- (NSString*) subtitleForRegion:(Region*)region {
+    if([region.name length]==1) {
+        return @"arr.";
+    } else if([region.name length]) {
+        return [region.name substringFromIndex:1];
+    } else {
+        return @"";
+    }
+}
 
 #pragma mark City Data Update
 
 - (NSArray*) updateURLStrings
 {
-    NSArray * zips = @[@"69381",
-                       @"69382",
-                       @"69383",
-                       @"69384",
-                       @"69385",
-                       @"69386",
-                       @"69387",
-                       @"69388",
-                       @"69389"];
+    NSString * baseURL = self.serviceInfo[@"update_url"];
+    NSArray * zips = [self.serviceInfo[@"regions"] allKeys];
     
     NSMutableArray * urlStrings = [NSMutableArray new];
-    NSString * baseURL = self.serviceInfo[@"update_url"];
     for (NSString * zip in zips) {
         [urlStrings addObject:[baseURL stringByAppendingString:zip]];
     }
@@ -57,8 +66,10 @@
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString
 {
-    NSString * regionNumber = [urlString substringFromIndex:[urlString length]-1];
-    return [RegionInfo infoWithName:regionNumber number:regionNumber];
+    NSString * zip = [urlString stringByDeletingPrefix:self.serviceInfo[@"update_url"]];
+    NSDictionary * zips = self.serviceInfo[@"regions"];
+    NSString * name = zips[zip];
+    return [RegionInfo infoWithName:name number:name];
 }
 
 @end

@@ -56,7 +56,21 @@
     "station_details_url" : "http:\/\/www.velov.grandlyon.com\/velovmap\/zhp\/inc\/DispoStationsParId.php?id=",
     "update_url" : "http:\/\/www.velov.grandlyon.com\/velovmap\/zhp\/inc\/StationsParArrondissement.php?arrondissement=",
     "city_name" : "Lyon",
-    "station_status_parsing_class" : "XMLSubnodesStationParse"
+    "station_status_parsing_class" : "XMLSubnodesStationParse",
+    "regions" : {
+      "69381" : "1",
+      "69382" : "2",
+      "69383" : "3",
+      "69384" : "4",
+      "69385" : "5",
+      "69386" : "6",
+      "69387" : "7",
+      "69388" : "8",
+      "69389" : "9",
+      "69266" : "Villeurbanne",
+      "69034" : "4",
+      "69256" : "Villeurbanne",
+    }
   },
   {
     "radius" : 4102.994735858555,

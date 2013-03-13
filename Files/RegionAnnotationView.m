@@ -86,7 +86,7 @@
         NSString * line2 = [[self region] subtitle];
 
         CGRect rect1, rect2;
-        CGRectDivide(CGRectInset(rect, 0, 2), &rect1, &rect2, 16, CGRectMinYEdge);
+        CGRectDivide(CGRectInset(rect, 4, 2), &rect1, &rect2, 16, CGRectMinYEdge);
         
         [kAnnotationTitleTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationTitleShadowColor CGColor]);
@@ -94,7 +94,14 @@
         
         [kAnnotationDetailTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationDetailShadowColor CGColor]);
-        [line2 drawInRect:rect2 withFont:kAnnotationDetailFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+        CGFloat fontSize;
+        [line2 sizeWithFont:kAnnotationDetailFont
+                minFontSize:kAnnotationDetailFont.pointSize/4
+             actualFontSize:&fontSize
+                   forWidth:rect2.size.width lineBreakMode:NSLineBreakByTruncatingTail];
+        UIFont * font = [kAnnotationDetailFont fontWithSize:fontSize];
+        rect2.origin.y = CGRectGetMaxY(rect2) - rect2.size.height/2 - font.lineHeight/2;
+        [line2 drawInRect:rect2 withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
     }
 }
 

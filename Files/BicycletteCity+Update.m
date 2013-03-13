@@ -240,10 +240,10 @@
         {
             region = [Region insertInManagedObjectContext:_parsing_context];
             region.number = regionInfo.number;
-            region.name = regionInfo.number;
         }
         _parsing_regionsByNumber[regionInfo.number] = region;
     }
+    region.name = regionInfo.name;
     station.region = region;
 }
 
