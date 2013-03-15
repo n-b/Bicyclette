@@ -221,13 +221,6 @@ Networks for a dozen of US cities, with relatively small coverage. Unfortunately
 
 - `http://api.bcycle.com/services/mobile.svc/ListKiosks` (See specs at `http://api.bcycle.com/services/mobile.svc?wsdl`)
 
-## OYBike
-
-No details yet on whether these services can be legally used in 3rd party apps. This API key used is used in the "official" website.
-The data contains both the List of stations and the Status Details. 
-
-- **Reading & Cardiff** : `http://www.oybike.com/oybike/stands.nsf/getSite?openagent&site={city}&format=json&cache=no&extended=yes&key=7A407C7C8DD673BD9A635ECFAB612C95`
-
 ## Laval
 (Keolis)
 
