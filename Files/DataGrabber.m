@@ -147,7 +147,7 @@ int main(int argc, const char * argv[])
             }
         }
         
-        if(![serviceInfos isEqualToArray:fullServiceInfos])
+        if(![serviceInfos isEqualToArray:fullServiceInfos] && [cityFilter length]==0)
         {
             NSLog(@"SERVICE INFO HAVE CHANGED");
             NSData * data = [NSJSONSerialization dataWithJSONObject:fullServiceInfos
