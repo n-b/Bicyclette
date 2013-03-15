@@ -1111,12 +1111,30 @@
       "Id" : "number"
     },
     "longitude" : -80.13407515,
-    "city_class" : "MiamiDecobikeCity",
+    "city_class" : "DecobikeCity",
     "service_name" : "DECOBIKE",
     "latitude" : 25.82435375,
     "update_url" : "http:\/\/www.decobike.com\/playmoves.xml",
     "station_element_name" : "location",
     "city_name" : "Miami"
+  },
+  {
+    "radius" : 2685,
+    "KVCMapping" : {
+      "Latitude" : "latitude",
+      "Address" : "name",
+      "Longitude" : "longitude",
+      "Bikes" : "status_available",
+      "Dockings" : "status_free",
+      "Id" : "number"
+    },
+    "longitude" : -73.672245,
+    "city_class" : "DecobikeCity",
+    "service_name" : "DECOBIKE",
+    "latitude" : 40.587930,
+    "update_url" : "http:\/\/www.decobikelbny.com\/playmoves.xml",
+    "station_element_name" : "location",
+    "city_name" : "Long Beach"
   },
   {
     "radius" : 5696.016468063074,

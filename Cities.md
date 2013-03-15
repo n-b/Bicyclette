@@ -163,6 +163,12 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 
 - List+Details: `http://www.decobike.com/playmoves.xml`
 
+## Long beach NY
+
+*Unknown Terms of Use*
+
+- List+Details: `http://decobikelbny.com/playmoves.xml`
+
 ## Smoove
 
 *Unknown Terms of Use*
@@ -196,11 +202,6 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 ---
 # Not included in Bicyclette yet
 
-## Long beach NY
-
-*Unknown Terms of Use*
-
-- List+Details: `http://decobikelbny.com/playmoves.xml`
 
 ## New York (Temporary)
 "Temporary" data for the expected stations locations. Of course, no status info is available yet.

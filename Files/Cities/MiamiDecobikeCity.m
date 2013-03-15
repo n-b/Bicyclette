@@ -1,5 +1,5 @@
 //
-//  MiamiDecobikeCity.m
+//  DecobikeCity.m
 //  Bicyclette
 //
 //  Created by Nicolas on 15/12/12.
@@ -9,10 +9,10 @@
 #import "XMLSubnodesCity.h"
 #import "NSStringAdditions.h"
 
-@interface MiamiDecobikeCity : XMLSubnodesCity
+@interface DecobikeCity : XMLSubnodesCity
 @end
 
-@implementation MiamiDecobikeCity
+@implementation DecobikeCity
 
 #pragma mark Annotations
 
