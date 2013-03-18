@@ -212,11 +212,59 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 * List: `http://a841-tfpweb.nyc.gov/bikeshare/get_tentative_bikeshare_points`
 * Details: `http://a841-tfpweb.nyc.gov/bikeshare/get_point_info?point=13897``
 
-## TOBike
+## Bicincitta / TOBike
 
-Originally the "Torino" service, also used in Switzerland (as "Velopass"). A WSDL documentation is available at service.tobike.it. No word on wether it can be used in 3rd party apps.
+The Torino and Bicincitta networks, used in many cities in Italy. Various versions of the services. The service.tobike.it backend is actually also used for Velopass in Swiss.
 
-- `service.tobike.it` (See WSDL spec)
+List of cities : http://www.bicincitta.com/comuni.asp
+
+* List 1 (~20 cities) : Dirty HTML/javascript.http://bicincitta.tobike.it/frmLeStazioni.aspx?ID={city_id}
+* List 2 (Torino+Region) : Dirty HTML/javascript.http://www.tobike.it/frmLeStazioni.aspx?ID={city_id}
+* List 3 (Brescia) : Dirty HTML/javascript.http://service.bicimia.it/frmComuniAderentiInfo.aspx
+* Roma (older? similar to Pamplona) : http://www.bicincitta.com/citta_v3.asp?id=18&pag=2
+
+Official app (needs an italian account): https://itunes.apple.com/it/app/to-bike-mobile/id472750001?mt=8
+
+and Webservices (also used for Swiss VeloPass) :
+http://service.tobike.it
+
+
+
+## Velopass (Swiss)
+
+*Bicyclette has received official authorization from Vélopass to use this webservice.*
+
+Velopass is being merged with Publibike, and some new services may be available in summer of 2013.
+
+* City list: (grabbed from http://appli.velopass.ch/networks.txt)
+
+    4001 : La Côte
+    4002 : Agglo Fribourg
+    4003 : Bulle
+    4004 : Les Lacs - Romont
+    4007 : Chablais
+    4008 : Valais Central
+    4009 : Yverdon-les-Bains
+    4010 : Lausanne - Morges
+    4011 : Campus
+    4012 : Vevey-Riviera
+    4013 : Lugano - Paradiso
+
+The Velopass app actually uses the SOAP webservice `service.tobike.it` as its backend. ([WSDL documentation](service.tobike.it))
+Request:
+	
+	POST http://service.tobike.it/service.asmx
+	Content-Type: application/soap+xml; charset=UTF-8
+	
+    <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+    	<soap12:Body>
+    		<ElencoStazioniPerComune xmlns="c://inetub/wwwroot/webservice/Service.asmx">
+    			<UsernameRivenditore>velopass</UsernameRivenditore>
+    			<PasswordRivenditore>velopass</PasswordRivenditore>
+    			<CodiceComune>{ID_VILLE}</CodiceComune>
+    		</ElencoStazioniPerComune>
+    	</soap12:Body>
+    </soap12:Envelope>
 
 ## BCycle
 
@@ -534,6 +582,15 @@ Map available, but could not find availability info. Not sure it makes sense.
 
 List+Details (html) http://www.scratchbikes.co.uk/ (dirtiest pseudo-json ever.)
 
+## Pamplona
+
+Urgh.
+
+* Flash map available at : http://195.88.6.82/08b_nbici/citta.asp?id=1000&pag=2
+* Data (List and details) requested from : http://195.88.6.82/08b_nbici/citta.asp?id=1000&pag=2
+
+Station coordinates are in pixels.
+
 ---
 # Data unavailable on the web
 
@@ -549,65 +606,3 @@ List+Details (html) http://www.scratchbikes.co.uk/ (dirtiest pseudo-json ever.)
 * Toopedalando (Toledo, Brazil) http://www.toopedalando.com.br/. Down 2013-03-18.
 * Hangzhou. webservices? at http://www.hzzxc.com.cn/map/data-xml.php. Down 2013-03-18.
 * Hourbike (UK). Dumfries, Blackpool, Southport. Maps available at http://www.hourbike.com/mysitecaddy/site3/index.htm, but live feed looks broken (?)
-
---- 
-# NEW
-
-## Velopass
-
-* service.tobike.it
-
-List des villes Obtenue sur http://appli.velopass.ch/networks.txt
-
-    4001 : La Côte
-    4002 : Agglo Fribourg
-    4003 : Bulle
-    4004 : Les Lacs - Romont
-    4007 : Chablais
-    4008 : Valais Central
-    4009 : Yverdon-les-Bains
-    4010 : Lausanne - Morges
-    4011 : Campus
-    4012 : Vevey-Riviera
-    4013 : Lugano - Paradiso
-
-* Requête
-
-    curl -s -X POST -d @velopass.post -H "Content-Type: application/soap+xml; charset=UTF-8" http://service.tobike.it/service.asmx
-
-* POST Data
-
-    <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-    	<soap12:Body>
-    		<ElencoStazioniPerComune xmlns="c://inetub/wwwroot/webservice/Service.asmx">
-    			<UsernameRivenditore>velopass</UsernameRivenditore>
-    			<PasswordRivenditore>velopass</PasswordRivenditore>
-    			<CodiceComune>{ID_VILLE}</CodiceComune>
-    		</ElencoStazioniPerComune>
-    	</soap12:Body>
-    </soap12:Envelope>
-
-
-
-## Bicincitta / TOBike
-
-Many Italian cities. See lists : 
-
-http://www.bicincitta.com/citta_v3.asp?id=18&pag=2
-http://bicincitta.tobike.it/frmLeStazioni.aspx?ID=80
-
-http://bicincitta.tobike.it/frmLeStazioni.aspx
-http://www.tobike.it/frmLeStazioni.aspx
-http://www.bicincitta.com/comuni.asp
-http://service.bicimia.it/frmComuniAderentiInfo.aspx
-and Webservices (also used for Swiss VeloPass) :
-http://service.tobike.it
-
-
-## Pamplona
-
-Similar to TOBike.
-http://195.88.6.82/08b_nbici/citta.asp?id=1000&pag=2
-
-
-
