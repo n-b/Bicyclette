@@ -256,104 +256,14 @@ Networks for a dozen of US cities, with relatively small coverage. Unfortunately
 
 - List+Details (HTML) : `http://www.idecycle.com/stations/plan`
 
-
----
-# No plans to include in Bicyclette
-
-(Because the HTML is way too dirty to scrape.)
-
-## Mobilicidata
-HTML Scraping needed. Also try to reverse engineer the iphone app.
-
-* **Sao Paulo** (List+Details) : http://ww2.mobilicidade.com.br/bikesampa/mapaestacao.asp
-* **Rio** (List+Details) : http://ww2.mobilicidade.com.br/sambarjpt/mapaestacao.asp
-* **Soracaba** (List+Details) : http://ww2.mobilicidade.com.br/sorocaba/mapaestacao.asp
-* **Porto Alegre** (List+Details) : http://ww2.mobilicidade.com.br/bikepoa/mapaestacao.asp
-* **Recife** (List+Details) : http://www.portoleve.org
-* **Santos** (List+Details) : http://ww2.mobilicidade.com.br/bikesantos/mapaestacao.asp
-
-
-## Toopedalando (Toledo, Brazil)
-
-See	(registration needed) http://www.toopedalando.com.br/
-
-## CityBike (aka Clear Channel) 1
-The stations listing is only available on the webpage.
-The "official" webservices are less useful because they won't give you the list of stations or the geolocation, so you have to rely on the webpage anyway.
-
-- **Caen**
-	* maps website: https://www.veol.caen.fr/localizaciones/localizaciones.php 
-	* Webservice "autorisé" (Seulement les status des stations, pas de liste, pas de geoloc) : http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx
-- **Dijon**
-	* maps website: https://www.velodi.net/localizaciones/localizaciones.php
-	* official webservice (Only stations status: no listing, no geoloc info) : http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx
-- **Perpignan** :https://www.bip-perpignan.fr/localizaciones/localizaciones.php (no official webservice)
-* **Milano** : http://www.bikemi.com/localizaciones/localizaciones.php (no official webservice)
-
-## CityBike (aka Clear Channel) 2
-Way too dirty to scrape.
-
-* **Drammen** (List+Details) : `http://drammen.clearchannel.com/stationsmap`
-
-* calls through an xmlhttprequest : 
- 
-    curl -X POST -H "Cache-Control: max-age=0" -H "Content-Length: 0" -H "Cookie: ASP.NET_SessionId=55i5wltwt2nj5llwwqxowj4t" -H "Content-Type: application/json; charset=UTF-8" http://drammen.clearchannel.com/WS/GService.asmx/GetGoogleObject
-
-## CityBike (aka Clear Channel) 3
-Way too dirty to scrape. Similar to Drammen, with an added step to get the station status.
-
-* **Mexico City** :
-	* List : https://www.ecobici.df.gob.mx/localizaciones/localizaciones.php
-	* Details : curl -F "idStation=27" https://www.ecobici.df.gob.mx/CallWebService/StationBussinesStatus.php
-* **Zaragoza**
-	* List : https://www.bizizaragoza.com/localizaciones/station_map.php
-	* Details : curl -F "idStation=27" https://www.bizizaragoza.com/CallWebService/StationBussinesStatus.php
-* **Antwerpen**
-	* List : https://www.velo-antwerpen.be/localizaciones/station_map.php
-	* Details : curl -F "idStation=37" https://www.velo-antwerpen.be/CallWebService/StationBussinesStatus.php
-	
-## Bicileon
-
-HTML Scraping needed, and no lat/long info.
-
-* List and status : http://bicileon.com/estado/EstadoActual.asp
-
-
----
-# Data unavailable on the web
-
-- Chalon (Reflex)
-* Angers (only 1 station)
-* Montélimar (only 1 station)
-
-* Medellin (Colombia) http://www.encicla.gov.co/index.php/en/maps-en
-
---- 
-# NEW
-
-
-
-## Guadalajara (Mexico) (bikla)
-
-HTML, dirty.
-http://www.bikla.net/index.php?Op=mapa
-
-## Oslo (bysykkel) (Clear Channel)
-
-* List (HTML) : http://www.adshel.no/js/
-* Details : http://www.adshel.no/js/getracknr.php?id=34
-
-* WS : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRacks, http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRack (post/wsdl)
-* docs : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx
-
-Ce webservice contient aussi des données (sans lat/long) pour Drammen et (?) pour Barcelona
-
 ## Domoblue
 
-Call http://clientes.domoblue.es/onroll/generaMapa.php?cliente={city_id} to get the list of cities, it returns html to parse to get a token; then call 
-http://clientes.domoblue.es/onroll/generaXml.php?token=806182692&cliente={id}.
+*Unknown Terms of Use*
 
-use "todos" as the city id to get individual city ids instead of stations.
+Call http://clientes.domoblue.es/onroll/generaMapa.php?cliente={city_id} to get the list of cities, it returns html to parse to get a token; then call 
+http://clientes.domoblue.es/onroll/generaXml.php?token=806182692&cliente={id}, which returns the List+Details xml.
+
+Use "todos" as the city id to get individual city ids instead of stations.
 
 * A Rua
 * Albacete
@@ -401,31 +311,283 @@ use "todos" as the city id to get individual city ids instead of stations.
 * Villaquilambre
 * Villarreal
 * Vinaros
+ 
+## Bysykkel (Norway) (Clear Channel)
 
-## Girona (girocleta)
+*Unknown Terms of Use*
 
-* HTML, list and stations : http://www.girocleta.cat/Mapadestacions.aspx
+* Oslo,
+* Drammen,
+* Trondheim.
 
-## Hangzhou
+Operated by Clear Channel. 
+* List : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRacks, 
+* Details : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRack (via POST. see wsdl spec at http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx)
 
-* WS ? à l'adresse  "http://www.hzzxc.com.cn/map/data-xml.php?" ? down le 2013-03-15.
-
-## Buenos Aires (bicicletapublica)
-
-* HTML, list and stations : http://www.bicicletapublica.com.ar/mapa.aspx
-
+This service also contains station info for Drammen. Trondheim seems to be missing as of 2013-03-18.
 
 ## Palma de Mallorca
 
-* list and station. http://83.36.51.60:8080/eTraffic3/Control?act=mp pour obtenir le cookie, puis http://83.36.51.60:8080/eTraffic3/DataServer?ele=equ&type=401&li=2.6265907287598&ld=2.6799774169922&ln=39.590768389513&ls=39.558367304613&zoom=15&adm=N&mapId=1&lang=es pour le json.
+*Unknown Terms of Use*
 
+* List+Details. http://83.36.51.60:8080/eTraffic3/Control?act=mp for the cookie, then http://83.36.51.60:8080/eTraffic3/DataServer?ele=equ&type=401&li=2.6265907287598&ld=2.6799774169922&ln=39.590768389513&ls=39.558367304613&zoom=15&adm=N&mapId=1&lang=es for the JSON.
 
 ## Stockholm City Bikes
 
-http://www.citybikes.se/en/Here-are-our-cycle-stands/
-https://bikemap.appified.net
-list : https://bikemap.appified.net/a/grs/ returns a clean xml, with a very hard refresh limit.
-details : https://bikemap.appified.net/a/gr/0c59508f792a57b5cee3231940890270/{station_id}
+The [official website](http://www.citybikes.se/en/Here-are-our-cycle-stands/) uses data from https://bikemap.appified.net, who also made the iphone app.
+
+*Unknown Terms of Use*, however there's a very aggressive refresh limit on the webservice.
+* List : https://bikemap.appified.net/a/grs/
+* Details : https://bikemap.appified.net/a/gr/0c59508f792a57b5cee3231940890270/{station_id}
+
+## ViaCycle (USA)
+
+*Unknown Terms of Use*
+
+HTML, but with clean JSON in it.
+* Atlanta / Georgia Tech : https://gt.viacycle.com
+* Patriot Bike Share (George Mason University) : https://gmu.viacycle.com
+* Las Vegas : https://downtownproject.viacycle.com
+
+## BikeNation (USA)
+
+*Unknown Terms of Use*
+
+Bikenation seems to be working on networlks in Los Angeles and Long Beach (California) as well.
+
+* Anaheim: List+Details http://api.bcycle.com/services/mobile.svc/ListKiosks (POST {"locationId":"Anaheim"})
+
+## Forever Bicycle/China RMB
+
+*Unknown Terms of Use*
+
+1000+ stations in :
+
+* Shangai and region
+* Chengdu and region
+* Shenyang
+* Nanshan (near Shenzhen)
+
+HTML, clean enough.
+* List : http://self.chinarmb.com/FormStations.aspx
+* Details : http://self.chinarmb.com/stationinfo.aspx?snumber=001001009027
+* Webpage : http://www.chinarmb.com/page.aspx?id=713307143965
+
+## Kyoto Machikado Minaport
+
+*Unknown Terms of Use*
+
+* Webpage : http://minaport.ubweb.jp/station.html
+* List+Details : http://minaport.ubweb.jp/stations.php
+
+
+## Yokohama Baybike
+(Docomo Cycle)
+
+*Unknown Terms of Use*
+
+* List+Details (JSON) : http://docomo-cycle.jp/yokohama/map/getports/
+
+## Daejeon (South Korea) Ta-Shu
+
+*Unknown Terms of Use*
+
+* List+Details (json) : http://www.tashu.or.kr/mapAction.do?process=statusMapView
+
+## Kaohsiung (Taiwan) C-Bike
+
+*Unknown Terms of Use*
+
+List+Details (HTML, but relatively clean) : http://www.c-bike.com.tw/english/MapStation1.aspx
+iPhone app available, https://itunes.apple.com/app/id492069747?mt=8
+
+URLs from iPhone app : 
+* http://www.c-bike.com.tw/xml/TutorialVideo.xml
+* http://www.c-bike.com.tw/xml/MRT.xml
+* http://www.c-bike.com.tw/xml/Bus.xml
+* http://www.c-bike.com.tw/xml/InspectionStation.xml
+* http://www.c-bike.com.tw/xml/ChargingStation.xml
+* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=1
+* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=2
+* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=3
+* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=4
+* http://www.c-bike.com.tw/xml/iosstationlist.aspx
+
+## TaiPen (Taiwan) YouBike
+
+*Unknown Terms of Use*
+
+List+Details(XML) : http://www.youbike.com.tw/genxml.php
+
+## Nicosia (Cyprus) (Smoove)
+
+*Unknown Terms of Use*
+
+HTML Scraping, reasonable.
+List+Details,  : http://www.podilatoendrasi.com.cy/frontoffice/bike_routes.html
+
+## Bucharest (Cicloteque)
+
+HTML parsing, reasonable.
+
+* List+Details : http://www.cicloteque.ro/retea/
+
+---
+# No plans to include in Bicyclette
+
+(Because the HTML is way too dirty to scrape.)
+
+## Mobilicidata
+HTML Scraping needed. Also try to reverse engineer the iphone app.
+
+* **Sao Paulo** (List+Details) : http://ww2.mobilicidade.com.br/bikesampa/mapaestacao.asp
+* **Rio** (List+Details) : http://ww2.mobilicidade.com.br/sambarjpt/mapaestacao.asp
+* **Soracaba** (List+Details) : http://ww2.mobilicidade.com.br/sorocaba/mapaestacao.asp
+* **Porto Alegre** (List+Details) : http://ww2.mobilicidade.com.br/bikepoa/mapaestacao.asp
+* **Recife** (List+Details) : http://www.portoleve.org
+* **Santos** (List+Details) : http://ww2.mobilicidade.com.br/bikesantos/mapaestacao.asp
+
+
+## CityBike (aka Clear Channel) 1
+The stations listing is only available on the webpage.
+The "official" webservices are less useful because they won't give you the list of stations or the geolocation, so you have to rely on the webpage anyway.
+
+- **Caen**
+	* maps website: https://www.veol.caen.fr/localizaciones/localizaciones.php 
+	* Webservice "autorisé" (Seulement les status des stations, pas de liste, pas de geoloc) : http://213.139.124.75/V1_DispoStationCaen/DispoStation.asmx
+- **Dijon**
+	* maps website: https://www.velodi.net/localizaciones/localizaciones.php
+	* official webservice (Only stations status: no listing, no geoloc info) : http://213.139.124.75/V1_DispoStationDijon/DispoStation.asmx
+- **Perpignan** :https://www.bip-perpignan.fr/localizaciones/localizaciones.php (no official webservice)
+* **Milano** : http://www.bikemi.com/localizaciones/localizaciones.php (no official webservice)
+
+## CityBike (aka Clear Channel) 2
+Way too dirty to scrape.
+
+* **Drammen** (List+Details) : `http://drammen.clearchannel.com/stationsmap`
+
+* calls through an xmlhttprequest : 
+ 
+    curl -X POST -H "Cache-Control: max-age=0" -H "Content-Length: 0" -H "Cookie: ASP.NET_SessionId=55i5wltwt2nj5llwwqxowj4t" -H "Content-Type: application/json; charset=UTF-8" http://drammen.clearchannel.com/WS/GService.asmx/GetGoogleObject
+
+## CityBike (aka Clear Channel) 3
+Way too dirty to scrape. Similar to Drammen, with an added step to get the station status.
+
+* **Mexico City** :
+	* List : https://www.ecobici.df.gob.mx/localizaciones/localizaciones.php
+	* Details : curl -F "idStation=27" https://www.ecobici.df.gob.mx/CallWebService/StationBussinesStatus.php
+* **Zaragoza**
+	* List : https://www.bizizaragoza.com/localizaciones/station_map.php
+	* Details : curl -F "idStation=27" https://www.bizizaragoza.com/CallWebService/StationBussinesStatus.php
+* **Antwerpen**
+	* List : https://www.velo-antwerpen.be/localizaciones/station_map.php
+	* Details : curl -F "idStation=37" https://www.velo-antwerpen.be/CallWebService/StationBussinesStatus.php
+	
+## Bicileon
+
+HTML Scraping needed, and no lat/long info.
+
+* List and status : http://bicileon.com/estado/EstadoActual.asp
+
+## Guadalajara, Mexico (Bikla)
+
+HTML, dirty.
+
+* List and status : http://www.bikla.net/index.php?Op=mapa
+
+## Girona, Spain (Girocleta)
+
+HTML/javascript. Hard to parse.
+
+* list and stations : http://www.girocleta.cat/Mapadestacions.aspx
+
+## Buenos Aires (bicicletapublica)
+
+HTML/javascript
+* List+Details : http://www.bicicletapublica.com.ar/mapa.aspx
+
+## Tel-Aviv (Tel-O-Fun)
+
+HTML both in list and details.
+
+* List : https://www.tel-o-fun.co.il/en/TelOFunLocations.aspx
+* Details : (separate request)
+
+## Changwon (South Korea) NUBIJA
+
+(Dirty HTML,javascript scraping needed)
+
+* List+Details : http://nubija.changwon.go.kr/stn/stationState.do
+
+## Fremantle (Australia) 
+
+Planned.
+
+http://www.cyclefreo.com/the-plan/locations/
+
+## OV-Velos (Netherlands)
+
+* http://www.ov-fiets.nl/ovfiets
+Map available, but could not find availability info. Not sure it makes sense.
+
+## Newcastle (Scratchbike)
+
+List+Details (html) http://www.scratchbikes.co.uk/ (dirtiest pseudo-json ever.)
+
+---
+# Data unavailable on the web
+
+- Chalon (Reflex)
+* Angers (only 1 station)
+* Montélimar (only 1 station)
+
+* Medellin (Colombia) : http://www.encicla.gov.co/index.php/en/maps-en
+
+
+## Broken websites
+
+* Toopedalando (Toledo, Brazil) http://www.toopedalando.com.br/. Down 2013-03-18.
+* Hangzhou. webservices? at http://www.hzzxc.com.cn/map/data-xml.php. Down 2013-03-18.
+* Hourbike (UK). Dumfries, Blackpool, Southport. Maps available at http://www.hourbike.com/mysitecaddy/site3/index.htm, but live feed looks broken (?)
+
+--- 
+# NEW
+
+## Velopass
+
+* service.tobike.it
+
+List des villes Obtenue sur http://appli.velopass.ch/networks.txt
+
+    4001 : La Côte
+    4002 : Agglo Fribourg
+    4003 : Bulle
+    4004 : Les Lacs - Romont
+    4007 : Chablais
+    4008 : Valais Central
+    4009 : Yverdon-les-Bains
+    4010 : Lausanne - Morges
+    4011 : Campus
+    4012 : Vevey-Riviera
+    4013 : Lugano - Paradiso
+
+* Requête
+
+    curl -s -X POST -d @velopass.post -H "Content-Type: application/soap+xml; charset=UTF-8" http://service.tobike.it/service.asmx
+
+* POST Data
+
+    <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+    	<soap12:Body>
+    		<ElencoStazioniPerComune xmlns="c://inetub/wwwroot/webservice/Service.asmx">
+    			<UsernameRivenditore>velopass</UsernameRivenditore>
+    			<PasswordRivenditore>velopass</PasswordRivenditore>
+    			<CodiceComune>{ID_VILLE}</CodiceComune>
+    		</ElencoStazioniPerComune>
+    	</soap12:Body>
+    </soap12:Envelope>
+
+
 
 ## Bicincitta / TOBike
 
@@ -441,90 +603,11 @@ http://service.bicimia.it/frmComuniAderentiInfo.aspx
 and Webservices (also used for Swiss VeloPass) :
 http://service.tobike.it
 
-## ViaCycle (USA)
-
-HTML, but with clean JSON in it.
-* Atlanta / Georgia Tech : https://gt.viacycle.com
-* Patriot Bike Share (George Mason University) : https://gmu.viacycle.com
-* Las Vegas : https://downtownproject.viacycle.com
-
-## BikeNation (USA)
-
-* Anaheim: List+Details http://api.bcycle.com/services/mobile.svc/ListKiosks (POST {"locationId":"Anaheim"})
-* LA and Long Beach in the works
-
-## Shangai Forever Bicycle
-
-Webpage : http://www.chinarmb.com/page.aspx?id=713307143965
-
-* Contents (HTML) : List : http://self.chinarmb.com/FormStations.aspx
-* Details : http://self.chinarmb.com/stationinfo.aspx?snumber=001001009027
-
-## Tel-Aviv (Tel-O-Fun)
-
-https://www.tel-o-fun.co.il/en/TelOFunLocations.aspx
-
-HTML parsing, station data in an XHR request (with some more HTML.)
-
-## Kyoto
-
-http://minaport.jp
-
-http://minaport.jp/stationmap/ecostations.xml
-http://minaport.ubweb.jp/stations.php
-
-## Yokohama (Docomo Cycle)
-
-List+Details : http://docomo-cycle.jp/yokohama/map/getports/
-
-## Changwon (South Korea) NUBIJA
-
-List+Details : http://nubija.changwon.go.kr/stn/stationState.do
-(javascript parsing needed)
-
-## Daejeon (South Korea) Ta-Shu
-
-List+Details (json) : http://www.tashu.or.kr/mapAction.do?process=statusMapView
-
-## Kaohsiung (Taiwan) C-Bike
-
-List+Details (HTML, but relatively clean) : http://www.c-bike.com.tw/english/MapStation1.aspx
-iPhone app available, https://itunes.apple.com/app/id492069747?mt=8
-
-## TaiPen (Taiwan) YouBike
-
-XML List+Details : http://www.youbike.com.tw/genxml.php
-
-## Fremantle (Australia) 
-
-Planned.
-
-http://www.cyclefreo.com/the-plan/locations/
-
-## Nicosia (Cyprus) (Smoove)
-
-List+Details, HTML : http://www.podilatoendrasi.com.cy/frontoffice/bike_routes.html
-
-
-## OV-Velos (Netherlands)
-
-* http://www.ov-fiets.nl/ovfiets
-Map available, but could not find availability info. Not sure it makes sense.
-
-## Bucharest (Cicloteque)
-
-* List+Details (html/js) : http://www.cicloteque.ro/retea/
 
 ## Pamplona
 
 Similar to TOBike.
 http://195.88.6.82/08b_nbici/citta.asp?id=1000&pag=2
 
-## Hourbike (UK) (Hourbike)
 
-Dumfries, Blackpool, Southport. Maps available at http://www.hourbike.com/mysitecaddy/site3/index.htm, but live feed looks broken (?)
-
-## Newcastle (Scratchbike)
-
-List+Details (html) http://www.scratchbikes.co.uk/ (dirtiest pseudo-json ever.)
 
