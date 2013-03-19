@@ -209,8 +209,8 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 ## New York (Temporary)
 "Temporary" data for the expected stations locations. Of course, no status info is available yet.
 
-* List: `http://a841-tfpweb.nyc.gov/bikeshare/get_tentative_bikeshare_points`
-* Details: `http://a841-tfpweb.nyc.gov/bikeshare/get_point_info?point=13897``
+- List: `http://a841-tfpweb.nyc.gov/bikeshare/get_tentative_bikeshare_points`
+- Details: `http://a841-tfpweb.nyc.gov/bikeshare/get_point_info?point=13897``
 
 ## Bicincitta / TOBike
 
@@ -218,14 +218,13 @@ The Torino and Bicincitta networks, used in many cities in Italy. Various versio
 
 List of cities : http://www.bicincitta.com/comuni.asp
 
-* List 1 (~20 cities) : Dirty HTML/javascript.http://bicincitta.tobike.it/frmLeStazioni.aspx?ID={city_id}
-* List 2 (Torino+Region) : Dirty HTML/javascript.http://www.tobike.it/frmLeStazioni.aspx?ID={city_id}
-* List 3 (Brescia) : Dirty HTML/javascript.http://service.bicimia.it/frmComuniAderentiInfo.aspx
-* Roma (older? similar to Pamplona) : http://www.bicincitta.com/citta_v3.asp?id=18&pag=2
+- List 1 (~20 cities) : Dirty HTML/javascript.http://bicincitta.tobike.it/frmLeStazioni.aspx?ID={city_id}
+- List 2 (Torino+Region) : Dirty HTML/javascript.http://www.tobike.it/frmLeStazioni.aspx?ID={city_id}
+- List 3 (Brescia) : Dirty HTML/javascript.http://service.bicimia.it/frmComuniAderentiInfo.aspx
+- List 4 (http://www.bicincittabip.com/frmLeStazioni.aspx?ID=112
+- Roma (older? similar to Pamplona) : http://www.bicincitta.com/citta_v3.asp?id=18&pag=2
 
-Official app (needs an italian account): https://itunes.apple.com/it/app/to-bike-mobile/id472750001?mt=8
-
-and Webservices (also used for Swiss VeloPass) :
+Webservices (also used for Swiss VeloPass) :
 http://service.tobike.it
 
 
@@ -236,7 +235,7 @@ http://service.tobike.it
 
 Velopass is being merged with Publibike, and some new services may be available in summer of 2013.
 
-* City list: (grabbed from http://appli.velopass.ch/networks.txt)
+- City list: (grabbed from http://appli.velopass.ch/networks.txt)
 
     4001 : La Côte
     4002 : Agglo Fribourg
@@ -259,8 +258,8 @@ Request:
     <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
     	<soap12:Body>
     		<ElencoStazioniPerComune xmlns="c://inetub/wwwroot/webservice/Service.asmx">
-    			<UsernameRivenditore>velopass</UsernameRivenditore>
-    			<PasswordRivenditore>velopass</PasswordRivenditore>
+    			<UsernameRivenditore>{pass}</UsernameRivenditore>
+    			<PasswordRivenditore>{pass}</PasswordRivenditore>
     			<CodiceComune>{ID_VILLE}</CodiceComune>
     		</ElencoStazioniPerComune>
     	</soap12:Body>
@@ -313,52 +312,52 @@ http://clientes.domoblue.es/onroll/generaXml.php?token=806182692&cliente={id}, w
 
 Use "todos" as the city id to get individual city ids instead of stations.
 
-* A Rua
-* Albacete
-* Alhama de Murcia
-* Almuñecar
-* Antequera
-* Aranda de Duero
-* Aranjuez
-* Badajoz
-* Baeza
-* Benidorm
-* Blanca
-* Cieza
-* Ciudad Real
-* Don Benito - Villanueva
-* El Campello
-* Elche
-* Guadalajara
-* Jaen
-* JavierPruebas
-* Lalin
-* Las Palmas
-* Montilla
-* Mula
-* Novelda
-* O Barco
-* Paiporta
-* Palencia
-* Pinto
-* Priego de Cordoba
-* Puerto Lumbreras
-* Puertollano
-* Redondela
-* Salamanca
-* San Javier
-* San Pedro
-* Sant Joan
-* Segovia
-* Soria
-* Talavera
-* Ubeda
-* Universidad de Granada
-* Via Verde
-* Vigo
-* Villaquilambre
-* Villarreal
-* Vinaros
+- A Rua
+- Albacete
+- Alhama de Murcia
+- Almuñecar
+- Antequera
+- Aranda de Duero
+- Aranjuez
+- Badajoz
+- Baeza
+- Benidorm
+- Blanca
+- Cieza
+- Ciudad Real
+- Don Benito - Villanueva
+- El Campello
+- Elche
+- Guadalajara
+- Jaen
+- JavierPruebas
+- Lalin
+- Las Palmas
+- Montilla
+- Mula
+- Novelda
+- O Barco
+- Paiporta
+- Palencia
+- Pinto
+- Priego de Cordoba
+- Puerto Lumbreras
+- Puertollano
+- Redondela
+- Salamanca
+- San Javier
+- San Pedro
+- Sant Joan
+- Segovia
+- Soria
+- Talavera
+- Ubeda
+- Universidad de Granada
+- Via Verde
+- Vigo
+- Villaquilambre
+- Villarreal
+- Vinaros
  
 ## Bysykkel (Norway) (Clear Channel)
 
