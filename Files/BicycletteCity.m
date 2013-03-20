@@ -63,13 +63,19 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     NSAssert(serviceInfoArrays!=nil, @"BicycletteCities JSON error: %@", error);
     NSMutableArray * cities = [NSMutableArray new];
     for (NSDictionary * serviceInfo in serviceInfoArrays) {
-        [cities addObject:[self cityWithServiceInfo:serviceInfo]];
+        BicycletteCity * city = [self cityWithServiceInfo:serviceInfo];
+        if(city)
+            [cities addObject:city];
     }
     return cities;
 }
 
 + (instancetype) cityWithServiceInfo:(NSDictionary*)serviceInfo_
 {
+#if DEBUG
+    if(serviceInfo_[@"__comment"]!=nil)
+        return nil;
+#endif
     Class cityClass = NSClassFromString(serviceInfo_[@"city_class"]);
     NSAssert([cityClass isSubclassOfClass:self], nil);
     return [[cityClass alloc] initWithServiceInfo:serviceInfo_];

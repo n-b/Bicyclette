@@ -340,7 +340,10 @@
             pinAV = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseID];
         else
             pinAV.annotation = annotation;
-
+        if([[NSUserDefaults standardUserDefaults] doubleForKey:@"MapVC.showCityCallout"])
+            pinAV.canShowCallout = YES;
+        pinAV.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        
         pinAV.pinColor = hasFences ? MKPinAnnotationColorPurple : MKPinAnnotationColorRed;
         return pinAV;
 	}
@@ -375,16 +378,12 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-	if([view.annotation isKindOfClass:[BicycletteCity class]])
-    {
-        [self.controller selectCity:(BicycletteCity*)view.annotation];
-    }
-    else if([view.annotation isKindOfClass:[Region class]])
-    {
+	if([view.annotation isKindOfClass:[BicycletteCity class]]) {
+        if(![[NSUserDefaults standardUserDefaults] doubleForKey:@"MapVC.showCityCallout"])
+            [self.controller selectCity:(BicycletteCity*)view.annotation];
+    } else if([view.annotation isKindOfClass:[Region class]]) {
 		[self zoomInRegion:(Region*)view.annotation];
-    }
-    else if([view.annotation isKindOfClass:[Station class]])
-    {
+    } else if([view.annotation isKindOfClass:[Station class]]) {
         if([self.controller.currentCity canUpdateIndividualStations])
             [(Station*)view.annotation updateWithCompletionBlock:nil];
     }
@@ -392,10 +391,13 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(StationAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSAssert([view isKindOfClass:[StationAnnotationView class]], nil);
-    NSAssert([view.annotation isKindOfClass:[Station class]],nil);
-    Station * station = (Station*)view.annotation;
-    [self.controller switchStarredStation:station];
+    if([view isKindOfClass:[StationAnnotationView class]]) {
+        NSAssert([view.annotation isKindOfClass:[Station class]],nil);
+        Station * station = (Station*)view.annotation;
+        [self.controller switchStarredStation:station];
+    } else if([view.annotation isKindOfClass:[BicycletteCity class]]) {
+        [self.controller selectCity:(BicycletteCity*)view.annotation];
+    }
 }
 
 /****************************************************************************/

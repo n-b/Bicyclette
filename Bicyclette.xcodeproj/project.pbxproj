@@ -63,6 +63,7 @@
 		374334CA164B0EC00051294F /* CitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374334C9164B0EC00051294F /* CitiesController.m */; };
 		3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748429616772DE600DD457E /* SenTestCase+RunLoop.m */; };
+		374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 378C6BFA169C362E009DDC84 /* UnusedCities.json */; };
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		375760EE1687C6360042FCF8 /* Marseille_Le Vélo.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 375760EC1687C6360042FCF8 /* Marseille_Le Vélo.coredata */; };
@@ -246,6 +247,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				3739609C16791A11005F0672 /* BicycletteCities.json in CopyFiles */,
+				374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
