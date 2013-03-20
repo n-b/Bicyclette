@@ -1310,7 +1310,8 @@
     "latitude" : 48.0975809872264,
     "service_name" : "NextBike",
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=64",
-    "city_name" : "Mödling"
+    "city_name" : "Mödling",
+    "city_group" : "Wien",
   },
   {
     "KVCMapping" : {
@@ -1343,8 +1344,12 @@
     "station_element_name" : "place",
     "latitude" : 48.326725,
     "service_name" : "NextBike",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=143",
-    "city_name" : "Tulln"
+    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
+    "city_name" : "Tulln",
+    "regions" : {
+ 		"143" : "Tulln",
+	    "196" : "Tullnerfeld",
+    }
   },
   {
     "KVCMapping" : {
@@ -1378,24 +1383,8 @@
     "latitude" : 48.0040242731027,
     "service_name" : "NextBike",
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=146",
-    "city_name" : "Thermenregion"
-  },
-  {
-    "KVCMapping" : {
-      "lng" : "longitude",
-      "lat" : "latitude",
-      "uid" : "number",
-      "name" : "name",
-      "bikes" : "status_available"
-    },
-    "radius" : 20660.96948455948,
-    "longitude" : 16.83517187833785,
-    "city_class" : "NextBikeCity",
-    "station_element_name" : "place",
-    "latitude" : 48.14986735,
-    "service_name" : "NextBike",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=149",
-    "city_name" : "Römerland"
+    "city_name" : "Thermenregion",
+ 	"city_group" : "Wien",
   },
   {
     "KVCMapping" : {
@@ -1598,8 +1587,12 @@
     "station_element_name" : "place",
     "latitude" : 48.26510399999999,
     "service_name" : "NextBike",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=170",
-    "city_name" : "Marchfeld"
+    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
+    "city_name" : "Marchfeld",
+    "regions" : {
+ 		"170" : "Marchfeld",
+ 		"149" : "Römerland",
+    }
   },
   {
     "KVCMapping" : {
@@ -1616,7 +1609,8 @@
     "latitude" : 48.34097250000001,
     "service_name" : "NextBike",
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=174",
-    "city_name" : "10vorWien"
+    "city_name" : "10vorWien",
+ 	"city_group" : "Wien",
   },
   {
     "KVCMapping" : {
@@ -1684,24 +1678,8 @@
     "latitude" : 48.1123404168889,
     "service_name" : "NextBike",
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=185",
-    "city_name" : "Südheide"
-  },
-  {
-    "KVCMapping" : {
-      "lng" : "longitude",
-      "lat" : "latitude",
-      "uid" : "number",
-      "name" : "name",
-      "bikes" : "status_available"
-    },
-    "radius" : 1573.876400336886,
-    "longitude" : 15.9139430522919,
-    "city_class" : "NextBikeCity",
-    "station_element_name" : "place",
-    "latitude" : 48.29588518385195,
-    "service_name" : "NextBike",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=196",
-    "city_name" : "Tullnerfeld"
+    "city_name" : "Südheide",
+    "city_group" : "Wien",
   },
   {
     "KVCMapping" : {
@@ -1735,7 +1713,8 @@
     "latitude" : 56.97026479028375,
     "service_name" : "balticbike",
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=128",
-    "city_name" : "Riga"
+    "city_name" : "Riga",
+ 	"city_group" : "Riga"
   },
   {
     "KVCMapping" : {
@@ -1752,7 +1731,8 @@
     "latitude" : 56.97853272164165,
     "service_name" : "balticbike",
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=140",
-    "city_name" : "Jurmala"
+    "city_name" : "Jurmala",
+    "city_group" : "Riga"
   },
   {
     "KVCMapping" : {
@@ -1821,9 +1801,9 @@
     "service_name" : "NextBike",
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "city_name" : "Wrocław",
-     "regions" : {
-      "148" : "Wrocław",
-      "187" : "Wrocław"
+ 	"regions" : {
+ 		"148" : "Wrocław",
+ 		"187" : "Wrocław"
     }
   },
   {
@@ -1843,8 +1823,8 @@
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "city_name" : "Berlin",
     "regions" : {
-      "20" : "Berlin",
-      "182" : "Halensee"
+ 		"20" : "Berlin",
+ 		"182" : "Halensee"
     }
   },
   {
@@ -1864,8 +1844,8 @@
     "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "city_name" : "Frankfurt",
     "regions" : {
-      "8" : "Frankfurt",
-      "32" : "Offenbach"
+ 		"8" : "Frankfurt",
+        "32" : "Offenbach"
     }
   },
   {
@@ -2100,7 +2080,8 @@
     "latitude" : 48.20931333701182,
     "update_url" : "http:\/\/dynamisch.citybikewien.at\/citybike_xml.php",
     "station_element_name" : "station",
-    "city_name" : "Wien"
+    "city_name" : "Wien",
+ 	"city_group" : "Wien",
   },
   {
     "radius" : 4551.397704019049,
