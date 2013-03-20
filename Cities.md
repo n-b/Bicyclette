@@ -31,6 +31,8 @@
 
 ## Cyclocity
 *Use of those services is tolerated by Cyclocity.*
+*JCDecaux/Cyclocity is readying its own opendata platform, for spring 2013.*
+
 > Note :
 >  At least for Paris, official apps use [another service](http://blog.velib.paris.fr/blog/2012/12/17/des-stations-jusqua-votre-ecran-le-circuit-des-donnees-velib-2/).
 
@@ -271,6 +273,7 @@ Request:
 Networks for a dozen of US cities, with relatively small coverage. Unfortunately, the data for all cities are all in the same list, and there's no clean way to separate them. No word on wether it can be used in 3rd party apps.
 
 *Official webservice:*
+*BCycle is currently updating its webservices to a new, 2.0 version.*
 
 - `http://api.bcycle.com/services/mobile.svc/ListKiosks` (See specs at `http://api.bcycle.com/services/mobile.svc?wsdl`)
 
@@ -381,33 +384,27 @@ This service also contains station info for Drammen. Trondheim seems to be missi
 
 *Unknown Terms of Use*
 
-* List+Details. http://83.36.51.60:8080/eTraffic3/Control?act=mp for the cookie, then http://83.36.51.60:8080/eTraffic3/DataServer?ele=equ&type=401&li=2.6265907287598&ld=2.6799774169922&ln=39.590768389513&ls=39.558367304613&zoom=15&adm=N&mapId=1&lang=es for the JSON.
+- Website : http://bicipalma.palmademallorca.es
+- List+Details. http://83.36.51.60:8080/eTraffic3/Control?act=mp for the cookie, then http://83.36.51.60:8080/eTraffic3/DataServer?ele=equ&type=401&li=2.6265907287598&ld=2.6799774169922&ln=39.590768389513&ls=39.558367304613&zoom=15&adm=N&mapId=1&lang=es for the JSON.
 
 ## Stockholm City Bikes
 
-Operated by Clear Channel SV.
+Operated by Clear Channel Sverige	.
 The [official website](http://www.citybikes.se/en/Here-are-our-cycle-stands/) uses data from https://bikemap.appified.net, who also made the iphone app.
 
-*Unknown Terms of Use*, however there's a very aggressive refresh limit on the webservice.
-* List : https://bikemap.appified.net/a/grs/
-* Details : https://bikemap.appified.net/a/gr/0c59508f792a57b5cee3231940890270/{station_id}
+*Unknown Terms of Use*, however there's a very aggressive refresh limit on the webservice. (it returns a 403 after 10 reloads.)
+
+- List : https://bikemap.appified.net/a/grs/
+- Details : https://bikemap.appified.net/a/gr/0c59508f792a57b5cee3231940890270/{station_id}
 
 ## ViaCycle (USA)
 
 *Unknown Terms of Use*
 
 HTML, but with clean JSON in it.
-* Atlanta / Georgia Tech : https://gt.viacycle.com
-* Patriot Bike Share (George Mason University) : https://gmu.viacycle.com
-* Las Vegas : https://downtownproject.viacycle.com
-
-## BikeNation (USA)
-
-*Unknown Terms of Use*
-
-Bikenation seems to be working on networks in Los Angeles and Long Beach (California) as well.
-
-* Anaheim: List+Details http://api.bcycle.com/services/mobile.svc/ListKiosks (POST {"locationId":"Anaheim"})
+- Atlanta / Georgia Tech : https://gt.viacycle.com
+- Patriot Bike Share (George Mason University) : https://gmu.viacycle.com
+- Las Vegas : https://downtownproject.viacycle.com
 
 ## Forever Bicycle/China RMB
 
@@ -415,22 +412,22 @@ Bikenation seems to be working on networks in Los Angeles and Long Beach (Califo
 
 1000+ stations in :
 
-* Shangai and region
-* Chengdu and region
-* Shenyang
-* Nanshan (near Shenzhen)
+- Shangai and region
+- Chengdu and region
+- Shenyang
+- Nanshan (near Shenzhen)
 
 HTML, clean enough.
-* List : http://self.chinarmb.com/FormStations.aspx
-* Details : http://self.chinarmb.com/stationinfo.aspx?snumber=001001009027
-* Webpage : http://www.chinarmb.com/page.aspx?id=713307143965
+- List : http://self.chinarmb.com/FormStations.aspx
+- Details : http://self.chinarmb.com/stationinfo.aspx?snumber=001001009027
+- Webpage : http://www.chinarmb.com/page.aspx?id=713307143965
 
 ## Kyoto Machikado Minaport
 
 *Unknown Terms of Use*
 
-* Webpage : http://minaport.ubweb.jp/station.html
-* List+Details : http://minaport.ubweb.jp/stations.php
+- Webpage : http://minaport.ubweb.jp/station.html
+- List+Details : http://minaport.ubweb.jp/stations.php
 
 
 ## Yokohama Baybike
@@ -438,45 +435,45 @@ HTML, clean enough.
 
 *Unknown Terms of Use*
 
-* List+Details (JSON) : http://docomo-cycle.jp/yokohama/map/getports/
+- List+Details (JSON) : http://docomo-cycle.jp/yokohama/map/getports/
 
 ## Daejeon (South Korea) Ta-Shu
 
-*Unknown Terms of Use*
+*Unknown Terms of Use. Contact email actually invalid.*
 
-* List+Details (json) : http://www.tashu.or.kr/mapAction.do?process=statusMapView
+- List+Details (json) : http://www.tashu.or.kr/mapAction.do?process=statusMapView
 
 ## Kaohsiung (Taiwan) C-Bike
 
-*Unknown Terms of Use*
+*Unknown Terms of Use, no contact email found.*
 
 List+Details (HTML, but relatively clean) : http://www.c-bike.com.tw/english/MapStation1.aspx
 iPhone app available, https://itunes.apple.com/app/id492069747?mt=8
 
 URLs from iPhone app : 
-* http://www.c-bike.com.tw/xml/TutorialVideo.xml
-* http://www.c-bike.com.tw/xml/MRT.xml
-* http://www.c-bike.com.tw/xml/Bus.xml
-* http://www.c-bike.com.tw/xml/InspectionStation.xml
-* http://www.c-bike.com.tw/xml/ChargingStation.xml
-* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=1
-* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=2
-* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=3
-* http://www.c-bike.com.tw/xml/viewslist.aspx?tid=4
-* http://www.c-bike.com.tw/xml/iosstationlist.aspx
+- http://www.c-bike.com.tw/xml/TutorialVideo.xml
+- http://www.c-bike.com.tw/xml/MRT.xml
+- http://www.c-bike.com.tw/xml/Bus.xml
+- http://www.c-bike.com.tw/xml/InspectionStation.xml
+- http://www.c-bike.com.tw/xml/ChargingStation.xml
+- http://www.c-bike.com.tw/xml/viewslist.aspx?tid=1
+- http://www.c-bike.com.tw/xml/viewslist.aspx?tid=2
+- http://www.c-bike.com.tw/xml/viewslist.aspx?tid=3
+- http://www.c-bike.com.tw/xml/viewslist.aspx?tid=4
+- http://www.c-bike.com.tw/xml/iosstationlist.aspx
 
 ## TaiPen (Taiwan) YouBike
 
 *Unknown Terms of Use*
 
-List+Details(XML) : http://www.youbike.com.tw/genxml.php
+- List+Details(XML) : http://www.youbike.com.tw/genxml.php
 
 ## Nicosia (Cyprus) (Smoove)
 
 *Unknown Terms of Use*
 
 HTML Scraping, reasonable.
-List+Details,  : http://www.podilatoendrasi.com.cy/frontoffice/bike_routes.html
+- List+Details,  : http://www.podilatoendrasi.com.cy/frontoffice/bike_routes.html
 
 ## Bucharest (Cicloteque)
 
@@ -484,22 +481,30 @@ List+Details,  : http://www.podilatoendrasi.com.cy/frontoffice/bike_routes.html
 
 HTML parsing, reasonable.
 
-* List+Details : http://www.cicloteque.ro/retea/
+- List+Details : http://www.cicloteque.ro/retea/
 
 ---
 # No plans to include in Bicyclette
 
 (Because the HTML is way too dirty to scrape.)
 
+## BikeNation (USA)
+
+*Unknown Terms of Use*
+
+Bikenation seems to be working on networks in Los Angeles and Long Beach (California) as well.
+
+- Anaheim: List (no details) http://www.bikenationusa.com/services/API/Maps.asmx/GetLocations (POST {"locationId":"Anaheim"})
+
 ## Mobilicidata
 HTML Scraping needed. Also try to reverse engineer the iphone app.
 
-* **Sao Paulo** (List+Details) : http://ww2.mobilicidade.com.br/bikesampa/mapaestacao.asp
-* **Rio** (List+Details) : http://ww2.mobilicidade.com.br/sambarjpt/mapaestacao.asp
-* **Soracaba** (List+Details) : http://ww2.mobilicidade.com.br/sorocaba/mapaestacao.asp
-* **Porto Alegre** (List+Details) : http://ww2.mobilicidade.com.br/bikepoa/mapaestacao.asp
-* **Recife** (List+Details) : http://www.portoleve.org
-* **Santos** (List+Details) : http://ww2.mobilicidade.com.br/bikesantos/mapaestacao.asp
+- **Sao Paulo** (List+Details) : http://ww2.mobilicidade.com.br/bikesampa/mapaestacao.asp
+- **Rio** (List+Details) : http://ww2.mobilicidade.com.br/sambarjpt/mapaestacao.asp
+- **Soracaba** (List+Details) : http://ww2.mobilicidade.com.br/sorocaba/mapaestacao.asp
+- **Porto Alegre** (List+Details) : http://ww2.mobilicidade.com.br/bikepoa/mapaestacao.asp
+- **Recife** (List+Details) : http://www.portoleve.org
+- **Santos** (List+Details) : http://ww2.mobilicidade.com.br/bikesantos/mapaestacao.asp
 
 
 ## CityBike (aka Clear Channel) 1
@@ -516,7 +521,7 @@ The "official" webservices are less useful because they won't give you the list 
 * **Milano** : http://www.bikemi.com/localizaciones/localizaciones.php (no official webservice)
 
 ## CityBike (aka Clear Channel) 2
-Way too dirty to scrape.
+Way too dirty to scrape. A new webservice is being created with the other Bysykkel networks. (see above)
 
 * **Drammen** (List+Details) : `http://drammen.clearchannel.com/stationsmap`
 
@@ -577,7 +582,7 @@ HTML both in list and details.
 
 Planned.
 
-http://www.cyclefreo.com/the-plan/locations/
+* http://www.cyclefreo.com/the-plan/locations/
 
 ## OV-Velos (Netherlands)
 
@@ -586,7 +591,7 @@ Map available, but could not find availability info. Not sure it makes sense.
 
 ## Newcastle (Scratchbike)
 
-List+Details (html) http://www.scratchbikes.co.uk/ (dirtiest pseudo-json ever.)
+* List+Details (html) http://www.scratchbikes.co.uk/ (dirtiest pseudo-json ever.)
 
 ## Pamplona
 
