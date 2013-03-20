@@ -12,6 +12,7 @@
 "PARKING" = "Stojaki";
 
 "STATION_STATUS_CLOSED" = "Stacja nieczynna";
+"STATION_STATUS_BONUS" = "Bonus Station";
 
 /* Lokalizacje */
 

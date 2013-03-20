@@ -12,6 +12,7 @@
 "PARKING" = "Places";
 
 "STATION_STATUS_CLOSED" = "Station fermée";
+"STATION_STATUS_BONUS" = "Station Bonus";
 
 /* Localization */
 
