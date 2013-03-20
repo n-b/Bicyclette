@@ -9,11 +9,15 @@
 #import "BicycletteCity+Update.h"
 #import "BicycletteCity+ServiceDescription.h"
 
+NSMutableArray * gCitiesToDo;
+NSMutableArray * gCitiesDone;
+
+
 static void GrabDataForCity(BicycletteCity* city)
 {
-    printf("%s: (%f, %f) %.0fm\n",[[city title] UTF8String], [city knownRegion].center.latitude, [city knownRegion].center.longitude, [city knownRegion].radius );
+    NSMutableString * message = [NSMutableString new];
+    [message appendFormat:@"%@: (%f, %f) %.0fm\n",[city title], [city knownRegion].center.latitude, [city knownRegion].center.longitude, [city knownRegion].radius];
 
-    __block BOOL finished = NO;
     // Observe notifications
     [[NSNotificationCenter defaultCenter] addObserverForName:nil object:city queue:[NSOperationQueue currentQueue] usingBlock:^(NSNotification *note)
      {
@@ -28,12 +32,12 @@ static void GrabDataForCity(BicycletteCity* city)
          if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
          {
              if(logProgress)
-                 printf("Updating...\n");
+                 [message appendFormat:@"Updating...\n"];
          }
          else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
          {
              if(logProgress)
-                 printf("Parsing...\n");
+                 [message appendFormat:@"Parsing...\n"];
          }
          
          // Success
@@ -42,7 +46,6 @@ static void GrabDataForCity(BicycletteCity* city)
              BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
              NSCAssert(dataChanged, @"This is a build tool ! There should not be previously existing data !");
 
-             NSMutableString * message = [NSMutableString new];
              if(logProgress)
                  [message appendFormat:@"Completed\n"];
              
@@ -94,8 +97,9 @@ static void GrabDataForCity(BicycletteCity* city)
              }
              
              printf("%s\n",[message UTF8String]);
-             
-             finished = YES;
+             printf("–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n");
+
+             [gCitiesDone addObject:city];
          }
          
          // Failure
@@ -103,16 +107,12 @@ static void GrabDataForCity(BicycletteCity* city)
          {
              NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
              printf("%s\n",[[NSString stringWithFormat:@"FAILED : %@", error] UTF8String]);
-             finished = YES;
+             [gCitiesDone addObject:city];
          }
      }];
     
     
     [city update];
-    do {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:nil];
-    } while (!finished);
-    printf("–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n");
 }
 
 
@@ -134,6 +134,8 @@ int main(int argc, const char * argv[])
         NSMutableArray * fullServiceInfos = [NSMutableArray new];
 
         NSString * cityFilter = [[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberCityFilter"];
+        gCitiesToDo = [NSMutableArray new];
+        gCitiesDone = [NSMutableArray new];
         for (BicycletteCity* city in [BicycletteCity allCities]) {
             if([[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberLogServiceInfo"])
                 printf("• %s à %s\n", [city.serviceName UTF8String], [city.cityName UTF8String]);
@@ -141,10 +143,18 @@ int main(int argc, const char * argv[])
                 continue;
             if(cityFilter==nil || [city.cityName rangeOfString:cityFilter].location!=NSNotFound)
             {
+                [gCitiesToDo addObject:city];
                 [city erase];
                 GrabDataForCity(city);
-                [fullServiceInfos addObject:[city fullServiceInfo]];
             }
+        }
+        
+        do {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:nil];
+        } while ([gCitiesDone count]!=[gCitiesToDo count]);
+
+        for (BicycletteCity* city in gCitiesDone) {
+            [fullServiceInfos addObject:[city fullServiceInfo]];
         }
         
         if(![serviceInfos isEqualToArray:fullServiceInfos] && [cityFilter length]==0)
