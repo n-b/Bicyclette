@@ -366,13 +366,14 @@ Use "todos" as the city id to get individual city ids instead of stations.
 
 *Unknown Terms of Use*
 
-* Oslo,
-* Drammen,
-* Trondheim.
+- Oslo,
+- Drammen,
+- Trondheim.
 
 Operated by Clear Channel. 
-* List : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRacks, 
-* Details : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRack (via POST. see wsdl spec at http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx)
+- Website : http://www.bysykler.no
+- List : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRacks, 
+- Details : http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx/getRack (via POST. see wsdl spec at http://smartbikeportal.clearchannel.no/public/mobapp/maq.asmx)
 
 This service also contains station info for Drammen. Trondheim seems to be missing as of 2013-03-18.
 
@@ -404,7 +405,7 @@ HTML, but with clean JSON in it.
 
 *Unknown Terms of Use*
 
-Bikenation seems to be working on networlks in Los Angeles and Long Beach (California) as well.
+Bikenation seems to be working on networks in Los Angeles and Long Beach (California) as well.
 
 * Anaheim: List+Details http://api.bcycle.com/services/mobile.svc/ListKiosks (POST {"locationId":"Anaheim"})
 
@@ -478,6 +479,8 @@ HTML Scraping, reasonable.
 List+Details,  : http://www.podilatoendrasi.com.cy/frontoffice/bike_routes.html
 
 ## Bucharest (Cicloteque)
+
+*Unknown Terms of Use*
 
 HTML parsing, reasonable.
 
