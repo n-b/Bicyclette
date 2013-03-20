@@ -267,30 +267,33 @@ Request:
 
 ## BCycle
 
+
 Networks for a dozen of US cities, with relatively small coverage. Unfortunately, the data for all cities are all in the same list, and there's no clean way to separate them. No word on wether it can be used in 3rd party apps.
+
+*Official webservice:*
 
 - `http://api.bcycle.com/services/mobile.svc/ListKiosks` (See specs at `http://api.bcycle.com/services/mobile.svc?wsdl`)
 
-* Boulder, Colorado;
-* Broward County, Florida;
-* Charlotte, North Carolina
+- Boulder, Colorado;
+- Broward County, Florida;
+- Charlotte, North Carolina
 * Chicago, Illinois; (dead)
-* Denver, Colorado;
-* Des Moines, Iowa;
-* Fort Worth (Coming Soon);
-* Greenville;
-* Houston, Texas;
-* Kailua (Honolulu County), Hawaii;
-* Kansas City, Kansas;
-* Louisville,
-* Madison, Wisconsin;
-* Nashville; 
-* Omaha, Nebraska;
-* San Antonio, Texas;
-* Salt Lake City ("greenbike")
-* Spartanburg, South Carolina.
+- Denver, Colorado;
+- Des Moines, Iowa;
+- Fort Worth (Coming Soon);
+- Greenville;
+- Houston, Texas;
+- Kailua (Honolulu County), Hawaii;
+- Kansas City, Kansas;
+- Louisville,
+- Madison, Wisconsin;
+- Nashville; 
+- Omaha, Nebraska;
+- San Antonio, Texas;
+- Salt Lake City ("greenbike")
+- Spartanburg, South Carolina.
 
-* Also, Austin is in the works. (2013/01)
+- Also, Austin is in the works. (2013/01)
 
 ## Laval
 (Keolis)
@@ -381,6 +384,7 @@ This service also contains station info for Drammen. Trondheim seems to be missi
 
 ## Stockholm City Bikes
 
+Operated by Clear Channel SV.
 The [official website](http://www.citybikes.se/en/Here-are-our-cycle-stands/) uses data from https://bikemap.appified.net, who also made the iphone app.
 
 *Unknown Terms of Use*, however there's a very aggressive refresh limit on the webservice.
