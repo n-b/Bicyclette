@@ -1,0 +1,1 @@
+less _DataGrabTempFolder/BicycletteCities.json | jq 'sort_by(.city_class,.service_name,.city_name)' > Files/Cities/BicycletteCities.json
