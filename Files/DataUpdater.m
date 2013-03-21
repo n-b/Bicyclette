@@ -49,7 +49,10 @@
 
 - (void) startNextRequest
 {
-    self.updateConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:self.urls[0]]
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:self.urls[0]];
+    if([self.delegate respondsToSelector:@selector(updater:willStartRequest:)])
+        [self.delegate updater:self willStartRequest:request];
+    self.updateConnection = [NSURLConnection connectionWithRequest:request
                                                           delegate:self];
 }
 

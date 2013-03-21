@@ -24,6 +24,9 @@
 #pragma mark -
 
 @protocol DataUpdaterDelegate <NSObject>
+@optional
+- (void) updater:(DataUpdater*)updater willStartRequest:(NSMutableURLRequest*)request;
+@required
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;
 - (void) updater:(DataUpdater*)updater finishedWithNewDataChunks:(NSDictionary*)datas;

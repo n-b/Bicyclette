@@ -36,8 +36,8 @@
 
 - (BOOL) canShowFreeSlots
 {
-    return ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]!=0
-            || [[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]!=0);
+    return ([[[self KVCMapping] wantedKeyForRealKey:StationAttributes.status_free] length]!=0
+            || [[[self KVCMapping] wantedKeyForRealKey:StationAttributes.status_total] length]!=0);
 }
 
 - (void) updateWithCompletionBlock:(void (^)(NSError *))completion_
@@ -139,7 +139,7 @@
 
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values
 {
-    NSString * keyForNumber = [[self KVCMapping] allKeysForObject:StationAttributes.number][0]; // There *must* be a key mapping to "number" in the KVCMapping dictionary.
+    NSString * keyForNumber = [[self KVCMapping] wantedKeyForRealKey:StationAttributes.number]; // There *must* be a key mapping to "number" in the KVCMapping dictionary.
     return values[keyForNumber];
 }
 
@@ -164,18 +164,18 @@
     
     //
     // Build missing status, if needed
-    NSArray * keysForStatusAvailable = [[self KVCMapping] allKeysForObject:StationAttributes.status_available];
-    NSAssert([keysForStatusAvailable count]==1, nil);
-    if([[stationAttributes allKeys] containsObject:keysForStatusAvailable[0]])
+    NSString * keyForStatusAvailable = [[self KVCMapping] wantedKeyForRealKey:StationAttributes.status_available];
+    NSAssert([keyForStatusAvailable length]!=0, nil);
+    if([[stationAttributes allKeys] containsObject:keyForStatusAvailable])
     {
-        if([[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]==0
-           && [[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]!=0)
+        if([[[self KVCMapping] wantedKeyForRealKey:StationAttributes.status_total] length]==0
+           && [[[self KVCMapping] wantedKeyForRealKey:StationAttributes.status_free] length]!=0)
         {
             // "Total" is not in data but "Free" is
             station.status_totalValue = station.status_freeValue + station.status_availableValue;
         }
-        else if ([[[self KVCMapping] allKeysForObject:StationAttributes.status_free] count]==0
-                 && [[[self KVCMapping] allKeysForObject:StationAttributes.status_total] count]!=0)
+        else if ([[[self KVCMapping] wantedKeyForRealKey:StationAttributes.status_free] length]==0
+                 && [[[self KVCMapping] wantedKeyForRealKey:StationAttributes.status_total] length]!=0)
         {
             // "Free" is not in data but "Total" is
             station.status_freeValue = station.status_totalValue - station.status_availableValue;
