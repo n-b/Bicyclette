@@ -50,6 +50,8 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (CLLocationCoordinate2D) coordinate; // MKAnnotation
 - (BOOL) hasRegions; // returns yes if regionInfoFromStation: is implemented
 
+- (NSDictionary*) accountInfo; // credentials info (login/password, apikey) for the city webservice.
+
 // Annotations - override if necessary
 - (NSString*) title;
 - (NSString*) titleForStation:(Station*)station;

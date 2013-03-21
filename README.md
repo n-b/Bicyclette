@@ -16,6 +16,10 @@ Although it’s a mac tol, *DataGrabber* uses the same backend code as the app. 
 
 DataGrabber can be run with several options, controlled by userdefaults/command line arguments. Look into the *DataGrabber* scheme run options for details.
 
+## Accounts
+
+Some webservices (namely, Bordeaux, Rennes, Velopass, and TOBike) require an API key info to connect to their webservices. This information (the _Accounts.json file) is *not* included in the Bicyclette repository. You'll have to get your own API keys.
+
 ## Mapping
 
 The single most important file in the app is [BicycletteCities.json](blob/master/Files/Cities/BicycletteCities.json). It contains Keys-Mapping definitions, urls, general info, and other specific tidbits for every city of Bicyclette.

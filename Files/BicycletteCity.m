@@ -182,6 +182,16 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return [self respondsToSelector:@selector(regionInfoFromStation:values:patchs:requestURL:)];
 }
 
+- (NSDictionary*) accountInfo
+{
+    NSDictionary * accounts = [NSJSONSerialization JSONObjectWithData:
+                               [NSData dataWithContentsOfFile:
+                                [[NSBundle bundleForClass:[self class]] pathForResource:@"_Accounts" ofType:@"json"]]
+                                    options:0 error:NULL];
+    NSString * key = [NSString stringWithFormat:@"%@_%@",self.serviceInfo[@"city_name"], self.serviceInfo[@"service_name"]];
+    return accounts[key];
+}
+
 #pragma mark Fetch requests
 
 - (Station*) stationWithNumber:(NSString*)number

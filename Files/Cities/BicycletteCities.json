@@ -14,7 +14,6 @@
       "number": "number"
     },
     "longitude": -1.6738135,
-    "apikey": "U3JFQO8IG7CUY28",
     "city_class": "RennesVeloStarCity",
     "service_name": "VéloStar",
     "latitude": 48.1095485,
@@ -35,7 +34,6 @@
       "ms:NBPLACES": "status_free"
     },
     "longitude": -0.613745,
-    "apikey": "3JXUPQJXUA",
     "city_class": "BordeauxVCubCity",
     "service_name": "VCub",
     "latitude": 44.845415,

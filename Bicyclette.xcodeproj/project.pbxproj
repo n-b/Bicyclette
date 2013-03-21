@@ -168,6 +168,8 @@
 		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
 		942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D480116A841F100F6CD12 /* UIView+NibLoading.m */; };
 		942D480416A8427D00F6CD12 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942D480316A8427D00F6CD12 /* BannerView.xib */; };
+		944A975416FB07B300254D3A /* _Accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = 944A975316FB07B300254D3A /* _Accounts.json */; };
+		944A975C16FB07FC00254D3A /* _Accounts.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 944A975316FB07B300254D3A /* _Accounts.json */; };
 		94A30ABA16DD24B40043ACFC /* libCoreDataModel-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A30AB216DD24870043ACFC /* libCoreDataModel-MacOS.a */; };
 		94A30ABB16DD24C20043ACFC /* libCoreDataModel-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A30AB416DD24870043ACFC /* libCoreDataModel-iOS.a */; };
 		94DE16D316AD57ED00C0FB64 /* Paris_Vélib’.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */; };
@@ -246,6 +248,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				944A975C16FB07FC00254D3A /* _Accounts.json in CopyFiles */,
 				3739609C16791A11005F0672 /* BicycletteCities.json in CopyFiles */,
 				374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */,
 			);
@@ -438,6 +441,7 @@
 		942D480016A841F100F6CD12 /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
 		942D480116A841F100F6CD12 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		942D480316A8427D00F6CD12 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
+		944A975316FB07B300254D3A /* _Accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = _Accounts.json; sourceTree = "<group>"; };
 		94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataModel.xcodeproj; path = submodules/CoreDataModel/CoreDataModel.xcodeproj; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
 		94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paris_Vélib’.coredata"; sourceTree = "<group>"; };
@@ -634,6 +638,7 @@
 		3717AA65162A1C11005EC7BD /* Cities */ = {
 			isa = PBXGroup;
 			children = (
+				944A975316FB07B300254D3A /* _Accounts.json */,
 				3739609A167917CE005F0672 /* BicycletteCities.json */,
 				378C6BFA169C362E009DDC84 /* UnusedCities.json */,
 				379130791697341A0054FECA /* XML with attributes */,
@@ -1171,6 +1176,7 @@
 				37E7AC3716B67B2600135570 /* bell.wav in Resources */,
 				37ACE96C16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata in Resources */,
 				37ACE97316B7EAB100E07A00 /* Namur_Li bia velo.coredata in Resources */,
+				944A975416FB07B300254D3A /* _Accounts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
