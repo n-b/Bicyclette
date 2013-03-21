@@ -2035,7 +2035,6 @@
     },
     "longitude": 7.152765,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2060,7 +2059,6 @@
     },
     "longitude": 7.060518,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2085,7 +2083,6 @@
     },
     "longitude": 6.953848499999999,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2110,7 +2107,6 @@
     },
     "longitude": 6.2128505,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2137,7 +2133,6 @@
     },
     "longitude": 6.555835257751465,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2162,7 +2157,6 @@
     },
     "longitude": 6.950293,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2187,7 +2181,6 @@
     },
     "longitude": 8.94688367843628,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2212,7 +2205,6 @@
     },
     "longitude": 7.353360502609252,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2237,7 +2229,6 @@
     },
     "longitude": 6.847129321847915,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
@@ -2262,7 +2253,6 @@
     },
     "longitude": 6.649389266967773,
     "city_class": "TOBikeCity",
-    "city_group": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "station_element_name": "string",
     "service_name": "Vélopass"
