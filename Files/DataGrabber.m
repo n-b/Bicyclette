@@ -87,12 +87,19 @@ static void GrabDataForCity(BicycletteCity* city)
                  NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
                  if(nil!=saveErrors)
                  {
-                     [message appendFormat:@"\nErrors:\n"];
+                     NSMutableArray * errorMessages = [NSMutableArray new];
                      [saveErrors enumerateObjectsUsingBlock:^(NSError* error, NSUInteger idx, BOOL *stop) {
                          CLLocation * l = error.userInfo[NSValidationValueErrorKey];
-                         if(l.coordinate.latitude!=0 || l.coordinate.longitude!=0 || logMissingGeolocErrors)
-                             [message appendFormat:@" %@ : %@ (%.0fm)\n",[error localizedDescription], [error localizedFailureReason],[l distanceFromLocation:city.location]];
+                         if(l.coordinate.latitude!=0 || l.coordinate.longitude!=0 || logMissingGeolocErrors){
+                             [errorMessages addObject:[NSString stringWithFormat:@" %@ : %@ (%.0fm)\n",[error localizedDescription], [error localizedFailureReason],[l distanceFromLocation:city.location]]];
+                         }
                      }];
+                     if([errorMessages count]){
+                         [message appendFormat:@"\nErrors:\n"];
+                         for (NSString * errorMessage in errorMessages) {
+                             [message appendString:errorMessage];
+                         }
+                     }
                  }
              }
              
