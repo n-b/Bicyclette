@@ -96,7 +96,7 @@
                                 NSValidationKeyErrorKey : @"location",
                               NSValidationValueErrorKey : self.location,
                               NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Station %@", 0),self.name],
-                       NSLocalizedFailureReasonErrorKey : [NSString stringWithFormat:NSLocalizedString(@"Invalid coordinates (%f,%f)", 0),self.location.coordinate.latitude, self.location.coordinate.longitude],
+                       NSLocalizedFailureReasonErrorKey : [NSString stringWithFormat:NSLocalizedString(@"Invalid coordinates (%f, %f)", 0),self.location.coordinate.latitude, self.location.coordinate.longitude],
                                  }];
         *error = [NSError errorFromOriginalError:*error error:limitsError];
     }

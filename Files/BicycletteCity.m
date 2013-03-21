@@ -188,8 +188,12 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
                                [NSData dataWithContentsOfFile:
                                 [[NSBundle bundleForClass:[self class]] pathForResource:@"_Accounts" ofType:@"json"]]
                                     options:0 error:NULL];
-    NSString * key = [NSString stringWithFormat:@"%@_%@",self.serviceInfo[@"city_name"], self.serviceInfo[@"service_name"]];
-    return accounts[key];
+    NSDictionary * result = accounts[[NSString stringWithFormat:@"%@_%@",self.serviceInfo[@"city_name"], self.serviceInfo[@"service_name"]]];
+    if(result==nil)
+        result = accounts[self.serviceInfo[@"city_name"]];
+    if(result==nil)
+        result = accounts[self.serviceInfo[@"service_name"]];
+    return result;
 }
 
 #pragma mark Fetch requests

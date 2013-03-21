@@ -141,7 +141,7 @@ int main(int argc, const char * argv[])
                 printf("• %s à %s\n", [city.serviceName UTF8String], [city.cityName UTF8String]);
             if([[NSUserDefaults standardUserDefaults] stringForKey:@"DataGrabberSkipGrabbing"])
                 continue;
-            if(cityFilter==nil || [city.cityName rangeOfString:cityFilter].location!=NSNotFound)
+            if(cityFilter==nil || [city.cityName rangeOfString:cityFilter].location!=NSNotFound || [city.serviceName rangeOfString:cityFilter].location!=NSNotFound)
             {
                 [gCitiesToDo addObject:city];
                 [city erase];
