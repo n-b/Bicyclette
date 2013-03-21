@@ -2012,6 +2012,7 @@
   {
     "latitude": 46.806587,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Agglo Fribourg",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 5302.031731665864,
@@ -2027,13 +2028,14 @@
       "5": "longitude"
     },
     "longitude": 7.162307,
-    "cityID": "4002",
+    "cityIDs": ["4002"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.608848,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Bulle",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 5302.031731665864,
@@ -2049,14 +2051,15 @@
       "5": "longitude"
     },
     "longitude": 7.065818,
-    "cityID": "4003",
+    "cityIDs": ["4003"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
-    "latitude": 46.522166,
+    "latitude": 46.5151365919088,
     "service_name": "Vélopass",
-    "city_name": "Campus",
+ 	"city_group": "Lausanne",
+    "city_name": "Lausanne",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 5302.031731665864,
     "KVCMapping": {
@@ -2068,16 +2071,18 @@
       "4": "latitude",
       "2": "fullAddress",
       "0": "number",
-      "5": "longitude"
+      "5": "longitude",
+      "3": "TOBikeStationStatusTransformer:open",
     },
-    "longitude": 6.595917,
-    "cityID": "4011",
+    "longitude": 6.54766,
+ 	"cityIDs": ["4010", "4011"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.249637,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Chablais",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 15302.031731665864,
@@ -2093,13 +2098,14 @@
       "5": "longitude"
     },
     "longitude": 6.955874,
-    "cityID": "4007",
+    "cityIDs": ["4007"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.383597,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "La Côte",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 5302.031731665864,
@@ -2115,35 +2121,14 @@
       "5": "longitude"
     },
     "longitude": 6.214086,
-    "cityID": "4001",
-    "station_element_name": "string",
-    "city_class": "TOBikeCity"
-  },
-  {
-    "latitude": 46.5151365919088,
-    "service_name": "Vélopass",
-    "city_name": "Lausanne",
-    "update_url": "http://service.tobike.it/service.asmx",
-    "radius": 5302.031731665864,
-    "KVCMapping": {
-      "1": "name",
-      "6": [
-        "NumberOf4:status_available",
-        "NumberOf0:status_free"
-      ],
-      "4": "latitude",
-      "2": "fullAddress",
-      "0": "number",
-      "5": "longitude"
-    },
-    "longitude": 6.54766,
-    "cityID": "4010",
+    "cityIDs": ["4001"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.925589,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Les Lacs - Romont",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 25302.031731665866,
@@ -2159,13 +2144,14 @@
       "5": "longitude"
     },
     "longitude": 7.115654,
-    "cityID": "4004",
+    "cityIDs": ["4004"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.005726,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Lugano - Paradiso",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 5302.031731665864,
@@ -2181,13 +2167,14 @@
       "5": "longitude"
     },
     "longitude": 8.961797,
-    "cityID": "4013",
+    "cityIDs": ["4013"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.228466,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Valais Central",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 5302.031731665864,
@@ -2203,13 +2190,14 @@
       "5": "longitude"
     },
     "longitude": 7.350519,
-    "cityID": "4008",
+    "cityIDs": ["4008"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.462768,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Vevey-Riviera",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 5302.031731665864,
@@ -2225,13 +2213,14 @@
       "5": "longitude"
     },
     "longitude": 6.841822,
-    "cityID": "4012",
+    "cityIDs": ["4012"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },
   {
     "latitude": 46.771673,
     "service_name": "Vélopass",
+ 	"city_group": "Lausanne",
     "city_name": "Yverdon-les-Bains",
     "update_url": "http://service.tobike.it/service.asmx",
     "radius": 15302.031731665864,
@@ -2247,7 +2236,7 @@
       "5": "longitude"
     },
     "longitude": 6.647415,
-    "cityID": "4009",
+    "cityIDs": ["4009"],
     "station_element_name": "string",
     "city_class": "TOBikeCity"
   },

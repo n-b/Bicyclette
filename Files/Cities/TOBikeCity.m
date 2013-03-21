@@ -38,9 +38,22 @@
                           }
                           return nil;
                       }];
+    [NSValueTransformer registerValueTransformerWithName:@"TOBikeStationStatusTransformer" transformedValueClass:[NSString class]
+                      returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
+                          if([value isKindOfClass:[NSString class]])
+                          {
+                              return @(![value boolValue]);
+                          }
+                          return @YES;
+                      }];
 }
 
-- (void) updater:(DataUpdater*)updater willStartRequest:(NSMutableURLRequest *)request
+- (NSArray *) updateURLStrings
+{
+    return self.serviceInfo[@"cityIDs"];
+}
+
+- (NSURLRequest*) updater:(DataUpdater*)updater requestForURLString:(NSString *)urlString
 {
     NSString * postXMLText = @"<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">"
     "<soap12:Body>"
@@ -52,13 +65,17 @@
     "</soap12:Body>"
     "</soap12:Envelope>";
 
+    NSString * baseURL = self.serviceInfo[@"update_url"];
+    NSString * cityID = urlString;
     postXMLText = [postXMLText stringByReplacingOccurrencesOfString:@"{LOGIN}" withString:self.accountInfo[@"login"]];
     postXMLText = [postXMLText stringByReplacingOccurrencesOfString:@"{PASSWORD}" withString:self.accountInfo[@"password"]];
-    postXMLText = [postXMLText stringByReplacingOccurrencesOfString:@"{CITY_ID}" withString:self.serviceInfo[@"cityID"]];
+    postXMLText = [postXMLText stringByReplacingOccurrencesOfString:@"{CITY_ID}" withString:cityID];
     
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:baseURL]];
     request.HTTPMethod = @"POST";
     request.HTTPBody = [postXMLText dataUsingEncoding:NSUTF8StringEncoding];
     [request setValue:@"application/soap+xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    return request;
 }
 
 - (NSString*) stationElementName

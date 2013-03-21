@@ -25,7 +25,7 @@
 
 @protocol DataUpdaterDelegate <NSObject>
 @optional
-- (void) updater:(DataUpdater*)updater willStartRequest:(NSMutableURLRequest*)request;
+- (NSURLRequest*) updater:(DataUpdater*)updater requestForURLString:(NSString *)urlString;
 @required
 - (void) updater:(DataUpdater*)updater didFailWithError:(NSError*)error;
 - (void) updaterDidFinishWithNoNewData:(DataUpdater*)updater;

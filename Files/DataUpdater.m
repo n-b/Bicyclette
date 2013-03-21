@@ -36,10 +36,7 @@
         
         self.delegate = delegate_;
 
-        self.urls = [NSMutableArray new];
-        for (NSString * urlString in urlStrings_) {
-            [self.urls addObject:[NSURL URLWithString:urlString]];
-        }
+        self.urls = [NSMutableArray arrayWithArray:urlStrings_];
         self.chunks = [NSMutableDictionary new];
         
         [self startNextRequest];
@@ -49,9 +46,13 @@
 
 - (void) startNextRequest
 {
-    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:self.urls[0]];
-    if([self.delegate respondsToSelector:@selector(updater:willStartRequest:)])
-        [self.delegate updater:self willStartRequest:request];
+    NSURLRequest * request;
+    if([self.delegate respondsToSelector:@selector(updater:requestForURLString:)])
+        request = [self.delegate updater:self requestForURLString:self.urls[0]];
+    else {
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urls[0]]];
+
+    }
     self.updateConnection = [NSURLConnection connectionWithRequest:request
                                                           delegate:self];
 }
@@ -102,7 +103,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [self.chunks setObject:self.updateData forKey:[self.urls[0] absoluteString]];
+    [self.chunks setObject:self.updateData forKey:self.urls[0]];
     [self.urls removeObjectAtIndex:0];
     self.updateConnection = nil;
 	self.updateData = nil;
