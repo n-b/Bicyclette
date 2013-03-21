@@ -49,7 +49,7 @@
 - (void) setMonitoringPaused:(BOOL)monitoringPaused_
 {
     _monitoringPaused = monitoringPaused_;
-    [self buildUpdateQueue];
+    [self buildUpdateQueueAndStartIfNecessary:NO];
 }
 
 /****************************************************************************/
