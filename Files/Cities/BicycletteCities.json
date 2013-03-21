@@ -1230,7 +1230,14 @@
     "city_class": "NextBikeCity",
     "latitude": 48.2017435,
     "service_name": "NextBike",
-    "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city="
+    "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=",
+     "patches": {
+      "46613": {
+        "lat": 48.14858,
+        "lng": 16.94776
+      },
+    },
+
   },
   {
     "city_name": "Mistelbach",
