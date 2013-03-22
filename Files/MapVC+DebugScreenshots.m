@@ -47,7 +47,9 @@ static BOOL gShouldShowAnnotations = NO;
 - (void) saveScreenshotWithNameTemplate:(NSString*)name localized:(BOOL)localized
 {
     NSDictionary * suffixes = @{@480 : @"",
+                                @640 : @"-Landscape-iPhone",
                                 @960 : @"@2x",
+                                @1280 : @"-Landscape-iPhone@2x",
                                 @1136 : @"-568h@2x",
                                 @768 : @"-Landscape",
                                 @1536 : @"-Landscape@2x",
@@ -90,7 +92,7 @@ static BOOL gShouldShowAnnotations = NO;
     else if([[NSUserDefaults standardUserDefaults] boolForKey:@"TakeUIScreenshots"])
     {
         gShouldShowAnnotations = YES;
-        [self takeScreenshotForEurope];
+        [self takeScreenshotForWorld];
     }
 }
 
@@ -104,6 +106,21 @@ static BOOL gShouldShowAnnotations = NO;
     [self.modeControl setTitle:@"" forSegmentAtIndex:1];
     [self saveScreenshotWithNameTemplate:@"Default" localized:NO];
     exit(0);
+}
+
+- (void) takeScreenshotForWorld
+{
+    MKCoordinateRegion europe = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(45, -10),
+                                                                   8000000, 8000000);
+    [self.mapView setRegion:europe animated:NO];
+    [self performSelector:@selector(takeScreenshotForWorld_2) withObject:nil afterDelay:6];
+}
+
+- (void) takeScreenshotForWorld_2
+{
+    [self saveScreenshotWithNameTemplate:@"World" localized:YES];
+    
+    [self performSelector:@selector(takeScreenshotForEurope) withObject:nil afterDelay:1];
 }
 
 - (void) takeScreenshotForEurope
