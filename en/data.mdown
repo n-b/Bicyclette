@@ -179,8 +179,7 @@ Seul Washington a répondu à mes demandes d'information.
 ## Réseaux Vélopass (Suisse)
 
 * Vélopass est un des deux principaux système en suisse; il a fusionné avec l'autre, Publibike. Publibike fonctionne sur un mécanisme différent de location, avec en général une seule station par ville.
-* Conditions d'utilisation inconnues. (Pas de réponse à ma demande d'info.)
-* L'application iOS officielle utilise un webservice SOAP à l'adresse `service.tobike.it`, c'est à dire le même service que *TOBike*.
+* Bicyclette utilise le webservice officiel à l'adresse `service.tobike.it`, c'est à dire le même service que *TOBike*. Une autorisation d'accès doit être demandée à Vélopass.
 
 ## TOBike (Torino)
 

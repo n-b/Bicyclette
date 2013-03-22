@@ -25,12 +25,16 @@ Bicyclette works with Bike-Sharing systems in more than 50 cities in the world.
 * **Li bia velo** in Namur
 * **Styr & Ställ** in Göteborg
 * **Bicike(LJ)** in Ljubljana
-* **NextBike** and **metropolradruhr** networks in Germany
 * **CitybikeCity** in Wien
 * **TusBic** in Santander
 * **SEVici** in Sevilla
 * **Valenbisi** in Valencia
 * **Bicing** in Barcelona
+* **Vélopass** systems in Switzerland. (La&nbsp;Côte, Fribourg, Bulle, Les Lacs&nbsp;-&nbsp;Romont, Chablais, Valais Central, Yverdon-les-Bains, Lausanne&nbsp;-&nbsp;Morges & Campus, Vevey-Riviera, Lugano - Paradiso.)
+* **NextBike** network (10vorWien, Augsburg, Baku, Berlin, Bielefeld, Bregenzerwald, Burghausen, Christchurch, Coburg, Dresden,  Düsseldorf, Erfurt, Flensburg, Frankfurt, Gütersloh, Haag, Hamburg, Hannover, Konya, Krems, Laa, Leipzig, Limassol, Luzern, Magdeburg, Marchfeld, Mistelbach, Mödling, München, Neunkirchen, NeusiedlerSee, Norderstedt, Nürnberg, Oberes, Offenburg, Opole, Piestingtal, Potsdam, Poznan, Salzburg, St.Pölten, Südheide, Thermenregion, Traisen-Gölsental, Triestingtal, Tulln, Tübingen, Unteres, Wachau, Waldviertel, Wieselburg, Wr.Neustadt, Wrocław, İzmir)
+* **BalticBike** in Riga and Jurmala
+* **Metropolradruhr** in Duisburg, Dortmund, Hamm, Oberhausen, Bottrop, Gelsenkirche, Mülheim, Bochum, Essen and Herne
+* **Veturilo** in Warszawa
 
 ## France:
 
