@@ -36,5 +36,61 @@
     }, 
 
 
+ {
+ "__comment": "deactivated because i'm not sure it's actually live",
+ "city_name": "Christchurch",
+ "KVCMapping": {
+ "bikes": "status_available",
+ "name": "name",
+ "uid": "number",
+ "lat": "latitude",
+ "lng": "longitude"
+ },
+ "radius": 313.7284219523572,
+ "longitude": 172.5739295726015,
+ "city_class": "NextBikeCity",
+ "service_name": "NextBike",
+ "station_element_name": "place",
+ "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=193",
+ "latitude": -43.5236847631027
+ },
+
+ {
+ "__comment": "deactivated because i'm not sure it's actually live",
+ "city_name": "Auckland",
+ "KVCMapping": {
+ "bikes": "status_available",
+ "name": "name",
+ "uid": "number",
+ "lat": "latitude",
+ "lng": "longitude"
+ },
+ "radius": 580.9622476052489,
+ "longitude": 174.760947903418,
+ "city_class": "NextBikeCity",
+ "service_name": "NextBike",
+ "station_element_name": "place",
+ "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=34",
+ "latitude": -36.85647799294435
+ },
+
+ {
+ "__comment": "deactivated because i'm not sure it's actually live",
+ "city_name": "Dubai",
+ "KVCMapping": {
+ "bikes": "status_available",
+ "name": "name",
+ "uid": "number",
+ "lat": "latitude",
+ "lng": "longitude"
+ },
+ "radius": 490.2525086021021,
+ "longitude": 55.276477,
+ "city_class": "NextBikeCity",
+ "service_name": "NextBike",
+ "station_element_name": "place",
+ "update_url": "http://www.nextbike.de/maps/nextbike-official.xml?city=219",
+ "latitude": 25.196521
+ },
 
  ]

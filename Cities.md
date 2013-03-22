@@ -137,8 +137,10 @@ A BIXI network, but uses its own webservice.
 - List+Details (Template): `http://www.nextbike.de/maps/nextbike-official.xml?city={uid}`
 - `http://www.nextbike.de/maps/nextbike-official.xml` returns data for all the cities, but Bicyclette currently only includes a portion of these cities. Typically, smaller cities, or cities which seemed to actually have zero bikes where ignored.
 
-* Riga (BalticBike)
-
+* **Nextbike** : 10vorWien, Auckland, Augsburg, Baku, Berlin, Bielefeld, Bregenzerwald, Burghausen, Christchurch, Coburg, Dresden, Dubai, Düsseldorf, Erfurt, Flensburg, Frankfurt, Gütersloh, Haag, Hamburg, Hannover, Konya, Krems, Laa, Leipzig, Limassol, Luzern, Magdeburg, Marchfeld, Mistelbach, Mödling, München, Neunkirchen, NeusiedlerSee,. Norderstedt, Nürnberg, Oberes, Offenburg, Opole, Piestingtal, Potsdam, Poznan, Salzburg, St.Pölten, Südheide, Thermenregion, Traisen-Gölsental, Triestingtal, Tulln, Tübingen, Unteres, Wachau, Waldviertel, Wieselburg, Wr.Neustadt, Wrocław, İzmir.
+* **BalticBike** : Riga, Jurmala.
+* **Metropolradruhr** : Duisburg, Dortmund, Hamm, Oberhausen, Bottrop, Gelsenkirche, Mülheim, Bochum, Essen, Herne.
+* **Veturilo** : Warszawa
 
 ## Nice
 (Veloway-Veolia)
@@ -204,6 +206,30 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 
 - List+Details: `http://www.rtcr.fr/ct_93_297__Carte_du_libre_service_velos.html`
 
+## Vélopass (Swiss)
+
+*Credentials from Vélopass are needed to use this webservice.*
+
+Velopass is being merged with Publibike, and some new services may be available in summer of 2013.
+
+* **Vélopass** :  La&nbsp;Côte, Fribourg, Bulle, Les Lacs&nbsp;-&nbsp;Romont, Chablais, Valais Central, Yverdon-les-Bains, Lausanne&nbsp;-&nbsp;Morges & Campus, Vevey-Riviera, Lugano - Paradiso.
+
+The Velopass app actually uses the SOAP webservice `service.tobike.it` as its backend. ([WSDL documentation](service.tobike.it))
+Request:
+	
+	POST http://service.tobike.it/service.asmx
+	Content-Type: application/soap+xml; charset=UTF-8
+	
+    <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+    	<soap12:Body>
+    		<ElencoStazioniPerComune xmlns="c://inetub/wwwroot/webservice/Service.asmx">
+    			<UsernameRivenditore>{pass}</UsernameRivenditore>
+    			<PasswordRivenditore>{pass}</PasswordRivenditore>
+    			<CodiceComune>{ID_VILLE}</CodiceComune>
+    		</ElencoStazioniPerComune>
+    	</soap12:Body>
+    </soap12:Envelope>
+
 ---
 # Not included in Bicyclette yet
 
@@ -230,42 +256,6 @@ Webservices (also used for Swiss VeloPass) :
 http://service.tobike.it
 
 
-
-## Velopass (Swiss)
-
-*Bicyclette has received official authorization from Vélopass to use this webservice.*
-
-Velopass is being merged with Publibike, and some new services may be available in summer of 2013.
-
-- City list: (grabbed from http://appli.velopass.ch/networks.txt)
-
-    4001 : La Côte
-    4002 : Agglo Fribourg
-    4003 : Bulle
-    4004 : Les Lacs - Romont
-    4007 : Chablais
-    4008 : Valais Central
-    4009 : Yverdon-les-Bains
-    4010 : Lausanne - Morges
-    4011 : Campus
-    4012 : Vevey-Riviera
-    4013 : Lugano - Paradiso
-
-The Velopass app actually uses the SOAP webservice `service.tobike.it` as its backend. ([WSDL documentation](service.tobike.it))
-Request:
-	
-	POST http://service.tobike.it/service.asmx
-	Content-Type: application/soap+xml; charset=UTF-8
-	
-    <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-    	<soap12:Body>
-    		<ElencoStazioniPerComune xmlns="c://inetub/wwwroot/webservice/Service.asmx">
-    			<UsernameRivenditore>{pass}</UsernameRivenditore>
-    			<PasswordRivenditore>{pass}</PasswordRivenditore>
-    			<CodiceComune>{ID_VILLE}</CodiceComune>
-    		</ElencoStazioniPerComune>
-    	</soap12:Body>
-    </soap12:Envelope>
 
 ## BCycle
 
