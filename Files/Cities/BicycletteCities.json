@@ -2412,5 +2412,60 @@
     "update_url": "https://secure.niceridemn.org/data2/bikeStations.xml",
     "service_name": "Nice Ride",
     "latitude": 44.971669
-  }
+  },
+  {
+    "city_name": "Georgia Tech",
+    "radius": 746,
+    "KVCMapping": {
+      "address": "address",
+      "location.latitude": "latitude",
+      "name": "name",
+      "number": "number",
+      "location.longitude": "longitude",
+      "bikecount": "status_available"
+    },
+    "longitude": -84.395504,
+    "keypath_to_stations_lists": "zones",
+    "city_class": "FlatJSONListCity",
+    "service_name": "ViaCycle",
+    "latitude": 33.776200,
+    "update_url": "https://gt.viacycle.com/m/data/"
+  },
+  {
+    "city_name": "George Mason University",
+    "radius": 305,
+    "KVCMapping": {
+      "address": "address",
+      "location.latitude": "latitude",
+      "name": "name",
+      "number": "number",
+      "location.longitude": "longitude",
+      "bikecount": "status_available"
+    },
+    "longitude": -77.306448,
+    "keypath_to_stations_lists": "zones",
+    "city_class": "FlatJSONListCity",
+    "service_name": "ViaCycle",
+    "latitude": 38.831563,
+    "update_url": "https://gmu.viacycle.com/m/data/"
+  },
+  {
+    "city_name": "Las Vegas",
+    "radius": 1000,
+    "KVCMapping": {
+      "address": "address",
+      "location.latitude": "latitude",
+      "name": "name",
+      "number": "number",
+      "location.longitude": "longitude",
+      "bikecount": "status_available"
+    },
+    "longitude": -115.141570,
+    "keypath_to_stations_lists": "zones",
+    "city_class": "FlatJSONListCity",
+    "service_name": "ViaCycle",
+    "latitude": 36.167711,
+    "update_url": "https://downtownproject.viacycle.com/m/data/"
+  },
+ 
 ]

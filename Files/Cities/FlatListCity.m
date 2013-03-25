@@ -18,8 +18,23 @@
 {
     id attributesArray = [self stationAttributesArraysFromData:data];
     
+    // Loop on attribute dictionaries
     for (NSDictionary * attributeDict in attributesArray) {
-        [self insertStationWithAttributes:attributeDict];
+
+        // If a station dictionary attribute is a dictionary, flatten its keys in the station dictionary
+        NSMutableDictionary * flattenAttributes = [attributeDict mutableCopy];
+        for (NSString * key in attributeDict) {
+            NSDictionary * attribute = attributeDict[key];
+            if([attribute isKindOfClass:[NSDictionary class]])
+            {
+                for (id key2 in attribute) {
+                    flattenAttributes[[NSString stringWithFormat:@"%@.%@",key, key2]] = attribute[key2];
+                }
+            }
+        }
+
+        // Go
+        [self insertStationWithAttributes:flattenAttributes];
     }
 }
 
