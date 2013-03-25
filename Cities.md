@@ -389,12 +389,12 @@ The [official website](http://www.citybikes.se/en/Here-are-our-cycle-stands/) us
 
 ## ViaCycle (USA)
 
-*Unknown Terms of Use*
+*Official API*
 
-HTML, but with clean JSON in it.
-- Atlanta / Georgia Tech : https://gt.viacycle.com
-- Patriot Bike Share (George Mason University) : https://gmu.viacycle.com
-- Las Vegas : https://downtownproject.viacycle.com
+JSON, List+Details: 
+- Atlanta / Georgia Tech : https://gt.viacycle.com/m/data
+- Patriot Bike Share (George Mason University) : https://gmu.viacycle.com/m/data
+- Las Vegas : https://downtownproject.viacycle.com/m/data
 
 ## Forever Bicycle/China RMB
 
