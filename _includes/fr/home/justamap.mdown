@@ -1,4 +1,4 @@
-# Les stations sur une carte.<br>En temps réel.
+# La carte des stations.<br>En direct sur votre iPhone.
 
 Prenez un vélo. Allez faire un tour. Puis déposez-le.  
 Bicyclette vous permet simplement de trouver un vélo et une place le plus rapidement possible.
