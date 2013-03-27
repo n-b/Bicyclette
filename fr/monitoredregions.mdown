@@ -42,4 +42,4 @@ Le scénario complet d'une notification est le suivant :
 
 Si les notifications ne s'affichent pas, il peut y avoir plusieurs raisons : typiquement, en sortant d'un batiment ou d'un tunnel, l'iPhone va devoir se reconnecter à un nouveau réseau et retrouver sa position. Si la connection réseau prend vraiment trop de temps, ou si vous ressortez de la zone avant que la notification soit affichée, Bicyclette annule la procédure.
 	
-En cas de problème, n'hésitez pas à me contacter par mail à [support@bicyclette-app.fr](mailto:support@bicyclette-app.fr) ou sur Twitter : [@bicycletteapp](http://twitter.com/bicycletteapp).
+En cas de problème, n'hésitez pas à me contacter par mail à [support@bicyclette-app.com](mailto:support@bicyclette-app.com) ou sur Twitter : [@bicycletteapp](http://twitter.com/bicycletteapp).

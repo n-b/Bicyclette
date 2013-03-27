@@ -43,4 +43,4 @@ The whole scenario of a notification looks like this:
 
 There can be several causes that would prevent notifications from showing up. Typically, when leaving a building or a tunnel, your iPhone has to switch networks and find its position again. If it takes too long, or if you get out of the monitored region before the notification is displayed, Bicyclette cancels the whole procedure.
 
-If you need more help, please contact me by email at [support@bicyclette-app.fr](mailto:support@bicyclette-app.fr) or on Twitter: [@bicycletteapp](http://twitter.com/bicycletteapp).
+If you need more help, please contact me by email at [support@bicyclette-app.com](mailto:support@bicyclette-app.com) or on Twitter: [@bicycletteapp](http://twitter.com/bicycletteapp).
