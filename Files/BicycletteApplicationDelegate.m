@@ -61,8 +61,6 @@
 {
     if([notification.userInfo[@"type"] isEqualToString:@"stationsummary"])
         [self.citiesController handleLocalNotificaion:notification];
-    else
-        [self.rootVC handleDonationNotification:notification];
 }
 
 @end

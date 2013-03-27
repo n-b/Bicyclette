@@ -5,7 +5,7 @@
 	<key>DebugDisplayLocalNotificationsAsAlerts</key>
 	<false/>
 	<key>DebugDisplayHelpAtLaunch</key>
-	<true/>
+	<false/>
 	<key>RegionMonitoring.Enabled</key>
 	<true/>
 	<key>RegionMonitoring.FenceDistance</key>
@@ -43,8 +43,6 @@
 		<key>fr.bicyclette_app.bicyclette.a.merci.3</key>
 		<string>STORE_REWARD_3</string>
 	</dict>
-	<key>Store.DonationAlertDelay</key>
-	<string>2100</string>
 	<key>MapViewScaleView.MaxDistance</key>
 	<integer>50000</integer>
 </dict>

@@ -52,7 +52,7 @@
 "STORE_ALERT_TITLE" = "Is this app useful to you?\nYour help is most welcome!";
 "STORE_ALERT_MESSAGE" = "You can give what you want.";
 "STORE_ALERT_CANCEL" = "Not now";
-"STORE_ALERT_OK" = "Yes!";
+"STORE_ALERT_OK" = "Donate";
 
 "STORE_UNAVAILABLE_TITLE" = "Unable to make the purchase";
 "STORE_UNAVAILABLE_MESSAGE" = "In-App Purchases are disabled.";

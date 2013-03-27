@@ -52,7 +52,7 @@
 "STORE_ALERT_TITLE" = "Cette appli vous est utile ?\nVotre aide est la bienvenue !";
 "STORE_ALERT_MESSAGE" = "Vous donnez ce que vous voulez.";
 "STORE_ALERT_CANCEL" = "Pas maintenant";
-"STORE_ALERT_OK" = "Oui !";
+"STORE_ALERT_OK" = "Faire un don";
 
 "STORE_UNAVAILABLE_TITLE" = "Achat impossible";
 "STORE_UNAVAILABLE_MESSAGE" = "Les achats intégrés sont désactivés.";
