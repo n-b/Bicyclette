@@ -1,9 +1,9 @@
-# Notifications Géolocalisées
+# Les places disponibles.<br>Automatiquement.
 
-Indiquez vos stations favorites, et Bicyclette vérifiera les places disponibles dès que vous en approcherez ! 
-
-***Vous n'avez même plus à ouvrir l'appli !***
+Indiquez simplement vos stations favorites. **Dès que vous approchez d'une station, Bicyclette affiche un message sur l'écran d'accueil**, avec le nombre de places et de vélos disponibles.
 
 ![](images/screenshots/Notification@2x.png)
 
-Comment ça marche ? Il s'agit de "barrières virtuelles", aussi appelées "geofences" ou "monitored regions". [Tous les détails techniques ici](monitoredregions.html)
+En fait, vous n'avez même plus à ouvrir l'app !
+
+Comment ça marche ? Il s'agit de "barrières virtuelles", aussi appelées "geofences" ou "monitored regions". [Tous les détails techniques ici](monitoredregions.html).

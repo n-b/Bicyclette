@@ -1,8 +1,8 @@
-# A map, that's all.
+# The Bike Stations on a Map.<br>Live on your iPhone.
+
+Grab a bike. Go for a ride. Park it in a station.  
+Bicyclette lets you find the nearest bike, and return it, just as fast as possible.
 
 ![](images/screenshots/NotreDame@2x.png)
 
-***Bicyclette*** is only a map, with pins showing the bike stations, whose color changes with the number of available bikes and spots.
-
-That's all? Actually, that's already too much!
-
+Bicyclette does exactly one thing: it displays the bike stations on a map, with the number of available bikes and free slots. All you have to do is open the app.

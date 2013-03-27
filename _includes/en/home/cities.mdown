@@ -1,4 +1,4 @@
-# Bikes Everywhere
+# A Bike Right Near You
 
 Bicyclette works with Bike-Sharing systems in more than 50 cities in the world.
 

@@ -51,7 +51,7 @@ h1, h2, h3 {
 }
 h1 {
 	font-weight: 800;
-	font-size : 200%;
+	font-size : 150%;
 }
 h2 {
 	font-weight: 600;
@@ -125,7 +125,7 @@ h1, h2, p, ul{
 
 /* Header */
 header {
-	margin-bottom:80px;
+	margin-bottom:40px;
 }
 @media only screen and (max-width: 490px) {
 	header {
@@ -238,16 +238,6 @@ section#cities ul {
 }
 section#cities ul li:before{
 	content: "• ";
-}
-
-/* PayWhatYouWant section */
-section#paywhatyouwant:after {
-	display: block;
-	font-size: 200%;
-	text-align: center;
-	font-family: AppleColorEmoji, Arial;
-	padding-top: 8px;
-	content: "😀 😀 😀";
 }
 
 /* OpenSource section */

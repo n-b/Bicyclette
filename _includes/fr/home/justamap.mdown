@@ -1,8 +1,8 @@
-# Une carte, juste une carte
+# Les stations sur une carte.<br>En temps réel.
+
+Prenez un vélo. Allez faire un tour. Puis déposez-le.  
+Bicyclette vous permet simplement de trouver un vélo et une place le plus rapidement possible.
 
 ![](images/screenshots/NotreDame@2x.png)
 
-***Bicyclette*** se résume à une carte, avec les positions des stations de vélos indiquées par des puces, dont la couleur symbolise le nombre de vélos ou de places disponibles.
-
-C'est tout&nbsp;? Non, c'est déjà trop&nbsp;!
-
+Bicyclette n'a qu'une fonction : la carte des stations, avec le nombre de vélos et de places. C'est tout. Vous n'avez qu'à ouvrir l'app.
