@@ -25,13 +25,13 @@
 #define kRegionFrame2Color				[UIColor colorWithHue:0.01 saturation:1 brightness:.84 alpha:1]
 #define kRegionFrame3Color				[UIColor colorWithWhite:.95 alpha:1]
 
-#define kGoodValueColor					[UIColor colorWithHue:0.356 saturation:0.850 brightness:0.750 alpha:1.000]
-#define kWarningValueColor				[UIColor colorWithHue:0.056 saturation:0.880 brightness:0.850 alpha:1.000]
-#define kCriticalValueColor				[UIColor colorWithHue:0.008 saturation:0.920 brightness:0.710 alpha:1.000]
+#define kGoodValueColor					[UIColor colorWithRed:25/255.0f green:188/255.0f blue:63/255.0f alpha:1.0]
+#define kWarningValueColor				[UIColor colorWithRed:221/255.0f green:170/255.0f blue:59/255.0f alpha:1.0]
+#define kCriticalValueColor				[UIColor colorWithRed:229/255.0f green:0/255.0f blue:15/255.0f alpha:1.0]
 
-#define kFenceBackgroundColor			[UIColor colorWithHue:0.714 saturation:0.753 brightness:0.536 alpha:0.500]
+#define kFenceBackgroundColor			[UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:.5f]
 
-#define kAnnotationDash1Color			[UIColor colorWithHue:0.714 saturation:0.753 brightness:0.536 alpha:1.000]
+#define kAnnotationDash1Color			[UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0]
 #define kAnnotationDash2Color			[UIColor whiteColor]
 #define kDashedBorderWidth				2
 #define kDashLength						4
