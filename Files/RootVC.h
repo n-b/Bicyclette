@@ -23,4 +23,6 @@
 
 - (void) handleDonationNotification:(UILocalNotification*)notification;
 
+- (IBAction)showHelp; // Sent to the first responder from a Pref button
+
 @end

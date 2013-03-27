@@ -31,7 +31,7 @@
 "SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version : %1$@<br>Modèle : %2$@<br>OS : %3$@";
 
 "STORE_PLEASE_HELP_LABEL" = "Vous aimez ?";
-"STORE_PLEASE_HELP_BUTTON" = "Dire merci !";
+"STORE_PLEASE_HELP_BUTTON" = "Faire un don !";
 
 "SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, la meilleure appli pour les vélos en libre service ! @bicycletteapp";
 "SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, la meilleure appli pour %@ ! @bicycletteapp";

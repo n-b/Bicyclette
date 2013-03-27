@@ -5,7 +5,7 @@
 	<key>DebugDisplayLocalNotificationsAsAlerts</key>
 	<false/>
 	<key>DebugDisplayHelpAtLaunch</key>
-	<false/>
+	<true/>
 	<key>RegionMonitoring.Enabled</key>
 	<true/>
 	<key>RegionMonitoring.FenceDistance</key>

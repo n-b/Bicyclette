@@ -15,12 +15,12 @@
 "HELP_STALE" = "Un symbole gris indique le nombre total de bornes.";
 
 "HELP_STARRED_STATIONS" = "Marquez vos stations préférées d’une étoile pour les repérer plus vite.";
-"HELP_GEOFENCES" = "Bicyclette crée alors une alerte « Geofence » (« Barrière virtuelle »).";
 
-"HELP_NOTIFICATIONS_BEHAVIOUR" = "Dès que vous approchez d’une Geofence, les disponibilités des stations s’affichent sur l’écran de l’iPhone.";
+"HELP_NOTIFICATIONS_BEHAVIOUR" = "Dès que vous approchez d’une station favorite, le nombre de vélos disponibles s’affiche sur l’écran de l’iPhone.";
+"HELP_GEOFENCES" = "Ce sont des « Barrière virtuelle » (« Geofence »). Vous n’avez même pas besoin de lancer l'app !";
 
-"HELP_PLEASE_HELP" = "Si cette app vous plaît, les remerciements sont appréciés !";
-"HELP_PAY_WHAT_YOU_WANT" = "C’est entièrement facultatif, et vous payez ce que vous voulez !";
+"HELP_PLEASE_HELP" = "Si cette app vous plaît, les dons sont appréciés !";
+"HELP_PAY_WHAT_YOU_WANT" = "Vous pouvez faire un don directement depuis l’appli, en achat In-App.";
 
 "HELP_EPILOGUE" = "C’est tout !\
 \

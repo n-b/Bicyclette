@@ -71,14 +71,6 @@
     [super viewDidLoad];
     _drawingCache = [DrawingCache new];
     
-    // Box Shadow
-    self.box.layer.cornerRadius = 13;
-    self.box.layer.shadowOpacity = 1;
-    self.box.layer.shadowOffset = CGSizeMake(0, 1);
-    self.box.layer.shadowRadius = 2;
-    self.box.layer.shadowColor = [UIColor colorWithWhite:0 alpha:1].CGColor;
-    self.box.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.box.bounds cornerRadius:13].CGPath;
-
     // Content Layout
     NSArray * views;
     if([CLLocationManager regionMonitoringAvailable]) {

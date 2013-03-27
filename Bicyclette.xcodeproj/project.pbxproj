@@ -294,9 +294,7 @@
 		37216BC512611C5400A2695A /* BicycletteCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BicycletteCity.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		37216BC612611C5400A2695A /* BicycletteCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BicycletteCity.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3722E0F7168AF8830069C6A8 /* VelowayCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelowayCity.m; sourceTree = "<group>"; };
-		37239F4116B808EC00638420 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Help.strings; sourceTree = "<group>"; };
 		37239F4216B808EC00638420 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		37239F4316B808EC00638420 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3724BC6415E4C50200790869 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		3724BC6515E4C50200790869 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
 		3724BC6615E4C50200790869 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
@@ -373,9 +371,7 @@
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
 		37ACE96B16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Toulouse_VélôToulouse.coredata"; sourceTree = "<group>"; };
 		37ACE97216B7EAB100E07A00 /* Namur_Li bia velo.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Namur_Li bia velo.coredata"; sourceTree = "<group>"; };
-		37ACE97416B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37ACE97516B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		37ACE97616B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Help.strings; sourceTree = "<group>"; };
 		37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditionsTests.m; sourceTree = "<group>"; };
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1374,8 +1370,6 @@
 			children = (
 				94E45DCD16A9B1E200EB6C84 /* fr */,
 				94E45DCF16A9B1E700EB6C84 /* en */,
-				37ACE97416B7FE8E00E07A00 /* pl */,
-				37239F4316B808EC00638420 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1396,8 +1390,6 @@
 			children = (
 				94E45DD716A9C2D200EB6C84 /* fr */,
 				94E45DD916A9C2D500EB6C84 /* en */,
-				37ACE97616B7FE8E00E07A00 /* pl */,
-				37239F4116B808EC00638420 /* de */,
 			);
 			name = Help.strings;
 			sourceTree = "<group>";
