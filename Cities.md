@@ -240,33 +240,6 @@ JSON, List+Details:
 - Patriot Bike Share (George Mason University) : https://gmu.viacycle.com/m/data
 - Las Vegas : https://downtownproject.viacycle.com/m/data
 
----
-# Not included in Bicyclette yet
-
-
-## New York (Temporary)
-"Temporary" data for the expected stations locations. Of course, no status info is available yet.
-
-- List: `http://a841-tfpweb.nyc.gov/bikeshare/get_tentative_bikeshare_points`
-- Details: `http://a841-tfpweb.nyc.gov/bikeshare/get_point_info?point=13897``
-
-## Bicincitta / TOBike
-
-The Torino and Bicincitta networks, used in many cities in Italy. Various versions of the services. The service.tobike.it backend is actually also used for Velopass in Swiss.
-
-List of cities : http://www.bicincitta.com/comuni.asp
-
-- List 1 (~20 cities) : Dirty HTML/javascript.http://bicincitta.tobike.it/frmLeStazioni.aspx?ID={city_id}
-- List 2 (Torino+Region) : Dirty HTML/javascript.http://www.tobike.it/frmLeStazioni.aspx?ID={city_id}
-- List 3 (Brescia) : Dirty HTML/javascript.http://service.bicimia.it/frmComuniAderentiInfo.aspx
-- List 4 (http://www.bicincittabip.com/frmLeStazioni.aspx?ID=112
-- Roma (older? similar to Pamplona) : http://www.bicincitta.com/citta_v3.asp?id=18&pag=2
-
-Webservices (also used for Swiss VeloPass) :
-http://service.tobike.it
-
-
-
 ## BCycle
 
 
@@ -297,6 +270,32 @@ Networks for a dozen of US cities, with relatively small coverage. Unfortunately
 - Spartanburg, South Carolina.
 
 - Also, Austin is in the works. (2013/01)
+
+---
+# Not included in Bicyclette yet
+
+
+## New York (Temporary)
+"Temporary" data for the expected stations locations. Of course, no status info is available yet.
+
+- List: `http://a841-tfpweb.nyc.gov/bikeshare/get_tentative_bikeshare_points`
+- Details: `http://a841-tfpweb.nyc.gov/bikeshare/get_point_info?point=13897``
+
+## Bicincitta / TOBike
+
+The Torino and Bicincitta networks, used in many cities in Italy. Various versions of the services. The service.tobike.it backend is actually also used for Velopass in Swiss.
+
+List of cities : http://www.bicincitta.com/comuni.asp
+
+- List 1 (~20 cities) : Dirty HTML/javascript.http://bicincitta.tobike.it/frmLeStazioni.aspx?ID={city_id}
+- List 2 (Torino+Region) : Dirty HTML/javascript.http://www.tobike.it/frmLeStazioni.aspx?ID={city_id}
+- List 3 (Brescia) : Dirty HTML/javascript.http://service.bicimia.it/frmComuniAderentiInfo.aspx
+- List 4 (http://www.bicincittabip.com/frmLeStazioni.aspx?ID=112
+- Roma (older? similar to Pamplona) : http://www.bicincitta.com/citta_v3.asp?id=18&pag=2
+
+Webservices (also used for Swiss VeloPass) :
+http://service.tobike.it
+
 
 ## Laval
 (Keolis)
