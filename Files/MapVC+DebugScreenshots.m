@@ -92,7 +92,7 @@ static BOOL gShouldShowAnnotations = NO;
     else if([[NSUserDefaults standardUserDefaults] boolForKey:@"TakeUIScreenshots"])
     {
         gShouldShowAnnotations = YES;
-        [self takeScreenshotForWorld];
+        [self takeScreenshotForEurope];
     }
 }
 
