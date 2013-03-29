@@ -230,6 +230,16 @@ Request:
     	</soap12:Body>
     </soap12:Envelope>
 
+
+## ViaCycle (USA)
+
+*Official API*
+
+JSON, List+Details: 
+- Atlanta / Georgia Tech : https://gt.viacycle.com/m/data
+- Patriot Bike Share (George Mason University) : https://gmu.viacycle.com/m/data
+- Las Vegas : https://downtownproject.viacycle.com/m/data
+
 ---
 # Not included in Bicyclette yet
 
@@ -386,15 +396,6 @@ The [official website](http://www.citybikes.se/en/Here-are-our-cycle-stands/) us
 
 - List : https://bikemap.appified.net/a/grs/
 - Details : https://bikemap.appified.net/a/gr/0c59508f792a57b5cee3231940890270/{station_id}
-
-## ViaCycle (USA)
-
-*Official API*
-
-JSON, List+Details: 
-- Atlanta / Georgia Tech : https://gt.viacycle.com/m/data
-- Patriot Bike Share (George Mason University) : https://gmu.viacycle.com/m/data
-- Las Vegas : https://downtownproject.viacycle.com/m/data
 
 ## Forever Bicycle/China RMB
 

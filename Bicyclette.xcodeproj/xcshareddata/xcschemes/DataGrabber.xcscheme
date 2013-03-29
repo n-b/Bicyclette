@@ -67,7 +67,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter ViaCycle"
+            argument = "-DataGrabberCityFilter BCycle"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

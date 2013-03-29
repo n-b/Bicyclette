@@ -182,6 +182,8 @@
 		94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DCE16A9B1E200EB6C84 /* Localizable.strings */; };
 		94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */; };
 		94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD816A9C2D200EB6C84 /* Help.strings */; };
+		94EDC1C5170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
+		94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -454,6 +456,7 @@
 		94E45DD316A9B3A800EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94E45DD716A9C2D200EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Help.strings; sourceTree = "<group>"; };
 		94E45DD916A9C2D500EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Help.strings; sourceTree = "<group>"; };
+		94EDC1C4170587E200113E76 /* BCycleCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCycleCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -795,6 +798,7 @@
 				3722E0F7168AF8830069C6A8 /* VelowayCity.m */,
 				373960AA16794634005F0672 /* LyonVelovCity.m */,
 				3788EC7D1697AF0400836A60 /* BarcelonaCityBikeCity.m */,
+				94EDC1C4170587E200113E76 /* BCycleCity.m */,
 			);
 			name = "Flat JSON list";
 			sourceTree = "<group>";
@@ -1299,6 +1303,7 @@
 				942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */,
 				3719607116B303CD005CDA6D /* VerticallyAlignedLabel.m in Sources */,
 				944A975F16FB1A6600254D3A /* TOBikeCity.m in Sources */,
+				94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1336,6 +1341,7 @@
 				3763582516A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */,
 				3763582916A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m in Sources */,
 				944A975E16FB1A6600254D3A /* TOBikeCity.m in Sources */,
+				94EDC1C5170587E200113E76 /* BCycleCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
