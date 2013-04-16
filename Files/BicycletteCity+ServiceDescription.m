@@ -16,20 +16,31 @@
 {
     NSMutableDictionary * info = [self.serviceInfo mutableCopy];
     
-    // Set real Region instead of hardcoded data
     if([self isStoreLoaded])
     {
-        [info setObject:@(self.regionContainingData.center.latitude) forKey:@"latitude"];
-        [info setObject:@(self.regionContainingData.center.longitude) forKey:@"longitude"];
-        [info setObject:@(self.regionContainingData.radius) forKey:@"radius"];
+        // Set real Region instead of hardcoded data
+        CLRegion * regionContainingData = self.regionContainingData;
+        [info setObject:@(regionContainingData.center.latitude) forKey:@"latitude"];
+        [info setObject:@(regionContainingData.center.longitude) forKey:@"longitude"];
+        [info setObject:@(regionContainingData.radius) forKey:@"radius"];
+
+        // Set MKCoordinateRegion
+        MKCoordinateRegion mkRegionContainingData = self.mkRegionContainingData;
+        if(mkRegionContainingData.center.latitude != 0){
+            [info setObject:@(mkRegionContainingData.center.latitude) forKey:@"mkCoordinateRegionLatitude"];
+            [info setObject:@(mkRegionContainingData.center.longitude) forKey:@"mkCoordinateRegionLongitude"];
+            [info setObject:@(mkRegionContainingData.span.latitudeDelta) forKey:@"mkCoordinateRegionLatitudeDelta"];
+            [info setObject:@(mkRegionContainingData.span.longitudeDelta) forKey:@"mkCoordinateRegionLongitudeDelta"];
+        }
     }
-    
+
     // Add KVCMapping
     [info setObject:[self KVCMapping] forKey:@"KVCMapping"];
     
     // station parsing class
     if([self stationStatusParsingClass])
         [info setObject:NSStringFromClass([self stationStatusParsingClass]) forKey:@"station_status_parsing_class"];
+    
     
     return info;
 }

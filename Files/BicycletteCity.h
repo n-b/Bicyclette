@@ -10,6 +10,7 @@
 #import "DataUpdater.h"
 #import "LocalUpdateQueue.h"
 #import "BicycletteCity.mogenerated.h"
+#import "MKCoordinateRegion-Mac.h"
 
 void BicycletteCitySetStoresDirectory(NSString* directory);
 void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
@@ -45,9 +46,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (id) prefForKey:(NSString*)key; // Fallback to NSUserDefaults
 - (CLRegion *) knownRegion;
 - (CLRegion *) regionContainingData;
-#if TARGET_OS_IPHONE
 - (MKCoordinateRegion) mkRegionContainingData;
-#endif
 - (CLLocation *) location; // Locatable
 - (CLLocationDistance) radius;  // Locatable
 - (CLLocationCoordinate2D) coordinate; // MKAnnotation

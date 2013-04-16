@@ -41,10 +41,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 @implementation BicycletteCity
 {
-#if TARGET_OS_IPHONE
     MKCoordinateRegion _mkRegionContainingData;
     BOOL _mkRegionContainingDataCached;
-#endif
 }
 + (NSString*) storePathForServiceInfo:(NSDictionary*)serviceInfo_
 {
@@ -167,10 +165,18 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return _regionContainingData;
 }
 
-#if TARGET_OS_IPHONE
 - (MKCoordinateRegion) mkRegionContainingData
 {
     if(_mkRegionContainingDataCached) {
+        return _mkRegionContainingData;
+    }
+    
+    if(self.serviceInfo[@"mkCoordinateRegionLatitude"]) {
+        _mkRegionContainingData.center.latitude = [self.serviceInfo[@"mkCoordinateRegionLatitude"] doubleValue];
+        _mkRegionContainingData.center.longitude = [self.serviceInfo[@"mkCoordinateRegionLongitude"] doubleValue];
+        _mkRegionContainingData.span.latitudeDelta = [self.serviceInfo[@"mkCoordinateRegionLatitudeDelta"] doubleValue];
+        _mkRegionContainingData.span.longitudeDelta = [self.serviceInfo[@"mkCoordinateRegionLongitudeDelta"] doubleValue];
+        _mkRegionContainingDataCached = YES;
         return _mkRegionContainingData;
     }
     
@@ -178,15 +184,17 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     // It'll actually zoom differently in landscape or portrait, esp. if the city in very rectangular.
     //
     // We need real data, which means we have to load the city. This means we should avoid doing this early when the app launches.
-    //
-    // TODO : cache.
     NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
     NSError * requestError = nil;
     NSArray * stations = [self.mainContext executeFetchRequest:stationsRequest error:&requestError];
     if([stations count]==0)
     {
+#if TARGET_OS_IPHONE
         CLRegion * region = [self knownRegion];
         return MKCoordinateRegionMakeWithDistance(region.center, region.radius*2, region.radius*2);
+#else
+        return (MKCoordinateRegion){{0,0},{0,0}};
+#endif
     }
     
     CLLocationDegrees maxLatitude = [[stations valueForKeyPath:@"@max.latitude"] doubleValue];
@@ -202,7 +210,6 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     _mkRegionContainingData.span.longitudeDelta = maxLongitude - minLongitude; // incorrect at -/+180
     return _mkRegionContainingData;
 }
-#endif
 
 - (CLLocation *) location
 {
