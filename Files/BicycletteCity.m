@@ -40,7 +40,12 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 }
 
 @implementation BicycletteCity
-
+{
+#if TARGET_OS_IPHONE
+    MKCoordinateRegion _mkRegionContainingData;
+    BOOL _mkRegionContainingDataCached;
+#endif
+}
 + (NSString*) storePathForServiceInfo:(NSDictionary*)serviceInfo_
 {
     // Used in DataGrabber
@@ -161,6 +166,43 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 	}
     return _regionContainingData;
 }
+
+#if TARGET_OS_IPHONE
+- (MKCoordinateRegion) mkRegionContainingData
+{
+    if(_mkRegionContainingDataCached) {
+        return _mkRegionContainingData;
+    }
+    
+    // returns a "rectangle", which is more suited to zoom on the map than a circular CLRegion:
+    // It'll actually zoom differently in landscape or portrait, esp. if the city in very rectangular.
+    //
+    // We need real data, which means we have to load the city. This means we should avoid doing this early when the app launches.
+    //
+    // TODO : cache.
+    NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
+    NSError * requestError = nil;
+    NSArray * stations = [self.mainContext executeFetchRequest:stationsRequest error:&requestError];
+    if([stations count]==0)
+    {
+        CLRegion * region = [self knownRegion];
+        return MKCoordinateRegionMakeWithDistance(region.center, region.radius*2, region.radius*2);
+    }
+    
+    CLLocationDegrees maxLatitude = [[stations valueForKeyPath:@"@max.latitude"] doubleValue];
+    CLLocationDegrees minLatitude = [[stations valueForKeyPath:@"@min.latitude"] doubleValue];
+    CLLocationDegrees maxLongitude = [[stations valueForKeyPath:@"@max.longitude"] doubleValue];
+    CLLocationDegrees minLongitude = [[stations valueForKeyPath:@"@min.longitude"] doubleValue];
+    CLLocation * dataCenter = [[CLLocation alloc] initWithLatitude:(minLatitude+maxLatitude)/2.0
+                                                         longitude:(minLongitude+maxLongitude)/2.0];
+    
+    _mkRegionContainingDataCached = YES;
+    _mkRegionContainingData.center = dataCenter.coordinate;
+    _mkRegionContainingData.span.latitudeDelta = maxLatitude - minLatitude;
+    _mkRegionContainingData.span.longitudeDelta = maxLongitude - minLongitude; // incorrect at -/+180
+    return _mkRegionContainingData;
+}
+#endif
 
 - (CLLocation *) location
 {

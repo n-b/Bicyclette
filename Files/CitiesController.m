@@ -231,8 +231,8 @@
         [self.delegate controller:self selectAnnotation:nil];
     } else {
         // Zoom directly to city
-        CLRegion * region = [city_ regionContainingData];
-        [self.delegate controller:self setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius)]; // should be radius*2, but I want to zoom more
+        MKCoordinateRegion region = [city_ mkRegionContainingData];
+        [self.delegate controller:self setRegion:region];
     }
 }
 
