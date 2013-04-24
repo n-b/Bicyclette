@@ -274,6 +274,12 @@ Networks for a dozen of US cities, with relatively small coverage. Unfortunately
 ---
 # Not included in Bicyclette yet
 
+## Belfort (Optymo)
+
+Based on Smoove, but no webservice found.
+
+Webmap at http://siv.optymo.fr, stations list at http://siv.optymo.fr/js/placesVLS.js, status at http://siv.optymo.fr/getinfo.php?id=<id>.
+
 
 ## New York (Temporary)
 "Temporary" data for the expected stations locations. Of course, no status info is available yet.
