@@ -23,7 +23,10 @@
     NSString * patchedCode = self.serviceInfo[@"districts_patchs"][districtCode];
     if(patchedCode)
         districtCode = patchedCode;
-    return [RegionInfo infoWithName:districtCode number:districtCode];
+    if([districtCode length])
+        return [RegionInfo infoWithName:districtCode number:districtCode];
+    else
+        return nil;
 }
 
 #pragma mark Annotations
