@@ -42,7 +42,8 @@
 #if DEBUG
     [GAI sharedInstance].debug = YES;
 #endif
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-YOUR-TRACKING-ID"];
+    NSString * trackingID = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"_GoogleAnalytics" ofType:@"plist"]] objectForKey:@"TrackingID"];
+    [[GAI sharedInstance] trackerWithTrackingId:trackingID];
     [GAI sharedInstance].defaultTracker.useHttps = NO;
     [GAI sharedInstance].defaultTracker.anonymize = YES;
     
