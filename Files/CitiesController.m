@@ -98,6 +98,10 @@
 
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
+
+        // Google Analytics
+        [[GAI sharedInstance].defaultTracker setCustom:1 dimension:_currentCity.cityName];
+        [[GAI sharedInstance].defaultTracker sendView:[NSString stringWithFormat:@"city_%@",_currentCity.cityName]];
     }
 }
 

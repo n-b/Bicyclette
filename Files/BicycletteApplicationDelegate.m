@@ -35,6 +35,16 @@
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
+
+    // Google Analytics
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+#if DEBUG
+    [GAI sharedInstance].debug = YES;
+#endif
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-YOUR-TRACKING-ID"];
+    [GAI sharedInstance].defaultTracker.useHttps = NO;
+    [GAI sharedInstance].defaultTracker.anonymize = YES;
     
     self.citiesController = [CitiesController new];
     
@@ -49,6 +59,11 @@
     // Must not do it automatically, otherwise the UI is broken vertically, initially, on iPad on iOS 5
     self.window.rootViewController = self.rootVC;
 	return YES;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    [[GAI sharedInstance] dispatch];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
