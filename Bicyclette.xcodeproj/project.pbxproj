@@ -182,6 +182,8 @@
 		94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DCE16A9B1E200EB6C84 /* Localizable.strings */; };
 		94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */; };
 		94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD816A9C2D200EB6C84 /* Help.strings */; };
+		94EB56371729DF2D00E17536 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EB56351729DF2D00E17536 /* libGoogleAnalytics.a */; };
+		94EB563A1729DF7000E17536 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EB56391729DF7000E17536 /* SystemConfiguration.framework */; };
 		94EDC1C5170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
 		94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
 /* End PBXBuildFile section */
@@ -457,6 +459,14 @@
 		94E45DD316A9B3A800EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94E45DD716A9C2D200EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Help.strings; sourceTree = "<group>"; };
 		94E45DD916A9C2D500EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Help.strings; sourceTree = "<group>"; };
+		94EB56301729DF2D00E17536 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		94EB56311729DF2D00E17536 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		94EB56321729DF2D00E17536 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		94EB56331729DF2D00E17536 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		94EB56341729DF2D00E17536 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		94EB56351729DF2D00E17536 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		94EB56361729DF2D00E17536 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
+		94EB56391729DF7000E17536 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		94EDC1C4170587E200113E76 /* BCycleCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCycleCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -468,6 +478,7 @@
 				94A30ABB16DD24C20043ACFC /* libCoreDataModel-iOS.a in Frameworks */,
 				37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */,
 				37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */,
+				94EB56371729DF2D00E17536 /* libGoogleAnalytics.a in Frameworks */,
 				94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */,
 				3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -478,6 +489,7 @@
 				37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */,
 				94E45DC516A995F800EB6C84 /* Social.framework in Frameworks */,
 				370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */,
+				94EB563A1729DF7000E17536 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +581,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94EB562F1729DF2D00E17536 /* GoogleAnalytics */,
 				94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */,
 				37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */,
 				37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */,
@@ -584,6 +597,7 @@
 				37B7AC0115E3DF8B00268B70 /* AppKit.framework */,
 				94E45DC416A995F800EB6C84 /* Social.framework */,
 				94E45DCA16A9A5F500EB6C84 /* Accounts.framework */,
+				94EB56391729DF7000E17536 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -968,6 +982,21 @@
 				37EE011815BC87E4008376A1 /* GeofencesMonitor.m */,
 			);
 			name = GeoFences;
+			sourceTree = "<group>";
+		};
+		94EB562F1729DF2D00E17536 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				94EB56301729DF2D00E17536 /* GAI.h */,
+				94EB56311729DF2D00E17536 /* GAITrackedViewController.h */,
+				94EB56321729DF2D00E17536 /* GAITracker.h */,
+				94EB56331729DF2D00E17536 /* GAITransaction.h */,
+				94EB56341729DF2D00E17536 /* GAITransactionItem.h */,
+				94EB56351729DF2D00E17536 /* libGoogleAnalytics.a */,
+				94EB56361729DF2D00E17536 /* libGoogleAnalytics_debug.a */,
+			);
+			name = GoogleAnalytics;
+			path = "submodules/Google-Analytics-SDK-for-iOS/Library";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1409,6 +1438,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Files/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/submodules/Google-Analytics-SDK-for-iOS/Library\"",
+				);
 				PRODUCT_NAME = Bicyclette;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1418,6 +1451,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Files/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/submodules/Google-Analytics-SDK-for-iOS/Library\"",
+				);
 				PRODUCT_NAME = Bicyclette;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1551,6 +1588,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Files/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/submodules/Google-Analytics-SDK-for-iOS/Library\"",
+				);
 				PRODUCT_NAME = BicycletteScreenshots;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

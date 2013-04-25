@@ -7,3 +7,6 @@
 [submodule "submodules/CoreDataModel"]
 	path = submodules/CoreDataModel
 	url = git://github.com/n-b/CoreDataModel.git
+[submodule "submodules/Google-Analytics-SDK-for-iOS"]
+	path = submodules/Google-Analytics-SDK-for-iOS
+	url = git://github.com/n-b/Google-Analytics-SDK-for-iOS.git

@@ -12,6 +12,7 @@
 	#import <StoreKit/StoreKit.h>
 	#import <Social/Social.h>
 	#import <Accounts/Accounts.h>
+	#import <GAI.h>
 #else
 	#import <Cocoa/Cocoa.h>
 #endif
