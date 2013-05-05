@@ -9,6 +9,7 @@
 #import "XMLAttributesCity.h"
 #import "NSStringAdditions.h"
 #import "NSValueTransformer+TransformerKit.h"
+#import "_StationParse.h"
 
 @interface OrleansVeloPlusCity : XMLAttributesCity
 @end
@@ -33,7 +34,22 @@
                       }];
 }
 
--(NSDictionary *)KVCMapping
+- (NSArray *)updateURLStrings
+{
+    return @[@"https://www.agglo-veloplus.fr/component/data_1.xml"];
+}
+
+- (NSString *) detailsURLStringForStation:(Station*)station
+{
+    return [@"https://www.agglo-veloplus.fr/getStatusBorne?idBorne=" stringByAppendingString:station.number];
+}
+
+- (Class)stationStatusParsingClass
+{
+    return [XMLSubnodesStationParse class];
+}
+
+- (NSDictionary *)KVCMapping
 {
     return @{@"status": @"OrleansStationStatusTransformer:open",
              @"id": @"number",

@@ -15,6 +15,11 @@
 
 @implementation LaRochelleYeloCity
 
+- (NSArray *)updateURLStrings
+{
+    return @[@"http://www.rtcr.fr/ct_93_297__Carte_du_libre_service_velos.html"];
+}
+
 #pragma mark City Data Update
 
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data;

@@ -16,7 +16,7 @@
 
 - (NSArray *)updateURLStrings
 {
-    NSString * urlstring = [super updateURLStrings][0];
+    NSString * urlstring = @"http://data.keolis-rennes.com/xml/?version=1.0&key={APIKEY}&cmd=getstation";
     NSString * key = self.accountInfo[@"apikey"];
     urlstring = [urlstring stringByReplacingOccurrencesOfString:@"{APIKEY}"
                                                      withString:key];

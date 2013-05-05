@@ -44,7 +44,7 @@
 
 - (NSArray *)updateURLStrings
 {
-    NSString * urlstring = [super updateURLStrings][0];
+    NSString * urlstring = @"http://data.lacub.fr/wfs?key={APIKEY}&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326";
     NSString * key = self.accountInfo[@"apikey"];
     urlstring = [urlstring stringByReplacingOccurrencesOfString:@"{APIKEY}"
                                                      withString:key];

@@ -16,6 +16,11 @@
 
 #pragma mark - override
 
+- (NSArray *)updateURLStrings
+{
+    return @[@"http://www.melbournebikeshare.com.au/stationmap/data"];
+}
+
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data
 {
     // The JSON is invalid. Great.

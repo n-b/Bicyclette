@@ -14,17 +14,8 @@
   },
   {
     "radius" : 7777.554469120118,
-    "KVCMapping" : {
-      "id" : "number",
-      "lat" : "latitude",
-      "long" : "longitude",
-      "name" : "name",
-      "nbEmptyDocks" : "status_free",
-      "nbBikes" : "status_available"
-    },
     "longitude" : -0.11324935,
-    "station_element_name" : "station",
-    "city_class" : "XMLSubnodesCity",
+    "city_class" : "BIXICity",
     "update_url" : "http:\/\/www.tfl.gov.uk\/tfl\/syndication\/feeds\/cycle-hire\/livecyclehireupdates.xml",
     "service_name" : "Cycle Hire",
     "latitude" : 51.5126415,
@@ -226,7 +217,6 @@
     "mkCoordinateRegionLongitude" : -1.1712500278,
     "mkCoordinateRegionLatitude" : 46.1576605,
     "city_class" : "LaRochelleYeloCity",
-    "update_url" : "http:\/\/www.rtcr.fr\/ct_93_297__Carte_du_libre_service_velos.html",
     "city_name" : "La Rochelle",
     "mkCoordinateRegionLatitudeDelta" : 0.03912900000000263
   },
@@ -282,7 +272,7 @@
     "mkCoordinateRegionLongitude" : 10.90494185686115,
     "mkCoordinateRegionLatitude" : 48.3563169896061,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=178",
+    "region" : "178",
     "city_name" : "Augsburg",
     "mkCoordinateRegionLatitudeDelta" : 0.09285870922960271
   },
@@ -303,7 +293,7 @@
     "radius" : 9983.896573168529,
     "longitude" : 9.941156150878905,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=71",
+    "region" : "71",
     "service_name" : "NextBike",
     "latitude" : 47.38643395,
     "city_name" : "Bregenzerwald"
@@ -317,7 +307,7 @@
     "mkCoordinateRegionLongitude" : 8.531988859176636,
     "mkCoordinateRegionLatitude" : 52.02399112584069,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=16",
+    "region" : "16",
     "city_name" : "Bielefeld",
     "mkCoordinateRegionLatitudeDelta" : 0.009529684367400648
   },
@@ -330,7 +320,7 @@
     "mkCoordinateRegionLatitude" : 48.34097250000001,
     "mkCoordinateRegionLongitude" : 16.30632013320925,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=174",
+    "region" : "174",
     "city_name" : "10vorWien",
     "city_group" : "Wien",
     "mkCoordinateRegionLatitudeDelta" : 0.1063890000000001
@@ -338,15 +328,12 @@
   {
     "mkCoordinateRegionLongitudeDelta" : 0.2017699999999998,
     "radius" : 8388.283480962129,
-    "station_details_url" : "http:\/\/vlille.fr\/stations\/xml-station.aspx?borne=",
     "service_name" : "V’Lille",
     "longitude" : 3.114125,
     "latitude" : 50.6736,
     "mkCoordinateRegionLatitude" : 50.6736,
     "mkCoordinateRegionLongitude" : 3.114125,
     "city_class" : "LilleVlilleCity",
-    "update_url" : "http:\/\/vlille.fr\/stations\/xml-stations.aspx",
-    "station_status_parsing_class" : "FixedUTF8EncodingXMLSubnodesStationParse",
     "city_name" : "Lille",
     "mkCoordinateRegionLatitudeDelta" : 0.1209999999999951
   },
@@ -387,7 +374,7 @@
     "mkCoordinateRegionLongitude" : 10.961911,
     "mkCoordinateRegionLatitude" : 50.26078465000001,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=72",
+    "region" : "72",
     "city_name" : "Coburg",
     "mkCoordinateRegionLatitudeDelta" : 0.004624700000000814
   },
@@ -428,7 +415,7 @@
     "mkCoordinateRegionLongitude" : 9.44836288690567,
     "mkCoordinateRegionLatitude" : 54.795238743222,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=147",
+    "region" : "147",
     "city_name" : "Flensburg",
     "mkCoordinateRegionLatitudeDelta" : 0.04054073403540315
   },
@@ -511,7 +498,7 @@
     "mkCoordinateRegionLongitude" : 13.76667380332945,
     "mkCoordinateRegionLatitude" : 51.05696763678201,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=2",
+    "region" : "2",
     "city_name" : "Dresden",
     "mkCoordinateRegionLatitudeDelta" : 0.03433157310839619
   },
@@ -552,7 +539,7 @@
     "mkCoordinateRegionLongitude" : 6.767942905426025,
     "mkCoordinateRegionLatitude" : 51.24711618017655,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=50",
+    "region" : "50",
     "city_name" : "Düsseldorf",
     "mkCoordinateRegionLatitudeDelta" : 0.1027575075853022
   },
@@ -593,7 +580,6 @@
     "mkCoordinateRegionLongitude" : -1.6738135,
     "mkCoordinateRegionLatitude" : 48.1095485,
     "city_class" : "RennesVeloStarCity",
-    "update_url" : "http:\/\/data.keolis-rennes.com\/xml\/?version=1.0&key={APIKEY}&cmd=getstation",
     "city_name" : "Rennes",
     "mkCoordinateRegionLatitudeDelta" : 0.05430299999999733
   },
@@ -664,7 +650,6 @@
     "mkCoordinateRegionLongitude" : -0.613745,
     "mkCoordinateRegionLatitude" : 44.845415,
     "city_class" : "BordeauxVCubCity",
-    "update_url" : "http:\/\/data.lacub.fr\/wfs?key={APIKEY}&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326",
     "city_name" : "Bordeaux",
     "mkCoordinateRegionLatitudeDelta" : 0.1437699999999964
   },
@@ -677,7 +662,7 @@
     "mkCoordinateRegionLongitude" : 11.02478295564655,
     "mkCoordinateRegionLatitude" : 50.9749355990699,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=86",
+    "region" : "86",
     "city_name" : "Erfurt",
     "mkCoordinateRegionLatitudeDelta" : 0.007493201860199861
   },
@@ -689,18 +674,9 @@
     "latitude" : 42.356348,
     "mkCoordinateRegionLongitude" : -71.09107849999999,
     "mkCoordinateRegionLatitude" : 42.356348,
-    "city_class" : "XMLSubnodesCity",
+    "city_class" : "BIXICity",
     "update_url" : "http:\/\/www.thehubway.com\/data\/stations\/bikeStations.xml",
-    "KVCMapping" : {
-      "id" : "number",
-      "lat" : "latitude",
-      "long" : "longitude",
-      "name" : "name",
-      "nbEmptyDocks" : "status_free",
-      "nbBikes" : "status_available"
-    },
     "city_name" : "Boston",
-    "station_element_name" : "station",
     "mkCoordinateRegionLatitudeDelta" : 0.08905800000000141
   },
   {
@@ -784,7 +760,7 @@
     "mkCoordinateRegionLongitude" : 49.83606576919555,
     "mkCoordinateRegionLatitude" : 40.3551456438047,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=205",
+    "region" : "205",
     "city_name" : "Baku",
     "mkCoordinateRegionLatitudeDelta" : 0.004120633839796994
   },
@@ -811,22 +787,19 @@
     "mkCoordinateRegionLongitude" : 8.398168087005615,
     "mkCoordinateRegionLatitude" : 51.90714581471985,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=160",
+    "region" : "160",
     "city_name" : "Gütersloh",
     "mkCoordinateRegionLatitudeDelta" : 0.003597439386304302
   },
   {
     "mkCoordinateRegionLongitudeDelta" : 0.03382200000000002,
     "radius" : 2190.56441832212,
-    "station_details_url" : "https:\/\/www.agglo-veloplus.fr\/getStatusBorne?idBorne=",
     "service_name" : "Vélo’+",
     "longitude" : 1.905097,
     "latitude" : 47.907812,
     "mkCoordinateRegionLatitude" : 47.907812,
     "mkCoordinateRegionLongitude" : 1.905097,
     "city_class" : "OrleansVeloPlusCity",
-    "update_url" : "https:\/\/www.agglo-veloplus.fr\/component\/data_1.xml",
-    "station_status_parsing_class" : "XMLSubnodesStationParse",
     "city_name" : "Orléans",
     "mkCoordinateRegionLatitudeDelta" : 0.03839800000000082
   },
@@ -838,17 +811,8 @@
     "latitude" : 36.16771134715,
     "mkCoordinateRegionLongitude" : -115.141570319,
     "mkCoordinateRegionLatitude" : 36.16771134715,
-    "city_class" : "FlatJSONListCity",
+    "city_class" : "ViaCycleCity",
     "update_url" : "https:\/\/downtownproject.viacycle.com\/m\/data\/",
-    "keypath_to_stations_lists" : "zones",
-    "KVCMapping" : {
-      "location.longitude" : "longitude",
-      "bikecount" : "status_available",
-      "number" : "number",
-      "name" : "name",
-      "location.latitude" : "latitude",
-      "address" : "address"
-    },
     "city_name" : "Las Vegas",
     "mkCoordinateRegionLatitudeDelta" : 0.004014519299992969
   },
@@ -892,7 +856,7 @@
     "mkCoordinateRegionLongitude" : 12.830634,
     "mkCoordinateRegionLatitude" : 48.166863,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=201",
+    "region" : "201",
     "city_name" : "Burghausen",
     "mkCoordinateRegionLatitudeDelta" : 0.0146440000000041
   },
@@ -904,17 +868,8 @@
     "latitude" : 33.77620018765001,
     "mkCoordinateRegionLongitude" : -84.39550449014999,
     "mkCoordinateRegionLatitude" : 33.77620018765001,
-    "city_class" : "FlatJSONListCity",
+    "city_class" : "ViaCycleCity",
     "update_url" : "https:\/\/gt.viacycle.com\/m\/data\/",
-    "keypath_to_stations_lists" : "zones",
-    "KVCMapping" : {
-      "location.longitude" : "longitude",
-      "bikecount" : "status_available",
-      "number" : "number",
-      "name" : "name",
-      "location.latitude" : "latitude",
-      "address" : "address"
-    },
     "city_name" : "Georgia Tech",
     "mkCoordinateRegionLatitudeDelta" : 0.007031822899996598
   },
@@ -927,7 +882,7 @@
     "mkCoordinateRegionLongitude" : 15.702361,
     "mkCoordinateRegionLatitude" : 48.4241665,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=164",
+    "region" : "164",
     "city_name" : "Krems",
     "mkCoordinateRegionLatitudeDelta" : 0.01111099999999965
   },
@@ -940,7 +895,7 @@
     "mkCoordinateRegionLongitude" : 14.573715,
     "mkCoordinateRegionLatitude" : 48.101692,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=167",
+    "region" : "167",
     "city_name" : "Haag",
     "mkCoordinateRegionLatitudeDelta" : 0.0143939999999958
   },
@@ -953,7 +908,7 @@
     "mkCoordinateRegionLongitude" : 8.308845162391659,
     "mkCoordinateRegionLatitude" : 47.04241565829035,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=126",
+    "region" : "126",
     "city_name" : "Luzern",
     "mkCoordinateRegionLatitudeDelta" : 0.05630383504210101
   },
@@ -965,17 +920,8 @@
     "latitude" : 38.8315627475,
     "mkCoordinateRegionLongitude" : -77.30644797215001,
     "mkCoordinateRegionLatitude" : 38.8315627475,
-    "city_class" : "FlatJSONListCity",
+    "city_class" : "ViaCycleCity",
     "update_url" : "https:\/\/gmu.viacycle.com\/m\/data\/",
-    "keypath_to_stations_lists" : "zones",
-    "KVCMapping" : {
-      "location.longitude" : "longitude",
-      "bikecount" : "status_available",
-      "number" : "number",
-      "name" : "name",
-      "location.latitude" : "latitude",
-      "address" : "address"
-    },
     "city_name" : "George Mason University",
     "mkCoordinateRegionLatitudeDelta" : 0.004822384000000568
   },
@@ -988,7 +934,7 @@
     "mkCoordinateRegionLongitude" : 16.010649,
     "mkCoordinateRegionLatitude" : 47.7031355,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=163",
+    "region" : "163",
     "city_name" : "Neunkirchen",
     "mkCoordinateRegionLatitudeDelta" : 0.05682699999999841
   },
@@ -1001,7 +947,7 @@
     "mkCoordinateRegionLongitude" : 11.5687590837479,
     "mkCoordinateRegionLatitude" : 48.15732630119925,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=139",
+    "region" : "139",
     "city_name" : "München",
     "mkCoordinateRegionLatitudeDelta" : 0.05925697309309896
   },
@@ -1014,7 +960,7 @@
     "mkCoordinateRegionLongitude" : 16.77629470825195,
     "mkCoordinateRegionLatitude" : 47.84792328434115,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=23",
+    "region" : "23",
     "city_name" : "NeusiedlerSee",
     "mkCoordinateRegionLatitudeDelta" : 0.2877161437045004
   },
@@ -1027,7 +973,7 @@
     "mkCoordinateRegionLongitude" : 16.38952553272245,
     "mkCoordinateRegionLatitude" : 48.71837558668415,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=184",
+    "region" : "184",
     "city_name" : "Laa",
     "mkCoordinateRegionLatitudeDelta" : 0.005846811511695194
   },
@@ -1040,7 +986,7 @@
     "mkCoordinateRegionLongitude" : 16.570966,
     "mkCoordinateRegionLatitude" : 48.5670835,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=169",
+    "region" : "169",
     "city_name" : "Mistelbach",
     "mkCoordinateRegionLatitudeDelta" : 0.008054999999998813
   },
@@ -1053,7 +999,7 @@
     "mkCoordinateRegionLongitude" : 10.0109642631592,
     "mkCoordinateRegionLatitude" : 53.70937130958094,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=177",
+    "region" : "177",
     "city_name" : "Norderstedt",
     "mkCoordinateRegionLatitudeDelta" : 0.04957281916190226
   },
@@ -1066,7 +1012,7 @@
     "mkCoordinateRegionLatitude" : 48.0975809872264,
     "mkCoordinateRegionLongitude" : 16.29714488983155,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=64",
+    "region" : "64",
     "city_name" : "Mödling",
     "city_group" : "Wien",
     "mkCoordinateRegionLatitudeDelta" : 0.07812078672080247
@@ -1080,7 +1026,7 @@
     "mkCoordinateRegionLongitude" : 7.945397794246675,
     "mkCoordinateRegionLatitude" : 48.47283835090915,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=155",
+    "region" : "155",
     "city_name" : "Offenburg",
     "mkCoordinateRegionLatitudeDelta" : 0.01581310181829565
   },
@@ -1093,7 +1039,7 @@
     "mkCoordinateRegionLongitude" : 11.073053330183,
     "mkCoordinateRegionLatitude" : 49.44930968766615,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=6",
+    "region" : "6",
     "city_name" : "Nürnberg",
     "mkCoordinateRegionLatitudeDelta" : 0.08915488475250299
   },
@@ -1121,7 +1067,7 @@
     "mkCoordinateRegionLongitude" : 9.747472107410434,
     "mkCoordinateRegionLatitude" : 52.37125715889115,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=87",
+    "region" : "87",
     "city_name" : "Hannover",
     "mkCoordinateRegionLatitudeDelta" : 0.05556791778230519
   },
@@ -1134,7 +1080,7 @@
     "mkCoordinateRegionLongitude" : 32.88499295711515,
     "mkCoordinateRegionLatitude" : 34.6929696184338,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=190",
+    "region" : "190",
     "city_name" : "Limassol",
     "mkCoordinateRegionLatitudeDelta" : 0.04281023686759511
   },
@@ -1146,18 +1092,9 @@
     "latitude" : 45.419289,
     "mkCoordinateRegionLongitude" : -75.715872,
     "mkCoordinateRegionLatitude" : 45.419289,
-    "city_class" : "XMLSubnodesCity",
+    "city_class" : "BIXICity",
     "update_url" : "http:\/\/capitale.bixi.com\/data\/bikeStations.xml",
-    "KVCMapping" : {
-      "id" : "number",
-      "lat" : "latitude",
-      "long" : "longitude",
-      "name" : "name",
-      "nbEmptyDocks" : "status_free",
-      "nbBikes" : "status_available"
-    },
     "city_name" : "Ottawa",
-    "station_element_name" : "station",
     "mkCoordinateRegionLatitudeDelta" : 0.04616199999999537
   },
   {
@@ -1169,7 +1106,7 @@
     "mkCoordinateRegionLongitude" : 9.9435785787201,
     "mkCoordinateRegionLatitude" : 53.5463300559983,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=43",
+    "region" : "43",
     "city_name" : "Hamburg",
     "mkCoordinateRegionLatitudeDelta" : 0.09637387474720072
   },
@@ -1182,7 +1119,7 @@
     "mkCoordinateRegionLongitude" : 11.6354441642761,
     "mkCoordinateRegionLatitude" : 52.1299382523697,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=42",
+    "region" : "42",
     "city_name" : "Magdeburg",
     "mkCoordinateRegionLatitudeDelta" : 0
   },
@@ -1195,7 +1132,7 @@
     "mkCoordinateRegionLongitude" : 32.4828641116619,
     "mkCoordinateRegionLatitude" : 37.92432601842781,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=183",
+    "region" : "183",
     "city_name" : "Konya",
     "mkCoordinateRegionLatitudeDelta" : 0.190860873235799
   },
@@ -1208,7 +1145,7 @@
     "mkCoordinateRegionLongitude" : 12.39803910255435,
     "mkCoordinateRegionLatitude" : 51.33944132598135,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=1",
+    "region" : "1",
     "city_name" : "Leipzig",
     "mkCoordinateRegionLatitudeDelta" : 0.05461734803730423
   },
@@ -1273,7 +1210,7 @@
     "mkCoordinateRegionLongitude" : 17.92827531695365,
     "mkCoordinateRegionLatitude" : 50.6680561514835,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=202",
+    "region" : "202",
     "city_name" : "Opole",
     "mkCoordinateRegionLatitudeDelta" : 0.02704216659800096
   },
@@ -1286,7 +1223,7 @@
     "mkCoordinateRegionLongitude" : 13.05071979761125,
     "mkCoordinateRegionLatitude" : 52.39094212719515,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=158",
+    "region" : "158",
     "city_name" : "Potsdam",
     "mkCoordinateRegionLatitudeDelta" : 0.04983949592949699
   },
@@ -1330,7 +1267,7 @@
     "longitude" : 13.0121469497681,
     "city_class" : "NextBikeCity",
     "service_name" : "NextBike",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=31",
+    "region" : "31",
     "latitude" : 47.8787070044582,
     "city_name" : "Salzburg"
   },
@@ -1357,7 +1294,7 @@
     "mkCoordinateRegionLongitude" : 14.91625,
     "mkCoordinateRegionLatitude" : 47.82219638150815,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=181",
+    "region" : "181",
     "city_name" : "Oberes",
     "mkCoordinateRegionLatitudeDelta" : 0.07772676301630099
   },
@@ -1370,7 +1307,7 @@
     "mkCoordinateRegionLongitude" : 16.009981398407,
     "mkCoordinateRegionLatitude" : 47.8825955,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=168",
+    "region" : "168",
     "city_name" : "Piestingtal",
     "mkCoordinateRegionLatitudeDelta" : 0.02644100000000549
   },
@@ -1383,7 +1320,7 @@
     "mkCoordinateRegionLongitude" : 16.93343460559845,
     "mkCoordinateRegionLatitude" : 52.4034067147887,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=192",
+    "region" : "192",
     "city_name" : "Poznan",
     "mkCoordinateRegionLatitudeDelta" : 0.01408622144519711
   },
@@ -1396,7 +1333,7 @@
     "mkCoordinateRegionLongitude" : 16.06458,
     "mkCoordinateRegionLatitude" : 47.976205,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=144",
+    "region" : "144",
     "city_name" : "Triestingtal",
     "mkCoordinateRegionLatitudeDelta" : 0.09534999999999627
   },
@@ -1409,7 +1346,6 @@
     "mkCoordinateRegionLongitude" : 144.9619015,
     "mkCoordinateRegionLatitude" : -37.82255050000001,
     "city_class" : "MelbourneBikeShareCity",
-    "update_url" : "http:\/\/www.melbournebikeshare.com.au\/stationmap\/data",
     "city_name" : "Melbourne",
     "mkCoordinateRegionLatitudeDelta" : 0.05260100000000278
   },
@@ -1421,18 +1357,9 @@
     "latitude" : 43.6534725,
     "mkCoordinateRegionLongitude" : -79.38765000000001,
     "mkCoordinateRegionLatitude" : 43.6534725,
-    "city_class" : "XMLSubnodesCity",
+    "city_class" : "BIXICity",
     "update_url" : "http:\/\/toronto.bixi.com\/data\/bikeStations.xml",
-    "KVCMapping" : {
-      "id" : "number",
-      "lat" : "latitude",
-      "long" : "longitude",
-      "name" : "name",
-      "nbEmptyDocks" : "status_free",
-      "nbBikes" : "status_available"
-    },
     "city_name" : "Toronto",
-    "station_element_name" : "station",
     "mkCoordinateRegionLatitudeDelta" : 0.03614500000000476
   },
   {
@@ -1444,7 +1371,7 @@
     "mkCoordinateRegionLatitude" : 48.0040242731027,
     "mkCoordinateRegionLongitude" : 16.264135,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=146",
+    "region" : "146",
     "city_name" : "Thermenregion",
     "city_group" : "Wien",
     "mkCoordinateRegionLatitudeDelta" : 0.1200114537946035
@@ -1458,7 +1385,7 @@
     "mkCoordinateRegionLongitude" : 15.6311805,
     "mkCoordinateRegionLatitude" : 48.19678,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=57",
+    "region" : "57",
     "city_name" : "St.Pölten",
     "mkCoordinateRegionLatitudeDelta" : 0.04830000000000467
   },
@@ -1471,7 +1398,7 @@
     "mkCoordinateRegionLongitude" : 15.666355,
     "mkCoordinateRegionLatitude" : 47.9770265,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=180",
+    "region" : "180",
     "city_name" : "Traisen-Gölsental",
     "mkCoordinateRegionLatitudeDelta" : 0.2468310000000002
   },
@@ -1484,7 +1411,7 @@
     "mkCoordinateRegionLatitude" : 48.12139435863415,
     "mkCoordinateRegionLongitude" : 16.43626116153715,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=185",
+    "region" : "185",
     "city_name" : "Südheide",
     "city_group" : "Wien",
     "mkCoordinateRegionLatitudeDelta" : 0.0427712827316995
@@ -1498,7 +1425,7 @@
     "mkCoordinateRegionLongitude" : 9.047550743875121,
     "mkCoordinateRegionLatitude" : 48.5180967369397,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=101",
+    "region" : "101",
     "city_name" : "Tübingen",
     "mkCoordinateRegionLatitudeDelta" : 0.01424067387940653
   },
@@ -1511,7 +1438,7 @@
     "mkCoordinateRegionLongitude" : 15.4554435,
     "mkCoordinateRegionLatitude" : 48.31852065,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=142",
+    "region" : "142",
     "city_name" : "Wachau",
     "mkCoordinateRegionLatitudeDelta" : 0.1885566999999995
   },
@@ -1524,7 +1451,7 @@
     "mkCoordinateRegionLongitude" : 15.0831945,
     "mkCoordinateRegionLatitude" : 48.903889,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=161",
+    "region" : "161",
     "city_name" : "Waldviertel",
     "mkCoordinateRegionLatitudeDelta" : 0.07833399999999813
   },
@@ -1537,7 +1464,7 @@
     "mkCoordinateRegionLongitude" : 15.152785,
     "mkCoordinateRegionLatitude" : 48.0700015,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=151",
+    "region" : "151",
     "city_name" : "Wieselburg",
     "mkCoordinateRegionLatitudeDelta" : 0.283336999999996
   },
@@ -1550,7 +1477,7 @@
     "mkCoordinateRegionLongitude" : 15.74296294969175,
     "mkCoordinateRegionLatitude" : 48.31509455085305,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=165",
+    "region" : "165",
     "city_name" : "Unteres",
     "mkCoordinateRegionLatitudeDelta" : 0.07674089829389885
   },
@@ -1563,7 +1490,7 @@
     "mkCoordinateRegionLongitude" : 16.22809631586075,
     "mkCoordinateRegionLatitude" : 47.7786983349921,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=156",
+    "region" : "156",
     "city_name" : "Wr.Neustadt",
     "mkCoordinateRegionLatitudeDelta" : 0.1249229850536011
   },
@@ -1576,7 +1503,7 @@
     "mkCoordinateRegionLatitude" : 56.97853272164165,
     "mkCoordinateRegionLongitude" : 23.82602781057355,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=140",
+    "region" : "140",
     "city_name" : "Jurmala",
     "city_group" : "Riga",
     "mkCoordinateRegionLatitudeDelta" : 0.0136783867853012
@@ -1590,7 +1517,7 @@
     "mkCoordinateRegionLatitude" : 56.97026479028375,
     "mkCoordinateRegionLongitude" : 24.12004083395005,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=128",
+    "region" : "128",
     "city_name" : "Riga",
     "city_group" : "Riga",
     "mkCoordinateRegionLatitudeDelta" : 0.07005915716030131
@@ -1619,7 +1546,7 @@
     "mkCoordinateRegionLongitude" : 27.09686771035195,
     "mkCoordinateRegionLatitude" : 38.46179164694275,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=214",
+    "region" : "214",
     "city_name" : "İzmir",
     "mkCoordinateRegionLatitudeDelta" : 0.0244172928024966
   },
@@ -1672,18 +1599,9 @@
     "latitude" : 38.87985949999999,
     "mkCoordinateRegionLongitude" : -77.028965,
     "mkCoordinateRegionLatitude" : 38.87985949999999,
-    "city_class" : "XMLSubnodesCity",
+    "city_class" : "BIXICity",
     "update_url" : "http:\/\/capitalbikeshare.com\/data\/stations\/bikeStations.xml",
-    "KVCMapping" : {
-      "id" : "number",
-      "lat" : "latitude",
-      "long" : "longitude",
-      "name" : "name",
-      "nbEmptyDocks" : "status_free",
-      "nbBikes" : "status_available"
-    },
     "city_name" : "Washington",
-    "station_element_name" : "station",
     "mkCoordinateRegionLatitudeDelta" : 0.1534710000000032
   },
   {
@@ -1695,7 +1613,6 @@
     "mkCoordinateRegionLatitude" : 48.3124076164096,
     "mkCoordinateRegionLongitude" : 15.9795928001404,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "regions" : {
       "143" : "Tulln",
       "196" : "Tullnerfeld"
@@ -1712,7 +1629,6 @@
     "mkCoordinateRegionLatitude" : 52.5209538809149,
     "mkCoordinateRegionLongitude" : 13.3926558494568,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "regions" : {
       "20" : "Berlin",
       "182" : "Halensee"
@@ -1729,7 +1645,6 @@
     "mkCoordinateRegionLongitude" : 2.165496,
     "mkCoordinateRegionLatitude" : 41.4039745,
     "city_class" : "BarcelonaCityBikeCity",
-    "update_url" : "https:\/\/www.bicing.cat\/localizaciones\/getJsonObject.php",
     "city_name" : "Barcelona",
     "mkCoordinateRegionLatitudeDelta" : 0.09381499999999932
   },
@@ -1742,7 +1657,6 @@
     "mkCoordinateRegionLatitude" : 51.10021114653665,
     "mkCoordinateRegionLongitude" : 17.02386528253555,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "regions" : {
       "148" : "Wrocław",
       "187" : "Wrocław"
@@ -1765,7 +1679,6 @@
     "mkCoordinateRegionLatitude" : 48.2017435,
     "mkCoordinateRegionLongitude" : 16.8020931596794,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "regions" : {
       "170" : "Marchfeld",
       "149" : "Römerland"
@@ -1812,7 +1725,6 @@
     "mkCoordinateRegionLatitude" : 50.1364417,
     "mkCoordinateRegionLongitude" : 8.659193220478059,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "regions" : {
       "8" : "Frankfurt",
       "32" : "Offenbach"
@@ -1843,18 +1755,9 @@
     "latitude" : 44.9701435,
     "mkCoordinateRegionLongitude" : -93.197745,
     "mkCoordinateRegionLatitude" : 44.9701435,
-    "city_class" : "XMLSubnodesCity",
+    "city_class" : "BIXICity",
     "update_url" : "https:\/\/secure.niceridemn.org\/data2\/bikeStations.xml",
-    "KVCMapping" : {
-      "id" : "number",
-      "lat" : "latitude",
-      "long" : "longitude",
-      "name" : "name",
-      "nbEmptyDocks" : "status_free",
-      "nbBikes" : "status_available"
-    },
     "city_name" : "Minneapolis",
-    "station_element_name" : "station",
     "mkCoordinateRegionLatitudeDelta" : 0.08634899999999845
   },
   {
@@ -1866,7 +1769,6 @@
     "mkCoordinateRegionLatitude" : 52.21368823084005,
     "mkCoordinateRegionLongitude" : 20.99120646715165,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "regions" : {
       "210" : "Warszawa",
       "197" : "Bemowo"
@@ -1927,18 +1829,9 @@
     "latitude" : 45.5084315,
     "mkCoordinateRegionLongitude" : -73.57850000000001,
     "mkCoordinateRegionLatitude" : 45.5084315,
-    "city_class" : "XMLSubnodesCity",
+    "city_class" : "BIXICity",
     "update_url" : "http:\/\/montreal.bixi.com\/data\/bikeStations.xml",
-    "KVCMapping" : {
-      "id" : "number",
-      "lat" : "latitude",
-      "long" : "longitude",
-      "name" : "name",
-      "nbEmptyDocks" : "status_free",
-      "nbBikes" : "status_available"
-    },
     "city_name" : "Montréal",
-    "station_element_name" : "station",
     "mkCoordinateRegionLatitudeDelta" : 0.1047650000000004
   },
   {
@@ -2022,7 +1915,6 @@
     "mkCoordinateRegionLatitude" : 51.5328639008121,
     "mkCoordinateRegionLongitude" : 7.31156229972839,
     "city_class" : "NextBikeCity",
-    "update_url" : "http:\/\/www.nextbike.de\/maps\/nextbike-official.xml?city=",
     "regions" : {
       "135" : "Hamm",
       "138" : "Oberhausen",

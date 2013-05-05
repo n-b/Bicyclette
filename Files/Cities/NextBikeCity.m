@@ -17,21 +17,26 @@
 
 #pragma mark City Data Update
 
+- (NSString*) baseURL
+{
+    return @"http://www.nextbike.de/maps/nextbike-official.xml?city=";
+}
+
 - (NSArray *) updateURLStrings
 {
     if( self.serviceInfo[@"regions"] )
     {
-        NSString * baseURL = self.serviceInfo[@"update_url"];
         NSDictionary * regions = self.serviceInfo[@"regions"];
         NSMutableArray * result = [NSMutableArray new];
         for (NSString * regionID in regions) {
-            [result addObject:[baseURL stringByAppendingString:regionID]];
+            [result addObject:[self.baseURL stringByAppendingString:regionID]];
         }
         return result;
     }
-    else
-    {
-        return [super updateURLStrings];
+    else if( self.serviceInfo[@"region"]) {
+        return @[[self.baseURL stringByAppendingString:self.serviceInfo[@"region"]]];
+    } else {
+        return nil;
     }
 }
 

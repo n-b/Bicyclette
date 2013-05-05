@@ -17,6 +17,11 @@
 
 #pragma mark City Data Update
 
+- (NSArray *)updateURLStrings
+{
+    return @[@"https://www.bicing.cat/localizaciones/getJsonObject.php"];
+}
+
 - (NSDictionary*) districts
 {
     return @{@"26": @"10",

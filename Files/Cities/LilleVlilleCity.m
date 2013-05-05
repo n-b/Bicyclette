@@ -30,6 +30,11 @@
                       }];
 }
 
+- (NSArray *)updateURLStrings
+{
+    return @[@"http://vlille.fr/stations/xml-stations.aspx"];
+}
+
 #pragma mark City Data Update
 
 - (void) parseData:(NSData*)data
@@ -62,6 +67,17 @@
 {
     return @"marker";
 }
+
+- (Class)stationStatusParsingClass
+{
+    return [FixedUTF8EncodingXMLSubnodesStationParse class];
+}
+
+- (NSString *) detailsURLStringForStation:(Station*)station
+{
+    return [@"http://vlille.fr/stations/xml-station.aspx?borne=" stringByAppendingString:station.number];
+}
+
 @end
 
 @implementation FixedUTF8EncodingXMLSubnodesStationParse
