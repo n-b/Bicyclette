@@ -6,10 +6,14 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "CyclocityCity.h"
+#import "JCDecauxCity.h"
 #import "NSStringAdditions.h"
 
-@interface ParisVelibCity : CyclocityCity
+@interface ParisVelibCity : JCDecauxCity
+@end
+
+@interface NSString (ParisTweaks)
+- (NSString*) stringWithEndOfAddress;
 @end
 
 @implementation ParisVelibCity
@@ -37,10 +41,8 @@
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString
 {
-    if( ! [station.fullAddress hasPrefix:station.address] )
-        return nil;
-
-    NSString * endOfAddress = [station.fullAddress stringByDeletingPrefix:station.address];
+    NSString * endOfAddress = [station.address stringWithEndOfAddress];
+    
     endOfAddress = [endOfAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
     NSString * lCodePostal = nil;
@@ -49,7 +51,7 @@
         // Stations Mobiles et autres bugs (93401 au lieu de 93400)
         lCodePostal = patchs[@"codePostal"];
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-            DebugLog(@"Note : Used hardcoded codePostal for station %@. Full Address: %@. Patch : %@.",station.number, station.fullAddress, lCodePostal);
+            DebugLog(@"Note : Used hardcoded codePostal for station %@. Full Address: %@. Patch : %@.",station.number, station.address, lCodePostal);
     }
     else
     {
@@ -72,7 +74,7 @@
                     break;
             }
             if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
-                DebugLog(@"Note : Used heuristics to find region for Station %@. Full Address: %@. Found from number : %@",station.number, station.fullAddress, lCodePostal);
+                DebugLog(@"Note : Used heuristics to find region for Station %@. Full Address: %@. Found from number : %@",station.number, station.address, lCodePostal);
         }
     }
 
@@ -90,6 +92,30 @@
         regionInfo.name = cityName;
     }
     return regionInfo;
+}
+
+@end
+
+@implementation NSString (ParisTweaks)
+
+- (NSString*) stringWithEndOfAddress
+{
+    NSArray * components = [self componentsSeparatedByString:@" - "];
+    if([components count]>1) {
+        return [components lastObject];
+    }
+    static NSRegularExpression * exp;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        exp = [NSRegularExpression regularExpressionWithPattern:@"[0-9]{5}" options:0 error:NULL];
+    });
+    NSTextCheckingResult * match = [exp firstMatchInString:self options:0 range:NSMakeRange(0, [self length])];
+    if(match) {
+        return [self substringFromIndex:[match range].location];
+    } else {
+        DebugLog(@"Note : End of address not found = %@",self);
+        return @"";
+    }
 }
 
 @end

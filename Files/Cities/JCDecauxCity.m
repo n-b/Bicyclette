@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "FlatJSONListCity.h"
+#import "JCDecauxCity.h"
 #import "NSStringAdditions.h"
 #import "NSValueTransformer+TransformerKit.h"
-
-@interface JCDecauxCity : FlatJSONListCity
-@end
 
 @implementation JCDecauxCity
 

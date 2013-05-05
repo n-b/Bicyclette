@@ -239,6 +239,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
                                     options:0 error:NULL];
     NSDictionary * result = accounts[[NSString stringWithFormat:@"%@_%@",self.serviceInfo[@"city_name"], self.serviceInfo[@"service_name"]]];
     if(result==nil)
+        result = accounts[self.serviceInfo[@"account_class"]];
+    if(result==nil)
         result = accounts[self.serviceInfo[@"city_name"]];
     if(result==nil)
         result = accounts[self.serviceInfo[@"service_name"]];

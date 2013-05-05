@@ -131,7 +131,7 @@
                    @"NumberOf0:status_free"
                    ],
              @"4": @"latitude",
-             @"2": @"fullAddress",
+             @"2": @"address",
              @"0": @"number",
              @"5": @"longitude"
              };

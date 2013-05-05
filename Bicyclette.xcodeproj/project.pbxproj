@@ -459,6 +459,7 @@
 		94B224FA1736A20D004E1009 /* _Accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = _Accounts.json; sourceTree = "<group>"; };
 		94B224FB1736A20D004E1009 /* _GoogleAnalytics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _GoogleAnalytics.plist; sourceTree = "<group>"; };
 		94B224FF1736A6A2004E1009 /* JCDecauxCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDecauxCity.m; sourceTree = "<group>"; };
+		94B225021736AFAF004E1009 /* JCDecauxCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDecauxCity.h; sourceTree = "<group>"; };
 		94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paris_Vélib’.coredata"; sourceTree = "<group>"; };
 		94E45DC416A995F800EB6C84 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		94E45DC616A99A6000EB6C84 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
@@ -758,7 +759,6 @@
 			children = (
 				376D0E4B1678B56D006F321D /* CyclocityCity.h */,
 				376D0E4C1678B56D006F321D /* CyclocityCity.m */,
-				3791306716971C100054FECA /* ParisVelibCity.m */,
 			);
 			name = Cyclocity;
 			sourceTree = "<group>";
@@ -826,7 +826,9 @@
 				3788EC7D1697AF0400836A60 /* BarcelonaCityBikeCity.m */,
 				94EDC1C4170587E200113E76 /* BCycleCity.m */,
 				94B224F617369A63004E1009 /* ViaCycleCity.m */,
+				94B225021736AFAF004E1009 /* JCDecauxCity.h */,
 				94B224FF1736A6A2004E1009 /* JCDecauxCity.m */,
+				3791306716971C100054FECA /* ParisVelibCity.m */,
 			);
 			name = "Flat JSON list";
 			sourceTree = "<group>";
