@@ -22,9 +22,19 @@
     NSMutableString * str = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [str replaceOccurrencesOfString:@"\\x26" withString:@"&" options:0 range:NSMakeRange(0, [str length])];
     [str replaceOccurrencesOfString:@"\\'" withString:@"'" options:0 range:NSMakeRange(0, [str length])];
-
+    
     return [super stationAttributesArraysFromData:[str dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{@"id": @"number",
+             @"lat": @"latitude",
+             @"long": @"longitude",
+             @"name": @"name",
+             @"nbEmptyDocks": @"status_free",
+             @"nbBikes": @"status_available"
+             };
+}
 
 @end

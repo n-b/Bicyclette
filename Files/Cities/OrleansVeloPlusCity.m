@@ -33,4 +33,21 @@
                       }];
 }
 
+-(NSDictionary *)KVCMapping
+{
+    return @{@"status": @"OrleansStationStatusTransformer:open",
+             @"id": @"number",
+             @"bikes": @"status_available",
+             @"lat": @"latitude",
+             @"lng": @"longitude",
+             @"name": @"name",
+             @"attachs": @"status_free"
+             };
+}
+
+- (NSString *)stationElementName
+{
+    return @"marker";
+}
+
 @end

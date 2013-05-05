@@ -29,4 +29,22 @@
     return title;
 }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{@"ac": @"status_total",
+             @"ap": @"status_free",
+             @"id": @"number",
+             @"wcom": @"address",
+             @"lat": @"latitude",
+             @"lng": @"longitude",
+             @"name": @"name",
+             @"ab": @"status_available"
+             };
+}
+
+- (NSString *)keyPathToStationsLists
+{
+    return @"stand";
+}
+
 @end

@@ -9,6 +9,7 @@
 #import "FlatJSONListCity.h"
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
+#import "_StationParse.h"
 
 @interface LyonVelovCity : FlatJSONListCity
 @end
@@ -55,21 +56,61 @@
 - (NSArray*) updateURLStrings
 {
     NSString * baseURL = self.serviceInfo[@"update_url"];
-    NSArray * zips = [self.serviceInfo[@"regions"] allKeys];
     
     NSMutableArray * urlStrings = [NSMutableArray new];
-    for (NSString * zip in zips) {
+    for (NSString * zip in self.zips) {
         [urlStrings addObject:[baseURL stringByAppendingString:zip]];
     }
     return urlStrings;
 }
 
+- (NSDictionary*) zips
+{
+    return @{@"69381": @"1",
+             @"69382": @"2",
+             @"69383": @"3",
+             @"69384": @"4",
+             @"69385": @"5",
+             @"69386": @"6",
+             @"69387": @"7",
+             @"69388": @"8",
+             @"69389": @"9",
+             @"69256": @"Villeurbanne",
+
+             @"69266": @"Villeurbanne",
+             @"69034": @"4",
+             };
+}
+
 - (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString
 {
     NSString * zip = [urlString stringByDeletingPrefix:self.serviceInfo[@"update_url"]];
-    NSDictionary * zips = self.serviceInfo[@"regions"];
-    NSString * name = zips[zip];
+    NSString * name = self.zips[zip];
     return [RegionInfo infoWithName:name number:name];
+}
+
+- (NSDictionary *)KVCMapping
+{
+    return @{@"x": @"latitude",
+             @"y": @"longitude",
+             @"numStation": @"number",
+             @"nomStation": @"name",
+             @"infoStation": @"address",
+             @"ticket": @"status_ticket",
+             @"available": @"status_available",
+             @"total": @"status_total",
+             @"free": @"status_free",
+             };
+}
+
+- (NSString *)keyPathToStationsLists
+{
+    return @"markers";
+}
+
+- (Class)stationStatusParsingClass
+{
+    return [XMLSubnodesStationParse class];
 }
 
 @end

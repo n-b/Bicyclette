@@ -44,4 +44,16 @@
     return attributesArray;
 }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{
+        @"name": @"name",
+        @"num": @"number",
+        @"lat": @"latitude",
+        @"lockCount": @"status_total",
+        @"lon": @"longitude",
+        @"bikeCount": @"status_available"
+        };
+}
+
 @end

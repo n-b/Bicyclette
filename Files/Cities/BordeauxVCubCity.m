@@ -51,4 +51,22 @@
     return @[urlstring];
 }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{@"ms:NBVELOS": @"status_available",
+             @"gml:pos":
+                 @[@"FirstComponent:latitude",
+                   @"SecondComponent:longitude"
+                   ],
+             @"ms:IDENT": @"number",
+             @"ms:NBPLACES": @"status_free",
+             @"ms:NOM": @"name"
+             };
+}
+
+- (NSString *)stationElementName
+{
+    return @"ms:CI_VCUB_P";
+}
+
 @end

@@ -27,4 +27,22 @@
 
 - (NSString *) titleForStation:(Station *)station { return [station.name capitalizedStringWithCurrentLocale]; }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{@"number": @"number",
+             @"name": @"name",
+             @"longitude": @"longitude",
+             @"latitude": @"latitude",
+             @"slotsavailable": @"status_free",
+             @"bikesavailable": @"status_available",
+             @"state": @"open",
+             @"pos": @"status_ticket"
+             };
+}
+
+- (NSString *)stationElementName
+{
+    return @"station";
+}
+
 @end

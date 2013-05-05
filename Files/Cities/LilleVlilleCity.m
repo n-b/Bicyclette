@@ -45,6 +45,23 @@
     [super parseData:data];
 }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{
+        @"status": @"VlilleStationStatusTransformer:open",
+        @"id": @"number",
+        @"bikes": @"status_available",
+        @"lat": @"latitude",
+        @"lng": @"longitude",
+        @"name": @"name",
+        @"attachs": @"status_free"
+    };
+}
+
+- (NSString *)stationElementName
+{
+    return @"marker";
+}
 @end
 
 @implementation FixedUTF8EncodingXMLSubnodesStationParse

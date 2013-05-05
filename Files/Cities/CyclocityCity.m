@@ -49,5 +49,10 @@
     return [XMLSubnodesStationParse class];
 }
 
+- (NSString *)stationElementName
+{
+    return @"marker";
+}
+
 @end
 
