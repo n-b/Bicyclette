@@ -28,7 +28,7 @@
 "DESIGN_AND_CODE" = "Design & Code Nicolas Bouilleaud";
 "CONTACT_EMAIL_SUPPORT" = "Have an idea? Found a bug?";
 
-"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@";
+"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@<br>City: %4$@";
 
 "STORE_PLEASE_HELP_LABEL" = "Like this app?";
 "STORE_PLEASE_HELP_BUTTON" = "Make a Donation!";
