@@ -80,7 +80,7 @@
 
 - (NSString*) stationElementName
 {
-    return self.serviceInfo[@"station_element_name"];
+    return @"string";
 }
 
 - (void) parseData:(NSData*)data
@@ -121,6 +121,21 @@
         attributes[[NSString stringWithFormat:@"%d",(int)idx]] = obj;
     }];
     return attributes;
+}
+
+- (NSDictionary *)KVCMapping
+{
+    return @{
+             @"1": @"name",
+             @"6": @[
+                     @"NumberOf4:status_available",
+                     @"NumberOf0:status_free"
+                     ],
+             @"4": @"latitude",
+             @"2": @"fullAddress",
+             @"0": @"number",
+             @"5": @"longitude"
+             };
 }
 
 @end

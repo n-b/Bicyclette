@@ -21,4 +21,22 @@
     return [NSString stringWithFormat:@"%@ - %@",station.number, station.name];
 }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{
+             @"Latitude": @"latitude",
+             @"Address": @"name",
+             @"Bikes": @"status_available",
+             @"Longitude": @"longitude",
+             @"Dockings": @"status_free",
+             @"Id": @"number"
+             };
+    
+}
+
+- (NSString *)stationElementName
+{
+    return @"location";
+}
+
 @end

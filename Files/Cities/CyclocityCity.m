@@ -8,6 +8,7 @@
 
 #import "CyclocityCity.h"
 #import "NSStringAdditions.h"
+#import "_StationParse.h"
 
 @implementation CyclocityCity
 #pragma mark Annotations
@@ -23,6 +24,29 @@
     title = [title stringByTrimmingWhitespace];
     title = [title capitalizedStringWithCurrentLocale];
     return title;
+}
+
+- (NSDictionary *)KVCMapping
+{
+    return @{
+             @"fullAddress": @"fullAddress",
+             @"ticket": @"status_ticket",
+             @"total": @"status_total",
+             @"lat": @"latitude",
+             @"address": @"address",
+             @"open": @"open",
+             @"number": @"number",
+             @"available": @"status_available",
+             @"lng": @"longitude",
+             @"free": @"status_free",
+             @"name": @"name",
+             @"bonus": @"bonus"
+             };
+}
+
+- (Class)stationStatusParsingClass
+{
+    return [XMLSubnodesStationParse class];
 }
 
 @end

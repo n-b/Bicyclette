@@ -35,4 +35,20 @@
     }
 }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{
+             @"lng": @"longitude",
+             @"lat": @"latitude",
+             @"uid": @"number",
+             @"name": @"name",
+             @"bikes": @"status_available"
+             };
+}
+
+- (NSString *)stationElementName
+{
+    return @"place";
+}
+
 @end

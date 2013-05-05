@@ -19,21 +19,6 @@
 
 - (NSArray *) updateURLStrings { return @[@"http://api.bcycle.com/services/mobile.svc/ListKiosks"]; }
 
-- (NSDictionary*) KVCMapping
-{
-    return @{
-             @"Address.Street": @"address",
-             @"Location.Latitude": @"latitude",
-             @"Location.Longitude": @"longitude",
-
-             @"Name": @"name",
-             @"Id": @"number",
-             @"BikesAvailable": @"status_available",
-             @"DocksAvailable": @"status_free",
-             @"TotalDocks": @"status_total",
-             };
-}
-
 - (NSArray*) stationAttributesArraysFromData:(NSData*)data
 {
     return [super stationAttributesArraysFromData:data];
@@ -44,6 +29,25 @@
     NSString * cityName = [[stationAttributes[@"Address.City"] lowercaseString] stringByTrimmingWhitespace];
     if([self.serviceInfo[@"bcycle_city_names"] containsObject:cityName])
         [super insertStationWithAttributes:stationAttributes];
+}
+
+- (NSDictionary *)KVCMapping
+{
+    return @{
+             @"Id": @"number",
+             @"Location.Longitude": @"longitude",
+             @"Location.Latitude": @"latitude",
+             @"DocksAvailable": @"status_free",
+             @"Address.Street": @"address",
+             @"TotalDocks": @"status_total",
+             @"Name": @"name",
+             @"BikesAvailable": @"status_available"
+             };
+}
+
+- (NSString *)keyPathToStationsLists
+{
+    return @"d.list";
 }
 
 @end

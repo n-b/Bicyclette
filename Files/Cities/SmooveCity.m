@@ -20,4 +20,22 @@
 
 - (NSString *) titleForStation:(Station *)station { return [[[station.name stringByTrimmingZeros] stringByDeletingPrefix:station.number] stringByTrimmingWhitespace]; }
 
+- (NSDictionary *)KVCMapping
+{
+    return @{
+             @"fr": @"status_free",
+             @"id": @"number",
+             @"na": @"name",
+             @"av": @"status_available",
+             @"la": @"latitude",
+             @"to": @"status_total",
+             @"lg": @"longitude"
+             };
+}
+
+- (NSString *)stationElementName
+{
+    return @"si";
+}
+
 @end
