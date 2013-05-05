@@ -86,7 +86,12 @@
         NSError * requestError = nil;
         
         NSFetchRequest * oldStationsRequest = [NSFetchRequest fetchRequestWithEntityName:[Station entityName]];
-        NSMutableArray* oldStations =  [[updateContext executeFetchRequest:oldStationsRequest error:&requestError] mutableCopy];
+        oldStationsRequest.returnsObjectsAsFaults = NO;
+        NSArray * stations = [updateContext executeFetchRequest:oldStationsRequest error:&requestError];
+        NSMutableDictionary* oldStations = [NSMutableDictionary new];
+        for (Station * station in stations) {
+            oldStations[station.number] = station;
+        }
         
         _parsing_context = updateContext;
         _parsing_oldStations = oldStations;
@@ -118,7 +123,7 @@
         }
         
         // Delete Old Stations
-        for (Station * oldStation in oldStations) {
+        for (Station * oldStation in [oldStations allValues]) {
             if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
                 DebugLog(@"Note : old station deleted after update : %@", oldStation);
             [updateContext deleteObject:oldStation];
@@ -194,11 +199,11 @@
     
     //
     // Find Existing Station
-    Station * station = [_parsing_oldStations firstObjectWithValue:stationNumber forKeyPath:StationAttributes.number];
+    Station * station = _parsing_oldStations[stationNumber];
     if(station)
     {
         // found existing
-        [_parsing_oldStations removeObject:station];
+        [_parsing_oldStations removeObjectForKey:stationNumber];
     }
     else
     {
