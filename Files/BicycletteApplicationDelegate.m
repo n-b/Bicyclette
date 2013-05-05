@@ -39,12 +39,12 @@
     // Google Analytics
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [GAI sharedInstance].dispatchInterval = 20;
-#if DEBUG
-    [GAI sharedInstance].debug = YES;
-#endif
     NSString * trackingID = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"_GoogleAnalytics" ofType:@"plist"]] objectForKey:@"TrackingID"];
     [[GAI sharedInstance] trackerWithTrackingId:trackingID];
+#if DEBUG
+    //[GAI sharedInstance].debug = YES;
     [GAI sharedInstance].defaultTracker.useHttps = NO;
+#endif
     [GAI sharedInstance].defaultTracker.anonymize = YES;
     
     self.citiesController = [CitiesController new];
