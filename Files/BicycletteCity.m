@@ -242,6 +242,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         result = accounts[self.serviceInfo[@"city_name"]];
     if(result==nil)
         result = accounts[self.serviceInfo[@"service_name"]];
+    if(result==nil)
+        result = accounts[self.serviceInfo[@"city_class"]];
     return result;
 }
 

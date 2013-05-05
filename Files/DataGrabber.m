@@ -113,7 +113,7 @@ static void GrabDataForCity(BicycletteCity* city)
          else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
          {
              NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
-             printf("%s\n",[[NSString stringWithFormat:@"FAILED : %@", error] UTF8String]);
+             printf("%s\n",[[NSString stringWithFormat:@"FAILED %@: %@", city.cityName, error] UTF8String]);
              [gCitiesDone addObject:city];
          }
      }];

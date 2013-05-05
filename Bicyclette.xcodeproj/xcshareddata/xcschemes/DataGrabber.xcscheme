@@ -67,8 +67,8 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter SmooveCity"
-            isEnabled = "NO">
+            argument = "-DataGrabberCityFilter JCDecauxCity"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogGeolocationDetails YES"

@@ -179,6 +179,8 @@
 		94B224FC1736A20D004E1009 /* _Accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = 94B224FA1736A20D004E1009 /* _Accounts.json */; };
 		94B224FD1736A20D004E1009 /* _GoogleAnalytics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94B224FB1736A20D004E1009 /* _GoogleAnalytics.plist */; };
 		94B224FE1736A21C004E1009 /* _Accounts.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94B224FA1736A20D004E1009 /* _Accounts.json */; };
+		94B225001736A6A2004E1009 /* JCDecauxCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B224FF1736A6A2004E1009 /* JCDecauxCity.m */; };
+		94B225011736A6A2004E1009 /* JCDecauxCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B224FF1736A6A2004E1009 /* JCDecauxCity.m */; };
 		94DE16D316AD57ED00C0FB64 /* Paris_Vélib’.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */; };
 		94E45DC516A995F800EB6C84 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DC416A995F800EB6C84 /* Social.framework */; };
 		94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC616A99A6000EB6C84 /* twitter@2x.png */; };
@@ -456,6 +458,7 @@
 		94B224F617369A63004E1009 /* ViaCycleCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViaCycleCity.m; sourceTree = "<group>"; };
 		94B224FA1736A20D004E1009 /* _Accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = _Accounts.json; sourceTree = "<group>"; };
 		94B224FB1736A20D004E1009 /* _GoogleAnalytics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _GoogleAnalytics.plist; sourceTree = "<group>"; };
+		94B224FF1736A6A2004E1009 /* JCDecauxCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDecauxCity.m; sourceTree = "<group>"; };
 		94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paris_Vélib’.coredata"; sourceTree = "<group>"; };
 		94E45DC416A995F800EB6C84 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		94E45DC616A99A6000EB6C84 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
@@ -823,6 +826,7 @@
 				3788EC7D1697AF0400836A60 /* BarcelonaCityBikeCity.m */,
 				94EDC1C4170587E200113E76 /* BCycleCity.m */,
 				94B224F617369A63004E1009 /* ViaCycleCity.m */,
+				94B224FF1736A6A2004E1009 /* JCDecauxCity.m */,
 			);
 			name = "Flat JSON list";
 			sourceTree = "<group>";
@@ -1358,6 +1362,7 @@
 				94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */,
 				94B224EE1736997A004E1009 /* BIXICity.m in Sources */,
 				94B224F817369A63004E1009 /* ViaCycleCity.m in Sources */,
+				94B225011736A6A2004E1009 /* JCDecauxCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1398,6 +1403,7 @@
 				94EDC1C5170587E200113E76 /* BCycleCity.m in Sources */,
 				94B224ED1736997A004E1009 /* BIXICity.m in Sources */,
 				94B224F717369A63004E1009 /* ViaCycleCity.m in Sources */,
+				94B225001736A6A2004E1009 /* JCDecauxCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
