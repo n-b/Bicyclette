@@ -15,8 +15,8 @@
 - (NSString*) detailsURLStringForStation:(Station*)station_;
 
 - (NSDictionary*) KVCMapping;
-- (Class) stationStatusParsingClass;
 
+- (Class) stationStatusParsingClass; // Default is nil
 - (BOOL) canUpdateIndividualStations; // returns yes if stationStatusParsingClass is not nil
 
 - (BOOL) canShowFreeSlots; // returns yes if either status_free or both status_total and status_available are in the KVCMapping

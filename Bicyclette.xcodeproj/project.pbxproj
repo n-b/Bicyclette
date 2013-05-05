@@ -66,7 +66,6 @@
 		374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 378C6BFA169C362E009DDC84 /* UnusedCities.json */; };
 		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
-		375760EE1687C6360042FCF8 /* Marseille_Le Vélo.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 375760EC1687C6360042FCF8 /* Marseille_Le Vélo.coredata */; };
 		375760F31687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
 		375760F41687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
 		376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 376087F51675E27400B1161E /* CityRegionUpdateGroup.m */; };
@@ -111,8 +110,6 @@
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
-		37ACE96C16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37ACE96B16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata */; };
-		37ACE97316B7EAB100E07A00 /* Namur_Li bia velo.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37ACE97216B7EAB100E07A00 /* Namur_Li bia velo.coredata */; };
 		37AEF3AD1657A04B00F6E56C /* CollectionsAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */; };
 		37B7ABEE15E3DC4D00268B70 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
@@ -130,26 +127,9 @@
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37E43D8F1684AEAA0085EC4F /* FlatListCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* FlatListCity.m */; };
 		37E43D901684AEAA0085EC4F /* FlatListCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* FlatListCity.m */; };
-		37E43DB41684D7A30085EC4F /* Amiens_Vélam.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43D9D1684D7A30085EC4F /* Amiens_Vélam.coredata */; };
-		37E43DB51684D7A30085EC4F /* Besançon_VéloCité.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43D9E1684D7A30085EC4F /* Besançon_VéloCité.coredata */; };
 		37E43DB61684D7A30085EC4F /* Brisbane_CityCycle.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43D9F1684D7A30085EC4F /* Brisbane_CityCycle.coredata */; };
-		37E43DB71684D7A30085EC4F /* Bruxelles_Villo!.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA01684D7A30085EC4F /* Bruxelles_Villo!.coredata */; };
-		37E43DB81684D7A30085EC4F /* Cergy-Pontoise_VélO2.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA11684D7A30085EC4F /* Cergy-Pontoise_VélO2.coredata */; };
-		37E43DB91684D7A30085EC4F /* Créteil_CristoLib.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA21684D7A30085EC4F /* Créteil_CristoLib.coredata */; };
 		37E43DBA1684D7A30085EC4F /* Dublin_dublinbikes.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA31684D7A30085EC4F /* Dublin_dublinbikes.coredata */; };
-		37E43DBB1684D7A30085EC4F /* Göteborg_Styr & Ställ.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA41684D7A30085EC4F /* Göteborg_Styr & Ställ.coredata */; };
-		37E43DBC1684D7A30085EC4F /* Ljubljana_Bicike(LJ).coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA51684D7A30085EC4F /* Ljubljana_Bicike(LJ).coredata */; };
-		37E43DBD1684D7A30085EC4F /* Luxembourg_vel’oh.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA61684D7A30085EC4F /* Luxembourg_vel’oh.coredata */; };
-		37E43DBE1684D7A30085EC4F /* Lyon_Vélo’v.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA71684D7A30085EC4F /* Lyon_Vélo’v.coredata */; };
-		37E43DC01684D7A30085EC4F /* Mulhouse_Vélocité.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DA91684D7A30085EC4F /* Mulhouse_Vélocité.coredata */; };
-		37E43DC11684D7A30085EC4F /* Nancy_Vélostan.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DAA1684D7A30085EC4F /* Nancy_Vélostan.coredata */; };
-		37E43DC21684D7A30085EC4F /* Nantes_Bicloo.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DAB1684D7A30085EC4F /* Nantes_Bicloo.coredata */; };
 		37E43DC31684D7A30085EC4F /* Orléans_Vélo’+.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DAC1684D7A30085EC4F /* Orléans_Vélo’+.coredata */; };
-		37E43DC51684D7A30085EC4F /* Rouen_Cy’clic.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DAE1684D7A30085EC4F /* Rouen_Cy’clic.coredata */; };
-		37E43DC61684D7A30085EC4F /* Santander_TusBic.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DAF1684D7A30085EC4F /* Santander_TusBic.coredata */; };
-		37E43DC71684D7A30085EC4F /* Sevilla_SEVici.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */; };
-		37E43DC91684D7A30085EC4F /* Toyama_CyclOcity.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */; };
-		37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */; };
 		37E7AC3716B67B2600135570 /* bell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37E7AC3616B67B2600135570 /* bell.wav */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
@@ -181,7 +161,6 @@
 		94B224FE1736A21C004E1009 /* _Accounts.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94B224FA1736A20D004E1009 /* _Accounts.json */; };
 		94B225001736A6A2004E1009 /* JCDecauxCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B224FF1736A6A2004E1009 /* JCDecauxCity.m */; };
 		94B225011736A6A2004E1009 /* JCDecauxCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B224FF1736A6A2004E1009 /* JCDecauxCity.m */; };
-		94DE16D316AD57ED00C0FB64 /* Paris_Vélib’.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */; };
 		94E45DC516A995F800EB6C84 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DC416A995F800EB6C84 /* Social.framework */; };
 		94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC616A99A6000EB6C84 /* twitter@2x.png */; };
 		94E45DC916A99A6000EB6C84 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC716A99A6000EB6C84 /* twitter.png */; };
@@ -338,7 +317,6 @@
 		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		375760EC1687C6360042FCF8 /* Marseille_Le Vélo.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marseille_Le Vélo.coredata"; sourceTree = "<group>"; };
 		375760F21687D0DA0042FCF8 /* NextBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextBikeCity.m; sourceTree = "<group>"; };
 		376087F41675E27400B1161E /* CityRegionUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityRegionUpdateGroup.h; sourceTree = "<group>"; };
 		376087F51675E27400B1161E /* CityRegionUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityRegionUpdateGroup.m; sourceTree = "<group>"; };
@@ -381,8 +359,6 @@
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
-		37ACE96B16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Toulouse_VélôToulouse.coredata"; sourceTree = "<group>"; };
-		37ACE97216B7EAB100E07A00 /* Namur_Li bia velo.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Namur_Li bia velo.coredata"; sourceTree = "<group>"; };
 		37ACE97516B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37AEF3AA1657A04B00F6E56C /* CollectionsAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditionsTests.m; sourceTree = "<group>"; };
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
@@ -400,26 +376,9 @@
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37E43D8D1684AEAA0085EC4F /* FlatListCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatListCity.h; sourceTree = "<group>"; };
 		37E43D8E1684AEAA0085EC4F /* FlatListCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatListCity.m; sourceTree = "<group>"; };
-		37E43D9D1684D7A30085EC4F /* Amiens_Vélam.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amiens_Vélam.coredata"; sourceTree = "<group>"; };
-		37E43D9E1684D7A30085EC4F /* Besançon_VéloCité.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Besançon_VéloCité.coredata"; sourceTree = "<group>"; };
 		37E43D9F1684D7A30085EC4F /* Brisbane_CityCycle.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Brisbane_CityCycle.coredata; sourceTree = "<group>"; };
-		37E43DA01684D7A30085EC4F /* Bruxelles_Villo!.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bruxelles_Villo!.coredata"; sourceTree = "<group>"; };
-		37E43DA11684D7A30085EC4F /* Cergy-Pontoise_VélO2.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cergy-Pontoise_VélO2.coredata"; sourceTree = "<group>"; };
-		37E43DA21684D7A30085EC4F /* Créteil_CristoLib.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Créteil_CristoLib.coredata"; sourceTree = "<group>"; };
 		37E43DA31684D7A30085EC4F /* Dublin_dublinbikes.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dublin_dublinbikes.coredata; sourceTree = "<group>"; };
-		37E43DA41684D7A30085EC4F /* Göteborg_Styr & Ställ.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Göteborg_Styr & Ställ.coredata"; sourceTree = "<group>"; };
-		37E43DA51684D7A30085EC4F /* Ljubljana_Bicike(LJ).coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ljubljana_Bicike(LJ).coredata"; sourceTree = "<group>"; };
-		37E43DA61684D7A30085EC4F /* Luxembourg_vel’oh.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Luxembourg_vel’oh.coredata"; sourceTree = "<group>"; };
-		37E43DA71684D7A30085EC4F /* Lyon_Vélo’v.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lyon_Vélo’v.coredata"; sourceTree = "<group>"; };
-		37E43DA91684D7A30085EC4F /* Mulhouse_Vélocité.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mulhouse_Vélocité.coredata"; sourceTree = "<group>"; };
-		37E43DAA1684D7A30085EC4F /* Nancy_Vélostan.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nancy_Vélostan.coredata"; sourceTree = "<group>"; };
-		37E43DAB1684D7A30085EC4F /* Nantes_Bicloo.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nantes_Bicloo.coredata; sourceTree = "<group>"; };
 		37E43DAC1684D7A30085EC4F /* Orléans_Vélo’+.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Orléans_Vélo’+.coredata"; sourceTree = "<group>"; };
-		37E43DAE1684D7A30085EC4F /* Rouen_Cy’clic.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rouen_Cy’clic.coredata"; sourceTree = "<group>"; };
-		37E43DAF1684D7A30085EC4F /* Santander_TusBic.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Santander_TusBic.coredata; sourceTree = "<group>"; };
-		37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sevilla_SEVici.coredata; sourceTree = "<group>"; };
-		37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Toyama_CyclOcity.coredata; sourceTree = "<group>"; };
-		37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Valencia_Valenbisi.coredata; sourceTree = "<group>"; };
 		37E7AC3616B67B2600135570 /* bell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bell.wav; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
@@ -460,7 +419,6 @@
 		94B224FB1736A20D004E1009 /* _GoogleAnalytics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _GoogleAnalytics.plist; sourceTree = "<group>"; };
 		94B224FF1736A6A2004E1009 /* JCDecauxCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDecauxCity.m; sourceTree = "<group>"; };
 		94B225021736AFAF004E1009 /* JCDecauxCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDecauxCity.h; sourceTree = "<group>"; };
-		94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Paris_Vélib’.coredata"; sourceTree = "<group>"; };
 		94E45DC416A995F800EB6C84 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		94E45DC616A99A6000EB6C84 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 		94E45DC716A99A6000EB6C84 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
@@ -699,31 +657,10 @@
 		373A77F215E3F6860057E241 /* _DataGrabTempFolder */ = {
 			isa = PBXGroup;
 			children = (
-				37E43D9D1684D7A30085EC4F /* Amiens_Vélam.coredata */,
-				37E43D9E1684D7A30085EC4F /* Besançon_VéloCité.coredata */,
 				37E43D9F1684D7A30085EC4F /* Brisbane_CityCycle.coredata */,
-				37E43DA01684D7A30085EC4F /* Bruxelles_Villo!.coredata */,
-				37E43DA11684D7A30085EC4F /* Cergy-Pontoise_VélO2.coredata */,
-				37E43DA21684D7A30085EC4F /* Créteil_CristoLib.coredata */,
 				37E43DA31684D7A30085EC4F /* Dublin_dublinbikes.coredata */,
-				37E43DA41684D7A30085EC4F /* Göteborg_Styr & Ställ.coredata */,
 				37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */,
-				37E43DA51684D7A30085EC4F /* Ljubljana_Bicike(LJ).coredata */,
-				37E43DA61684D7A30085EC4F /* Luxembourg_vel’oh.coredata */,
-				37E43DA71684D7A30085EC4F /* Lyon_Vélo’v.coredata */,
-				375760EC1687C6360042FCF8 /* Marseille_Le Vélo.coredata */,
-				37E43DA91684D7A30085EC4F /* Mulhouse_Vélocité.coredata */,
-				37ACE97216B7EAB100E07A00 /* Namur_Li bia velo.coredata */,
-				37E43DAA1684D7A30085EC4F /* Nancy_Vélostan.coredata */,
-				37E43DAB1684D7A30085EC4F /* Nantes_Bicloo.coredata */,
 				37E43DAC1684D7A30085EC4F /* Orléans_Vélo’+.coredata */,
-				94DE16CC16AD56BF00C0FB64 /* Paris_Vélib’.coredata */,
-				37E43DAE1684D7A30085EC4F /* Rouen_Cy’clic.coredata */,
-				37E43DAF1684D7A30085EC4F /* Santander_TusBic.coredata */,
-				37E43DB01684D7A30085EC4F /* Sevilla_SEVici.coredata */,
-				37ACE96B16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata */,
-				37E43DB21684D7A30085EC4F /* Toyama_CyclOcity.coredata */,
-				37E43DB31684D7A30085EC4F /* Valencia_Valenbisi.coredata */,
 			);
 			path = _DataGrabTempFolder;
 			sourceTree = "<group>";
@@ -1206,37 +1143,16 @@
 				37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */,
 				377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */,
 				3739609B167917CE005F0672 /* BicycletteCities.json in Resources */,
-				37E43DB41684D7A30085EC4F /* Amiens_Vélam.coredata in Resources */,
-				37E43DB51684D7A30085EC4F /* Besançon_VéloCité.coredata in Resources */,
 				37E43DB61684D7A30085EC4F /* Brisbane_CityCycle.coredata in Resources */,
-				37E43DB71684D7A30085EC4F /* Bruxelles_Villo!.coredata in Resources */,
-				37E43DB81684D7A30085EC4F /* Cergy-Pontoise_VélO2.coredata in Resources */,
-				37E43DB91684D7A30085EC4F /* Créteil_CristoLib.coredata in Resources */,
 				37E43DBA1684D7A30085EC4F /* Dublin_dublinbikes.coredata in Resources */,
-				37E43DBB1684D7A30085EC4F /* Göteborg_Styr & Ställ.coredata in Resources */,
-				37E43DBC1684D7A30085EC4F /* Ljubljana_Bicike(LJ).coredata in Resources */,
-				37E43DBD1684D7A30085EC4F /* Luxembourg_vel’oh.coredata in Resources */,
-				37E43DBE1684D7A30085EC4F /* Lyon_Vélo’v.coredata in Resources */,
-				37E43DC01684D7A30085EC4F /* Mulhouse_Vélocité.coredata in Resources */,
-				37E43DC11684D7A30085EC4F /* Nancy_Vélostan.coredata in Resources */,
-				37E43DC21684D7A30085EC4F /* Nantes_Bicloo.coredata in Resources */,
 				37E43DC31684D7A30085EC4F /* Orléans_Vélo’+.coredata in Resources */,
-				37E43DC51684D7A30085EC4F /* Rouen_Cy’clic.coredata in Resources */,
-				37E43DC61684D7A30085EC4F /* Santander_TusBic.coredata in Resources */,
-				37E43DC71684D7A30085EC4F /* Sevilla_SEVici.coredata in Resources */,
-				37E43DC91684D7A30085EC4F /* Toyama_CyclOcity.coredata in Resources */,
-				37E43DCA1684D7A30085EC4F /* Valencia_Valenbisi.coredata in Resources */,
-				375760EE1687C6360042FCF8 /* Marseille_Le Vélo.coredata in Resources */,
 				94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */,
 				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
 				942D480416A8427D00F6CD12 /* BannerView.xib in Resources */,
 				94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */,
 				94E45DC916A99A6000EB6C84 /* twitter.png in Resources */,
 				94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */,
-				94DE16D316AD57ED00C0FB64 /* Paris_Vélib’.coredata in Resources */,
 				37E7AC3716B67B2600135570 /* bell.wav in Resources */,
-				37ACE96C16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata in Resources */,
-				37ACE97316B7EAB100E07A00 /* Namur_Li bia velo.coredata in Resources */,
 				94B224FC1736A20D004E1009 /* _Accounts.json in Resources */,
 				94B224FD1736A20D004E1009 /* _GoogleAnalytics.plist in Resources */,
 			);

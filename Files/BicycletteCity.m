@@ -11,6 +11,9 @@
 #if TARGET_OS_IPHONE
 #import "LocalUpdateQueue.h"
 #endif
+#if !TARGET_OS_IPHONE
+#import "BicycletteCity+Update.h"
+#endif
 
 @interface BicycletteCity ()
 @property NSDictionary* serviceInfo;
@@ -46,14 +49,6 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 }
 + (NSString*) storePathForServiceInfo:(NSDictionary*)serviceInfo_
 {
-    // Used in DataGrabber
-    if(!BicycletteCitySaveStationsWithNoIndividualStatonUpdates())
-    {
-        BOOL canUpdateIndividualStations = NSClassFromString(serviceInfo_[@"station_status_parsing_class"])!=Nil;
-        if(!canUpdateIndividualStations)
-            return nil;
-    }
-
     NSString * storeName = [NSString stringWithFormat:@"%@_%@.coredata",serviceInfo_[@"city_name"], serviceInfo_[@"service_name"]];
     return [BicycletteCityStoresDirectory() stringByAppendingPathComponent:storeName];
 }
@@ -86,7 +81,13 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 - (id) initWithServiceInfo:(NSDictionary*)serviceInfo_
 {
-    NSString * storePath = [[self class] storePathForServiceInfo:serviceInfo_];
+    NSString * storePath;
+    if(![self canUpdateIndividualStations] && !BicycletteCitySaveStationsWithNoIndividualStatonUpdates()) //in DataGrabber
+    {
+        storePath = nil;
+    } else {
+        storePath = [[self class] storePathForServiceInfo:serviceInfo_];
+    }
     self = [super initWithModelName:@"BicycletteCity" storePath:storePath];
     if(self!=nil)
     {

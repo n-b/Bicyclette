@@ -26,7 +26,7 @@
 
 - (Class) stationStatusParsingClass
 {
-    return NSClassFromString(self.serviceInfo[@"station_status_parsing_class"]);
+    return nil;
 }
 
 - (BOOL) canUpdateIndividualStations
