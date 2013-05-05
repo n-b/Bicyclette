@@ -10,3 +10,6 @@
 [submodule "submodules/Google-Analytics-SDK-for-iOS"]
 	path = submodules/Google-Analytics-SDK-for-iOS
 	url = git://github.com/n-b/Google-Analytics-SDK-for-iOS.git
+[submodule "submodules/BicycletteAPIKeys"]
+	path = submodules/BicycletteAPIKeys
+	url = git@github.com:n-b/BicycletteAPIKeys.git

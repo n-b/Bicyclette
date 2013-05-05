@@ -29,6 +29,9 @@
 		370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
 		370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
+		371069381736984E003B4366 /* _Accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = 371069361736984E003B4366 /* _Accounts.json */; };
+		371069391736984E003B4366 /* _GoogleAnalytics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 371069371736984E003B4366 /* _GoogleAnalytics.plist */; };
+		3710694117369868003B4366 /* _Accounts.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 371069361736984E003B4366 /* _Accounts.json */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		3719607116B303CD005CDA6D /* VerticallyAlignedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3719607016B303CD005CDA6D /* VerticallyAlignedLabel.m */; };
 		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
@@ -168,8 +171,6 @@
 		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
 		942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D480116A841F100F6CD12 /* UIView+NibLoading.m */; };
 		942D480416A8427D00F6CD12 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942D480316A8427D00F6CD12 /* BannerView.xib */; };
-		944A975416FB07B300254D3A /* _Accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = 944A975316FB07B300254D3A /* _Accounts.json */; };
-		944A975C16FB07FC00254D3A /* _Accounts.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 944A975316FB07B300254D3A /* _Accounts.json */; };
 		944A975E16FB1A6600254D3A /* TOBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 944A975D16FB1A6600254D3A /* TOBikeCity.m */; };
 		944A975F16FB1A6600254D3A /* TOBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 944A975D16FB1A6600254D3A /* TOBikeCity.m */; };
 		94A30ABA16DD24B40043ACFC /* libCoreDataModel-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A30AB216DD24870043ACFC /* libCoreDataModel-MacOS.a */; };
@@ -184,7 +185,6 @@
 		94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD816A9C2D200EB6C84 /* Help.strings */; };
 		94EB56371729DF2D00E17536 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EB56351729DF2D00E17536 /* libGoogleAnalytics.a */; };
 		94EB563A1729DF7000E17536 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EB56391729DF7000E17536 /* SystemConfiguration.framework */; };
-		94EB563C1729EDF900E17536 /* _GoogleAnalytics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94EB563B1729EDF900E17536 /* _GoogleAnalytics.plist */; };
 		94EDC1C5170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
 		94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
 /* End PBXBuildFile section */
@@ -255,7 +255,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				944A975C16FB07FC00254D3A /* _Accounts.json in CopyFiles */,
+				3710694117369868003B4366 /* _Accounts.json in CopyFiles */,
 				3739609C16791A11005F0672 /* BicycletteCities.json in CopyFiles */,
 				374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */,
 			);
@@ -287,6 +287,8 @@
 		3709F574167B755600F865E3 /* Station+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Station+Update.m"; sourceTree = "<group>"; };
 		370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelbourneBikeShareCity.m; sourceTree = "<group>"; };
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		371069361736984E003B4366 /* _Accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = _Accounts.json; sourceTree = "<group>"; };
+		371069371736984E003B4366 /* _GoogleAnalytics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _GoogleAnalytics.plist; sourceTree = "<group>"; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		3719606F16B303CD005CDA6D /* VerticallyAlignedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticallyAlignedLabel.h; sourceTree = "<group>"; };
@@ -445,7 +447,6 @@
 		942D480016A841F100F6CD12 /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
 		942D480116A841F100F6CD12 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		942D480316A8427D00F6CD12 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
-		944A975316FB07B300254D3A /* _Accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = _Accounts.json; sourceTree = "<group>"; };
 		944A975D16FB1A6600254D3A /* TOBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBikeCity.m; sourceTree = "<group>"; };
 		94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataModel.xcodeproj; path = submodules/CoreDataModel/CoreDataModel.xcodeproj; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
@@ -468,7 +469,6 @@
 		94EB56351729DF2D00E17536 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		94EB56361729DF2D00E17536 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		94EB56391729DF7000E17536 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		94EB563B1729EDF900E17536 /* _GoogleAnalytics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _GoogleAnalytics.plist; sourceTree = "<group>"; };
 		94EDC1C4170587E200113E76 /* BCycleCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCycleCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -654,10 +654,18 @@
 			name = "Station Updates";
 			sourceTree = "<group>";
 		};
+		371069351736984E003B4366 /* BicycletteAPIKeys */ = {
+			isa = PBXGroup;
+			children = (
+				371069361736984E003B4366 /* _Accounts.json */,
+				371069371736984E003B4366 /* _GoogleAnalytics.plist */,
+			);
+			path = BicycletteAPIKeys;
+			sourceTree = "<group>";
+		};
 		3717AA65162A1C11005EC7BD /* Cities */ = {
 			isa = PBXGroup;
 			children = (
-				944A975316FB07B300254D3A /* _Accounts.json */,
 				3739609A167917CE005F0672 /* BicycletteCities.json */,
 				378C6BFA169C362E009DDC84 /* UnusedCities.json */,
 				379130791697341A0054FECA /* XML with attributes */,
@@ -671,6 +679,7 @@
 		37216A411261087300A2695A /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				371069351736984E003B4366 /* BicycletteAPIKeys */,
 				374334C8164B0EC00051294F /* CitiesController.h */,
 				374334C9164B0EC00051294F /* CitiesController.m */,
 				37D131FC163F32DE00AABEE4 /* Model */,
@@ -721,7 +730,6 @@
 		3756EA9B1297F52200113534 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				94EB563B1729EDF900E17536 /* _GoogleAnalytics.plist */,
 				3756EADE1298018A00113534 /* Info.plist */,
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
 				94E45DCE16A9B1E200EB6C84 /* Localizable.strings */,
@@ -1214,8 +1222,8 @@
 				37E7AC3716B67B2600135570 /* bell.wav in Resources */,
 				37ACE96C16B7EAA300E07A00 /* Toulouse_VélôToulouse.coredata in Resources */,
 				37ACE97316B7EAB100E07A00 /* Namur_Li bia velo.coredata in Resources */,
-				944A975416FB07B300254D3A /* _Accounts.json in Resources */,
-				94EB563C1729EDF900E17536 /* _GoogleAnalytics.plist in Resources */,
+				371069381736984E003B4366 /* _Accounts.json in Resources */,
+				371069391736984E003B4366 /* _GoogleAnalytics.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
