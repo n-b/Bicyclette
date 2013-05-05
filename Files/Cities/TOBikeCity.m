@@ -65,7 +65,7 @@
     "</soap12:Body>"
     "</soap12:Envelope>";
 
-    NSString * baseURL = self.serviceInfo[@"update_url"];
+    NSString * baseURL = @"http://service.tobike.it/service.asmx";
     NSString * cityID = urlString;
     postXMLText = [postXMLText stringByReplacingOccurrencesOfString:@"{LOGIN}" withString:self.accountInfo[@"login"]];
     postXMLText = [postXMLText stringByReplacingOccurrencesOfString:@"{PASSWORD}" withString:self.accountInfo[@"password"]];

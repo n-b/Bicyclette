@@ -124,7 +124,6 @@
     "mkCoordinateRegionLatitude" : 46.23000526948305,
     "mkCoordinateRegionLongitude" : 7.353360502609252,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Valais Central",
     "mkCoordinateRegionLatitudeDelta" : 0.01126053896609847
   },
@@ -140,7 +139,6 @@
     "mkCoordinateRegionLatitude" : 46.8018405,
     "mkCoordinateRegionLongitude" : 7.144712648468017,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Agglo Fribourg",
     "mkCoordinateRegionLatitudeDelta" : 0.04265900000000045
   },
@@ -156,7 +154,6 @@
     "mkCoordinateRegionLatitude" : 46.00410558368763,
     "mkCoordinateRegionLongitude" : 8.946883678436279,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Lugano - Paradiso",
     "mkCoordinateRegionLatitudeDelta" : 0.03817083262474341
   },
@@ -172,7 +169,6 @@
     "mkCoordinateRegionLatitude" : 46.4596655,
     "mkCoordinateRegionLongitude" : 6.847129321847915,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Vevey-Riviera",
     "mkCoordinateRegionLatitudeDelta" : 0.01701699999999562
   },
@@ -188,7 +184,6 @@
     "mkCoordinateRegionLatitude" : 46.613325,
     "mkCoordinateRegionLongitude" : 7.060518,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Bulle",
     "mkCoordinateRegionLatitudeDelta" : 0.008953999999995688
   },
@@ -204,7 +199,6 @@
     "mkCoordinateRegionLatitude" : 46.391014,
     "mkCoordinateRegionLongitude" : 6.2128505,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "La Côte",
     "mkCoordinateRegionLatitudeDelta" : 0.0698900000000009
   },
@@ -232,7 +226,6 @@
     "mkCoordinateRegionLatitude" : 46.775037691432,
     "mkCoordinateRegionLongitude" : 6.649389266967773,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Yverdon-les-Bains",
     "mkCoordinateRegionLatitudeDelta" : 0.02036810230577402
   },
@@ -444,7 +437,6 @@
     "mkCoordinateRegionLatitude" : 46.2866135,
     "mkCoordinateRegionLongitude" : 6.953848499999999,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Chablais",
     "mkCoordinateRegionLatitudeDelta" : 0.07395300000000304
   },
@@ -637,7 +629,6 @@
     "mkCoordinateRegionLatitude" : 46.809897,
     "mkCoordinateRegionLongitude" : 6.950293,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Les Lacs - Romont",
     "mkCoordinateRegionLatitudeDelta" : 0.2313840000000056
   },
@@ -829,7 +820,6 @@
     "mkCoordinateRegionLatitude" : 46.51984553805885,
     "mkCoordinateRegionLongitude" : 6.555835257751465,
     "city_class" : "TOBikeCity",
-    "update_url" : "http:\/\/service.tobike.it\/service.asmx",
     "city_name" : "Lausanne",
     "mkCoordinateRegionLatitudeDelta" : 0.03523307611769866
   },
