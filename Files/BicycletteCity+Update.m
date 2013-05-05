@@ -145,7 +145,15 @@
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values
 {
     NSString * keyForNumber = [[self KVCMapping] wantedKeyForRealKey:StationAttributes.number]; // There *must* be a key mapping to "number" in the KVCMapping dictionary.
-    return values[keyForNumber];
+    NSString * value = values[keyForNumber];
+    if(![value isKindOfClass:[NSString class]]){
+        // Convert numbers to string.
+        // If the value isn't a string, well, I'm probably going to crash anyway.
+        if([value respondsToSelector:@selector(stringValue)]) {
+            value = [(id)value stringValue];
+        }
+    }
+    return value;
 }
 
 - (void) setStation:(Station*)station attributes:(NSDictionary*)stationAttributes
