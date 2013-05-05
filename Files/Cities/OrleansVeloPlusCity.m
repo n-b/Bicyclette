@@ -24,7 +24,7 @@
 
 + (void)initialize
 {
-    [NSValueTransformer registerValueTransformerWithName:@"OrleansStationStatusTransformer" transformedValueClass:[NSString class]
+    [NSValueTransformer registerValueTransformerWithName:@"OrleansStationStatusTransformer" transformedValueClass:[NSNumber class]
                       returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
                           if([value isKindOfClass:[NSString class]])
                           {

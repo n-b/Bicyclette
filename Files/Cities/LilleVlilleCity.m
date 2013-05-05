@@ -20,7 +20,7 @@
 
 + (void)initialize
 {
-    [NSValueTransformer registerValueTransformerWithName:@"VlilleStationStatusTransformer" transformedValueClass:[NSString class]
+    [NSValueTransformer registerValueTransformerWithName:@"VlilleStationStatusTransformer" transformedValueClass:[NSNumber class]
                       returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
                           if([value isKindOfClass:[NSString class]])
                           {

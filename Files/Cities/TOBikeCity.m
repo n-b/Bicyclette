@@ -24,21 +24,21 @@
 
 + (void) initialize
 {
-    [NSValueTransformer registerValueTransformerWithName:@"NumberOf4" transformedValueClass:[NSString class]
+    [NSValueTransformer registerValueTransformerWithName:@"NumberOf4" transformedValueClass:[NSNumber class]
                       returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
                           if([value isKindOfClass:[NSString class]]){
                               return @([[value componentsSeparatedByString:@"4"] count]-1);
                           }
                           return nil;
                       }];
-    [NSValueTransformer registerValueTransformerWithName:@"NumberOf0" transformedValueClass:[NSString class]
+    [NSValueTransformer registerValueTransformerWithName:@"NumberOf0" transformedValueClass:[NSNumber class]
                       returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
                           if([value isKindOfClass:[NSString class]]){
                               return @([[value componentsSeparatedByString:@"0"] count]-1);
                           }
                           return nil;
                       }];
-    [NSValueTransformer registerValueTransformerWithName:@"TOBikeStationStatusTransformer" transformedValueClass:[NSString class]
+    [NSValueTransformer registerValueTransformerWithName:@"TOBikeStationStatusTransformer" transformedValueClass:[NSNumber class]
                       returningTransformedValueWithBlock:^NSNumber*(NSString* value) {
                           if([value isKindOfClass:[NSString class]])
                           {
