@@ -113,7 +113,8 @@
     if(match) {
         return [self substringFromIndex:[match range].location];
     } else {
-        DebugLog(@"Note : End of address not found = %@",self);
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
+            DebugLog(@"Note : End of address not found = %@",self);
         return @"";
     }
 }

@@ -76,7 +76,8 @@
         ![[rawJSON objectAtIndex:1] isKindOfClass:[NSDictionary class]] ||
         ![[[rawJSON objectAtIndex:1] objectForKey:@"data"] isKindOfClass:[NSString class]]
         ) {
-        DebugLog(@"Invalid Data : %@,%@",error, data);
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
+            DebugLog(@"Invalid Data : %@,%@",error, data);
         return nil;
     }
     NSString * json = [[rawJSON objectAtIndex:1] objectForKey:@"data"];
