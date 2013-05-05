@@ -96,8 +96,14 @@
                 [self.updateQueue addMonitoredGroup:fence];
         }
 
+        [self.updateQueue removeMonitoredGroup:self.screenCenterUpdateGroup];
+        [self.updateQueue removeMonitoredGroup:self.userLocationUpdateGroup];
+
         self.screenCenterUpdateGroup.city = _currentCity;
         self.userLocationUpdateGroup.city = _currentCity;
+
+        [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
+        [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
 
         // Google Analytics
         [[GAI sharedInstance].defaultTracker setCustom:1 dimension:_currentCity.cityName];
