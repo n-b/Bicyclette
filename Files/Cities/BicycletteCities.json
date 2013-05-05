@@ -1231,15 +1231,14 @@
   {
     "mkCoordinateRegionLongitudeDelta" : 0.1365039999999995,
     "radius" : 5443.532936766926,
-    "station_details_url" : "http:\/\/www.velov.grandlyon.com\/velovmap\/zhp\/inc\/DispoStationsParId.php?id=",
     "service_name" : "Vélo’v",
     "longitude" : 4.852351000000001,
     "latitude" : 45.76074699999999,
     "mkCoordinateRegionLatitude" : 45.76074699999999,
     "mkCoordinateRegionLongitude" : 4.852351000000001,
     "city_class" : "LyonVelovCity",
+ 	"account_class" : "JCDecauxCity",
     "city_name" : "Lyon",
-    "update_url" : "http:\/\/www.velov.grandlyon.com\/velovmap\/zhp\/inc\/StationsParArrondissement.php?arrondissement=",
     "mkCoordinateRegionLatitudeDelta" : 0.0732980000000012
   },
   {

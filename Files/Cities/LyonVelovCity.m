@@ -6,12 +6,11 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "FlatJSONListCity.h"
 #import "NSStringAdditions.h"
 #import "CollectionsAdditions.h"
-#import "_StationParse.h"
+#import "JCDecauxCity.h"
 
-@interface LyonVelovCity : FlatJSONListCity
+@interface LyonVelovCity : JCDecauxCity
 @end
 
 @implementation LyonVelovCity
@@ -53,64 +52,35 @@
 
 #pragma mark City Data Update
 
-- (NSArray*) updateURLStrings
-{
-    NSString * baseURL = self.serviceInfo[@"update_url"];
-    
-    NSMutableArray * urlStrings = [NSMutableArray new];
-    for (NSString * zip in self.zips) {
-        [urlStrings addObject:[baseURL stringByAppendingString:zip]];
-    }
-    return urlStrings;
-}
-
 - (NSDictionary*) zips
 {
-    return @{@"69381": @"1",
-             @"69382": @"2",
-             @"69383": @"3",
-             @"69384": @"4",
-             @"69385": @"5",
-             @"69386": @"6",
-             @"69387": @"7",
-             @"69388": @"8",
-             @"69389": @"9",
-             @"69256": @"Villeurbanne",
+    return @{@"01": @"1",
+             @"02": @"2",
+             @"03": @"3",
+             @"04": @"4",
+             @"05": @"5",
+             @"06": @"6",
+             @"07": @"7",
+             @"08": @"8",
+             @"09": @"9",
 
-             @"69266": @"Villeurbanne",
-             @"69034": @"4",
+             @"10": @"Villeurbanne",
+
+             @"11": @"4",			 // 2 stations in Caluire-et-Cuire -> group with 4th
+             @"12": @"Villeurbanne", // 2 stations in Vaulx-en-Velin -> group with Villeurbanne
              };
 }
 
 - (RegionInfo*) regionInfoFromStation:(Station*)station values:(NSDictionary*)values patchs:(NSDictionary*)patchs requestURL:(NSString*)urlString
 {
-    NSString * zip = [urlString stringByDeletingPrefix:self.serviceInfo[@"update_url"]];
-    NSString * name = self.zips[zip];
+    NSString * number = station.number;
+    while([number length]<5) {
+        number = [@"0" stringByAppendingString:number];
+    }
+
+    NSString * name = self.zips[[number substringToIndex:2]];
     return [RegionInfo infoWithName:name number:name];
 }
 
-- (NSDictionary *)KVCMapping
-{
-    return @{@"x": @"latitude",
-             @"y": @"longitude",
-             @"numStation": @"number",
-             @"nomStation": @"name",
-             @"infoStation": @"address",
-             @"ticket": @"status_ticket",
-             @"available": @"status_available",
-             @"total": @"status_total",
-             @"free": @"status_free",
-             };
-}
-
-- (NSString *)keyPathToStationsLists
-{
-    return @"markers";
-}
-
-- (Class)stationStatusParsingClass
-{
-    return [XMLSubnodesStationParse class];
-}
 
 @end
