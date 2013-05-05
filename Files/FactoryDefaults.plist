@@ -43,6 +43,8 @@
 		<key>fr.bicyclette_app.bicyclette.a.merci.3</key>
 		<string>STORE_REWARD_3</string>
 	</dict>
+	<key>Store.DonationAlertDelay</key>
+	<string>1200</string>
 	<key>MapViewScaleView.MaxDistance</key>
 	<integer>50000</integer>
 </dict>

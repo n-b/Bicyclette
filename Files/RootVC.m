@@ -183,24 +183,48 @@
         }
         else
         {
-            UIAlertView * storeAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
-                                                                  message:NSLocalizedString(@"STORE_ALERT_MESSAGE", nil)
-                                                                 delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCEL", nil)
-                                                        otherButtonTitles:NSLocalizedString(@"STORE_ALERT_OK", nil), nil];
-            [storeAlert show];
+            [self presentDonationAlertWithDelayOption:YES];
         }
     }
 }
 
+- (void) presentDonationAlertWithDelayOption:(BOOL)delayOption
+{
+    UIAlertView * donationAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
+                                                             message:NSLocalizedString(@"STORE_ALERT_MESSAGE", nil)
+                                                            delegate:self
+                                                   cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCEL", nil)
+                                                   otherButtonTitles:NSLocalizedString(@"STORE_ALERT_OK", nil),
+                                   delayOption?NSLocalizedString(@"STORE_ALERT_IN_20_MINUTES", nil):nil,nil];
+    [donationAlert show];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex==alertView.firstOtherButtonIndex)
-    {
+    if(buttonIndex==alertView.firstOtherButtonIndex){ // "Donate"
         [self showBackViewControllerAnimated:YES completion:^{
             [((PrefsVC*)self.backViewController) donate];
         }];
+    } else if(buttonIndex==alertView.firstOtherButtonIndex+1){ // Ask me in 20 minutes
+        [self askMeToDonateLater];
+    } else { // Not now
     }
 }
+
+- (void) askMeToDonateLater
+{
+    NSTimeInterval donationDelay = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Store.DonationAlertDelay"];
+    [[UIApplication sharedApplication] presentLocalNotificationMessage:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
+                                                           alertAction:NSLocalizedString(@"STORE_ALERT_OK", nil)
+                                                             soundName:nil
+                                                              userInfo:@{@"type": @"donationrequest"}
+                                                              fireDate:[NSDate dateWithTimeIntervalSinceNow:donationDelay]];
+}
+
+- (void) handleDonationNotification:(UILocalNotification*)notification
+{
+    [self presentDonationAlertWithDelayOption:NO];
+}
+
 
 @end
