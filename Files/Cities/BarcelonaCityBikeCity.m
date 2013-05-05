@@ -60,4 +60,24 @@
              };    
 }
 
+- (NSArray *)stationAttributesArraysFromData:(NSData *)data
+{
+    // For some reason, Bicing has invented the JSON-in-JSON format.
+    NSError* error;
+    NSArray * rawJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if (rawJSON==nil ||
+        ![rawJSON isKindOfClass:[NSArray class]] ||
+        ![rawJSON count]>1 ||
+        ![[rawJSON objectAtIndex:1] isKindOfClass:[NSDictionary class]] ||
+        ![[[rawJSON objectAtIndex:1] objectForKey:@"data"] isKindOfClass:[NSString class]]
+        ) {
+        DebugLog(@"Invalid Data : %@,%@",error, data);
+        return nil;
+    }
+    NSString * json = [[rawJSON objectAtIndex:1] objectForKey:@"data"];
+    NSData * jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+    
+    return [super stationAttributesArraysFromData:jsonData];
+}
+
 @end
