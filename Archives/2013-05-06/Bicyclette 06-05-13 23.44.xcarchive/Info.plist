@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AppStoreFileSize</key>
+	<integer>1143827</integer>
+	<key>AppStoreFileSizeValid</key>
+	<true/>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/Bicyclette.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>fr.bicyclette-app.bicyclette</string>
+		<key>CFBundleShortVersionString</key>
+		<string>2.4</string>
+		<key>CFBundleVersion</key>
+		<string>15</string>
+		<key>IconPaths</key>
+		<array>
+			<string>Applications/Bicyclette.app/Icon.png</string>
+			<string>Applications/Bicyclette.app/Icon@2x.png</string>
+			<string>Applications/Bicyclette.app/Icon~ipad.png</string>
+			<string>Applications/Bicyclette.app/Icon~ipad@2x.png</string>
+			<string>Applications/Bicyclette.app/Icon~settings.png</string>
+			<string>Applications/Bicyclette.app/Icon~settings@2x.png</string>
+		</array>
+		<key>SigningIdentity</key>
+		<string>iPhone Distribution: Nicolas Bouilleaud</string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<integer>2</integer>
+	<key>CreationDate</key>
+	<date>2013-05-06T21:44:36Z</date>
+	<key>Name</key>
+	<string>Bicyclette</string>
+	<key>SchemeName</key>
+	<string>Bicyclette</string>
+</dict>
+</plist>
