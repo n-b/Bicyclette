@@ -24,6 +24,7 @@
 @property MKCoordinateRegion viewRegion;
 
 @property UILocalNotification * updateInProgressNotification;
+@property Geofence * updateInProgressFence;
 @end
 
 /****************************************************************************/
@@ -312,13 +313,18 @@
     if(self.updateInProgressNotification)
         [[UIApplication sharedApplication] cancelLocalNotification:self.updateInProgressNotification];
     
+    self.updateInProgressFence = fence;
     self.updateInProgressNotification = [[UIApplication sharedApplication] presentLocalNotificationMessage:NSLocalizedString(@"UPDATING : PARSING", nil)
                                                                                                alertAction:nil
                                                                                                  soundName:nil
                                                                                                   userInfo:nil
                                                                                                   fireDate:nil];
 
-    [self.updateQueue addOneshotGroup:fence];
+    if(self.updateInProgressFence.city.canUpdateIndividualStations) {
+        [self.updateQueue addOneshotGroup:fence];
+    } else {
+        [self.updateQueue buildUpdateQueue];
+    }
 }
 
 - (void) monitor:(GeofencesMonitor*)monitor fenceWasExited:(Geofence*)fence
@@ -338,8 +344,15 @@
 
 - (void) updateQueueDidComplete:(LocalUpdateQueue *)queue
 {
-    if(self.updateInProgressNotification)
+    if(self.updateInProgressNotification) {
         [[UIApplication sharedApplication] cancelLocalNotification:self.updateInProgressNotification];
+        if(!self.updateInProgressFence.city.canUpdateIndividualStations) {
+            for (Station * station in self.updateInProgressFence.stations) {
+                [[UIApplication sharedApplication] presentLocalNotificationForStationSummary:station];
+            }
+        }
+        self.updateInProgressFence = nil;
+    }
     self.updateInProgressNotification = nil;
 }
 

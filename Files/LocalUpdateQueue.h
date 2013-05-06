@@ -59,6 +59,9 @@
 - (void) removeOneshotGroup:(NSObject<LocalUpdateGroup>*)group;
 
 @property (weak) id<LocalUpdateQueueDelegate> delegate;
+
+- (void) buildUpdateQueue;
+
 @end
 
 //
