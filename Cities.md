@@ -30,8 +30,8 @@
 - List+Details: `http://dynamisch.citybikewien.at/citybike_xml.php `
 
 ## Cyclocity
-*Use of those services is tolerated by Cyclocity.*
-*JCDecaux/Cyclocity is readying its own opendata platform, for spring 2013.*
+*JCDecaux/Cyclocity has its own opendata platform, developer.jcdecaux.com*
+*Use of the old « webservices » is tolerated by Cyclocity.*
 
 > Note :
 >  At least for Paris, official apps use [another service](http://blog.velib.paris.fr/blog/2012/12/17/des-stations-jusqua-votre-ecran-le-circuit-des-donnees-velib-2/).
@@ -43,30 +43,36 @@ The geolocation of the stations is sometimes very wrong.
 - Template :
 	- List : `http://{servicewebsite}/service/carto`
 	- Details : `http://{servicewebsite}/service/stationdetails/{city_name}/{station_id}`
-- **Amiens** : www.velam.amiens.fr
-- **Besancon** : www.velocite.besancon.fr
-- **Brisbane** : www.citycycle.com.au
-- **Bruxelles** : www.villo.be
-- **CergyPointoise** : www.velo2.cergypontoise.fr
-- **Creteil** : www.cristolib.fr (The CristoLib list also contains stations of the CergyPointoise service. That's an error.)
-- **DublinBikes** : www.dublinbikes.ie
-- **Goteborg** : www.goteborgbikes.se
-- **Ljubljana** : www.bicikelj.si
-- **Luxembourg** : www.veloh.lu
-- **Marseille** : www.levelo-mpm.fr
-- **Mulhouse** : www.velocite.mulhouse.fr
-- **Nancy** : www.velostanlib.fr
-- **Nantes** : www.bicloo.nantesmetropole.fr
-- **Paris** : www.velib.paris.fr
-- **Rouen** : cyclic.rouen.fr
-- **Santander** : www.tusbic.es
-- **Sevilla** : www.sevici.es
-- **Toulouse** : www.velo.toulouse.fr
-- **Toyama** : www.cyclocity.jp
-- **Valencia** : www.valenbisi.es
+- Not available on developer.jcdecaux.com	:
+	- **DublinBikes** : www.dublinbikes.ie
+	- **Brisbane** : www.citycycle.com.au
+- Available on developer.jcdecaux.com
+	- **Amiens** : www.velam.amiens.fr
+	- **Besancon** : www.velocite.besancon.fr
+	- **Bruxelles** : www.villo.be
+	- **CergyPointoise** : www.velo2.cergypontoise.fr
+	- **Creteil** : www.cristolib.fr (The CristoLib list also contains stations of the CergyPointoise service. That's an error.)
+	- **Goteborg** : www.goteborgbikes.se
+	- **Ljubljana** : www.bicikelj.si
+	- **Luxembourg** : www.veloh.lu
+	- **Marseille** : www.levelo-mpm.fr	
+	- **Mulhouse** : www.velocite.mulhouse.fr
+	- **Nancy** : www.velostanlib.fr
+	- **Nantes** : www.bicloo.nantesmetropole.fr
+	- **Paris** : www.velib.paris.fr
+	- **Rouen** : cyclic.rouen.fr
+	- **Santander** : www.tusbic.es
+	- **Sevilla** : www.sevici.es
+	- **Toulouse** : www.velo.toulouse.fr
+	- **Toyama** : www.cyclocity.jp
+	- **Valencia** : www.valenbisi.es
+
+See developer.jcdecaux.com for documentation.
 
 ## Lyon
 (Cyclocity)
+
+Now available on developer.jcdecaux.com.
 
 *No official opendata policy, but usage of the webservice is tolerated.*
 
@@ -192,6 +198,8 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 	- List+Details : `http://www.velivert.fr/vcstations.xml`
 - **Grenoble**
 	- List+Details : `http://vms.metrovelo.fr/vcstations.xml`
+- **Châlon-sur-Saone**
+	- List+Details : `http://grandchalon.fr/vcstations.xml
 
 ## Barcelona
 (Citybike)
@@ -601,7 +609,6 @@ Station coordinates are in pixels.
 ---
 # Data unavailable on the web
 
-- Chalon (Reflex)
 * Angers (only 1 station)
 * Montélimar (only 1 station)
 
