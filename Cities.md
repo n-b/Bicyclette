@@ -198,8 +198,8 @@ Same system runs in Surfside FL. The webservice returns the whole data.
 	- List+Details : `http://www.velivert.fr/vcstations.xml`
 - **Grenoble**
 	- List+Details : `http://vms.metrovelo.fr/vcstations.xml`
-- **Châlon-sur-Saone**
-	- List+Details : `http://grandchalon.fr/vcstations.xml
+- **Chalon-sur-Saône**
+	- List+Details : `http://www.reflex-grandchalon.fr/vcstations.xml`
 
 ## Barcelona
 (Citybike)
