@@ -271,6 +271,9 @@
 {
     BOOL background = [note.name isEqualToString:UIApplicationDidEnterBackgroundNotification];
     self.updateQueue.monitoringPaused = (background || self.mapViewIsMoving);
+    if(!background && !self.mapViewIsMoving) {
+        [self.updateQueue buildUpdateQueue];
+    }
 }
 
 - (void) setMapViewIsMoving:(BOOL)moving
