@@ -26,7 +26,14 @@
     
     self.canShowCallout = YES;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stationDidBecomeStale:) name:StationStatusDidBecomeStaleNotificiation object:nil];
+    
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (Station*) station
@@ -93,7 +100,7 @@
 
 + (NSArray*) stationObservedProperties
 {
-    return @[ StationAttributes.status_available, StationAttributes.status_free, StationAttributes.starred, @"statusDataIsFresh" ];
+    return @[ StationAttributes.status_available, StationAttributes.status_free, StationAttributes.starred ];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -112,6 +119,13 @@
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void) stationDidBecomeStale:(NSNotification*)note
+{
+    if(note.object==self.station || note.object==nil) {
+        [self setNeedsDisplay];
     }
 }
 

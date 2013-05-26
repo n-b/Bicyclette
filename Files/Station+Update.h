@@ -13,3 +13,5 @@
 @property (readonly) BOOL updating;
 @property (readonly) BOOL statusDataIsFresh;
 @end
+
+extern NSString * const StationStatusDidBecomeStaleNotificiation;

@@ -11,6 +11,7 @@
 #import "CollectionsAdditions.h"
 #import "NSError+MultipleErrorsCombined.h"
 #import "_StationParse.h"
+#import "Station+Update.h"
 
 @implementation BicycletteCity (Update)
 
@@ -48,6 +49,7 @@
         _updateCompletionBlock = [completion_ copy];
         [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:BicycletteCityNotifications.updateBegan object:self]
                                                    postingStyle:NSPostASAP];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(becomeStale) object:nil];
     }
     else if(completion_)
             completion_(nil);
@@ -135,11 +137,20 @@
             userInfo[BicycletteCityNotifications.keys.saveErrors] = [validationErrors underlyingErrors];
         [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.updateSucceeded object:self
                                                           userInfo:userInfo];
+        
+        if(![self canUpdateIndividualStations]) {
+            [self performSelector:@selector(becomeStale) withObject:nil afterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:@"StationStatusStalenessInterval"]];
+        }
+
         if(_updateCompletionBlock)
             _updateCompletionBlock(nil);
         _updateCompletionBlock = nil;
     }];
     self.updater = nil;
+}
+
+- (void) becomeStale {
+    [[NSNotificationCenter defaultCenter] postNotificationName:StationStatusDidBecomeStaleNotificiation object:nil];
 }
 
 - (NSString*) stationNumberFromStationValues:(NSDictionary*)values

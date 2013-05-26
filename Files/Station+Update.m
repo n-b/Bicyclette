@@ -38,6 +38,7 @@ static char kStation_associatedQueuedforUpdateKey;
 {
     [self willChangeValueForKey:@"statusDataIsFresh"];
     [self didChangeValueForKey:@"statusDataIsFresh"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:StationStatusDidBecomeStaleNotificiation object:self];
 }
 
 - (BOOL) statusDataIsFresh
@@ -115,3 +116,5 @@ static char kStation_associatedQueuedforUpdateKey;
 }
 
 @end
+
+NSString * const StationStatusDidBecomeStaleNotificiation = @"StationStatusDidBecomeStaleNotificiation";
