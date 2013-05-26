@@ -52,6 +52,7 @@
 "STORE_ALERT_TITLE" = "Ist diese App für Sie nützlich?\nIhre Hilfe ist sehr willkommen!";
 "STORE_ALERT_MESSAGE" = "Sie können soviel geben wie Sie wollen.";
 "STORE_ALERT_CANCEL" = "Jetzt nicht";
+"STORE_ALERT_IN_20_MINUTES" = "Ask me in 20 minutes";
 "STORE_ALERT_OK" = "Ja!";
 
 "STORE_UNAVAILABLE_TITLE" = "Kauf nicht möglich";

@@ -1,10 +1,10 @@
 /*
- Localizable.strings
- Bicyclette
+  Localizable.strings
+  Bicyclette
  
- Created by Nicolas Bouilleaud on 15/07/12.
- Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
- */
+  Created by Nicolas Bouilleaud on 15/07/12.
+  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
+*/
 
 /* Main chrome */
 
@@ -52,6 +52,7 @@
 "STORE_ALERT_TITLE" = "Czy ta aplikacja jest przydatna?\nTwoje wskazówki sš mile widziane!";
 "STORE_ALERT_MESSAGE" = "Wyra swojš opinię.";
 "STORE_ALERT_CANCEL" = "Nie teraz";
+"STORE_ALERT_IN_20_MINUTES" = "Ask me in 20 minutes";
 "STORE_ALERT_OK" = "Tak!";
 
 "STORE_UNAVAILABLE_TITLE" = "Nie można dokonać zakupu";
