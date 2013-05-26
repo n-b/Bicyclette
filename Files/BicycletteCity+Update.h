@@ -9,7 +9,7 @@
 #import "BicycletteCity.h"
 #import "DataUpdater.h"
 
-@interface BicycletteCity (Update)  <DataUpdaterDelegate>
+@interface BicycletteCity (Update)  <DataUpdaterDelegate, LocalUpdatePoint>
 
 - (NSArray *) updateURLStrings;
 - (NSString*) detailsURLStringForStation:(Station*)station_;

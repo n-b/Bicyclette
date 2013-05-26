@@ -10,6 +10,7 @@
 #import "CollectionsAdditions.h"
 #import "NSStringAdditions.h"
 #import "BicycletteCity.h"
+#import "BicycletteCity+Update.h"
 
 #define DEBUG_REGION_MONITORING_UNAVAILABLE 0
 #if DEBUG && DEBUG_REGION_MONITORING_UNAVAILABLE
@@ -394,7 +395,11 @@
 
 - (NSArray *)pointsToUpdate
 {
-    return [self stations];
+    if(self.city.canUpdateIndividualStations) {
+        return [self stations];
+    } else {
+        return @[self.city];
+    }
 }
 
 - (CLLocation*) location

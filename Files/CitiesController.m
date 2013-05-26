@@ -323,11 +323,7 @@
                                                                                                   userInfo:nil
                                                                                                   fireDate:nil];
 
-    if(self.updateInProgressFence.city.canUpdateIndividualStations) {
-        [self.updateQueue addOneshotGroup:fence];
-    } else {
-        [self.updateQueue buildUpdateQueue];
-    }
+    [self.updateQueue addOneshotGroup:fence];
 }
 
 - (void) monitor:(GeofencesMonitor*)monitor fenceWasExited:(Geofence*)fence
@@ -338,22 +334,24 @@
 /****************************************************************************/
 #pragma mark -
 
-- (void) updateQueue:(LocalUpdateQueue *)queue didUpdateOneshotPoint:(Station*)station ofGroup:(Geofence*)fence
+- (void) updateQueue:(LocalUpdateQueue *)queue didUpdateOneshotPoint:(id<LocalUpdatePoint>)point ofGroup:(Geofence*)fence
 {
-    NSAssert([station isKindOfClass:[Station class]],nil);
     NSAssert([fence isKindOfClass:[Geofence class]],nil);
-    [[UIApplication sharedApplication] presentLocalNotificationForStationSummary:station];
+    if([point isKindOfClass:[Station class]]) {
+        [[UIApplication sharedApplication] presentLocalNotificationForStationSummary:(Station*)point];
+    } else {
+        NSAssert(point==self.updateInProgressFence.city, nil);
+        for (Station * station in self.updateInProgressFence.stations) {
+            [[UIApplication sharedApplication] presentLocalNotificationForStationSummary:station];
+        }
+        
+    }
 }
 
 - (void) updateQueueDidComplete:(LocalUpdateQueue *)queue
 {
     if(self.updateInProgressNotification) {
         [[UIApplication sharedApplication] cancelLocalNotification:self.updateInProgressNotification];
-        if(!self.updateInProgressFence.city.canUpdateIndividualStations) {
-            for (Station * station in self.updateInProgressFence.stations) {
-                [[UIApplication sharedApplication] presentLocalNotificationForStationSummary:station];
-            }
-        }
         self.updateInProgressFence = nil;
     }
     self.updateInProgressNotification = nil;
