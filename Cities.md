@@ -103,8 +103,9 @@ Although it's very similar to other services by Cyclocity, webservices are diffe
 ## BIXI
 The data contains both the List of stations and the Status Details.
 
-*Unknown Terms of Use*
+*Not an “API”, but usage is authorized.*
 
+Type 1:
 - Canada (Hosted on the same servers.)
 	- List+Details (Template) : `https://{servicewebsite.bixi.com}/data/bikeStations.xml`
 	- **Toronto** : toronto.bixi.com
@@ -120,6 +121,12 @@ The data contains both the List of stations and the Status Details.
 	* List+Details : : `http://www.thehubway.com/data/stations/bikeStations.xml`
 	* Boston also has an official opendata webservice (http://hubwaydatachallenge.org), but it's not as simple to use as the Bixi service.
 
+Type 2:
+- **Chattanooga**
+	- List+Details : http://www.bikechattanooga.com/stations/json
+- **NYC**
+	- List+Details : http://citibikenyc.com/stations/json
+
 ## Melbourne
 A BIXI network, but uses its own webservice.
 
@@ -127,12 +134,6 @@ A BIXI network, but uses its own webservice.
 
 - List+Details : http://www.melbournebikeshare.com.au/stationmap/data
 
-## Chattanooga
-A BIXI network, but uses its own webservice.
-
-*Unknown Terms of Use*
-
-- List+Details : http://www.bikechattanooga.com/stations/json
 
 ## nextbike
 

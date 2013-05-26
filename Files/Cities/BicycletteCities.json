@@ -1848,6 +1848,29 @@
     "mkCoordinateRegionLatitudeDelta" : 0.02808699999999931
   },
   {
+    "mkCoordinateRegionLongitudeDelta" : 0.01912400000000503,
+    "radius" : 5739,
+    "service_name" : "CitiBike",
+    "longitude" : -73.983591,
+    "latitude" : 40.725914,
+    "mkCoordinateRegionLongitude" : -73.983591,
+    "mkCoordinateRegionLatitude" : 40.725914,
+    "city_class" : "FlatJSONListCity",
+    "update_url" : "http:\/\/citibikenyc.com\/stations\/json",
+    "keypath_to_stations_lists" : "stationBeanList",
+    "KVCMapping" : {
+      "availableBikes" : "status_available",
+      "longitude" : "longitude",
+      "id" : "number",
+      "stationName" : "name",
+      "availableDocks" : "status_free",
+      "latitude" : "latitude",
+      "stAddress1" : "address"
+    },
+    "city_name" : "New York City",
+    "mkCoordinateRegionLatitudeDelta" : 0.02808699999999931
+  },
+  {
     "mkCoordinateRegionLongitudeDelta" : 0.02300999999999931,
     "radius" : 1068.424069356013,
     "service_name" : "SLC Bike Share",

@@ -67,7 +67,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter JCDecauxCity"
+            argument = "-DataGrabberCityFilter New"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -78,6 +78,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLanguages &apos;(pl)&apos;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-AppleLanguages &apos;(en)&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -86,6 +90,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLocale &apos;DE_de&apos;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-AppleLocale &apos;en_US&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
