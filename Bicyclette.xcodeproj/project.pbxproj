@@ -1195,7 +1195,7 @@
 			);
 			name = Mogenerate;
 			outputPaths = (
-				"${SRCROOT}/Files/BicycletteCity/BicycletteCity.mogenerated.m",
+				"${SRCROOT}/Files/BicycletteCity.mogenerated.m",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
