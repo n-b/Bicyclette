@@ -184,8 +184,32 @@ static BOOL gShouldShowAnnotations = NO;
 - (void) takeScreenshotForLincolnMemorial_2
 {
     [self saveScreenshotWithNameTemplate:@"LincolnMemorial" localized:YES];
+    [self performSelector:@selector(takeScreenshotForNYC) withObject:nil afterDelay:1];
+}
+
+- (CLLocationDistance) distanceForNYC
+{
+    if([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad)
+        return 4000.;
+    else
+        return 3000.;
+}
+
+- (void) takeScreenshotForNYC
+{
+    MKCoordinateRegion washington = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(38.880661, -77.033085),
+                                                                       self.distanceForLincolnMemorial,self.distanceForLincolnMemorial);
+    [self.mapView setRegion:washington animated:NO];
+    [self.controller selectStationNumber:@"204" inCityNamed:@"New York City" changeRegion:NO];
+    [self performSelector:@selector(takeScreenshotForLincolnMemorial_2) withObject:nil afterDelay:4];
+}
+
+- (void) takeScreenshotForNYC
+{
+    [self saveScreenshotWithNameTemplate:@"LincolnMemorial" localized:YES];
     [self performSelector:@selector(takeLockedScreenshot) withObject:nil afterDelay:1];
 }
+
 
 - (void) takeLockedScreenshot
 {
