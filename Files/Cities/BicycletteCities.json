@@ -32,6 +32,7 @@
     "city_class" : "DecobikeCity",
     "update_url" : "http:\/\/www.decobikelbny.com\/playmoves.xml",
     "city_name" : "Long Beach",
+    "city_group" : "New York City",
     "mkCoordinateRegionLatitudeDelta" : 0.009280000000003952
   },
   {
@@ -1868,6 +1869,7 @@
       "stAddress1" : "address"
     },
     "city_name" : "New York City",
+ 	"city_group" : "New York City",
     "mkCoordinateRegionLatitudeDelta" : 0.02808699999999931
   },
   {
