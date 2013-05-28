@@ -4,16 +4,17 @@ Bicyclette works with Bike-Sharing systems in more than 50 cities in the world.
 
 ![](images/screenshots/Europe@2x.png)
 
-* **BIXI** in Montréal
-* **BIXI** in Toronto
-* **BIXI** in Ottawa
+* **Citi Bike** in New York City
 * **Capital Bike Share** in Washington
 * **Hubway** in Boston
 * **Nice Ride** in Minneapolis
 * **ChattanoogaBike** in Chattanooga
-* **DECOBIKE** in Miami
+* **DECOBIKE** in Miami and Long Beach
 * **B-cycle** Systems in the U.S. (Boulder, Broward, Charlotte, Denver, Des Moines, Fort Worth, Greenville, Hawaii, Houston, Kansas City, Louisville, Madison, Nashville, Omaha, San Antonio, Salt Lake City, Spartanburg) 
 * **ViaCycle** Systems in the U.S. (George Mason University, Georgia Tech, Las Vegas) 
+* **BIXI** in Montréal
+* **BIXI** in Toronto
+* **BIXI** in Ottawa
 * **CyclOcity** in Toyama
 * **CityCycle** in Brisbane
 * **BikeShare** in Melbourne

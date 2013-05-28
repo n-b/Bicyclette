@@ -55,16 +55,17 @@ Bicyclette est compatible avec les vélos en libre-service dans plus de 50 ville
 
 ## Dans le monde :
 
-* **BIXI** à Montréal
-* **BIXI** à Toronto
-* **BIXI** à Ottawa
+* **Citi Bike** à New York
 * **Capital Bike Share** à Washington
 * **Hubway** à Boston
 * **Nice Ride** à Minneapolis
 * **ChattanoogaBike** à Chattanooga
-* **DECOBIKE** à Miami
+* **DECOBIKE** à Miami et Long Beach
 * Systèmes **B-Cycle** aux États-Unis (Boulder, Broward, Charlotte, Denver, Des Moines, Fort Worth, Greenville, Hawaii, Houston, Kansas City, Louisville, Madison, Nashville, Omaha, San Antonio, Salt Lake City, Spartanburg) 
 * Systèmes **ViaCycle** aux États-Unis (George Mason University, Georgia Tech, Las Vegas) 
+* **BIXI** à Montréal
+* **BIXI** à Toronto
+* **BIXI** à Ottawa
 * **CyclOcity** à Toyama
 * **CityCycle** à Brisbane
 * **BikeShare** à Melbourne
