@@ -165,7 +165,7 @@
     if([lastLaunches count] == minCountInDonationInterval && [[lastLaunches lastObject] timeIntervalSinceReferenceDate] - [[lastLaunches objectAtIndex:0] timeIntervalSinceReferenceDate] < donationInterval)
     {
         shouldAsk = YES;
-        lastLaunches = [NSArray array];
+        lastLaunches = [NSMutableArray array];
     }
     [[NSUserDefaults standardUserDefaults] setObject:lastLaunches forKey:@"Bicyclette.App.LastLaunches"];
     

@@ -76,7 +76,7 @@ typedef enum {
         if ([_cache objectForKey:key]==nil)
         {
             CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-            CGContextRef c = CGBitmapContextCreate(NULL, size.width*scale, size.height*scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast);
+            CGContextRef c = CGBitmapContextCreate(NULL, size.width*scale, size.height*scale, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
             CGColorSpaceRelease(colorSpace);
             
             CGContextTranslateCTM(c, 0, size.height*scale);
