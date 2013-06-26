@@ -846,7 +846,20 @@
     "mkCoordinateRegionLatitudeDelta" : 0.1059419999999989
   },
   {
-    "mkCoordinateRegionLongitudeDelta" : 0.005230000000000956,
+    "mkCoordinateRegionLongitudeDelta" : 0.0165039999999995,
+    "radius" : 783,
+    "service_name" : "Bysykkel",
+    "longitude" : 11.053095,
+    "latitude" : 59.956745,
+    "mkCoordinateRegionLatitude" : 59.956745,
+    "mkCoordinateRegionLongitude" : 11.053095,
+    "city_class" : "JCDecauxCity",
+    "jcdecaux_contract" : "Lillestrom",
+    "city_name" : "Lillestrom",
+    "mkCoordinateRegionLatitudeDelta" : 0.0032980000000012
+  },
+  {
+    "mkCoordinateRegionLongitudeDelta" : 0.015230000000000956,
     "radius" : 837.0786082231847,
     "service_name" : "NextBike",
     "longitude" : 12.830634,
