@@ -114,6 +114,45 @@
     "mkCoordinateRegionLatitudeDelta" : 0.0339919999999978
   },
   {
+    "mkCoordinateRegionLongitudeDelta" : 0.03535800000000044,
+    "radius" : 2501,
+    "service_name" : "Vélo",
+    "longitude" : 6.854119,
+    "latitude" : 47.633600,
+    "mkCoordinateRegionLongitude" : 6.854119,
+    "mkCoordinateRegionLatitude" : 47.633600,
+    "city_class" : "SmooveCity",
+    "update_url" : "http:\/\/cli-velo-belfort.gir.fr\/vcstations.xml",
+    "city_name" : "Belfort",
+    "mkCoordinateRegionLatitudeDelta" : 0.0339919999999978
+  },
+  {
+    "mkCoordinateRegionLongitudeDelta" : 0.03535800000000044,
+    "radius" : 1702,
+    "service_name" : "Vélo",
+    "longitude" : -3.366111,
+    "latitude" : 47.755556,
+    "mkCoordinateRegionLongitude" : -3.366111,
+    "mkCoordinateRegionLatitude" : 47.755556,
+    "city_class" : "SmooveCity",
+    "update_url" : "http:\/\/www.lorient-velo.fr\/vcstations.xml",
+    "city_name" : "Lorient",
+    "mkCoordinateRegionLatitudeDelta" : 0.0339919999999978
+  },
+  {
+    "mkCoordinateRegionLongitudeDelta" : 0.03535800000000044,
+    "radius" : 2131,
+    "service_name" : "C.vélo",
+    "longitude" : 3.081310,
+    "latitude" : 45.777457,
+    "mkCoordinateRegionLongitude" : 3.081310,
+    "mkCoordinateRegionLatitude" : 45.777457,
+    "city_class" : "SmooveCity",
+    "update_url" : "http:\/\/www.c-velo.fr\/vcstations.xml",
+    "city_name" : "Clermont-Ferrand",
+    "mkCoordinateRegionLatitudeDelta" : 0.0339919999999978
+  },
+  {
     "mkCoordinateRegionLongitudeDelta" : 0.03963500521850616,
     "radius" : 1652.042328046642,
     "service_name" : "Vélopass",
