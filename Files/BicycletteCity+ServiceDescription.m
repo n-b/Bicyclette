@@ -34,8 +34,11 @@
         }
     }
 
-    // Add KVCMapping
-    [info setObject:[self KVCMapping] forKey:@"KVCMapping"];
+    // Add KVCMapping (only if it was in the serviceInfo)
+    if(self.serviceInfo[@"KVCMapping"]) {
+        NSAssert([[self KVCMapping] isEqual:self.serviceInfo[@"KVCMapping"]], @"KVCMapping specified in serviceInfo but overridden");
+        [info setObject:[self KVCMapping] forKey:@"KVCMapping"];
+    }
     
     // station parsing class
     if([self stationStatusParsingClass])
