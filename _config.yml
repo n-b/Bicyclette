@@ -6,5 +6,5 @@ email: contact@bicyclette-app.com
 github:
  username: n-b
 
-markdown: kramdown
+markdown: rdiscount
 pygments: true
