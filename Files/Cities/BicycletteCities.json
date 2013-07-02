@@ -1,5 +1,28 @@
 [
   {
+    "mkCoordinateRegionLongitudeDelta" : 0.06234192919998804,
+    "radius" : 5058.039743878613,
+    "service_name" : "Divvy",
+    "longitude" : -87.6465209646,
+    "latitude" : 41.89193762645,
+    "mkCoordinateRegionLongitude" : -87.6465209646,
+    "mkCoordinateRegionLatitude" : 41.89193762645,
+    "city_class" : "FlatJSONListCity",
+    "update_url" : "http:\/\/divvybikes.com\/stations\/json",
+    "keypath_to_stations_lists" : "stationBeanList",
+    "city_name" : "Chicago",
+    "KVCMapping" : {
+      "location" : "address",
+      "availableBikes" : "status_available",
+      "longitude" : "longitude",
+      "id" : "number",
+      "availableDocks" : "status_free",
+      "latitude" : "latitude",
+      "stationName" : "name"
+    },
+    "mkCoordinateRegionLatitudeDelta" : 0.08112490709999776
+  },
+  {
     "mkCoordinateRegionLatitudeDelta": 0.03014000000000294,
     "city_name": "Boulder",
     "keypath_to_stations_lists": "d.list",
