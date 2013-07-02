@@ -32,6 +32,7 @@ Bicyclette est compatible avec les vélos en libre-service dans plus de 50 ville
 * **Vélomagg'** à Montpellier
 * **Vélopop** à Avignon
 * **Libélo** à Valence
+* Systèmes **Smoove** à Belfort, Clermont-Ferrand et Lorient
 
 ## En Europe :
 
@@ -47,6 +48,7 @@ Bicyclette est compatible avec les vélos en libre-service dans plus de 50 ville
 * **Styr & Ställ** à Göteborg
 * **Bicike(LJ)** à Ljubljana
 * **CitybikeCity** à Wien
+* Systèmes **Cyclocity/JCDecaux** à Stockholm, Vilnius, Lillestrøm et Kazan
 * Systèmes **Vélopass** en Suisse. (La&nbsp;Côte, Fribourg, Bulle, Les Lacs&nbsp;-&nbsp;Romont, Chablais, Valais Central, Yverdon-les-Bains, Lausanne&nbsp;-&nbsp;Morges & Campus, Vevey-Riviera, Lugano - Paradiso.)
 * Réseau **NextBike** (10vorWien, Augsburg, Baku, Berlin, Bielefeld, Bregenzerwald, Burghausen, Coburg, Dresden,  Düsseldorf, Erfurt, Flensburg, Frankfurt, Gütersloh, Haag, Hamburg, Hannover, Konya, Krems, Laa, Leipzig, Limassol, Luzern, Magdeburg, Marchfeld, Mistelbach, Mödling, München, Neunkirchen, NeusiedlerSee, Norderstedt, Nürnberg, Oberes, Offenburg, Opole, Piestingtal, Potsdam, Poznan, Salzburg, St.Pölten, Südheide, Thermenregion, Traisen-Gölsental, Triestingtal, Tulln, Tübingen, Unteres, Wachau, Waldviertel, Wieselburg, Wr.Neustadt, Wrocław, İzmir)
 * **BalticBike** à Riga et Jurmala
@@ -57,6 +59,7 @@ Bicyclette est compatible avec les vélos en libre-service dans plus de 50 ville
 
 * **Citi Bike** à New York
 * **Capital Bike Share** à Washington
+* **Divvy Bikes** à Chicago
 * **Hubway** à Boston
 * **Nice Ride** à Minneapolis
 * **ChattanoogaBike** à Chattanooga

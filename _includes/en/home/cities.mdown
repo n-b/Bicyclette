@@ -6,6 +6,7 @@ Bicyclette works with Bike-Sharing systems in more than 50 cities in the world.
 
 * **Citi Bike** in New York City
 * **Capital Bike Share** in Washington
+* **Divvy Bikes** in Chicago
 * **Hubway** in Boston
 * **Nice Ride** in Minneapolis
 * **ChattanoogaBike** in Chattanooga
@@ -28,6 +29,7 @@ Bicyclette works with Bike-Sharing systems in more than 50 cities in the world.
 * **Li bia velo** in Namur
 * **Styr & Ställ** in Göteborg
 * **Bicike(LJ)** in Ljubljana
+* **Cyclocity/JCDecaux** systems in Stockholm, Vilnius, Lillestrøm and Kazan
 * **CitybikeCity** in Wien
 * **TusBic** in Santander
 * **SEVici** in Sevilla
@@ -67,6 +69,7 @@ Bicyclette works with Bike-Sharing systems in more than 50 cities in the world.
 * **Vélomagg'** in Montpellier
 * **Vélopop** in Avignon
 * **Libélo** in Valence
+* **Smoove** systems in Belfort, Clermont-Ferrand and Lorient
 
 
 Bicyclette uses the data from the Bike-Sharing Operators, available via their website or opendata webservices. [More Information on the data sources.](data.html)
