@@ -67,7 +67,15 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-DataGrabberCityFilter New"
+            argument = "-DataGrabberAlwaysExportBicycletteJSON YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-DataGrabberComputeCoordinateRegion YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-DataGrabberCityFilter Stockholm"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -88,7 +96,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogMissingGeolocErrors YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-DataGrabberLogServiceInfo YES"

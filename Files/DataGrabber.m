@@ -167,7 +167,7 @@ int main(int argc, const char * argv[])
             [fullServiceInfos addObject:[city fullServiceInfo]];
         }
         
-        if(![serviceInfos isEqualToArray:fullServiceInfos] && [cityFilter length]==0)
+        if(![serviceInfos isEqualToArray:fullServiceInfos] && ([cityFilter length]==0 || [[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberAlwaysExportBicycletteJSON"]))
         {
             NSLog(@"SERVICE INFO HAVE CHANGED");
             NSData * data = [NSJSONSerialization dataWithJSONObject:fullServiceInfos

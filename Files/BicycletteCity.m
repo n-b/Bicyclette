@@ -172,7 +172,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         return _mkRegionContainingData;
     }
     
-    if(self.serviceInfo[@"mkCoordinateRegionLatitude"]) {
+    if(self.serviceInfo[@"mkCoordinateRegionLatitude"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"DataGrabberComputeCoordinateRegion"]) {
         _mkRegionContainingData.center.latitude = [self.serviceInfo[@"mkCoordinateRegionLatitude"] doubleValue];
         _mkRegionContainingData.center.longitude = [self.serviceInfo[@"mkCoordinateRegionLongitude"] doubleValue];
         _mkRegionContainingData.span.latitudeDelta = [self.serviceInfo[@"mkCoordinateRegionLatitudeDelta"] doubleValue];

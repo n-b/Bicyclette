@@ -855,8 +855,44 @@
     "mkCoordinateRegionLongitude" : 11.053095,
     "city_class" : "JCDecauxCity",
     "jcdecaux_contract" : "Lillestrom",
-    "city_name" : "Lillestrom",
+    "city_name" : "Lillestrøm",
     "mkCoordinateRegionLatitudeDelta" : 0.0032980000000012
+  },
+  {
+    "radius" : 0,
+    "mkCoordinateRegionLongitude" : 18.10028,
+    "longitude" : 18.10028,
+    "mkCoordinateRegionLatitude" : 59.32419,
+    "service_name" : "Cyclocity",
+    "latitude" : 59.32419,
+    "city_class" : "JCDecauxCity",
+    "mkCoordinateRegionLatitudeDelta" : 0,
+    "city_name" : "Stockholm",
+    "mkCoordinateRegionLongitudeDelta" : 0
+  },
+  {
+    "radius" : 736.7876343279366,
+    "mkCoordinateRegionLongitude" : 25.283001275,
+    "longitude" : 25.283001275,
+    "mkCoordinateRegionLatitude" : 54.68996551,
+    "service_name" : "Cyclocity",
+    "latitude" : 54.68996551,
+    "city_class" : "JCDecauxCity",
+    "mkCoordinateRegionLatitudeDelta" : 0.0109899200000001,
+    "city_name" : "Vilnius",
+    "mkCoordinateRegionLongitudeDelta" : 0.01273660999999748
+  },
+  {
+    "radius" : 1134.139482474735,
+    "mkCoordinateRegionLongitude" : 49.123903,
+    "longitude" : 49.123903,
+    "mkCoordinateRegionLatitude" : 55.78998,
+    "service_name" : "Veli'k",
+    "latitude" : 55.78998,
+    "city_class" : "JCDecauxCity",
+    "mkCoordinateRegionLatitudeDelta" : 0.01170799999999872,
+    "city_name" : "Kazan",
+    "mkCoordinateRegionLongitudeDelta" : 0.02960600000000113
   },
   {
     "mkCoordinateRegionLongitudeDelta" : 0.015230000000000956,
