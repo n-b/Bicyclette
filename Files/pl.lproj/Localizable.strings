@@ -59,6 +59,7 @@
 "STORE_UNAVAILABLE_MESSAGE" = "Zakupy sš wyłšczone";
 
 "STORE_SHEET_TITLE" = "Czy ta aplikacja jest przydatna?\nTwoje wskazówki sš mile widziane!\n\nWyra swojš opinię:";
+"STORE_RESTORE_PURCHASES" = "Restore purchases";
 "STORE_SHEET_CANCEL" = "Anulowanie";
 
 "STORE_THANK_YOU_LABEL" = "Dziękujemy!";

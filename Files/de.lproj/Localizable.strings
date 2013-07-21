@@ -59,6 +59,7 @@
 "STORE_UNAVAILABLE_MESSAGE" = "In-App Käufe sind deaktiviert.";
 
 "STORE_SHEET_TITLE" = "Ist diese App für Sie nützlich?\nIhre Hilfe ist sehr willkommen!\n\nSie können soviel geben wie Sie wollen:";
+"STORE_RESTORE_PURCHASES" = "Restore purchases";
 "STORE_SHEET_CANCEL" = "Abbrechen";
 
 "STORE_THANK_YOU_LABEL" = "Vielen Dank!";

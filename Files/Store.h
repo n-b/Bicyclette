@@ -16,6 +16,7 @@
 @property id<StoreDelegate> delegate;
 - (BOOL) requestProducts:(NSArray*)productIdentifiers;
 - (void) buy:(SKProduct*)product;
+- (void) restore;
 @end
 
 
@@ -28,4 +29,5 @@
 - (void) store:(Store*)store purchaseSucceeded:(NSString*)productIdentifier;
 - (void) store:(Store*)store purchaseCancelled:(NSString*)productIdentifier;
 - (void) store:(Store*)store purchaseFailed:(NSString*)productIdentifier withError:(NSError*)error;
+- (void) storeRestoreFinished:(Store*)store;
 @end

@@ -100,5 +100,22 @@
     }
 }
 
+// Sent when an error is encountered while adding transactions from the user's purchase history back to the queue.
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    [self.delegate storeRestoreFinished:self];
+}
+
+// Sent when all transactions from the user's purchase history have successfully been added back to the queue.
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    [self.delegate storeRestoreFinished:self];
+}
+
+- (void) restore
+{
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
 
 @end

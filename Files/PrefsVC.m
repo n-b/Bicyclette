@@ -419,6 +419,7 @@
         [storeSheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@",product.localizedTitle,[priceFormatter stringFromNumber:product.price]]];
     }
     
+    [storeSheet addButtonWithTitle:NSLocalizedString(@"STORE_RESTORE_PURCHASES", nil)];
     [storeSheet addButtonWithTitle:NSLocalizedString(@"STORE_SHEET_CANCEL", nil)];
     storeSheet.cancelButtonIndex = storeSheet.numberOfButtons-1;
     
@@ -428,13 +429,14 @@
 // Pick a product
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex==actionSheet.cancelButtonIndex)
-    {
+    if(buttonIndex==actionSheet.cancelButtonIndex) {
         [self actionSheetCancel:actionSheet];
-        return;
+    } else if(buttonIndex==actionSheet.numberOfButtons-2) {
+        [self.store restore];
+    } else {
+        SKProduct * product = self.products[buttonIndex];
+        [self.store buy:product];
     }
-    SKProduct * product = self.products[buttonIndex];
-    [self.store buy:product];
 }
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
@@ -472,6 +474,15 @@
     self.storeButton.enabled = YES;
     self.products = nil;
     // StoreKit already presents the error, it's useless to display another alert
+}
+
+- (void) storeRestoreFinished:(Store*)store
+{
+    [self.storeIndicator stopAnimating];
+    self.storeLabel.hidden = NO;
+    self.storeButton.enabled = YES;
+    self.products = nil;
+    [self updateStoreButton];
 }
 
 @end

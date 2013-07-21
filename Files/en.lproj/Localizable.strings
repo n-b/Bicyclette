@@ -59,6 +59,7 @@
 "STORE_UNAVAILABLE_MESSAGE" = "In-App Purchases are disabled.";
 
 "STORE_SHEET_TITLE" = "Is this app useful to you?\nYour help is most welcome!\n\nGive what you want:";
+"STORE_RESTORE_PURCHASES" = "Restore purchases";
 "STORE_SHEET_CANCEL" = "Cancel";
 
 "STORE_THANK_YOU_LABEL" = "Thank you!";

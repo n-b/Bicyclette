@@ -59,6 +59,7 @@
 "STORE_UNAVAILABLE_MESSAGE" = "Les achats intégrés sont désactivés.";
 
 "STORE_SHEET_TITLE" = "Cette appli vous est utile ?\nVotre aide est la bienvenue !\n\nDonnez ce que vous voulez :";
+"STORE_RESTORE_PURCHASES" = "Rétablir les achats";
 "STORE_SHEET_CANCEL" = "Annuler";
 
 "STORE_THANK_YOU_LABEL" = "Merci !";
