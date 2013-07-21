@@ -299,7 +299,11 @@
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
-    self.controller.mapViewIsMoving = YES;
+    // "animated" means "not dragged by the user"
+    // I only want to know that the mapview is being manipulated by the user.
+    if(!animated) {
+        self.controller.mapViewIsMoving = YES;
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
