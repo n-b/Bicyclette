@@ -70,7 +70,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-AppleLanguages &apos;(fr)&apos;"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLanguages &apos;(de)&apos;"
@@ -82,11 +82,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLanguages &apos;(en)&apos;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLocale &apos;FR_fr&apos;"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLocale &apos;DE_de&apos;"
@@ -94,7 +94,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-AppleLocale &apos;en_US&apos;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -105,8 +105,8 @@
          </AdditionalOption>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
-         referenceType = "1">
+         identifier = "../../TestData/Saint-Michel.gpx"
+         referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
