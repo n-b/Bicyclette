@@ -384,6 +384,8 @@
 		37E43DA31684D7A30085EC4F /* Dublin_dublinbikes.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dublin_dublinbikes.coredata; sourceTree = "<group>"; };
 		37E43DAC1684D7A30085EC4F /* Orléans_Vélo’+.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Orléans_Vélo’+.coredata"; sourceTree = "<group>"; };
 		37E7AC3616B67B2600135570 /* bell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bell.wav; sourceTree = "<group>"; };
+		37E8CA7A179C7075001AE8BB /* Lorient.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lorient.gpx; sourceTree = "<group>"; };
+		37E8CA82179C71F0001AE8BB /* Hawaii.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hawaii.gpx; sourceTree = "<group>"; };
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -713,8 +715,10 @@
 				3770B22E14E976C20003BBA8 /* Austerlitz.gpx */,
 				37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */,
 				37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */,
+				37E8CA82179C71F0001AE8BB /* Hawaii.gpx */,
 				37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */,
 				942D47F816A82DD700F6CD12 /* Barcelone.gpx */,
+				37E8CA7A179C7075001AE8BB /* Lorient.gpx */,
 				942D47F916A82DD700F6CD12 /* Lyon.gpx */,
 				942D47FA16A82DD700F6CD12 /* Rennes.gpx */,
 				37FF34C116D65C1A008D8880 /* Toulouse.gpx */,

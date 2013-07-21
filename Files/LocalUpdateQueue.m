@@ -244,8 +244,10 @@
         // Basically, I want Vélib to be more important than Cristolib.
         if([result respondsToSelector:@selector(radius)] && [obj respondsToSelector:@selector(radius)])
         {
-            d1 /= [result radius];
-            d2 /= [obj radius];
+            // Some cities have only one station, i.e. a zero radius.
+            CLLocationDistance minRadius = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Cities.MinimumRadius"];
+            d1 /= MAX([result radius], minRadius);
+            d2 /= MAX([obj radius], minRadius);
         }
 
         if(d2<d1)

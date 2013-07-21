@@ -10,6 +10,8 @@
 	<true/>
 	<key>RegionMonitoring.FenceDistance</key>
 	<integer>200</integer>
+	<key>Cities.MinimumRadius</key>
+	<integer>500</integer>
 	<key>CitiesController.MapRegionZoomDistance</key>
 	<integer>900</integer>
 	<key>CitiesController.CurrentCityDistanceThreshold</key>

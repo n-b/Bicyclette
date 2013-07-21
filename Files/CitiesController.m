@@ -146,11 +146,13 @@
     CLLocationDistance distanceToCity = [nearestCity.location distanceFromLocation:center];
     
     // Are we actually near from the city ?
-    if(distanceToCity > [nearestCity radius] * [[nearestCity prefForKey:@"CitiesController.CurrentCityDistanceThreshold"] doubleValue])
+    CLLocationDistance minRadius = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Cities.MinimumRadius"];
+    CLLocationDistance effectiveRadius = MAX([nearestCity radius], minRadius);
+    if(distanceToCity > effectiveRadius * [[nearestCity prefForKey:@"CitiesController.CurrentCityDistanceThreshold"] doubleValue])
         nearestCity = nil;
 
     // Are we zooming enough ?
-    if(viewSpanMeters > [nearestCity radius] * [[nearestCity prefForKey:@"CitiesController.CurrentCityZoomThreshold"] doubleValue])
+    if(viewSpanMeters > effectiveRadius * [[nearestCity prefForKey:@"CitiesController.CurrentCityZoomThreshold"] doubleValue])
         nearestCity = nil;
     
     if(self.currentCity!=nearestCity)
@@ -243,6 +245,10 @@
     } else {
         // Zoom directly to city
         MKCoordinateRegion region = [city_ mkRegionContainingData];
+        if(region.span.latitudeDelta == 0. || region.span.longitudeDelta == 0.) {
+            CLLocationDistance minDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
+            region = MKCoordinateRegionMakeWithDistance(region.center, minDistance, minDistance);
+        }
         [self.delegate controller:self setRegion:region];
     }
 }
