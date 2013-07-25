@@ -19,6 +19,4 @@
 
 @property (nonatomic) CitiesController * citiesController;
 
-- (void) handleDonationNotification:(UILocalNotification*)notification;
-
 @end

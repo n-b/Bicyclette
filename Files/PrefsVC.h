@@ -9,5 +9,4 @@
 @class CitiesController;
 @interface PrefsVC : UITableViewController
 @property (nonatomic) CitiesController * controller;
-- (IBAction)donate;
 @end

@@ -39,7 +39,6 @@
 		3722E0F9168AF8830069C6A8 /* VelowayCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3722E0F7168AF8830069C6A8 /* VelowayCity.m */; };
 		37235E8C1662BDB200F33BF1 /* libKVCMapping-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37235E8B1662BDB200F33BF1 /* libKVCMapping-osx.a */; };
 		37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B4C1F71659521600DE4756 /* libKVCMapping-ios.a */; };
-		3724BC7315E4CA1200790869 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 3724BC7215E4CA1200790869 /* Store.m */; };
 		3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3724BC7415E4CA8A00790869 /* StoreKit.framework */; };
 		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
@@ -262,8 +261,6 @@
 		37216BC612611C5400A2695A /* BicycletteCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BicycletteCity.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3722E0F7168AF8830069C6A8 /* VelowayCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelowayCity.m; sourceTree = "<group>"; };
 		37239F4216B808EC00638420 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3724BC7115E4CA1200790869 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
-		3724BC7215E4CA1200790869 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		3724BC7415E4CA8A00790869 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3730161615977E1900347C9F /* DrawingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCache.h; sourceTree = "<group>"; };
 		3730161715977E1900347C9F /* DrawingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCache.m; sourceTree = "<group>"; };
@@ -585,8 +582,6 @@
 				3717AA65162A1C11005EC7BD /* Cities */,
 				3709F572167B752300F865E3 /* Station Updates */,
 				94DE16DD16AD7A2A00C0FB64 /* GeoFences */,
-				3724BC7115E4CA1200790869 /* Store.h */,
-				3724BC7215E4CA1200790869 /* Store.m */,
 				3760881416762BF300B1161E /* Tests */,
 				37D131FD163F32FC00AABEE4 /* Utility */,
 			);
@@ -1143,7 +1138,6 @@
 				3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */,
 				37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */,
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
-				3724BC7315E4CA1200790869 /* Store.m in Sources */,
 				37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */,
 				37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */,
 				37513B6316173FAB00388FF3 /* RootVC.m in Sources */,

@@ -30,42 +30,16 @@
 
 "SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@";
 
-"STORE_PLEASE_HELP_LABEL" = "Lubisz tę aplikację?";
-"STORE_PLEASE_HELP_BUTTON" = "Pomóż mi jš ulepszyć!";
-
 "SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, najlepsza aplikacja dla miejskich rowerów! @bicycletteapp";
 "SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, najepsza aplikacja dla %@! @bicycletteapp";
 
 "APPSTORE_RATINGS_BUTTON" = "Oceń na App Store";
-
-"SEE_HELP_LABEL" = "Potrzebujesz pomocy?";
-"SEE_HELP_BUTTON" = "Zobacz Instrukcje";
 
 "ENABLE_GEOFENCES" = "Automatic “Geofence” Alerts:";
 "GEOFENCES_UNAVAILABLE" = "Your device does not have support for Automatic Alerts (Geofences) near stations.";
 
 "STATIONS_LIST_CITY_%@" = "«%@» stacje:";
 "UPDATE_STATIONS_LIST_BUTTON" = "Aktualizuj";
-
-/* Sklep */
-
-"STORE_ALERT_TITLE" = "Czy ta aplikacja jest przydatna?\nTwoje wskazówki sš mile widziane!";
-"STORE_ALERT_MESSAGE" = "Wyra swojš opinię.";
-"STORE_ALERT_CANCEL" = "Nie teraz";
-"STORE_ALERT_IN_20_MINUTES" = "Ask me in 20 minutes";
-"STORE_ALERT_OK" = "Tak!";
-
-"STORE_UNAVAILABLE_TITLE" = "Nie można dokonać zakupu";
-"STORE_UNAVAILABLE_MESSAGE" = "Zakupy sš wyłšczone";
-
-"STORE_SHEET_TITLE" = "Czy ta aplikacja jest przydatna?\nTwoje wskazówki sš mile widziane!\n\nWyra swojš opinię:";
-"STORE_RESTORE_PURCHASES" = "Restore purchases";
-"STORE_SHEET_CANCEL" = "Anulowanie";
-
-"STORE_THANK_YOU_LABEL" = "Dziękujemy!";
-"STORE_REWARD_1" = "😀";
-"STORE_REWARD_2" = "😀😀";
-"STORE_REWARD_3" = "😀😀😀";
 
 /* Updates */
 
