@@ -20,7 +20,9 @@
 #pragma mark -
 
 @implementation LocalUpdateQueue
-
+{
+    UIBackgroundTaskIdentifier _bgTaskIdentifier;
+}
 - (id)init
 {
     self = [super init];
@@ -28,6 +30,7 @@
         self.monitoredGroups = [NSMutableArray new];
         self.oneshotGroups = [NSMutableArray new];
         self.pointsUpdated = [NSMutableArray new];
+        _bgTaskIdentifier = UIBackgroundTaskInvalid;
     }
     return self;
 }
@@ -155,6 +158,12 @@
     if([pointsNotUpdated count])
     {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        if(_bgTaskIdentifier==UIBackgroundTaskInvalid) {
+            _bgTaskIdentifier = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+                [self.delegate updateQueueDidComplete:self];
+                _bgTaskIdentifier = UIBackgroundTaskInvalid;
+            }];
+        }
 
         id<LocalUpdatePoint> point = pointsNotUpdated[0];
         [self.pointsUpdated addObject:point];
@@ -182,6 +191,8 @@
     {
         // We've done all the stations in the list !
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [[UIApplication sharedApplication] endBackgroundTask:_bgTaskIdentifier];
+        _bgTaskIdentifier = UIBackgroundTaskInvalid;
         self.pointsUpdated = [NSMutableArray new];
         
         // clear the oneshot groups and restart after a delay
