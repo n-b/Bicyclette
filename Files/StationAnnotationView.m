@@ -9,6 +9,7 @@
 #import "StationAnnotationView.h"
 #import "Station.h"
 #import "Station+Update.h"
+#import "StationAnnotationView+Drawing.h"
 
 @implementation StationAnnotationView
 {
@@ -16,9 +17,11 @@
     UIButton * _starButton;
 }
 
-- (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache;
+
+- (id) initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithAnnotation:annotation drawingCache:drawingCache];
+    self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+    
     self.frame = CGRectMake(0,0,kStationAnnotationViewSize,kStationAnnotationViewSize);
     _loadingLayer = [CALayer new];
     _loadingLayer.frame = self.frame;
@@ -43,21 +46,26 @@
 
 - (void) setAnnotation:(id<MKAnnotation>)annotation
 {
-    for (NSString * property in [[self class] stationObservedProperties])
+    for (NSString * property in [[self class] stationObservedProperties]) {
         [self.station removeObserver:self forKeyPath:property];
+    }
     
     [super setAnnotation:annotation];
     
-    for (NSString * property in [[self class] stationObservedProperties])
+    for (NSString * property in [[self class] stationObservedProperties]) {
         [self.station addObserver:self forKeyPath:property options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:(__bridge void *)([StationAnnotationView class])];
-
+    }
+    
+    [self setNeedsDisplay];
 }
 
 - (void) prepareForReuse
 {
     [super prepareForReuse];
-    for (NSString * property in [[self class] stationObservedProperties])
+    for (NSString * property in [[self class] stationObservedProperties]) {
         [self.station removeObserver:self forKeyPath:property];
+    }
+    self.annotation = nil;
 }
 
 - (void) setMode:(StationAnnotationMode)mode_
@@ -74,17 +82,11 @@
     if(_starButton==nil)
     {
         _starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_starButton setTitle:@"☆" forState:UIControlStateNormal];
-        [_starButton setTitle:@"★" forState:UIControlStateSelected];
-        _starButton.titleLabel.font = [UIFont systemFontOfSize:24];
-        [_starButton setTitleColor:[UIColor colorWithWhite:1 alpha:.9] forState:UIControlStateNormal];
-        [_starButton setTitleShadowColor:[UIColor colorWithWhite:.2 alpha:1] forState:UIControlStateNormal];
-        _starButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
+        [_starButton setTitle:@"☆ " forState:UIControlStateNormal];
+        [_starButton setTitle:@"★ " forState:UIControlStateSelected];
+        _starButton.titleLabel.font = [UIFont fontWithName:@"Arial" size:24];
+        [_starButton setTitleColor:kBicycletteBlue forState:UIControlStateNormal];
         [_starButton sizeToFit];
-        CGRect f = _starButton.frame;
-        f.size.height = MAX(f.size.height,32);
-        f.size.width = MAX(f.size.width,32);
-        _starButton.frame = f;
         _starButton.selected = self.station.starredValue;
     }
     return _starButton;
@@ -111,11 +113,8 @@
         {
             _starButton.selected = self.station.starredValue;
         }
-        else
-        {
+        else if(![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]]) {
             [self setNeedsDisplay];
-            if(change[NSKeyValueChangeOldKey] && ![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]])
-                [self pulse];
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -132,21 +131,10 @@
 /****************************************************************************/
 #pragma mark Display
 
-- (void) pulse
-{
-    [UIView animateWithDuration:.3
-                     animations:^{ self.transform = CGAffineTransformMakeScale(1.2, 1.2); }
-                     completion:^(BOOL finished) {
-                         [UIView animateWithDuration:.3
-                                          animations:^{ self.transform = CGAffineTransformIdentity; }
-                                          completion:nil];
-                     }];
-}
-
 - (void) displayLayer:(CALayer *)layer
 {
     // Prepare Value
-    UIColor * baseColor, * textColor;
+    UIColor * baseColor;
     NSString * text;
 
     if([[self station] statusDataIsFresh] && [[self station] openValue])
@@ -162,7 +150,6 @@
         else baseColor = kGoodValueColor;
         
         text = [NSString stringWithFormat:@"%d",value];
-        textColor = kAnnotationValueTextColor;
     }
     else
     {
@@ -171,17 +158,12 @@
             text = [NSString stringWithFormat:@"%d",[self station].status_totalValue];
         else
             text = @"-";
-        textColor = kAnnotationValueTextColorAlt;
     }
-        
-    self.layer.contents = (id)[self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                               scale:self.layer.contentsScale
-                                                               shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                          borderMode:[[self station] starredValue]? BorderModeDashes : BorderModeSolid
-                                                           baseColor:baseColor
-                                                               value:text
-                                                           textColor:textColor
-                                                               phase:0];
+    
+    self.layer.contents = (id)[StationAnnotationView sharedImageWithMode:self.mode
+                                                         backgroundColor:baseColor
+                                                                 starred:self.station.starredValue
+                                                                   value:text];
 }
 
 - (void) drawRect:(CGRect)rect

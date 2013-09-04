@@ -6,10 +6,15 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "BicycletteAnnotationView.h"
+@class Station;
 
-typedef enum { StationAnnotationModeBikes, StationAnnotationModeParking }  StationAnnotationMode;
+@interface StationAnnotationView : MKAnnotationView
 
-@interface StationAnnotationView : BicycletteAnnotationView
+typedef NS_ENUM(NSInteger, StationAnnotationMode)
+{
+    StationAnnotationModeBikes,
+    StationAnnotationModeParking
+};
+
 @property (nonatomic) StationAnnotationMode mode;
 @end
