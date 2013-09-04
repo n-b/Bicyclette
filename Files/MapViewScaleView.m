@@ -115,10 +115,14 @@ static double RoundedValue(double value)
     CGContextSetTextDrawingMode(ctx, kCGTextStroke);
     CGContextSetLineWidth(ctx, 1);
     CGRect textRect;
+    NSMutableParagraphStyle * paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.lineBreakMode = NSLineBreakByClipping;
+    paragraphStyle.alignment = alignment;
+    NSDictionary * attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
     CGRectDivide(scaleRect, &nothing, &textRect, 2, edge);
-    [text drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByClipping alignment:alignment];
+    [text drawInRect:textRect withAttributes:attributes];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
-    [text drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByClipping alignment:alignment];
+    [text drawInRect:textRect withAttributes:attributes];
 
     // Draw path
     UIBezierPath * path = [UIBezierPath new];

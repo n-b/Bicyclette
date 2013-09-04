@@ -90,18 +90,18 @@
         
         [kAnnotationTitleTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationTitleShadowColor CGColor]);
-        [line1 drawInRect:rect1 withFont:kAnnotationTitleFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+        NSMutableParagraphStyle * paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        [line1 drawInRect:rect1 withAttributes:@{NSFontAttributeName:kAnnotationTitleFont, NSParagraphStyleAttributeName:paragraphStyle}];
         
         [kAnnotationDetailTextColor setFill];
         CGContextSetShadowWithColor(c, CGSizeMake(0, .5), 0, [kAnnotationDetailShadowColor CGColor]);
-        CGFloat fontSize;
-        [line2 sizeWithFont:kAnnotationDetailFont
-                minFontSize:kAnnotationDetailFont.pointSize/4
-             actualFontSize:&fontSize
-                   forWidth:rect2.size.width lineBreakMode:NSLineBreakByTruncatingTail];
-        UIFont * font = [kAnnotationDetailFont fontWithSize:fontSize];
-        rect2.origin.y = CGRectGetMaxY(rect2) - rect2.size.height/2 - font.lineHeight/2;
-        [line2 drawInRect:rect2 withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
+        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSStringDrawingContext *context = [NSStringDrawingContext new];
+        context.minimumScaleFactor = 0.25;
+        [line2 drawWithRect:rect2 options:0 attributes:@{NSFontAttributeName:kAnnotationDetailFont, NSParagraphStyleAttributeName:paragraphStyle} context:context];
     }
 }
 

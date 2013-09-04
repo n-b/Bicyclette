@@ -73,7 +73,7 @@
     
     // Content Layout
     NSArray * views;
-    if([CLLocationManager regionMonitoringAvailable]) {
+    if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
         views = @[self.page0,self.page1,self.page2,self.page3,self.page4,self.page5];
         self.geofencesLabel.hidden = NO;
     } else {
