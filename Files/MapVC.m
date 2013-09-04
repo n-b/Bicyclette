@@ -109,8 +109,7 @@
     modeItem.width = 160;
     
     // create toolbar
-    self.mapVCToolbar = [[TransparentToolbar alloc] initWithFrame:toolBarFrame];
-    self.mapVCToolbar.barStyle = UIBarStyleBlack;
+    self.mapVCToolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
     [self.view addSubview:self.mapVCToolbar];
     self.mapVCToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     self.mapVCToolbar.items = @[self.userTrackingButton,
