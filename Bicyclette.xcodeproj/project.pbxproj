@@ -132,7 +132,6 @@
 		37EC535215BAFB0400F45C09 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534815BAFB0400F45C09 /* Default.png */; };
 		37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534915BAFB0400F45C09 /* Default@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeofencesMonitor.m */; };
-		37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F092361680D671001E8127 /* UIViewController+Banner.m */; };
 		37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
 		37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
@@ -140,7 +139,6 @@
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
 		37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
 		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
-		942D480416A8427D00F6CD12 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942D480316A8427D00F6CD12 /* BannerView.xib */; };
 		944A975E16FB1A6600254D3A /* TOBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 944A975D16FB1A6600254D3A /* TOBikeCity.m */; };
 		944A975F16FB1A6600254D3A /* TOBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 944A975D16FB1A6600254D3A /* TOBikeCity.m */; };
 		94A30ABA16DD24B40043ACFC /* libCoreDataModel-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A30AB216DD24870043ACFC /* libCoreDataModel-MacOS.a */; };
@@ -383,8 +381,6 @@
 		37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Gare de Lyon.gpx"; sourceTree = "<group>"; };
 		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
-		37F092351680D671001E8127 /* UIViewController+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Banner.h"; sourceTree = "<group>"; };
-		37F092361680D671001E8127 /* UIViewController+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Banner.m"; sourceTree = "<group>"; };
 		37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaRochelleYeloCity.m; sourceTree = "<group>"; };
 		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+screenshot.h"; sourceTree = "<group>"; };
 		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+screenshot.m"; sourceTree = "<group>"; };
@@ -397,7 +393,6 @@
 		942D47F816A82DD700F6CD12 /* Barcelone.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Barcelone.gpx; sourceTree = "<group>"; };
 		942D47F916A82DD700F6CD12 /* Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lyon.gpx; sourceTree = "<group>"; };
 		942D47FA16A82DD700F6CD12 /* Rennes.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Rennes.gpx; sourceTree = "<group>"; };
-		942D480316A8427D00F6CD12 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		944A975D16FB1A6600254D3A /* TOBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBikeCity.m; sourceTree = "<group>"; };
 		94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataModel.xcodeproj; path = submodules/CoreDataModel/CoreDataModel.xcodeproj; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
@@ -574,9 +569,6 @@
 			children = (
 				371982BF16451F92006CF77D /* FanContainerViewController.h */,
 				371982C016451F92006CF77D /* FanContainerViewController.m */,
-				37F092351680D671001E8127 /* UIViewController+Banner.h */,
-				37F092361680D671001E8127 /* UIViewController+Banner.m */,
-				942D480316A8427D00F6CD12 /* BannerView.xib */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
@@ -1127,7 +1119,6 @@
 				37E43DC31684D7A30085EC4F /* Orléans_Vélo’+.coredata in Resources */,
 				94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */,
 				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
-				942D480416A8427D00F6CD12 /* BannerView.xib in Resources */,
 				94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */,
 				94E45DC916A99A6000EB6C84 /* twitter.png in Resources */,
 				94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */,
@@ -1233,7 +1224,6 @@
 				3709F575167B755600F865E3 /* Station+Update.m in Sources */,
 				377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
 				37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
-				37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */,
 				37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 				370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
 				37E43D901684AEAA0085EC4F /* FlatListCity.m in Sources */,
