@@ -30,7 +30,6 @@
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <nil key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="backViewController" destination="139" id="178"/>
                 <outlet property="frontViewController" destination="raM-kI-PsI" id="1rp-Xp-SPi"/>
                 <outlet property="helpVC" destination="165" id="183"/>
                 <outlet property="infoButton" destination="142" id="182"/>
@@ -63,14 +62,6 @@
                 <action selector="switchVisibleViewController" destination="176" eventType="touchUpInside" id="186"/>
             </connections>
         </button>
-        <viewController wantsFullScreenLayout="YES" id="139" customClass="PrefsVC">
-            <extendedEdge key="edgesForExtendedLayout"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-            <nil key="simulatedDestinationMetrics"/>
-        </viewController>
         <viewController wantsFullScreenLayout="YES" id="165" customClass="HelpVC">
             <extendedEdge key="edgesForExtendedLayout"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>

@@ -30,6 +30,7 @@
 		370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
+		3718AF3017D7E2300071D015 /* PrefsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */; };
 		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
 		371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D90C9158FE19900E509E6 /* TransparentToolbar.m */; };
 		37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
@@ -254,6 +255,7 @@
 		370F7DF912F60C2700F5FC45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrefsVC.storyboard; sourceTree = "<group>"; };
 		371982BF16451F92006CF77D /* FanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanContainerViewController.h; sourceTree = "<group>"; };
 		371982C016451F92006CF77D /* FanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanContainerViewController.m; sourceTree = "<group>"; };
 		371D90C8158FE19900E509E6 /* TransparentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentToolbar.h; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 			children = (
 				37C56FD115B1A0E700795961 /* PrefsVC.h */,
 				37C56FD215B1A0E700795961 /* PrefsVC.m */,
+				3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */,
 				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
 			);
 			name = Prefs;
@@ -1078,6 +1081,7 @@
 				37E43DB61684D7A30085EC4F /* Brisbane_CityCycle.coredata in Resources */,
 				37E43DBA1684D7A30085EC4F /* Dublin_dublinbikes.coredata in Resources */,
 				37E43DC31684D7A30085EC4F /* Orléans_Vélo’+.coredata in Resources */,
+				3718AF3017D7E2300071D015 /* PrefsVC.storyboard in Resources */,
 				94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */,
 				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
 				94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */,
