@@ -16,7 +16,6 @@
 @interface RootVC () <UIAlertViewDelegate>
 @end
 
-/****************************************************************************/
 #pragma mark -
 
 @implementation RootVC
@@ -61,21 +60,15 @@
 - (void) viewDidLoad
 {
     // info button
-    CGRect rootViewFrame = self.view.bounds;
-    [self.view addSubview:self.infoToolbar];
-    CGRect infoToolbarFrame = self.infoToolbar.frame;
-    infoToolbarFrame.origin.x = rootViewFrame.size.width - infoToolbarFrame.size.width;
-    infoToolbarFrame.origin.y = rootViewFrame.size.height - infoToolbarFrame.size.height;
-    self.infoToolbar.frame = infoToolbarFrame;
-    self.infoButton.center = self.infoToolbar.center;
-    CGRect f = self.infoButton.frame;
-    f.origin.y = lroundf(f.origin.y);
-    self.infoButton.frame = f;
+    CGRect rootViewBounds = self.view.bounds;
+    CGSize infoButtonSize = self.infoButton.bounds.size;
+    
+    self.infoButton.center = CGPointMake(CGRectGetMaxX(rootViewBounds) - infoButtonSize.width - 8,
+                                         CGRectGetMaxY(rootViewBounds) - infoButtonSize.height);
     [self.view addSubview:self.infoButton];
 
     [super viewDidLoad];
 
-    [self.view bringSubviewToFront:self.infoToolbar];
     [self.view bringSubviewToFront:self.infoButton];
 }
 

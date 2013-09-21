@@ -10,7 +10,6 @@
 #import "BicycletteApplicationDelegate.h"
 #import "BicycletteCity+Update.h"
 #import "Station+Update.h"
-#import "TransparentToolbar.h"
 #import "CollectionsAdditions.h"
 #import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"

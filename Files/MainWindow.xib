@@ -32,20 +32,8 @@
             <connections>
                 <outlet property="frontViewController" destination="raM-kI-PsI" id="1rp-Xp-SPi"/>
                 <outlet property="infoButton" destination="142" id="182"/>
-                <outlet property="infoToolbar" destination="150" id="181"/>
             </connections>
         </viewController>
-        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="150" customClass="TransparentToolbar">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="44"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-            <items>
-                <barButtonItem title="    " width="31" id="152">
-                    <connections>
-                        <action selector="switchVisibleViewController" destination="176" id="185"/>
-                    </connections>
-                </barButtonItem>
-            </items>
-        </toolbar>
         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" lineBreakMode="middleTruncation" id="142">
             <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
