@@ -109,12 +109,9 @@
 		37B7AC0015E3DF7000268B70 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37B7AC0215E3DF8B00268B70 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B7AC0115E3DF8B00268B70 /* AppKit.framework */; };
 		37B7AC0315E3DF9C00268B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
-		37BE759D15E6BDE4001DABF6 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BE759B15E6BDE4001DABF6 /* HelpVC.m */; };
-		37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37BE759C15E6BDE4001DABF6 /* HelpVC.xib */; };
 		37BF7FEA1694481C00FED27F /* SmooveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF7FE91694481C00FED27F /* SmooveCity.m */; };
 		37BF7FEB1694481C00FED27F /* SmooveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF7FE91694481C00FED27F /* SmooveCity.m */; };
 		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
-		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37E43D8F1684AEAA0085EC4F /* FlatListCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* FlatListCity.m */; };
 		37E43D901684AEAA0085EC4F /* FlatListCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* FlatListCity.m */; };
@@ -149,7 +146,6 @@
 		94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DCA16A9A5F500EB6C84 /* Accounts.framework */; };
 		94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DCE16A9B1E200EB6C84 /* Localizable.strings */; };
 		94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */; };
-		94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD816A9C2D200EB6C84 /* Help.strings */; };
 		94EB563A1729DF7000E17536 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EB56391729DF7000E17536 /* SystemConfiguration.framework */; };
 		94EDC1C5170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
 		94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
@@ -286,8 +282,6 @@
 		3748429616772DE600DD457E /* SenTestCase+RunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+RunLoop.m"; sourceTree = "<group>"; };
 		37513B6116173FAB00388FF3 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
-		37516B2F17523B94001E70F4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Help.strings; sourceTree = "<group>"; };
-		37516B3717523BB9001E70F4 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Help.strings; sourceTree = "<group>"; };
 		37516B3817523BD8001E70F4 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37516B3917523BE0001E70F4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
@@ -339,13 +333,9 @@
 		37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KVCMapping.xcodeproj; path = submodules/KVCMapping/KVCMapping.xcodeproj; sourceTree = "<group>"; };
 		37B7AC0115E3DF8B00268B70 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		37B97574167779BD00B38AC4 /* BicycletteCity.mogenerated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteCity.mogenerated.h; sourceTree = "<group>"; };
-		37BE759A15E6BDE4001DABF6 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
-		37BE759B15E6BDE4001DABF6 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
-		37BE759C15E6BDE4001DABF6 /* HelpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpVC.xib; sourceTree = "<group>"; };
 		37BF7FE91694481C00FED27F /* SmooveCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmooveCity.m; sourceTree = "<group>"; };
 		37C56FD115B1A0E700795961 /* PrefsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsVC.h; sourceTree = "<group>"; };
 		37C56FD215B1A0E700795961 /* PrefsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsVC.m; sourceTree = "<group>"; };
-		37C56FD315B1A0E700795961 /* PrefsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsVC.xib; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37E43D8D1684AEAA0085EC4F /* FlatListCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatListCity.h; sourceTree = "<group>"; };
 		37E43D8E1684AEAA0085EC4F /* FlatListCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatListCity.m; sourceTree = "<group>"; };
@@ -391,8 +381,6 @@
 		94E45DCF16A9B1E700EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94E45DD116A9B3A400EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94E45DD316A9B3A800EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		94E45DD716A9C2D200EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Help.strings; sourceTree = "<group>"; };
-		94E45DD916A9C2D500EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Help.strings; sourceTree = "<group>"; };
 		94EB56301729DF2D00E17536 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		94EB56311729DF2D00E17536 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		94EB56321729DF2D00E17536 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
@@ -466,7 +454,6 @@
 				37D131F9163F328500AABEE4 /* Prefs */,
 				37D131F7163F325100AABEE4 /* AnnotationViews */,
 				3705B40915B9B6C8009C8AAA /* UI Utility */,
-				37D131FA163F328F00AABEE4 /* Help */,
 			);
 			name = UI;
 			path = Files;
@@ -625,7 +612,6 @@
 				3756EAA51297F60000113534 /* FactoryDefaults.plist */,
 				94E45DCE16A9B1E200EB6C84 /* Localizable.strings */,
 				94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */,
-				94E45DD816A9C2D200EB6C84 /* Help.strings */,
 				28A0AAE50D9B0CCF005BE974 /* Prefix.pch */,
 				378B2FEF16B1700C00BB5355 /* DebugLog.h */,
 				3786E4E214825A7700814C10 /* Test Supporting Files */,
@@ -765,19 +751,8 @@
 				37C56FD115B1A0E700795961 /* PrefsVC.h */,
 				37C56FD215B1A0E700795961 /* PrefsVC.m */,
 				3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */,
-				37C56FD315B1A0E700795961 /* PrefsVC.xib */,
 			);
 			name = Prefs;
-			sourceTree = "<group>";
-		};
-		37D131FA163F328F00AABEE4 /* Help */ = {
-			isa = PBXGroup;
-			children = (
-				37BE759A15E6BDE4001DABF6 /* HelpVC.h */,
-				37BE759B15E6BDE4001DABF6 /* HelpVC.m */,
-				37BE759C15E6BDE4001DABF6 /* HelpVC.xib */,
-			);
-			name = Help;
 			sourceTree = "<group>";
 		};
 		37D131FB163F329B00AABEE4 /* Map */ = {
@@ -1074,9 +1049,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				37A9143817D533DC004A20CE /* Images.xcassets in Resources */,
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
-				37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */,
 				94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */,
-				37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */,
 				3739609B167917CE005F0672 /* BicycletteCities.json in Resources */,
 				37E43DB61684D7A30085EC4F /* Brisbane_CityCycle.coredata in Resources */,
 				37E43DBA1684D7A30085EC4F /* Dublin_dublinbikes.coredata in Resources */,
@@ -1084,7 +1057,6 @@
 				3718AF3017D7E2300071D015 /* PrefsVC.storyboard in Resources */,
 				94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */,
 				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
-				94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */,
 				37E7AC3716B67B2600135570 /* bell.wav in Resources */,
 				94B224FC1736A20D004E1009 /* _Accounts.json in Resources */,
 				94B224FD1736A20D004E1009 /* _GoogleAnalytics.plist in Resources */,
@@ -1172,7 +1144,6 @@
 				37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */,
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
 				3724BC7315E4CA1200790869 /* Store.m in Sources */,
-				37BE759D15E6BDE4001DABF6 /* HelpVC.m in Sources */,
 				37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */,
 				37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */,
 				37513B6316173FAB00388FF3 /* RootVC.m in Sources */,
@@ -1300,17 +1271,6 @@
 				37239F4216B808EC00638420 /* de */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		94E45DD816A9C2D200EB6C84 /* Help.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				94E45DD716A9C2D200EB6C84 /* fr */,
-				94E45DD916A9C2D500EB6C84 /* en */,
-				37516B2F17523B94001E70F4 /* de */,
-				37516B3717523BB9001E70F4 /* pl */,
-			);
-			name = Help.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

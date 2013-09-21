@@ -9,7 +9,6 @@
 #import "RootVC.h"
 #import "MapVC.h"
 #import "PrefsVC.h"
-#import "HelpVC.h"
 #import "BicycletteCity.h"
 #import "CitiesController.h"
 #import "UIApplication+LocalAlerts.h"
@@ -27,7 +26,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(showHelpIfNeeded) name:UIApplicationDidFinishLaunchingNotification
+                                                 selector:@selector(notifyCanRequestLocation) name:UIApplicationDidFinishLaunchingNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(askForDonationIfNeeded) name:UIApplicationDidBecomeActiveNotification
@@ -36,6 +35,11 @@
         self.backViewController = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
     }
     return self;
+}
+
+- (void) notifyCanRequestLocation
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
 }
 
 - (void)dealloc
@@ -83,59 +87,6 @@
 - (CGPoint) rotationCenter
 {
     return self.infoButton.center;
-}
-
-/****************************************************************************/
-#pragma mark -
-
-
-- (void) showHelpIfNeeded
-{
-#if ! SCREENSHOTS
-    // Show help at first launch
-    if([NSUserDefaults.standardUserDefaults boolForKey:@"DisplayHelpAtLaunch"]||
-       [NSUserDefaults.standardUserDefaults boolForKey:@"DebugDisplayHelpAtLaunch"])
-    {
-        [self showHelpAnimated:NO];
-    }
-    else
-    {
-        [self notifyCanRequestLocation];
-    }
-#endif
-}
-
-- (IBAction)showHelp
-{
-    [self showHelpAnimated:YES];
-}
-
-- (void) showHelpAnimated:(BOOL)animated
-{
-    [self showFrontViewControllerAnimated:YES completion:^{
-        [self addChildViewController:self.helpVC];
-        [self.view addSubview:self.helpVC.view];
-        self.helpVC.view.frame = self.view.bounds;
-        self.helpVC.view.alpha = 0;
-        [self.helpVC didMoveToParentViewController:self];
-        [UIView animateWithDuration:animated?0.5f:0.f animations:^{
-            self.helpVC.view.alpha = 1;
-        }];
-    }];
-}
-
-
-- (void) helpFinished:(HelpVC *)helpVC
-{
-    [UIView animateWithDuration:.5 animations:^{
-        self.helpVC.view.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self.helpVC willMoveToParentViewController:nil];
-        [self.helpVC.view removeFromSuperview];
-        [self.helpVC removeFromParentViewController];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DisplayHelpAtLaunch"];
-        [self notifyCanRequestLocation];
-    }];
 }
 
 - (void) notifyCanRequestLocation
@@ -227,6 +178,5 @@
 {
     [self presentDonationAlertWithDelayOption:NO];
 }
-
 
 @end
