@@ -168,7 +168,6 @@
 		94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DCE16A9B1E200EB6C84 /* Localizable.strings */; };
 		94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */; };
 		94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD816A9C2D200EB6C84 /* Help.strings */; };
-		94EB56371729DF2D00E17536 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EB56351729DF2D00E17536 /* libGoogleAnalytics.a */; };
 		94EB563A1729DF7000E17536 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EB56391729DF7000E17536 /* SystemConfiguration.framework */; };
 		94EDC1C5170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
 		94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC1C4170587E200113E76 /* BCycleCity.m */; };
@@ -454,7 +453,6 @@
 				94A30ABB16DD24C20043ACFC /* libCoreDataModel-iOS.a in Frameworks */,
 				37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */,
 				37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */,
-				94EB56371729DF2D00E17536 /* libGoogleAnalytics.a in Frameworks */,
 				94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */,
 				3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -1410,6 +1408,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/submodules/Google-Analytics-SDK-for-iOS/Library\"",
 				);
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-ObjC",
+					"-lGoogleAnalytics_debug",
+				);
 				PRODUCT_NAME = Bicyclette;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1425,6 +1427,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/submodules/Google-Analytics-SDK-for-iOS/Library\"",
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-ObjC",
+					"-lGoogleAnalytics",
 				);
 				PRODUCT_NAME = Bicyclette;
 				PROVISIONING_PROFILE = "";
@@ -1563,6 +1569,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/submodules/Google-Analytics-SDK-for-iOS/Library\"",
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-ObjC",
+					"-lGoogleAnalytics_debug",
 				);
 				PRODUCT_NAME = BicycletteScreenshots;
 				PROVISIONING_PROFILE = "";
