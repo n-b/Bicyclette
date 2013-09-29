@@ -125,6 +125,7 @@
 
 - (void) setStarredStations:(NSArray*)starredStations inCity:(BicycletteCity*)city
 {
+    NSParameterAssert(city);
     NSMutableArray * fences = [NSMutableArray new];
     for (Station * station in starredStations)
     {
