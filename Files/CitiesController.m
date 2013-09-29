@@ -77,6 +77,10 @@
 
 - (void) defaultsChanged:(NSNotification*)note
 {
+    if ([NSThread currentThread] != [NSThread mainThread]) {
+        return;
+    }
+   
     [self addAndRemoveMapAnnotations];
 }
 
