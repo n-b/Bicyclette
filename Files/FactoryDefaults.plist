@@ -18,8 +18,6 @@
 	<integer>6</integer>
 	<key>CitiesController.StationsZoomThreshold</key>
 	<integer>1</integer>
-	<key>CitiesController.CityGroupZoomMeters</key>
-	<integer>200000</integer>
 	<key>MaxRefreshDistance</key>
 	<integer>2</integer>
 	<key>DataUpdaterDelayBetweenQueues</key>

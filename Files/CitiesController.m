@@ -198,10 +198,7 @@
     if (self.currentCity==nil)
     {
         // World Cities
-        BOOL groupCities = [self regionSpanMeters] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CityGroupZoomMeters"];
         NSArray * cities = self.cities;
-        if(groupCities)
-            cities = [cities filteredArrayWithValue:@YES forKeyPath:@"isMainCityGroup"];
         [newAnnotations addObjectsFromArray:cities];
     }
     else
@@ -240,21 +237,12 @@
 
 - (void) selectCity:(BicycletteCity*)city_
 {
-    CLLocationDistance threshold = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CityGroupZoomMeters"];
-    BOOL groupCities = [self regionSpanMeters] > threshold;
-    if([[city_ cityGroup] length]!=0 && groupCities) {
-        // zoom around the group
-        [self.delegate controller:self setRegion:MKCoordinateRegionMakeWithDistance(city_.coordinate, (threshold/2)*.8, (threshold/2)*.8)];
-        [self.delegate controller:self selectAnnotation:nil];
-    } else {
-        // Zoom directly to city
-        MKCoordinateRegion region = [city_ mkRegionContainingData];
-        if(region.span.latitudeDelta == 0. || region.span.longitudeDelta == 0.) {
-            CLLocationDistance minDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
-            region = MKCoordinateRegionMakeWithDistance(region.center, minDistance, minDistance);
-        }
-        [self.delegate controller:self setRegion:region];
+    MKCoordinateRegion region = [city_ mkRegionContainingData];
+    if(region.span.latitudeDelta == 0. || region.span.longitudeDelta == 0.) {
+        CLLocationDistance minDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
+        region = MKCoordinateRegionMakeWithDistance(region.center, minDistance, minDistance);
     }
+    [self.delegate controller:self setRegion:region];
 }
 
 - (void) switchStarredStation:(Station*)station

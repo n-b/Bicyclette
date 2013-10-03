@@ -38,8 +38,6 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 // General properties
 - (NSDictionary *) serviceInfo;
 - (NSString *) cityName;
-- (NSString *) cityGroup;
-- (BOOL) isMainCityGroup;
 - (NSString *) serviceName;
 - (NSDictionary*) patches;
 - (NSDictionary*) prefs;
