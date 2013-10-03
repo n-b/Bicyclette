@@ -19,6 +19,7 @@
 #import "GeofencesMonitor.h"
 #import "Style.h"
 #import "MapVC+DebugScreenshots.h"
+#import "CityAnnotationView.h"
 
 @interface MapVC()
 // UI
@@ -307,18 +308,17 @@
 	}
 	else if([annotation isKindOfClass:[BicycletteCity class]])
 	{
-        BOOL hasFences = [self.controller cityHasFences:(BicycletteCity*)annotation];
-        NSString * reuseID = hasFences ? @"purplepin" : @"redpin";
-        MKPinAnnotationView * pinAV = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseID];
-        if(nil==pinAV)
-            pinAV = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseID];
-        else
+        CityAnnotationView * pinAV = (CityAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"pin"];
+        if(nil==pinAV) {
+            pinAV = [[CityAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+        } else {
             pinAV.annotation = annotation;
-        if([[NSUserDefaults standardUserDefaults] doubleForKey:@"MapVC.showCityCallout"])
+        }
+        if([[NSUserDefaults standardUserDefaults] doubleForKey:@"MapVC.showCityCallout"]) {
             pinAV.canShowCallout = YES;
+        }
         pinAV.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         
-        pinAV.pinColor = hasFences ? MKPinAnnotationColorPurple : MKPinAnnotationColorRed;
         return pinAV;
 	}
 	return nil;
