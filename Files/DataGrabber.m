@@ -59,27 +59,18 @@ static void GrabDataForCity(BicycletteCity* city)
              }
 
              // Log counts
-             NSFetchRequest * regionsRequest = [[NSFetchRequest alloc] initWithEntityName:[Region entityName]];
-             regionsRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:RegionAttributes.number ascending:YES]];
              if (logRegionsDetails)
              {
-                 NSArray * regions = [city.mainContext executeFetchRequest:regionsRequest error:NULL];
                  NSArray * stations = [city.mainContext executeFetchRequest:stationsRequest error:NULL];
                  [message appendFormat:@" %d Stations %@ Bikes, at least %@ Slots\n", (int)[stations count], [stations valueForKeyPath:@"@sum.status_available"], [stations valueForKeyPath:@"@sum.status_total"]];
-                 [message appendFormat:@" %d Regions:\n", (int)[regions count]];
-             
-                 for (Region * region in regions)
-                 {
-                     [message appendFormat:@"  %@ : %d Stations, (%@-%@, %@-%@)\n",region.number, (int)[region.stations count], region.minLatitude, region.maxLatitude, region.minLongitude, region.maxLongitude];
-                     if (logStationsDetails) {
-                         for (Station * station in region.stations)
-                         {
-                             [message appendFormat:@"   \"%@\"->\"%@\" (%d)\n",station.name, [city titleForStation:station],station.status_availableValue];
-                         }
+                 
+                 if (logStationsDetails) {
+                     for (Station * station in stations)
+                     {
+                         [message appendFormat:@"   \"%@\"->\"%@\" (%d)\n",station.name, [city titleForStation:station],station.status_availableValue];
                      }
                  }
              }
-             
              
              // Errors ?
              if(logErrors)

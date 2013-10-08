@@ -22,7 +22,6 @@ const struct StationAttributes StationAttributes = {
 };
 
 const struct StationRelationships StationRelationships = {
-	.region = @"region",
 };
 
 const struct StationFetchedProperties StationFetchedProperties = {
@@ -381,10 +380,6 @@ const struct StationFetchedProperties StationFetchedProperties = {
 
 
 
-
-@dynamic region;
-
-	
 
 
 

@@ -51,9 +51,6 @@
 
 #pragma mark Annotations
 
-- (NSString *) titleForRegion:(Region*)region { return [NSString stringWithFormat:@"%@°",region.number]; }
-- (NSString *) subtitleForRegion:(Region*)region { return @"dte."; }
-
 - (NSDictionary *)KVCMapping
 {
     return @{@"AddressGmapsLatitude": @"latitude",

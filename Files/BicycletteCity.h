@@ -56,8 +56,6 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (NSString*) title;
 - (NSString*) titleForStation:(Station*)station;
 - (NSString *) subtitleForStation:(Station *)station;
-- (NSString*) titleForRegion:(Region*)region;
-- (NSString*) subtitleForRegion:(Region*)region;
 
 // Fetch requests
 - (Station*) stationWithNumber:(NSString*)number;
