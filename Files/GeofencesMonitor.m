@@ -399,7 +399,7 @@
     if(self.city.canUpdateIndividualStations) {
         return [self stations];
     } else {
-        return @[self.city];
+        return [NSArray arrayWithObject:self.city];
     }
 }
 
