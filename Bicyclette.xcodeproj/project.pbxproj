@@ -22,6 +22,8 @@
 		370220E91655311000350AD1 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37038A1115E3A6280043504A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
+		370465A7183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 370465A6183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m */; };
+		370465A8183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 370465A6183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m */; };
 		3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */; };
 		3709F575167B755600F865E3 /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
 		370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
@@ -240,6 +242,8 @@
 		370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteCity.mogenerated.m; sourceTree = "<group>"; };
 		37038A0F15E3A6280043504A /* DataGrabber */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataGrabber; sourceTree = BUILT_PRODUCTS_DIR; };
 		37038A1315E3A6290043504A /* DataGrabber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DataGrabber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		370465A5183B524500263EE4 /* CLRegion+CircularRegionCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLRegion+CircularRegionCompatibility.h"; sourceTree = "<group>"; };
+		370465A6183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLRegion+CircularRegionCompatibility.m"; sourceTree = "<group>"; };
 		3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+AttributionLogo.h"; sourceTree = "<group>"; };
 		3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+AttributionLogo.m"; sourceTree = "<group>"; };
 		3709F573167B755600F865E3 /* Station+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Station+Update.h"; sourceTree = "<group>"; };
@@ -547,6 +551,8 @@
 				37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */,
 				37A17C9017FE07D300F1A450 /* MKUtilities.h */,
 				37A17C9117FE07D300F1A450 /* MKUtilities.m */,
+				370465A5183B524500263EE4 /* CLRegion+CircularRegionCompatibility.h */,
+				370465A6183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m */,
 			);
 			name = "UI Utility";
 			sourceTree = "<group>";
@@ -1135,6 +1141,7 @@
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
+				370465A8183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m in Sources */,
 				37A17C9217FE07D300F1A450 /* MKUtilities.m in Sources */,
 				3730161815977E1900347C9F /* StationAnnotationView+Drawing.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
@@ -1215,6 +1222,7 @@
 				3788EC7B1697AB1300836A60 /* DecobikeCity.m in Sources */,
 				3788EC7E1697AF0400836A60 /* BarcelonaCityBikeCity.m in Sources */,
 				37920167169C252B008E35C3 /* BordeauxVCubCity.m in Sources */,
+				370465A7183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m in Sources */,
 				37410AD316A0C04900F2E958 /* LilleVlilleCity.m in Sources */,
 				37410ADC16A0CDD100F2E958 /* _StationParse.m in Sources */,
 				3763582516A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */,
