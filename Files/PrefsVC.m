@@ -9,7 +9,6 @@
 #import "PrefsVC.h"
 #import "BicycletteCity+Update.h"
 #import "CitiesController.h"
-#import "FanContainerViewController.h"
 #import "NSProcessInfo+HardwareMachine.h"
 #import "Style.h"
 
@@ -39,6 +38,13 @@
 
 @implementation PrefsVC
 
++ (instancetype) prefsVCWithController:(CitiesController *)controller
+{
+    PrefsVC * prefsVC = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
+    prefsVC.controller = controller;
+    return prefsVC;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -47,7 +53,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateFailed object:nil];
-}
+    }
 
 - (void)dealloc
 {
@@ -98,6 +104,10 @@
         self.geofencesSwitch.hidden = YES;
         self.enableGeofencesLabel.hidden = YES;
     }
+    
+    UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    self.toolbarItems = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          backButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -202,7 +212,7 @@
         if(dataChanged)
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)  forState:UIControlStateNormal];
-            if([self isVisibleViewController])
+            if(self.navigationController.visibleViewController == self)
             {
                 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
                 NSUInteger count = [self.controller.currentCity.mainContext countForFetchRequest:request error:NULL];

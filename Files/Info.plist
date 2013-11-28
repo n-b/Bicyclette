@@ -30,8 +30,6 @@
 	<true/>
 	<key>NSLocationUsageDescription</key>
 	<string>NSLocationUsageDescription</string>
-	<key>NSMainNibFile</key>
-	<string>MainWindow</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -14,7 +14,6 @@
 #import "StationAnnotationView.h"
 #import "MKMapView+AttributionLogo.h"
 #import "MapVC+DebugScreenshots.h"
-#import "FanContainerViewController.h"
 #import "MapViewScaleView.h"
 #import "GeofencesMonitor.h"
 #import "Style.h"
@@ -23,13 +22,14 @@
 #import "MKUtilities.h"
 #import "CityOverlayRenderer.h"
 #import "CLRegion+CircularRegionCompatibility.h"
+#import "PrefsVC.h"
 
 @interface MapVC()
 // UI
 @property MKMapView * mapView;
-@property UIToolbar * mapVCToolbar; // Do not use the system toolbal to prevent its height from changing
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * modeControl;
+@property UIBarButtonItem * infoButton;
 @property MapViewScaleView * scaleView;
 
 @property StationAnnotationMode stationMode;
@@ -43,21 +43,32 @@
 
 @implementation MapVC
 
-- (void) awakeFromNib
++ (instancetype) mapVCWithController:(CitiesController*)controller_
 {
-    [super awakeFromNib];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canRequestLocation)
-                                                 name:BicycletteCityNotifications.canRequestLocation object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateBegan object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    MapVC * mapVC = [self new];
+    mapVC.controller = controller_;
+    return mapVC;
 }
 
-- (void)dealloc {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canRequestLocation)
+                                                     name:BicycletteCityNotifications.canRequestLocation object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateBegan object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -102,18 +113,21 @@
     UIBarButtonItem * modeItem = [[UIBarButtonItem alloc] initWithCustomView:self.modeControl];
     modeItem.width = 160;
     
+    UIButton * iButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [iButton addTarget:self action:@selector(showPrefsVC) forControlEvents:UIControlEventTouchUpInside];
+    self.infoButton = [[UIBarButtonItem alloc] initWithCustomView:iButton];
+    
     // create toolbar
-    self.mapVCToolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
-    [self.view addSubview:self.mapVCToolbar];
-    self.mapVCToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    self.mapVCToolbar.items = @[self.userTrackingButton,
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-    modeItem,
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
-
+    self.toolbarItems = @[self.userTrackingButton,
+                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          modeItem,
+                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          self.infoButton];
+    
+    self.navigationController.toolbarHidden = NO;
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        self.mapVCToolbar.translucent = YES; // means transparent actually
-
+        self.navigationController.toolbar.translucent = YES;
+    
     // Add Scale
     CGRect scaleFrame = frameAboveToolbar;
     
@@ -193,7 +207,7 @@
 
 - (void) cityDataUpdated:(NSNotification*)note
 {
-    if(note.object==self.controller.currentCity && [self isVisibleViewController])
+    if(note.object==self.controller.currentCity && self.navigationController.visibleViewController==self )
     {
         if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
             [self showTitle:self.controller.currentCity.title
@@ -401,6 +415,10 @@
     [cityRenderer setNeedsDisplay];
 }
 
+- (void) showPrefsVC
+{
+    [self.navigationController pushViewController:[PrefsVC prefsVCWithController:self.controller] animated:YES];
+}
 /****************************************************************************/
 #pragma mark Banner
 
