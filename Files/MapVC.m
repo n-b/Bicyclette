@@ -417,9 +417,9 @@
 
 - (void) showPrefsVC
 {
-    [self.navigationController pushViewController:[PrefsVC prefsVCWithController:self.controller] animated:YES];
+    [self presentViewController:[PrefsVC prefsVCWithController:self.controller] animated:YES completion:nil];
 }
-/****************************************************************************/
+/*************************************tool***************************************/
 #pragma mark Banner
 
 - (void) showTitle:(NSString*)title subtitle:(NSString*)subtitle sticky:(BOOL)sticky

@@ -12,37 +12,40 @@
 #import "NSProcessInfo+HardwareMachine.h"
 #import "Style.h"
 
-@interface PrefsVC () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
-
-@property IBOutlet UIImageView *logoView;
-@property IBOutlet UILabel *designAndCodeLabel;
-@property IBOutlet UILabel *contactSupportButton;
-
-@property IBOutlet UIToolbar *tweetBar;
-@property IBOutlet UIButton *appstoreRatingsButton;
-
-@property IBOutlet UILabel *enableGeofencesLabel;
-@property IBOutlet UISwitch *geofencesSwitch;
-@property IBOutlet UILabel *geofenceUnavailableLabel;
-
-@property IBOutlet UIView *updateView;
-@property IBOutlet UIActivityIndicatorView *updateIndicator;
-@property IBOutlet UILabel *updateLabel;
-@property IBOutlet UIButton *updateButton;
-
-@property NSArray * products;
+@interface PrefsVC () <UITableViewDataSource, UITableViewDelegate>
 @end
 
 /****************************************************************************/
 #pragma mark -
 
 @implementation PrefsVC
+{
+    IBOutlet UITableViewCell * _appIconCell;
+    
+    IBOutlet UITableViewCell * _rateOnAppStoreCell;
+    IBOutlet UITableViewCell * _designAndCodeCell;
 
-+ (instancetype) prefsVCWithController:(CitiesController *)controller
+    IBOutlet UITableViewCell * _geofencesCell;
+    IBOutlet UISwitch * _geofencesSwitch;
+    IBOutlet UILabel * _enableGeofencesLabel;
+    IBOutlet UILabel * _geofenceUnavailableLabel;
+
+    IBOutlet UITableViewCell * _updateStationsCell;
+    IBOutlet UILabel * _updateLabel;
+    IBOutlet UIActivityIndicatorView * _updateIndicator;
+    
+    IBOutlet UITableViewCell * _emailSupportCell;
+    
+}
+
++ (UIViewController*) prefsVCWithController:(CitiesController *)controller
 {
     PrefsVC * prefsVC = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
     prefsVC.controller = controller;
-    return prefsVC;
+    UINavigationController * navC = [[UINavigationController alloc] initWithRootViewController:prefsVC];
+    navC.navigationBarHidden = YES;
+    navC.toolbarHidden = NO;
+    return navC;
 }
 
 - (void)awakeFromNib
@@ -58,6 +61,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_controller removeObserver:self forKeyPath:@"currentCity" context:(__bridge void *)([self class])];
 }
 
 - (void) setController:(CitiesController *)controller_
@@ -81,50 +85,43 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetButton) name:ACAccountStoreDidChangeNotification object:nil];
-
-    self.designAndCodeLabel.text = NSLocalizedString(@"DESIGN_AND_CODE", nil);
-    self.contactSupportButton.text = NSLocalizedString(@"CONTACT_EMAIL_SUPPORT", nil);
     
-    [self.appstoreRatingsButton setTitle:NSLocalizedString(@"APPSTORE_RATINGS_BUTTON", nil) forState:UIControlStateNormal];
-    
-    self.enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
-    self.geofencesSwitch.tintColor = [UIColor colorWithWhite:.1 alpha:1];
-    self.geofencesSwitch.onTintColor = kBicycletteBlue;
-    self.geofencesSwitch.layer.shadowOpacity = 1;
-    self.geofencesSwitch.layer.shadowOffset = CGSizeMake(0, 1);
-    self.geofencesSwitch.layer.shadowRadius = 0;
-    self.geofencesSwitch.layer.shadowColor = [UIColor colorWithWhite:1 alpha:.5].CGColor;
-    self.geofencesSwitch.layer.shouldRasterize = 1;
-    self.geofenceUnavailableLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
+    _appIconCell.backgroundColor = kBicycletteBlue;
+    _appIconCell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 1000);
+        
+    _enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
+    _geofencesSwitch.tintColor = [UIColor colorWithWhite:.1 alpha:1];
+    _geofencesSwitch.onTintColor = kBicycletteBlue;
+    _geofencesSwitch.layer.shadowOpacity = 1;
+    _geofencesSwitch.layer.shadowOffset = CGSizeMake(0, 1);
+    _geofencesSwitch.layer.shadowRadius = 0;
+    _geofencesSwitch.layer.shadowColor = [UIColor colorWithWhite:1 alpha:.5].CGColor;
+    _geofencesSwitch.layer.shouldRasterize = 1;
+    _geofenceUnavailableLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
     
     if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
-        self.geofenceUnavailableLabel.hidden = YES;
+        _geofenceUnavailableLabel.hidden = YES;
     } else {
-        self.geofencesSwitch.hidden = YES;
-        self.enableGeofencesLabel.hidden = YES;
+        _geofencesSwitch.hidden = YES;
+        _enableGeofencesLabel.hidden = YES;
     }
     
-    UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.navigationController action:@selector(popViewControllerAnimated:)];
     self.toolbarItems = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                          backButton];
+                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPrefsVC)]];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self updateUpdateLabel];
-    if(![self.updateIndicator isAnimating]) {
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil) forState:UIControlStateNormal];
+    if(![_updateIndicator isAnimating]) {
+        _updateLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
     }
-    self.geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
+    _geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
 }
 
 - (void) updateUpdateLabel
 {
-    self.updateLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),self.controller.currentCity.serviceName];
-    
-    // If the city can't update stations individually, it will update the whole list automatically.
-    self.updateView.hidden = ! [self.controller.currentCity canUpdateIndividualStations];
+    _updateLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),self.controller.currentCity.serviceName];
 }
 
 /****************************************************************************/
@@ -144,12 +141,19 @@
 #pragma mark TableView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.section==1) {
-        if(indexPath.row==0)
-            [self openWebPage];
-        else
-            [self openEmailSupport];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(cell==_geofencesCell) {
+        [_geofencesSwitch setOn:!_geofencesSwitch.on animated:YES];
+        [self switchRegionMonitoring:_geofencesSwitch];
+    } else if(cell==_updateStationsCell) {
+        [self updateStationsList];
+    } else if(cell==_emailSupportCell) {
+        [self openEmailSupport];
+    } else if(cell==_rateOnAppStoreCell) {
+        [self rate:nil];
+    } else if(cell==_designAndCodeCell) {
+        [self openWebPage];
     }
 }
 
@@ -188,30 +192,26 @@
 {
     if(note.object!=self.controller.currentCity)
         return;
-    if(! [note.object canUpdateIndividualStations])
-        return;
     
     if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
     {
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil) forState:UIControlStateNormal];
-        [self.updateIndicator startAnimating];
-        self.updateLabel.hidden = YES;
-        self.updateButton.enabled = NO;
+        _updateLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
+        [_updateIndicator startAnimating];
+        _updateLabel.hidden = YES;
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
     {
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : PARSING", nil) forState:UIControlStateNormal];
+        _updateLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
     {
-        [self.updateIndicator stopAnimating];
-        self.updateLabel.hidden = NO;
-        self.updateButton.enabled = YES;
+        [_updateIndicator stopAnimating];
+        _updateLabel.hidden = NO;
         BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
         NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
         if(dataChanged)
         {
-            [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)  forState:UIControlStateNormal];
+            _updateLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
             if(self.navigationController.visibleViewController == self)
             {
                 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
@@ -237,14 +237,13 @@
             }
         }
         else
-            [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil) forState:UIControlStateNormal];
+            _updateLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
     {
-        [self.updateIndicator stopAnimating];
-        self.updateLabel.hidden = NO;
-        self.updateButton.enabled = YES;
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil) forState:UIControlStateNormal];
+        [_updateIndicator stopAnimating];
+        _updateLabel.hidden = NO;
+        _updateLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
         NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
                                    message:[error localizedDescription]
@@ -260,29 +259,6 @@
     return [NSURL URLWithString:@"https://itunes.apple.com/us/app/bicyclette/id546171712?l=fr&ls=1&mt=8"];
 }
 
-- (void) updateTweetButton
-{
-    self.tweetBar.hidden = ! [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
-}
-
-- (IBAction)tweet:(id)sender
-{
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-    {
-        SLComposeViewController * socialVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        
-        NSString * message;
-        if(self.controller.currentCity)
-            message = [NSString stringWithFormat:NSLocalizedString(@"SHARE_BICYCLETTE_MESSAGE_CITY_%@", nil),self.controller.currentCity.serviceName];
-        else
-            message = NSLocalizedString(@"SHARE_BICYCLETTE_MESSAGE_GENERIC", nil);
-        
-        [socialVC setInitialText:message];
-        [socialVC addURL:[self appURLOnStore]];
-        [self presentViewController:socialVC animated:YES completion:nil];
-    }
-}
-
 - (IBAction)rate:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=546171712"]];
@@ -296,4 +272,9 @@
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"RegionMonitoring.Enabled"];
 }
 
+
+- (IBAction)dismissPrefsVC
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
