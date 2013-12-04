@@ -104,6 +104,7 @@ static BOOL gShouldShowAnnotations = NO;
     self.modeControl.selectedSegmentIndex = UISegmentedControlNoSegment;
     [self.modeControl setTitle:@"" forSegmentAtIndex:0];
     [self.modeControl setTitle:@"" forSegmentAtIndex:1];
+    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
     [self saveScreenshotWithNameTemplate:@"Default" localized:NO];
     exit(0);
 }

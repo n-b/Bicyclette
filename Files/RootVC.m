@@ -10,7 +10,6 @@
 #import "MapVC.h"
 #import "PrefsVC.h"
 #import "HelpVC.h"
-#import "UIView+Screenshot.h"
 #import "BicycletteCity.h"
 #import "CitiesController.h"
 #import "UIApplication+LocalAlerts.h"

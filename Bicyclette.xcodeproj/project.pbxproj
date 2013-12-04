@@ -38,10 +38,6 @@
 		3722E0F9168AF8830069C6A8 /* VelowayCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3722E0F7168AF8830069C6A8 /* VelowayCity.m */; };
 		37235E8C1662BDB200F33BF1 /* libKVCMapping-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37235E8B1662BDB200F33BF1 /* libKVCMapping-osx.a */; };
 		37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B4C1F71659521600DE4756 /* libKVCMapping-ios.a */; };
-		3724BC6A15E4C50200790869 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6415E4C50200790869 /* Default-Landscape.png */; };
-		3724BC6B15E4C50200790869 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6515E4C50200790869 /* Default-Landscape@2x.png */; };
-		3724BC6C15E4C50200790869 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6615E4C50200790869 /* Default-Portrait.png */; };
-		3724BC6D15E4C50200790869 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3724BC6715E4C50200790869 /* Default-Portrait@2x.png */; };
 		3724BC7315E4CA1200790869 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 3724BC7215E4CA1200790869 /* Store.m */; };
 		3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3724BC7415E4CA8A00790869 /* StoreKit.framework */; };
 		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
@@ -77,7 +73,6 @@
 		377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 377620E5167BE61A004E9E3D /* OrleansVeloPlusCity.m */; };
 		377863A9169468990036A37C /* NSProcessInfo+HardwareMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */; };
 		377863B11694996C0036A37C /* MapViewScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 377863B01694996C0036A37C /* MapViewScaleView.m */; };
-		377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377EFCAE160F90BF005A5383 /* Default-568h@2x.png */; };
 		3786E4DE14825A7700814C10 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3786E4DD14825A7700814C10 /* SenTestingKit.framework */; };
 		3786E4DF14825A7700814C10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		3786E4E014825A7700814C10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -119,7 +114,6 @@
 		37BF7FEB1694481C00FED27F /* SmooveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF7FE91694481C00FED27F /* SmooveCity.m */; };
 		37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FD215B1A0E700795961 /* PrefsVC.m */; };
 		37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C56FD315B1A0E700795961 /* PrefsVC.xib */; };
-		37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */; };
 		37D188391170A5FA00950D52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D188381170A5FA00950D52 /* CoreLocation.framework */; };
 		37E43D8F1684AEAA0085EC4F /* FlatListCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* FlatListCity.m */; };
 		37E43D901684AEAA0085EC4F /* FlatListCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E43D8E1684AEAA0085EC4F /* FlatListCity.m */; };
@@ -129,8 +123,6 @@
 		37E7AC3716B67B2600135570 /* bell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37E7AC3616B67B2600135570 /* bell.wav */; };
 		37E9531712AA29FB00C1D21C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9531512AA29FB00C1D21C /* MapVC.m */; };
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
-		37EC535215BAFB0400F45C09 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534815BAFB0400F45C09 /* Default.png */; };
-		37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534915BAFB0400F45C09 /* Default@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeofencesMonitor.m */; };
 		37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
 		37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
@@ -153,8 +145,6 @@
 		94B225001736A6A2004E1009 /* JCDecauxCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B224FF1736A6A2004E1009 /* JCDecauxCity.m */; };
 		94B225011736A6A2004E1009 /* JCDecauxCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B224FF1736A6A2004E1009 /* JCDecauxCity.m */; };
 		94E45DC516A995F800EB6C84 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DC416A995F800EB6C84 /* Social.framework */; };
-		94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC616A99A6000EB6C84 /* twitter@2x.png */; };
-		94E45DC916A99A6000EB6C84 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DC716A99A6000EB6C84 /* twitter.png */; };
 		94E45DCB16A9A5F500EB6C84 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E45DCA16A9A5F500EB6C84 /* Accounts.framework */; };
 		94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DCE16A9B1E200EB6C84 /* Localizable.strings */; };
 		94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94E45DD216A9B3A400EB6C84 /* InfoPlist.strings */; };
@@ -274,10 +264,6 @@
 		37216BC612611C5400A2695A /* BicycletteCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BicycletteCity.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3722E0F7168AF8830069C6A8 /* VelowayCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelowayCity.m; sourceTree = "<group>"; };
 		37239F4216B808EC00638420 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3724BC6415E4C50200790869 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
-		3724BC6515E4C50200790869 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
-		3724BC6615E4C50200790869 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
-		3724BC6715E4C50200790869 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = "<group>"; };
 		3724BC7115E4CA1200790869 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		3724BC7215E4CA1200790869 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		3724BC7415E4CA8A00790869 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -321,7 +307,6 @@
 		377863A8169468990036A37C /* NSProcessInfo+HardwareMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+HardwareMachine.m"; sourceTree = "<group>"; };
 		377863AF1694996C0036A37C /* MapViewScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewScaleView.h; sourceTree = "<group>"; };
 		377863B01694996C0036A37C /* MapViewScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewScaleView.m; sourceTree = "<group>"; };
-		377EFCAE160F90BF005A5383 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3786E4DC14825A7700814C10 /* BicycletteLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycletteLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3786E4DD14825A7700814C10 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3786E4E314825A7700814C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -359,8 +344,6 @@
 		37C56FD115B1A0E700795961 /* PrefsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsVC.h; sourceTree = "<group>"; };
 		37C56FD215B1A0E700795961 /* PrefsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsVC.m; sourceTree = "<group>"; };
 		37C56FD315B1A0E700795961 /* PrefsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsVC.xib; sourceTree = "<group>"; };
-		37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
-		37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		37D188381170A5FA00950D52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37E43D8D1684AEAA0085EC4F /* FlatListCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatListCity.h; sourceTree = "<group>"; };
 		37E43D8E1684AEAA0085EC4F /* FlatListCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatListCity.m; sourceTree = "<group>"; };
@@ -373,8 +356,6 @@
 		37E9531412AA29FB00C1D21C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		37E9531512AA29FB00C1D21C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		37EC534815BAFB0400F45C09 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		37EC534915BAFB0400F45C09 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		37EE011715BC87E4008376A1 /* GeofencesMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeofencesMonitor.h; sourceTree = "<group>"; };
 		37EE011815BC87E4008376A1 /* GeofencesMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeofencesMonitor.m; sourceTree = "<group>"; };
 		37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Beaubourg.gpx; sourceTree = "<group>"; };
@@ -382,8 +363,8 @@
 		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
 		37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaRochelleYeloCity.m; sourceTree = "<group>"; };
-		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+screenshot.h"; sourceTree = "<group>"; };
-		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+screenshot.m"; sourceTree = "<group>"; };
+		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+screenshot.h"; path = "../Files/UIApplication+screenshot.h"; sourceTree = "<group>"; };
+		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+screenshot.m"; path = "../Files/UIApplication+screenshot.m"; sourceTree = "<group>"; };
 		37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MapVC+DebugScreenshots.h"; path = "../Files/MapVC+DebugScreenshots.h"; sourceTree = "<group>"; };
 		37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MapVC+DebugScreenshots.m"; path = "../Files/MapVC+DebugScreenshots.m"; sourceTree = "<group>"; };
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
@@ -403,8 +384,6 @@
 		94B224FF1736A6A2004E1009 /* JCDecauxCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDecauxCity.m; sourceTree = "<group>"; };
 		94B225021736AFAF004E1009 /* JCDecauxCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDecauxCity.h; sourceTree = "<group>"; };
 		94E45DC416A995F800EB6C84 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		94E45DC616A99A6000EB6C84 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
-		94E45DC716A99A6000EB6C84 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		94E45DCA16A9A5F500EB6C84 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		94E45DCD16A9B1E200EB6C84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94E45DCF16A9B1E700EB6C84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -571,10 +550,6 @@
 				371982C016451F92006CF77D /* FanContainerViewController.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
-				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
-				37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */,
-				37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */,
-				37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */,
 				371D90C8158FE19900E509E6 /* TransparentToolbar.h */,
 				371D90C9158FE19900E509E6 /* TransparentToolbar.m */,
 				373016191597800E00347C9F /* UIColor+hsb.h */,
@@ -694,6 +669,8 @@
 				37FF34C116D65C1A008D8880 /* Toulouse.gpx */,
 				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
 				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
+				37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */,
+				37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -863,15 +840,6 @@
 		37EC534315BAFB0400F45C09 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				37EC534815BAFB0400F45C09 /* Default.png */,
-				37EC534915BAFB0400F45C09 /* Default@2x.png */,
-				3724BC6415E4C50200790869 /* Default-Landscape.png */,
-				3724BC6515E4C50200790869 /* Default-Landscape@2x.png */,
-				3724BC6615E4C50200790869 /* Default-Portrait.png */,
-				3724BC6715E4C50200790869 /* Default-Portrait@2x.png */,
-				377EFCAE160F90BF005A5383 /* Default-568h@2x.png */,
-				94E45DC616A99A6000EB6C84 /* twitter@2x.png */,
-				94E45DC716A99A6000EB6C84 /* twitter.png */,
 				37E7AC3616B67B2600135570 /* bell.wav */,
 			);
 			path = Images;
@@ -1105,22 +1073,13 @@
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
 				37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */,
 				94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */,
-				37EC535215BAFB0400F45C09 /* Default.png in Resources */,
-				37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */,
-				3724BC6A15E4C50200790869 /* Default-Landscape.png in Resources */,
-				3724BC6B15E4C50200790869 /* Default-Landscape@2x.png in Resources */,
-				3724BC6C15E4C50200790869 /* Default-Portrait.png in Resources */,
-				3724BC6D15E4C50200790869 /* Default-Portrait@2x.png in Resources */,
 				37BE759E15E6BDE4001DABF6 /* HelpVC.xib in Resources */,
-				377EFCAF160F90BF005A5383 /* Default-568h@2x.png in Resources */,
 				3739609B167917CE005F0672 /* BicycletteCities.json in Resources */,
 				37E43DB61684D7A30085EC4F /* Brisbane_CityCycle.coredata in Resources */,
 				37E43DBA1684D7A30085EC4F /* Dublin_dublinbikes.coredata in Resources */,
 				37E43DC31684D7A30085EC4F /* Orléans_Vélo’+.coredata in Resources */,
 				94E45DD016A9B3A400EB6C84 /* InfoPlist.strings in Resources */,
 				37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */,
-				94E45DC816A99A6000EB6C84 /* twitter@2x.png in Resources */,
-				94E45DC916A99A6000EB6C84 /* twitter.png in Resources */,
 				94E45DD616A9C2D200EB6C84 /* Help.strings in Resources */,
 				37E7AC3716B67B2600135570 /* bell.wav in Resources */,
 				94B224FC1736A20D004E1009 /* _Accounts.json in Resources */,
@@ -1203,7 +1162,6 @@
 				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
-				37C56FDC15B1A38F00795961 /* UIView+Screenshot.m in Sources */,
 				3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */,
 				3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */,
 				3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */,
@@ -1357,10 +1315,10 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1380,10 +1338,10 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1525,13 +1483,10 @@
 		3788BB3416B83C18007858A3 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-<<<<<<< HEAD
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-=======
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
->>>>>>> 8a26777... Switch to xcassetcatalog and change icon
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
