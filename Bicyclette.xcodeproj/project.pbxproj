@@ -98,6 +98,7 @@
 		37A17C9217FE07D300F1A450 /* MKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A17C9117FE07D300F1A450 /* MKUtilities.m */; };
 		37A17C9C17FE11D300F1A450 /* CityOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A17C9B17FE11D300F1A450 /* CityOverlayRenderer.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
+		37A56AEE184FF64200093C5C /* UIBarButtonItem+BICMargins.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A56AED184FF64200093C5C /* UIBarButtonItem+BICMargins.m */; };
 		37A9143817D533DC004A20CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A9143717D533DC004A20CE /* Images.xcassets */; };
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
@@ -323,6 +324,8 @@
 		37A17C9A17FE11D300F1A450 /* CityOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityOverlayRenderer.h; sourceTree = "<group>"; };
 		37A17C9B17FE11D300F1A450 /* CityOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityOverlayRenderer.m; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		37A56AEC184FF64200093C5C /* UIBarButtonItem+BICMargins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BICMargins.h"; sourceTree = "<group>"; };
+		37A56AED184FF64200093C5C /* UIBarButtonItem+BICMargins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BICMargins.m"; sourceTree = "<group>"; };
 		37A9143717D533DC004A20CE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Bicyclette/Images.xcassets; sourceTree = "<group>"; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 				373016191597800E00347C9F /* UIColor+hsb.h */,
 				3730161A1597800E00347C9F /* UIColor+hsb.m */,
 				3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */,
+				37A56AEC184FF64200093C5C /* UIBarButtonItem+BICMargins.h */,
+				37A56AED184FF64200093C5C /* UIBarButtonItem+BICMargins.m */,
 				3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */,
 				37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */,
 				37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */,
@@ -1128,6 +1133,7 @@
 				37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
+				37A56AEE184FF64200093C5C /* UIBarButtonItem+BICMargins.m in Sources */,
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
 				370465A8183B524500263EE4 /* CLRegion+CircularRegionCompatibility.m in Sources */,
 				37A17C9217FE07D300F1A450 /* MKUtilities.m in Sources */,

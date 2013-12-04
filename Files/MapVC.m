@@ -23,6 +23,7 @@
 #import "CityOverlayRenderer.h"
 #import "CLRegion+CircularRegionCompatibility.h"
 #import "PrefsVC.h"
+#import "UIBarButtonItem+BICMargins.h"
 
 @interface MapVC()
 // UI
@@ -118,11 +119,13 @@
     self.infoButton = [[UIBarButtonItem alloc] initWithCustomView:iButton];
     
     // create toolbar
-    self.toolbarItems = @[self.userTrackingButton,
-                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+    self.toolbarItems = @[[UIBarButtonItem bic_negativeMarginButtonItem],
+                          self.userTrackingButton,
+                          [UIBarButtonItem bic_flexibleMarginButtonItem],
                           modeItem,
-                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                          self.infoButton];
+                          [UIBarButtonItem bic_flexibleMarginButtonItem],
+                          self.infoButton,
+                          [UIBarButtonItem bic_negativeMarginButtonItem]];
     
     self.navigationController.toolbarHidden = NO;
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)

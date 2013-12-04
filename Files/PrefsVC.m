@@ -11,6 +11,7 @@
 #import "CitiesController.h"
 #import "NSProcessInfo+HardwareMachine.h"
 #import "Style.h"
+#import "UIBarButtonItem+BICMargins.h"
 
 @interface PrefsVC () <UITableViewDataSource, UITableViewDelegate>
 @end
@@ -106,8 +107,9 @@
         _enableGeofencesLabel.hidden = YES;
     }
     
-    self.toolbarItems = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPrefsVC)]];
+    self.toolbarItems = @[[UIBarButtonItem bic_flexibleMarginButtonItem],
+                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPrefsVC)],
+                          [UIBarButtonItem bic_negativeMarginButtonItem]];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
