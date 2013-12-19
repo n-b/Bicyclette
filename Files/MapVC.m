@@ -92,6 +92,8 @@
     [self.view addSubview:self.mapView];
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapView.zoomEnabled = YES;
+    self.mapView.showsPointsOfInterest = NO;
+    self.mapView.showsBuildings = NO;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
     
