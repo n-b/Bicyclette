@@ -20,7 +20,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 
 @interface BicycletteCity : CoreDataModel <Locatable
 #if TARGET_OS_IPHONE
-,MKAnnotation
+,MKAnnotation, MKOverlay
 #endif
 >
 {

@@ -10,6 +10,7 @@
 #import "BicycletteCity+Update.h"
 #if TARGET_OS_IPHONE
 #import "LocalUpdateQueue.h"
+#import "MKUtilities.h"
 #endif
 #if !TARGET_OS_IPHONE
 #import "BicycletteCity+Update.h"
@@ -222,6 +223,13 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 {
     return self.regionContainingData.center;
 }
+
+#if TARGET_OS_IPHONE
+- (MKMapRect)boundingMapRect
+{
+    return BICMKMapRectForCoordinateRegion([self mkRegionContainingData]);
+}
+#endif
 
 - (BOOL) hasRegions
 {

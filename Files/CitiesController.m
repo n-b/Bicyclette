@@ -126,16 +126,6 @@
     return viewSpanMeters;
 }
 
-- (BOOL) showCurrentCityStations
-{
-    if(nil==self.currentCity)
-        return NO;
-    if(![self.currentCity hasRegions])
-        return YES;
-    else
-        return [self regionSpanMeters] < [self.currentCity radius] * [[self.currentCity prefForKey:@"CitiesController.StationsZoomThreshold"] doubleValue];
-}
-
 - (void) regionDidChange:(MKCoordinateRegion)viewRegion
 {
     self.viewRegion = viewRegion;
@@ -178,7 +168,7 @@
     else
         self.updateQueue.referenceLocation = nil;
 
-    if([self showCurrentCityStations] || (self.currentCity && ![self.currentCity canUpdateIndividualStations]))
+    if(self.currentCity)
     {
         [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
         [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
@@ -195,39 +185,27 @@
     NSMutableArray * newAnnotations = [NSMutableArray new];
     NSMutableArray * newOverlays = [NSMutableArray new];
     
-    if (self.currentCity==nil)
-    {
+    if (self.currentCity==nil) {
         // World Cities
         NSArray * cities = self.cities;
         [newAnnotations addObjectsFromArray:cities];
-    }
-    else
-    {
+    } else {
         // Fences
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]])
-        {
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
             NSArray * fences = [self.fenceMonitor geofencesInCity:_currentCity];
             [newOverlays addObjectsFromArray:fences];
         }
 
         // Stations
-        if([self showCurrentCityStations])
-        {
+        BOOL shouldShowOverlay = [self regionSpanMeters] > [self.currentCity radius] * [[self.currentCity prefForKey:@"CitiesController.StationsZoomThreshold"] doubleValue];
+
+        if(shouldShowOverlay) {
+            [newOverlays addObjectsFromArray:@[self.currentCity]];
+        } else {
             MKCoordinateRegion mapRegion = self.viewRegion;
             mapRegion.span.latitudeDelta *= 1.25; // Add stations that are just off screen limits
             mapRegion.span.longitudeDelta *= 1.25;
             [newAnnotations addObjectsFromArray:[self.currentCity stationsWithinRegion:mapRegion]];
-        }
-        else // Regions
-        {
-            NSAssert([self.currentCity hasRegions], nil);
-            // Regions
-            NSFetchRequest * regionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
-            [newAnnotations addObjectsFromArray:[self.currentCity.mainContext executeFetchRequest:regionsRequest error:NULL]];
-            
-            // Starred (always show)
-            NSArray * starred = [Station fetchStarredStations:self.currentCity.mainContext];
-            [newAnnotations addObjectsFromArray:starred];
         }
     }
 

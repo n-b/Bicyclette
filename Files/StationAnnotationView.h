@@ -6,15 +6,9 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-@class Station;
+#import "MapVC.h"
 
 @interface StationAnnotationView : MKAnnotationView
-
-typedef NS_ENUM(NSInteger, StationAnnotationMode)
-{
-    StationAnnotationModeBikes,
-    StationAnnotationModeParking
-};
 
 @property (nonatomic) StationAnnotationMode mode;
 @end

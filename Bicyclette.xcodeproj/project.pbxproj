@@ -97,6 +97,7 @@
 		37999F5A169C2B1B00ED2DCF /* libTransformerKit-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F58169C2B0700ED2DCF /* libTransformerKit-osx.a */; };
 		37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */; };
 		37A17C9217FE07D300F1A450 /* MKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A17C9117FE07D300F1A450 /* MKUtilities.m */; };
+		37A17C9C17FE11D300F1A450 /* CityOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A17C9B17FE11D300F1A450 /* CityOverlayRenderer.m */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
 		37A9143817D533DC004A20CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A9143717D533DC004A20CE /* Images.xcassets */; };
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
@@ -323,6 +324,8 @@
 		37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lille_V’Lille.coredata"; sourceTree = "<group>"; };
 		37A17C9017FE07D300F1A450 /* MKUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKUtilities.h; sourceTree = "<group>"; };
 		37A17C9117FE07D300F1A450 /* MKUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKUtilities.m; sourceTree = "<group>"; };
+		37A17C9A17FE11D300F1A450 /* CityOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityOverlayRenderer.h; sourceTree = "<group>"; };
+		37A17C9B17FE11D300F1A450 /* CityOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityOverlayRenderer.m; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37A9143717D533DC004A20CE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Bicyclette/Images.xcassets; sourceTree = "<group>"; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
@@ -734,6 +737,8 @@
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
 				3730161615977E1900347C9F /* StationAnnotationView+Drawing.h */,
 				3730161715977E1900347C9F /* StationAnnotationView+Drawing.m */,
+				37A17C9A17FE11D300F1A450 /* CityOverlayRenderer.h */,
+				37A17C9B17FE11D300F1A450 /* CityOverlayRenderer.m */,
 				3766F18E18035E6900F216FF /* BICCGUtilities.h */,
 				3766F18F18035E6900F216FF /* BICCGUtilities.m */,
 				372A981D17F875FC00B1B5AC /* CityAnnotationView.h */,
@@ -1175,6 +1180,7 @@
 				944A975F16FB1A6600254D3A /* TOBikeCity.m in Sources */,
 				94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */,
 				94B224EE1736997A004E1009 /* BIXICity.m in Sources */,
+				37A17C9C17FE11D300F1A450 /* CityOverlayRenderer.m in Sources */,
 				94B224F817369A63004E1009 /* ViaCycleCity.m in Sources */,
 				94B225011736A6A2004E1009 /* JCDecauxCity.m in Sources */,
 			);
