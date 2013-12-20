@@ -229,7 +229,7 @@
         Station * lstation = (Station*)[updateContext objectWithID:station.objectID];
         lstation.starredValue = !lstation.starredValue;
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        NSArray * starredStation = [Station fetchStarredStations:station.city.mainContext];
+        NSArray * starredStation = [Station fetchStarredStations:station.city.currentContext];
         [self.fenceMonitor setStarredStations:starredStation inCity:station.city];
         [self addAndRemoveMapAnnotations];
     }];
@@ -280,7 +280,7 @@
                          cancelButtonTitle:NSLocalizedString(@"FENCE_MONITORING_ERROR_OK",nil)
                          otherButtonTitles:nil]
          show];
-        NSArray * starredStation = [Station fetchStarredStations:fence.city.mainContext];
+        NSArray * starredStation = [Station fetchStarredStations:fence.city.currentContext];
         [self.fenceMonitor setStarredStations:starredStation inCity:fence.city];
         [self addAndRemoveMapAnnotations];
     }];

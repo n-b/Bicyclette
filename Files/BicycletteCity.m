@@ -141,7 +141,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         
         NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
 		NSError * requestError = nil;
-		NSArray * stations = [self.mainContext executeFetchRequest:stationsRequest error:&requestError];
+		NSArray * stations = [self.currentContext executeFetchRequest:stationsRequest error:&requestError];
         if([stations count]==0)
             return [self knownRegion];
         
@@ -184,7 +184,7 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     // We need real data, which means we have to load the city. This means we should avoid doing this early when the app launches.
     NSFetchRequest * stationsRequest = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
     NSError * requestError = nil;
-    NSArray * stations = [self.mainContext executeFetchRequest:stationsRequest error:&requestError];
+    NSArray * stations = [self.currentContext executeFetchRequest:stationsRequest error:&requestError];
     if([stations count]==0)
     {
 #if TARGET_OS_IPHONE
@@ -258,14 +258,14 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 - (Station*) stationWithNumber:(NSString*)number
 {
-    NSArray * stations = [Station fetchStationWithNumber:self.mainContext number:number];
+    NSArray * stations = [Station fetchStationWithNumber:self.currentContext number:number];
     return [stations lastObject];
 }
 
 #if TARGET_OS_IPHONE
 - (NSArray*) stationsWithinRegion:(MKCoordinateRegion)region
 {
-    NSArray * stations = [Station fetchStationsWithinRange:self.mainContext
+    NSArray * stations = [Station fetchStationsWithinRange:self.currentContext
                                                minLatitude:@(region.center.latitude - region.span.latitudeDelta/2)
                                                maxLatitude:@(region.center.latitude + region.span.latitudeDelta/2)
                                               minLongitude:@(region.center.longitude - region.span.longitudeDelta/2)
