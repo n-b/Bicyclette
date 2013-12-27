@@ -8,17 +8,14 @@
 
 #import "BicycletteApplicationDelegate.h"
 #import "Station.h"
-#import "RootVC.h"
 #import "CitiesController.h"
 #import "BicycletteCity.h"
 #import "Style.h"
+#import "MapVC.h"
 
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
-@property CitiesController * citiesController;
-
-@property IBOutlet RootVC *rootVC;
 @end
 
 @interface BicycletteApplicationDelegate (GAI)
@@ -29,31 +26,42 @@
 #pragma mark -
 
 @implementation BicycletteApplicationDelegate
-
+{
+    CitiesController * _citiesController;
+}
 #pragma mark Application lifecycle
 
-- (void) awakeFromNib
+- (id)init
 {
-	// Load Factory Defaults
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithContentsOfFile:
-	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
-
-    
-    self.window.tintColor = kBicycletteBlue;
-    
-    self.citiesController = [CitiesController new];
-    
-    self.rootVC.citiesController = self.citiesController;
+    self = [super init];
+    if (self) {
+        // Load Factory Defaults
+        [[NSUserDefaults standardUserDefaults] registerDefaults:
+         [NSDictionary dictionaryWithContentsOfFile:
+          [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
+    }
+    return self;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Clear all notifications.
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
+    // Backend
+    _citiesController = [CitiesController new];
+
+    // Setup UI and VCs
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.tintColor = kBicycletteBlue;
+
+    MapVC * mapVC = [MapVC mapVCWithController:_citiesController];
+    _citiesController.delegate = mapVC;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mapVC];
+
+    [self.window makeKeyAndVisible];
     
-    // Must not do it automatically, otherwise the UI is broken vertically, initially, on iPad on iOS 5
-    self.window.rootViewController = self.rootVC;
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
 	return YES;
 }
 
@@ -71,7 +79,7 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     if([notification.userInfo[@"type"] isEqualToString:@"stationsummary"]) {
-        [self.citiesController handleLocalNotificaion:notification];
+        [_citiesController handleLocalNotificaion:notification];
     }
 }
 

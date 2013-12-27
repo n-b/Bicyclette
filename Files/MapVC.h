@@ -12,7 +12,8 @@
 @class Station;
 
 @interface MapVC : UIViewController  <MKMapViewDelegate, CitiesControllerDelegate>
-@property (nonatomic) CitiesController * controller;
++ (instancetype) mapVCWithController:(CitiesController*)controller_;
+@property (readonly,  nonatomic) CitiesController * controller;
 @end
 
 typedef NS_ENUM(NSInteger, StationAnnotationMode)

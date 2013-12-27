@@ -12,7 +12,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220E4165527D000350AD1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
@@ -31,7 +30,6 @@
 		370F7DFA12F60C2700F5FC45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370F7DF912F60C2700F5FC45 /* QuartzCore.framework */; };
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		3718AF3017D7E2300071D015 /* PrefsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */; };
-		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
 		37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
 		37216BC712611C5400A2695A /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
 		3722E0F8168AF8830069C6A8 /* VelowayCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3722E0F7168AF8830069C6A8 /* VelowayCity.m */; };
@@ -56,7 +54,6 @@
 		3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748429616772DE600DD457E /* SenTestCase+RunLoop.m */; };
 		374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 378C6BFA169C362E009DDC84 /* UnusedCities.json */; };
-		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		375760F31687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
 		375760F41687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
@@ -236,7 +233,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		370220D7165525B100350AD1 /* BicycletteCity.mogenerated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BicycletteCity.mogenerated; sourceTree = "<group>"; };
 		370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteCity.mogenerated.m; sourceTree = "<group>"; };
@@ -253,8 +249,6 @@
 		37149B9312624C15009CDE82 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		37149B9412624C15009CDE82 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrefsVC.storyboard; sourceTree = "<group>"; };
-		371982BF16451F92006CF77D /* FanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanContainerViewController.h; sourceTree = "<group>"; };
-		371982C016451F92006CF77D /* FanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanContainerViewController.m; sourceTree = "<group>"; };
 		371F0133171DF80000615762 /* MKCoordinateRegion-Mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCoordinateRegion-Mac.h"; sourceTree = "<group>"; };
 		37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BicycletteCity.xcdatamodel; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* BicycletteCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BicycletteCity.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -280,8 +274,6 @@
 		3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueue.m; sourceTree = "<group>"; };
 		3748429516772DE600DD457E /* SenTestCase+RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+RunLoop.h"; sourceTree = "<group>"; };
 		3748429616772DE600DD457E /* SenTestCase+RunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+RunLoop.m"; sourceTree = "<group>"; };
-		37513B6116173FAB00388FF3 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
-		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		37516B3817523BD8001E70F4 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37516B3917523BE0001E70F4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
@@ -455,8 +447,6 @@
 			isa = PBXGroup;
 			children = (
 				37EFCF3A159E495F007B2E41 /* Style.h */,
-				37513B6116173FAB00388FF3 /* RootVC.h */,
-				37513B6216173FAB00388FF3 /* RootVC.m */,
 				37D131FB163F329B00AABEE4 /* Map */,
 				37D131F9163F328500AABEE4 /* Prefs */,
 				37D131F7163F325100AABEE4 /* AnnotationViews */,
@@ -498,7 +488,6 @@
 			isa = PBXGroup;
 			children = (
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				1D3623240D0F684500981E51 /* BicycletteApplicationDelegate.h */,
 				1D3623250D0F684500981E51 /* BicycletteApplicationDelegate.m */,
 			);
@@ -1054,7 +1043,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				37A9143817D533DC004A20CE /* Images.xcassets in Resources */,
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
 				94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */,
@@ -1152,8 +1140,6 @@
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
 				37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */,
 				37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */,
-				37513B6316173FAB00388FF3 /* RootVC.m in Sources */,
-				371982C116451F93006CF77D /* FanContainerViewController.m in Sources */,
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
