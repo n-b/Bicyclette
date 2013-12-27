@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F8521594A806007CF99E /* RegionAnnotationView.m */; };
 		370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */; };
 		370220E4165527D000350AD1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
@@ -23,7 +22,6 @@
 		370220E91655311000350AD1 /* DataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793DE2113802E6100B50118 /* DataUpdater.m */; };
 		37038A1115E3A6280043504A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		37038A1415E3A6290043504A /* DataGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 37038A1315E3A6290043504A /* DataGrabber.m */; };
-		3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */; };
 		3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */; };
 		3709F575167B755600F865E3 /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
 		370C477E1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */; };
@@ -32,7 +30,6 @@
 		37149B9512624C15009CDE82 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
 		3718AF3017D7E2300071D015 /* PrefsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */; };
 		371982C116451F93006CF77D /* FanContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371982C016451F92006CF77D /* FanContainerViewController.m */; };
-		371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 371D90C9158FE19900E509E6 /* TransparentToolbar.m */; };
 		37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */; };
 		37216BC712611C5400A2695A /* BicycletteCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37216BC612611C5400A2695A /* BicycletteCity.m */; };
 		3722E0F8168AF8830069C6A8 /* VelowayCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3722E0F7168AF8830069C6A8 /* VelowayCity.m */; };
@@ -40,7 +37,9 @@
 		37235E8C1662BDB200F33BF1 /* libKVCMapping-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37235E8B1662BDB200F33BF1 /* libKVCMapping-osx.a */; };
 		37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B4C1F71659521600DE4756 /* libKVCMapping-ios.a */; };
 		3724BC7515E4CA8A00790869 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3724BC7415E4CA8A00790869 /* StoreKit.framework */; };
-		3730161815977E1900347C9F /* DrawingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* DrawingCache.m */; };
+		372A982717F8766900B1B5AC /* CityAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 372A981E17F875FC00B1B5AC /* CityAnnotationView.m */; };
+		372A982917F8846200B1B5AC /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 372A982817F8846200B1B5AC /* CoreImage.framework */; };
+		3730161815977E1900347C9F /* StationAnnotationView+Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161715977E1900347C9F /* StationAnnotationView+Drawing.m */; };
 		3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730161A1597800E00347C9F /* UIColor+hsb.m */; };
 		3739609B167917CE005F0672 /* BicycletteCities.json in Resources */ = {isa = PBXBuildFile; fileRef = 3739609A167917CE005F0672 /* BicycletteCities.json */; };
 		3739609C16791A11005F0672 /* BicycletteCities.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3739609A167917CE005F0672 /* BicycletteCities.json */; };
@@ -66,6 +65,7 @@
 		3763582616A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3763582416A17A0C00C29B56 /* BicycletteCity+Update.m */; };
 		3763582916A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 3763582816A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m */; };
 		3763582A16A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 3763582816A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m */; };
+		3766F19018035E6900F216FF /* BICCGUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3766F18F18035E6900F216FF /* BICCGUtilities.m */; };
 		376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
 		376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 376D0E4C1678B56D006F321D /* CyclocityCity.m */; };
 		377620DF167BD2B2004E9E3D /* Station+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 3709F574167B755600F865E3 /* Station+Update.m */; };
@@ -234,14 +234,10 @@
 		28A0AAE50D9B0CCF005BE974 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3700F8511594A806007CF99E /* RegionAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
-		3700F8521594A806007CF99E /* RegionAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
 		370220D7165525B100350AD1 /* BicycletteCity.mogenerated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BicycletteCity.mogenerated; sourceTree = "<group>"; };
 		370220D8165525B100350AD1 /* BicycletteCity.mogenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteCity.mogenerated.m; sourceTree = "<group>"; };
 		37038A0F15E3A6280043504A /* DataGrabber */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataGrabber; sourceTree = BUILT_PRODUCTS_DIR; };
 		37038A1315E3A6290043504A /* DataGrabber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DataGrabber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycletteAnnotationView.h; sourceTree = "<group>"; };
-		3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycletteAnnotationView.m; sourceTree = "<group>"; };
 		3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+AttributionLogo.h"; sourceTree = "<group>"; };
 		3705B40B15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+AttributionLogo.m"; sourceTree = "<group>"; };
 		3709F573167B755600F865E3 /* Station+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Station+Update.h"; sourceTree = "<group>"; };
@@ -253,8 +249,6 @@
 		3718AF2F17D7E2300071D015 /* PrefsVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrefsVC.storyboard; sourceTree = "<group>"; };
 		371982BF16451F92006CF77D /* FanContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanContainerViewController.h; sourceTree = "<group>"; };
 		371982C016451F92006CF77D /* FanContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanContainerViewController.m; sourceTree = "<group>"; };
-		371D90C8158FE19900E509E6 /* TransparentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentToolbar.h; sourceTree = "<group>"; };
-		371D90C9158FE19900E509E6 /* TransparentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentToolbar.m; sourceTree = "<group>"; };
 		371F0133171DF80000615762 /* MKCoordinateRegion-Mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCoordinateRegion-Mac.h"; sourceTree = "<group>"; };
 		37212056149EA4F3007697D1 /* BicycletteCity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BicycletteCity.xcdatamodel; sourceTree = "<group>"; };
 		37216BC512611C5400A2695A /* BicycletteCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BicycletteCity.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -262,8 +256,11 @@
 		3722E0F7168AF8830069C6A8 /* VelowayCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VelowayCity.m; sourceTree = "<group>"; };
 		37239F4216B808EC00638420 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3724BC7415E4CA8A00790869 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		3730161615977E1900347C9F /* DrawingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCache.h; sourceTree = "<group>"; };
-		3730161715977E1900347C9F /* DrawingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingCache.m; sourceTree = "<group>"; };
+		372A981D17F875FC00B1B5AC /* CityAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityAnnotationView.h; sourceTree = "<group>"; };
+		372A981E17F875FC00B1B5AC /* CityAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityAnnotationView.m; sourceTree = "<group>"; };
+		372A982817F8846200B1B5AC /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		3730161615977E1900347C9F /* StationAnnotationView+Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StationAnnotationView+Drawing.h"; sourceTree = "<group>"; };
+		3730161715977E1900347C9F /* StationAnnotationView+Drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StationAnnotationView+Drawing.m"; sourceTree = "<group>"; };
 		373016191597800E00347C9F /* UIColor+hsb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hsb.h"; sourceTree = "<group>"; };
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
 		3739609A167917CE005F0672 /* BicycletteCities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BicycletteCities.json; sourceTree = "<group>"; };
@@ -291,6 +288,8 @@
 		3763582416A17A0C00C29B56 /* BicycletteCity+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+Update.m"; sourceTree = "<group>"; };
 		3763582716A19D4A00C29B56 /* BicycletteCity+ServiceDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BicycletteCity+ServiceDescription.h"; sourceTree = "<group>"; };
 		3763582816A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BicycletteCity+ServiceDescription.m"; sourceTree = "<group>"; };
+		3766F18E18035E6900F216FF /* BICCGUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BICCGUtilities.h; sourceTree = "<group>"; };
+		3766F18F18035E6900F216FF /* BICCGUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BICCGUtilities.m; sourceTree = "<group>"; };
 		376D0E4B1678B56D006F321D /* CyclocityCity.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = CyclocityCity.h; path = Files/Cities/CyclocityCity.h; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		376D0E4C1678B56D006F321D /* CyclocityCity.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = CyclocityCity.m; path = Files/Cities/CyclocityCity.m; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		3770B22D14E9765A0003BBA8 /* carto.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = carto.xml; sourceTree = "<group>"; };
@@ -394,6 +393,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372A982917F8846200B1B5AC /* CoreImage.framework in Frameworks */,
 				94A30ABB16DD24C20043ACFC /* libCoreDataModel-iOS.a in Frameworks */,
 				37999F59169C2B1500ED2DCF /* libTransformerKit-ios.a in Frameworks */,
 				37235E8D1662BDCE00F33BF1 /* libKVCMapping-ios.a in Frameworks */,
@@ -499,6 +499,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				372A982817F8846200B1B5AC /* CoreImage.framework */,
 				94EB562F1729DF2D00E17536 /* GoogleAnalytics */,
 				94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */,
 				37B4C1EE1659521600DE4756 /* KVCMapping.xcodeproj */,
@@ -532,12 +533,6 @@
 		3705B40915B9B6C8009C8AAA /* UI Utility */ = {
 			isa = PBXGroup;
 			children = (
-				371982BF16451F92006CF77D /* FanContainerViewController.h */,
-				371982C016451F92006CF77D /* FanContainerViewController.m */,
-				3730161615977E1900347C9F /* DrawingCache.h */,
-				3730161715977E1900347C9F /* DrawingCache.m */,
-				371D90C8158FE19900E509E6 /* TransparentToolbar.h */,
-				371D90C9158FE19900E509E6 /* TransparentToolbar.m */,
 				373016191597800E00347C9F /* UIColor+hsb.h */,
 				3730161A1597800E00347C9F /* UIColor+hsb.m */,
 				3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */,
@@ -730,12 +725,14 @@
 		37D131F7163F325100AABEE4 /* AnnotationViews */ = {
 			isa = PBXGroup;
 			children = (
-				3705B40615B9B6BE009C8AAA /* BicycletteAnnotationView.h */,
-				3705B40715B9B6BE009C8AAA /* BicycletteAnnotationView.m */,
-				3700F8511594A806007CF99E /* RegionAnnotationView.h */,
-				3700F8521594A806007CF99E /* RegionAnnotationView.m */,
 				378F2FEE1595223C003C5CF3 /* StationAnnotationView.h */,
 				378F2FEF1595223C003C5CF3 /* StationAnnotationView.m */,
+				3730161615977E1900347C9F /* StationAnnotationView+Drawing.h */,
+				3730161715977E1900347C9F /* StationAnnotationView+Drawing.m */,
+				3766F18E18035E6900F216FF /* BICCGUtilities.h */,
+				3766F18F18035E6900F216FF /* BICCGUtilities.m */,
+				372A981D17F875FC00B1B5AC /* CityAnnotationView.h */,
+				372A981E17F875FC00B1B5AC /* CityAnnotationView.m */,
 			);
 			name = AnnotationViews;
 			sourceTree = "<group>";
@@ -1127,14 +1124,11 @@
 				37212055149EA4F3007697D1 /* BicycletteCity.xcdatamodel in Sources */,
 				37E9531712AA29FB00C1D21C /* MapVC.m in Sources */,
 				3793DE2213802E6100B50118 /* DataUpdater.m in Sources */,
-				371D90CA158FE19900E509E6 /* TransparentToolbar.m in Sources */,
-				3700F8531594A806007CF99E /* RegionAnnotationView.m in Sources */,
 				378F2FF01595223C003C5CF3 /* StationAnnotationView.m in Sources */,
-				3730161815977E1900347C9F /* DrawingCache.m in Sources */,
+				3730161815977E1900347C9F /* StationAnnotationView+Drawing.m in Sources */,
 				3730161B1597800E00347C9F /* UIColor+hsb.m in Sources */,
 				37C56FD415B1A0E700795961 /* PrefsVC.m in Sources */,
 				3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */,
-				3705B40815B9B6BE009C8AAA /* BicycletteAnnotationView.m in Sources */,
 				3705B40C15B9E8DB009C8AAA /* MKMapView+AttributionLogo.m in Sources */,
 				37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */,
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
@@ -1145,9 +1139,11 @@
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
+				3766F19018035E6900F216FF /* BICCGUtilities.m in Sources */,
 				376087F71675E27400B1161E /* CityRegionUpdateGroup.m in Sources */,
 				376D0E4E1678B56D006F321D /* CyclocityCity.m in Sources */,
 				373960AC16794635005F0672 /* LyonVelovCity.m in Sources */,
+				372A982717F8766900B1B5AC /* CityAnnotationView.m in Sources */,
 				3709F575167B755600F865E3 /* Station+Update.m in Sources */,
 				377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
 				37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,

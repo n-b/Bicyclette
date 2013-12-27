@@ -14,7 +14,6 @@
 @interface RootVC : FanContainerViewController
 
 // Make outlets public, because they are set in MainWindow.nib
-@property IBOutlet UIToolbar *infoToolbar;
 @property IBOutlet UIButton *infoButton;
 
 @property (nonatomic) CitiesController * citiesController;
