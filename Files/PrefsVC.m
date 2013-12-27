@@ -91,13 +91,7 @@
     _appIconCell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 1000);
         
     _enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
-    _geofencesSwitch.tintColor = [UIColor colorWithWhite:.1 alpha:1];
     _geofencesSwitch.onTintColor = kBicycletteBlue;
-    _geofencesSwitch.layer.shadowOpacity = 1;
-    _geofencesSwitch.layer.shadowOffset = CGSizeMake(0, 1);
-    _geofencesSwitch.layer.shadowRadius = 0;
-    _geofencesSwitch.layer.shadowColor = [UIColor colorWithWhite:1 alpha:.5].CGColor;
-    _geofencesSwitch.layer.shouldRasterize = 1;
     _geofenceUnavailableLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
     
     if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
