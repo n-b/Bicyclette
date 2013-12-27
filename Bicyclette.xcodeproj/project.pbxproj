@@ -51,10 +51,6 @@
 		373960AB16794635005F0672 /* LyonVelovCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 373960AA16794634005F0672 /* LyonVelovCity.m */; };
 		373960AC16794635005F0672 /* LyonVelovCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 373960AA16794634005F0672 /* LyonVelovCity.m */; };
 		373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37149B9412624C15009CDE82 /* NSStringAdditions.m */; };
-		373A780215E40DA90057E241 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780015E40DA90057E241 /* Icon~ipad.png */; };
-		373A780315E40DA90057E241 /* Icon~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780115E40DA90057E241 /* Icon~ipad@2x.png */; };
-		373A780715E40EF70057E241 /* Icon~settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780515E40EF70057E241 /* Icon~settings.png */; };
-		373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373A780615E40EF70057E241 /* Icon~settings@2x.png */; };
 		37410AD316A0C04900F2E958 /* LilleVlilleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37410AD216A0C04900F2E958 /* LilleVlilleCity.m */; };
 		37410AD416A0C04900F2E958 /* LilleVlilleCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37410AD216A0C04900F2E958 /* LilleVlilleCity.m */; };
 		37410ADC16A0CDD100F2E958 /* _StationParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 37410ADB16A0CDD000F2E958 /* _StationParse.m */; };
@@ -106,6 +102,7 @@
 		37999F5A169C2B1B00ED2DCF /* libTransformerKit-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37999F58169C2B0700ED2DCF /* libTransformerKit-osx.a */; };
 		37A0DD8416A6F04A00380233 /* Lille_V’Lille.coredata in Resources */ = {isa = PBXBuildFile; fileRef = 37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */; };
 		37A3471C128CA48C000A2540 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A3471B128CA48C000A2540 /* CoreData.framework */; };
+		37A9143817D533DC004A20CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A9143717D533DC004A20CE /* Images.xcassets */; };
 		37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661A1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
 		37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA66181653E9EA001F9660 /* CollectionsAdditions.m */; };
@@ -134,8 +131,6 @@
 		37E9532D12AA2BE000C1D21C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9532C12AA2BE000C1D21C /* MapKit.framework */; };
 		37EC535215BAFB0400F45C09 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534815BAFB0400F45C09 /* Default.png */; };
 		37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534915BAFB0400F45C09 /* Default@2x.png */; };
-		37EC535515BAFB0400F45C09 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534B15BAFB0400F45C09 /* Icon.png */; };
-		37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534C15BAFB0400F45C09 /* Icon@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeofencesMonitor.m */; };
 		37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F092361680D671001E8127 /* UIViewController+Banner.m */; };
 		37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
@@ -294,11 +289,6 @@
 		3730161A1597800E00347C9F /* UIColor+hsb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hsb.m"; sourceTree = "<group>"; };
 		3739609A167917CE005F0672 /* BicycletteCities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BicycletteCities.json; sourceTree = "<group>"; };
 		373960AA16794634005F0672 /* LyonVelovCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyonVelovCity.m; sourceTree = "<group>"; };
-		373A780015E40DA90057E241 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
-		373A780115E40DA90057E241 /* Icon~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad@2x.png"; sourceTree = "<group>"; };
-		373A780515E40EF70057E241 /* Icon~settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~settings.png"; sourceTree = "<group>"; };
-		373A780615E40EF70057E241 /* Icon~settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~settings@2x.png"; sourceTree = "<group>"; };
-		373A780915E40F060057E241 /* Icon~appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~appstore.png"; sourceTree = "<group>"; };
 		37410AD216A0C04900F2E958 /* LilleVlilleCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LilleVlilleCity.m; sourceTree = "<group>"; };
 		37410ADA16A0CDD000F2E958 /* _StationParse.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = _StationParse.h; path = Cities/_StationParse.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		37410ADB16A0CDD000F2E958 /* _StationParse.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = _StationParse.m; path = Cities/_StationParse.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
@@ -356,6 +346,7 @@
 		37999F4D169C2B0700ED2DCF /* TransformerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TransformerKit.xcodeproj; path = submodules/TransformerKit/TransformerKit.xcodeproj; sourceTree = "<group>"; };
 		37A0DD8316A6F04A00380233 /* Lille_V’Lille.coredata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lille_V’Lille.coredata"; sourceTree = "<group>"; };
 		37A3471B128CA48C000A2540 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		37A9143717D533DC004A20CE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Bicyclette/Images.xcassets; sourceTree = "<group>"; };
 		37AA66171653E9EA001F9660 /* CollectionsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsAdditions.h; sourceTree = "<group>"; };
 		37AA66181653E9EA001F9660 /* CollectionsAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionsAdditions.m; sourceTree = "<group>"; };
 		37ACE97516B7FE8E00E07A00 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -386,8 +377,6 @@
 		37E9532C12AA2BE000C1D21C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37EC534815BAFB0400F45C09 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		37EC534915BAFB0400F45C09 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		37EC534B15BAFB0400F45C09 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		37EC534C15BAFB0400F45C09 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		37EE011715BC87E4008376A1 /* GeofencesMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeofencesMonitor.h; sourceTree = "<group>"; };
 		37EE011815BC87E4008376A1 /* GeofencesMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeofencesMonitor.m; sourceTree = "<group>"; };
 		37EF844015BCA89A00B84CA3 /* Beaubourg.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Beaubourg.gpx; sourceTree = "<group>"; };
@@ -520,6 +509,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				37A9143717D533DC004A20CE /* Images.xcassets */,
 				37038A1215E3A6280043504A /* DataGrabber */,
 				373A77F215E3F6860057E241 /* _DataGrabTempFolder */,
 				3756EA9B1297F52200113534 /* Supporting Files */,
@@ -888,13 +878,6 @@
 				3724BC6615E4C50200790869 /* Default-Portrait.png */,
 				3724BC6715E4C50200790869 /* Default-Portrait@2x.png */,
 				377EFCAE160F90BF005A5383 /* Default-568h@2x.png */,
-				37EC534B15BAFB0400F45C09 /* Icon.png */,
-				37EC534C15BAFB0400F45C09 /* Icon@2x.png */,
-				373A780015E40DA90057E241 /* Icon~ipad.png */,
-				373A780115E40DA90057E241 /* Icon~ipad@2x.png */,
-				373A780515E40EF70057E241 /* Icon~settings.png */,
-				373A780615E40EF70057E241 /* Icon~settings@2x.png */,
-				373A780915E40F060057E241 /* Icon~appstore.png */,
 				94E45DC616A99A6000EB6C84 /* twitter@2x.png */,
 				94E45DC716A99A6000EB6C84 /* twitter.png */,
 				37E7AC3616B67B2600135570 /* bell.wav */,
@@ -1126,17 +1109,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				37A9143817D533DC004A20CE /* Images.xcassets in Resources */,
 				3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */,
 				37C56FD515B1A0E700795961 /* PrefsVC.xib in Resources */,
 				94E45DCC16A9B1E200EB6C84 /* Localizable.strings in Resources */,
 				37EC535215BAFB0400F45C09 /* Default.png in Resources */,
 				37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */,
-				37EC535515BAFB0400F45C09 /* Icon.png in Resources */,
-				37EC535615BAFB0400F45C09 /* Icon@2x.png in Resources */,
-				373A780215E40DA90057E241 /* Icon~ipad.png in Resources */,
-				373A780315E40DA90057E241 /* Icon~ipad@2x.png in Resources */,
-				373A780715E40EF70057E241 /* Icon~settings.png in Resources */,
-				373A780815E40EF70057E241 /* Icon~settings@2x.png in Resources */,
 				3724BC6A15E4C50200790869 /* Default-Landscape.png in Resources */,
 				3724BC6B15E4C50200790869 /* Default-Landscape@2x.png in Resources */,
 				3724BC6C15E4C50200790869 /* Default-Portrait.png in Resources */,
@@ -1391,6 +1369,8 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1412,6 +1392,8 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1553,8 +1535,13 @@
 		3788BB3416B83C18007858A3 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+=======
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+>>>>>>> 8a26777... Switch to xcassetcatalog and change icon
 				INFOPLIST_FILE = Files/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
