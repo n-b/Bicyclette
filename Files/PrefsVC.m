@@ -8,28 +8,19 @@
 
 #import "PrefsVC.h"
 #import "BicycletteCity+Update.h"
-#import "Store.h"
 #import "CitiesController.h"
 #import "FanContainerViewController.h"
 #import "NSProcessInfo+HardwareMachine.h"
 #import "Style.h"
 
-@interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface PrefsVC () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property IBOutlet UIImageView *logoView;
 @property IBOutlet UILabel *designAndCodeLabel;
 @property IBOutlet UILabel *contactSupportButton;
 
-@property IBOutlet UILabel *storeLabel;
-@property IBOutlet UIActivityIndicatorView *storeIndicator;
-@property IBOutlet UIButton *storeButton;
-@property IBOutlet UILabel *rewardLabel;
-
 @property IBOutlet UIToolbar *tweetBar;
 @property IBOutlet UIButton *appstoreRatingsButton;
-
-@property IBOutlet UILabel *seeHelpLabel;
-@property IBOutlet UIButton *seeHelpButton;
 
 @property IBOutlet UILabel *enableGeofencesLabel;
 @property IBOutlet UISwitch *geofencesSwitch;
@@ -40,7 +31,6 @@
 @property IBOutlet UILabel *updateLabel;
 @property IBOutlet UIButton *updateButton;
 
-@property Store * store;
 @property NSArray * products;
 @end
 
@@ -52,10 +42,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-
-    // Create store
-    self.store = [Store new];
-    self.store.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateBegan object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
@@ -95,9 +81,6 @@
     self.contactSupportButton.text = NSLocalizedString(@"CONTACT_EMAIL_SUPPORT", nil);
     
     [self.appstoreRatingsButton setTitle:NSLocalizedString(@"APPSTORE_RATINGS_BUTTON", nil) forState:UIControlStateNormal];
-
-    self.seeHelpLabel.text = NSLocalizedString(@"SEE_HELP_LABEL", nil);
-    [self.seeHelpButton setTitle:NSLocalizedString(@"SEE_HELP_BUTTON", nil) forState:UIControlStateNormal];
     
     self.enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
     self.geofencesSwitch.tintColor = [UIColor colorWithWhite:.1 alpha:1];
@@ -123,7 +106,6 @@
     if(![self.updateIndicator isAnimating]) {
         [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil) forState:UIControlStateNormal];
     }
-    [self updateStoreButton];
     self.geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
 }
 
@@ -170,12 +152,7 @@
 }
 
 - (IBAction)openEmailSupport {
-    NSString * emailAddress;
-    NSString * purchasedProductIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
-    if(purchasedProductIdentifier!=nil)
-        emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportWithLoveEmailAddress"];
-    else
-        emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportEmailAddress"];
+    NSString * emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportEmailAddress"];
     
     NSString * techSummary = [NSString stringWithFormat:NSLocalizedString(@"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@", nil),
                               [NSString stringWithFormat:@"%@ (%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleVersionKey]],
@@ -307,139 +284,6 @@
 - (IBAction)switchRegionMonitoring:(UISwitch*)sender
 {
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"RegionMonitoring.Enabled"];
-}
-
-/****************************************************************************/
-#pragma mark Store updates
-
-- (void) updateStoreButton
-{
-    NSString * purchasedProductIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
-    
-    self.storeLabel.text = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_LABEL", nil) : NSLocalizedString(@"STORE_THANK_YOU_LABEL", nil);
-    [self.storeButton setTitle:purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_BUTTON", nil) : @""  forState:UIControlStateNormal];
-    self.rewardLabel.text = purchasedProductIdentifier==nil ? @"" : NSLocalizedString([self productsAndRewards][purchasedProductIdentifier], nil);
-    self.storeButton.enabled = purchasedProductIdentifier==nil;
-}
-
-- (NSDictionary*) productsAndRewards
-{
-    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ProductsAndRewards"];
-}
-
-#pragma mark - // Begin Store Action
-
-- (IBAction)donate {
-    self.products = nil;
-    BOOL didRequest = [self.store requestProducts:[[self productsAndRewards] allKeys]];
-    if(didRequest)
-    {
-        [self.storeIndicator startAnimating];
-        self.storeLabel.hidden = YES;
-        self.storeButton.enabled = NO;
-    }
-    else
-    {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_UNAVAILABLE_TITLE", nil)
-                                    message:NSLocalizedString(@"STORE_UNAVAILABLE_MESSAGE", nil)
-                                   delegate:nil cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCELx", nil) otherButtonTitles:nil] show];
-    }
-}
-
-// List Products
-- (void) store:(Store*)store productsRequestDidFailWithError:(NSError*)error
-{
-    [self.storeIndicator stopAnimating];
-    self.storeLabel.hidden = NO;
-    self.storeButton.enabled = YES;
-    [[[UIAlertView alloc] initWithTitle:error.localizedDescription
-                                message:error.localizedFailureReason
-                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-}
-
-- (void) store:(Store*)store productsRequestDidComplete:(NSArray*)products
-{
-    self.products = [products sortedArrayUsingComparator:^NSComparisonResult(SKProduct* product1, SKProduct* product2) {
-        return [product1.price compare:product2.price];
-    }];
-
-    UIActionSheet * storeSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"STORE_SHEET_TITLE", nil)
-                                                             delegate:self
-                                                    cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-
-    NSNumberFormatter *priceFormatter = [NSNumberFormatter new];
-    priceFormatter.formatterBehavior = NSNumberFormatterBehavior10_4;
-    priceFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
-
-    for (SKProduct * product in self.products) {
-        priceFormatter.locale = product.priceLocale;
-        [storeSheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@",product.localizedTitle,[priceFormatter stringFromNumber:product.price]]];
-    }
-    
-    [storeSheet addButtonWithTitle:NSLocalizedString(@"STORE_RESTORE_PURCHASES", nil)];
-    [storeSheet addButtonWithTitle:NSLocalizedString(@"STORE_SHEET_CANCEL", nil)];
-    storeSheet.cancelButtonIndex = storeSheet.numberOfButtons-1;
-    
-    [storeSheet showInView:self.view];
-}
-
-// Pick a product
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex==actionSheet.cancelButtonIndex) {
-        [self actionSheetCancel:actionSheet];
-    } else if(buttonIndex==actionSheet.numberOfButtons-2) {
-        [self.store restore];
-    } else {
-        SKProduct * product = self.products[buttonIndex];
-        [self.store buy:product];
-    }
-}
-
-- (void)actionSheetCancel:(UIActionSheet *)actionSheet
-{
-    [self.storeIndicator stopAnimating];
-    self.storeLabel.hidden = NO;
-    self.storeButton.enabled = YES;
-    self.products = nil;
-}
-
-#pragma mark -
-// Transaction end
-- (void) store:(Store*)store purchaseSucceeded:(NSString*)productIdentifier
-{
-    [[NSUserDefaults standardUserDefaults] setObject:productIdentifier forKey:@"PurchasedProductsIdentifier"];
-    [self.storeIndicator stopAnimating];
-    self.storeLabel.hidden = NO;
-    self.storeButton.enabled = YES;
-    self.products = nil;
-    [self updateStoreButton];
-}
-
-- (void) store:(Store*)store purchaseCancelled:(NSString*)productIdentifier
-{
-    [self.storeIndicator stopAnimating];
-    self.storeLabel.hidden = NO;
-    self.storeButton.enabled = YES;
-    self.products = nil;
-}
-
-- (void) store:(Store*)store purchaseFailed:(NSString*)productIdentifier withError:(NSError*)error
-{
-    [self.storeIndicator stopAnimating];
-    self.storeLabel.hidden = NO;
-    self.storeButton.enabled = YES;
-    self.products = nil;
-    // StoreKit already presents the error, it's useless to display another alert
-}
-
-- (void) storeRestoreFinished:(Store*)store
-{
-    [self.storeIndicator stopAnimating];
-    self.storeLabel.hidden = NO;
-    self.storeButton.enabled = YES;
-    self.products = nil;
-    [self updateStoreButton];
 }
 
 @end

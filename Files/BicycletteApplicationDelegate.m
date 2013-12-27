@@ -70,10 +70,9 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    if([notification.userInfo[@"type"] isEqualToString:@"stationsummary"])
+    if([notification.userInfo[@"type"] isEqualToString:@"stationsummary"]) {
         [self.citiesController handleLocalNotificaion:notification];
-    else if([notification.userInfo[@"type"] isEqualToString:@"donationrequest"])
-        [self.rootVC handleDonationNotification:notification];
+    }
 }
 
 @end

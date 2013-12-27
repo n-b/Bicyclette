@@ -28,11 +28,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(notifyCanRequestLocation) name:UIApplicationDidFinishLaunchingNotification
                                                    object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(askForDonationIfNeeded) name:UIApplicationDidBecomeActiveNotification
-                                                   object:nil];
-        
-        self.backViewController = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
     }
     return self;
 }
@@ -92,91 +87,6 @@
 - (void) notifyCanRequestLocation
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
-}
-
-/****************************************************************************/
-#pragma mark Donation Request Alert
-
-- (void) askForDonationIfNeeded
-{
-    NSMutableArray * lastLaunches = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bicyclette.App.LastLaunches"]];
-    NSTimeInterval intervalBetweenTwoLaunches = 24*60*60;
-    NSUInteger minCountInDonationInterval = 3;
-    NSTimeInterval donationInterval = 24*60*60*10;
-
-    NSDate * now = [NSDate date];
-    if([now timeIntervalSinceReferenceDate] - [[lastLaunches lastObject] timeIntervalSinceReferenceDate] > intervalBetweenTwoLaunches)
-    {
-        [lastLaunches addObject:now];
-    }
-    while( [lastLaunches count] > minCountInDonationInterval)
-    {
-        [lastLaunches removeObjectAtIndex:0];
-    }
-    
-    BOOL shouldAsk = NO;
-    if([lastLaunches count] == minCountInDonationInterval && [[lastLaunches lastObject] timeIntervalSinceReferenceDate] - [[lastLaunches objectAtIndex:0] timeIntervalSinceReferenceDate] < donationInterval)
-    {
-        shouldAsk = YES;
-        lastLaunches = [NSMutableArray array];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:lastLaunches forKey:@"Bicyclette.App.LastLaunches"];
-    
-    if(shouldAsk)
-    {
-#if DEBUG
-        NSString * purchasedProduct = [[NSUserDefaults standardUserDefaults] objectForKey:@"DebugPurchasedProductsIdentifier"];
-#else
-        NSString * purchasedProduct = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
-#endif
-        if([purchasedProduct length] != 0)
-        {
-            NSString * reward = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ProductsAndRewards"][purchasedProduct];
-            [self.frontViewController displayBannerTitle:NSLocalizedString(@"STORE_THANK_YOU_LABEL", nil) subtitle:NSLocalizedString(reward, nil) sticky:NO];
-        }
-        else
-        {
-            [self presentDonationAlertWithDelayOption:YES];
-        }
-    }
-}
-
-- (void) presentDonationAlertWithDelayOption:(BOOL)delayOption
-{
-    UIAlertView * donationAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
-                                                             message:NSLocalizedString(@"STORE_ALERT_MESSAGE", nil)
-                                                            delegate:self
-                                                   cancelButtonTitle:NSLocalizedString(@"STORE_ALERT_CANCEL", nil)
-                                                   otherButtonTitles:NSLocalizedString(@"STORE_ALERT_OK", nil),
-                                   delayOption?NSLocalizedString(@"STORE_ALERT_IN_20_MINUTES", nil):nil,nil];
-    [donationAlert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex==alertView.firstOtherButtonIndex){ // "Donate"
-        [self showBackViewControllerAnimated:YES completion:^{
-            [((PrefsVC*)self.backViewController) donate];
-        }];
-    } else if(buttonIndex==alertView.firstOtherButtonIndex+1){ // Ask me in 20 minutes
-        [self askMeToDonateLater];
-    } else { // Not now
-    }
-}
-
-- (void) askMeToDonateLater
-{
-    NSTimeInterval donationDelay = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Store.DonationAlertDelay"];
-    [[UIApplication sharedApplication] presentLocalNotificationMessage:NSLocalizedString(@"STORE_ALERT_TITLE", nil)
-                                                           alertAction:NSLocalizedString(@"STORE_ALERT_OK", nil)
-                                                             soundName:nil
-                                                              userInfo:@{@"type": @"donationrequest"}
-                                                              fireDate:[NSDate dateWithTimeIntervalSinceNow:donationDelay]];
-}
-
-- (void) handleDonationNotification:(UILocalNotification*)notification
-{
-    [self presentDonationAlertWithDelayOption:NO];
 }
 
 @end

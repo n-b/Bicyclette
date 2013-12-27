@@ -4,8 +4,6 @@
 <dict>
 	<key>DebugDisplayLocalNotificationsAsAlerts</key>
 	<false/>
-	<key>DebugDisplayHelpAtLaunch</key>
-	<false/>
 	<key>RegionMonitoring.Enabled</key>
 	<true/>
 	<key>RegionMonitoring.FenceDistance</key>
@@ -28,25 +26,10 @@
 	<integer>45</integer>
 	<key>StationStatusStalenessInterval</key>
 	<integer>600</integer>
-	<key>DisplayHelpAtLaunch</key>
-	<true/>
 	<key>WebpageURL</key>
 	<string>http://www.bicyclette-app.com</string>
 	<key>SupportEmailAddress</key>
 	<string>support@bicyclette-app.com</string>
-	<key>SupportWithLoveEmailAddress</key>
-	<string>support+love@bicyclette-app.com</string>
-	<key>ProductsAndRewards</key>
-	<dict>
-		<key>fr.bicyclette_app.bicyclette.a.merci.1</key>
-		<string>STORE_REWARD_1</string>
-		<key>fr.bicyclette_app.bicyclette.a.merci.2</key>
-		<string>STORE_REWARD_2</string>
-		<key>fr.bicyclette_app.bicyclette.a.merci.3</key>
-		<string>STORE_REWARD_3</string>
-	</dict>
-	<key>Store.DonationAlertDelay</key>
-	<string>1200</string>
 	<key>MapViewScaleView.MaxDistance</key>
 	<integer>50000</integer>
 </dict>

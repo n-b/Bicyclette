@@ -30,42 +30,16 @@
 
 "SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@" = "<br><br>---<br>Version : %1$@<br>Modèle : %2$@<br>OS : %3$@<br>Ville : %4$@";
 
-"STORE_PLEASE_HELP_LABEL" = "Vous aimez ?";
-"STORE_PLEASE_HELP_BUTTON" = "Faire un don !";
-
 "SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, la meilleure appli pour les vélos en libre service ! @bicycletteapp";
 "SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, la meilleure appli pour %@ ! @bicycletteapp";
 
 "APPSTORE_RATINGS_BUTTON" = "Noter sur l’App Store";
-
-"SEE_HELP_LABEL" = "Un problème ?";
-"SEE_HELP_BUTTON" = "Revoir l’aide";
 
 "ENABLE_GEOFENCES" = "Alertes Géographiques Automatiques :";
 "GEOFENCES_UNAVAILABLE" = "Votre appareil ne permet pas de créer d’alertes géographiques autour des favoris.";
 
 "STATIONS_LIST_CITY_%@" = "Liste des stations %@ :";
 "UPDATE_STATIONS_LIST_BUTTON" = "Mettre à jour";
-
-/* Store */
-
-"STORE_ALERT_TITLE" = "Cette appli vous est utile ?\nVotre aide est la bienvenue !";
-"STORE_ALERT_MESSAGE" = "Vous donnez ce que vous voulez.";
-"STORE_ALERT_CANCEL" = "Pas aujourd’hui";
-"STORE_ALERT_IN_20_MINUTES" = "Me redemander dans 20 minutes";
-"STORE_ALERT_OK" = "Faire un don";
-
-"STORE_UNAVAILABLE_TITLE" = "Achat impossible";
-"STORE_UNAVAILABLE_MESSAGE" = "Les achats intégrés sont désactivés.";
-
-"STORE_SHEET_TITLE" = "Cette appli vous est utile ?\nVotre aide est la bienvenue !\n\nDonnez ce que vous voulez :";
-"STORE_RESTORE_PURCHASES" = "Rétablir les achats";
-"STORE_SHEET_CANCEL" = "Annuler";
-
-"STORE_THANK_YOU_LABEL" = "Merci !";
-"STORE_REWARD_1" = "😀";
-"STORE_REWARD_2" = "😀😀";
-"STORE_REWARD_3" = "😀😀😀";
 
 /* Updates */
 

@@ -86,39 +86,8 @@
                             </tableViewSection>
                             <tableViewSection id="iDt-j5-frT">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4Jv-oI-h8n">
-                                        <rect key="frame" x="0.0" y="237" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Jv-oI-h8n" id="Hr1-fm-wmG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Vous aimez ?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvi-bv-yq8">
-                                                    <rect key="frame" x="20" y="14" width="158" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0bG-i3-IVX">
-                                                    <rect key="frame" x="158" y="12" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </activityIndicatorView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57d-wB-ydP">
-                                                    <rect key="frame" x="186" y="7" width="114" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <state key="normal" title="Dire merci !">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="donate" destination="MMV-jH-Gyn" eventType="touchUpInside" id="JVB-u0-n9P"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="U2y-aQ-rqo">
-                                        <rect key="frame" x="0.0" y="281" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="237" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U2y-aQ-rqo" id="BzM-xT-LVM">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -149,38 +118,12 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oQa-Db-4tp">
-                                        <rect key="frame" x="0.0" y="325" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oQa-Db-4tp" id="Ye7-Xr-hYR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-fp-7Hs">
-                                                    <rect key="frame" x="144" y="6" width="93" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <state key="normal" title="Revoir l’aide">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Un problème ?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcP-Sk-8cN">
-                                                    <rect key="frame" x="20" y="14" width="158" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="rGZ-MR-vgQ">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4R9-6C-d9s">
-                                        <rect key="frame" x="0.0" y="389" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="301" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4R9-6C-d9s" id="QPo-Wx-xw8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -210,7 +153,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Lpw-Js-3nM">
-                                        <rect key="frame" x="0.0" y="433" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="345" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lpw-Js-3nM" id="8f0-9b-E6U">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -255,11 +198,6 @@
                         <outlet property="enableGeofencesLabel" destination="wdj-Fa-nUq" id="v0C-Tw-FD0"/>
                         <outlet property="geofenceUnavailableLabel" destination="eFG-fJ-1gg" id="yPc-Sb-CWw"/>
                         <outlet property="geofencesSwitch" destination="dmp-DA-viS" id="pJ3-cg-RYr"/>
-                        <outlet property="seeHelpButton" destination="hs5-fp-7Hs" id="j9B-Pv-wFJ"/>
-                        <outlet property="seeHelpLabel" destination="LcP-Sk-8cN" id="wXL-R9-CBo"/>
-                        <outlet property="storeButton" destination="57d-wB-ydP" id="xGR-GD-j7I"/>
-                        <outlet property="storeIndicator" destination="0bG-i3-IVX" id="vf3-jE-1I8"/>
-                        <outlet property="storeLabel" destination="Vvi-bv-yq8" id="v8h-y3-SoQ"/>
                         <outlet property="updateButton" destination="8Xz-ZK-V0P" id="QGe-88-dby"/>
                         <outlet property="updateIndicator" destination="7g6-7x-gGl" id="7G6-Zp-8wk"/>
                         <outlet property="updateLabel" destination="Kqh-aw-0nh" id="YFS-ox-kmJ"/>
@@ -272,7 +210,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon29x29" width="25" height="20"/>
+        <image name="AppIcon29x29" width="57" height="57"/>
         <image name="twitter.png" width="25" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

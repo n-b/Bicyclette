@@ -30,42 +30,16 @@
 
 "SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@";
 
-"STORE_PLEASE_HELP_LABEL" = "Sie mögen die App?";
-"STORE_PLEASE_HELP_BUTTON" = "Helfen Sie mir!";
-
 "SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, die beste App für Fahrradverleih! @bicycletteapp";
 "SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, die beste App für %@! @bicycletteapp";
 
 "APPSTORE_RATINGS_BUTTON" = "Im App Store bewerten";
-
-"SEE_HELP_LABEL" = "Sie brauchen Hilfe?";
-"SEE_HELP_BUTTON" = "Anleitung anschauen";
 
 "ENABLE_GEOFENCES" = "Automatic “Geofence” Alerts:";
 "GEOFENCES_UNAVAILABLE" = "Your device does not have support for Automatic Alerts (Geofences) near stations.";
 
 "STATIONS_LIST_CITY_%@" = "“%@” Stationen:";
 "UPDATE_STATIONS_LIST_BUTTON" = "Aktualisieren";
-
-/* Store */
-
-"STORE_ALERT_TITLE" = "Ist diese App für Sie nützlich?\nIhre Hilfe ist sehr willkommen!";
-"STORE_ALERT_MESSAGE" = "Sie können soviel geben wie Sie wollen.";
-"STORE_ALERT_CANCEL" = "Jetzt nicht";
-"STORE_ALERT_IN_20_MINUTES" = "Ask me in 20 minutes";
-"STORE_ALERT_OK" = "Ja!";
-
-"STORE_UNAVAILABLE_TITLE" = "Kauf nicht möglich";
-"STORE_UNAVAILABLE_MESSAGE" = "In-App Käufe sind deaktiviert.";
-
-"STORE_SHEET_TITLE" = "Ist diese App für Sie nützlich?\nIhre Hilfe ist sehr willkommen!\n\nSie können soviel geben wie Sie wollen:";
-"STORE_RESTORE_PURCHASES" = "Restore purchases";
-"STORE_SHEET_CANCEL" = "Abbrechen";
-
-"STORE_THANK_YOU_LABEL" = "Vielen Dank!";
-"STORE_REWARD_1" = "😀";
-"STORE_REWARD_2" = "😀😀";
-"STORE_REWARD_3" = "😀😀😀";
 
 /* Updates */
 
