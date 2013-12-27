@@ -44,8 +44,8 @@
     PrefsVC * prefsVC = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
     prefsVC.controller = controller;
     UINavigationController * navC = [[UINavigationController alloc] initWithRootViewController:prefsVC];
-    navC.navigationBarHidden = YES;
-    navC.toolbarHidden = NO;
+    navC.navigationBarHidden = NO;
+    navC.toolbarHidden = YES;
     return navC;
 }
 
@@ -107,9 +107,7 @@
         _enableGeofencesLabel.hidden = YES;
     }
     
-    self.toolbarItems = @[[UIBarButtonItem bic_flexibleMarginButtonItem],
-                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPrefsVC)],
-                          [UIBarButtonItem bic_negativeMarginButtonItem]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPrefsVC)];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
