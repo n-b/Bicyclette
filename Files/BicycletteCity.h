@@ -42,8 +42,8 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 - (NSDictionary*) patches;
 - (NSDictionary*) prefs;
 - (id) prefForKey:(NSString*)key; // Fallback to NSUserDefaults
-- (CLCircularRegion *) knownRegion;
-- (CLCircularRegion *) regionContainingData;
+- (CLRegion *) knownRegion;
+- (CLRegion *) regionContainingData;
 - (MKCoordinateRegion) mkRegionContainingData;
 - (CLLocation *) location; // Locatable
 - (CLLocationDistance) radius;  // Locatable

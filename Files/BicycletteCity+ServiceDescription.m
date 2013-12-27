@@ -8,6 +8,7 @@
 
 #import "BicycletteCity+ServiceDescription.h"
 #import "BicycletteCity+Update.h"
+#import "CLRegion+CircularRegionCompatibility.h"
 
 @implementation BicycletteCity (ServiceDescription)
 
@@ -19,10 +20,10 @@
     if([self isStoreLoaded])
     {
         // Set real Region instead of hardcoded data
-        CLCircularRegion * regionContainingData = self.regionContainingData;
-        [info setObject:@(regionContainingData.center.latitude) forKey:@"latitude"];
-        [info setObject:@(regionContainingData.center.longitude) forKey:@"longitude"];
-        [info setObject:@(regionContainingData.radius) forKey:@"radius"];
+        CLRegion * regionContainingData = self.regionContainingData;
+        [info setObject:@(regionContainingData.bic_compat_center.latitude) forKey:@"latitude"];
+        [info setObject:@(regionContainingData.bic_compat_center.longitude) forKey:@"longitude"];
+        [info setObject:@(regionContainingData.bic_compat_radius) forKey:@"radius"];
 
         // Set MKCoordinateRegion
         MKCoordinateRegion mkRegionContainingData = self.mkRegionContainingData;

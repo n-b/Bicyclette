@@ -8,6 +8,7 @@
 
 #import "BicycletteCity.h"
 #import "BicycletteCity+Update.h"
+#import "CLRegion+CircularRegionCompatibility.h"
 #if TARGET_OS_IPHONE
 #import "LocalUpdateQueue.h"
 #import "MKUtilities.h"
@@ -18,7 +19,7 @@
 
 @interface BicycletteCity ()
 @property NSDictionary* serviceInfo;
-@property (nonatomic, readwrite) CLCircularRegion * regionContainingData;
+@property (nonatomic, readwrite) CLRegion * regionContainingData;
 @end
 
 #pragma mark -
@@ -125,14 +126,14 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
-- (CLCircularRegion *) knownRegion
+- (CLRegion *) knownRegion
 {
-    return [[CLCircularRegion alloc] initWithCenter:CLLocationCoordinate2DMake([self.serviceInfo[@"latitude"] doubleValue],
-                                                                               [self.serviceInfo[@"longitude"] doubleValue])
-                                             radius:[self.serviceInfo[@"radius"] doubleValue] identifier:[self title]];
+    return [CLRegion bic_compat_circularRegionWithCenter:CLLocationCoordinate2DMake([self.serviceInfo[@"latitude"] doubleValue],
+                                                                                    [self.serviceInfo[@"longitude"] doubleValue])
+                                                  radius:[self.serviceInfo[@"radius"] doubleValue] identifier:[self title]];
 }
 
-- (CLCircularRegion*) regionContainingData
+- (CLRegion*) regionContainingData
 {
 	if(nil==_regionContainingData)
 	{
@@ -156,9 +157,9 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         for (Station * station in stations)
             distanceMax = MAX(distanceMax, [station.location distanceFromLocation:dataCenter]);
         
-		self.regionContainingData = [[CLCircularRegion alloc] initWithCenter:dataCenter.coordinate
-                                                                      radius:distanceMax
-                                                                  identifier:[self title]];
+		self.regionContainingData = [CLRegion bic_compat_circularRegionWithCenter:dataCenter.coordinate
+                                                                           radius:distanceMax
+                                                                       identifier:[self title]];
 	}
     return _regionContainingData;
 }
@@ -188,8 +189,8 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     if([stations count]==0)
     {
 #if TARGET_OS_IPHONE
-        CLCircularRegion * region = [self knownRegion];
-        return MKCoordinateRegionMakeWithDistance(region.center, region.radius*2, region.radius*2);
+        CLRegion * region = [self knownRegion];
+        return MKCoordinateRegionMakeWithDistance(region.bic_compat_center, region.bic_compat_radius*2, region.bic_compat_radius*2);
 #else
         return (MKCoordinateRegion){{0,0},{0,0}};
 #endif
@@ -211,17 +212,17 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
 
 - (CLLocation *) location
 {
-    return [[CLLocation alloc] initWithLatitude:self.regionContainingData.center.latitude longitude:self.regionContainingData.center.longitude];
+    return [[CLLocation alloc] initWithLatitude:self.regionContainingData.bic_compat_center.latitude longitude:self.regionContainingData.bic_compat_center.longitude];
 }
 
 - (CLLocationDistance) radius
 {
-    return self.regionContainingData.radius;
+    return self.regionContainingData.bic_compat_radius;
 }
 
 - (CLLocationCoordinate2D) coordinate
 {
-    return self.regionContainingData.center;
+    return self.regionContainingData.bic_compat_center;
 }
 
 #if TARGET_OS_IPHONE

@@ -22,6 +22,8 @@
 #import "CityAnnotationView.h"
 #import "MKUtilities.h"
 #import "CityOverlayRenderer.h"
+#import "CLRegion+CircularRegionCompatibility.h"
+
 @interface MapVC()
 // UI
 @property MKMapView * mapView;
@@ -343,7 +345,7 @@
     {
         // This is the first location update we get : if the user hasn't moved the map, and he is physically inside a city, let's zoom.
         BicycletteCity * nearestCity = (BicycletteCity*)[self.controller.cities nearestLocatableFrom:userLocation.location];
-        if([[nearestCity regionContainingData] containsCoordinate:userLocation.location.coordinate])
+        if([[nearestCity regionContainingData] bic_compat_containsCoordinate:userLocation.location.coordinate])
         {
             [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
         }
