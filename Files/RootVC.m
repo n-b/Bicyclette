@@ -32,6 +32,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(askForDonationIfNeeded) name:UIApplicationDidBecomeActiveNotification
                                                    object:nil];
+        
+        self.backViewController = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
     }
     return self;
 }

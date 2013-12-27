@@ -15,25 +15,21 @@
 #import "Style.h"
 
 @interface PrefsVC () <StoreDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
-@property IBOutlet UIScrollView *scrollView;
-@property IBOutlet UIView *contentView;
-@property IBOutletCollection(UITableViewCell) NSArray *cells;
 
 @property IBOutlet UIImageView *logoView;
-@property IBOutlet UIView *logoShadowView;
 @property IBOutlet UILabel *designAndCodeLabel;
 @property IBOutlet UILabel *contactSupportButton;
 
 @property IBOutlet UILabel *storeLabel;
 @property IBOutlet UIActivityIndicatorView *storeIndicator;
-@property IBOutlet UIBarButtonItem *storeButton;
+@property IBOutlet UIButton *storeButton;
 @property IBOutlet UILabel *rewardLabel;
 
 @property IBOutlet UIToolbar *tweetBar;
-@property IBOutlet UIBarButtonItem *appstoreRatingsButton;
+@property IBOutlet UIButton *appstoreRatingsButton;
 
 @property IBOutlet UILabel *seeHelpLabel;
-@property IBOutlet UIBarButtonItem *seeHelpButton;
+@property IBOutlet UIButton *seeHelpButton;
 
 @property IBOutlet UILabel *enableGeofencesLabel;
 @property IBOutlet UISwitch *geofencesSwitch;
@@ -42,8 +38,7 @@
 @property IBOutlet UIView *updateView;
 @property IBOutlet UIActivityIndicatorView *updateIndicator;
 @property IBOutlet UILabel *updateLabel;
-@property IBOutlet UIBarButtonItem *updateButton;
-@property IBOutlet UIToolbar *updateButtonBar;
+@property IBOutlet UIButton *updateButton;
 
 @property Store * store;
 @property NSArray * products;
@@ -96,22 +91,13 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTweetButton) name:ACAccountStoreDidChangeNotification object:nil];
 
-    [self updateViewAlignment:self.interfaceOrientation];
-
-    self.logoView.layer.cornerRadius = 9;
-    self.logoShadowView.layer.shadowOpacity = 1;
-    self.logoShadowView.layer.shadowOffset = CGSizeMake(0, 1);
-    self.logoShadowView.layer.shadowRadius = 1;
-    self.logoShadowView.layer.shadowColor = [UIColor colorWithWhite:0 alpha:1].CGColor;
-    self.logoShadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.logoShadowView.bounds cornerRadius:9].CGPath;
-
     self.designAndCodeLabel.text = NSLocalizedString(@"DESIGN_AND_CODE", nil);
     self.contactSupportButton.text = NSLocalizedString(@"CONTACT_EMAIL_SUPPORT", nil);
     
-    self.appstoreRatingsButton.title = NSLocalizedString(@"APPSTORE_RATINGS_BUTTON", nil);
+    [self.appstoreRatingsButton setTitle:NSLocalizedString(@"APPSTORE_RATINGS_BUTTON", nil) forState:UIControlStateNormal];
 
     self.seeHelpLabel.text = NSLocalizedString(@"SEE_HELP_LABEL", nil);
-    self.seeHelpButton.title = NSLocalizedString(@"SEE_HELP_BUTTON", nil);
+    [self.seeHelpButton setTitle:NSLocalizedString(@"SEE_HELP_BUTTON", nil) forState:UIControlStateNormal];
     
     self.enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
     self.geofencesSwitch.tintColor = [UIColor colorWithWhite:.1 alpha:1];
@@ -134,8 +120,9 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self updateUpdateLabel];
-    if(![self.updateIndicator isAnimating])
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
+    if(![self.updateIndicator isAnimating]) {
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil) forState:UIControlStateNormal];
+    }
     [self updateStoreButton];
     self.geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
 }
@@ -161,47 +148,17 @@
     return UIInterfaceOrientationMaskAll;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
-{
-    [self updateViewAlignment:toInterfaceOrientation];
-}
-
-- (void) updateViewAlignment:(UIInterfaceOrientation)interfaceOrientation
-{
-    self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX(self.contentView.frame),self.scrollView.bounds.size.width);
-    CGFloat yMargin;
-    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
-            yMargin = 300;
-        else
-            yMargin = 200;
-    } else {
-        if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
-            yMargin = 80;
-        else
-            yMargin = 40;
-    }
-    self.scrollView.contentInset = UIEdgeInsetsMake(yMargin, 0, yMargin, 0);
-}
-
-
 /****************************************************************************/
 #pragma mark TableView
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.cells count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return (self.cells)[indexPath.row];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.row==0)
-        [self openWebPage];
-    else
-        [self openEmailSupport];
+    if(indexPath.section==1) {
+        if(indexPath.row==0)
+            [self openWebPage];
+        else
+            [self openEmailSupport];
+    }
 }
 
 /****************************************************************************/
@@ -249,14 +206,14 @@
     
     if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
     {
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil)];
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : FETCHING", nil) forState:UIControlStateNormal];
         [self.updateIndicator startAnimating];
         self.updateLabel.hidden = YES;
         self.updateButton.enabled = NO;
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
     {
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : PARSING", nil)];
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATING : PARSING", nil) forState:UIControlStateNormal];
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
     {
@@ -267,7 +224,7 @@
         NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
         if(dataChanged)
         {
-            [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
+            [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)  forState:UIControlStateNormal];
             if([self isVisibleViewController])
             {
                 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
@@ -293,14 +250,14 @@
             }
         }
         else
-            [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil)];
+            [self.updateButton setTitle:NSLocalizedString(@"UPDATING : NO NEW DATA", nil) forState:UIControlStateNormal];
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
     {
         [self.updateIndicator stopAnimating];
         self.updateLabel.hidden = NO;
         self.updateButton.enabled = YES;
-        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)];
+        [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil) forState:UIControlStateNormal];
         NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
                                    message:[error localizedDescription]
@@ -360,7 +317,7 @@
     NSString * purchasedProductIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"PurchasedProductsIdentifier"];
     
     self.storeLabel.text = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_LABEL", nil) : NSLocalizedString(@"STORE_THANK_YOU_LABEL", nil);
-    self.storeButton.title = purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_BUTTON", nil) : @"";
+    [self.storeButton setTitle:purchasedProductIdentifier==nil ? NSLocalizedString(@"STORE_PLEASE_HELP_BUTTON", nil) : @""  forState:UIControlStateNormal];
     self.rewardLabel.text = purchasedProductIdentifier==nil ? @"" : NSLocalizedString([self productsAndRewards][purchasedProductIdentifier], nil);
     self.storeButton.enabled = purchasedProductIdentifier==nil;
 }
