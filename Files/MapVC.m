@@ -20,7 +20,8 @@
 #import "Style.h"
 #import "MapVC+DebugScreenshots.h"
 #import "CityAnnotationView.h"
-
+#import "MKUtilities.h"
+#import "CityOverlayRenderer.h"
 @interface MapVC()
 // UI
 @property MKMapView * mapView;
@@ -270,6 +271,8 @@
     NSArray * oldOverlays = self.mapView.overlays;
     [self.mapView removeOverlays:[oldOverlays arrayByRemovingObjectsInArray:newOverlays]];
     [self.mapView addOverlays:[newOverlays arrayByRemovingObjectsInArray:oldOverlays]];
+
+    [[self.mapView rendererForOverlay:self.controller.currentCity] setNeedsDisplay];
 }
 
 /****************************************************************************/
@@ -314,23 +317,24 @@
         } else {
             pinAV.annotation = annotation;
         }
-        if([[NSUserDefaults standardUserDefaults] doubleForKey:@"MapVC.showCityCallout"]) {
-            pinAV.canShowCallout = YES;
-        }
-        pinAV.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        
         return pinAV;
 	}
 	return nil;
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(Geofence*)fence
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
-    NSAssert([fence isKindOfClass:[Geofence class]], nil);
-    MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:fence];
-    circleRenderer.fillColor = kFenceBackgroundColor;
-
-    return circleRenderer;
+    if([overlay isKindOfClass:[Geofence class]], nil) {
+        MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:overlay];
+        circleRenderer.fillColor = kFenceBackgroundColor;
+        return circleRenderer;
+    } else if ([overlay isKindOfClass:[BicycletteCity class]]) {
+        CityOverlayRenderer * cityRenderer = [[CityOverlayRenderer alloc] initWithOverlay:overlay];
+        cityRenderer.mode = self.stationMode;
+        return cityRenderer;
+    } else {
+        return nil;
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -350,10 +354,21 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
 	if([view.annotation isKindOfClass:[BicycletteCity class]]) {
-        if(![[NSUserDefaults standardUserDefaults] doubleForKey:@"MapVC.showCityCallout"])
+        [mapView deselectAnnotation:view.annotation animated:NO];
+        CGRect rect = CGRectInset([view bounds], -10.f, -10.f);
+        MKCoordinateRegion region = [mapView convertRect:rect toRegionFromView:view];
+        MKMapRect mapRect = BICMKMapRectForCoordinateRegion(region);
+        NSSet * cities = [mapView annotationsInMapRect:mapRect];
+        cities = [cities filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            return [evaluatedObject isKindOfClass:[BicycletteCity class]];
+        }]];
+        if([cities count]>1) {
+            CGRect rect2 = CGRectInset([view bounds], -20.f, -20.f);
+            MKCoordinateRegion region2 = [mapView convertRect:rect2 toRegionFromView:view];
+            [self.mapView setRegion:region2 animated:YES];
+        } else {
             [self.controller selectCity:(BicycletteCity*)view.annotation];
-    } else if([view.annotation isKindOfClass:[Region class]]) {
-		[self zoomInRegion:(Region*)view.annotation];
+        }
     } else if([view.annotation isKindOfClass:[Station class]]) {
         if([self.controller.currentCity canUpdateIndividualStations])
             [(Station*)view.annotation updateWithCompletionBlock:nil];
@@ -366,21 +381,11 @@
         NSAssert([view.annotation isKindOfClass:[Station class]],nil);
         Station * station = (Station*)view.annotation;
         [self.controller switchStarredStation:station];
-    } else if([view.annotation isKindOfClass:[BicycletteCity class]]) {
-        [self.controller selectCity:(BicycletteCity*)view.annotation];
     }
 }
 
 /****************************************************************************/
 #pragma mark Actions
-
-- (void) zoomInRegion:(Region*)region
-{
-    MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
-    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
-    cregion = MKCoordinateRegionMakeWithDistance(cregion.center, meters, meters);
-	[self.mapView setRegion:cregion animated:YES];
-}
 
 - (void) switchMode:(UISegmentedControl*)sender
 {
@@ -389,6 +394,9 @@
         StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
         stationAV.mode = self.stationMode;
     }
+    CityOverlayRenderer * cityRenderer = (CityOverlayRenderer *)[self.mapView rendererForOverlay:self.controller.currentCity];
+    cityRenderer.mode = self.stationMode;
+    [cityRenderer setNeedsDisplay];
 }
 
 /****************************************************************************/

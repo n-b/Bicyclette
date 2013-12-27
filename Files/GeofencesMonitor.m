@@ -370,7 +370,7 @@
         return @[];
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:[Station entityName]];
     request.predicate = [NSPredicate predicateWithFormat:@"%K in %@",StationAttributes.number, self.stationsNumbers];
-    return [self.city.mainContext executeFetchRequest:request error:NULL];
+    return [self.city.currentContext executeFetchRequest:request error:NULL];
 }
 
 - (BOOL) isNearFromStation:(Station*)station

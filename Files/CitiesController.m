@@ -126,16 +126,6 @@
     return viewSpanMeters;
 }
 
-- (BOOL) showCurrentCityStations
-{
-    if(nil==self.currentCity)
-        return NO;
-    if(![self.currentCity hasRegions])
-        return YES;
-    else
-        return [self regionSpanMeters] < [self.currentCity radius] * [[self.currentCity prefForKey:@"CitiesController.StationsZoomThreshold"] doubleValue];
-}
-
 - (void) regionDidChange:(MKCoordinateRegion)viewRegion
 {
     self.viewRegion = viewRegion;
@@ -178,7 +168,7 @@
     else
         self.updateQueue.referenceLocation = nil;
 
-    if([self showCurrentCityStations] || (self.currentCity && ![self.currentCity canUpdateIndividualStations]))
+    if(self.currentCity)
     {
         [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
         [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
@@ -195,42 +185,27 @@
     NSMutableArray * newAnnotations = [NSMutableArray new];
     NSMutableArray * newOverlays = [NSMutableArray new];
     
-    if (self.currentCity==nil)
-    {
+    if (self.currentCity==nil) {
         // World Cities
-        BOOL groupCities = [self regionSpanMeters] > [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CityGroupZoomMeters"];
         NSArray * cities = self.cities;
-        if(groupCities)
-            cities = [cities filteredArrayWithValue:@YES forKeyPath:@"isMainCityGroup"];
         [newAnnotations addObjectsFromArray:cities];
-    }
-    else
-    {
+    } else {
         // Fences
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]])
-        {
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
             NSArray * fences = [self.fenceMonitor geofencesInCity:_currentCity];
             [newOverlays addObjectsFromArray:fences];
         }
 
         // Stations
-        if([self showCurrentCityStations])
-        {
+        BOOL shouldShowOverlay = [self regionSpanMeters] > [self.currentCity radius] * [[self.currentCity prefForKey:@"CitiesController.StationsZoomThreshold"] doubleValue];
+
+        if(shouldShowOverlay) {
+            [newOverlays addObjectsFromArray:@[self.currentCity]];
+        } else {
             MKCoordinateRegion mapRegion = self.viewRegion;
             mapRegion.span.latitudeDelta *= 1.25; // Add stations that are just off screen limits
             mapRegion.span.longitudeDelta *= 1.25;
             [newAnnotations addObjectsFromArray:[self.currentCity stationsWithinRegion:mapRegion]];
-        }
-        else // Regions
-        {
-            NSAssert([self.currentCity hasRegions], nil);
-            // Regions
-            NSFetchRequest * regionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
-            [newAnnotations addObjectsFromArray:[self.currentCity.mainContext executeFetchRequest:regionsRequest error:NULL]];
-            
-            // Starred (always show)
-            NSArray * starred = [Station fetchStarredStations:self.currentCity.mainContext];
-            [newAnnotations addObjectsFromArray:starred];
         }
     }
 
@@ -240,21 +215,12 @@
 
 - (void) selectCity:(BicycletteCity*)city_
 {
-    CLLocationDistance threshold = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.CityGroupZoomMeters"];
-    BOOL groupCities = [self regionSpanMeters] > threshold;
-    if([[city_ cityGroup] length]!=0 && groupCities) {
-        // zoom around the group
-        [self.delegate controller:self setRegion:MKCoordinateRegionMakeWithDistance(city_.coordinate, (threshold/2)*.8, (threshold/2)*.8)];
-        [self.delegate controller:self selectAnnotation:nil];
-    } else {
-        // Zoom directly to city
-        MKCoordinateRegion region = [city_ mkRegionContainingData];
-        if(region.span.latitudeDelta == 0. || region.span.longitudeDelta == 0.) {
-            CLLocationDistance minDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
-            region = MKCoordinateRegionMakeWithDistance(region.center, minDistance, minDistance);
-        }
-        [self.delegate controller:self setRegion:region];
+    MKCoordinateRegion region = [city_ mkRegionContainingData];
+    if(region.span.latitudeDelta == 0. || region.span.longitudeDelta == 0.) {
+        CLLocationDistance minDistance = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
+        region = MKCoordinateRegionMakeWithDistance(region.center, minDistance, minDistance);
     }
+    [self.delegate controller:self setRegion:region];
 }
 
 - (void) switchStarredStation:(Station*)station
@@ -263,7 +229,7 @@
         Station * lstation = (Station*)[updateContext objectWithID:station.objectID];
         lstation.starredValue = !lstation.starredValue;
     } saveCompletion:^(NSNotification *contextDidSaveNotification) {
-        NSArray * starredStation = [Station fetchStarredStations:station.city.mainContext];
+        NSArray * starredStation = [Station fetchStarredStations:station.city.currentContext];
         [self.fenceMonitor setStarredStations:starredStation inCity:station.city];
         [self addAndRemoveMapAnnotations];
     }];
@@ -314,7 +280,7 @@
                          cancelButtonTitle:NSLocalizedString(@"FENCE_MONITORING_ERROR_OK",nil)
                          otherButtonTitles:nil]
          show];
-        NSArray * starredStation = [Station fetchStarredStations:fence.city.mainContext];
+        NSArray * starredStation = [Station fetchStarredStations:fence.city.currentContext];
         [self.fenceMonitor setStarredStations:starredStation inCity:fence.city];
         [self addAndRemoveMapAnnotations];
     }];

@@ -10,7 +10,6 @@
     "city_class" : "DecobikeCity",
     "update_url" : "http:\/\/www.decobikelbny.com\/playmoves.xml",
     "city_name" : "Long Beach",
-    "city_group" : "New York City",
     "station_element_name" : "location",
     "mkCoordinateRegionLatitudeDelta" : 0.009280000000003952
   },
@@ -152,7 +151,6 @@
       "stationName" : "name",
       "stAddress1" : "address"
     },
-    "city_group" : "New York City",
     "mkCoordinateRegionLatitudeDelta" : 0.09117957699999835
   },
   {
@@ -463,7 +461,6 @@
     "city_class" : "NextBikeCity",
     "region" : "174",
     "city_name" : "10vorWien",
-    "city_group" : "Wien",
     "station_element_name" : "place",
     "mkCoordinateRegionLatitudeDelta" : 0.1063890000000001
   },
@@ -876,7 +873,6 @@
     "mkCoordinateRegionLongitude" : 2.458781753692186,
     "city_class" : "JCDecauxCity",
     "city_name" : "Créteil",
-    "city_group" : "Paris",
     "mkCoordinateRegionLatitudeDelta" : 0.03279753256092732
   },
   {
@@ -1058,7 +1054,6 @@
       "description" : "address",
       "name" : "name"
     },
-    "city_group" : "Wien",
     "station_element_name" : "station",
     "mkCoordinateRegionLatitudeDelta" : 0.06942667402365288
   },
@@ -1152,7 +1147,6 @@
     "mkCoordinateRegionLatitude" : 48.86078932636721,
     "city_class" : "ParisVelibCity",
     "city_name" : "Paris",
-    "city_group" : "Paris",
     "patches" : {
       "14024" : {
         "name" : "Raymond Losserand"
@@ -1508,7 +1502,6 @@
     "city_class" : "NextBikeCity",
     "region" : "185",
     "city_name" : "Südheide",
-    "city_group" : "Wien",
     "station_element_name" : "place",
     "mkCoordinateRegionLatitudeDelta" : 0.0427712827316995
   },
@@ -1537,7 +1530,6 @@
     "city_class" : "NextBikeCity",
     "region" : "146",
     "city_name" : "Thermenregion",
-    "city_group" : "Wien",
     "station_element_name" : "place",
     "mkCoordinateRegionLatitudeDelta" : 0.1200114537946035
   },
@@ -1727,7 +1719,6 @@
     "city_class" : "NextBikeCity",
     "region" : "140",
     "city_name" : "Jurmala",
-    "city_group" : "Riga",
     "station_element_name" : "place",
     "mkCoordinateRegionLatitudeDelta" : 0.0136783867853012
   },
@@ -1742,7 +1733,6 @@
     "city_class" : "NextBikeCity",
     "region" : "64",
     "city_name" : "Mödling",
-    "city_group" : "Wien",
     "station_element_name" : "place",
     "mkCoordinateRegionLatitudeDelta" : 0.07812078672080247
   },
@@ -1757,7 +1747,6 @@
     "city_class" : "NextBikeCity",
     "region" : "128",
     "city_name" : "Riga",
-    "city_group" : "Riga",
     "station_element_name" : "place",
     "mkCoordinateRegionLatitudeDelta" : 0.07005915716030131
   },

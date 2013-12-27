@@ -20,7 +20,7 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 
 @interface BicycletteCity : CoreDataModel <Locatable
 #if TARGET_OS_IPHONE
-,MKAnnotation
+,MKAnnotation, MKOverlay
 #endif
 >
 {
@@ -38,8 +38,6 @@ void BicycletteCitySetSaveStationsWithNoIndividualStatonUpdates(BOOL save);
 // General properties
 - (NSDictionary *) serviceInfo;
 - (NSString *) cityName;
-- (NSString *) cityGroup;
-- (BOOL) isMainCityGroup;
 - (NSString *) serviceName;
 - (NSDictionary*) patches;
 - (NSDictionary*) prefs;
