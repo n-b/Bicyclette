@@ -1,6 +1,5 @@
 #import "Station.h"
 #import "BicycletteCity.h"
-#import "Region.h"
 #import "NSStringAdditions.h"
 #import "NSError+MultipleErrorsCombined.h"
 
@@ -101,19 +100,6 @@
         *error = [NSError errorFromOriginalError:*error error:limitsError];
     }
     return NO;
-}
-
-/****************************************************************************/
-#pragma mark Delete rules
-
-- (void) prepareForDeletion
-{
-    [super prepareForDeletion];
-    if (self.region!=nil &&
-        self.region.stations.count == 1 &&
-        [self.region.stations firstObject] == self) {
-        [self.managedObjectContext deleteObject:self.region];
-    }
 }
 
 @end

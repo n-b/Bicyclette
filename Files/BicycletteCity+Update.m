@@ -108,22 +108,7 @@
         _parsing_context = nil;
         _parsing_oldStations = nil;
         _parsing_regionsByNumber = nil;
-        
-        // Post processing :
-        // Validate all stations (and delete invalid) before computing coordinates
-        NSFetchRequest * allRegionsRequest = [NSFetchRequest fetchRequestWithEntityName:[Region entityName]];
-        NSArray * regions = [updateContext executeFetchRequest:allRegionsRequest error:&requestError];
-        for (Region *r in regions) {
-            for (Station *s in [r.stations copy]) {
-                if(![s validateForInsert:&validationErrors])
-                {
-                    s.region = nil;
-                    [updateContext deleteObject:s];
-                }
-            }
-            [r setupCoordinates];
-        }
-        
+                
         // Delete Old Stations
         for (Station * oldStation in [oldStations allValues]) {
             if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])
@@ -255,20 +240,6 @@
         regionInfo.number = @"anonymousregion";
         regionInfo.name = @"anonymousregion";
     }
-    
-    Region * region = _parsing_regionsByNumber[regionInfo.number];
-    if(nil==region)
-    {
-        region = [[Region fetchRegionWithNumber:_parsing_context number:regionInfo.number] lastObject];
-        if(region==nil)
-        {
-            region = [Region insertInManagedObjectContext:_parsing_context];
-            region.number = regionInfo.number;
-        }
-        _parsing_regionsByNumber[regionInfo.number] = region;
-    }
-    region.name = regionInfo.name;
-    station.region = region;
 }
 
 @end

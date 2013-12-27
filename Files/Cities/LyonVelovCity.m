@@ -30,26 +30,6 @@
     return title;
 }
 
-- (NSString*) titleForRegion:(Region*)region {
-    if([region.name length]==1) {
-        return [NSString stringWithFormat:@"%@°",region.name];
-    } else if([region.name length]) {
-        return [region.name substringToIndex:1];
-    } else {
-        return @"";
-    }
-}
-
-- (NSString*) subtitleForRegion:(Region*)region {
-    if([region.name length]==1) {
-        return @"arr.";
-    } else if([region.name length]) {
-        return [region.name substringFromIndex:1];
-    } else {
-        return @"";
-    }
-}
-
 #pragma mark City Data Update
 
 - (NSDictionary*) zips

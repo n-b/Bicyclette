@@ -290,9 +290,6 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     }
 }
 
-- (NSString *) titleForRegion:(Region*)region { return region.name; }
-- (NSString *) subtitleForRegion:(Region*)region { return @""; }
-
 @end
 
 /****************************************************************************/

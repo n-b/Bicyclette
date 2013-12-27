@@ -23,13 +23,11 @@ extern const struct StationAttributes {
 } StationAttributes;
 
 extern const struct StationRelationships {
-	__unsafe_unretained NSString *region;
 } StationRelationships;
 
 extern const struct StationFetchedProperties {
 } StationFetchedProperties;
 
-@class Region;
 
 
 
@@ -246,13 +244,6 @@ extern const struct StationFetchedProperties {
 
 
 
-@property (nonatomic, strong) Region *region;
-
-//- (BOOL)validateRegion:(id*)value_ error:(NSError**)error_;
-
-
-
-
 + (NSArray*)fetchStarredStations:(NSManagedObjectContext*)moc_ ;
 + (NSArray*)fetchStarredStations:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
 
@@ -393,11 +384,6 @@ extern const struct StationFetchedProperties {
 - (void)setPrimitiveStatus_totalValue:(int16_t)value_;
 
 
-
-
-
-- (Region*)primitiveRegion;
-- (void)setPrimitiveRegion:(Region*)value;
 
 
 @end
