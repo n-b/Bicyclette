@@ -86,7 +86,6 @@ static double RoundedValue(double value)
     // Draw
     [[UIColor blackColor] setFill];
     [[UIColor whiteColor] setStroke];
-    
     CGRect scaleRect, nothing;
     scaleRect = rect;
     
@@ -118,7 +117,9 @@ static double RoundedValue(double value)
     NSMutableParagraphStyle * paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.lineBreakMode = NSLineBreakByClipping;
     paragraphStyle.alignment = alignment;
-    NSDictionary * attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
+    NSDictionary * attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle,
+                                  NSForegroundColorAttributeName:[UIColor blackColor],
+                                  NSStrokeColorAttributeName:[UIColor whiteColor]};
     CGRectDivide(scaleRect, &nothing, &textRect, 2, edge);
     [text drawInRect:textRect withAttributes:attributes];
     CGContextSetTextDrawingMode(ctx, kCGTextFill);

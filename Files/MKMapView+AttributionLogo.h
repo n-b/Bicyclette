@@ -9,5 +9,5 @@
 // Hacky Category to move the Google/copyright logo from the bottom left to the top left.
 
 @interface MKMapView (AttributionLogo)
-- (void) relocateAttributionLogoIfNecessary;
+- (void) relocateAttributionLabelIfNecessary;
 @end

@@ -92,6 +92,8 @@
     [self.view addSubview:self.mapView];
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapView.zoomEnabled = YES;
+    self.mapView.showsPointsOfInterest = NO;
+    self.mapView.showsBuildings = NO;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
     
@@ -150,14 +152,12 @@
     self.scaleView.autoresizingMask = resizingMask;
     [self.view addSubview:self.scaleView];
     self.scaleView.mapView = self.mapView;
-    
-    [self forceFrontmost];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void) viewDidLayoutSubviews
 {
-    [super viewWillAppear:animated];
-    [self.mapView relocateAttributionLogoIfNecessary];
+    [super viewDidLayoutSubviews];
+    [self.mapView relocateAttributionLabelIfNecessary];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -235,7 +235,7 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self.mapView relocateAttributionLogoIfNecessary];
+    [self.mapView relocateAttributionLabelIfNecessary];
 }
 
 - (BOOL) shouldAutorotate
@@ -281,15 +281,6 @@
 
 /****************************************************************************/
 #pragma mark MapView Delegate
-
-- (void) forceFrontmost
-{
-    // Force the userlocation annotation to be frontmost
-    UIView * locationView = [self.mapView viewForAnnotation:self.mapView.userLocation];
-    [locationView.superview bringSubviewToFront:locationView];
-
-    [self performSelector:@selector(forceFrontmost) withObject:nil afterDelay:.5];
-}
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
