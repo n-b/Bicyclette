@@ -11,6 +11,7 @@
 #import "RootVC.h"
 #import "CitiesController.h"
 #import "BicycletteCity.h"
+#import "Style.h"
 
 #pragma mark Private Methods
 
@@ -38,6 +39,8 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
 
+    
+    self.window.tintColor = kBicycletteBlue;
     
     self.citiesController = [CitiesController new];
     

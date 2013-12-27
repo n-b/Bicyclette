@@ -10,10 +10,8 @@
 #import "MapVC.h"
 #import "PrefsVC.h"
 #import "HelpVC.h"
-#import "UIView+Screenshot.h"
 #import "BicycletteCity.h"
 #import "CitiesController.h"
-#import "UIViewController+Banner.h"
 #import "UIApplication+LocalAlerts.h"
 
 @interface RootVC () <UIAlertViewDelegate>
@@ -49,9 +47,11 @@
 - (void) setCitiesController:(CitiesController *)citiesController
 {
     _citiesController = citiesController;
-    ((MapVC*)self.frontViewController).controller = self.citiesController;
-    ((PrefsVC*)self.backViewController).controller = self.citiesController;
-    citiesController.delegate = ((MapVC*)self.frontViewController);
+    MapVC * mapVC = (MapVC*)[(UINavigationController*)self.frontViewController visibleViewController];
+    mapVC.controller = self.citiesController;
+    citiesController.delegate = mapVC;
+    PrefsVC * prefsVC = (PrefsVC*)self.backViewController;
+    prefsVC.controller = self.citiesController;
 }
 
 /****************************************************************************/

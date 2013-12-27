@@ -6,6 +6,10 @@
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
+#if SCREENSHOTS
+
 @interface UIApplication (screenshot)
 - (UIImage*)screenshot;
 @end
+
+#endif
