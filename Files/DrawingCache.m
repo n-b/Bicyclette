@@ -157,9 +157,10 @@ typedef enum {
                     // Make c the current GraphicsContext
                     [textColor setFill];
                     CGContextSetShadowWithColor(c, CGSizeMake(0, -1/scale), 0, [kAnnotationValueShadowColor CGColor]);
-                    CGSize textSize = [text sizeWithFont:kAnnotationValueFont];
+                    NSDictionary * attributes = @{NSFontAttributeName:kAnnotationValueFont};
+                    CGSize textSize = [text sizeWithAttributes:attributes];
                     CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
-                    [text drawAtPoint:point withFont:kAnnotationValueFont];
+                    [text drawAtPoint:point withAttributes:attributes];
                 }
             }
             UIGraphicsPopContext();

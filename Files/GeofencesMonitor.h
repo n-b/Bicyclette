@@ -33,7 +33,7 @@
 
 
 @interface Geofence : NSObject <MKOverlay, LocalUpdateGroup>
-@property CLRegion * region;
+@property CLCircularRegion * region;
 @property (nonatomic, readonly) BicycletteCity * city;
 @property (nonatomic, readonly) NSArray * stations;
 @end

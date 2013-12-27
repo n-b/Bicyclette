@@ -14,6 +14,8 @@
 #import "GeofencesMonitor.h"
 #import "UIApplication+LocalAlerts.h"
 
+#pragma mark - Private Methods
+
 @interface CitiesController () <CLLocationManagerDelegate, LocalUpdateQueueDelegate, GeofencesMonitorDelegate>
 @property GeofencesMonitor * fenceMonitor;
 @property LocalUpdateQueue * updateQueue;
@@ -27,7 +29,11 @@
 @property Geofence * updateInProgressFence;
 @end
 
-/****************************************************************************/
+
+@interface CitiesController (GAI)
+- (void) GAI_tagCity;
+@end
+
 #pragma mark -
 
 @implementation CitiesController
@@ -106,9 +112,7 @@
         [self.updateQueue addMonitoredGroup:self.screenCenterUpdateGroup];
         [self.updateQueue addMonitoredGroup:self.userLocationUpdateGroup];
 
-        // Google Analytics
-        [[GAI sharedInstance].defaultTracker setCustom:1 dimension:_currentCity.cityName];
-        [[GAI sharedInstance].defaultTracker sendView:[NSString stringWithFormat:@"city_%@",_currentCity.cityName]];
+        [self GAI_tagCity];
     }
 }
 
@@ -203,7 +207,7 @@
     else
     {
         // Fences
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager regionMonitoringAvailable])
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]])
         {
             NSArray * fences = [self.fenceMonitor geofencesInCity:_currentCity];
             [newOverlays addObjectsFromArray:fences];
@@ -403,4 +407,21 @@
     }
 }
 
+@end
+
+#pragma mark - Google Analytics Dance
+
+#if !TARGET_IPHONE_SIMULATOR
+#import <GAI.h>
+#endif
+
+@implementation CitiesController (GAI)
+- (void) GAI_tagCity
+{
+#if !TARGET_IPHONE_SIMULATOR
+    // Google Analytics
+    [[GAI sharedInstance].defaultTracker setCustom:1 dimension:_currentCity.cityName];
+    [[GAI sharedInstance].defaultTracker sendView:[NSString stringWithFormat:@"city_%@",_currentCity.cityName]];
+#endif
+}
 @end

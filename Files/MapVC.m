@@ -103,7 +103,6 @@
     self.userTrackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     
     self.modeControl = [[UISegmentedControl alloc] initWithItems:@[ NSLocalizedString(@"BIKE", nil), NSLocalizedString(@"PARKING", nil) ]];
-    self.modeControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [self.modeControl addTarget:self action:@selector(switchMode:) forControlEvents:UIControlEventValueChanged];
     self.modeControl.selectedSegmentIndex = self.stationMode;
     UIBarButtonItem * modeItem = [[UIBarButtonItem alloc] initWithCustomView:self.modeControl];
@@ -354,16 +353,16 @@
 	return nil;
 }
 
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(Geofence*)fence
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(Geofence*)fence
 {
     NSAssert([fence isKindOfClass:[Geofence class]], nil);
-    MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:fence];
-    circleView.fillColor = kFenceBackgroundColor;
-    circleView.strokeColor = kAnnotationDash1Color;
-    circleView.lineWidth = kDashedBorderWidth;
-    circleView.lineDashPattern = @[@(kDashLength), @(kDashLength)];
+    MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:fence];
+    circleRenderer.fillColor = kFenceBackgroundColor;
+    circleRenderer.strokeColor = kAnnotationDash1Color;
+    circleRenderer.lineWidth = kDashedBorderWidth;
+    circleRenderer.lineDashPattern = @[@(kDashLength), @(kDashLength)];
 
-    return circleView;
+    return circleRenderer;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation

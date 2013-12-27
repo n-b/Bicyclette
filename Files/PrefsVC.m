@@ -123,7 +123,7 @@
     self.geofencesSwitch.layer.shouldRasterize = 1;
     self.geofenceUnavailableLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
     
-    if([CLLocationManager regionMonitoringAvailable]){
+    if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
         self.geofenceUnavailableLabel.hidden = YES;
     } else {
         self.geofencesSwitch.hidden = YES;

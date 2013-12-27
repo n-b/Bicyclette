@@ -12,7 +12,6 @@
 #import "CitiesController.h"
 #import "BicycletteCity.h"
 
-/****************************************************************************/
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
@@ -21,12 +20,15 @@
 @property IBOutlet RootVC *rootVC;
 @end
 
-/****************************************************************************/
+@interface BicycletteApplicationDelegate (GAI)
+- (void) setupGAI;
+- (void) cleanupGAI;
+@end
+
 #pragma mark -
 
 @implementation BicycletteApplicationDelegate
 
-/****************************************************************************/
 #pragma mark Application lifecycle
 
 - (void) awakeFromNib
@@ -36,16 +38,6 @@
 	 [NSDictionary dictionaryWithContentsOfFile:
 	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
 
-    // Google Analytics
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    [GAI sharedInstance].dispatchInterval = 20;
-    NSString * trackingID = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"_GoogleAnalytics" ofType:@"plist"]] objectForKey:@"TrackingID"];
-    [[GAI sharedInstance] trackerWithTrackingId:trackingID];
-#if DEBUG
-    //[GAI sharedInstance].debug = YES;
-    [GAI sharedInstance].defaultTracker.useHttps = NO;
-#endif
-    [GAI sharedInstance].defaultTracker.anonymize = YES;
     
     self.citiesController = [CitiesController new];
     
@@ -64,7 +56,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[GAI sharedInstance] dispatch];
+    [self cleanupGAI];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -81,4 +73,34 @@
         [self.rootVC handleDonationNotification:notification];
 }
 
+@end
+
+#pragma mark - Google Analytics Dance
+
+#if !TARGET_IPHONE_SIMULATOR
+#import <GAI.h>
+#endif
+
+@implementation BicycletteApplicationDelegate (GAI)
+- (void) setupGAI
+{
+#if !TARGET_IPHONE_SIMULATOR
+    // Google Analytics
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+    NSString * trackingID = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"_GoogleAnalytics" ofType:@"plist"]] objectForKey:@"TrackingID"];
+    [[GAI sharedInstance] trackerWithTrackingId:trackingID];
+#if DEBUG
+    [GAI sharedInstance].debug = YES;
+    [GAI sharedInstance].defaultTracker.useHttps = NO;
+#endif
+    [GAI sharedInstance].defaultTracker.anonymize = YES;
+#endif
+}
+- (void) cleanupGAI
+{
+#if !TARGET_IPHONE_SIMULATOR
+    [[GAI sharedInstance] dispatch];
+#endif
+}
 @end

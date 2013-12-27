@@ -65,7 +65,7 @@
 
 - (void) resetMonitoring
 {
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager regionMonitoringAvailable]){
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"] && [CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
         //Check the monitored regions and the fences match
         for (CLRegion * region in _locationManager.monitoredRegions)
         {
@@ -183,7 +183,7 @@
             else
             {
                 // STOP MONITORING
-                if([CLLocationManager regionMonitoringAvailable])
+                if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]])
                     [_locationManager stopMonitoringForRegion:oldFence.region];
             }
         }
@@ -197,7 +197,7 @@
     // New ones
     for (Geofence * fence in fences) {
         // START MONITORING
-        if([CLLocationManager regionMonitoringAvailable])
+        if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]])
             [_locationManager startMonitoringForRegion:fence.region];
         [newFences addObject:fence];
     }
@@ -351,7 +351,7 @@
     }];
     
     radius = radius + 50;
-    self.region = [[CLRegion alloc] initCircularRegionWithCenter:center.coordinate radius:radius identifier:identifier];
+    self.region = [[CLCircularRegion alloc] initWithCenter:center.coordinate radius:radius identifier:identifier];
 }
 
 /****************************************************************************/
