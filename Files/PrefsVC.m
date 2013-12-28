@@ -229,12 +229,12 @@
 
 - (NSURL*) appURLOnStore
 {
-    return [NSURL URLWithString:@"https://itunes.apple.com/us/app/bicyclette/id546171712?l=fr&ls=1&mt=8"];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", @"546171712"]];
 }
 
 - (IBAction)rate:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=546171712"]];
+    [[UIApplication sharedApplication] openURL:[self appURLOnStore]];
 }
 
 // Prefs
