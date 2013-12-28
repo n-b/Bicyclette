@@ -8,7 +8,6 @@
 
 @class CitiesController;
 @interface PrefsVC : UITableViewController
+// Create a prefsVC embedded in a navigation controller
 + (UIViewController*) prefsVCWithController:(CitiesController *)controller;
-
-@property (nonatomic, readonly) CitiesController * controller;
 @end

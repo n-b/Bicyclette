@@ -13,31 +13,19 @@
 #import "Style.h"
 #import "UIBarButtonItem+BICMargins.h"
 
-@interface PrefsVC () <UITableViewDataSource, UITableViewDelegate>
-@end
-
-/****************************************************************************/
-#pragma mark -
-
 @implementation PrefsVC
 {
-    IBOutlet UITableViewCell * _appIconCell;
-    
-    IBOutlet UITableViewCell * _rateOnAppStoreCell;
-    IBOutlet UITableViewCell * _designAndCodeCell;
+    CitiesController * _controller;
 
+    IBOutlet UITableViewCell * _rateOnAppStoreCell;
     IBOutlet UITableViewCell * _geofencesCell;
     IBOutlet UISwitch * _geofencesSwitch;
-    IBOutlet UILabel * _enableGeofencesLabel;
-    IBOutlet UILabel * _geofenceUnavailableLabel;
-
     IBOutlet UITableViewCell * _updateStationsCell;
-    IBOutlet UILabel * _updateLabel;
     IBOutlet UIActivityIndicatorView * _updateIndicator;
-    
     IBOutlet UITableViewCell * _emailSupportCell;
-    
 }
+
+// Life cycle
 
 + (UIViewController*) prefsVCWithController:(CitiesController *)controller
 {
@@ -52,17 +40,20 @@
     return navC;
 }
 
-- (void)awakeFromNib
+- (void) awakeFromNib
 {
     [super awakeFromNib];
     
+    self.title = [NSString stringWithFormat:@"%@ %@",[[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleNameKey], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPrefsVC)];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateBegan object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateFailed object:nil];
-    }
+}
 
-- (void)dealloc
+- (void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_controller removeObserver:self forKeyPath:@"currentCity" context:(__bridge void *)([self class])];
@@ -75,101 +66,80 @@
     [_controller addObserver:self forKeyPath:@"currentCity" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([self class])];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// Data
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == (__bridge void *)([self class]))
+    if (context == (__bridge void *)([self class])) {
         [self updateUpdateLabel];
-    else
+    } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
-/****************************************************************************/
-#pragma mark View Cycle
+// View Cycle
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
-    _appIconCell.backgroundColor = kBicycletteBlue;
-    _appIconCell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 1000);
-        
-    _enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
+    self.tableView.tableHeaderView.backgroundColor = kBicycletteBlue;
+    
     _geofencesSwitch.onTintColor = kBicycletteBlue;
-    _geofenceUnavailableLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
     
+    _geofencesCell.textLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
+    _geofencesCell.detailTextLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
     if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
-        _geofenceUnavailableLabel.hidden = YES;
+        _geofencesSwitch.enabled = YES;
     } else {
-        _geofencesSwitch.hidden = YES;
-        _enableGeofencesLabel.hidden = YES;
+        _geofencesSwitch.enabled = NO;
     }
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPrefsVC)];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self updateUpdateLabel];
     if(![_updateIndicator isAnimating]) {
-        _updateLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
+        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
     }
     _geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
 }
 
-- (void) updateUpdateLabel
+- (IBAction)dismissPrefsVC
 {
-    _updateLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),self.controller.currentCity.serviceName];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/****************************************************************************/
-#pragma mark Autorotation support
+// Autorotation support
+- (BOOL) shouldAutorotate { return YES; }
+- (NSUInteger)supportedInterfaceOrientations { return UIInterfaceOrientationMaskAll; }
 
-- (BOOL) shouldAutorotate
+// UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAll;
-}
-
-/****************************************************************************/
-#pragma mark TableView
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(cell==_geofencesCell) {
-        [_geofencesSwitch setOn:!_geofencesSwitch.on animated:YES];
-        [self switchRegionMonitoring:_geofencesSwitch];
-    } else if(cell==_updateStationsCell) {
+    if(cell==_updateStationsCell) {
         [self updateStationsList];
     } else if(cell==_emailSupportCell) {
         [self openEmailSupport];
     } else if(cell==_rateOnAppStoreCell) {
         [self rate:nil];
-    } else if(cell==_designAndCodeCell) {
-        [self openWebPage];
     }
 }
 
-/****************************************************************************/
-#pragma mark Actions
+// Actions
 
-- (IBAction)openWebPage {
-    NSString * webpageURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"WebpageURL"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:webpageURL]];
-}
-
-- (IBAction)openEmailSupport {
+- (IBAction) openEmailSupport
+{
     NSString * emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportEmailAddress"];
     
     NSString * techSummary = [NSString stringWithFormat:NSLocalizedString(@"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@", nil),
                               [NSString stringWithFormat:@"%@ (%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleVersionKey]],
                               [NSString stringWithFormat:@"%@ (%@)",[[UIDevice currentDevice] model], [[NSProcessInfo processInfo] hardwareMachine]],
                               [NSString stringWithFormat:@"%@ (%@)",[[UIDevice currentDevice] systemName],[[UIDevice currentDevice] systemVersion]],
-                              self.controller.currentCity.cityName?:@""
+                              _controller.currentCity.cityName?:@""
                               ];
     techSummary = [techSummary stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString * emailLink = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, [[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleNameKey], techSummary];
@@ -177,46 +147,48 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailLink]];
 }
 
-/****************************************************************************/
-#pragma mark City updates
+// City updates
 
 - (IBAction)updateStationsList
 {
-    [self.controller.currentCity update];
+    [_controller.currentCity update];
+}
+
+- (void) updateUpdateLabel
+{
+    _updateStationsCell.textLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),_controller.currentCity.serviceName];
 }
 
 - (void)cityDataUpdated:(NSNotification*)note
 {
-    if(note.object!=self.controller.currentCity)
+    if(note.object!=_controller.currentCity)
         return;
     
     if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
     {
-        _updateLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
+        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
         [_updateIndicator startAnimating];
-        _updateLabel.hidden = YES;
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
     {
-        _updateLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
+        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
     {
         [_updateIndicator stopAnimating];
-        _updateLabel.hidden = NO;
         BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
         NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
         if(dataChanged)
         {
-            _updateLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
+            _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
             if(self.navigationController.visibleViewController == self)
             {
                 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-                NSUInteger count = [self.controller.currentCity.mainContext countForFetchRequest:request error:NULL];
+                NSUInteger count = [_controller.currentCity.mainContext countForFetchRequest:request error:NULL];
                 NSString * title;
                 NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
                                       count,
-                                      self.controller.currentCity.title];
+                                      _controller.currentCity.title];
                 if(nil==saveErrors)
                 {
                     title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
@@ -233,14 +205,14 @@
                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             }
         }
-        else
-            _updateLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
+        else {
+            _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
+        }
     }
     else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
     {
         [_updateIndicator stopAnimating];
-        _updateLabel.hidden = NO;
-        _updateLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
+        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
         NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
                                    message:[error localizedDescription]
@@ -248,8 +220,7 @@
     }
 }
 
-/****************************************************************************/
-#pragma mark - Share and Rate
+// Share and Rate
 
 - (NSURL*) appURLOnStore
 {
@@ -261,8 +232,7 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=546171712"]];
 }
 
-/****************************************************************************/
-#pragma mark Prefs
+// Prefs
 
 - (IBAction)switchRegionMonitoring:(UISwitch*)sender
 {
@@ -270,8 +240,4 @@
 }
 
 
-- (IBAction)dismissPrefsVC
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end
