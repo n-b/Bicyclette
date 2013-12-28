@@ -115,6 +115,20 @@
 - (BOOL) shouldAutorotate { return YES; }
 - (NSUInteger)supportedInterfaceOrientations { return UIInterfaceOrientationMaskAll; }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section==0) {
+        // Very hacky, at least it's short.
+        // This tableviewcontroller is using stock UITableViewCell styles,
+        // statically designed in a storyboard with autolayout support.
+        // Why the hell do I need to do anything to have proper cell heights ?
+        [_geofencesCell layoutIfNeeded];
+        return CGRectGetMaxY(_geofencesCell.detailTextLabel.frame) - CGRectGetMinY(_geofencesCell.textLabel.frame) + 16;
+    } else {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
 // UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
