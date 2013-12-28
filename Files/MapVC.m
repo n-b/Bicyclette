@@ -165,6 +165,8 @@
     self.scaleView.autoresizingMask = resizingMask;
     [self.view addSubview:self.scaleView];
     self.scaleView.mapView = self.mapView;
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
 - (void) viewDidLayoutSubviews

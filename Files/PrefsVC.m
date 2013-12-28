@@ -44,6 +44,9 @@
     PrefsVC * prefsVC = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
     prefsVC.controller = controller;
     UINavigationController * navC = [[UINavigationController alloc] initWithRootViewController:prefsVC];
+    navC.navigationBar.barTintColor = kBicycletteBlue;
+    navC.navigationBar.tintColor = [UIColor whiteColor];
+    navC.navigationBar.barStyle = UIBarStyleBlack;
     navC.navigationBarHidden = NO;
     navC.toolbarHidden = YES;
     return navC;
