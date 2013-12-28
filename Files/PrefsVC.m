@@ -88,10 +88,11 @@
     _geofencesSwitch.onTintColor = kBicycletteBlue;
     
     _geofencesCell.textLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
-    _geofencesCell.detailTextLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
     if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
         _geofencesSwitch.enabled = YES;
+        _geofencesCell.detailTextLabel.text = nil;
     } else {
+        _geofencesCell.detailTextLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
         _geofencesSwitch.enabled = NO;
     }
 }

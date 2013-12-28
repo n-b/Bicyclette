@@ -35,7 +35,7 @@
 
 "APPSTORE_RATINGS_BUTTON" = "Noter sur l’App Store";
 
-"ENABLE_GEOFENCES" = "Alertes Géographiques Automatiques :";
+"ENABLE_GEOFENCES" = "Alertes géolocalisées autour des favoris";
 "GEOFENCES_UNAVAILABLE" = "Votre appareil ne permet pas de créer d’alertes géographiques autour des favoris.";
 
 "STATIONS_LIST_CITY_%@" = "Liste des stations %@ :";
