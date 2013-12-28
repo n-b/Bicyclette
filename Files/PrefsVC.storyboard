@@ -121,10 +121,13 @@
                     <connections>
                         <outlet property="_emailSupportCell" destination="x4S-is-bLb" id="Jd8-f6-h5l"/>
                         <outlet property="_geofencesCell" destination="4R9-6C-d9s" id="EeK-uS-wEU"/>
+                        <outlet property="_geofencesSection" destination="rGZ-MR-vgQ" id="bHe-Jp-xJx"/>
                         <outlet property="_geofencesSwitch" destination="dmp-DA-viS" id="8br-b4-aWl"/>
                         <outlet property="_rateOnAppStoreCell" destination="U2y-aQ-rqo" id="KhS-c4-MhJ"/>
+                        <outlet property="_supportSection" destination="ilo-qa-Ord" id="qpQ-YX-x40"/>
                         <outlet property="_updateIndicator" destination="ESG-jO-zYz" id="eAj-Wz-tp6"/>
                         <outlet property="_updateStationsCell" destination="Lpw-Js-3nM" id="1An-Mu-G3J"/>
+                        <outlet property="_updateStationsSection" destination="pdi-4r-rXs" id="omj-o7-IVe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZg-Z2-DFl" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,16 +13,27 @@
 #import "Style.h"
 #import "UIBarButtonItem+BICMargins.h"
 
+@protocol UITableViewSection <NSObject> // Private API, lalalala. It's funny IB lets me connect outlets to it.
+- (void) setHeaderTitle:(NSString*)title_;
+- (void) setFooterTitle:(NSString*)title_;
+@end
+
 @implementation PrefsVC
 {
     CitiesController * _controller;
 
-    IBOutlet UITableViewCell * _rateOnAppStoreCell;
     IBOutlet UITableViewCell * _geofencesCell;
     IBOutlet UISwitch * _geofencesSwitch;
+    
     IBOutlet UITableViewCell * _updateStationsCell;
     IBOutlet UIActivityIndicatorView * _updateIndicator;
+
     IBOutlet UITableViewCell * _emailSupportCell;
+    IBOutlet UITableViewCell * _rateOnAppStoreCell;
+    
+    IBOutlet id<UITableViewSection> _geofencesSection;
+    IBOutlet id<UITableViewSection> _updateStationsSection;
+    IBOutlet id<UITableViewSection> _supportSection;
 }
 
 // Life cycle
@@ -56,65 +67,74 @@
 - (void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_controller removeObserver:self forKeyPath:@"currentCity" context:(__bridge void *)([self class])];
-}
-
-- (void) setController:(CitiesController *)controller_
-{
-    [_controller removeObserver:self forKeyPath:@"currentCity" context:(__bridge void *)([self class])];
-    _controller = controller_;
-    [_controller addObserver:self forKeyPath:@"currentCity" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([self class])];
+    [_controller removeObserver:self forKeyPath:@"currentCity" context:__FILE__];
 }
 
 // Data
+- (void) setController:(CitiesController *)controller_
+{
+    ;
+    [_controller removeObserver:self forKeyPath:@"currentCity" context:__FILE__];
+    _controller = controller_;
+    [_controller addObserver:self forKeyPath:@"currentCity" options:NSKeyValueObservingOptionInitial context:__FILE__];
+}
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == (__bridge void *)([self class])) {
+    if (context == __FILE__) {
         [self updateUpdateLabel];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
-// View Cycle
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.tableView.tableHeaderView.backgroundColor = kBicycletteBlue;
-    
-    _geofencesSwitch.onTintColor = kBicycletteBlue;
-    
-    _geofencesCell.textLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
-    if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
-        _geofencesSwitch.enabled = YES;
-        _geofencesCell.detailTextLabel.text = nil;
-    } else {
-        _geofencesCell.detailTextLabel.text = NSLocalizedString(@"GEOFENCES_UNAVAILABLE", nil);
-        _geofencesSwitch.enabled = NO;
-    }
-}
-
-- (void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self updateUpdateLabel];
-    if(![_updateIndicator isAnimating]) {
-        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
-    }
-    _geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
-}
-
-- (IBAction)dismissPrefsVC
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 // Autorotation support
 - (BOOL) shouldAutorotate { return YES; }
 - (NSUInteger)supportedInterfaceOrientations { return UIInterfaceOrientationMaskAll; }
 
+// View Cycle
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Geofences
+    if([_geofencesSection respondsToSelector:@selector(setHeaderTitle:)]) {
+        [_geofencesSection setHeaderTitle:NSLocalizedString(@"prefs.geofences.header",nil)];
+    }
+    _geofencesSwitch.onTintColor = kBicycletteBlue;
+    _geofencesCell.textLabel.text = NSLocalizedString(@"prefs.geofences.enable", nil);
+    if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]){
+        _geofencesSwitch.enabled = YES;
+        _geofencesCell.detailTextLabel.text = nil;
+    } else {
+        _geofencesCell.detailTextLabel.text = NSLocalizedString(@"prefs.geofences.unavailable", nil);
+        _geofencesSwitch.enabled = NO;
+    }
+    _geofencesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"RegionMonitoring.Enabled"];
+    if([_geofencesSection respondsToSelector:@selector(setFooterTitle:)]) {
+        [_geofencesSection setFooterTitle:NSLocalizedString(@"prefs.geofences.footer",nil)];
+    }
+
+    // Updates
+    if([_updateStationsSection respondsToSelector:@selector(setHeaderTitle:)]) {
+        [_updateStationsSection setHeaderTitle:NSLocalizedString(@"prefs.updates.header",nil)];
+    }
+    _updateStationsCell.textLabel.text = NSLocalizedString(@"prefs.updates.update", nil);
+    [self updateUpdateLabel];
+
+    // Support
+    if([_supportSection respondsToSelector:@selector(setHeaderTitle:)]) {
+        [_supportSection setHeaderTitle:NSLocalizedString(@"prefs.support.header",nil)];
+    }
+    _emailSupportCell.textLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportEmailAddress"];
+    _emailSupportCell.textLabel.textColor = kBicycletteBlue;
+    _rateOnAppStoreCell.textLabel.text = NSLocalizedString(@"prefs.support.seeOnAppStore", nil);
+    if([_supportSection respondsToSelector:@selector(setFooterTitle:)]) {
+        [_supportSection setFooterTitle:NSLocalizedString(@"prefs.support.footer",nil)];
+    }
+}
+
+// UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -124,11 +144,16 @@
         // statically designed in a storyboard with autolayout support.
         // Why the hell do I need to do anything to have proper cell heights ?
         [_geofencesCell layoutIfNeeded];
-        return CGRectGetMaxY(_geofencesCell.detailTextLabel.frame) - CGRectGetMinY(_geofencesCell.textLabel.frame) + 16;
+        if([_geofencesCell.detailTextLabel.text length]) {
+            return CGRectGetMaxY(_geofencesCell.detailTextLabel.frame) - CGRectGetMinY(_geofencesCell.textLabel.frame) + 16;
+        } else {
+            return CGRectGetHeight(_geofencesCell.textLabel.frame) + 16;
+        }
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
 }
+
 // UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,22 +169,19 @@
     }
 }
 
-// Actions
+/****************************************************************************/
+#pragma mark Actions
 
-- (IBAction) openEmailSupport
+- (IBAction)dismissPrefsVC
 {
-    NSString * emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportEmailAddress"];
-    
-    NSString * techSummary = [NSString stringWithFormat:NSLocalizedString(@"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@", nil),
-                              [NSString stringWithFormat:@"%@ (%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleVersionKey]],
-                              [NSString stringWithFormat:@"%@ (%@)",[[UIDevice currentDevice] model], [[NSProcessInfo processInfo] hardwareMachine]],
-                              [NSString stringWithFormat:@"%@ (%@)",[[UIDevice currentDevice] systemName],[[UIDevice currentDevice] systemVersion]],
-                              _controller.currentCity.cityName?:@""
-                              ];
-    techSummary = [techSummary stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString * emailLink = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, [[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleNameKey], techSummary];
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailLink]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Geofences
+
+- (IBAction)switchRegionMonitoring:(UISwitch*)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"RegionMonitoring.Enabled"];
 }
 
 // City updates
@@ -208,7 +230,6 @@
         _updateStationsCell.userInteractionEnabled = YES;
         _updateStationsCell.textLabel.enabled = YES;
         _updateStationsCell.detailTextLabel.enabled = YES;
-        _updateStationsCell.detailTextLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
         [_updateIndicator stopAnimating];
         [self updateUpdateLabel];
         NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
@@ -227,7 +248,6 @@
         _updateStationsCell.userInteractionEnabled = YES;
         _updateStationsCell.textLabel.enabled = YES;
         _updateStationsCell.detailTextLabel.enabled = YES;
-        _updateStationsCell.detailTextLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
         [_updateIndicator stopAnimating];
         [self updateUpdateLabel];
 
@@ -240,7 +260,23 @@
     }
 }
 
-// Share and Rate
+// Support
+
+- (IBAction) openEmailSupport
+{
+    NSString * emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"SupportEmailAddress"];
+    
+    NSString * techSummary = [NSString stringWithFormat:NSLocalizedString(@"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@", nil),
+                              [NSString stringWithFormat:@"%@ (%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleVersionKey]],
+                              [NSString stringWithFormat:@"%@ (%@)",[[UIDevice currentDevice] model], [[NSProcessInfo processInfo] hardwareMachine]],
+                              [NSString stringWithFormat:@"%@ (%@)",[[UIDevice currentDevice] systemName],[[UIDevice currentDevice] systemVersion]],
+                              _controller.currentCity.cityName?:@""
+                              ];
+    techSummary = [techSummary stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * emailLink = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, [[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleNameKey], techSummary];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailLink]];
+}
 
 - (NSURL*) appURLOnStore
 {
@@ -251,13 +287,5 @@
 {
     [[UIApplication sharedApplication] openURL:[self appURLOnStore]];
 }
-
-// Prefs
-
-- (IBAction)switchRegionMonitoring:(UISwitch*)sender
-{
-    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"RegionMonitoring.Enabled"];
-}
-
 
 @end
