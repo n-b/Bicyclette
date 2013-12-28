@@ -156,11 +156,20 @@
 
 - (void) updateUpdateLabel
 {
-    NSUInteger count = [_controller.currentCity.mainContext countForFetchRequest:[[NSFetchRequest alloc] initWithEntityName:[Station entityName]] error:NULL];
-    _updateStationsCell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
-                                                count,
-                                                _controller.currentCity.title];
-
+    if(_controller.currentCity) {
+        _updateStationsCell.userInteractionEnabled = YES;
+        _updateStationsCell.textLabel.enabled = YES;
+        _updateStationsCell.detailTextLabel.enabled = YES;
+        NSUInteger count = [_controller.currentCity.mainContext countForFetchRequest:[[NSFetchRequest alloc] initWithEntityName:[Station entityName]] error:NULL];
+        _updateStationsCell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
+                                                    count,
+                                                    _controller.currentCity.title];
+    } else {
+        _updateStationsCell.userInteractionEnabled = NO;
+        _updateStationsCell.textLabel.enabled = NO;
+        _updateStationsCell.detailTextLabel.enabled = NO;
+        _updateStationsCell.detailTextLabel.text = nil;
+    }
 }
 
 - (void)cityDataUpdated:(NSNotification*)note
