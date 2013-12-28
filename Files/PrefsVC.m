@@ -156,67 +156,63 @@
 
 - (void) updateUpdateLabel
 {
-    _updateStationsCell.textLabel.text = [NSString stringWithFormat: NSLocalizedString(@"STATIONS_LIST_CITY_%@", nil),_controller.currentCity.serviceName];
+    NSUInteger count = [_controller.currentCity.mainContext countForFetchRequest:[[NSFetchRequest alloc] initWithEntityName:[Station entityName]] error:NULL];
+    _updateStationsCell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
+                                                count,
+                                                _controller.currentCity.title];
+
 }
 
 - (void)cityDataUpdated:(NSNotification*)note
 {
-    if(note.object!=_controller.currentCity)
+    if(note.object!=_controller.currentCity) {
         return;
+    }
     
-    if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
-    {
-        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
+    if([note.name isEqualToString:BicycletteCityNotifications.updateBegan]) {
+        // Began
+        _updateStationsCell.userInteractionEnabled = NO;
+        _updateStationsCell.textLabel.enabled = NO;
+        _updateStationsCell.detailTextLabel.enabled = NO;
+        _updateStationsCell.detailTextLabel.text = NSLocalizedString(@"UPDATING : FETCHING", nil);
         [_updateIndicator startAnimating];
-    }
-    else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
-    {
-        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
-    }
-    else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
-    {
+    } else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData]) {
+        // Parsing
+        _updateStationsCell.detailTextLabel.text = NSLocalizedString(@"UPDATING : PARSING", nil);
+    } else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded]) {
+        // Success
+        _updateStationsCell.userInteractionEnabled = YES;
+        _updateStationsCell.textLabel.enabled = YES;
+        _updateStationsCell.detailTextLabel.enabled = YES;
+        _updateStationsCell.detailTextLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
         [_updateIndicator stopAnimating];
-        BOOL dataChanged = [note.userInfo[BicycletteCityNotifications.keys.dataChanged] boolValue];
+        [self updateUpdateLabel];
         NSArray * saveErrors = note.userInfo[BicycletteCityNotifications.keys.saveErrors];
-        if(dataChanged)
-        {
-            _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
-            if(self.navigationController.visibleViewController == self)
-            {
-                NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
-                NSUInteger count = [_controller.currentCity.mainContext countForFetchRequest:request error:NULL];
-                NSString * title;
-                NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%d STATION COUNT OF TYPE %@", nil),
-                                      count,
-                                      _controller.currentCity.title];
-                if(nil==saveErrors)
-                {
-                    title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
-                }
-                else
-                {
-                    message = [message stringByAppendingFormat:@"\n\n%@\n%@.",
-                               NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil),
-                               [[saveErrors valueForKey:@"localizedDescription"] componentsJoinedByString:@",\n"]];
-                    title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
-                }
-                [[[UIAlertView alloc] initWithTitle:title
-                                            message:message
-                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            }
+        if ([saveErrors count]!=0
+            && self.navigationController.visibleViewController==self) { //Only display error if visible
+            NSString * message = [NSString stringWithFormat:@"%@\n%@.",
+                       NSLocalizedString(@"UPDATING : COMPLETED WITH ERRORS", nil),
+                       [[saveErrors valueForKey:@"localizedDescription"] componentsJoinedByString:@",\n"]];
+            NSString * title = NSLocalizedString(@"UPDATING : COMPLETED", nil);
+            [[[UIAlertView alloc] initWithTitle:title
+                                        message:message
+                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
-        else {
-            _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATING : NO NEW DATA", nil);
-        }
-    }
-    else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed])
-    {
+    } else if([note.name isEqualToString:BicycletteCityNotifications.updateFailed]) {
+        // Failure
+        _updateStationsCell.userInteractionEnabled = YES;
+        _updateStationsCell.textLabel.enabled = YES;
+        _updateStationsCell.detailTextLabel.enabled = YES;
+        _updateStationsCell.detailTextLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
         [_updateIndicator stopAnimating];
-        _updateStationsCell.textLabel.text = NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil);
-        NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil) 
-                                   message:[error localizedDescription]
-                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [self updateUpdateLabel];
+
+        if(self.navigationController.visibleViewController==self) { //Only display error if visible
+            NSError * error = note.userInfo[BicycletteCityNotifications.keys.failureError];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UPDATING : FAILED",nil)
+                                        message:[error localizedDescription]
+                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
     }
 }
 
