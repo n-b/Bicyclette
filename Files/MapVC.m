@@ -23,6 +23,7 @@
 #import "CityOverlayRenderer.h"
 #import "CLRegion+CircularRegionCompatibility.h"
 #import "PrefsVC.h"
+#import "UIBarButtonItem+BICMargins.h"
 
 @interface MapVC()
 // UI
@@ -118,11 +119,13 @@
     self.infoButton = [[UIBarButtonItem alloc] initWithCustomView:iButton];
     
     // create toolbar
-    self.toolbarItems = @[self.userTrackingButton,
-                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+    self.toolbarItems = @[[UIBarButtonItem bic_negativeMarginButtonItem],
+                          self.userTrackingButton,
+                          [UIBarButtonItem bic_flexibleMarginButtonItem],
                           modeItem,
-                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                          self.infoButton];
+                          [UIBarButtonItem bic_flexibleMarginButtonItem],
+                          self.infoButton,
+                          [UIBarButtonItem bic_negativeMarginButtonItem]];
     
     self.navigationController.toolbarHidden = NO;
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
@@ -162,6 +165,8 @@
     self.scaleView.autoresizingMask = resizingMask;
     [self.view addSubview:self.scaleView];
     self.scaleView.mapView = self.mapView;
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
 - (void) viewDidLayoutSubviews
@@ -417,9 +422,9 @@
 
 - (void) showPrefsVC
 {
-    [self.navigationController pushViewController:[PrefsVC prefsVCWithController:self.controller] animated:YES];
+    [self presentViewController:[PrefsVC prefsVCWithController:self.controller] animated:YES completion:nil];
 }
-/****************************************************************************/
+/*************************************tool***************************************/
 #pragma mark Banner
 
 - (void) showTitle:(NSString*)title subtitle:(NSString*)subtitle sticky:(BOOL)sticky

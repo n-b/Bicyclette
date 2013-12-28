@@ -7,7 +7,6 @@
 */
 
 /* Main chrome */
-
 "BIKE" = "Vélos";
 "PARKING" = "Places";
 
@@ -15,41 +14,35 @@
 "STATION_STATUS_BONUS" = "Station Bonus";
 
 /* Localization */
-
 "LOCALIZATION_ERROR_UNAUTHORIZED_TITLE" = "Le service de localisation (GPS) est désactivé.";
-"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "Vous pouvez autoriser Bicyclette à utiliser le service de localisation dans Réglages > Confidentialité.";
+"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "Vous pouvez autoriser Bicyclette à utiliser le service de localisation dans Réglages > Confidentialité.";
 
 /* Notification text */
-
 "STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d vélos, %3$d places à %1$@";
 
-/* Prefs chrome */
+/* Prefs */
+"prefs.geofences.header" = "Notifications géolocalisées";
+"prefs.geofences.enable" = "Afficher des notifications à l’approche des stations favorites";
+"prefs.geofences.unavailable" = "Votre appareil ne permet pas l’utilisation des alertes géographiques.";
+"prefs.geofences.footer" = "Bicyclette peut créer des « barrières virtuelles » (en anglais « geofences ») autour de vos stations favorites, et vérifier automatiquement les vélos disponibles et les places libres lorsque vous vous approchez.";
 
-"DESIGN_AND_CODE" = "Design & Code Nicolas Bouilleaud";
-"CONTACT_EMAIL_SUPPORT" = "Une suggestion, un bug ?";
+"prefs.updates.header" = "Liste des stations";
+"prefs.updates.update" = "Mettre à jour";
 
-"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@" = "<br><br>---<br>Version : %1$@<br>Modèle : %2$@<br>OS : %3$@<br>Ville : %4$@";
+"prefs.support.header" = "Une suggestion, un bug ?";
+"prefs.support.seeOnAppStore" = "Noter sur l’App Store";
+"prefs.support.footer" = "Design & Code Nicolas Bouilleaud";
 
-"SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, la meilleure appli pour les vélos en libre service ! @bicycletteapp";
-"SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, la meilleure appli pour %@ ! @bicycletteapp";
-
-"APPSTORE_RATINGS_BUTTON" = "Noter sur l’App Store";
-
-"ENABLE_GEOFENCES" = "Alertes Géographiques Automatiques :";
-"GEOFENCES_UNAVAILABLE" = "Votre appareil ne permet pas de créer d’alertes géographiques autour des favoris.";
-
-"STATIONS_LIST_CITY_%@" = "Liste des stations %@ :";
-"UPDATE_STATIONS_LIST_BUTTON" = "Mettre à jour";
+/* Support email template */
+"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@" = "<br><br>---<br>Version : %1$@<br>Modèle : %2$@<br>OS : %3$@<br>Ville : %4$@";
 
 /* Updates */
-
 "UPDATING : FETCHING" = "Téléchargement…";
 "UPDATING : PARSING" = "Mise à jour…";
-"UPDATING : NO NEW DATA" = "Liste à jour";
 "UPDATING : COMPLETED" = "Mise à jour terminée";
 "%d STATION COUNT OF TYPE %@" = "%d stations %@";
 "UPDATING : FAILED" = "Échec de la mise à jour";
-"UPDATING : COMPLETED WITH ERRORS" = "Des stations mal géolocalisées ont été ignorées :";
+"UPDATING : COMPLETED WITH ERRORS" = "Des stations mal géolocalisées ont été ignorées :";
 
 /* Favorites / Geofences */
 "FENCE_MONITORING_ERROR_TITLE" = "Impossible d’ajouter cette station aux favoris";
