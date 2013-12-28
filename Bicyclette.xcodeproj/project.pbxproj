@@ -275,8 +275,6 @@
 		3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueue.m; sourceTree = "<group>"; };
 		3748429516772DE600DD457E /* SenTestCase+RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+RunLoop.h"; sourceTree = "<group>"; };
 		3748429616772DE600DD457E /* SenTestCase+RunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+RunLoop.m"; sourceTree = "<group>"; };
-		37516B3817523BD8001E70F4 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		37516B3917523BE0001E70F4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		375760F21687D0DA0042FCF8 /* NextBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextBikeCity.m; sourceTree = "<group>"; };
@@ -1258,8 +1256,6 @@
 			children = (
 				94E45DCD16A9B1E200EB6C84 /* fr */,
 				94E45DCF16A9B1E700EB6C84 /* en */,
-				37516B3817523BD8001E70F4 /* pl */,
-				37516B3917523BE0001E70F4 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

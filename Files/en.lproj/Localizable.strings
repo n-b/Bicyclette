@@ -7,7 +7,6 @@
 */
 
 /* Main chrome */
-
 "BIKE" = "Bikes";
 "PARKING" = "Docks";
 
@@ -15,37 +14,34 @@
 "STATION_STATUS_BONUS" = "Bonus Station";
 
 /* Localization */
-
 "LOCALIZATION_ERROR_UNAUTHORIZED_TITLE" = "The Location Services (GPS) are disabled.";
-"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "You can authorize Bicyclette to use the Location Services in Settings > Privacy.";
+"LOCALIZATION_ERROR_UNAUTHORIZED_DENIED_MESSAGE" = "You can authorize Bicyclette to use the Location Services in Settings > Privacy.";
 
 /* Notification text */
-
 "STATION_%@_STATUS_SUMMARY_BIKES_%d_PARKING_%d" = "%2$d bikes, %3$d empty docks at %1$@";
 
-/* Prefs chrome */
-
-"DESIGN_AND_CODE" = "Design & Code Nicolas Bouilleaud";
-"CONTACT_EMAIL_SUPPORT" = "Have an idea? Found a bug?";
-
-"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@<br>City: %4$@";
-
-"SHARE_BICYCLETTE_MESSAGE_GENERIC" = "Bicyclette, the best app for bike-sharing! @bicycletteapp";
-"SHARE_BICYCLETTE_MESSAGE_CITY_%@" = "Bicyclette, the best app for %@! @bicycletteapp";
-
-"APPSTORE_RATINGS_BUTTON" = "Rate on the App Store";
+/* Prefs */
+"prefs.geofences.header" = "Location Monitoring";
+"prefs.geofences.enable" = "Display notifications when approaching favorite stations";
+"prefs.geofences.unavailable" = "Your device doesn’t support location monitoring.";
+"prefs.geofences.footer" = "Bicyclette can create “geofences” around your favorite stations, and automatically check the available bikes and free docks when you approach these stations.";
 
 "ENABLE_GEOFENCES" = "Automatic “Geofence” Alerts:";
 "GEOFENCES_UNAVAILABLE" = "Your device does not have support for Automatic Alerts (Geofences) near stations.";
 
-"STATIONS_LIST_CITY_%@" = "“%@” stations:";
-"UPDATE_STATIONS_LIST_BUTTON" = "Update";
+"prefs.updates.header" = "Stations List";
+"prefs.updates.update" = "Update";
+
+"prefs.support.header" = "Have an idea? Found a bug?";
+"prefs.support.seeOnAppStore" = "Rate on the App Store";
+"prefs.support.footer" = "Design & Code Nicolas Bouilleaud";
+
+/* Support email template */
+"SUPPORT_EMAIL_TECH_SUMMARY_%@_%@_%@_%@" = "<br><br>---<br>Version: %1$@<br>Model: %2$@<br>OS: %3$@<br>City: %4$@";
 
 /* Updates */
-
 "UPDATING : FETCHING" = "Downloading…";
 "UPDATING : PARSING" = "Updating…";
-"UPDATING : NO NEW DATA" = "The list is up to date.";
 "UPDATING : COMPLETED" = "Update complete";
 "%d STATION COUNT OF TYPE %@" = "%d %@ stations";
 "UPDATING : FAILED" = "Update failure";

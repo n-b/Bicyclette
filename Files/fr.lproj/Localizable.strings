@@ -24,7 +24,7 @@
 "prefs.geofences.header" = "Notifications géolocalisées";
 "prefs.geofences.enable" = "Afficher des notifications à l’approche des stations favorites";
 "prefs.geofences.unavailable" = "Votre appareil ne permet pas l’utilisation des alertes géographiques.";
-"prefs.geofences.footer" = "Bicyclette peut créer des « barrières virtuelles » (en anglais « geofences ») autour de vos stations favorites, et vérifier automatiquement les places disponibles lorsque vous vous approchez.";
+"prefs.geofences.footer" = "Bicyclette peut créer des « barrières virtuelles » (en anglais « geofences ») autour de vos stations favorites, et vérifier automatiquement les vélos disponibles et les places libres lorsque vous vous approchez.";
 
 "prefs.updates.header" = "Liste des stations";
 "prefs.updates.update" = "Mettre à jour";
