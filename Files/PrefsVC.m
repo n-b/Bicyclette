@@ -48,6 +48,7 @@
     navC.navigationBar.barStyle = UIBarStyleBlack;
     navC.navigationBarHidden = NO;
     navC.toolbarHidden = YES;
+    navC.modalPresentationStyle = UIModalPresentationFormSheet;
     return navC;
 }
 
