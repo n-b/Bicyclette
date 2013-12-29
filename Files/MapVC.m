@@ -75,9 +75,19 @@
 
 - (void) setController:(CitiesController *)controller_
 {
-    [_controller removeObserver:self forKeyPath:@"currentCity" context:(__bridge void *)([self class])];
+    [_controller removeObserver:self forKeyPath:@"currentCity" context:__FILE__];
     _controller = controller_;
-    [_controller addObserver:self forKeyPath:@"currentCity" options:NSKeyValueObservingOptionInitial context:(__bridge void *)([self class])];
+    [_controller addObserver:self forKeyPath:@"currentCity" options:0 context:__FILE__];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == __FILE__ && object==self.controller && [keyPath isEqualToString:@"currentCity"]) {
+        [self updateModeControl];
+        [self updateTitle];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 /****************************************************************************/
@@ -166,7 +176,9 @@
     [self.view addSubview:self.scaleView];
     self.scaleView.mapView = self.mapView;
     
+    // Navigation bar
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [self updateTitle];
 }
 
 - (void) viewDidLayoutSubviews
@@ -191,29 +203,18 @@
     self.shouldZoomToUserWhenLocationFound = YES;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void) updateTitle
 {
-    if (context == (__bridge void *)([MapVC class]))
-    {
-        if(object==self.controller && [keyPath isEqualToString:@"currentCity"])
-        {
-            [self updateModeControl];
-            if(self.controller.currentCity)
-                [self showTitle:self.controller.currentCity.title
-                                subtitle:nil
-                                  sticky:NO];
-            else
-                [self dismissTitle];
-        }
+    if(self.controller.currentCity) {
+        [self showTitle:self.controller.currentCity.title subtitle:nil sticky:NO];
+    } else {
+        [self dismissTitle];
     }
-    else
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (void) cityDataUpdated:(NSNotification*)note
 {
-    if(note.object==self.controller.currentCity && self.navigationController.visibleViewController==self )
-    {
+    if(note.object==self.controller.currentCity) {
         if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
             [self showTitle:self.controller.currentCity.title
                             subtitle:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : FETCHING", nil)]
@@ -424,11 +425,12 @@
 {
     [self presentViewController:[PrefsVC prefsVCWithController:self.controller] animated:YES completion:nil];
 }
-/*************************************tool***************************************/
-#pragma mark Banner
+
+// Banner
 
 - (void) showTitle:(NSString*)title subtitle:(NSString*)subtitle sticky:(BOOL)sticky
 {
+    NSLog(@"show %@ %@ %d", title, subtitle, sticky);
     self.navigationItem.title = title;
     self.navigationItem.prompt = subtitle;
     
@@ -444,6 +446,7 @@
 
 - (void) dismissTitle
 {
+    NSLog(@"dismiss");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
