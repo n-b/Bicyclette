@@ -39,7 +39,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="accessoryView" destination="dmp-DA-viS" id="0Qf-oO-2Md"/>
+                                            <outlet property="accessoryView" destination="GGb-lU-0m1" id="XoU-Jh-2vz"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -131,13 +131,20 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZg-Z2-DFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="dmp-DA-viS">
-                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                <view contentMode="scaleToFill" id="GGb-lU-0m1" userLabel="Switch frame">
+                    <rect key="frame" x="0.0" y="429" width="59" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <connections>
-                        <action selector="switchRegionMonitoring:" destination="MMV-jH-Gyn" eventType="valueChanged" id="7UU-VS-5Eh"/>
-                    </connections>
-                </switch>
+                    <subviews>
+                        <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-DA-viS">
+                            <rect key="frame" x="8" y="0.0" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="switchRegionMonitoring:" destination="MMV-jH-Gyn" eventType="valueChanged" id="7UU-VS-5Eh"/>
+                            </connections>
+                        </switch>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="ESG-jO-zYz">
                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
