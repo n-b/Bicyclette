@@ -408,17 +408,17 @@
     "mkCoordinateRegionLatitudeDelta": 0.09381499999999932
   },
   {
-    "city_class": "BordeauxVCubCity",
+    "latitude": 44.845415,
     "mkCoordinateRegionLongitudeDelta": 0.20185,
     "city_name": "Bordeaux",
     "radius": 9712.964285840491,
     "mkCoordinateRegionLongitude": -0.613745,
     "longitude": -0.613745,
+    "city_class": "BordeauxVCubCity",
     "station_element_name": "ms:CI_VCUB_P",
     "mkCoordinateRegionLatitude": 44.845415,
     "service_name": "VCub",
-    "mkCoordinateRegionLatitudeDelta": 0.1437699999999964,
-    "latitude": 44.845415
+    "mkCoordinateRegionLatitudeDelta": 0.1437699999999964
   },
   {
     "mkCoordinateRegionLatitudeDelta": 0.05153800000000075,
@@ -482,7 +482,6 @@
   },
   {
     "mkCoordinateRegionLatitudeDelta": 0.4747199999999978,
-    "city_name": "San Francisco",
     "KVCMapping": {
       "stAddress1": "address",
       "latitude": "latitude",
@@ -492,6 +491,7 @@
       "longitude": "longitude",
       "availableBikes": "status_available"
     },
+    "city_name": "San Francisco",
     "keypath_to_stations_lists": "stationBeanList",
     "update_url": "http://www.bayareabikeshare.com/stations/json/",
     "mkCoordinateRegionLongitudeDelta": 0.5416050000000041,
@@ -505,7 +505,6 @@
   },
   {
     "mkCoordinateRegionLatitudeDelta": 0.02808699999999931,
-    "city_name": "Chattanooga",
     "KVCMapping": {
       "stAddress1": "address",
       "latitude": "latitude",
@@ -515,6 +514,7 @@
       "longitude": "longitude",
       "availableBikes": "status_available"
     },
+    "city_name": "Chattanooga",
     "keypath_to_stations_lists": "stationBeanList",
     "update_url": "http://www.bikechattanooga.com/stations/json",
     "mkCoordinateRegionLongitudeDelta": 0.024123000000003,
@@ -528,16 +528,16 @@
   },
   {
     "mkCoordinateRegionLatitudeDelta": 0.09017057700000208,
-    "city_name": "New York City",
     "KVCMapping": {
       "stAddress1": "address",
-      "latitude": "latitude",
       "stationName": "name",
+      "latitude": "latitude",
       "availableDocks": "status_free",
       "id": "number",
       "longitude": "longitude",
       "availableBikes": "status_available"
     },
+    "city_name": "New York City",
     "keypath_to_stations_lists": "stationBeanList",
     "update_url": "http://citibikenyc.com/stations/json",
     "mkCoordinateRegionLongitudeDelta": 0.06708647409999458,
@@ -550,26 +550,49 @@
     "city_class": "FlatJSONListCity"
   },
   {
-    "mkCoordinateRegionLatitudeDelta": 0.1832530000000006,
-    "city_name": "Chicago",
+    "mkCoordinateRegionLatitudeDelta": 0.03981999999999886,
+    "city_name": "Columbus",
     "KVCMapping": {
-      "latitude": "latitude",
+      "stAddress1": "address",
       "stationName": "name",
+      "latitude": "latitude",
+      "availableDocks": "status_free",
+      "id": "number",
+      "longitude": "longitude",
+      "availableBikes": "status_available"
+    },
+    "keypath_to_stations_lists": "stationBeanList",
+    "update_url": "http://cogobikeshare.com/stations/json/",
+    "mkCoordinateRegionLongitudeDelta": 0.03237099999999771,
+    "radius": 2351.04572456246,
+    "service_name": "CoGo",
+    "longitude": -82.9953635,
+    "latitude": 39.96193599999999,
+    "mkCoordinateRegionLongitude": -82.9953635,
+    "mkCoordinateRegionLatitude": 39.96193599999999,
+    "city_class": "FlatJSONListCity"
+  },
+  {
+    "mkCoordinateRegionLatitudeDelta": 0.1896069999999952,
+    "KVCMapping": {
+      "stationName": "name",
+      "latitude": "latitude",
       "availableDocks": "status_free",
       "id": "number",
       "longitude": "longitude",
       "availableBikes": "status_available",
       "location": "address"
     },
+    "city_name": "Chicago",
     "keypath_to_stations_lists": "stationBeanList",
     "update_url": "http://divvybikes.com/stations/json",
-    "mkCoordinateRegionLongitudeDelta": 0.1159820000000025,
-    "radius": 10487.6392348223,
+    "mkCoordinateRegionLongitudeDelta": 0.1271420000000063,
+    "radius": 11142.19277872616,
     "service_name": "Divvy",
-    "longitude": -87.649866,
-    "latitude": 41.88672649999999,
-    "mkCoordinateRegionLongitude": -87.649866,
-    "mkCoordinateRegionLatitude": 41.88672649999999,
+    "longitude": -87.644286,
+    "latitude": 41.8835495,
+    "mkCoordinateRegionLongitude": -87.644286,
+    "mkCoordinateRegionLatitude": 41.8835495,
     "city_class": "FlatJSONListCity"
   },
   {
@@ -599,7 +622,7 @@
   {
     "mkCoordinateRegionLongitudeDelta": 0.0176299999999987,
     "city_name": "Lillestrøm",
-    "mkCoordinateRegionLatitudeDelta": 0.01093000000000188,
+    "latitude": 59.956745,
     "radius": 783.103337204571,
     "mkCoordinateRegionLongitude": 11.053095,
     "longitude": 11.053095,
@@ -607,20 +630,20 @@
     "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 59.956745,
     "service_name": "Bysykkel",
-    "latitude": 59.956745
+    "mkCoordinateRegionLatitudeDelta": 0.01093000000000188
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.02506620306776908,
     "city_name": "Créteil",
-    "city_class": "JCDecauxCity",
+    "mkCoordinateRegionLatitudeDelta": 0.03279753256092732,
     "radius": 2043.098569552685,
     "mkCoordinateRegionLongitude": 2.458781753692186,
     "longitude": 2.458781753692186,
     "jcdecaux_contract": "Creteil",
+    "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 48.78243633050243,
     "service_name": "CristoLib",
-    "latitude": 48.78243633050243,
-    "mkCoordinateRegionLatitudeDelta": 0.03279753256092732
+    "latitude": 48.78243633050243
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.01212599999999497,
@@ -649,14 +672,14 @@
   {
     "mkCoordinateRegionLongitudeDelta": 0.03560011000000074,
     "city_name": "Vilnius",
-    "radius": 1261.546786347836,
+    "radius": 1393.849827997959,
     "mkCoordinateRegionLongitude": 25.281243725,
     "longitude": 25.281243725,
-    "mkCoordinateRegionLatitude": 54.685843685,
+    "mkCoordinateRegionLatitude": 54.683028855,
     "service_name": "Cyclocity",
-    "latitude": 54.685843685,
+    "latitude": 54.683028855,
     "city_class": "JCDecauxCity",
-    "mkCoordinateRegionLatitudeDelta": 0.01923356999999726
+    "mkCoordinateRegionLatitudeDelta": 0.02486323000000112
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.05608911785052695,
@@ -697,7 +720,7 @@
   {
     "mkCoordinateRegionLongitudeDelta": 0.1030833599309586,
     "city_name": "Sevilla",
-    "mkCoordinateRegionLatitudeDelta": 0.104340571350221,
+    "latitude": 37.37258814606513,
     "radius": 6240.193965463144,
     "mkCoordinateRegionLongitude": -5.960463594201356,
     "longitude": -5.960463594201356,
@@ -705,12 +728,12 @@
     "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 37.37258814606513,
     "service_name": "SEVici",
-    "latitude": 37.37258814606513
+    "mkCoordinateRegionLatitudeDelta": 0.104340571350221
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.04806000000000132,
     "city_name": "Göteborg",
-    "mkCoordinateRegionLatitudeDelta": 0.02642999999999773,
+    "latitude": 57.698635,
     "radius": 1726.889783081697,
     "mkCoordinateRegionLongitude": 11.971077,
     "longitude": 11.971077,
@@ -718,7 +741,7 @@
     "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 57.698635,
     "service_name": "Styr & Ställ",
-    "latitude": 57.698635
+    "mkCoordinateRegionLatitudeDelta": 0.02642999999999773
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.09811470740288009,
@@ -735,7 +758,7 @@
   {
     "mkCoordinateRegionLongitudeDelta": 0.102862327387535,
     "city_name": "Valencia",
-    "mkCoordinateRegionLatitudeDelta": 0.06161719853262326,
+    "latitude": 39.47060458689143,
     "radius": 5489.896470776514,
     "mkCoordinateRegionLongitude": -0.3749231015997605,
     "longitude": -0.3749231015997605,
@@ -743,7 +766,7 @@
     "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 39.47060458689143,
     "service_name": "Valenbisi",
-    "latitude": 39.47060458689143
+    "mkCoordinateRegionLatitudeDelta": 0.06161719853262326
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.02960600000000113,
@@ -760,7 +783,7 @@
   {
     "mkCoordinateRegionLongitudeDelta": 0.1798849999999996,
     "city_name": "Bruxelles",
-    "mkCoordinateRegionLatitudeDelta": 0.1059419999999989,
+    "latitude": 50.844551,
     "radius": 7031.151242778618,
     "mkCoordinateRegionLongitude": 4.3699545,
     "longitude": 4.3699545,
@@ -768,20 +791,20 @@
     "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 50.844551,
     "service_name": "Villo!",
-    "latitude": 50.844551
+    "mkCoordinateRegionLatitudeDelta": 0.1059419999999989
   },
   {
-    "city_class": "JCDecauxCity",
+    "mkCoordinateRegionLatitudeDelta": 0.04108163263749987,
     "mkCoordinateRegionLongitudeDelta": 0.1079528322525798,
     "city_name": "Cergy-Pontoise",
     "radius": 4221.105565627044,
     "mkCoordinateRegionLongitude": 2.05648355071986,
     "longitude": 2.05648355071986,
+    "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 49.03175663583325,
     "city_group": "Paris",
     "service_name": "VélO2",
-    "latitude": 49.03175663583325,
-    "mkCoordinateRegionLatitudeDelta": 0.04108163263749987
+    "latitude": 49.03175663583325
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.02643429751733395,
@@ -798,7 +821,7 @@
   {
     "mkCoordinateRegionLongitudeDelta": 0.02844523076587535,
     "city_name": "Besançon",
-    "mkCoordinateRegionLatitudeDelta": 0.01673737922128993,
+    "latitude": 47.23904860751522,
     "radius": 1325.495342164986,
     "mkCoordinateRegionLongitude": 6.020912891018471,
     "longitude": 6.020912891018471,
@@ -806,7 +829,7 @@
     "city_class": "JCDecauxCity",
     "mkCoordinateRegionLatitude": 47.23904860751522,
     "service_name": "VéloCité",
-    "latitude": 47.23904860751522
+    "mkCoordinateRegionLatitudeDelta": 0.01673737922128993
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.04670367852680446,
@@ -883,17 +906,17 @@
     "city_class": "LilleVlilleCity"
   },
   {
-    "city_class": "LyonVelovCity",
+    "account_class": "JCDecauxCity",
     "mkCoordinateRegionLongitudeDelta": 0.1323590000000001,
     "city_name": "Lyon",
     "radius": 5321.413697107218,
     "mkCoordinateRegionLongitude": 4.8543895,
     "longitude": 4.8543895,
+    "city_class": "LyonVelovCity",
     "mkCoordinateRegionLatitude": 45.76079350000001,
     "service_name": "Vélo’v",
     "latitude": 45.76079350000001,
-    "mkCoordinateRegionLatitudeDelta": 0.07324299999999795,
-    "account_class": "JCDecauxCity"
+    "mkCoordinateRegionLatitudeDelta": 0.07324299999999795
   },
   {
     "mkCoordinateRegionLongitudeDelta": 0.05321100000000456,
@@ -954,8 +977,8 @@
     "station_element_name": "place",
     "city_name": "Berlin",
     "regions": {
-      "182": "Halensee",
-      "20": "Berlin"
+      "20": "Berlin",
+      "182": "Halensee"
     },
     "mkCoordinateRegionLongitudeDelta": 0.2495527267456001,
     "radius": 10653.45729328497,
@@ -1208,17 +1231,17 @@
     "city_class": "NextBikeCity"
   },
   {
-    "station_element_name": "place",
     "patches": {
       "46613": {
-        "lng": 16.94776,
-        "lat": 48.14858
+        "lat": 48.14858,
+        "lng": 16.94776
       }
     },
+    "station_element_name": "place",
     "city_name": "Marchfeld",
     "regions": {
-      "149": "Römerland",
-      "170": "Marchfeld"
+      "170": "Marchfeld",
+      "149": "Römerland"
     },
     "city_class": "NextBikeCity",
     "mkCoordinateRegionLongitudeDelta": 0.4746203193588023,
@@ -1487,8 +1510,8 @@
     "station_element_name": "place",
     "city_name": "Tulln",
     "regions": {
-      "196": "Tullnerfeld",
-      "143": "Tulln"
+      "143": "Tulln",
+      "196": "Tullnerfeld"
     },
     "mkCoordinateRegionLongitudeDelta": 0.1719617843627983,
     "radius": 6527.575548255217,
@@ -1588,8 +1611,8 @@
     "station_element_name": "place",
     "city_name": "Wrocław",
     "regions": {
-      "187": "Wrocław",
-      "148": "Wrocław"
+      "148": "Wrocław",
+      "187": "Wrocław"
     },
     "mkCoordinateRegionLongitudeDelta": 0.1302936673164012,
     "radius": 6215.120711340337,
@@ -1658,8 +1681,8 @@
     "station_element_name": "place",
     "city_name": "Warszawa",
     "regions": {
-      "197": "Bemowo",
-      "210": "Warszawa"
+      "210": "Warszawa",
+      "197": "Bemowo"
     },
     "mkCoordinateRegionLongitudeDelta": 0.1855713129043011,
     "radius": 12377.32169679958,
@@ -1692,22 +1715,22 @@
       },
       "903": {
         "codePostal": "75013",
-        "lng": 2.374232,
-        "lat": 48.837164
+        "lat": 48.837164,
+        "lng": 2.374232
       },
-      "14024": {
-        "name": "Raymond Losserand"
+      "34003": {
+        "codePostal": "93400"
       },
       "34011": {
         "codePostal": "93400"
       },
-      "34003": {
-        "codePostal": "93400"
+      "14024": {
+        "name": "Raymond Losserand"
       }
     },
     "city_name": "Paris",
     "city_class": "ParisVelibCity",
-    "mkCoordinateRegionLongitude": 2.35082675219493,
+    "mkCoordinateRegionLatitude": 48.86078932636721,
     "prefs": {
       "CitiesController.StationsZoomThreshold": 0.5
     },
@@ -1717,20 +1740,20 @@
     "longitude": 2.35082675219493,
     "latitude": 48.86078932636721,
     "account_class": "JCDecauxCity",
-    "mkCoordinateRegionLatitude": 48.86078932636721
+    "mkCoordinateRegionLongitude": 2.35082675219493
   },
   {
-    "city_class": "RennesVeloStarCity",
+    "latitude": 48.1095485,
     "mkCoordinateRegionLongitudeDelta": 0.07979500000000006,
     "city_name": "Rennes",
     "radius": 3810.274915703855,
     "mkCoordinateRegionLongitude": -1.6738135,
     "longitude": -1.6738135,
+    "city_class": "RennesVeloStarCity",
     "station_element_name": "station",
     "mkCoordinateRegionLatitude": 48.1095485,
     "service_name": "VéloStar",
-    "mkCoordinateRegionLatitudeDelta": 0.05430299999999733,
-    "latitude": 48.1095485
+    "mkCoordinateRegionLatitudeDelta": 0.05430299999999733
   },
   {
     "mkCoordinateRegionLatitudeDelta": 0.02225200000000171,
@@ -1873,155 +1896,155 @@
     "city_class": "SmooveCity"
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4002"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.05689470306396505,
     "city_name": "Agglo Fribourg",
     "radius": 2557.702132233167,
     "mkCoordinateRegionLongitude": 7.144712648468017,
     "longitude": 7.144712648468017,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.8018405,
     "service_name": "Vélopass",
     "latitude": 46.8018405,
-    "mkCoordinateRegionLatitudeDelta": 0.04265900000000045,
-    "cityIDs": [
-      "4002"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.04265900000000045
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4003"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.01060000000000016,
     "city_name": "Bulle",
     "radius": 642.2844736328963,
     "mkCoordinateRegionLongitude": 7.060518,
     "longitude": 7.060518,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.613325,
     "service_name": "Vélopass",
     "latitude": 46.613325,
-    "mkCoordinateRegionLatitudeDelta": 0.008953999999995688,
-    "cityIDs": [
-      "4003"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.008953999999995688
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4007"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.03129899999999974,
     "city_name": "Chablais",
     "radius": 4166.638584193202,
     "mkCoordinateRegionLongitude": 6.953848499999999,
     "longitude": 6.953848499999999,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.2866135,
     "service_name": "Vélopass",
     "latitude": 46.2866135,
-    "mkCoordinateRegionLatitudeDelta": 0.07395300000000304,
-    "cityIDs": [
-      "4007"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.07395300000000304
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4001"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.1499070000000007,
     "city_name": "La Côte",
     "radius": 6953.169870405853,
     "mkCoordinateRegionLongitude": 6.2128505,
     "longitude": 6.2128505,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.391014,
     "service_name": "Vélopass",
     "latitude": 46.391014,
-    "mkCoordinateRegionLatitudeDelta": 0.0698900000000009,
-    "cityIDs": [
-      "4001"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.0698900000000009
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4010",
+      "4011"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.14934251550293,
     "city_name": "Lausanne",
     "radius": 6056.146603641127,
     "mkCoordinateRegionLongitude": 6.555835257751465,
     "longitude": 6.555835257751465,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.51984553805885,
     "service_name": "Vélopass",
     "latitude": 46.51984553805885,
-    "mkCoordinateRegionLatitudeDelta": 0.03523307611769866,
-    "cityIDs": [
-      "4010",
-      "4011"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.03523307611769866
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4004"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.3307219999999997,
     "city_name": "Les Lacs - Romont",
     "radius": 18010.17779078787,
     "mkCoordinateRegionLongitude": 6.950293,
     "longitude": 6.950293,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.809897,
     "service_name": "Vélopass",
     "latitude": 46.809897,
-    "mkCoordinateRegionLatitudeDelta": 0.2313840000000056,
-    "cityIDs": [
-      "4004"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.2313840000000056
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4013"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.02982616424560547,
     "city_name": "Lugano - Paradiso",
     "radius": 2415.571426304697,
     "mkCoordinateRegionLongitude": 8.94688367843628,
     "longitude": 8.94688367843628,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.00410558368763,
     "service_name": "Vélopass",
     "latitude": 46.00410558368763,
-    "mkCoordinateRegionLatitudeDelta": 0.03817083262474341,
-    "cityIDs": [
-      "4013"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.03817083262474341
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4008"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.03963500521850616,
     "city_name": "Valais Central",
     "radius": 1651.97011883709,
     "mkCoordinateRegionLongitude": 7.353360502609252,
     "longitude": 7.353360502609252,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.23000526948305,
     "service_name": "Vélopass",
     "latitude": 46.23000526948305,
-    "mkCoordinateRegionLatitudeDelta": 0.01126053896609847,
-    "cityIDs": [
-      "4008"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.01126053896609847
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4012"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.02408535630416964,
     "city_name": "Vevey-Riviera",
     "radius": 1323.069582312668,
     "mkCoordinateRegionLongitude": 6.847129321847915,
     "longitude": 6.847129321847915,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.4596655,
     "service_name": "Vélopass",
     "latitude": 46.4596655,
-    "mkCoordinateRegionLatitudeDelta": 0.01701699999999562,
-    "cityIDs": [
-      "4012"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.01701699999999562
   },
   {
-    "city_class": "TOBikeCity",
+    "cityIDs": [
+      "4009"
+    ],
     "mkCoordinateRegionLongitudeDelta": 0.01742362976074219,
     "city_name": "Yverdon-les-Bains",
     "radius": 1161.36288176521,
     "mkCoordinateRegionLongitude": 6.649389266967773,
     "longitude": 6.649389266967773,
+    "city_class": "TOBikeCity",
     "mkCoordinateRegionLatitude": 46.775037691432,
     "service_name": "Vélopass",
     "latitude": 46.775037691432,
-    "mkCoordinateRegionLatitudeDelta": 0.02036810230577402,
-    "cityIDs": [
-      "4009"
-    ]
+    "mkCoordinateRegionLatitudeDelta": 0.02036810230577402
   },
   {
     "mkCoordinateRegionLatitudeDelta": 0.03978396063999412,
@@ -2110,17 +2133,17 @@
   {
     "mkCoordinateRegionLatitudeDelta": 0.06942667402365288,
     "station_element_name": "station",
-    "city_name": "Wien",
     "KVCMapping": {
       "name": "name",
-      "free_bikes": "status_available",
       "description": "address",
+      "free_bikes": "status_available",
       "free_boxes": "status_free",
       "latitude": "latitude",
       "boxes": "status_total",
       "id": "number",
       "longitude": "longitude"
     },
+    "city_name": "Wien",
     "update_url": "http://dynamisch.citybikewien.at/citybike_xml.php",
     "mkCoordinateRegionLongitudeDelta": 0.1096350244102489,
     "radius": 4710.380521590922,
