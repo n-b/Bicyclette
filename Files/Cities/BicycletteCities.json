@@ -958,16 +958,6 @@
     "city_class": "NextBikeCity"
   },
   {
-    "city_name": "Bregenzerwald",
-    "city_class": "NextBikeCity",
-    "latitude": 47.38643395,
-    "service_name": "NextBike",
-    "station_element_name": "place",
-    "longitude": 9.941156150878905,
-    "radius": 9983.89657316853,
-    "region": "71"
-  },
-  {
     "mkCoordinateRegionLatitudeDelta": 0.0146440000000041,
     "station_element_name": "place",
     "city_name": "Burghausen",
@@ -979,20 +969,6 @@
     "latitude": 48.166863,
     "mkCoordinateRegionLongitude": 12.830634,
     "mkCoordinateRegionLatitude": 48.166863,
-    "city_class": "NextBikeCity"
-  },
-  {
-    "mkCoordinateRegionLatitudeDelta": 0.004624700000000814,
-    "station_element_name": "place",
-    "city_name": "Coburg",
-    "region": "72",
-    "mkCoordinateRegionLongitudeDelta": 0.009082000000001145,
-    "radius": 413.5193614650011,
-    "service_name": "NextBike",
-    "longitude": 10.961911,
-    "latitude": 50.26078465000001,
-    "mkCoordinateRegionLongitude": 10.961911,
-    "mkCoordinateRegionLatitude": 50.26078465000001,
     "city_class": "NextBikeCity"
   },
   {
@@ -1021,20 +997,6 @@
     "latitude": 51.24711618017655,
     "mkCoordinateRegionLongitude": 6.767942905426025,
     "mkCoordinateRegionLatitude": 51.24711618017655,
-    "city_class": "NextBikeCity"
-  },
-  {
-    "mkCoordinateRegionLatitudeDelta": 0.007493201860199861,
-    "station_element_name": "place",
-    "city_name": "Erfurt",
-    "region": "86",
-    "mkCoordinateRegionLongitudeDelta": 0.02522885799410091,
-    "radius": 979.1889089859029,
-    "service_name": "NextBike",
-    "longitude": 11.02478295564655,
-    "latitude": 50.9749355990699,
-    "mkCoordinateRegionLongitude": 11.02478295564655,
-    "mkCoordinateRegionLatitude": 50.9749355990699,
     "city_class": "NextBikeCity"
   },
   {
@@ -1428,16 +1390,6 @@
     "city_class": "NextBikeCity"
   },
   {
-    "city_name": "Salzburg",
-    "city_class": "NextBikeCity",
-    "latitude": 47.8787070044582,
-    "service_name": "NextBike",
-    "station_element_name": "place",
-    "longitude": 13.0121469497681,
-    "radius": 0,
-    "region": "31"
-  },
-  {
     "mkCoordinateRegionLatitudeDelta": 0.06333680000000186,
     "station_element_name": "place",
     "city_name": "St.Pölten",
@@ -1637,20 +1589,6 @@
     "latitude": 38.46179164694275,
     "mkCoordinateRegionLongitude": 27.09686771035195,
     "mkCoordinateRegionLatitude": 38.46179164694275,
-    "city_class": "NextBikeCity"
-  },
-  {
-    "mkCoordinateRegionLatitudeDelta": 0.0136783867853012,
-    "station_element_name": "place",
-    "city_name": "Jurmala",
-    "region": "140",
-    "mkCoordinateRegionLongitudeDelta": 0.05710422992709852,
-    "radius": 1896.167258677144,
-    "service_name": "balticbike",
-    "longitude": 23.82602781057355,
-    "latitude": 56.97853272164165,
-    "mkCoordinateRegionLatitude": 56.97853272164165,
-    "mkCoordinateRegionLongitude": 23.82602781057355,
     "city_class": "NextBikeCity"
   },
   {
