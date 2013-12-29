@@ -486,7 +486,7 @@
       "stAddress1": "address",
       "latitude": "latitude",
       "availableDocks": "status_free",
-      "landMark": "name",
+      "stationName": "name",
       "id": "number",
       "longitude": "longitude",
       "availableBikes": "status_available"
