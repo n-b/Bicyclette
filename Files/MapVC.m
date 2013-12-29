@@ -430,7 +430,6 @@
 
 - (void) showTitle:(NSString*)title subtitle:(NSString*)subtitle sticky:(BOOL)sticky
 {
-    NSLog(@"show %@ %@ %d", title, subtitle, sticky);
     self.navigationItem.title = title;
     self.navigationItem.prompt = subtitle;
     
@@ -446,7 +445,6 @@
 
 - (void) dismissTitle
 {
-    NSLog(@"dismiss");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];

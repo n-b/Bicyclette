@@ -108,7 +108,17 @@
         _parsing_context = nil;
         _parsing_oldStations = nil;
         _parsing_regionsByNumber = nil;
-                
+        
+        // Post processing :
+        // Validate all stations (and delete invalid) before computing coordinates
+        NSFetchRequest * newStationsRequest = [NSFetchRequest fetchRequestWithEntityName:[Station entityName]];
+        NSArray * newStations = [updateContext executeFetchRequest:newStationsRequest error:&requestError];
+        for (Station *s in newStations) {
+            if(![s validateForInsert:&validationErrors]) {
+                [updateContext deleteObject:s];
+            }
+        }
+
         // Delete Old Stations
         for (Station * oldStation in [oldStations allValues]) {
             if([[NSUserDefaults standardUserDefaults] boolForKey:@"BicycletteLogParsingDetails"])

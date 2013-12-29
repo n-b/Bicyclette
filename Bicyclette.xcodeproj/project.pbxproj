@@ -54,6 +54,8 @@
 		3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748429616772DE600DD457E /* SenTestCase+RunLoop.m */; };
 		374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 378C6BFA169C362E009DDC84 /* UnusedCities.json */; };
+		374CB65B187068D50018CD9D /* BayAreaBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 374CB65A187068D50018CD9D /* BayAreaBikeShareCity.m */; };
+		374CB65C187068D50018CD9D /* BayAreaBikeShareCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 374CB65A187068D50018CD9D /* BayAreaBikeShareCity.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		375760F31687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
 		375760F41687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
@@ -275,6 +277,7 @@
 		3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueue.m; sourceTree = "<group>"; };
 		3748429516772DE600DD457E /* SenTestCase+RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+RunLoop.h"; sourceTree = "<group>"; };
 		3748429616772DE600DD457E /* SenTestCase+RunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+RunLoop.m"; sourceTree = "<group>"; };
+		374CB65A187068D50018CD9D /* BayAreaBikeShareCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BayAreaBikeShareCity.m; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
 		3756EADE1298018A00113534 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		375760F21687D0DA0042FCF8 /* NextBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextBikeCity.m; sourceTree = "<group>"; };
@@ -696,6 +699,7 @@
 			children = (
 				3791307A16973C730054FECA /* FlatJSONListCity.h */,
 				3791307B16973C730054FECA /* FlatJSONListCity.m */,
+				374CB65A187068D50018CD9D /* BayAreaBikeShareCity.m */,
 				370C477D1682877200CA40E8 /* MelbourneBikeShareCity.m */,
 				3722E0F7168AF8830069C6A8 /* VelowayCity.m */,
 				373960AA16794634005F0672 /* LyonVelovCity.m */,
@@ -1165,6 +1169,7 @@
 				37BF7FEB1694481C00FED27F /* SmooveCity.m in Sources */,
 				3791306916971C110054FECA /* ParisVelibCity.m in Sources */,
 				3791307016971FD30054FECA /* XMLSubnodesCity.m in Sources */,
+				374CB65C187068D50018CD9D /* BayAreaBikeShareCity.m in Sources */,
 				37913078169733E00054FECA /* XMLAttributesCity.m in Sources */,
 				3791307D16973C730054FECA /* FlatJSONListCity.m in Sources */,
 				3788EC7C1697AB1300836A60 /* DecobikeCity.m in Sources */,
@@ -1192,6 +1197,7 @@
 				37B7ABEF15E3DC5100268B70 /* BicycletteCity.m in Sources */,
 				37B7ABF015E3DC5E00268B70 /* BicycletteCity.xcdatamodel in Sources */,
 				373A77F115E3EBB80057E241 /* NSStringAdditions.m in Sources */,
+				374CB65B187068D50018CD9D /* BayAreaBikeShareCity.m in Sources */,
 				37AA661B1653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DA165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
 				376D0E4D1678B56D006F321D /* CyclocityCity.m in Sources */,
