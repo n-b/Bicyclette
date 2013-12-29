@@ -111,6 +111,15 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return shouldCopy;
 }
 
+- (NSDictionary *)storeOptions
+{
+    if(!BicycletteCitySaveStationsWithNoIndividualStatonUpdates()){  //in DataGrabber
+        return @{ NSSQLitePragmasOption : @{@"journal_mode" : @"DELETE"} };
+    } else {
+        return nil;
+    }
+}
+
 #pragma mark General properties
 
 - (NSString *) cityName { return _serviceInfo[@"city_name"]; }
