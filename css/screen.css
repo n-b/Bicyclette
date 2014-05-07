@@ -1,6 +1,5 @@
 /* Fonts */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800,600,400);
-@import url(http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic);
 
 /* global */
 html,body {
@@ -16,9 +15,9 @@ html,body {
 	margin-bottom: 3em;
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 490px;
+	max-width: 780px;
 }
-@media only screen and (max-width: 490px) {
+@media only screen and (max-width: 780px) {
 	#wrapper {
 		margin-top: 0em;
 		margin-bottom: 0em;
@@ -62,11 +61,11 @@ h3 {
 	font-size : 100%;
 }
 p, ul {
-	font-family: 'gentium book basic', serif;
+	font-family: 'open sans', sans-serif;
 	line-height: 1.2em;
 	font-size : 100%;
 }
-@media only screen and (max-width: 490px) {
+@media only screen and (max-width: 780px) {
 	h1 {
 		font-size: 160%;
 	}
@@ -127,7 +126,7 @@ h1, h2, p, ul{
 header {
 	margin-bottom:40px;
 }
-@media only screen and (max-width: 490px) {
+@media only screen and (max-width: 780px) {
 	header {
 		margin-bottom:40px;
 	}
@@ -191,6 +190,7 @@ article section.description img {
 	border-radius:9px;
 	box-shadow: 0px 1px 3px #555;
 	display:block;
+	clear:left;
 	width:320px;
 	margin-left:auto;
 	margin-right:auto;  
@@ -201,60 +201,21 @@ article section.description img {
 	}
 }
 
-/* Beta section */
-section#beta {
-    border-radius:9px;
-    box-shadow: 0px 1px 3px #555;
-	padding:1px 8px 1px 8px;
-    background: #a7a7a7;
-	margin-left:2px;
-	margin-right:2px;
-}
-section#beta h1,
-section#beta h2,
-section#beta p,
-section#beta ul {
-	color: #333;
-	text-shadow: 0 1px #ddd; 
-}
-section#beta p {
-	font-family: 'open sans', sans-serif;
-	font-weight: 400;
-	font-size: 90%;
-}
-
 section h1 {
-	text-align:center;
+	text-align:left;
 }
 
 /* Cities sections */
 section#cities ul {
 	list-style-type: none;
-	-moz-column-count: 2;
-	-webkit-column-count: 2;
-	column-count: 2;
+	-moz-column-count: 3;
+	-webkit-column-count: 3;
+	column-count: 3;
     margin-left: 8px;
     padding-left: 0em;
 }
 section#cities ul li:before{
 	content: "• ";
-}
-
-/* OpenSource section */
-section#opensource a#forkme {
-	float: right;
-	max-width: 25%;
-	margin: 3px;
-}
-section#opensource div#text {
-	float: left;
-	max-width: 71%;
-	text-align: left;
-	margin-right: 8px;
-}
-section#opensource div#text p{
-	margin-top: 0px;
-	padding-top: 8px;
 }
 
 /* TechDetails section */
@@ -269,31 +230,14 @@ section#techdetails ul li:before{
 
 /* Footer */
 footer {
-    background: #a7a7a7;
+    background: #bbb;
 }
 footer p {
 	color: #333;
-	text-shadow: 0 1px #ddd; 
 	font-family: 'open sans', sans-serif;
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 90%;
 	text-align: center;
 	margin: 0px;
 	padding:4px;
 }
-
-/* Language Selection */
-/*#languageselection {
-	color: #333;
-	text-shadow: 0 1px #ddd; 
-	font-family: 'open sans', sans-serif;
-	font-weight: 600;
-	font-size: 90%;
-	text-align: right;
-	padding:0;
-	margin:0;
-}
-#languageselection a {
-	color: #333;
-}
-*/
