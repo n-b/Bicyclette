@@ -6,17 +6,17 @@ title: Bicyclette.app — The Best App for Bike-Sharing — Free on the App Stor
 {% include en/header.html %}
 
 <article>
-<section class="description"> {% capture section %}
+<section class="left"> {% capture section %}
 {% include en/home/justamap.mdown %}
 {% endcapture %} {{ section | markdownify }} </section>
-<section class="description"> {% capture section %}{% include en/home/alerts.mdown %}
+<section class="right"> {% capture section %}{% include en/home/alerts.mdown %}
 {% endcapture %} {{ section | markdownify }} </section>
 
-<section class="description" id="cities"> {% capture section %}
+<section class="left"> {% capture section %}
 {% include en/home/cities.mdown %}
 {% endcapture %} {{ section | markdownify }} </section>
 
-<section id="techdetails"> {% capture section %}
+<section class="right"> {% capture section %}
 {% include en/home/techdetails.mdown %}
 {% endcapture %} {{ section | markdownify }} </section>
 

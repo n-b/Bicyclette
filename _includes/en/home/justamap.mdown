@@ -1,5 +1,4 @@
-# The Bike Stations on a Map.<br>Live on your iPhone.
-
+# The Bike Stations on a Map. Live on your iPhone.
 
 ![](images/screenshots/NotreDame@2x.png)
 

@@ -1,76 +1,72 @@
-# Un vélo près de chez vous
+![](images/screenshots/00_Europe-568h@2x.png)
 
-Bicyclette est compatible avec les vélos en libre-service dans plus de 50 villes dans le monde.
+## Un vélo près de chez vous
 
-![](images/screenshots/Europe@2x.png)
+Bicyclette utilise les données des prestataires de vélos en libre-service, disponibles sur leurs sites respectifs ou plateformes open-data et est compatible avec les vélos en libre-service dans plus de 50 villes dans le monde. [Plus de détails sur les sources de données.](data.html)
 
-## En France :
+### En France :
 
-* **Vélib’** à Paris
-* **Vélo’v** à Lyon
-* **V’Lille** à Lille
-* **Le Vélo** à Marseille
-* **Bicloo** à Nantes
-* **VéloStar** à Rennes
-* **Vélam** à Amiens
-* **VéliVert** à Saint-Étienne
-* **Métrovélo** à Grenoble
-* **Vélhop** à Strasbourg
-* **VCub** à Bordeaux
-* **Vélo’+** à Orléans
-* **Yélo** à La Rochelle
-* **VéloCité** à Besançon
-* **VélO2** à Cergy-Pontoise
-* **VélôToulouse** à Toulouse
-* **CristoLib** à Créteil
-* **Vélocité** à Mulhouse
-* **Vélostan** à Nancy
-* **Cy’clic** à Rouen
-* **Vel’In** à Calais
-* **Vélo Bleu** à Nice
-* **Vélocéa** à Vannes
-* **Vélomagg'** à Montpellier
-* **Vélopop** à Avignon
-* **Libélo** à Valence
-* Systèmes **Smoove** à Belfort, Clermont-Ferrand et Lorient
+* Vélib’ à **Paris**
+* Vélo’v à **Lyon**
+* V’Lille à **Lille**
+* Le Vélo à **Marseille**
+* Bicloo à **Nantes**
+* VéloStar à **Rennes**
+* Vélam à **Amiens**
+* VéliVert à **Saint-Étienne**
+* Métrovélo à **Grenoble**
+* Vélhop à **Strasbourg**
+* VCub à **Bordeaux**
+* Vélo’+ à **Orléans**
+* Yélo à **La Rochelle**
+* VéloCité à **Besançon**
+* VélO2 à **Cergy-Pontoise**
+* VélôToulouse à **Toulouse**
+* CristoLib à **Créteil**
+* Vélocité à **Mulhouse**
+* Vélostan à **Nancy**
+* Cy’clic à **Rouen**
+* Vel’In à **Calais**
+* Vélo Bleu à **Nice**
+* Vélocéa à **Vannes**
+* Réflex à **Chalon-sur-Saône**
+* Vélomagg' à **Montpellier**
+* Vélopop à **Avignon**
+* Libélo à **Valence**
+* Systèmes Smoove à **Belfort**, **Clermont-Ferrand** et **Lorient**
 
-## En Europe :
+### En Europe :
 
-* **TusBic** à Santander
-* **SEVici** à Sevilla
-* **Valenbisi** à Valencia
-* **Bicing** à Barcelona
-* **dublinbikes** à Dublin
-* **Cycle Hire** à London
-* **vel’oh** à Luxembourg
-* **Villo!** à Bruxelles
-* **Li bia velo** à Namur
-* **Styr & Ställ** à Göteborg
-* **Bicike(LJ)** à Ljubljana
-* **CitybikeCity** à Wien
-* Systèmes **Cyclocity/JCDecaux** à Stockholm, Vilnius, Lillestrøm et Kazan
-* Systèmes **Vélopass** en Suisse. (La&nbsp;Côte, Fribourg, Bulle, Les Lacs&nbsp;-&nbsp;Romont, Chablais, Valais Central, Yverdon-les-Bains, Lausanne&nbsp;-&nbsp;Morges & Campus, Vevey-Riviera, Lugano - Paradiso.)
-* Réseau **NextBike** (10vorWien, Augsburg, Baku, Berlin, Bielefeld, Bregenzerwald, Burghausen, Coburg, Dresden,  Düsseldorf, Erfurt, Flensburg, Frankfurt, Gütersloh, Haag, Hamburg, Hannover, Konya, Krems, Laa, Leipzig, Limassol, Luzern, Magdeburg, Marchfeld, Mistelbach, Mödling, München, Neunkirchen, NeusiedlerSee, Norderstedt, Nürnberg, Oberes, Offenburg, Opole, Piestingtal, Potsdam, Poznan, Salzburg, St.Pölten, Südheide, Thermenregion, Traisen-Gölsental, Triestingtal, Tulln, Tübingen, Unteres, Wachau, Waldviertel, Wieselburg, Wr.Neustadt, Wrocław, İzmir)
-* **BalticBike** à Riga et Jurmala
-* **Metropolradruhr** à Duisburg, Dortmund, Hamm, Oberhausen, Bottrop, Gelsenkirche, Mülheim, Bochum, Essen et Herne
-* **Veturilo** à Warszawa
+* TusBic à **Santander**
+* SEVici à **Sevilla**
+* Valenbisi à **Valencia**
+* Bicing à **Barcelona**
+* dublinbikes à **Dublin**
+* Cycle Hire à **London**
+* vel’oh à **Luxembourg**
+* Villo! à **Bruxelles**
+* Li bia velo à **Namur**
+* Styr & Ställ à **Göteborg**
+* Bicike(LJ) à **Ljubljana**
+* CitybikeCity à **Wien**
+* Systèmes Cyclocity/JCDecaux à **Stockholm**, **Vilnius**, **Lillestrøm** et **Kazan**
+* Systèmes PubliBike en **Suisse**
+* Réseaux NextBike et Metropolradruhr en **Allemagne**
+* BalticBike à **Riga**
+* Veturilo à **Warszawa**
 
-## Dans le monde :
+### Dans le monde :
 
-* **Citi Bike** à New York
-* **Capital Bike Share** à Washington
-* **Divvy Bikes** à Chicago
-* **Hubway** à Boston
-* **Nice Ride** à Minneapolis
-* **ChattanoogaBike** à Chattanooga
-* **DECOBIKE** à Miami et Long Beach
-* Systèmes **B-Cycle** aux États-Unis (Boulder, Broward, Charlotte, Denver, Des Moines, Fort Worth, Greenville, Hawaii, Houston, Kansas City, Louisville, Madison, Nashville, Omaha, San Antonio, Salt Lake City, Spartanburg) 
-* Systèmes **ViaCycle** aux États-Unis (George Mason University, Georgia Tech, Las Vegas) 
-* **BIXI** à Montréal
-* **BIXI** à Toronto
-* **BIXI** à Ottawa
-* **CyclOcity** à Toyama
-* **CityCycle** à Brisbane
-* **BikeShare** à Melbourne
+* BIXI à **Montréal**, **Toronto** et **Ottawa**
+* Citi Bike à **New York**
+* Capital Bike Share à **Washington**
+* Divvy Bikes à **Chicago**
+* Hubway à **Boston**
+* Bay Area Bike Share à **San Francisco** et dans la région
+* Nice Ride à **Minneapolis**
+* ChattanoogaBike à **Chattanooga**
+* DECOBIKE à **Miami** et **Long Island**
+* CoGo à **Columbus**
+* CyclOcity à **Toyama**
+* CityCycle à **Brisbane** et BikeShare à **Melbourne**
 
-Bicyclette utilise les données des prestataires de vélos en libre-service, disponibles sur leurs sites respectifs ou plateformes open-data. [Plus de détails sur les sources de données.](data.html)

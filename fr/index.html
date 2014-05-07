@@ -3,21 +3,26 @@ layout: base
 title: Bicyclette.app — La meilleure app pour les vélos en libre-service. — Gratuite sur l’App Store
 ---
 
-{% include fr/header.html %}
+<div id="center"> {% include fr/header.html %} </div>
 
-<article>
-<section class="description"> {% capture section %}
+<section class="right"> <div id="center"> 
+{% capture section %}
 {% include fr/home/justamap.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-<section class="description"> {% capture section %}{% include fr/home/alerts.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
+{% endcapture %} {{ section | markdownify }}
+</section>
+<section class="left"> <div id="center">
+{% capture section %}{% include fr/home/alerts.mdown %}
+{% endcapture %} {{ section | markdownify }}
+</div></section>
 
-<section class="description" id="cities"> {% capture section %}
+<section class="right"> <div id="center">
+{% capture section %}
 {% include fr/home/cities.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
+{% endcapture %} {{ section | markdownify }}
+</div></section>
 
-<section id="techdetails"> {% capture section %}
+<section class="left"> <div id="center">
+{% capture section %}
 {% include fr/home/techdetails.mdown %}
-{% endcapture %} {{ section | markdownify }} </section>
-
-</article>
+{% endcapture %} {{ section | markdownify }}
+</div></section>

@@ -1,6 +1,6 @@
-# La carte des stations.<br>En direct sur votre iPhone.
+![](images/screenshots/01_Velib-568h@2x.png)
 
-![](images/screenshots/NotreDame@2x.png)
+## La carte des stations. En direct sur votre iPhone.
 
 Prenez un vélo. Allez faire un tour. Puis déposez-le.  
 Bicyclette vous permet simplement de trouver un vélo et une place le plus rapidement possible.
