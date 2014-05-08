@@ -2,8 +2,6 @@
 layout: base
 ---
 
-{% include en/header.html %}
-
 # Geofences
 
 > Geofences (or "Monitored Regions") are one of the most interesting features available on iPhone : their job is to automatically restart an app, when approaching a predefined location, and have it perform a background task. That's what Bicyclette uses to display how many bikes and spots are available in your favorite stations, when you arrive, right on the Lock Screen. 

@@ -1,6 +1,0 @@
-# Bugs and Suggestions
-
-* By email : [support@bicyclette-app.com](mailto:support@bicyclette-app.com) 
-* On Twitter : [@bicycletteapp](http://twitter.com/bicycletteapp)
-
-Bicyclette is available on iPhone and iPad, and requires iOS 6.0.

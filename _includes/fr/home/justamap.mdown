@@ -1,8 +1,0 @@
-![](images/screenshots/01_Velib-568h@2x.png)
-
-## La carte des stations. En direct sur votre iPhone.
-
-Prenez un vélo. Allez faire un tour. Puis déposez-le.  
-Bicyclette vous permet simplement de trouver un vélo et une place le plus rapidement possible.
-
-Bicyclette n'a qu'une fonction : la carte des stations, avec le nombre de vélos et de places. C'est tout. Vous n'avez qu'à ouvrir l'app.

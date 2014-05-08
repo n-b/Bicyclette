@@ -2,8 +2,6 @@
 layout: base
 ---
 
-{% include en/header.html %}
-
 Autant que possible, Bicyclette utilise les données provenant de WebServices *officiels*, ou de sources de données autorisées par les gestionnaires des réseaux.
 
 Malheureusement, les villes qui mettent effectivement à disposition du public les données sont une minorité. L'*opendata* a du chemin devant lui.

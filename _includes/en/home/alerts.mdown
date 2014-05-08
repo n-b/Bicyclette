@@ -1,9 +1,0 @@
-# Available Bikes.<br>Automatically.
-
-Simply indicate your favorite stations in the app. **As soon as you'll come near a station, Bicyclette will show a message on the home screen**, with the number of available bikes and spots.
-
-![](images/screenshots/Notification@2x.png)
-
-In fact, you don't even have to open the app any more!
-
-How does this work? These are "Geofences", a.k.a. "Monitored Regions". You can [read the technical details over here](monitoredregions.html).
