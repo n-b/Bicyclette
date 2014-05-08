@@ -13,10 +13,10 @@ div#center {
 /* Fonts */
 body { font-family: Montserrat; }
 h1 { font-weight: 700; font-size : 300%; }
-h2 { font-weight: 700; font-size : 150%; }
-h3 { font-weight: 700; font-size : 130%; }
-h4 { font-weight: 400; font-size : 100%; }
-p { line-height: 1.2em; font-size : 130%; }
+h2 { line-height: 1.3em; font-weight: 700; font-size : 150%; }
+h3 { line-height: 1.3em; font-weight: 700; font-size : 130%; }
+h4 { line-height: 1.3em; font-weight: 400; font-size : 100%; }
+p { line-height: 1.3em; font-size : 130%; }
 ul { line-height: 1.2em; font-size : 90%; }
 
 /* Link Colors */
@@ -75,4 +75,8 @@ section:after { content:""; display:block; clear: both; }
 -moz-animation-iteration-count:infinite; -moz-animation-duration:20s;
 -o-animation-iteration-count:infinite; -o-animation-duration:20s;
 animation-iteration-count:infinite; animation-duration:20s;
+}
+
+section#footer p{
+ line-height: 1.2em; font-size : 100%; }	
 }
