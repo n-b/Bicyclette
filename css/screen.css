@@ -11,7 +11,7 @@ div#center {
 }
 
 /* Fonts */
-body { font-family: Montserrat; }
+body { font-family: Montserrat, Verdana, sans-serif; }
 h1 { font-weight: 700; font-size : 300%; }
 h2 { line-height: 1.3em; font-weight: 700; font-size : 150%; }
 h3 { line-height: 1.3em; font-weight: 700; font-size : 130%; }
