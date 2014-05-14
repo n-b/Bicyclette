@@ -4,7 +4,7 @@ layout: data
 
 # Bike Sharing Services in Bicyclette.app
 
-These are the various webservices [Bicyclette](www.bicyclette-app.com) uses to fetch its data.  
+These are the various webservices [Bicyclette](http://www.bicyclette-app.com) uses to fetch its data.  
 For more general information, you can also take a look at [the Bike-sharing World Map](https://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&msa=0&msid=214135271590990954041.00043d80f9456b3416ced), the wikipedia [List of bicycle sharing systems](http://en.wikipedia.org/wiki/List_of_bicycle_sharing_systems) in the world, or the (french) [Liste des systèmes de vélos en libre-service en France](http://fr.wikipedia.org/wiki/Liste_des_systèmes_de_vélos_en_libre-service_en_France).
 
 ---
