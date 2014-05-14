@@ -80,3 +80,10 @@ animation-iteration-count:infinite; animation-duration:20s;
 section#footer p{
  line-height: 1.2em; font-size : 100%; }	
 }
+
+section#data h2 { font-size : 130%; }
+section#data h3 { font-size : 120%; }
+section#data h4 { font-size : 110%; }
+section#data p { font-size : 100%; }
+section#data ul { font-size : 100%; }
+section#data code { font-size : 110%; }
