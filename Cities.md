@@ -505,6 +505,7 @@ Bikenation seems to be working on networks in Los Angeles and Long Beach (Califo
 HTML Scraping needed. Also try to reverse engineer the iphone app.
 
 - **Sao Paulo** (List+Details) : http://ww2.mobilicidade.com.br/bikesampa/mapaestacao.asp
+- **Santos** (List+Details) : http://ww2.mobilicidade.com.br/bikesantos/mapaestacao.asp
 - **Rio** (List+Details) : http://ww2.mobilicidade.com.br/sambarjpt/mapaestacao.asp
 - **Soracaba** (List+Details) : http://ww2.mobilicidade.com.br/sorocaba/mapaestacao.asp
 - **Porto Alegre** (List+Details) : http://ww2.mobilicidade.com.br/bikepoa/mapaestacao.asp
