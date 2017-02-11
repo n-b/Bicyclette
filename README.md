@@ -4,7 +4,7 @@ Just a map. With stations. Nothing else.
 
 You don’t even have to launch the app : Bicyclette automatically fetches the number of bikes available when you approach your favorite station and shows a notification on the Lock Screen.
 
-See [bicyclette-app.fr](http://bicyclette-app.fr) for details.
+See [bicyclette-app.com](http://bicyclette-app.com) for details.
 
 # Development Notes
 
