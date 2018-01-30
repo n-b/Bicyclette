@@ -22,9 +22,9 @@ Some webservices (namely, Bordeaux, Rennes, Velopass, and TOBike) require an API
 
 ## Mapping
 
-The single most important file in the app is [BicycletteCities.json](blob/master/Files/Cities/BicycletteCities.json). It contains Keys-Mapping definitions, urls, general info, and other specific tidbits for every city of Bicyclette.
+The single most important file in the app is [BicycletteCities.json](Files/Cities/BicycletteCities.json). It contains Keys-Mapping definitions, urls, general info, and other specific tidbits for every city of Bicyclette.
 
-Also important is [Cities.md](blob/master/Cities.md) where I listed implementation notes for each system.
+Also important is [Cities.md](Cities.md) where I listed implementation notes for each system.
 
 Bicyclette uses another of my projects, [KVCMapping](https://github.com/n-b/KVCMapping) to make importing into the DB very easy.
 
@@ -34,7 +34,7 @@ There’s another run scheme that tries to make easier the whole process of maki
 
 ## Contributions
 
-are most welcome. Just [contact me](nico@bou.io) before you start something big, I may have some idea about it.
+are most welcome. Just [contact me](mailto:nico@bou.io) before you start something big, I may have some idea about it.
 
 ## Reusing code and compontents
 
